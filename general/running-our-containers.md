@@ -1,6 +1,4 @@
----
-title: "Running LinuxServer Containers"
----
+# Running LinuxServer Containers
 
 ## Image Structure
 
