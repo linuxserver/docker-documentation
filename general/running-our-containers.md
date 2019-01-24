@@ -1,4 +1,7 @@
-# Running LinuxServer Containers
+---
+path: "/general/containers-101"
+title: "Running LinuxServer Containers"
+---
 
 ## Image Structure
 
