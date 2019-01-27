@@ -9,4 +9,6 @@
   * [Understanding PUID and PGID](general/understanding-puid-and-pgid.md)
   * [Updating our containers](general/updating-our-containers.md)
   * [Volumes](general/volumes.md)
+* [Images](images/README.md)
+  * [linuxserver/bookstack](images/docker-bookstack.md)
 
