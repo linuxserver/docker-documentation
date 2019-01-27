@@ -81,25 +81,25 @@ Container images are configured using parameters passed at runtime (such as thos
 
 | Port | Function |
 | :----: | --- |
-| `-p 80` | will map the container's port 80 to port 6875 on the host |
+| `80` | will map the container's port 80 to port 6875 on the host |
 
 ### Environment Variables (`-e`)
 
 | Env | Function |
 | :----: | --- |
-| `-e PUID=1001` | for UserID - see below for explanation |
-| `-e PGID=1001` | for GroupID - see below for explanation |
-| `-e DB_HOST=<yourdbhost>` | for specifying the database host |
-| `-e DB_USER=<yourdbuser>` | for specifying the database user |
-| `-e DB_PASS=<yourdbpass>` | for specifying the database password |
-| `-e DB_DATABASE=bookstackapp` | for specifying the database to be used |
-| `-e APPURL=your.site.here.xyz` | for specifying the url your application will be accessed on  |
+| `PUID=1001` | for UserID - see below for explanation |
+| `PGID=1001` | for GroupID - see below for explanation |
+| `DB_HOST=<yourdbhost>` | for specifying the database host |
+| `DB_USER=<yourdbuser>` | for specifying the database user |
+| `DB_PASS=<yourdbpass>` | for specifying the database password |
+| `DB_DATABASE=bookstackapp` | for specifying the database to be used |
+| `APPURL=your.site.here.xyz` | for specifying the url your application will be accessed on  |
 
 ### Volume Mappings (`-v`)
 
 | Volume | Function |
 | :----: | --- |
-| `-v /config` | this will store any uploaded data on the docker host |
+| `/config` | this will store any uploaded data on the docker host |
 
 ## User / Group Identifiers
 
