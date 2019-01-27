@@ -110,8 +110,11 @@ Once the MariaDB container is deployed, you can enter the following commands int
 
 **Note** this will allow any user with these credentials to connect to the server, it is not limited to localhost
 
+```bash
+mysql -u root -p
 ```
-from shell: mysql -u root -p
+
+```sql
 CREATE DATABASE bookstackapp;
 GRANT USAGE ON *.* TO 'myuser'@'%' IDENTIFIED BY 'mypassword';
 GRANT ALL privileges ON `bookstackapp`.* TO 'myuser'@%;
