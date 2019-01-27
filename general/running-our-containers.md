@@ -6,8 +6,8 @@
 
 We have curated various base images which our main application images derive from. This is beneficial for two main reasons:
 
-- A common dependency base between multiple images, reducing the likelihood of variation between two or more applications that share the same dependencies.
-- Reduction in image footprint on your host machine by fully utilising Docker's image layering system. Multiple containers running locally that share the same base image will reuse that image and any of its ancestors.
+* A common dependency base between multiple images, reducing the likelihood of variation between two or more applications that share the same dependencies.
+* Reduction in image footprint on your host machine by fully utilising Docker's image layering system. Multiple containers running locally that share the same base image will reuse that image and any of its ancestors.
 
 ### The `/config` volume
 
@@ -28,3 +28,4 @@ docker create \
     -p <host_port>:<app_port> \
     linuxserver/<image_name>
 ```
+

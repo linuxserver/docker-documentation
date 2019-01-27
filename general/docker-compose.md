@@ -42,4 +42,5 @@ if [ -f ~/.bash_aliases ]; then
 fi
 ```
 
-Once configured, log out and the log in again. Now you can type `dcpull` or `dcp up -d` to manage your entire fleet of containers at once. It's like magic. 
+Once configured, log out and the log in again. Now you can type `dcpull` or `dcp up -d` to manage your entire fleet of containers at once. It's like magic.
+

@@ -1,8 +1,12 @@
 # Understanding PUID and PGID
 
+{% hint style="info" %}
+We are aware that recent versions of the Docker engine have introduced the `--user` flag. Our images are not yet compatible with this, so we recommend continuing usage of PUID and PGID.
+{% endhint %}
+
 ## Why use these?
 
-Docker runs all of its containers under the `root` user domain because it requires access to things like network configuration, process management, and your filesystem. This means that the processes running inside your containers also run as `root`. This kind of elevated access is not ideal for day-to-day use, and potentially gives applications the access to things they shouldn't (although, a strong understanding of volume and port mapping will help with this).
+Docker runs all of its containers under the `root` user domain because it requires access to things like network configuration, process management, and your filesystem. This means that the processes running inside your containers also run as `root`. This kind of elevated access is not ideal for day-to-day use, and potentially gives applications the access to things they shouldn't \(although, a strong understanding of volume and port mapping will help with this\).
 
 Another issue is file management within the container's mapped volumes. If the process is running under `root`, all files and directories created during the container's lifespan will be owned by `root`, thus becoming inaccessible by you.
 
@@ -29,3 +33,4 @@ It is most likely that you will use the `id` of yourself, which can be obtained 
 ```bash
 id $user
 ```
+
