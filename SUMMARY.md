@@ -2,12 +2,16 @@
 
 * [Introduction](README.md)
 
-## Image Documentation
+## Images
 
-* [Images](image-documentation/images/README.md)
-  * [linuxserver/bookstack](image-documentation/images/docker-bookstack.md)
-  * [linuxserver/headphones](image-documentation/images/docker-headphones.md)
-  * [linuxserver/lazylibrarian](image-documentation/images/docker-lazylibrarian.md)
+* [Images](images/README.md)
+  * [linuxserver/bookstack](images/docker-bookstack.md)
+  * [linuxserver/headphones](images/docker-headphones.md)
+  * [linuxserver/lazylibrarian](images/docker-lazylibrarian.md)
+  * [linuxserver/minisatip](images/docker-minisatip.md)
+  * [linuxserver/mylar](images/docker-mylar.md)
+  * [linuxserver/rutorrent](images/docker-rutorrent.md)
+  * [linuxserver/syncthing](images/docker-syncthing.md)
 
 ## General
 
