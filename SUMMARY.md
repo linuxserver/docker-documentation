@@ -20,5 +20,6 @@
 * [linuxserver/minisatip](images/docker-minisatip.md)
 * [linuxserver/mylar](images/docker-mylar.md)
 * [linuxserver/rutorrent](images/docker-rutorrent.md)
+* [linuxserver/sonarr](images/docker-sonarr.md)
 * [linuxserver/syncthing](images/docker-syncthing.md)
 
