@@ -16,6 +16,7 @@
 
 * [linuxserver/bookstack](images/docker-bookstack.md)
 * [linuxserver/headphones](images/docker-headphones.md)
+* [linuxserver/hydra2](images/docker-hydra2.md)
 * [linuxserver/lazylibrarian](images/docker-lazylibrarian.md)
 * [linuxserver/minisatip](images/docker-minisatip.md)
 * [linuxserver/mylar](images/docker-mylar.md)
