@@ -11,4 +11,6 @@
   * [Volumes](general/volumes.md)
 * [Images](images/README.md)
   * [linuxserver/bookstack](images/docker-bookstack.md)
+  * [linuxserver/headphones](images/docker-headphones.md)
+  * [linuxserver/lazylibrarian](images/docker-lazylibrarian.md)
 
