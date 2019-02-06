@@ -25,6 +25,7 @@
 * [linuxserver/minisatip](images/docker-minisatip.md)
 * [linuxserver/mylar](images/docker-mylar.md)
 * [linuxserver/photoshow](images/docker-photoshow.md)
+* [linuxserver/plex](images/docker-plex.md)
 * [linuxserver/qbittorrent](images/docker-qbittorrent.md)
 * [linuxserver/rutorrent](images/docker-rutorrent.md)
 * [linuxserver/sonarr](images/docker-sonarr.md)
