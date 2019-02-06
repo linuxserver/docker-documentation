@@ -58,11 +58,9 @@ docker-compose up -d <container_name>
 Or, to update all containers at once:
 
 ```bash
-docker-compose pull --parallel
+docker-compose pull
 docker-compose up -d
 ```
-
-{% hint style="info" %} The `--parallel` flag will pull down all available images in multiple threads, rather than one at a time.{% endhint %}
 
 ## Removing old images
 
