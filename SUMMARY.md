@@ -15,6 +15,7 @@
 ## Images
 
 * [linuxserver/bookstack](images/docker-bookstack.md)
+* [linuxserver/cops](images/docker-cops.md)
 * [linuxserver/headphones](images/docker-headphones.md)
 * [linuxserver/hydra2](images/docker-hydra2.md)
 * [linuxserver/jackett](images/docker-jacket.md)
@@ -27,4 +28,5 @@
 * [linuxserver/rutorrent](images/docker-rutorrent.md)
 * [linuxserver/sonarr](images/docker-sonarr.md)
 * [linuxserver/syncthing](images/docker-syncthing.md)
+* [linuxserver/znc](images/docker-znc.md)
 
