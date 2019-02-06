@@ -46,3 +46,28 @@ docker create \
     linuxserver/<image_name>
 ```
 
+## Docker Compose
+
+It is also possible to update a single container using Docker Compose:
+
+```bash
+docker-compose pull linuxserver/<image_name>
+docker-compose up -d <container_name>
+```
+
+Or, to update all containers at once:
+
+```bash
+docker-compose pull --parallel
+docker-compose up -d
+```
+
+{% hint style="info" %} The `--parallel` flag will pull down all available images in multiple threads, rather than one at a time.{% endhint %}
+
+## Removing old images
+
+Whenever a Docker image is updated, a fresh version of that image gets downloaded and stored on your host machine. Doing this, however, does not remove the _old_ version of the image. Eventually you will end up with a lot of disk space used up by stale images. You can `prune` old images from your system, which will free up space:
+
+```bash
+docker image prune
+```
