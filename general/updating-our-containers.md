@@ -1,6 +1,6 @@
 # Updating our containers
 
-Our images are updated weekly, so make sure you're always running the latest version, as they contain important bug fixes and new features.
+Our images are updated whenever the upstream application or dependencies get changed, so make sure you're always running the latest version, as they may contain important bug fixes and new features.
 
 ## Steps required to update
 
