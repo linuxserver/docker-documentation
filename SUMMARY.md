@@ -16,9 +16,10 @@
 
 * [linuxserver/bookstack](images/docker-bookstack.md)
 * [linuxserver/cops](images/docker-cops.md)
+* [linuxserver/duplicati](images/docker-duplicati.md)
 * [linuxserver/headphones](images/docker-headphones.md)
 * [linuxserver/hydra2](images/docker-hydra2.md)
-* [linuxserver/jackett](images/docker-jacket.md)
+* [linuxserver/jackett](images/docker-jackett.md)
 * [linuxserver/lazylibrarian](images/docker-lazylibrarian.md)
 * [linuxserver/ldap-auth](images/docker-ldap-auth.md)
 * [linuxserver/minisatip](images/docker-minisatip.md)
