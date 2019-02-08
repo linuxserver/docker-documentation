@@ -113,7 +113,7 @@ In tautulli gui settings, under `Plex Media Server`, turn on `Show Advanced` and
 
 |  Date | Changes |
 | :---: | --- |
-| 23.10.18 | Add pipeline logic and multi arch. |
+| 26.01.19 | Add pipeline logic and multi arch. |
 | 23.10.18 | Update plex logs info in readme. |
 | 16.08.18 | Rebase to alpine 3.8. |
 | 10.03.18 | Rebrand to tautulli. |
