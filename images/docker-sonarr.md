@@ -15,6 +15,8 @@
 
 Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list). 
 
+Simply pulling `linuxserver/sonarr` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+
 The architectures supported by this image are:
 
 | Architecture | Tag |
@@ -108,6 +110,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `/downloads` | Location of download managers output directory |
 
 
+
 ## User / Group Identifiers
 
 When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
@@ -140,8 +143,7 @@ Access the webui at `<your-ip>:8989`, for more information check out [Sonarr](ht
 
 ## Versions
 
-* **03.02.19:** - Add package version and package author, remove update folder.
-* **01.02.19:** - Multi arch images and pipeline build logic.
+* **01.02.19:** - Multi arch images and pipeline build logic
 * **15.12.17:** - Fix continuation lines.
 * **12.07.17:** - Add inspect commands to README, move to jenkins build and push.
 * **17.04.17:** - Switch to using inhouse mono baseimage, adds python also.
