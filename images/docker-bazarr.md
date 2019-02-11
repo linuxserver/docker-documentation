@@ -14,6 +14,8 @@
 
 Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list). 
 
+Simply pulling `linuxserver/bazarr` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+
 The architectures supported by this image are:
 
 | Architecture | Tag |
@@ -38,7 +40,7 @@ docker create \
   -p 6767:6767 \
   -v </path/to/bazarr/config>:/config \
   -v </path/to/movies>:/movies \
-  -v </path/to/tv>:/tv \
+  -v </path/to/tv:/tv \
   --restart unless-stopped \
   linuxserver/bazarr
 ```
@@ -67,7 +69,7 @@ services:
     volumes:
       - </path/to/bazarr/config>:/config
       - </path/to/movies>:/movies
-      - </path/to/tv>:/tv
+      - </path/to/tv:/tv
     ports:
       - 6767:6767
     mem_limit: 4096m
@@ -100,6 +102,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `/config` | Bazarr data |
 | `/movies` | Location of your movies |
 | `/tv` | Location of your TV Shows |
+
 
 
 ## User / Group Identifiers
