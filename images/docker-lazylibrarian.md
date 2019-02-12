@@ -1,93 +1,147 @@
-[linuxserverurl]: https://linuxserver.io
-[forumurl]: https://forum.linuxserver.io
-[ircurl]: https://www.linuxserver.io/irc/
-[podcasturl]: https://www.linuxserver.io/podcast/
-[appurl]: https://github.com/DobyTang/LazyLibrarian
-[hub]: https://hub.docker.com/r/linuxserver/lazylibrarian/
+# [linuxserver/lazylibrarian](https://github.com/linuxserver/docker-lazylibrarian)
 
-[![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png)][linuxserverurl]
+[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
+[![](https://images.microbadger.com/badges/version/linuxserver/lazylibrarian.svg)](https://microbadger.com/images/linuxserver/lazylibrarian "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/linuxserver/lazylibrarian.svg)](https://microbadger.com/images/linuxserver/lazylibrarian "Get your own version badge on microbadger.com")
+![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/lazylibrarian.svg)
+![Docker Stars](https://img.shields.io/docker/stars/linuxserver/lazylibrarian.svg)
+[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-lazylibrarian/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-lazylibrarian/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/lazylibrarian/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/lazylibrarian/latest/index.html)
 
-The [LinuxServer.io][linuxserverurl] team brings you another container release featuring easy user mapping and community support. Find us for support at:
-* [forum.linuxserver.io][forumurl]
-* [IRC][ircurl] on freenode at `#linuxserver.io`
-* [Podcast][podcasturl] covers everything to do with getting the most from your Linux Server plus a focus on all things Docker and containerisation!
+[Lazylibrarian](https://github.com/DobyTang/LazyLibrarian) is a program to follow authors and grab metadata for all your digital reading needs. It uses a combination of Goodreads Librarything and optionally GoogleBooks as sources for author info and book info.  This container is based on the DobyTang fork.
 
-# linuxserver/lazylibrarian
-[![](https://images.microbadger.com/badges/version/linuxserver/lazylibrarian.svg)](https://microbadger.com/images/linuxserver/lazylibrarian "Get your own version badge on microbadger.com")[![](https://images.microbadger.com/badges/image/linuxserver/lazylibrarian.svg)](https://microbadger.com/images/linuxserver/lazylibrarian "Get your own image badge on microbadger.com")[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/lazylibrarian.svg)][hub][![Docker Stars](https://img.shields.io/docker/stars/linuxserver/lazylibrarian.svg)][hub][![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Builders/x86-64/x86-64-lazylibrarian)](https://ci.linuxserver.io/job/Docker-Builders/job/x86-64/job/x86-64-lazylibrarian/)
 
-[LazyLibrarian][appurl] is a program to follow authors and grab metadata for all your digital reading needs. It uses a combination of Goodreads Librarything and optionally GoogleBooks as sources for author info and book info.  This container is based on the DobyTang fork.
+## Supported Architectures
 
-[![lazylibrarian](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/lazylibrarian-icon.png)][appurl]
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list). 
+
+Simply pulling `linuxserver/lazylibrarian` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+
+The architectures supported by this image are:
+
+| Architecture | Tag |
+| :----: | --- |
+| x86-64 | amd64-latest |
+| arm64 | arm64v8-latest |
+| armhf | arm32v6-latest |
+
 
 ## Usage
+
+Here are some example snippets to help you get started creating a container from this image.
+
+### docker
 
 ```
 docker create \
   --name=lazylibrarian \
-  -v <path to data>:/config \
-  -v <path to data>:/downloads \
-  -v <path to data>:/books \
-  -e PGID=<gid> -e PUID=<uid>  \
-  -e TZ=<timezone> \
+  -e PUID=1001 \
+  -e PGID=1001 \
+  -e TZ=Europe/London \
   -p 5299:5299 \
+  -v <path to data>:/config \
+  -v <path to downloads>:/downloads \
+  -v <path to data>:/books \
+  --restart unless-stopped \
   linuxserver/lazylibrarian
+```
+
+
+### docker-compose
+
+Compatible with docker-compose v2 schemas.
+
+```yaml
+---
+version: "2"
+services:
+  lazylibrarian:
+    image: linuxserver/lazylibrarian
+    container_name: lazylibrarian
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - TZ=Europe/London
+    volumes:
+      - <path to data>:/config
+      - <path to downloads>:/downloads
+      - <path to data>:/books
+    ports:
+      - 5299:5299
+    mem_limit: 4096m
+    restart: unless-stopped
 ```
 
 ## Parameters
 
-`The parameters are split into two halves, separated by a colon, the left hand side representing the host and the right the container side.
-For example with a port -p external:internal - what this shows is the port mapping from internal to external of the container.
-So -p 8080:80 would expose port 80 from inside the container to be accessible from the host's IP on port 8080
-http://192.168.x.x:8080 would show you what's running INSIDE the container on port 80.`
+Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+
+### Ports (`-p`)
+
+| Parameter | Function |
+| :----: | --- |
+| `5299` | The port for the LazyLibrarian webinterface |
 
 
-* `-p 5299` - Port for webui
-* `-v /config` Containers lazylibrarian config and database
-* `-v /downloads` lazylibrarian download folder
-* `-v /books` location of ebook library
-* `-e PGID` for GroupID - see below for explanation
-* `-e PUID` for UserID - see below for explanation
-* `-e TZ` for setting timezone information, eg Europe/London
+### Environment Variables (`-e`)
 
-It is based on alpine linux with s6 overlay, for shell access whilst the container is running do `docker exec -it lazylibrarian /bin/bash`.
+| Env | Function |
+| :----: | --- |
+| `PUID=1001` | for UserID - see below for explanation |
+| `PGID=1001` | for GroupID - see below for explanation |
+| `TZ=Europe/London` | Specify a timezone to use e.g. Europe/London |
 
-### User / Group Identifiers
+### Volume Mappings (`-v`)
 
-Sometimes when using data volumes (`-v` flags) permissions issues can arise between the host OS and the container. We avoid this issue by allowing you to specify the user `PUID` and group `PGID`. Ensure the data volume directory on the host is owned by the same user you specify and it will "just work" ™.
+| Volume | Function |
+| :----: | --- |
+| `/config` | LazyLibrarian config |
+| `/downloads` | Download location |
+| `/books` | Books location |
 
-In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as below:
+
+
+## User / Group Identifiers
+
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+
+Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
+
+In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as below:
 
 ```
-  $ id <dockeruser>
+  $ id username
     uid=1001(dockeruser) gid=1001(dockergroup) groups=1001(dockergroup)
 ```
 
-## Setting up the application
-Access the webui at `<your-ip>:5299/home`, for more information check out [LazyLibrarian][appurl]..
+## Application Setup
 
-## Info
+Access the webui at `http://<your-ip>:5299/home`, for more information check out [Lazylibrarian](https://github.com/DobyTang/LazyLibrarian).
 
-* To monitor the logs of the container in realtime `docker logs -f lazylibrarian`.
 
-* container version number
 
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' lazylibrarian`
+## Support Info
 
-* image version number
-
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/lazylibrarian`
+* Shell access whilst the container is running: 
+  * `docker exec -it lazylibrarian /bin/bash`
+* To monitor the logs of the container in realtime: 
+  * `docker logs -f lazylibrarian`
+* Container version number 
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lazylibrarian`
+* Image version number
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/lazylibrarian`
 
 ## Versions
 
-+ **10.12.18:** Moved to Pipeline Building
-+ **16.08.18:** Rebase to alpine 3.8.
-+ **05.01.18:** Deprecate cpu_core routine lack of scaling.
-+ **12.12.17:** Rebase to alpine 3.7.
-+ **21.07.17:** Internal git pull instead of at runtime.
-+ **25.05.17:** Rebase to alpine 3.6.
-+ **07.02.17:** Rebase to alpine 3.5.
-+ **30.01.17:** Compile libunrar.so to allow reading of .cbr format files.
-+ **12.01.17:** Add ghostscript package, allows magazine covers to be created etc.
-+ **14.10.16:** Add version layer information.
-+ **03.10.16:** Fix non-persistent settings and make log folder.
-+ **28.09.16:** Inital Release.
+* **10.12.18:** - Moved to Pipeline Building
+* **16.08.18:** - Rebase to alpine 3.8
+* **05.01.18:** - Deprecate cpu_core routine lack of scaling
+* **12.12.17:** - Rebase to alpine 3.7
+* **21.07.17:** - Internal git pull instead of at runtime
+* **25.05.17:** - Rebase to alpine 3.6
+* **07.02.17:** - Rebase to alpine 3.5
+* **30.01.17:** - Compile libunrar.so to allow reading of .cbr format files
+* **12.01.17:** - Add ghostscript package, allows magazine covers to be created etc
+* **14.10.16:** - Add version layer information
+* **03.10.16:** - Fix non-persistent settings and make log folder
+* **28.09.16:** - Inital Release
