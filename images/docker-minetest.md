@@ -1,104 +1,145 @@
-[linuxserverurl]: https://linuxserver.io
-[forumurl]: https://forum.linuxserver.io
-[ircurl]: https://www.linuxserver.io/irc/
-[podcasturl]: https://www.linuxserver.io/podcast/
-[appurl]: http://www.minetest.net/
-[hub]: https://hub.docker.com/r/linuxserver/minetest/
+# [linuxserver/minetest](https://github.com/linuxserver/docker-minetest)
 
-[![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png)][linuxserverurl]
+[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
+[![](https://images.microbadger.com/badges/version/linuxserver/minetest.svg)](https://microbadger.com/images/linuxserver/minetest "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/linuxserver/minetest.svg)](https://microbadger.com/images/linuxserver/minetest "Get your own version badge on microbadger.com")
+![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/minetest.svg)
+![Docker Stars](https://img.shields.io/docker/stars/linuxserver/minetest.svg)
+[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-minetest/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-minetest/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/minetest/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/minetest/latest/index.html)
 
-The [LinuxServer.io][linuxserverurl] team brings you another container release featuring easy user mapping and community support. Find us for support at:
-* [forum.linuxserver.io][forumurl]
-* [IRC][ircurl] on freenode at `#linuxserver.io`
-* [Podcast][podcasturl] covers everything to do with getting the most from your Linux Server plus a focus on all things Docker and containerisation!
+[Minetest](http://www.minetest.net/) (server) is a near-infinite-world block sandbox game and a game engine, inspired by InfiniMiner, Minecraft, and the like.
 
-# linuxserver/minetest
-[![](https://images.microbadger.com/badges/version/linuxserver/minetest.svg)](https://microbadger.com/images/linuxserver/minetest "Get your own version badge on microbadger.com")[![](https://images.microbadger.com/badges/image/linuxserver/minetest.svg)](https://microbadger.com/images/linuxserver/minetest "Get your own image badge on microbadger.com")[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/minetest.svg)][hub][![Docker Stars](https://img.shields.io/docker/stars/linuxserver/minetest.svg)][hub][![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Builders/x86-64/x86-64-minetest)](https://ci.linuxserver.io/job/Docker-Builders/job/x86-64/job/x86-64-minetest/)
+## Supported Architectures
 
-[Minetest][appurl] (server) is a near-infinite-world block sandbox game and a game engine, inspired by InfiniMiner, Minecraft, and the like.
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list). 
 
-[![minetest](https://raw.githubusercontent.com/linuxserver/beta-templates/master/lsiodev/img/minetest-icon.png)][appurl]
+Simply pulling `linuxserver/minetest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+
+The architectures supported by this image are:
+
+| Architecture | Tag |
+| :----: | --- |
+| x86-64 | amd64-latest |
+| arm64 | arm64v8-latest |
+| armhf | arm32v6-latest |
+
 
 ## Usage
+
+Here are some example snippets to help you get started creating a container from this image.
+
+### docker
 
 ```
 docker create \
   --name=minetest \
+  -e PUID=1001 \
+  -e PGID=1001 \
+  -e TZ=Europe/London \
+  -p 30000:30000/udp \
   -v <path to data>:/config/.minetest \
-  -e PGID=<gid> -e PUID=<uid>  \
-  -p 30000:30000/udp
+  --restart unless-stopped \
   linuxserver/minetest
 ```
 
-## Tags
-Client and server must be the same version and to allow this you can choose one of the following tags in the following format
 
-linuxserver/minetest:0.4.16
+### docker-compose
 
-+ **0.4.13**
-+ **0.4.14**
-+ **0.4.15**
-+ **0.4.16**
+Compatible with docker-compose v2 schemas.
 
-The default aka :latest builds whatever is the latest release at build time, from here. https://github.com/minetest/minetest/releases
-
+```yaml
+---
+version: "2"
+services:
+  minetest:
+    image: linuxserver/minetest
+    container_name: minetest
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - TZ=Europe/London
+    volumes:
+      - <path to data>:/config/.minetest
+    ports:
+      - 30000:30000/udp
+    mem_limit: 4096m
+    restart: unless-stopped
+```
 
 ## Parameters
 
-`The parameters are split into two halves, separated by a colon, the left hand side representing the host and the right the container side.
-For example with a port -p external:internal - what this shows is the port mapping from internal to external of the container.
-So -p 8080:80 would expose port 80 from inside the container to be accessible from the host's IP on port 8080
-http://192.168.x.x:8080 would show you what's running INSIDE the container on port 80.`
+Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+
+### Ports (`-p`)
+
+| Parameter | Function |
+| :----: | --- |
+| `30000/udp` | Port Minetest listens on. |
+
+
+### Environment Variables (`-e`)
+
+| Env | Function |
+| :----: | --- |
+| `PUID=1001` | for UserID - see below for explanation |
+| `PGID=1001` | for GroupID - see below for explanation |
+| `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
+
+### Volume Mappings (`-v`)
+
+| Volume | Function |
+| :----: | --- |
+| `/config/.minetest` | Where minetest stores config files and maps etc. |
 
 
 
-* `-p 30000/udp` - the port(s)
-* `-v /config/.minetest` - where minetest stores config files and maps etc.
-* `-e PGID` for GroupID - see below for explanation
-* `-e PUID` for UserID - see below for explanation
+## User / Group Identifiers
 
-It is based on alpine linux with s6 overlay, for shell access whilst the container is running do `docker exec -it minetest /bin/bash`.
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
-### User / Group Identifiers
+Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
-Sometimes when using data volumes (`-v` flags) permissions issues can arise between the host OS and the container. We avoid this issue by allowing you to specify the user `PUID` and group `PGID`. Ensure the data volume directory on the host is owned by the same user you specify and it will "just work" ™.
-
-In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as below:
+In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as below:
 
 ```
-  $ id <dockeruser>
+  $ id username
     uid=1001(dockeruser) gid=1001(dockergroup) groups=1001(dockergroup)
 ```
 
-## Setting up the application
+## Application Setup
 
 You can find the world maps, mods folder and config files in /config/.minetest.
 
-## Info
+Client and server must be the same version, please browse the tags here to pull the appropriate version for your server:
 
-* Shell access whilst the container is running: `docker exec -it minetest /bin/bash`
-* To monitor the logs of the container in realtime: `docker logs -f minetest`
+https://hub.docker.com/r/linuxserver/minetest/tags
 
-* container version number
 
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' minetest`
 
-* image version number
+## Support Info
 
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/minetest`
+* Shell access whilst the container is running: 
+  * `docker exec -it minetest /bin/bash`
+* To monitor the logs of the container in realtime: 
+  * `docker logs -f minetest`
+* Container version number 
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' minetest`
+* Image version number
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/minetest`
 
 ## Versions
 
-+ **14.01.19:** Add pipeline logic and multi arch.
-+ **08.08.18:** Rebase to alpine 3.8, build from latest release tag instead of master.
-+ **03.01.18:** Deprecate cpu_core routine lack of scaling.
-+ **08.12.17:** Rebase to alpine 3.7.
-+ **30.11.17:** Use cpu core counting routine to speed up build time.
-+ **26.05.17:** Rebase to alpine 3.6.
-+ **14.02.17:** Rebase to alpine 3.5.
-+ **25.11.16:** Rebase to alpine linux, move to main repo.
-+ **27.02.16:** Bump to latest version.
-+ **19.02.16:** Change port to UDP, thanks to slashopt for pointing this out.
-+ **15.02.16:** Make minetest app a service.
-+ **01.02.16:** Add lua-socket dependency.
-+ **06.11.15:** Initial Release.
+* **14.01.19:** - Add pipeline logic and multi arch.
+* **08.08.18:** - Rebase to alpine 3.8, build from latest release tag instead of master.
+* **03.01.18:** - Deprecate cpu_core routine lack of scaling.
+* **08.12.17:** - Rebase to alpine 3.7.
+* **30.11.17:** - Use cpu core counting routine to speed up build time.
+* **26.05.17:** - Rebase to alpine 3.6.
+* **14.02.17:** - Rebase to alpine 3.5.
+* **25.11.16:** - Rebase to alpine linux, move to main repo.
+* **27.02.16:** - Bump to latest version.
+* **19.02.16:** - Change port to UDP, thanks to slashopt for pointing this out.
+* **15.02.16:** - Make minetest app a service.
+* **01.02.16:** - Add lua-socket dependency.
+* **06.11.15:** - Initial Release.
