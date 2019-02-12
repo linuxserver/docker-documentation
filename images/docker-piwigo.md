@@ -1,96 +1,140 @@
-[linuxserverurl]: https://linuxserver.io
-[forumurl]: https://forum.linuxserver.io
-[ircurl]: https://www.linuxserver.io/irc/
-[podcasturl]: https://www.linuxserver.io/podcast/
-[appurl]: http://piwigo.org/
-[hub]: https://hub.docker.com/r/linuxserver/piwigo/
+# [linuxserver/piwigo](https://github.com/linuxserver/docker-piwigo)
 
-[![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png)][linuxserverurl]
+[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
+[![](https://images.microbadger.com/badges/version/linuxserver/piwigo.svg)](https://microbadger.com/images/linuxserver/piwigo "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/linuxserver/piwigo.svg)](https://microbadger.com/images/linuxserver/piwigo "Get your own version badge on microbadger.com")
+![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/piwigo.svg)
+![Docker Stars](https://img.shields.io/docker/stars/linuxserver/piwigo.svg)
+[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-piwigo/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-piwigo/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/piwigo/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/piwigo/latest/index.html)
 
-The [LinuxServer.io][linuxserverurl] team brings you another container release featuring easy user mapping and community support. Find us for support at:
-* [forum.linuxserver.io][forumurl]
-* [IRC][ircurl] on freenode at `#linuxserver.io`
-* [Podcast][podcasturl] covers everything to do with getting the most from your Linux Server plus a focus on all things Docker and containerisation!
+[Piwigo](http://piwigo.org/) is a photo gallery software for the web that comes with powerful features to publish and manage your collection of pictures.
 
-# linuxserver/piwigo
-[![](https://images.microbadger.com/badges/version/linuxserver/piwigo.svg)](https://microbadger.com/images/linuxserver/piwigo "Get your own version badge on microbadger.com")[![](https://images.microbadger.com/badges/image/linuxserver/piwigo.svg)](https://microbadger.com/images/linuxserver/piwigo "Get your own image badge on microbadger.com")[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/piwigo.svg)][hub][![Docker Stars](https://img.shields.io/docker/stars/linuxserver/piwigo.svg)][hub][![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Builders/x86-64/x86-64-piwigo)](https://ci.linuxserver.io/job/Docker-Builders/job/x86-64/job/x86-64-piwigo/)
+## Supported Architectures
 
-Piwigo is a photo gallery software for the web that comes with powerful features to publish and manage your collection of pictures.
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list). 
 
-[![piwigo](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/piwigo-banner.png)][appurl]
+Simply pulling `linuxserver/piwigo` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+
+The architectures supported by this image are:
+
+| Architecture | Tag |
+| :----: | --- |
+| x86-64 | amd64-latest |
+| arm64 | arm64v8-latest |
+| armhf | arm32v6-latest |
+
 
 ## Usage
 
+Here are some example snippets to help you get started creating a container from this image.
+
+### docker
+
 ```
 docker create \
---name=piwigo \
--v /etc/localtime:/etc/localtime:ro \
--v <path to data>:/config \
--e PGID=<gid> -e PUID=<uid>  \
--e TZ=<timezone> \
--p 80:80 \
-linuxserver/piwigo
+  --name=piwigo \
+  -e PUID=1001 \
+  -e PGID=1001 \
+  -e TZ=Europe/London \
+  -p 80:80 \
+  -v </path/to/appdata/config>:/config \
+  --restart unless-stopped \
+  linuxserver/piwigo
+```
+
+
+### docker-compose
+
+Compatible with docker-compose v2 schemas.
+
+```yaml
+---
+version: "2"
+services:
+  piwigo:
+    image: linuxserver/piwigo
+    container_name: piwigo
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - TZ=Europe/London
+    volumes:
+      - </path/to/appdata/config>:/config
+    ports:
+      - 80:80
+    mem_limit: 4096m
+    restart: unless-stopped
 ```
 
 ## Parameters
 
-`The parameters are split into two halves, separated by a colon, the left hand side representing the host and the right the container side.
-For example with a port -p external:internal - what this shows is the port mapping from internal to external of the container.
-So -p 8080:80 would expose port 80 from inside the container to be accessible from the host's IP on port 8080
-http://192.168.x.x:8080 would show you what's running INSIDE the container on port 80.`
+Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+
+### Ports (`-p`)
+
+| Parameter | Function |
+| :----: | --- |
+| `80` | Application WebUI |
 
 
-* `-p 80` - webui port *see note below*
-* `-v /etc/localtime` for timesync - *optional*
-* `-v /config` - folder to store appdata and config file for piwigo
-* `-e PGID` for GroupID - see below for explanation
-* `-e PUID` for UserID - see below for explanation
-* `-e TZ` for setting timezone information, eg Europe/London
+### Environment Variables (`-e`)
 
-It is based on alpine linux with s6 overlay, for shell access whilst the container is running do `docker exec -it piwigo /bin/bash`.
+| Env | Function |
+| :----: | --- |
+| `PUID=1001` | for UserID - see below for explanation |
+| `PGID=1001` | for GroupID - see below for explanation |
+| `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 
-### User / Group Identifiers
+### Volume Mappings (`-v`)
 
-Sometimes when using data volumes (`-v` flags) permissions issues can arise between the host OS and the container. We avoid this issue by allowing you to specify the user `PUID` and group `PGID`. Ensure the data volume directory on the host is owned by the same user you specify and it will "just work" ™.
+| Volume | Function |
+| :----: | --- |
+| `/config` | Configuration files. |
 
-In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as below:
+
+
+## User / Group Identifiers
+
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+
+Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
+
+In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as below:
 
 ```
-  $ id <dockeruser>
+  $ id username
     uid=1001(dockeruser) gid=1001(dockergroup) groups=1001(dockergroup)
 ```
 
-## Setting up the application
+## Application Setup
 
-You must create a user and database for piwigo to use in a mysql/mariadb server. In the setup page for database, use the ip address rather than hostname....
+* You must create a user and database for piwigo to use in a mysql/mariadb server.
+* In the setup page for database, use the ip address rather than hostname.
+* A basic nginx configuration file can be found in `/config/nginx/site-confs`, edit the file to enable ssl (port 443 by default), set servername etc.
+* Self-signed keys are generated the first time you run the container and can be found in `/config/keys`, if needed, you can replace them with your own.
+* The easiest way to edit the configuration file is to enable local files editor from the plugins page and use it to configure email settings etc.
 
-A basic nginx configuration file can be found in /config/nginx/site-confs , edit the file to enable ssl (port 443 by default), set servername etc..
-Self-signed keys are generated the first time you run the container and can be found in /config/keys , if needed, you can replace them with your own.
 
-The easiest way to edit the configuration file is to enable local files editor from the plugins page and use it to configure email settings etc....
+## Support Info
 
-
-## Info
-
-* To update piwigo if required, update via the webui
-* To monitor the logs of the container in realtime `docker logs -f piwigo`.
-
-* container version number
-
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' piwigo`
-
-* image version number
-
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/piwigo`
+* Shell access whilst the container is running: 
+  * `docker exec -it piwigo /bin/bash`
+* To monitor the logs of the container in realtime: 
+  * `docker logs -f piwigo`
+* Container version number 
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' piwigo`
+* Image version number
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/piwigo`
 
 ## Versions
 
-+ **28.01.19:** Rebase to alpine linux 3.8 , add pipeline logic and multi arch.
-+ **25.01.18:** Rebase to alpine linux 3.7.
-+ **25.05.17:** Rebase to alpine linux 3.6.
-+ **03.05.17:** Use repo pinning to better solve dependencies, use repo version of php7-imagick.
-+ **20.04.17:** Add php7-exif package, thanks iiska
-+ **23.02.17:** Rebase to alpine linux 3.5 and nginx.
-+ **14.10.16:** Add version layer information.
-+ **10.09.16:** Add layer badges to README.
-+ **29.08.15:** Initial Release.
+* **28.01.19:** - Rebase to alpine linux 3.8 , add pipeline logic and multi arch.
+* **25.01.18:** - Rebase to alpine linux 3.7.
+* **25.05.17:** - Rebase to alpine linux 3.6.
+* **03.05.17:** - Use repo pinning to better solve dependencies, use repo version of php7-imagick.
+* **20.04.17:** - Add php7-exif package, thanks iiska
+* **23.02.17:** - Rebase to alpine linux 3.5 and nginx.
+* **14.10.16:** - Add version layer information.
+* **10.09.16:** - Add layer badges to README.
+* **29.08.15:** - Initial Release.
