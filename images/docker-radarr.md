@@ -15,6 +15,8 @@
 
 Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list). 
 
+Simply pulling `linuxserver/radarr` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+
 The architectures supported by this image are:
 
 | Architecture | Tag |
@@ -104,6 +106,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `/config` | Database and Radarr configs |
 | `/movies` | Location of Movie library on disk |
 | `/downloads` | Location of download managers output directory |
+
 
 
 ## User / Group Identifiers
