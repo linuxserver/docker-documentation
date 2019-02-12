@@ -12,11 +12,13 @@
 If you are sharing your Plex server with other users, allow them to request new content using an easy to manage interface!
 Manage all your requests for Movies and TV with ease, leave notes for the user and get notification when a user requests something.
 Allow your users to post issues against their requests so you know there is a problem with the audio etc.
-Even automatically sent them weekly newsletters of new content that has been added to your Plex server!
+Even automatically send them weekly newsletters of new content that has been added to your Plex server!
 
 ## Supported Architectures
 
 Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list). 
+
+Simply pulling `linuxserver/ombi` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
@@ -100,6 +102,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `/config` | Contains all relevant configuration files. |
 
 
+
 ## User / Group Identifiers
 
 When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
@@ -133,7 +136,7 @@ Access the webui at `<your-ip>:3579`. Follow the setup wizard on initial install
 ## Versions
 
 * **25.01.19:** - Add info on tags and development builds.
-* **17.12.18:** - Switch to multi-arch builds and add aarch64 image.
+* **09.01.19:** - Switch to multi-arch builds and add aarch64 image.
 * **11.03.18:** - Add HOME env to Dockerfile.
 * **05.03.18:** - Switch to Ombi v3 stable based on .net core.
 * **26.01.18:** - Fix continuation lines.
