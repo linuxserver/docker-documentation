@@ -1,69 +1,119 @@
-[linuxserverurl]: https://linuxserver.io
-[forumurl]: https://forum.linuxserver.io
-[ircurl]: https://www.linuxserver.io/irc/
-[podcasturl]: https://www.linuxserver.io/podcast/
-[appurl]: https://github.com/hubbcaps/gazee
-[hub]: https://hub.docker.com/r/linuxserver/gazee/
+# [linuxserver/gazee](https://github.com/linuxserver/docker-gazee)
 
-[![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png)][linuxserverurl]
+[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
+[![](https://images.microbadger.com/badges/version/linuxserver/gazee.svg)](https://microbadger.com/images/linuxserver/gazee "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/linuxserver/gazee.svg)](https://microbadger.com/images/linuxserver/gazee "Get your own version badge on microbadger.com")
+![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/gazee.svg)
+![Docker Stars](https://img.shields.io/docker/stars/linuxserver/gazee.svg)
+[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-gazee/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-gazee/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/gazee/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/gazee/latest/index.html)
 
-The [LinuxServer.io][linuxserverurl] team brings you another container release featuring easy user mapping and community support. Find us for support at:
-* [forum.linuxserver.io][forumurl]
-* [IRC][ircurl] on freenode at `#linuxserver.io`
-* [Podcast][podcasturl] covers everything to do with getting the most from your Linux Server plus a focus on all things Docker and containerisation!
+[Gazee](https://github.com/hubbcaps/gazee) is a WebApp Comic Reader for your favorite digital comics. Reach and read your comic library from any web connected device with a modern web browser.
 
-# linuxserver/gazee
-[![](https://images.microbadger.com/badges/version/linuxserver/gazee.svg)](https://microbadger.com/images/linuxserver/gazee "Get your own version badge on microbadger.com")[![](https://images.microbadger.com/badges/image/linuxserver/gazee.svg)](https://microbadger.com/images/linuxserver/gazee "Get your own image badge on microbadger.com")[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/gazee.svg)][hub][![Docker Stars](https://img.shields.io/docker/stars/linuxserver/gazee.svg)][hub][![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Builders/x86-64/x86-64-gazee)](https://ci.linuxserver.io/job/Docker-Builders/job/x86-64/job/x86-64-gazee/)
+## Supported Architectures
 
-A WebApp Comic Reader for your favorite digital comics. Reach and read your comic library from any web connected device with a modern web browser.
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list). 
 
-[![gazee](https://raw.githubusercontent.com/hubbcaps/gazee/master/public/images/logos/red/logo-red-yellow.png)][appurl]
+Simply pulling `linuxserver/gazee` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+
+The architectures supported by this image are:
+
+| Architecture | Tag |
+| :----: | --- |
+| x86-64 | amd64-latest |
+| arm64 | arm64v8-latest |
+| armhf | arm32v6-latest |
+
 
 ## Usage
+
+Here are some example snippets to help you get started creating a container from this image.
+
+### docker
 
 ```
 docker create \
   --name=gazee \
-  -v <path to data>:/config \
+  -e PUID=1001 \
+  -e PGID=1001 \
+  -p 4242:4242 \
+  -v </path/to/appdata/config>:/config \
   -v <path to comics>:/comics \
   -v <path to mylar data>:/mylar \
   -v <path to SSL certs>:/certs \
-  -e PGID=<gid> -e PUID=<uid>  \
-  -p 4242:4242 \
+  --restart unless-stopped \
   linuxserver/gazee
+```
+
+
+### docker-compose
+
+Compatible with docker-compose v2 schemas.
+
+```yaml
+---
+version: "2"
+services:
+  gazee:
+    image: linuxserver/gazee
+    container_name: gazee
+    environment:
+      - PUID=1001
+      - PGID=1001
+    volumes:
+      - </path/to/appdata/config>:/config
+      - <path to comics>:/comics
+      - <path to mylar data>:/mylar
+      - <path to SSL certs>:/certs
+    ports:
+      - 4242:4242
+    mem_limit: 4096m
+    restart: unless-stopped
 ```
 
 ## Parameters
 
-`The parameters are split into two halves, separated by a colon, the left hand side representing the host and the right the container side.
-For example with a port -p external:internal - what this shows is the port mapping from internal to external of the container.
-So -p 8080:80 would expose port 80 from inside the container to be accessible from the host's IP on port 8080
-http://192.168.x.x:8080 would show you what's running INSIDE the container on port 80.`
+Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+
+### Ports (`-p`)
+
+| Parameter | Function |
+| :----: | --- |
+| `4242` | WebUI |
+
+
+### Environment Variables (`-e`)
+
+| Env | Function |
+| :----: | --- |
+| `PUID=1001` | for UserID - see below for explanation |
+| `PGID=1001` | for GroupID - see below for explanation |
+
+### Volume Mappings (`-v`)
+
+| Volume | Function |
+| :----: | --- |
+| `/config` | Where Gazee should store config files. |
+| `/comics` | Path to comics folder. |
+| `/mylar` | Path to Mylar DB. |
+| `/certs` | Where SSL certs should be stored. |
 
 
 
-* `-p 4242` - the port(s)
-* `-v /config` - Where Gazee should store config files.
-* `-v /comics` - Path to comics folder.
-* `-v /mylar` - Path to Mylar DB
-* `-v /certs` - Where SSL certs should be stored.
-* `-e PGID` for GroupID - see below for explanation
-* `-e PUID` for UserID - see below for explanation
+## User / Group Identifiers
 
-It is based on alpine linux with s6 overlay, for shell access whilst the container is running do `docker exec -it gazee /bin/bash`.
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
-### User / Group Identifiers
+Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
-Sometimes when using data volumes (`-v` flags) permissions issues can arise between the host OS and the container. We avoid this issue by allowing you to specify the user `PUID` and group `PGID`. Ensure the data volume directory on the host is owned by the same user you specify and it will "just work" &trade;.
-
-In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as below:
+In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as below:
 
 ```
-  $ id <dockeruser>
+  $ id username
     uid=1001(dockeruser) gid=1001(dockergroup) groups=1001(dockergroup)
 ```
 
-## Setting up the application
+## Application Setup
 
 Webui can be found at `your-ip:4242`
 
@@ -86,21 +136,22 @@ After you update the settings, Gazee will restart and begin an intial scan of yo
 
 Happy Reading!
 
-## Info
 
-* Shell access whilst the container is running: `docker exec -it gazee /bin/bash`
-* To monitor the logs of the container in realtime: `docker logs -f gazee`
 
-* container version number
+## Support Info
 
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' gazee`
-
-* image version number
-
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/gazee`
+* Shell access whilst the container is running: 
+  * `docker exec -it gazee /bin/bash`
+* To monitor the logs of the container in realtime: 
+  * `docker logs -f gazee`
+* Container version number 
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' gazee`
+* Image version number
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/gazee`
 
 ## Versions
 
-+ **17.08.18:** Rebase to alpine 3.8.
-+ **30.12.17:** Ensure version 11 of cherrypy.
-+ **07.12.17:** Initial Release.
+* **11.02.19:** - Add pipeline logic and multi arch.
+* **17.08.18:** - Rebase to alpine 3.8.
+* **30.12.17:** - Ensure version 11 of cherrypy.
+* **07.12.17:** - Initial Release.
