@@ -1,95 +1,157 @@
-# linuxserver/syncthing
+# [linuxserver/syncthing](https://github.com/linuxserver/docker-syncthing)
 
-[![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png)](https://linuxserver.io)
+[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
+[![](https://images.microbadger.com/badges/version/linuxserver/syncthing.svg)](https://microbadger.com/images/linuxserver/syncthing "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/linuxserver/syncthing.svg)](https://microbadger.com/images/linuxserver/syncthing "Get your own version badge on microbadger.com")
+![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/syncthing.svg)
+![Docker Stars](https://img.shields.io/docker/stars/linuxserver/syncthing.svg)
+[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-syncthing/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-syncthing/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/syncthing/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/syncthing/latest/index.html)
 
-The [LinuxServer.io](https://linuxserver.io) team brings you another container release featuring easy user mapping and community support. Find us for support at:
+[Syncthing](https://syncthing.net) replaces proprietary sync and cloud services with something open, trustworthy and decentralized. Your data is your data alone and you deserve to choose where it is stored, if it is shared with some third party and how it's transmitted over the Internet.
 
-* [forum.linuxserver.io](https://forum.linuxserver.io)
-* [IRC](https://www.linuxserver.io/irc/) on freenode at `#linuxserver.io`
-* [Podcast](https://www.linuxserver.io/podcast/) covers everything to do with getting the most from your Linux Server plus a focus on all things Docker and containerisation!
+## Supported Architectures
 
-## linuxserver/syncthing
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list). 
 
-[![](https://images.microbadger.com/badges/version/linuxserver/syncthing.svg)](https://microbadger.com/images/linuxserver/syncthing)[![](https://images.microbadger.com/badges/image/linuxserver/syncthing.svg)](https://microbadger.com/images/linuxserver/syncthing)[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/syncthing.svg)](https://hub.docker.com/r/linuxserver/syncthing/)[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/syncthing.svg)](https://hub.docker.com/r/linuxserver/syncthing/)[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Builders/x86-64/x86-64-syncthing)](https://ci.linuxserver.io/job/Docker-Builders/job/x86-64/job/x86-64-syncthing/)
+Simply pulling `linuxserver/syncthing` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
-Syncthing replaces proprietary sync and cloud services with something open, trustworthy and decentralized. Your data is your data alone and you deserve to choose where it is stored, if it is shared with some third party and how it's transmitted over the Internet.
+The architectures supported by this image are:
 
-You can find some of the best documentation available on the web at [docs.syncthing.net](http://docs.syncthing.net/).
+| Architecture | Tag |
+| :----: | --- |
+| x86-64 | amd64-latest |
+| arm64 | arm64v8-latest |
+| armhf | arm32v6-latest |
 
-[![syncthing](https://syncthing.net/images/logo-horizontal.svg)](https://syncthing.net)
 
-### Usage
+## Usage
 
-```text
+Here are some example snippets to help you get started creating a container from this image.
+
+### docker
+
+```
 docker create \
   --name=syncthing \
-  -v *host path to config*:/config \
-  -v *host path to data*:/mnt/any/dir/you/want \
-  -e PGID=<gid> -e PUID=<uid>  \
+  -e PUID=1001 \
+  -e PGID=1001 \
+  -e TZ=Europe/London \
   -e UMASK_SET=<022> \
-  -p 8384:8384 -p 22000:22000 -p 21027:21027/udp \
+  -p 8384:8384 \
+  -p 22000:22000 \
+  -p 21027/udp:21027/udp \
+  -v </path/to/appdata/config>:/config \
+  -v </path/to/data1>:/data1 \
+  -v </path/to/data2>:/data2 \
+  --restart unless-stopped \
   linuxserver/syncthing
 ```
 
-### Parameters
 
-`The parameters are split into two halves, separated by a colon, the left hand side representing the host and the right the container side. For example with a port -p external:internal - what this shows is the port mapping from internal to external of the container. So -p 8080:80 would expose port 80 from inside the container to be accessible from the host's IP on port 8080 http://192.168.x.x:8080 would show you what's running INSIDE the container on port 80.`
+### docker-compose
 
-* `-v /config` - This contain configuration to keep it static, as well as a default shared directory
-* `-v /mnt/dir` - Add multiple folders to allow Syncthing access to data you wish to sync
-* `-e PGID` for GroupID - see below for explanation
-* `-e PUID` for UserID - see below for explanation
-* `-e UMASK_SET` for umask setting , _optional_ , default if left unset is 022.
-* `-p 8384` Webui Port
-* `-p 22000` Listening Port
-* `-p 21027/udp` Discovery Port
+Compatible with docker-compose v2 schemas.
 
-It is based on alpine linux with s6 overlay, for shell access whilst the container is running do `docker exec -it syncthing /bin/bash`.
+```yaml
+---
+version: "2"
+services:
+  syncthing:
+    image: linuxserver/syncthing
+    container_name: syncthing
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - TZ=Europe/London
+      - UMASK_SET=<022>
+    volumes:
+      - </path/to/appdata/config>:/config
+      - </path/to/data1>:/data1
+      - </path/to/data2>:/data2
+    ports:
+      - 8384:8384
+      - 22000:22000
+      - 21027/udp:21027/udp
+    mem_limit: 4096m
+    restart: unless-stopped
+```
 
-#### User / Group Identifiers
+## Parameters
 
-Sometimes when using data volumes \(`-v` flags\) permissions issues can arise between the host OS and the container. We avoid this issue by allowing you to specify the user `PUID` and group `PGID`. Ensure the data volume directory on the host is owned by the same user you specify and it will "just work" ™.
+Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as below:
+### Ports (`-p`)
 
-```text
-  $ id <dockeruser>
+| Parameter | Function |
+| :----: | --- |
+| `8384` | Application WebUI |
+| `22000` | Listening port |
+| `21027/udp` | Protocol discovery |
+
+
+### Environment Variables (`-e`)
+
+| Env | Function |
+| :----: | --- |
+| `PUID=1001` | for UserID - see below for explanation |
+| `PGID=1001` | for GroupID - see below for explanation |
+| `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
+| `UMASK_SET=<022>` | Umask setting - [explaination](https://askubuntu.com/questions/44542/what-is-umask-and-how-does-it-work) |
+
+### Volume Mappings (`-v`)
+
+| Volume | Function |
+| :----: | --- |
+| `/config` | Configuration files. |
+| `/data1` | Data1 |
+| `/data2` | Data2 |
+
+
+
+## User / Group Identifiers
+
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+
+Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
+
+In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as below:
+
+```
+  $ id username
     uid=1001(dockeruser) gid=1001(dockergroup) groups=1001(dockergroup)
 ```
 
-### Setting up the application
+## Application Setup
 
-You can find some of the best documentation available on the web at [docs.syncthing.net](http://docs.syncthing.net/).
+**Note: ** The Syncthing devs highly suggest setting a password for this container as it listens on 0.0.0.0. To do this go to `Actions -> Settings -> set user/password` for the webUI.
 
-**Note:**  The Syncthing devs highly suggest setting a password for this container as it listens on 0.0.0.0. To do this go to `Actions -> Settings -> set user\password` for the webUI.
 
-### Info
+## Support Info
 
-* Shell access whilst the container is running: `docker exec -it syncthing /bin/bash`
-* To monitor the logs of the container in realtime: `docker logs -f syncthing`
-* container version number
+* Shell access whilst the container is running: 
+  * `docker exec -it syncthing /bin/bash`
+* To monitor the logs of the container in realtime: 
+  * `docker logs -f syncthing`
+* Container version number 
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' syncthing`
+* Image version number
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/syncthing`
 
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' syncthing`
+## Versions
 
-* image version number
-
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/syncthing`
-
-### Versions
-
-* **16.01.19:** Add pipeline logic and multi arch.
-* **30.07.18:** Rebase to alpine 3.8 and use buildstage.
-* **13.12.17:** Rebase to alpine 3.7.
-* **25.10.17:** Add env for manual setting of umask.
-* **29.07.17:** Simplify build structure as symlinks failing on &gt; 0.14.32
-* **28.05.17:** Rebase to alpine 3.6.
-* **08.02.17:** Rebase to alpine 3.5.
-* **01.11.16:** Switch to compiling latest version from git source.
-* **14.10.16:** Add version layer information.
-* **30.09.16:** Fix umask.
-* **09.09.16:** Add layer badges to README.
-* **28.08.16:** Add badges to README.
-* **11.08.16:** Rebase to alpine linux.
-* **18.12.15:** Initial testing / release \(IronicBadger\)
-* **24.09.15:** Inital dev complete \(Lonix\)
-
+* **16.01.19:** - Add pipeline logic and multi arch.
+* **30.07.18:** - Rebase to alpine 3.8 and use buildstage.
+* **13.12.17:** - Rebase to alpine 3.7.
+* **25.10.17:** - Add env for manual setting of umask.
+* **29.07.17:** - Simplify build structure as symlinks failing on > 0.14.32
+* **28.05.17:** - Rebase to alpine 3.6.
+* **08.02.17:** - Rebase to alpine 3.5.
+* **01.11.16:** - Switch to compiling latest version from git source.
+* **14.10.16:** - Add version layer information.
+* **30.09.16:** - Fix umask.
+* **09.09.16:** - Add layer badges to README.
+* **28.08.16:** - Add badges to README.
+* **11.08.16:** - Rebase to alpine linux.
+* **18.12.15:** - Initial testing / release (IronicBadger)
+* **24.09.15:** - Inital dev complete (Lonix)
