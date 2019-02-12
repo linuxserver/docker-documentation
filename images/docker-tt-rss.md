@@ -1,67 +1,113 @@
-[linuxserverurl]: https://linuxserver.io
-[forumurl]: https://forum.linuxserver.io
-[ircurl]: https://www.linuxserver.io/irc/
-[podcasturl]: https://www.linuxserver.io/podcast/
-[appurl]: https://tt-rss.org
-[hub]: https://hub.docker.com/r/linuxserver/tt-rss/
+# [linuxserver/tt-rss](https://github.com/linuxserver/docker-tt-rss)
 
-[![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png)][linuxserverurl]
+[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
+[![](https://images.microbadger.com/badges/version/linuxserver/tt-rss.svg)](https://microbadger.com/images/linuxserver/tt-rss "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/linuxserver/tt-rss.svg)](https://microbadger.com/images/linuxserver/tt-rss "Get your own version badge on microbadger.com")
+![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/tt-rss.svg)
+![Docker Stars](https://img.shields.io/docker/stars/linuxserver/tt-rss.svg)
+[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-tt-rss/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-tt-rss/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/tt-rss/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/tt-rss/latest/index.html)
 
-The [LinuxServer.io][linuxserverurl] team brings you another container release featuring easy user mapping and community support. Find us for support at:
-* [forum.linuxserver.io][forumurl]
-* [IRC][ircurl] on freenode at `#linuxserver.io`
-* [Podcast][podcasturl] covers everything to do with getting the most from your Linux Server plus a focus on all things Docker and containerisation!
+[Tt-rss](https://tt-rss.org) is an open source web-based news feed (RSS/Atom) reader and aggregator, designed to allow you to read news from any location, while feeling as close to a real desktop application as possible.
 
-# linuxserver/tt-rss
-[![](https://images.microbadger.com/badges/version/linuxserver/tt-rss.svg)](https://microbadger.com/images/linuxserver/tt-rss "Get your own version badge on microbadger.com")[![](https://images.microbadger.com/badges/image/linuxserver/tt-rss.svg)](https://microbadger.com/images/linuxserver/tt-rss "Get your own image badge on microbadger.com")[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/tt-rss.svg)][hub][![Docker Stars](https://img.shields.io/docker/stars/linuxserver/tt-rss.svg)][hub][![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Builders/x86-64/x86-64-tt-rss)](https://ci.linuxserver.io/job/Docker-Builders/job/x86-64/job/x86-64-tt-rss/)
+## Supported Architectures
 
-[Tiny Tiny RSS][appurl] is an open source web-based news feed (RSS/Atom) reader and aggregator, designed to allow you to read news from any location, while feeling as close to a real desktop application as possible.
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list). 
 
+Simply pulling `linuxserver/tt-rss` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
-[![tt-rss](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/tt-rss-banner.png)][appurl]
+The architectures supported by this image are:
+
+| Architecture | Tag |
+| :----: | --- |
+| x86-64 | amd64-latest |
+| arm64 | arm64v8-latest |
+| armhf | arm32v6-latest |
+
 
 ## Usage
 
+Here are some example snippets to help you get started creating a container from this image.
+
+### docker
+
 ```
 docker create \
---name=tt-rss \
--v /etc/localtime:/etc/localtime:ro \
--v <path to data>:/config \
--e PGID=<gid> -e PUID=<uid> \
--e TZ=<timezone> \
--p 80:80 \
-linuxserver/tt-rss
+  --name=tt-rss \
+  -e PUID=1001 \
+  -e PGID=1001 \
+  -e TZ=Europe/London \
+  -p 80:80 \
+  -v <path to data>:/config \
+  --restart unless-stopped \
+  linuxserver/tt-rss
+```
+
+
+### docker-compose
+
+Compatible with docker-compose v2 schemas.
+
+```yaml
+---
+version: "2"
+services:
+  tt-rss:
+    image: linuxserver/tt-rss
+    container_name: tt-rss
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - TZ=Europe/London
+    volumes:
+      - <path to data>:/config
+    ports:
+      - 80:80
+    mem_limit: 4096m
+    restart: unless-stopped
 ```
 
 ## Parameters
 
-`The parameters are split into two halves, separated by a colon, the left hand side representing the host and the right the container side.
-For example with a port -p external:internal - what this shows is the port mapping from internal to external of the container.
-So -p 8080:80 would expose port 80 from inside the container to be accessible from the host's IP on port 8080
-http://192.168.x.x:8080 would show you what's running INSIDE the container on port 80.`
+Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+
+### Ports (`-p`)
+
+| Parameter | Function |
+| :----: | --- |
+| `80` | WebUI |
 
 
-* `-p 80` - webui port *see note below*
-* `-v /etc/localtime` for timesync - *optional* *omit if using TZ variable*
-* `-v /config` - where tt-rss should store it's config files
-* `-e PGID` for GroupID - see below for explanation
-* `-e PUID` for UserID - see below for explanation
-* `-e TZ` for setting timezone information, eg Europe/London
+### Environment Variables (`-e`)
 
-It is based on alpine linux with s6 overlay, for shell access whilst the container is running do `docker exec -it tt-rss /bin/bash`.
+| Env | Function |
+| :----: | --- |
+| `PUID=1001` | for UserID - see below for explanation |
+| `PGID=1001` | for GroupID - see below for explanation |
+| `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 
-### User / Group Identifiers
+### Volume Mappings (`-v`)
 
-Sometimes when using data volumes (`-v` flags) permissions issues can arise between the host OS and the container. We avoid this issue by allowing you to specify the user `PUID` and group `PGID`. Ensure the data volume directory on the host is owned by the same user you specify and it will "just work" ™.
+| Volume | Function |
+| :----: | --- |
+| `/config` | Where tt-rss should store it's config files. |
 
-In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as below:
+
+
+## User / Group Identifiers
+
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+
+Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
+
+In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as below:
 
 ```
-  $ id <dockeruser>
+  $ id username
     uid=1001(dockeruser) gid=1001(dockergroup) groups=1001(dockergroup)
 ```
 
-## Setting up the application
+## Application Setup
 
 You must create a user and database for tt-rss to use in a mysql/mariadb or postgresql server. In the setup page for database, use the ip address rather than hostname...
 
@@ -69,27 +115,27 @@ A basic nginx configuration file can be found in /config/nginx/site-confs , edit
 
 The site files are in /config/www/tt-rss , you can find config files and themes folder there. Email and other settings are in the config.php file.
 
-## Info
 
-* To monitor the logs of the container in realtime `docker logs -f tt-rss`.
 
-* container version number
+## Support Info
 
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' tt-rss`
-
-* image version number
-
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/tt-rss`
-
+* Shell access whilst the container is running: 
+  * `docker exec -it tt-rss /bin/bash`
+* To monitor the logs of the container in realtime: 
+  * `docker logs -f tt-rss`
+* Container version number 
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' tt-rss`
+* Image version number
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/tt-rss`
 
 ## Versions
 
-+ **28.01.19:** Add pipeline logic and multi arch.
-+ **21.08.18:** Rebase to alpine linux 3.8.
-+ **08.01.18:** Rebase to alpine linux 3.7.
-+ **19.07.17:** Use updated [repository](https://git.tt-rss.org/git/tt-rss) for initial install.
-+ **25.05.17:** Rebase to alpine linux 3.6.
-+ **23.02.17:** Rebase to alpine linux 3.5 and nginx.
-+ **14.10.16:** Add version layer information.
-+ **10.09.16:** Add layer badges to README.
-+ **31.08.15:** Initial Release.
+* **28.01.19:** - Add pipeline logic and multi arch.
+* **21.08.18:** - Rebase to alpine linux 3.8.
+* **08.01.18:** - Rebase to alpine linux 3.7.
+* **19.07.17:** - Use updated [repository](https://git.tt-rss.org/git/tt-rss) for initial install.
+* **25.05.17:** - Rebase to alpine linux 3.6.
+* **23.02.17:** - Rebase to alpine linux 3.5 and nginx.
+* **14.10.16:** - Add version layer information.
+* **10.09.16:** - Add layer badges to README.
+* **31.08.15:** - Initial Release.
