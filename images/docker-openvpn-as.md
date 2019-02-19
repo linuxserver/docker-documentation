@@ -36,7 +36,7 @@ docker create \
   -e PUID=1001 \
   -e PGID=1001 \
   -e TZ=Europe/London \
-  -e INTERFACE=<interface name> `#optional` \
+  -e INTERFACE=eth0 `#optional` \
   -p 943:943 \
   -p 9443:9443 \
   -p 1194:1194/udp \
@@ -63,7 +63,7 @@ services:
       - PUID=1001
       - PGID=1001
       - TZ=Europe/London
-      - INTERFACE=<interface name> #optional
+      - INTERFACE=eth0 #optional
     volumes:
       - <path to data>:/config
     ports:
@@ -94,7 +94,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1001` | for UserID - see below for explanation |
 | `PGID=1001` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
-| `INTERFACE=<interface name>` | Only needed if run in host networking (default is eth0). |
+| `INTERFACE=eth0` | With bridge networking, leave it as eth0 (or don't include at all), if host or macvlan, set it to your host's network interface, found by running `ifconfig` |
 
 ### Volume Mappings (`-v`)
 
