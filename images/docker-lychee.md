@@ -112,7 +112,8 @@ In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as bel
 
 ## Application Setup
 
-Setup mysql/mariadb and account via the webui, accessible at http://SERVERIP:PORT  
+Set up mysql/mariadb and account via the webui, accessible at http://SERVERIP:PORT  
+You can change the php upload limits by editing the file `/config/lychee/user.ini` and restarting the container.  
 More info at [lychee](https://lychee.electerious.com/).  
 
 
@@ -130,6 +131,7 @@ More info at [lychee](https://lychee.electerious.com/).
 
 ## Versions
 
+* **21.02.19:** - Add info on changing php upload limits to readme.
 * **21.01.18:** - Added ffmpeg for video thumbnail creation, switched to installing zip release instead of source tarball, created small thumbnails folder, switched to dynamic readme.
 * **14.01.19:** - Adding pipeline logic and multi arch..
 * **04.09.18:** - Rebase to alpine 3.8, switch to LycheeOrg repository.
