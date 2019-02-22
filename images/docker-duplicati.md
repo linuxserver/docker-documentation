@@ -45,6 +45,11 @@ docker create \
   linuxserver/duplicati
 ```
 
+Using tags, you can switch between the beta and canary releases of Duplicati. No tag is required for the latest beta release.  
+Add the `development` tag, if required, to the `linuxserver/duplicati` line of the run/create command in the following format, `linuxserver/duplicati:development`.  
+The development tag will be the latest canary release of Duplicati.  
+HOWEVER, USE THE DEVELOPMENT TAG AT YOUR OWN PERIL !!!!!!!!!
+
 
 ### docker-compose
 
@@ -132,6 +137,7 @@ The webui is at `<your ip>:8200` , create backup jobs etc via the webui, for loc
 
 ## Versions
 
+* **13.01.19:** - Use jq instead of awk in dockerfiles.
 * **11.01.19:** - Multi-arch image.
 * **09.12.17:** - Fix continuation lines.
 * **31.08.17:** - Build only beta or release versions (thanks deasmi).
