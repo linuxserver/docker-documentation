@@ -46,10 +46,10 @@ docker create \
   linuxserver/heimdall
 ```
 
-Using tags, you can switch between the stable releases of Heimdall and the master branch. No tag is required for the latest stable release.  
-Add the `development` tag, if required, to the `linuxserver/heimdall` line of the run/create command in the following format, `linuxserver/heimdall:development`.  
-The `development` tag will be the latest commit in the master branch of Heimdall.  
-HOWEVER, USE THE DEVELOPMENT TAG AT YOUR OWN PERIL !!!!!!!!!
+Using tags, you can switch between the stable releases of Heimdall and the master branch. No tag is required for the latest stable release.
+Add the development tag,  if required,  to the linuxserver/heimdall line of the run/create command in the following format, linuxserver/heimdall:development
+The development tag will be the latest commit in the master branch of Heimdall.
+HOWEVER , USE THE DEVELOPMENT TAG AT YOUR OWN PERIL !!!!!!!!!
 
 
 ### docker-compose
@@ -141,8 +141,7 @@ This image now supports password protection through htpasswd. Run the following 
 
 ## Versions
 
-* **16.01.18:** - Generate random app key in .env for new installs.
-* **20.11.18:** - Upgrade baseimage packages during build.
+* **22.02.19:** - Rebasing to alpine 3.9.
 * **04.11.18:** - Add php7-zip.
 * **31.10.18:** - Add queue service.
 * **17.10.18:** - Symlink avatars folder.
