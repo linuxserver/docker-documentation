@@ -107,6 +107,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 ## Versions
 
+* **22.02.19:** - Rebasing to alpine 3.9.
 * **18.09.18:** - Update pip
 * **14.09.18:** - Add TZ parameter, remove unnecessary PUID/PGID params
 * **11.08.18:** - Initial release.
