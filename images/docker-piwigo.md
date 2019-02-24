@@ -129,6 +129,7 @@ In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as bel
 
 ## Versions
 
+* **22.02.19:** - Rebasing to alpine 3.9, add php-ldap.
 * **28.01.19:** - Rebase to alpine linux 3.8 , add pipeline logic and multi arch.
 * **25.01.18:** - Rebase to alpine linux 3.7.
 * **25.05.17:** - Rebase to alpine linux 3.6.
