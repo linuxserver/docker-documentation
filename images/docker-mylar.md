@@ -130,6 +130,7 @@ For more detailed setup refer [Mylar](https://github.com/evilhero/mylar).
 
 ## Versions
 
+* **22.02.19:** - Rebasing to alpine 3.9.
 * **11.02.19:** - Pipeline logic and multi arch.
 * **17.08.18:** - Rebase to alpine 3.8.
 * **06.07.18:** - Add `html5lib` python package.
