@@ -183,6 +183,7 @@ Access the webui at `<your-ip>:8080`, for more information check out [Snipe-it](
 
 ## Versions
 
+* **22.02.19:** - Rebasing to alpine 3.9.
 * **31.10.18:** - Rebasing to alpine 3.8
 * **05.08.18:** - Migration to live build server.
 * **13.06.18:** - Initial Release.
