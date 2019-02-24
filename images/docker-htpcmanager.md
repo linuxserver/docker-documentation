@@ -125,6 +125,7 @@ The webui is found at port 8085. Smartmontools has not been included, you can sa
 
 ## Versions
 
+* **22.02.19:** - Rebasing to alpine 3.9.
 * **16.01.19:** - Add pipeline logic and multi arch.
 * **17.08.18:** - Rebase to alpine 3.8.
 * **12.12.17:** - Rebase to alpine 3.7.
