@@ -132,4 +132,5 @@ by visiting http://your.ip:9283 - once the page loads, you can log in with the d
 
 ## Versions
 
+* **22.02.19:** - Rebasing to alpine 3.9.
 * **27.12.18:** - Initial Release.
