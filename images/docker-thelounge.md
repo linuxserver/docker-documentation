@@ -131,6 +131,7 @@ In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as bel
 
 ## Versions
 
+* **22.02.19:** - Rebasing to alpine 3.9.
 * **28.01.19:** - Add pipeline logic and multi arch.
 * **25.08.18:** - Use global install, simplifies adding users.
 * **20.08.18:** - Rebase to alpine 3.8.
