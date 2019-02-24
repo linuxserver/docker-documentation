@@ -131,6 +131,7 @@ In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as bel
 
 ## Versions
 
+* **22.02.19:** - Rebasing to alpine 3.9.
 * **14.11.18:** - Allow access without /smokeping in URL.
 * **28.04.18:** - Rebase to alpine 3.8.
 * **09.04.18:** - Add bc package.
