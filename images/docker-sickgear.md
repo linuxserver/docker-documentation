@@ -160,5 +160,6 @@ It is recommended that a clean install be completed, rather than a migration, ho
 
 ## Versions
 
+* **22.02.19:** - Rebasing to alpine 3.9.
 * **07.11.18:** - Pipeline prep
 * **07.07.18:** - Initial draft release
