@@ -138,6 +138,7 @@ In tautulli gui settings, under `Plex Media Server`, turn on `Show Advanced` and
 
 ## Versions
 
+* **22.02.19:** - Rebasing to alpine 3.9.
 * **26.01.19:** - Add pipeline logic and multi arch.
 * **23.10.18:** - Update plex logs info in readm.
 * **16.08.18:** - Rebase to alpine 3.8.
