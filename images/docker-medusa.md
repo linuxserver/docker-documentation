@@ -133,6 +133,7 @@ Web interface is at `<your ip>:8081` , set paths for downloads, tv-shows to matc
 
 ## Versions
 
+* **22.02.19:** - Rebasing to alpine 3.9.
 * **14.01.19:** - Adding multi arch and pipeline logic
 * **16.08.18:** - Rebase to alpine 3.8
 * **08.12.17:** - Rebase to alpine 3.7
