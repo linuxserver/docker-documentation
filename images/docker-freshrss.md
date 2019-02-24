@@ -126,6 +126,7 @@ Create a user and database in your mysql/mariadb server (not root) and then foll
 
 ## Versions
 
+* **22.02.19:** - Rebasing to alpine 3.9.
 * **14.01.19:** - Add multi arch and pipeline logic.
 * **05.09.18:** - Rebase to alpine linux 3.8.
 * **17.03.18:** - Update nginx config to resolve api not working.
