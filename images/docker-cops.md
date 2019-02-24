@@ -161,6 +161,7 @@ Unlike other implementations of COPS in a docker container,  the linuxserver ver
 
 ## Versions
 
+* **22.02.19:** - Rebasing to alpine 3.9.
 * **14.01.19:** - Add multiarch and pipeline logic.
 * **21.08.18:** - Rebase to alpine 3.8.
 * **02.07.18:** - Add php7-ctype dependency.
