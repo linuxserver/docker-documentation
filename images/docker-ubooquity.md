@@ -12,7 +12,7 @@
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
 
 Simply pulling `linuxserver/ubooquity` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -156,6 +156,7 @@ If no value is set it will default to 512MB.
 
 ## Versions
 
+* **22.02.19:** - Rebasing to alpine 3.9.
 * **28.01.19:** - Add pipeline logic and multi arch.
 * **15.10.18:** - Upgrade to Ubooquity 2.1.2.
 * **23.08.18:** - Rebase to alpine 3.8.
