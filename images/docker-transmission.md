@@ -12,7 +12,7 @@
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
 
 Simply pulling `linuxserver/transmission` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -37,6 +37,7 @@ docker create \
   -e PUID=1001 \
   -e PGID=1001 \
   -e TZ=Europe/London \
+  -e TRANSMISSION_WEB_HOME=/combustion-release/ `#optional` \
   -p 9091:9091 \
   -p 51413:51413 \
   -p 51413:51413/udp \
@@ -63,6 +64,7 @@ services:
       - PUID=1001
       - PGID=1001
       - TZ=Europe/London
+      - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
     volumes:
       - <path to data>:/config
       - <path to downloads>:/downloads
@@ -95,6 +97,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1001` | for UserID - see below for explanation |
 | `PGID=1001` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
+| `TRANSMISSION_WEB_HOME=/combustion-release/` | Specify an alternative UI options are `/combustion-release/` and `/transmission-web-control/`. |
 
 ### Volume Mappings (`-v`)
 
@@ -122,6 +125,11 @@ In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as bel
 ## Application Setup
 
 Webui is on port 9091, the settings.json file in /config has extra settings not available in the webui. Stop the container before editing it or any changes won't be saved.
+
+For users pulling an update and unable to access the webui setting you may need to set "rpc-host-whitelist-enabled": false, in /config/settings.json`
+
+If you choose to use transmission-web-control as your default UI, just note that the origional Web UI will not be available to you despite the button being present.
+
 ## Securing the webui with a username/password.
 
 this requires 3 settings to be changed in the settings.json file.
@@ -159,6 +167,7 @@ The automatic update will run once a day at 3am local server time.
 
 ## Versions
 
+* **22.02.19:** - Rebase to Alpine 3.9, add themes to baseimage, add python and findutils.
 * **22.02.19:** - Catch term and clean exit.
 * **07.02.19:** - Add pipeline logic and multi arch.
 * **15.08.18:** - Rebase to alpine linux 3.8.
