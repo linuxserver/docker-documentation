@@ -22,7 +22,7 @@ For more information on Organizr and information on how to use it visit their si
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
 
 Simply pulling `linuxserver/organizr` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -138,6 +138,7 @@ Leave the path as default and set your timezone - you're done!
 
 ## Versions
 
+* **22.02.19:** - Rebasing to alpine 3.9.
 * **11.02.19:** - Fix permissions on new app location
 * **31.12.18:** - Moved to pipeline building from v1-master branch
 * **05.09.18:** - Rebase to Alpine 3.8
