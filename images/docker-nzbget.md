@@ -155,7 +155,7 @@ for example, and changing the setting for InterDir in the PATHS tab of settings 
 
 ## Versions
 
-* **25.02.19:** - Rebasing to alpine 3.9.
+* **22.02.19:** - Rebasing to alpine 3.9.
 * **20.01.19:** - Add pipeline logic and multi arch, build from source.
 * **21.08.18:** - Rebase to alpine 3.8.
 * **20.02.18:** - Add note about supplemental mount point for intermediate unpacking.
