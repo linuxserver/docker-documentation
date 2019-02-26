@@ -45,7 +45,7 @@ docker create \
   -e DB_USER=<yourdbuser> \
   -e DB_PASS=<yourdbpass> \
   -e DB_DATABASE=bookstackapp \
-  -e APPURL=your.site.here.xyz \
+  -e APP_URL=your.site.here.xyz \
   -p 6875:80 \
   -v <path to data>:/config \
   --restart unless-stopped \
@@ -71,7 +71,7 @@ services:
       - DB_USER=<yourdbuser>
       - DB_PASS=<yourdbpass>
       - DB_DATABASE=bookstackapp
-      - APPURL=your.site.here.xyz
+      - APP_URL=your.site.here.xyz
     volumes:
       - <path to data>:/config
     ports:
@@ -101,7 +101,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `DB_USER=<yourdbuser>` | for specifying the database user |
 | `DB_PASS=<yourdbpass>` | for specifying the database password |
 | `DB_DATABASE=bookstackapp` | for specifying the database to be used |
-| `APPURL=your.site.here.xyz` | for specifying the url your application will be accessed on  |
+| `APP_URL=your.site.here.xyz` | for specifying the url your application will be accessed on (required for correct operation of reverse proxy) |
 
 ### Volume Mappings (`-v`)
 
@@ -133,10 +133,11 @@ Once the MariaDB container is deployed, you can enter the following commands int
 **Note** this will allow any user with these credentials to connect to the server, it is not limited to localhost
 
 ```
-from shell: mysql -u root -p
+from shell on sql container: 
+mysql -u root -p
 CREATE DATABASE bookstackapp;
 GRANT USAGE ON *.* TO 'myuser'@'%' IDENTIFIED BY 'mypassword';
-GRANT ALL privileges ON `bookstackapp`.* TO 'myuser'@%;
+GRANT ALL privileges ON `bookstackapp`.* TO 'myuser'@'%';
 FLUSH PRIVILEGES;
 ```
 
@@ -146,14 +147,14 @@ Then docker start bookstackapp to start the container. You should then be able t
 
 Default username is admin@admin.com with password of **password**
 
-If you intend to use this application behind a reverse proxy, such as our LetsEncrypt container or Traefik you will need to make sure that the `APPURL` environment variable is set, or it will not work
+If you intend to use this application behind a reverse proxy, such as our LetsEncrypt container or Traefik you will need to make sure that the `APP_URL` environment variable is set, or it will not work
 
-Documentation can be found at https://www.bookstackapp.com/docs/
+Documentation for BookStack can be found at https://www.bookstackapp.com/docs/
 
-### Advanced Users
+### Advanced Users (full control over the .env file)
 If you wish to use the extra functionality of BookStack such as email, memcache, ldap and so on you will need to make your own .env file with guidance from the BookStack documentation.
 
-When you create the container, do not set any arguements for SQL or APPURL. The container will copy an .env file to /config/www/.env on your host system for you to edit. 
+When you create the container, do not set any arguments for any SQL settings, or APP_URL. The container will copy an .env file to /config/www/.env on your host system for you to edit. 
 
 ### Composer
 
