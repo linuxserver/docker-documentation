@@ -138,6 +138,7 @@ Leave the path as default and set your timezone - you're done!
 
 ## Versions
 
+* **26.02.19:** - Upgrade packages during install to prevent mismatch with baseimage.
 * **22.02.19:** - Rebasing to alpine 3.9.
 * **11.02.19:** - Fix permissions on new app location
 * **31.12.18:** - Moved to pipeline building from v1-master branch
