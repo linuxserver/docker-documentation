@@ -127,6 +127,7 @@ More info:- [Muximux](https://github.com/mescon/Muximux)
 
 ## Versions
 
+* **22.02.19:** - Rebasing to alpine 3.9.
 * **16.01.19:** - Add pipeline logic and multi arch.
 * **13.09.18:** - Rebase to alpine 3.8.
 * **09.01.18:** - Rebase to alpine 3.7.
