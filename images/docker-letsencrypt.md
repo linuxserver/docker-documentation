@@ -12,7 +12,7 @@
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
 
 Simply pulling `linuxserver/letsencrypt` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -41,7 +41,6 @@ docker create \
   -e URL=yourdomain.url \
   -e SUBDOMAINS=www, \
   -e VALIDATION=http \
-  -e TZ=Europe/London \
   -e DNSPLUGIN=cloudflare `#optional` \
   -e DUCKDNSTOKEN=<token> `#optional` \
   -e EMAIL=<e-mail> `#optional` \
@@ -77,7 +76,6 @@ services:
       - URL=yourdomain.url
       - SUBDOMAINS=www,
       - VALIDATION=http
-      - TZ=Europe/London
       - DNSPLUGIN=cloudflare #optional
       - DUCKDNSTOKEN=<token> #optional
       - EMAIL=<e-mail> #optional
@@ -117,7 +115,6 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `URL=yourdomain.url` | Top url you have control over (`customdomain.com` if you own it, or `customsubdomain.ddnsprovider.com` if dynamic dns). |
 | `SUBDOMAINS=www,` | Subdomains you'd like the cert to cover (comma separated, no spaces) ie. `www,ftp,cloud`. For a wildcard cert, set this _exactly_ to `wildcard` (wildcard cert is available via `dns` and `duckdns` validation only) |
 | `VALIDATION=http` | Letsencrypt validation method to use, options are `http`, `tls-sni`, `dns` or `duckdns` (`dns` method also requires `DNSPLUGIN` variable set) (`duckdns` method requires `DUCKDNSTOKEN` variable set, and the `SUBDOMAINS` variable set to `wildcard`). |
-| `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 | `DNSPLUGIN=cloudflare` | Required if `VALIDATION` is set to `dns`. Options are `cloudflare`, `cloudxns`, `digitalocean`, `dnsimple`, `dnsmadeeasy`, `google`, `luadns`, `nsone`, `ovh`, `rfc2136` and `route53`. Also need to enter the credentials into the corresponding ini file under `/config/dns-conf`. |
 | `DUCKDNSTOKEN=<token>` | Required if `VALIDATION` is set to `duckdns`. Retrieve your token from https://www.duckdns.org |
 | `EMAIL=<e-mail>` | Optional e-mail address used for cert expiration notifications. |
@@ -160,6 +157,7 @@ In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as bel
 * `--cap-add=NET_ADMIN` is required for fail2ban to modify iptables
 * If you need a dynamic dns provider, you can use the free provider duckdns.org where the `URL` will be `yoursubdomain.duckdns.org` and the `SUBDOMAINS` can be `www,ftp,cloud` with http validation, or `wildcard` with dns validation.
 * After setup, navigate to `https://yourdomain.url` to access the default homepage (http access through port 80 is disabled by default, you can enable it by editing the default site config at `/config/nginx/site-confs/default`).
+* Certs are checked nightly and if expiration is within 30 days, renewal is attempted. If your cert is about to expire in less than 30 days, check the logs under `/config/log/letsencrypt` to see why the renewals have been failing. It is recommended to input your e-mail in docker parameters so you receive expiration notices from letsencrypt in those circumstances.
 ### Security and password protection
 * The container detects changes to url and subdomains, revokes existing certs and generates new ones during start. It also detects changes to the DHLEVEL parameter and replaces the dhparams file.
 * If you'd like to password protect your sites, you can use htpasswd. Run the following command on your host to generate the htpasswd file `docker exec -it letsencrypt htpasswd -c /config/nginx/.htpasswd <username>`
@@ -207,6 +205,8 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 
 ## Versions
 
+* **27.02.19:** - Add gnupg package.
+* **22.02.19:** - Rebase to alpine 3.9.
 * **03.02.19:** - Removed memcached due to seccomp errors. Let us know if you need to re-enable memcached.
 * **28.01.19:** - Add pipeline logic and multi arch.
 * **21.01.19:** - Remove client_body_max from proxy.conf (existing users need to manually update).
