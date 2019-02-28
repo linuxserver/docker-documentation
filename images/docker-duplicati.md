@@ -12,7 +12,7 @@
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
 
 Simply pulling `linuxserver/duplicati` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -44,11 +44,6 @@ docker create \
   --restart unless-stopped \
   linuxserver/duplicati
 ```
-
-Using tags, you can switch between the beta and canary releases of Duplicati. No tag is required for the latest beta release.  
-Add the `development` tag, if required, to the `linuxserver/duplicati` line of the run/create command in the following format, `linuxserver/duplicati:development`.  
-The development tag will be the latest canary release of Duplicati.  
-HOWEVER, USE THE DEVELOPMENT TAG AT YOUR OWN PERIL !!!!!!!!!
 
 
 ### docker-compose
@@ -137,7 +132,6 @@ The webui is at `<your ip>:8200` , create backup jobs etc via the webui, for loc
 
 ## Versions
 
-* **13.01.19:** - Use jq instead of awk in dockerfiles.
 * **11.01.19:** - Multi-arch image.
 * **09.12.17:** - Fix continuation lines.
 * **31.08.17:** - Build only beta or release versions (thanks deasmi).
