@@ -37,8 +37,8 @@ Here are some example snippets to help you get started creating a container from
 ```
 docker create \
   --name=nextcloud \
-  -e PUID=1001 \
-  -e PGID=1001 \
+  -e PUID=1000 \
+  -e PGID=1000 \
   -e TZ=Europe/London \
   -p 443:443 \
   -v </path/to/appdata>:/config \
@@ -60,15 +60,14 @@ services:
     image: linuxserver/nextcloud
     container_name: nextcloud
     environment:
-      - PUID=1001
-      - PGID=1001
+      - PUID=1000
+      - PGID=1000
       - TZ=Europe/London
     volumes:
       - </path/to/appdata>:/config
       - <path/to/data>:/data
     ports:
       - 443:443
-    mem_limit: 4096m
     restart: unless-stopped
 ```
 
@@ -87,8 +86,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Env | Function |
 | :----: | --- |
-| `PUID=1001` | for UserID - see below for explanation |
-| `PGID=1001` | for GroupID - see below for explanation |
+| `PUID=1000` | for UserID - see below for explanation |
+| `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 
 ### Volume Mappings (`-v`)
@@ -106,20 +105,22 @@ When using volumes (`-v` flags), permissions issues can arise between the host O
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
-In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as below:
+In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
 ```
   $ id username
-    uid=1001(dockeruser) gid=1001(dockergroup) groups=1001(dockergroup)
+    uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
 
-Access the webui at `<your-ip>:443`, for more information check out [Nextcloud][appurl].
+Access the webui at `<your-ip>:443`, for more information check out [Nextcloud](https://nextcloud.com/).
 
-Please note you will need a MySQL/MariaDB or other backend database to set this up.  Also please look [here](https://docs.nextcloud.com/server/11/admin_manual/installation/system_requirements.html#database-requirements-for-mysql-mariadb) for how to configure your database with regard to binlog format and installation.
-
-If updating to nextcloud 12 you will need to comment out line `add_header X-Frame-Options "SAMEORIGIN";` in the file /config/nginx/site-confs/default
+If you are updating our container along with the in app updater and you are not customizing our default nginx configuration you will need to remove the file:
+```
+/config/nginx/site-confs/default
+```
+Then restart the container to replace it with the latest one. 
 
 
 
@@ -136,6 +137,7 @@ If updating to nextcloud 12 you will need to comment out line `add_header X-Fram
 
 ## Versions
 
+* **27.02.19:** - Updating base nginx config to sync up with v15 requirements.
 * **22.02.19:** - Rebasing to alpine 3.9.
 * **28.01.19:** - Add pipeline logic and multi arch.
 * **25.01.19:** - Add php7-phar for occ upgrades.
