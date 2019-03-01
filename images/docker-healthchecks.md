@@ -13,7 +13,7 @@
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
 
 Simply pulling `linuxserver/healthchecks` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -151,6 +151,7 @@ Access the WebUI at <your-ip>:8000. For more information, check out [Healthcheck
 
 ## Versions
 
+* **14.02.19:** - Adding mysql libs needed for using a database.
 * **11.10.18:** - adding pipeline logic and multi arching release
 * **15.11.17:** - `git pull` is now in Dockerfile so each tagged container contains the same code version
 * **17.10.17:** - Fixed `local_settings.py` output
