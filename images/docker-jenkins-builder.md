@@ -19,3 +19,7 @@ docker run --rm \
   linuxserver/jenkins-builder:latest
 ```
 The output will be in a GENERATED.Jenkinsfile in your current working directory.
+
+The following line is only in this repo for loop testing:
+
+- { date: "01.01.50:", desc: "I am the release message for this internal repo." }
