@@ -111,11 +111,6 @@ In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as bel
 
 You must create a user and database for tt-rss to use in a mysql/mariadb or postgresql server. A basic nginx configuration file can be found in /config/nginx/site-confs , edit the file to enable ssl (port 443 by default), set servername etc.. Self-signed keys are generated the first time you run the container and can be found in /config/keys , if needed, you can replace them with your own.
 
-After you run the initial setup for this application from the `/install/` web directory a config.php will be generated inside the container. To have access to this file in /config/config.php you will need to restart the container using:
-```
-docker restart tt-rss
-```
-
 **The default username and password after initial configuration is admin/password**
 
 ## Power users
