@@ -12,7 +12,7 @@
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
 
 Simply pulling `linuxserver/duckdns` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -34,8 +34,8 @@ Here are some example snippets to help you get started creating a container from
 ```
 docker create \
   --name=duckdns \
-  -e PUID=1001 `#optional` \
-  -e PGID=1001 `#optional` \
+  -e PUID=1000 `#optional` \
+  -e PGID=1000 `#optional` \
   -e TZ=Europe/London \
   -e SUBDOMAINS=subdomain1,subdomain2 \
   -e TOKEN=token \
@@ -58,8 +58,8 @@ services:
     image: linuxserver/duckdns
     container_name: duckdns
     environment:
-      - PUID=1001 #optional
-      - PGID=1001 #optional
+      - PUID=1000 #optional
+      - PGID=1000 #optional
       - TZ=Europe/London
       - SUBDOMAINS=subdomain1,subdomain2
       - TOKEN=token
@@ -67,7 +67,6 @@ services:
     volumes:
     volumes:
       - </path/to/appdata/config>:/config #optional
-    mem_limit: 4096m
     restart: unless-stopped
 ```
 
@@ -85,8 +84,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Env | Function |
 | :----: | --- |
-| `PUID=1001` | for UserID - see below for explanation |
-| `PGID=1001` | for GroupID - see below for explanation |
+| `PUID=1000` | for UserID - see below for explanation |
+| `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
 | `SUBDOMAINS=subdomain1,subdomain2` | multiple subdomains allowed, comma separated, no spaces |
 | `TOKEN=token` | DuckDNS token |
@@ -106,11 +105,11 @@ When using volumes (`-v` flags), permissions issues can arise between the host O
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
-In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as below:
+In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
 ```
   $ id username
-    uid=1001(dockeruser) gid=1001(dockergroup) groups=1001(dockergroup)
+    uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
