@@ -45,8 +45,8 @@ Here are some example snippets to help you get started creating a container from
 ```
 docker create \
   --name=domoticz \
-  -e PUID=1001 \
-  -e PGID=1001 \
+  -e PUID=1000 \
+  -e PGID=1000 \
   -e TZ=Europe/London \
   -p 8080:8080 \
   -p 6144:6144 \
@@ -82,8 +82,8 @@ services:
     image: linuxserver/domoticz
     container_name: domoticz
     environment:
-      - PUID=1001
-      - PGID=1001
+      - PUID=1000
+      - PGID=1000
       - TZ=Europe/London
     volumes:
       - <path to data>:/config
@@ -93,7 +93,6 @@ services:
       - 1443:1443
     devices:
       - <path to device>:<path to device>
-    mem_limit: 4096m
     restart: unless-stopped
 ```
 
@@ -114,8 +113,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Env | Function |
 | :----: | --- |
-| `PUID=1001` | for UserID - see below for explanation |
-| `PGID=1001` | for GroupID - see below for explanation |
+| `PUID=1000` | for UserID - see below for explanation |
+| `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 
 ### Volume Mappings (`-v`)
@@ -136,11 +135,11 @@ When using volumes (`-v` flags), permissions issues can arise between the host O
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
-In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as below:
+In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
 ```
   $ id username
-    uid=1001(dockeruser) gid=1001(dockergroup) groups=1001(dockergroup)
+    uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
@@ -163,7 +162,6 @@ The user manual is available at [www.domoticz.com](https://www.domoticz.com)
 
 ## Versions
 
-* **19.02.19:** - Fix branch for version logic.
 * **11.02.19:** - Add pipeline logic and multi arch.
 * **02.07.18:** - Add openssh package.
 * **01.07.18:** - Fix backup/restore in webgui.
