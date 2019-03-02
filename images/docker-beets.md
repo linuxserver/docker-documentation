@@ -12,7 +12,7 @@
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
 
 Simply pulling `linuxserver/beets` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -34,8 +34,8 @@ Here are some example snippets to help you get started creating a container from
 ```
 docker create \
   --name=beets \
-  -e PUID=1001 \
-  -e PGID=1001 \
+  -e PUID=1000 \
+  -e PGID=1000 \
   -e TZ=Europe/London \
   -p 8337:8337 \
   -v </path/to/appdata/config>:/config \
@@ -58,8 +58,8 @@ services:
     image: linuxserver/beets
     container_name: beets
     environment:
-      - PUID=1001
-      - PGID=1001
+      - PUID=1000
+      - PGID=1000
       - TZ=Europe/London
     volumes:
       - </path/to/appdata/config>:/config
@@ -67,7 +67,6 @@ services:
       - </path/to/ingest>:/downloads
     ports:
       - 8337:8337
-    mem_limit: 4096m
     restart: unless-stopped
 ```
 
@@ -86,8 +85,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Env | Function |
 | :----: | --- |
-| `PUID=1001` | for UserID - see below for explanation |
-| `PGID=1001` | for GroupID - see below for explanation |
+| `PUID=1000` | for UserID - see below for explanation |
+| `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 
 ### Volume Mappings (`-v`)
@@ -106,11 +105,11 @@ When using volumes (`-v` flags), permissions issues can arise between the host O
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
-In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as below:
+In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
 ```
   $ id username
-    uid=1001(dockeruser) gid=1001(dockergroup) groups=1001(dockergroup)
+    uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 
