@@ -34,8 +34,8 @@ Here are some example snippets to help you get started creating a container from
 ```
 docker create \
   --name=rutorrent \
-  -e PUID=1001 \
-  -e PGID=1001 \
+  -e PUID=1000 \
+  -e PGID=1000 \
   -p 80:80 \
   -p 5000:5000 \
   -p 51413:51413 \
@@ -59,8 +59,8 @@ services:
     image: linuxserver/rutorrent
     container_name: rutorrent
     environment:
-      - PUID=1001
-      - PGID=1001
+      - PUID=1000
+      - PGID=1000
     volumes:
       - </path/to/rutorrent/config>:/config
       - </path/to/rutorrent/downloads>:/downloads
@@ -69,7 +69,6 @@ services:
       - 5000:5000
       - 51413:51413
       - 6881:6881/udp
-    mem_limit: 4096m
     restart: unless-stopped
 ```
 
@@ -91,8 +90,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Env | Function |
 | :----: | --- |
-| `PUID=1001` | for UserID - see below for explanation |
-| `PGID=1001` | for GroupID - see below for explanation |
+| `PUID=1000` | for UserID - see below for explanation |
+| `PGID=1000` | for GroupID - see below for explanation |
 
 ### Volume Mappings (`-v`)
 
@@ -109,11 +108,11 @@ When using volumes (`-v` flags), permissions issues can arise between the host O
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
-In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as below:
+In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
 ```
   $ id username
-    uid=1001(dockeruser) gid=1001(dockergroup) groups=1001(dockergroup)
+    uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
