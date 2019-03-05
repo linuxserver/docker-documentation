@@ -12,7 +12,7 @@
 If you are sharing your Plex server with other users, allow them to request new content using an easy to manage interface!
 Manage all your requests for Movies and TV with ease, leave notes for the user and get notification when a user requests something.
 Allow your users to post issues against their requests so you know there is a problem with the audio etc.
-Even automatically sent them weekly newsletters of new content that has been added to your Plex server!
+Even automatically send them weekly newsletters of new content that has been added to your Plex server!
 
 ## Supported Architectures
 
@@ -28,6 +28,14 @@ The architectures supported by this image are:
 | arm64 | arm64v8-latest |
 | armhf | arm32v6-latest |
 
+## Version Tags
+
+This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
+
+| Tag | Description |
+| :----: | --- |
+| latest | Stable Ombi releases |
+| development | Releases from the `develop` branch of Ombi |
 
 ## Usage
 
@@ -38,19 +46,14 @@ Here are some example snippets to help you get started creating a container from
 ```
 docker create \
   --name=ombi \
-  -e PUID=1001 \
-  -e PGID=1001 \
+  -e PUID=1000 \
+  -e PGID=1000 \
   -e TZ=Europe/London \
   -p 3579:3579 \
   -v </path/to/appdata/config>:/config \
   --restart unless-stopped \
   linuxserver/ombi
 ```
-
-Using tags, you can choose between various versions of ombi. No tag is required to remain on the latest stable release.  
-Add one of the tags, if required, to the `linuxserver/ombi` line of the run/create command in the following format, `linuxserver/ombi:development`  
-The development tag will be the latest commit in the `develop` branch of ombi.  
-HOWEVER, USE THE DEVELOPMENT BRANCH AT YOUR OWN PERIL !!!!!!!!!
 
 
 ### docker-compose
@@ -65,14 +68,13 @@ services:
     image: linuxserver/ombi
     container_name: ombi
     environment:
-      - PUID=1001
-      - PGID=1001
+      - PUID=1000
+      - PGID=1000
       - TZ=Europe/London
     volumes:
       - </path/to/appdata/config>:/config
     ports:
       - 3579:3579
-    mem_limit: 4096m
     restart: unless-stopped
 ```
 
@@ -91,8 +93,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Env | Function |
 | :----: | --- |
-| `PUID=1001` | for UserID - see below for explanation |
-| `PGID=1001` | for GroupID - see below for explanation |
+| `PUID=1000` | for UserID - see below for explanation |
+| `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
 
 ### Volume Mappings (`-v`)
@@ -109,11 +111,11 @@ When using volumes (`-v` flags), permissions issues can arise between the host O
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
-In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as below:
+In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
 ```
   $ id username
-    uid=1001(dockeruser) gid=1001(dockergroup) groups=1001(dockergroup)
+    uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
@@ -135,8 +137,9 @@ Access the webui at `<your-ip>:3579`. Follow the setup wizard on initial install
 
 ## Versions
 
+* **22.02.19:** - Clarify info on tags and development builds.
 * **25.01.19:** - Add info on tags and development builds.
-* **17.12.18:** - Switch to multi-arch builds and add aarch64 image.
+* **09.01.19:** - Switch to multi-arch builds and add aarch64 image.
 * **11.03.18:** - Add HOME env to Dockerfile.
 * **05.03.18:** - Switch to Ombi v3 stable based on .net core.
 * **26.01.18:** - Fix continuation lines.
