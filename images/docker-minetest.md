@@ -129,6 +129,7 @@ https://hub.docker.com/r/linuxserver/minetest/tags
 
 ## Versions
 
+* **04.03.19:** - Rebase to alpine 3.9 to compile 5.0.0 minetest with new build args.
 * **14.01.19:** - Add pipeline logic and multi arch.
 * **08.08.18:** - Rebase to alpine 3.8, build from latest release tag instead of master.
 * **03.01.18:** - Deprecate cpu_core routine lack of scaling.
