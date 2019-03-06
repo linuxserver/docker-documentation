@@ -58,7 +58,6 @@ services:
     ports:
       - 8888:8888
       - 9000:9000
-    mem_limit: 4096m
     restart: unless-stopped
 ```
 
