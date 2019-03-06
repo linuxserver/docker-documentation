@@ -217,8 +217,6 @@ In some cases it might be necessary to start tvheadend with additional parameter
 
 ## Versions
 
-* **01.03.19:** - Bump xmltv to 0.6.1.
-* **28.02.19:** - add perl-lwp-useragent-determined.
 * **17.02.19:** - Bump xmltv to 5.70, ensure version tagging works by cloning tvheadend.
 * **14.02.19:** - Add picons path to config.
 * **15.01.19:** - Add pipeline logic and multi arch.
