@@ -33,8 +33,8 @@ Here are some example snippets to help you get started creating a container from
 docker create \
   --name=openvpn-as \
   --cap-add=NET_ADMIN \
-  -e PUID=1001 \
-  -e PGID=1001 \
+  -e PUID=1000 \
+  -e PGID=1000 \
   -e TZ=Europe/London \
   -e INTERFACE=eth0 `#optional` \
   -p 943:943 \
@@ -60,8 +60,8 @@ services:
     cap_add:
       - NET_ADMIN
     environment:
-      - PUID=1001
-      - PGID=1001
+      - PUID=1000
+      - PGID=1000
       - TZ=Europe/London
       - INTERFACE=eth0 #optional
     volumes:
@@ -70,7 +70,6 @@ services:
       - 943:943
       - 9443:9443
       - 1194:1194/udp
-    mem_limit: 4096m
     restart: unless-stopped
 ```
 
@@ -91,8 +90,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Env | Function |
 | :----: | --- |
-| `PUID=1001` | for UserID - see below for explanation |
-| `PGID=1001` | for GroupID - see below for explanation |
+| `PUID=1000` | for UserID - see below for explanation |
+| `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 | `INTERFACE=eth0` | With bridge networking, leave it as eth0 (or don't include at all), if host or macvlan, set it to your host's network interface, found by running `ifconfig` |
 
@@ -110,11 +109,11 @@ When using volumes (`-v` flags), permissions issues can arise between the host O
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
-In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as below:
+In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
 ```
   $ id username
-    uid=1001(dockeruser) gid=1001(dockergroup) groups=1001(dockergroup)
+    uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
