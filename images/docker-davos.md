@@ -126,5 +126,6 @@ The application does not require any set up other than starting the docker conta
 
 ## Versions
 
+* **08.03.19:** - Updating build environment to pass proper build flags and use gradle wrapper.
 * **22.02.19:** - Rebasing to alpine 3.9.
 * **18.11.16:** - Initial Release.
