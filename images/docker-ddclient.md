@@ -121,6 +121,7 @@ Edit the ddclient.conf file found in your /config volume. This config file has m
 
 ## Versions
 
+* **10.03.19:** - Add perl-io-socket-inet6 for ipv6 support.
 * **22.02.19:** - Rebasing to alpine 3.9.
 * **11.02.19:** - Add pipeline logic and multi arch.
 * **22.08.18:** - Rebase to alpine 3.8.
