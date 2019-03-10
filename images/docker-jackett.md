@@ -134,6 +134,7 @@ Disable autoupdates in the webui to prevent jackett crashing, the image is refre
 
 ## Versions
 
+* **10.03.19:** - Switch to net-core builds of jackett, not dependant on mono and smaller images.
 * **11.02.19:** - Add pipeline logic and multi arch.
 * **11.06.18:** - Ensure root ownership of Jackett files.
 * **13.12.17:** - Fix continuation lines.
