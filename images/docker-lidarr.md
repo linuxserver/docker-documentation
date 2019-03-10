@@ -139,6 +139,7 @@ Access the webui at `<your-ip>:8686`, for more information check out [Lidarr](ht
 
 ## Versions
 
+* **08.03.19:** - Rebase to Bionic, use proposed endpoint for libchromaprint.
 * **26.01.19:** - Add pipeline logic and multi arch.
 * **22.04.18:** - Switch to beta builds.
 * **17.03.18:** - Add ENV XDG_CONFIG_HOME="/config/xdg" to Dockerfile for signalr fix.
