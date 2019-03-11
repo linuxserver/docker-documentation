@@ -204,6 +204,7 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 
 ## Versions
 
+* **10.03.19:** - Add TLSv1.3 to ssl.conf.
 * **02.03.19:** - Add php intl and posix modules.
 * **27.02.19:** - Add gnupg package.
 * **22.02.19:** - Rebase to alpine 3.9.
