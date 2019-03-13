@@ -134,6 +134,7 @@ You're now connected to IRC. Let's add you to our [IRC](http://www.linuxserver.i
 
 ## Versions
 
+* **xx.xx.19:** - Make stateless operation an option, with input from one of the quassel team.
 * **26.01.19:** - Add pipeline logic and multi arch.
 * **08.01.19:** - Rebase to Ubuntu Bionic and upgrade to Quassel`0.13.0` See [here.](https://quassel-irc.org/node/134).
 * **30.07.18:** - Rebase to alpine:3.8 and use buildstage.
