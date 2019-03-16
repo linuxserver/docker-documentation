@@ -127,6 +127,12 @@ fleet.dockerhub.username=
 fleet.dockerhub.password=
 ```
 
+All configuration can be loaded either via the config file, via JVM arguments, or via the system environment. Fleet will first look in the configuration file, then JVM runtime, and finally in the system environment. It will load the first value it finds, which can be useful when needing to override specific properties.
+
+{% hint style="info" %}
+If you place a property in the system environment, ensure that the property uses underscores rather than periods. This is due to a limitation in BASH environments where exported variables must not contain this character. E.g. `fleet.app.port=8080` becomes `export fleet_app_port=8080`
+{% endhint %}
+
 | Property Name | Purpose |
 | :--- | :--- |
 | `fleet.app.port` | The port which the application will be running under. |
