@@ -69,3 +69,4 @@ Whenever a Docker image is updated, a fresh version of that image gets downloade
 ```bash
 docker image prune
 ```
+

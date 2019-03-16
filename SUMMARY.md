@@ -11,6 +11,7 @@
 * [Understanding PUID and PGID](general/understanding-puid-and-pgid.md)
 * [Updating our containers](general/updating-our-containers.md)
 * [Volumes](general/volumes.md)
+* [Fleet](general/fleet.md)
 
 ## Images
 
@@ -62,7 +63,7 @@
 * [linuxserver/quassel-core](images/docker-quassel-core.md)
 * [linuxserver/radarr](images/docker-radarr.md)
 * [linuxserver/rutorrent](images/docker-rutorrent.md)
-* [linuxserver/sabnzb](images/docker-sabnzb.md)
+* [linuxserver/sabnzb](images/linuxserver-sabnzb.md)
 * [linuxserver/shout-irc](images/docker-shout-irc.md)
 * [linuxserver/sickgear](images/docker-sickgear.md)
 * [linuxserver/smokeping](images/docker-smokeping.md)

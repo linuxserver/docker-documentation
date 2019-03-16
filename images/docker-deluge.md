@@ -1,12 +1,6 @@
-# [linuxserver/deluge](https://github.com/linuxserver/docker-deluge)
+# linuxserver/deluge
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/deluge.svg)](https://microbadger.com/images/linuxserver/deluge "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/deluge.svg)](https://microbadger.com/images/linuxserver/deluge "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/deluge.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/deluge.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-deluge/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-deluge/job/master/)
-[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/deluge/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/deluge/latest/index.html)
+[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn) [![](https://images.microbadger.com/badges/version/linuxserver/deluge.svg)](https://microbadger.com/images/linuxserver/deluge) [![](https://images.microbadger.com/badges/image/linuxserver/deluge.svg)](https://microbadger.com/images/linuxserver/deluge) ![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/deluge.svg) ![Docker Stars](https://img.shields.io/docker/stars/linuxserver/deluge.svg) [![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-deluge/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-deluge/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/deluge/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/deluge/latest/index.html)
 
 [Deluge](http://deluge-torrent.org/) is a lightweight, Free Software, cross-platform BitTorrent client.
 
@@ -15,21 +9,19 @@
 * Plugin System
 * Much more...
 
-
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/deluge` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :----: | --- |
+| :---: | :--- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v6-latest |
-
 
 ## Usage
 
@@ -37,7 +29,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```
+```text
 docker create \
   --name=deluge \
   --net=host \
@@ -50,7 +42,6 @@ docker create \
   --restart unless-stopped \
   linuxserver/deluge
 ```
-
 
 ### docker-compose
 
@@ -77,58 +68,56 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports (`-p`)
+### Ports \(`-p`\)
 
 | Parameter | Function |
-| :----: | --- |
+| :---: | :--- |
 
-#### Networking (`--net`)
+
+#### Networking \(`--net`\)
+
 | Parameter | Function |
-| :-----:   | --- |
+| :---: | :--- |
 | `--net=host` | Shares host networking with container, **required**. |
 
-### Environment Variables (`-e`)
+### Environment Variables \(`-e`\)
 
 | Env | Function |
-| :----: | --- |
+| :---: | :--- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `UMASK_SET=<022>` | for umask setting of deluge, *optional* , default if left unset is 022. |
+| `UMASK_SET=<022>` | for umask setting of deluge, _optional_ , default if left unset is 022. |
 | `TZ=<timezone>` | Specify a timezone to use EG Europe/London |
 
-### Volume Mappings (`-v`)
+### Volume Mappings \(`-v`\)
 
 | Volume | Function |
-| :----: | --- |
+| :---: | :--- |
 | `/config` | deluge configs |
 | `/downloads` | torrent download directory |
 
-
-
 ## User / Group Identifiers
 
-When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```
+```text
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
 
-The admin interface is available at http://<ip>:8112 with a default user/password of admin/deluge.
+The admin interface is available at http://:8112 with a default user/password of admin/deluge.
 
-To change the password (recommended) log in to the web interface and go to Preferences->Interface->Password.
+To change the password \(recommended\) log in to the web interface and go to Preferences-&gt;Interface-&gt;Password.
 
-Change the downloads location in the webui in Preferences->Downloads and use /downloads for completed downloads.
-
-
+Change the downloads location in the webui in Preferences-&gt;Downloads and use /downloads for completed downloads.
 
 ## Support Info
 
@@ -163,3 +152,4 @@ Change the downloads location in the webui in Preferences->Downloads and use /do
 * **15.08.16:** - Rebase to alpine linux.
 * **09.11.15:** - Add unrar and unzip
 * **15.10.15:** - Initial Release.
+
