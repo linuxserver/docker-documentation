@@ -136,7 +136,7 @@ If you place a property in the system environment, ensure that the property uses
 | Property Name | Purpose |
 | :--- | :--- |
 | `fleet.app.port` | The port which the application will be running under. |
-| `fleet.refresh.interval` | How often the application should synchronise with Docker Hub to update its list of known images. |
+| `fleet.refresh.interval` | How often the application should synchronise with Docker Hub to update its list of known images. **This is in minutes**. |
 | `fleet.admin.username` | The username of the administrator who will be managing the application. |
 | `fleet.admin.password` | A plain-text password for the administrator user. |
 | `fleet.database.driver` | The driver to use for connections to Fleet's database. This should be `org.mariadb.jdbc.Driver` |
