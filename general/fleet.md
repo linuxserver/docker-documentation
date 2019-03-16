@@ -103,7 +103,23 @@ Fleet is a Java application, so requires at least JRE 1.8.
 
 Grab the latest Fleet release from [GitHub](https://github.com/linuxserver/fleet/releases).
 
-#### Configuration File
+### SQL
+
+Fleet stores its data in a MariaDB database which you need to provide. In order for the application to manage its tables and procedures, the user you provide it needs to have the relevant `GRANT` permissions to the fleet database. The following script should be sufficient to get the initial database set up. 
+
+{% hint style="info" %}
+The schema _must_ be called `fleet`.
+{% endhint %}
+
+```sql
+CREATE SCHEMA `fleet`;
+CREATE USER 'fleet_user' IDENTIFIED BY 'supersecretpassword';
+GRANT ALL ON `fleet`.* TO 'fleet_user';
+```
+
+The username and password that you define must then be provided as part of Fleet's configuration.
+
+### Configuration File
 
 All primary configuration for Fleet at runtime is loaded in via a `fleet.properties` file. This can be located anywhere on the file system, and is loaded in via a Runtime argument:
 
