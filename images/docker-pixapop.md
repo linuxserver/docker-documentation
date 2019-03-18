@@ -134,4 +134,5 @@ Any photos included in /photos will be presented as galleries split by month. Co
 
 ## Versions
 
+* **18.03.19** - Add build dependencies
 * **17.03.19** - Initial release
