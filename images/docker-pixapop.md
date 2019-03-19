@@ -1,4 +1,4 @@
-# [linuxserver/pixapop](https://github.com/linuxserver/docker-pixapop)
+# [lsiocommunity/pixapop](https://github.com/linuxserver/docker-pixapop)
 
 [![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
 [![](https://images.microbadger.com/badges/version/linuxserver/pixapop.svg)](https://microbadger.com/images/linuxserver/pixapop "Get your own version badge on microbadger.com")
@@ -8,13 +8,13 @@
 [![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-pixapop/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-pixapop/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/pixapop/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/pixapop/latest/index.html)
 
-[Pixapop](https://github.com/bierdok/pixapop) is an open-source SPA to view your photos in the easiest way possible.
+[Pixapop](https://github.com/bierdok/pixapop) is an open-source single page application to view your photos in the easiest way possible.
 
 ## Supported Architectures
 
 Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
 
-Simply pulling `linuxserver/pixapop` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lsiocommunity/pixapop` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
@@ -43,7 +43,7 @@ docker create \
   -v <path to config>:/config \
   -v <path to photos>:/photos \
   --restart unless-stopped \
-  linuxserver/pixapop
+  lsiocommunity/pixapop
 ```
 
 
@@ -56,7 +56,7 @@ Compatible with docker-compose v2 schemas.
 version: "2"
 services:
   pixapop:
-    image: linuxserver/pixapop
+    image: lsiocommunity/pixapop
     container_name: pixapop
     environment:
       - PUID=1000
@@ -130,9 +130,10 @@ Any photos included in /photos will be presented as galleries split by month. Co
 * Container version number 
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' pixapop`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/pixapop`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lsiocommunity/pixapop`
 
 ## Versions
 
+* **18.03.19** - Update build dependencies
 * **18.03.19** - Add build dependencies
 * **17.03.19** - Initial release
