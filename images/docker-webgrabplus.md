@@ -148,5 +148,6 @@ Below is the syntax of the cron file.
 
 ## Versions
 
+* **21.03.19:** - Update to beta 2.1.7.
 * **19.02.19:** - Add pipeline logic and multi arch.
 * **18.01.18:** - Initial Release.
