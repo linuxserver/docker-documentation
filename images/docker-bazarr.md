@@ -40,7 +40,7 @@ docker create \
   -p 6767:6767 \
   -v </path/to/bazarr/config>:/config \
   -v </path/to/movies>:/movies \
-  -v </path/to/tv>:/tv \
+  -v </path/to/tv:/tv \
   --restart unless-stopped \
   linuxserver/bazarr
 ```
@@ -69,7 +69,7 @@ services:
     volumes:
       - </path/to/bazarr/config>:/config
       - </path/to/movies>:/movies
-      - </path/to/tv>:/tv
+      - </path/to/tv:/tv
     ports:
       - 6767:6767
     restart: unless-stopped
