@@ -182,6 +182,7 @@ We automatically add the necessary environment variable that will utilise all th
 
 ## Versions
 
+* **22.03.19:** - Fix update logic for `VERSION=public`.
 * **14.03.19:** - Switch to new api endpoints, enable beta (plex pass) updates for armhf and aarch64.
 * **15.02.19:** - Clean up plex pid after unclean stop.
 * **11.02.19:** - Fix nvidia variables, add device variables.
