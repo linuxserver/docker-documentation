@@ -22,7 +22,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 ## Version Tags
 
@@ -139,6 +139,7 @@ Access the webui at `<your-ip>:8686`, for more information check out [Lidarr](ht
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **08.03.19:** - Rebase to Bionic, use proposed endpoint for libchromaprint.
 * **26.01.19:** - Add pipeline logic and multi arch.
 * **22.04.18:** - Switch to beta builds.
