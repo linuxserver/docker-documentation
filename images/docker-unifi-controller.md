@@ -23,7 +23,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 
 ## Usage
@@ -171,4 +171,5 @@ Use `ubnt` as the password to login and `$address` is the IP address of the host
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **10.02.19:** - Initial release of new unifi-controller image with new tags and pipeline logic
