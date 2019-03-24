@@ -22,7 +22,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 
 ## Usage
@@ -134,6 +134,7 @@ For further setup options of remotes etc, check out the daapd website, [Forked-d
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **14.01.19:** - Add pipeline logic and multi arch.
 * **20.08.18:** - Rebase to alpine linux 3.8.
 * **09.06.18:** - Use buildstage and update dependencies.
