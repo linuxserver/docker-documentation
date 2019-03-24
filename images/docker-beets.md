@@ -22,7 +22,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 ## Version Tags
 
@@ -135,6 +135,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **11.03.19:** - Swap copyartifacts for extrafiles, update endpoints with nightly tag.
 * **01.03.19:** - Switch to python3.
 * **07.02.19:** - Add fftw-dev build dependency for chromaprint.
