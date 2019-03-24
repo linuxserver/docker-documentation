@@ -22,7 +22,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 ## Version Tags
 
@@ -145,6 +145,7 @@ See here for info on some of the switch settings for sabnzbd https://sabnzbd.org
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **25.02.19:** - Rebase to Bionic, add python deps for scripts.
 * **26.01.19:** - Add pipeline logic and multi arch.
 * **13.12.17:** - Fix continuation lines.
