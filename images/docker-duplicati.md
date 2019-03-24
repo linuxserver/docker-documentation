@@ -22,7 +22,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 ## Version Tags
 
@@ -139,6 +139,7 @@ The webui is at `<your ip>:8200` , create backup jobs etc via the webui, for loc
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **28.02.19:** - Allow access from all hostnames, clarify info on image tags.
 * **13.01.19:** - Use jq instead of awk in dockerfiles.
 * **11.01.19:** - Multi-arch image.
