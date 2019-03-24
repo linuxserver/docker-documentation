@@ -22,7 +22,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 
 ## Usage
@@ -130,6 +130,7 @@ Modify the nginx, php and site config files under `/config` as needed
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **02.03.19:** - Add php intl and posix modules.
 * **28.02.19:** - Add php7-opcache, remove memcached service due to issues on aarch64 (let us know if you need to enable it).
 * **22.02.19:** - Rebasing to alpine 3.9.
