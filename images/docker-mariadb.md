@@ -22,7 +22,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 
 ## Usage
@@ -148,6 +148,7 @@ Find custom.cnf in /config for config changes (restart container for them to tak
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **07.03.19:** - Add ability to setup a database and default user on first spinup.
 * **26.01.19:** - Add pipeline logic and multi arch.
 * **10.09.18:** - Rebase to ubuntu bionic and use 10.3 mariadb repository.
