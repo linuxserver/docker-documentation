@@ -24,7 +24,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 ## Version Tags
 
@@ -143,6 +143,7 @@ This image now supports password protection through htpasswd. Run the following 
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **15.03.19:** - Clarify docker image tags in readme.
 * **22.02.19:** - Rebasing to alpine 3.9.
 * **16.01.18:** - Generate random app key in .env for new installs.
