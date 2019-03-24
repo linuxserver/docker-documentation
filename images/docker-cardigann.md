@@ -23,7 +23,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 
 ## Usage
@@ -133,6 +133,7 @@ The folder `/config/definitions` can be used to add additional tracker definitio
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **01.02.19:** - Multi arch images and pipeline build logic
 * **14.01.19:** - Add multi arch and pipeline logic
 * **22.08.18:** - Rebase to alpine 3.8
