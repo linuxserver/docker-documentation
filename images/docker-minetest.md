@@ -22,7 +22,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 
 ## Usage
@@ -129,6 +129,7 @@ https://hub.docker.com/r/linuxserver/minetest/tags
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **04.03.19:** - Rebase to alpine 3.9 to compile 5.0.0 minetest with new build args.
 * **14.01.19:** - Add pipeline logic and multi arch.
 * **08.08.18:** - Rebase to alpine 3.8, build from latest release tag instead of master.
