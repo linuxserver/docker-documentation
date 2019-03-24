@@ -22,7 +22,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 
 ## Usage
@@ -129,6 +129,7 @@ For more detailed setup refer [Mylar](https://github.com/evilhero/mylar).
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **22.02.19:** - Rebasing to alpine 3.9.
 * **11.02.19:** - Pipeline logic and multi arch.
 * **17.08.18:** - Rebase to alpine 3.8.
