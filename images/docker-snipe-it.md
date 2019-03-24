@@ -22,7 +22,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 
 ## Usage
@@ -183,6 +183,7 @@ Access the webui at `<your-ip>:8080`, for more information check out [Snipe-it](
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **22.02.19:** - Rebasing to alpine 3.9.
 * **31.10.18:** - Rebasing to alpine 3.8
 * **05.08.18:** - Migration to live build server.
