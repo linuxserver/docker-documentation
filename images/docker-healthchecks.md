@@ -23,7 +23,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 
 ## Usage
@@ -150,6 +150,7 @@ Access the WebUI at <your-ip>:8000. For more information, check out [Healthcheck
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **14.02.19:** - Adding mysql libs needed for using a database.
 * **11.10.18:** - adding pipeline logic and multi arching release
 * **15.11.17:** - `git pull` is now in Dockerfile so each tagged container contains the same code version
