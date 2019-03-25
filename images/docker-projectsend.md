@@ -22,7 +22,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 
 ## Usage
@@ -135,6 +135,7 @@ More info at [ProjectSend](http://www.projectsend.org).
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **11.02.19:** - Add pipeline logic and multi arch.
 * **11.06.17:** - Fetch version from github.
 * **09.12.17:** - Rebase to alpine 3.7.
