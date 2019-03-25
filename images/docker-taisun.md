@@ -31,7 +31,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 
 ## Usage
@@ -111,4 +111,5 @@ The webui is at http://localhost:3000, for more information on usage see [here](
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **13.02.19:** - Initial release.
