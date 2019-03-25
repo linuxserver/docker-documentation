@@ -22,7 +22,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 
 ## Usage
@@ -135,6 +135,7 @@ For email settings edit the file /config/ssmtp.conf and restart the container.
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **11.02.19:** - Add pipeline logic and multi arch, rebase to alpine 3.8.
 * **12.01.18:** - Rebase to alpine linux 3.7.
 * **28.10.17:** - php7-ssh2 moved from testing to community repo.
