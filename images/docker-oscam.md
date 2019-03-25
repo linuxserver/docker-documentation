@@ -22,7 +22,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 
 ## Usage
@@ -154,6 +154,7 @@ The web interface is at port 8888.
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **19.02.19:** - Add pipeline logic and multi arch, rebase to Alpine 3.8.
 * **03.01.18:** - Deprecate cpu_core routine lack of scaling.
 * **13.12.17:** - Rebase to alpine 3.7.
