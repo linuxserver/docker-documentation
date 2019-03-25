@@ -204,6 +204,7 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 
 ## Versions
 
+* **25.03.19:** - Rebase aarch64 image back to 3.8 due to python issues (specifically with fail2ban), switch packages to python 3 on amd64 and armhf, clean up pip/python cache to shrink image size.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **10.03.19:** - Add TLSv1.3 to ssl.conf.
 * **02.03.19:** - Add php intl and posix modules.
