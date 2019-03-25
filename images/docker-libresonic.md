@@ -22,7 +22,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 
 ## Usage
@@ -143,6 +143,7 @@ Default user/pass is admin/admin
 
 ## Versions
 
+* **24.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **15.01.19:** - Pull war from github, adding pipeline multi arch builds.
 * **05.01.19:** - Linting fixes.
 * **27.08.18:** - Rebase to ubuntu bionic.
