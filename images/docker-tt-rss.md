@@ -22,7 +22,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 
 ## Usage
@@ -139,6 +139,7 @@ Please note if you use this method you need to have an already initialized datab
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **26.02.19:** - Install app in container, add php-ldap, allow env vars to generate config, thanks Neraud and Fmstrat.
 * **22.02.19:** - Rebasing to alpine 3.9.
 * **28.01.19:** - Add pipeline logic and multi arch.
