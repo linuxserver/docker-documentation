@@ -22,7 +22,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 
 ## Usage
@@ -166,6 +166,7 @@ The automatic update will run once a day at 3am local server time.
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **22.02.19:** - Rebase to Alpine 3.9, add themes to baseimage, add python and findutils.
 * **22.02.19:** - Catch term and clean exit.
 * **07.02.19:** - Add pipeline logic and multi arch.
