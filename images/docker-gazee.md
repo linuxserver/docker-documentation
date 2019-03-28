@@ -8,7 +8,7 @@
 [![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-gazee/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-gazee/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/gazee/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/gazee/latest/index.html)
 
-[Gazee](https://github.com/hubbcaps/gazee) is a WebApp Comic Reader for your favorite digital comics. Reach and read your comic library from any web connected device with a modern web browser.
+THIS IMAGE IS DEPRECATED, IT WILL NO LONGER RECEIVE UPDATES. [Gazee](https://github.com/hubbcaps/gazee) is a WebApp Comic Reader for your favorite digital comics. Reach and read your comic library from any web connected device with a modern web browser.
 
 ## Supported Architectures
 
@@ -150,6 +150,7 @@ Happy Reading!
 
 ## Versions
 
+* **27.03.19:** - Deprecate image and get in semi working state.
 * **11.02.19:** - Add pipeline logic and multi arch.
 * **17.08.18:** - Rebase to alpine 3.8.
 * **30.12.17:** - Ensure version 11 of cherrypy.
