@@ -22,7 +22,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| armhf | arm32v6-latest |
 
 
 ## Usage
@@ -111,8 +111,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Application Setup
 
-Set up mysql/mariadb and account via the webui, accessible at http://SERVERIP:PORT  
-You can change the php upload limits by editing the file `/config/lychee/user.ini` and restarting the container.  
+Setup mysql/mariadb and account via the webui, accessible at http://SERVERIP:PORT  
 More info at [lychee](https://lychee.electerious.com/).  
 
 
@@ -130,9 +129,6 @@ More info at [lychee](https://lychee.electerious.com/).
 
 ## Versions
 
-* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
-* **22.02.19:** - Rebasing to alpine 3.9.
-* **21.02.19:** - Add info on changing php upload limits to readme.
 * **21.01.18:** - Added ffmpeg for video thumbnail creation, switched to installing zip release instead of source tarball, created small thumbnails folder, switched to dynamic readme.
 * **14.01.19:** - Adding pipeline logic and multi arch..
 * **04.09.18:** - Rebase to alpine 3.8, switch to LycheeOrg repository.
