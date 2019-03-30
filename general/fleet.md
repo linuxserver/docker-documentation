@@ -142,6 +142,7 @@ fleet.refresh.interval=60
 
 # If set to DATABASE, fleet.admin.username and fleet.admin.password are not used.
 fleet.admin.authentication.type=PROPERTIES|DATABASE
+fleet.admin.secret=<your_secret_string>
 
 # User for management of images and repositories
 fleet.admin.username=test
@@ -199,6 +200,17 @@ If you place a property in the system environment, ensure that the property uses
           use its own Users table to provide the persistence of an authenticated
           user. The password is hashed using a strong key derivation function (PBKDF2).</p>
       </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>fleet.admin.secret</code>
+      </td>
+      <td style="text-align:left">A string used as part of the password key derivation process. This secret
+        is prepended to the raw password before its key is derived, providing further
+        pseudo-randomness to hashed passwords. <b>Once set, this must not be changed!</b> It
+        is vital to remain the same, as it will be used during the password verification
+        step. If Fleet is restarted with this removed or set differently, the password
+        verification process will fail because previously hashed passwords will
+        have been derived with the old secret.</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>fleet.admin.username</code>
