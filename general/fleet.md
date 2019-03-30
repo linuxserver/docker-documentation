@@ -23,6 +23,22 @@ As an example comparison between obtaining all image name, pull and version info
 | Docker Hub \(multiple calls\) | 52000ms |
 | Fleet | 50ms |
 
+## Capabilities
+
+Fleet has the ability to display images with a particular state, which provides contextual information to visitors of the application's main page.
+
+### Hidden
+
+If an image is hidden, it will not be displayed as part of the main list, nor will it be returned as part of any API calls. This also means that the pull count of a hidden image is not included.
+
+### Unstable
+
+Marks an image as having issues known by the maintainer. A useful state to assign to an image if the latest build \(or builds\) are causing downstream breakages. This may also be useful if an upstream dependency or application is causing breakages in the image directly.
+
+### Deprecated
+
+If the maintainer of the image, or upstream application no longer wishes to provide support, or if the image has reached its end-of-life \(or has been superseded by another\), marking an image as deprecated will ensure users are made aware that no further updates will be supplied, and should stop using it. Deprecation notices are also provided to give context.
+
 ## API
 
 Fleet exposes a single API endpoint which can be used to obtain image list and pull count information for all relevant images maintained by the repository 
@@ -107,10 +123,6 @@ Grab the latest Fleet release from [GitHub](https://github.com/linuxserver/fleet
 
 Fleet stores its data in a MariaDB database which you need to provide. In order for the application to manage its tables and procedures, the user you provide it needs to have the relevant `GRANT` permissions to the fleet database. The following script should be sufficient to get the initial database set up. 
 
-{% hint style="info" %}
-The schema _must_ be called `fleet`.
-{% endhint %}
-
 ```sql
 CREATE SCHEMA `fleet`;
 CREATE USER 'fleet_user' IDENTIFIED BY 'supersecretpassword';
@@ -128,19 +140,22 @@ All primary configuration for Fleet at runtime is loaded in via a `fleet.propert
 fleet.app.port=8080
 fleet.refresh.interval=60
 
+# If set to DATABASE, fleet.admin.username and fleet.admin.password are not used.
+fleet.admin.authentication.type=PROPERTIES|DATABASE
+
 # User for management of images and repositories
-fleet.admin.username=
-fleet.admin.password=
+fleet.admin.username=test
+fleet.admin.password=test
 
 # Database Connectivity
 fleet.database.driver=org.mariadb.jdbc.Driver
 fleet.database.url=jdbc:mariadb://<IP_OR_URL>:3306/fleet
-fleet.database.username=
-fleet.database.password=
+fleet.database.username=<fleet_sql_user>
+fleet.database.password=<fleet_sql_password>
 
 # Docker Hub
-fleet.dockerhub.username=
-fleet.dockerhub.password=
+fleet.dockerhub.username=<username_for_your_dockerhub_account>
+fleet.dockerhub.password=<password_for_your_dockerhub_account>
 ```
 
 All configuration can be loaded either via the config file, via JVM arguments, or via the system environment. Fleet will first look in the configuration file, then JVM runtime, and finally in the system environment. It will load the first value it finds, which can be useful when needing to override specific properties.
@@ -149,22 +164,94 @@ All configuration can be loaded either via the config file, via JVM arguments, o
 If you place a property in the system environment, ensure that the property uses underscores rather than periods. This is due to a limitation in BASH environments where exported variables must not contain this character. E.g. `fleet.app.port=8080` becomes `export fleet_app_port=8080`
 {% endhint %}
 
-| Property Name | Purpose |
-| :--- | :--- |
-| `fleet.app.port` | The port which the application will be running under. |
-| `fleet.refresh.interval` | How often the application should synchronise with Docker Hub to update its list of known images. **This is in minutes**. |
-| `fleet.admin.username` | The username of the administrator who will be managing the application. |
-| `fleet.admin.password` | A plain-text password for the administrator user. |
-| `fleet.database.driver` | The driver to use for connections to Fleet's database. This should be `org.mariadb.jdbc.Driver` |
-| `fleet.database.url` | The full JDBC connection string to the database. |
-| `fleet.database.username` | The username of the SQL user which will be managing the data in the Fleet database. **This should have full GRANT access** to the fleet database as it also manages any database migrations. |
-| `fleet.database.password` | The password for the SQL user |
-| `fleet.dockerhub.username` | The username for the Docker Hub repository owner. |
-| `fleet.dockerhub.password` | The password for the Docker Hub repository owner. |
-
-#### Runtime Configuration
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Property Name</th>
+      <th style="text-align:left">Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>fleet.app.port</code>
+      </td>
+      <td style="text-align:left">The port which the application will be running under.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>fleet.refresh.interval</code>
+      </td>
+      <td style="text-align:left">How often the application should synchronise with Docker Hub to update
+        its list of known images. <b>This is in minutes</b>.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>fleet.admin.authentication.type</code>
+      </td>
+      <td style="text-align:left">
+        <p>Which method to use when authentication users. There are two options:</p>
+        <p></p>
+        <ul>
+          <li><code>PROPERTIES</code>
+          </li>
+          <li><code>DATABASE</code>.</li>
+        </ul>
+        <p>If you specify <code>PROPERTIES</code>, ensure <code>fleet.admin.username</code> and <code>fleet.admin.password</code> are
+          set (see below). If you specify <code>DATABASE</code>, the application will
+          use its own Users table to provide the persistence of an authenticated
+          user. The password is hashed using a strong key derivation function (PBKDF2).</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>fleet.admin.username</code>
+      </td>
+      <td style="text-align:left">The username of the administrator who will be managing the application.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>fleet.admin.password</code>
+      </td>
+      <td style="text-align:left">A plain-text password for the administrator user.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>fleet.database.driver</code>
+      </td>
+      <td style="text-align:left">The driver to use for connections to Fleet&apos;s database. This should
+        be <code>org.mariadb.jdbc.Driver</code>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>fleet.database.url</code>
+      </td>
+      <td style="text-align:left">The full JDBC connection string to the database.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>fleet.database.username</code>
+      </td>
+      <td style="text-align:left">The username of the SQL user which will be managing the data in the Fleet
+        database. <b>This should have full GRANT access</b> to the fleet database
+        as it also manages any database migrations.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>fleet.database.password</code>
+      </td>
+      <td style="text-align:left">The password for the SQL user</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>fleet.dockerhub.username</code>
+      </td>
+      <td style="text-align:left">The username for the Docker Hub repository owner.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>fleet.dockerhub.password</code>
+      </td>
+      <td style="text-align:left">The password for the Docker Hub repository owner.</td>
+    </tr>
+  </tbody>
+</table>#### Runtime Configuration
 
 As well as the base configuration file, Fleet also supports some runtime arguments by means of the `-D` flag. These can be used to direct Fleet to behave in a specific way at runtime.
+
+{% hint style="info" %}
+Unlike the properties defined above, these properties are only accessed via the JVM arguments \(`-D`\).
+{% endhint %}
 
 | Runtime Argument | Purpose |
 | :--- | :--- |

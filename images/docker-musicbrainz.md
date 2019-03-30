@@ -1,29 +1,22 @@
-# [linuxserver/musicbrainz](https://github.com/linuxserver/docker-musicbrainz)
+# linuxserver/musicbrainz
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/musicbrainz.svg)](https://microbadger.com/images/linuxserver/musicbrainz "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/musicbrainz.svg)](https://microbadger.com/images/linuxserver/musicbrainz "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/musicbrainz.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/musicbrainz.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-musicbrainz/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-musicbrainz/job/master/)
-[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/musicbrainz/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/musicbrainz/latest/index.html)
+[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn) [![](https://images.microbadger.com/badges/version/linuxserver/musicbrainz.svg)](https://microbadger.com/images/linuxserver/musicbrainz) [![](https://images.microbadger.com/badges/image/linuxserver/musicbrainz.svg)](https://microbadger.com/images/linuxserver/musicbrainz) ![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/musicbrainz.svg) ![Docker Stars](https://img.shields.io/docker/stars/linuxserver/musicbrainz.svg) [![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-musicbrainz/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-musicbrainz/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/musicbrainz/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/musicbrainz/latest/index.html)
 
 [Musicbrainz](https://musicbrainz.org/) is an open music encyclopedia that collects music metadata and makes it available to the public.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/musicbrainz` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :----: | --- |
+| :---: | :--- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
-
 
 ## Usage
 
@@ -31,7 +24,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```
+```text
 docker create \
   --name=musicbrainz \
   -e PUID=1000 \
@@ -46,7 +39,6 @@ docker create \
   --restart unless-stopped \
   linuxserver/musicbrainz
 ```
-
 
 ### docker-compose
 
@@ -76,19 +68,18 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports (`-p`)
+### Ports \(`-p`\)
 
 | Parameter | Function |
-| :----: | --- |
+| :---: | :--- |
 | `5000` | WebUI |
 
-
-### Environment Variables (`-e`)
+### Environment Variables \(`-e`\)
 
 | Env | Function |
-| :----: | --- |
+| :---: | :--- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
@@ -96,39 +87,33 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `WEBADDRESS=<ip of host>` | To set ip for host to allow css to render properly, DO NOT ENTER PORT NUMBER. |
 | `NPROC=<parameter>` | To set number of proceses, defaults to 5 if unset. |
 
-### Volume Mappings (`-v`)
+### Volume Mappings \(`-v`\)
 
 | Volume | Function |
-| :----: | --- |
+| :---: | :--- |
 | `/config` | Config files for musicbrainz. |
 | `/data` | Data files for musicbrainz. |
 
-
-
 ## User / Group Identifiers
 
-When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```
+```text
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
 
-+ For all updates you should pull the latest image, clear all files and folders in /config and /data and reinitiate the database import by (re)starting the docker. We do not officially support upgrading this container in place with existing data sets. 
-
-+ **If you did not set WEBADDRESS env variable, then AFTER iniatilisation is complete you will need to edit the line `sub WEB_SERVER { "localhost:5000" }` in file /config/DBDefs.pm changing localhost to the ip of your host, this is to allow css to display properly**
-
+* For all updates you should pull the latest image, clear all files and folders in /config and /data and reinitiate the database import by \(re\)starting the docker. We do not officially support upgrading this container in place with existing data sets.
+* **If you did not set WEBADDRESS env variable, then AFTER iniatilisation is complete you will need to edit the line** `sub WEB_SERVER { "localhost:5000" }` **in file /config/DBDefs.pm changing localhost to the ip of your host, this is to allow css to display properly**
 * You must register here to recieve a musicbrainz code to allow you to recieve database updates, it is free. [Get Code here](https://metabrainz.org/supporters/account-type).
 * The initial import and setup of the database can take quite a long time, dependant on your download speed etc, be patient and don't restart the container before it's complete.
 * It appears there are issues with unraid and using /mnt/user/cache/appdata instead of /mnt/cache/appdata, use /mnt/cache/appdata.
-
-
 
 ## Support Info
 
@@ -157,7 +142,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 * **31.11.17:** - Bump server version 2017-12-21.
 * **30.11.17:** - Add NPROC variable  to allow number of processes to be set.
 * **30.11.17:** - Fix linting recommendations.
-* **30.11.17:** - Remove socket on startup if exists (thanks wtf911) [re](https://tickets.metabrainz.org/browse/MBS-9370).
+* **30.11.17:** - Remove socket on startup if exists \(thanks wtf911\) [re](https://tickets.metabrainz.org/browse/MBS-9370).
 * **24.11.17:** - Remove catalyst side bar on new installs.
 * **31.10.17:** - Bump server version 2017-10-31.
 * **20.09.17:** - Bump server version 2017-09-18.
@@ -186,3 +171,4 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 * **03.01.16:** - Remove d/l of sitemaps file, missing from last 2 db dumps, move fetch of db/dump higher up initialise routine to allow easier resume of broken downloads.
 * **15.12.15:** - Per latest musicbrainz blog, switched to production branch,latest stable code is now production branch in place of master.
 * **10.12.15:** - Initial release date.
+
