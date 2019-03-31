@@ -48,6 +48,7 @@ docker create \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
+  -e WEBROOT=domoticz `#optional` \
   -p 8080:8080 \
   -p 6144:6144 \
   -p 1443:1443 \
@@ -85,6 +86,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
+      - WEBROOT=domoticz #optional
     volumes:
       - <path to data>:/config
     ports:
@@ -116,6 +118,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
+| `WEBROOT=domoticz` | Sets webroot to domoticz for usage with subfolder reverse proxy. Not needed unless reverse proxying. |
 
 ### Volume Mappings (`-v`)
 
@@ -162,7 +165,9 @@ The user manual is available at [www.domoticz.com](https://www.domoticz.com)
 
 ## Versions
 
+* **30.03.19:** - Add env variable to set webroot.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
+* **19.02.19:** - Fix branch for version logic.
 * **11.02.19:** - Add pipeline logic and multi arch.
 * **02.07.18:** - Add openssh package.
 * **01.07.18:** - Fix backup/restore in webgui.
