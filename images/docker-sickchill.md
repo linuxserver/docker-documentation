@@ -37,8 +37,6 @@ docker create \
   --name=sickchill \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e PGID=<yourUID> \
-  -e PUID=<yourGID> \
   -e TZ=<yourdbpass> \
   -p 8081:8081 \
   -v <path to data>:/config \
@@ -63,8 +61,6 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - PGID=<yourUID>
-      - PUID=<yourGID>
       - TZ=<yourdbpass>
     volumes:
       - <path to data>:/config
@@ -92,8 +88,6 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `PGID=<yourUID>` | specify your UID |
-| `PUID=<yourGID>` | specify your GID |
 | `TZ=<yourdbpass>` | specify your TimeZone e.g. Europe/London |
 
 ### Volume Mappings (`-v`)
