@@ -150,6 +150,7 @@ Access the WebUI at <your-ip>:8000. For more information, check out [Healthcheck
 
 ## Versions
 
+* **12.04.19:** - Rebase to Alpine 3.9.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **14.02.19:** - Adding mysql libs needed for using a database.
 * **11.10.18:** - adding pipeline logic and multi arching release
