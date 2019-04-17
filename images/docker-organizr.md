@@ -120,8 +120,6 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 Dead simple to get running, create the container as instructed and start it. When up and running, load the site.
 
-Leave the path as default and set your timezone - you're done!
-
 
 
 ## Support Info
@@ -137,6 +135,7 @@ Leave the path as default and set your timezone - you're done!
 
 ## Versions
 
+* **18.04.19:** - Fix new install not working.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **26.02.19:** - Upgrade packages during install to prevent mismatch with baseimage.
 * **22.02.19:** - Rebasing to alpine 3.9.
