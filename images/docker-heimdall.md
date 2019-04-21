@@ -26,14 +26,6 @@ The architectures supported by this image are:
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
 
-## Version Tags
-
-This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
-
-| Tag | Description |
-| :----: | --- |
-| latest | Stable Heimdall releases. |
-| development | Latest commit from the github master branch. |
 
 ## Usage
 
@@ -53,6 +45,11 @@ docker create \
   --restart unless-stopped \
   linuxserver/heimdall
 ```
+
+Using tags, you can switch between the stable releases of Heimdall and the master branch. No tag is required for the latest stable release.
+Add the development tag,  if required,  to the linuxserver/heimdall line of the run/create command in the following format, linuxserver/heimdall:development
+The development tag will be the latest commit in the master branch of Heimdall.
+HOWEVER , USE THE DEVELOPMENT TAG AT YOUR OWN PERIL !!!!!!!!!
 
 
 ### docker-compose
@@ -143,13 +140,8 @@ This image now supports password protection through htpasswd. Run the following 
 
 ## Versions
 
-* **01.04.19:** - Fix permission detect logic.
-* **26.03.19:** - Install Heimdall during container start to prevent delayed start due to overlayfs bug with recursive chown.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
-* **15.03.19:** - Clarify docker image tags in readme.
 * **22.02.19:** - Rebasing to alpine 3.9.
-* **16.01.18:** - Generate random app key in .env for new installs.
-* **20.11.18:** - Upgrade baseimage packages during build.
 * **04.11.18:** - Add php7-zip.
 * **31.10.18:** - Add queue service.
 * **17.10.18:** - Symlink avatars folder.
