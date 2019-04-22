@@ -167,6 +167,7 @@ The user manual is available at [www.domoticz.com](https://www.domoticz.com)
 
 * **30.03.19:** - Add env variable to set webroot.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
+* **19.02.19:** - Fix branch for version logic.
 * **11.02.19:** - Add pipeline logic and multi arch.
 * **02.07.18:** - Add openssh package.
 * **01.07.18:** - Fix backup/restore in webgui.
