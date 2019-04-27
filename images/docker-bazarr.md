@@ -8,7 +8,7 @@
 [![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-bazarr/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-bazarr/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/bazarr/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/bazarr/latest/index.html)
 
-[Bazarr](https://www.bazarr.media/) is a companion application to Sonarr and Radarr. It can manage and download subtitles based on your requirements. You define your preferences by TV show or movie and Bazarr takes care of everything for you.
+[Bazarr](https://github.com/morpheus65535/bazarr) is a companion application to Sonarr and Radarr. It can manage and download subtitles based on your requirements. You define your preferences by TV show or movie and Bazarr takes care of everything for you.
 
 ## Supported Architectures
 
@@ -40,7 +40,7 @@ docker create \
   -p 6767:6767 \
   -v </path/to/bazarr/config>:/config \
   -v </path/to/movies>:/movies \
-  -v </path/to/tv>:/tv \
+  -v </path/to/tv:/tv \
   --restart unless-stopped \
   linuxserver/bazarr
 ```
@@ -69,7 +69,7 @@ services:
     volumes:
       - </path/to/bazarr/config>:/config
       - </path/to/movies>:/movies
-      - </path/to/tv>:/tv
+      - </path/to/tv:/tv
     ports:
       - 6767:6767
     restart: unless-stopped
@@ -137,7 +137,6 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Versions
 
-* **17.04.19:** - Add default UTC timezone if user does not set it.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **22.02.19:** - Rebasing to alpine 3.9.
 * **11.09.18:** - Initial release.
