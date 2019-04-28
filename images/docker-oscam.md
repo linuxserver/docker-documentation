@@ -154,6 +154,7 @@ The web interface is at port 8888.
 
 ## Versions
 
+* **28.04.19:** - Switch back to streamboard svn to fix version not showing in UI.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **19.02.19:** - Add pipeline logic and multi arch, rebase to Alpine 3.8.
 * **03.01.18:** - Deprecate cpu_core routine lack of scaling.
