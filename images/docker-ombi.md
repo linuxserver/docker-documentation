@@ -9,7 +9,10 @@
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/ombi/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/ombi/latest/index.html)
 
 [Ombi](https://ombi.io) allows you to host your own Plex Request and user management system.
-If you are sharing your Plex server with other users, allow them to request new content using an easy to manage interface! Manage all your requests for Movies and TV with ease, leave notes for the user and get notification when a user requests something. Allow your users to post issues against their requests so you know there is a problem with the audio etc. Even automatically send them weekly newsletters of new content that has been added to your Plex server!
+If you are sharing your Plex server with other users, allow them to request new content using an easy to manage interface!
+Manage all your requests for Movies and TV with ease, leave notes for the user and get notification when a user requests something.
+Allow your users to post issues against their requests so you know there is a problem with the audio etc.
+Even automatically sent them weekly newsletters of new content that has been added to your Plex server!
 
 ## Supported Architectures
 
@@ -25,14 +28,6 @@ The architectures supported by this image are:
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
 
-## Version Tags
-
-This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
-
-| Tag | Description |
-| :----: | --- |
-| latest | Stable Ombi releases |
-| development | Releases from the `develop` branch of Ombi |
 
 ## Usage
 
@@ -51,6 +46,11 @@ docker create \
   --restart unless-stopped \
   linuxserver/ombi
 ```
+
+Using tags, you can choose between various versions of ombi. No tag is required to remain on the latest stable release.  
+Add one of the tags, if required, to the `linuxserver/ombi` line of the run/create command in the following format, `linuxserver/ombi:development`  
+The development tag will be the latest commit in the `develop` branch of ombi.  
+HOWEVER, USE THE DEVELOPMENT BRANCH AT YOUR OWN PERIL !!!!!!!!!
 
 
 ### docker-compose
@@ -135,9 +135,8 @@ Access the webui at `<your-ip>:3579`. Follow the setup wizard on initial install
 ## Versions
 
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
-* **22.02.19:** - Clarify info on tags and development builds.
 * **25.01.19:** - Add info on tags and development builds.
-* **09.01.19:** - Switch to multi-arch builds and add aarch64 image.
+* **17.12.18:** - Switch to multi-arch builds and add aarch64 image.
 * **11.03.18:** - Add HOME env to Dockerfile.
 * **05.03.18:** - Switch to Ombi v3 stable based on .net core.
 * **26.01.18:** - Fix continuation lines.
