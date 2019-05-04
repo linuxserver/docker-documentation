@@ -24,6 +24,14 @@ The architectures supported by this image are:
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
 
+## Version Tags
+
+This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
+
+| Tag | Description |
+| :----: | --- |
+| latest | Stable Beets Releases |
+| nightly | Built against head of Beets git, generally considered unstable but a likely choice for power users of the application. |
 
 ## Usage
 
@@ -127,7 +135,9 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Versions
 
+* **12.04.19:** - Rebase to Alpine 3.9.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
+* **11.03.19:** - Swap copyartifacts for extrafiles, update endpoints with nightly tag.
 * **01.03.19:** - Switch to python3.
 * **07.02.19:** - Add fftw-dev build dependency for chromaprint.
 * **28.01.19:** - Add pipeline logic and multi arch.
