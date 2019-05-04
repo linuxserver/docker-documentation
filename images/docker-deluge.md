@@ -143,6 +143,7 @@ Change the downloads location in the webui in Preferences->Downloads and use /do
 
 ## Versions
 
+* **02.05.19:** - Install full version of 7zip.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **15.11.18:** - Add deluge-console.
 * **11.11.18:** - Rebase to Ubuntu Bionic, add pipeline multiarch logic.
