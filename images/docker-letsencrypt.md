@@ -204,6 +204,7 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 
 ## Versions
 
+* **08.05.19:** - Remove default.conf when nginx is upgraded in downstream image.
 * **30.04.19:** - Add php-redis.
 * **12.04.19:** - Rebase aarch64 image to 3.9.
 * **25.03.19:** - Rebase aarch64 image back to 3.8 due to python issues (specifically with fail2ban), switch packages to python 3 on amd64 and armhf, clean up pip/python cache to shrink image size.
