@@ -130,6 +130,7 @@ Modify the nginx, php and site config files under `/config` as needed
 
 ## Versions
 
+* **08.05.19:** - Remove default.conf when nginx is upgraded in downstream image.
 * **30.04.19:** - Add php-redis.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **02.03.19:** - Add php intl and posix modules.
