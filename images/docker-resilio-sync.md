@@ -99,7 +99,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Where Jackett should store its config file. |
+| `/config` | Where resilio-sync should store its config file. |
 | `/downloads` | Folder for downloads/cache. |
 | `/sync` | Sync folders root. |
 
