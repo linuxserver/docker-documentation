@@ -157,4 +157,5 @@ Once complete, you can log into the app via `http://your_ip_here:8080/login` to 
 
 ## Versions
 
+* **19.05.19:** - Use new base images for arm versions.
 * **01.04.19:** - Initial Release
