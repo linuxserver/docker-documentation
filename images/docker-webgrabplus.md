@@ -107,7 +107,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Application Setup
 
-To configure WebGrab+Plus follow the [guide][guideurl]
+To configure WebGrab+Plus follow the [documentation](http://www.webgrabplus.com/documentation/configuration/)
 
 Note that there are some things in the guide that does not apply to this container. Below you can find the changes.
 
