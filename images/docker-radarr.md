@@ -34,6 +34,7 @@ This image provides various versions that are available via tags. `latest` tag u
 | latest | Stable Radarr releases |
 | nightly | Nightly Radarr releases |
 | preview | Preview Radarr releases, currently aphrodite |
+| 5.14 | Stable Radarr releases, but run on Mono 5.14 |
 
 ## Usage
 
@@ -141,6 +142,7 @@ Access the webui at `<your-ip>:7878`, for more information check out [Radarr](ht
 
 ## Versions
 
+* **10.05.19:** - Rebase to Bionic.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **09.09.18:** - Add pipeline build process.
 * **24.02.18:** - Add nightly branch.
