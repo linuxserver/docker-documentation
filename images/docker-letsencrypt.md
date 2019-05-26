@@ -204,6 +204,7 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 
 ## Versions
 
+* **26.05.19:** - Remove botocore/urllib patch.
 * **08.05.19:** - Remove default.conf when nginx is upgraded in downstream image.
 * **30.04.19:** - Add php-redis.
 * **12.04.19:** - Rebase aarch64 image to 3.9.
