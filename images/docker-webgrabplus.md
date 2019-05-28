@@ -148,6 +148,7 @@ Below is the syntax of the cron file.
 
 ## Versions
 
+* **28.05.19:** - Update to v2.1.0 and beta v2.1.9, rebase to bionic.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **21.03.19:** - Update to beta 2.1.7.
 * **19.02.19:** - Add pipeline logic and multi arch.
