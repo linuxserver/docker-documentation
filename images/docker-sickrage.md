@@ -8,7 +8,7 @@
 [![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-sickrage/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-sickrage/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/sickrage/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/sickrage/latest/index.html)
 
-[Sickrage](https://sick-rage.github.io/) is an automatic Video Library Manager for TV Shows. It watches for new episodes of your favorite shows, and when they are posted it does its magic.
+[Sickrage](https://sick-rage.github.io/) has been deprecated.  Please use [linuxserver/sickchill](https://github.com/linuxserver/docker-sickchill) instead
 
 ## Supported Architectures
 
