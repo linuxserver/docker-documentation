@@ -37,6 +37,7 @@ docker create \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
+  -e CLI_ARGS="--gameid minetest" `#optional` \
   -p 30000:30000/udp \
   -v <path to data>:/config/.minetest \
   --restart unless-stopped \
@@ -59,6 +60,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
+      - CLI_ARGS="--gameid minetest" #optional
     volumes:
       - <path to data>:/config/.minetest
     ports:
@@ -84,6 +86,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
+| `CLI_ARGS="--gameid minetest"` | Optionally specify any [CLI variables](https://wiki.minetest.net/Command_line) you want to launch the app with |
 
 ### Volume Mappings (`-v`)
 
@@ -129,6 +132,7 @@ https://hub.docker.com/r/linuxserver/minetest/tags
 
 ## Versions
 
+* **03.06.19:** - Adding custom cli vars to options.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **04.03.19:** - Rebase to alpine 3.9 to compile 5.0.0 minetest with new build args.
 * **14.01.19:** - Add pipeline logic and multi arch.
