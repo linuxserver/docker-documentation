@@ -143,6 +143,7 @@ Change the downloads location in the webui in Preferences->Downloads and use /do
 
 ## Versions
 
+* **09.06.19:** - Update to 2.x using deluge ppa.
 * **02.05.19:** - Install full version of 7zip.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **15.11.18:** - Add deluge-console.
