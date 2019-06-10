@@ -148,6 +148,7 @@ To reverse proxy with our Letsencrypt docker container use the following locatio
 
 ## Versions
 
+* **02.06.19:** - Rebase to Ubuntu Bionic & add Gdrive support.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **23.02.19:** - Rebase to alpine 3.9, use repo version of imagemagick.
 * **11.02.19:** - Add pipeline logic and multi arch.
