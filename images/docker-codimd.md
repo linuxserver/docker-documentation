@@ -8,7 +8,7 @@
 [![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-codimd/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-codimd/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/codimd/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/codimd/latest/index.html)
 
-[Codimd](https://codimd.web.cern.ch/) gives you access to all your files wherever you are.
+[Codimd](https://demo.codimd.org) gives you access to all your files wherever you are.
 
 CodiMD is a real-time, multi-platform collaborative markdown note editor.  This means that you can write notes with other people on your desktop, tablet or even on the phone.  You can sign-in via multiple auth providers like Facebook, Twitter, GitHub and many more on the homepage.
 
@@ -144,11 +144,11 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 CodiMD web interface can be accessed `http://${IP}:3000/`, if you want to use a custom domain or anything besides port 3000 you will need to leverage their env settings for callbacks: (specifically for CMD_DOMAIN and CMD_URL_ADDPORT)
 
-[Full list of CodiMD options](https://hackmd.io/c/codimd-documentation/%2Fs%2Fcodimd-configuration)
+[Full list of CodiMD options](https://github.com/codimd/server/blob/master/docs/configuration-env-vars.md)
 
 For convience we provide a working example using Mysql as a backend in this document, if you do not wish to use our custom environment values or a Mysql database backend feel free to leverage any of the settings laid out in the link above.
 
-**NEED a section on how to run this behind a reverse proxy here env vars etc**
+To run behind a reverse proxy we have a [preconfigured config](https://github.com/linuxserver/reverse-proxy-confs/blob/master/codimd.subdomain.conf.sample) using docker networking included in our [LetsEncrypt](https://github.com/linuxserver/docker-letsencrypt) image and you can read how to use this in the [Reverse Proxy Confs repository](https://github.com/linuxserver/reverse-proxy-confs/#how-to-use-these-reverse-proxy-configs)
 
 
 
