@@ -8,7 +8,7 @@
 [![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-codiad/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-codiad/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/codiad/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/codiad/latest/index.html)
 
-[Codiad](http://codiad.com/) is a web-based IDE framework with a small footprint and minimal requirements. We have added a few plugins. More can be added in the marketplace in the WebUI.
+THIS IMAGE IS DEPRECATED. PLEASE MIGRATE TO CLOUD9 IF POSSIBLE `linuxserver/cloud9` [Codiad](http://codiad.com/) is a web-based IDE framework with a small footprint and minimal requirements. We have added a few plugins. More can be added in the marketplace in the WebUI.
 
 ## Supported Architectures
 
@@ -121,6 +121,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Versions
 
+* **10.06.19:** - Deprecate Image.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **22.02.19:** - Rebasing to alpine 3.9, adding ssh client.
 * **16.01.19:** - Add pipeline logic and multi arch.
