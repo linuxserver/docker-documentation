@@ -40,6 +40,7 @@ docker create \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
+  -e DOCKER_MODS=linuxserver/calibre-web:calibre #*optional* & **x86-64 only** \
   -p 8083:8083 \
   -v <path to data>:/config \
   -v <path to calibre library>:/books \
@@ -63,6 +64,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
+      - DOCKER_MODS=linuxserver/calibre-web:calibre #*optional* & **x86-64 only**
     volumes:
       - <path to data>:/config
       - <path to calibre library>:/books
@@ -89,6 +91,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
+| `DOCKER_MODS=linuxserver/calibre-web:calibre #*optional* & **x86-64 only**` | #optional & **x86-64 only** Adds the ability to perform ebook conversion |
 
 ### Volume Mappings (`-v`)
 
@@ -122,7 +125,14 @@ On the initial setup screen, enter `/books` as your calibre library location.
 *Username:* admin
 *Password:* admin123
 
-To reverse proxy with our Letsencrypt docker container use the following location block:
+Unrar is included by default and needs to be set in the Calibre-Web admin page (Basic Configuration:External Binaries) with a path of `/usr/bin/unrar`
+
+**x86-64 only** We have implemented the optional ability to pull in the dependencies to enable ebook conversion utilising Calibre, this means if you don't require this feature the container isn't uneccessarily bloated but should you require it, it is easily available.
+This optional layer will be rebuilt automatically on our CI pipeline upon new Calibre releases so you can stay up to date.
+To use this option add the optional environmental variable as detailed above to pull an addition docker layer to enable ebook conversion and then in the Calibre-Web admin page (Basic Configuration:External Binaries) set the path to converter tool to `/usr/bin/ebook-convert`  
+
+
+To reverse proxy with our Letsencrypt docker container we include a preconfigured reverse proxy config, for other instances of Nginx use the following location block:
 ```
         location /calibre-web {
                 proxy_pass              http://<your-ip>:8083;
@@ -148,6 +158,7 @@ To reverse proxy with our Letsencrypt docker container use the following locatio
 
 ## Versions
 
+* **13.06.19:** - Add docker mod to enable optional ebook conversion on x86-64.  Add unrar.
 * **02.06.19:** - Rebase to Ubuntu Bionic & add Gdrive support.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **23.02.19:** - Rebase to alpine 3.9, use repo version of imagemagick.
