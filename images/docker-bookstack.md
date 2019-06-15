@@ -45,7 +45,7 @@ docker create \
   -e DB_USER=<yourdbuser> \
   -e DB_PASS=<yourdbpass> \
   -e DB_DATABASE=bookstackapp \
-  -e APP_URL=your.site.here.xyz `#optional` \
+  -e APP_URL=http://your.site.here.xyz `#optional` \
   -p 6875:80 \
   -v <path to data>:/config \
   --restart unless-stopped \
@@ -116,7 +116,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `DB_USER=<yourdbuser>` | for specifying the database user |
 | `DB_PASS=<yourdbpass>` | for specifying the database password |
 | `DB_DATABASE=bookstackapp` | for specifying the database to be used |
-| `APP_URL=your.site.here.xyz` | for specifying the url your application will be accessed on (required for correct operation of reverse proxy) |
+| `APP_URL=http://your.site.here.xyz` | for specifying the url your application will be accessed on (required for correct operation of reverse proxy) |
 
 ### Volume Mappings (`-v`)
 
