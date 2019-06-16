@@ -45,6 +45,7 @@ docker create \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
+  -e UMASK_SET=022 `#optional` \
   -p 8686:8686 \
   -v </path/to/appdata/config>:/config \
   -v </path/to/music>:/music \
@@ -69,6 +70,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
+      - UMASK_SET=022 #optional
     volumes:
       - </path/to/appdata/config>:/config
       - </path/to/music>:/music
@@ -96,6 +98,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
+| `UMASK_SET=022` | control permissions of files and directories created by Sonarr |
 
 ### Volume Mappings (`-v`)
 
@@ -139,6 +142,7 @@ Access the webui at `<your-ip>:8686`, for more information check out [Lidarr](ht
 
 ## Versions
 
+* **13.06.19:** - Add env variable for setting umask.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **08.03.19:** - Rebase to Bionic, use proposed endpoint for libchromaprint.
 * **26.01.19:** - Add pipeline logic and multi arch.
