@@ -48,6 +48,7 @@ docker create \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
+  -e UMASK_SET=022 `#optional` \
   -p 7878:7878 \
   -v <path to data>:/config \
   -v <path/to/movies>:/movies \
@@ -72,6 +73,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
+      - UMASK_SET=022 #optional
     volumes:
       - <path to data>:/config
       - <path/to/movies>:/movies
@@ -99,6 +101,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London, this is required for Radarr |
+| `UMASK_SET=022` | control permissions of files and directories created by Radarr |
 
 ### Volume Mappings (`-v`)
 
@@ -142,6 +145,7 @@ Access the webui at `<your-ip>:7878`, for more information check out [Radarr](ht
 
 ## Versions
 
+* **13.06.19:** - Add env variable for setting umask.
 * **10.05.19:** - Rebase to Bionic.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **09.09.18:** - Add pipeline build process.
