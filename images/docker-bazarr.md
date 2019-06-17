@@ -37,6 +37,7 @@ docker create \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
+  -e UMASK_SET=022 `#optional` \
   -p 6767:6767 \
   -v </path/to/bazarr/config>:/config \
   -v </path/to/movies>:/movies \
@@ -66,6 +67,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
+      - UMASK_SET=022 #optional
     volumes:
       - </path/to/bazarr/config>:/config
       - </path/to/movies>:/movies
@@ -93,6 +95,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
+| `UMASK_SET=022` | control permissions of files and directories created by Bazarr |
 
 ### Volume Mappings (`-v`)
 
@@ -137,6 +140,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Versions
 
+* **13.06.19:** - Add env variable for setting umask.
 * **17.04.19:** - Add default UTC timezone if user does not set it.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **22.02.19:** - Rebasing to alpine 3.9.
