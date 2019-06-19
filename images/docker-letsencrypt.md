@@ -204,6 +204,7 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 
 ## Versions
 
+* **19.06.19:** - Set resolver to docker dns in ssl.conf.
 * **29.05.19:** - Compensate for changes to the reverse-proxy-confs repo.
 * **26.05.19:** - Remove botocore/urllib patch.
 * **08.05.19:** - Remove default.conf when nginx is upgraded in downstream image.
