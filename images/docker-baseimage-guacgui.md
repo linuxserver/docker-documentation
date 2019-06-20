@@ -56,8 +56,8 @@ docker create \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -e APPNAME=xclock \
-  -e GUAC_USER=abc \
-  -e GUAC_PASS=900150983cd24fb0d6963f7d28e17f72 \
+  -e GUAC_USER=abc `#optional` \
+  -e GUAC_PASS=900150983cd24fb0d6963f7d28e17f72 `#optional` \
   -p 8080:8080 \
   -p 3389:3389 \
   -v </path/to/appdata>:/config \
@@ -82,8 +82,8 @@ services:
       - PGID=1000
       - TZ=Europe/London
       - APPNAME=xclock
-      - GUAC_USER=abc
-      - GUAC_PASS=900150983cd24fb0d6963f7d28e17f72
+      - GUAC_USER=abc #optional
+      - GUAC_PASS=900150983cd24fb0d6963f7d28e17f72 #optional
     volumes:
       - </path/to/appdata>:/config
     ports:
@@ -111,10 +111,11 @@ Container images are configured using parameters passed at runtime (such as thos
 &nbsp;
 ## Application Setup
 
-This is baseimage meant to be used as base for graphical applications. Please
+This is a baseimage meant to be used as base for graphical applications. Please
 refer to the example folder for usage.
-&nbsp;
-Passwords can be generate via the following:
+&nbsp;  
+If `GUAC_USER` and `GUAC_PASS` are not set, there is no authentication.
+Passwords can be generated via the following:
 ```
 echo -n password | openssl md5
 ```
