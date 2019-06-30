@@ -129,6 +129,7 @@ More info at [lychee](https://lychee.electerious.com/).
 
 ## Versions
 
+* **28.06.19:** - Rebasing to alpine 3.10.
 * **05.05.19:** - Rebase to alpine 3.9, use new armv7 image format.
 * **21.01.18:** - Added ffmpeg for video thumbnail creation, switched to installing zip release instead of source tarball, created small thumbnails folder, switched to dynamic readme.
 * **14.01.19:** - Adding pipeline logic and multi arch..
