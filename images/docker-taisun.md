@@ -111,6 +111,7 @@ The webui is at http://localhost:3000, for more information on usage see [here](
 
 ## Versions
 
+* **28.06.19:** - Rebasing to alpine 3.10.
 * **30.03.19:** - Updating docker-compose build dependancies for musl libc.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **13.02.19:** - Initial release.
