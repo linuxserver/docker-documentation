@@ -138,4 +138,5 @@ Access the webui at `http://<your-ip>:3000`, For most users specifying a `$USER`
 
 ## Versions
 
+* **28.06.19:** - Rebasing to alpine 3.10.
 * **18.05.19:** - Inital Release
