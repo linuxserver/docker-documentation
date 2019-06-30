@@ -132,6 +132,7 @@ Access the webui at `http://<your-ip>:5299/home`, for more information check out
 
 ## Versions
 
+* **28.06.19:** - Rebasing to alpine 3.10.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **05.03.19:** - Added apprise python package.
 * **22.02.19:** - Rebasing to alpine 3.9.
