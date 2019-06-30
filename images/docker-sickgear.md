@@ -159,6 +159,7 @@ It is recommended that a clean install be completed, rather than a migration, ho
 
 ## Versions
 
+* **28.06.19:** - Rebasing to alpine 3.10.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **22.02.19:** - Rebasing to alpine 3.9.
 * **07.11.18:** - Pipeline prep
