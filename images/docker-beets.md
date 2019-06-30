@@ -135,6 +135,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Versions
 
+* **28.06.19:** - Rebasing to alpine 3.10.
 * **12.05.19:** - Add flac and mp3val binaries required for badfiles plugin.
 * **12.04.19:** - Rebase to Alpine 3.9.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
