@@ -146,5 +146,6 @@ Dave    = 5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
 
 ## Versions
 
+* **28.06.19:** - Rebasing to alpine 3.10.
 * **23.04.19:** - Multiarch builds and build from Github fork.
 * **15.05.18:** - Initial Release.
