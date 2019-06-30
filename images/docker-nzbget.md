@@ -154,6 +154,7 @@ for example, and changing the setting for InterDir in the PATHS tab of settings 
 
 ## Versions
 
+* **28.06.19:** - Rebasing to alpine 3.10.
 * **13.06.19:** - Add apprise, chardet & pynzbget packages.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **25.02.19:** - Rebasing to alpine 3.9.
