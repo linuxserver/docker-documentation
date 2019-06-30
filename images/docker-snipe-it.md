@@ -183,6 +183,7 @@ Access the webui at `<your-ip>:8080`, for more information check out [Snipe-it](
 
 ## Versions
 
+* **28.06.19:** - Rebasing to alpine 3.10.
 * **10.04.19:** - Add php deps for V4.7.0, ensure framework directories are available at build time.
 * **10.04.19:** - Fix permissions for new bootstrap cache directory.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
