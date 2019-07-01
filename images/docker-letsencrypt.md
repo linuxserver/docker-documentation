@@ -204,6 +204,7 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 
 ## Versions
 
+* **30.06.19:** - Add geoip2 module.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **19.06.19:** - Set resolver to docker dns in ssl.conf.
 * **29.05.19:** - Compensate for changes to the reverse-proxy-confs repo.
