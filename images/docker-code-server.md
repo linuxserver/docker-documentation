@@ -138,4 +138,5 @@ git config --global user.email "email address"
 
 ## Versions
 
+* **01.07.19:** - Add nano.
 * **24.06.19:** - Initial Release.
