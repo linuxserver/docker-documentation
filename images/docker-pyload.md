@@ -136,4 +136,5 @@ For general usage please see the pyLoad wiki [here](https://github.com/pyload/py
 
 ## Versions
 
+* **28.06.19:** - Rebasing to alpine 3.10.
 * **08.06.19:** - Initial release.
