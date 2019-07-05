@@ -139,6 +139,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Versions
 
+* **28.06.19:** - Rebasing to alpine 3.10.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **05.03.19:** - Update Build process for v1.1.0 release.
 * **22.02.19:** - Rebasing to alpine 3.9.
