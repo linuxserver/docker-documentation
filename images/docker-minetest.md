@@ -132,6 +132,7 @@ https://hub.docker.com/r/linuxserver/minetest/tags
 
 ## Versions
 
+* **28.06.19:** - Rebasing to alpine 3.10.
 * **03.06.19:** - Adding custom cli vars to options.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **04.03.19:** - Rebase to alpine 3.9 to compile 5.0.0 minetest with new build args.
