@@ -129,6 +129,7 @@ To log in to the application, browse to http://<hostip>:6501.
 
 ## Versions
 
+* **28.06.19:** - Rebasing to alpine 3.10.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **22.02.19:** - Rebasing to alpine 3.9.
 * **31.01.19:** - Add pipeline logic and multi arch.
