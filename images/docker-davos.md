@@ -126,6 +126,7 @@ The application does not require any set up other than starting the docker conta
 
 ## Versions
 
+* **28.06.19:** - Rebasing to alpine 3.10.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **22.03.19:** - Updating runtime deps due to change in OpenJRE.
 * **08.03.19:** - Updating build environment to pass proper build flags and use gradle wrapper.
