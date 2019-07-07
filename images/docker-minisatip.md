@@ -150,6 +150,7 @@ You can then use your cards as DVB inputs in apps such as tvheadend.
 
 ## Versions
 
+* **28.06.19:** - Rebasing to alpine 3.10.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **22.02.19:** - Rebasing to alpine 3.9.
 * **20.02.19:** - Fix run options.
