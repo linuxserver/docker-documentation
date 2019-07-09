@@ -42,6 +42,7 @@ docker create \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -e PASSWORD=password `#optional` \
+  -e SUDO_PASSWORD=password `#optional` \
   -p 8443:8443 \
   -v /path/to/appdata/config:/config \
   --restart unless-stopped \
@@ -65,6 +66,7 @@ services:
       - PGID=1000
       - TZ=Europe/London
       - PASSWORD=password #optional
+      - SUDO_PASSWORD=password #optional
     volumes:
       - /path/to/appdata/config:/config
     ports:
@@ -90,7 +92,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
-| `PASSWORD=password` | Optional web gui password, if not provided, there will be no auth |
+| `PASSWORD=password` | Optional web gui password, if not provided, there will be no auth. |
+| `SUDO_PASSWORD=password` | If this optional variable is set, user will have sudo access in the code-server terminal with the specified password. |
 
 ### Volume Mappings (`-v`)
 
@@ -138,5 +141,6 @@ git config --global user.email "email address"
 
 ## Versions
 
+* **09.07.19:** - Add optional sudo access.
 * **01.07.19:** - Add nano.
 * **24.06.19:** - Initial Release.
