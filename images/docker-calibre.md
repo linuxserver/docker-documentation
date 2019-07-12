@@ -146,4 +146,5 @@ You can access advanced features of the Guacamole remote desktop using `ctrl`+`a
 
 ## Versions
 
+* **12.07.19:** - Download binary from calibre website instead of github.
 * **29.04.19:** - Initial release.
