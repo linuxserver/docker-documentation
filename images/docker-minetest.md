@@ -132,6 +132,7 @@ https://hub.docker.com/r/linuxserver/minetest/tags
 
 ## Versions
 
+* **12.07.19:** - Bugfix to support multiple CLI variables.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **03.06.19:** - Adding custom cli vars to options.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
