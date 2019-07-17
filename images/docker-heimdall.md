@@ -143,6 +143,7 @@ This image now supports password protection through htpasswd. Run the following 
 
 ## Versions
 
+* **16.07.19:** - Save laravel.log to /config/log/heimdall.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **01.04.19:** - Fix permission detect logic.
 * **26.03.19:** - Install Heimdall during container start to prevent delayed start due to overlayfs bug with recursive chown.
