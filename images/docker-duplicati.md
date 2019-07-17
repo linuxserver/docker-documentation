@@ -45,6 +45,7 @@ docker create \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
+  -e CLI_ARGS= `#optional` \
   -p 8200:8200 \
   -v </path/to/appdata/config>:/config \
   -v </path/to/backups>:/backups \
@@ -69,6 +70,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
+      - CLI_ARGS= #optional
     volumes:
       - </path/to/appdata/config>:/config
       - </path/to/backups>:/backups
@@ -96,6 +98,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
+| `CLI_ARGS=` | Optionally specify any [CLI variables](https://duplicati.readthedocs.io/en/latest/07-other-command-line-utilities/) you want to launch the app with |
 
 ### Volume Mappings (`-v`)
 
@@ -139,6 +142,7 @@ The webui is at `<your ip>:8200` , create backup jobs etc via the webui, for loc
 
 ## Versions
 
+* **16.07.19:** - Allow for additional command line arguments in an environment variable.
 * **28.06.19:** - Rebase to bionic.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **28.02.19:** - Allow access from all hostnames, clarify info on image tags.
