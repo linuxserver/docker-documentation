@@ -37,6 +37,7 @@ docker create \
   --name=lazylibrarian \
   -e PUID=1000 \
   -e PGID=1000 \
+  -e DOCKER_MODS=linuxserver/calibre-web:calibre #*optional* & **x86-64 only** \
   -e TZ=Europe/London \
   -p 5299:5299 \
   -v <path to data>:/config \
@@ -61,6 +62,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
+      - DOCKER_MODS=linuxserver/calibre-web:calibre #*optional* & **x86-64 only**
       - TZ=Europe/London
     volumes:
       - <path to data>:/config
@@ -88,6 +90,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
+| `DOCKER_MODS=linuxserver/calibre-web:calibre #*optional* & **x86-64 only**` | #optional & **x86-64 only** Adds the ability to enable the Calibredb import program |
 | `TZ=Europe/London` | Specify a timezone to use e.g. Europe/London |
 
 ### Volume Mappings (`-v`)
@@ -117,6 +120,10 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 Access the webui at `http://<your-ip>:5299/home`, for more information check out [Lazylibrarian](https://github.com/DobyTang/LazyLibrarian).
 
+**x86-64 only** We have implemented the optional ability to pull in the dependencies to enable the Calibredb import program:, this means if you don't require this feature the container isn't uneccessarily bloated but should you require it, it is easily available.
+This optional layer will be rebuilt automatically on our CI pipeline upon new Calibre releases so you can stay up to date.
+To use this option add the optional environmental variable as detailed above to pull an addition docker layer to enable ebook conversion and then in the LazyLibrarian config page (Processing:Calibredb import program:) set the path to converter tool to `/usr/bin/calibredb`
+
 
 
 ## Support Info
@@ -132,6 +139,7 @@ Access the webui at `http://<your-ip>:5299/home`, for more information check out
 
 ## Versions
 
+* **09.07.19:** - Rebase to Ubuntu Bionic, enables Calibre docker mod.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **05.03.19:** - Added apprise python package.
