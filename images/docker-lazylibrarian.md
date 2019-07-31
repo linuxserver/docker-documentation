@@ -37,8 +37,8 @@ docker create \
   --name=lazylibrarian \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e DOCKER_MODS=linuxserver/calibre-web:calibre #*optional* & **x86-64 only** \
   -e TZ=Europe/London \
+  -e DOCKER_MODS=linuxserver/calibre-web:calibre `#optional` \
   -p 5299:5299 \
   -v <path to data>:/config \
   -v <path to downloads>:/downloads \
@@ -62,8 +62,8 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - DOCKER_MODS=linuxserver/calibre-web:calibre #*optional* & **x86-64 only**
       - TZ=Europe/London
+      - DOCKER_MODS=linuxserver/calibre-web:calibre #optional
     volumes:
       - <path to data>:/config
       - <path to downloads>:/downloads
@@ -90,8 +90,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `DOCKER_MODS=linuxserver/calibre-web:calibre #*optional* & **x86-64 only**` | #optional & **x86-64 only** Adds the ability to enable the Calibredb import program |
 | `TZ=Europe/London` | Specify a timezone to use e.g. Europe/London |
+| `DOCKER_MODS=linuxserver/calibre-web:calibre` | #optional & **x86-64 only** Adds the ability to enable the Calibredb import program |
 
 ### Volume Mappings (`-v`)
 
@@ -139,6 +139,7 @@ To use this option add the optional environmental variable as detailed above to 
 
 ## Versions
 
+* **31.07.19:** - Add pyopenssl, remove git dependency during build time.
 * **09.07.19:** - Rebase to Ubuntu Bionic, enables Calibre docker mod.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
