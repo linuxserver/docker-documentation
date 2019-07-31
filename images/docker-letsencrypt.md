@@ -204,6 +204,7 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 
 ## Versions
 
+* **31.07.19:** - Create GeoIP2 databse (libmaxminddb) during container start if it doesn't exist.
 * **30.07.19:** - Support main domain via duckdns validation.
 * **29.07.19:** - Enable http to https redirect by default (effective only for new installs).
 * **01.07.19:** - Patch geoip2 module until upstream is fixed.
