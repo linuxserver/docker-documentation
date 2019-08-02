@@ -130,6 +130,7 @@ Modify the nginx, php and site config files under `/config` as needed
 
 ## Versions
 
+* **02.08.19:** - Add php7-ldap.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **08.05.19:** - Remove default.conf when nginx is upgraded in downstream image.
 * **30.04.19:** - Add php-redis.
