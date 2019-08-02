@@ -217,6 +217,7 @@ In some cases it might be necessary to start tvheadend with additional parameter
 
 ## Versions
 
+* **02.08.19:** - Attempt to automatically fix permissions on /dev/dri and /dev/dvb.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **27.03.19:** - Rebase to Alpine 3.9, fix init logic to only chown once.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
