@@ -204,6 +204,7 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 
 ## Versions
 
+* **02.08.19:** - Add php7-ldap, remove geoip v1(deprecated).
 * **01.08.19:** - Mark https redirect block as default_server (effective only for new installs).
 * **31.07.19:** - Create GeoIP2 databse (libmaxminddb) during container start if it doesn't exist.
 * **30.07.19:** - Support main domain via duckdns validation.
