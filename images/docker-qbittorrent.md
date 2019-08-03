@@ -161,6 +161,7 @@ WebUI\ServerDomains=*
 
 ## Versions
 
+* **02.08.19:** - Add qbitorrent-cli for processing scripts.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **14.01.19:** - Rebase to Ubuntu, add multi arch and pipeline logic.
 * **25.09.18:** - Use buildstage type build, bump qbitorrent to 4.1.3.
