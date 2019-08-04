@@ -142,6 +142,7 @@ Access the webui at `<your-ip>:8686`, for more information check out [Lidarr](ht
 
 ## Versions
 
+* **01.08.19:** - Rebase to Linuxserver LTS mono version.
 * **13.06.19:** - Add env variable for setting umask.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **08.03.19:** - Rebase to Bionic, use proposed endpoint for libchromaprint.
