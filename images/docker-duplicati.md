@@ -142,6 +142,7 @@ The webui is at `<your ip>:8200` , create backup jobs etc via the webui, for loc
 
 ## Versions
 
+* **01.08.19:** - Rebase to Linuxserver LTS mono version.
 * **16.07.19:** - Allow for additional command line arguments in an environment variable.
 * **28.06.19:** - Rebase to bionic.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
