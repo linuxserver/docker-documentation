@@ -204,6 +204,7 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 
 ## Versions
 
+* **06.08.19:** - Add php7-ftp.
 * **04.08.19:** - Add php7-bcmath, php7-pear, php7-xmlrpc.
 * **02.08.19:** - Add php7-ldap, remove geoip v1(deprecated).
 * **01.08.19:** - Mark https redirect block as default_server (effective only for new installs).
