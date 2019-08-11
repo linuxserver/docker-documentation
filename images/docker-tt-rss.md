@@ -24,6 +24,14 @@ The architectures supported by this image are:
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
 
+## Version Tags
+
+This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
+
+| Tag | Description |
+| :----: | --- |
+| latest | Stable Tiny Tiny RSS releases |
+| develop | Develop Tiny Tiny RSS releases from HEAD of their master branch |
 
 ## Usage
 
@@ -139,6 +147,7 @@ Please note if you use this method you need to have an already initialized datab
 
 ## Versions
 
+* **06.08.19:** - Add develop branch for edge releases.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **26.02.19:** - Install app in container, add php-ldap, allow env vars to generate config, thanks Neraud and Fmstrat.
