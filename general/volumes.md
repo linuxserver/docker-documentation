@@ -6,7 +6,7 @@ There are two ways to map persistent storage to your containers; container volum
 
 ## Mapping a volume to your container
 
-Firstly, you must understand which directories from _within_ your container you wish to persist. All of our images come with side-by-side documentation on which internal directories are used by the application. As mentioned in the [Running our Containers](https://github.com/linuxserver/docker-documentation/tree/2f6de18bf0244462248642628a930c9b4e1182f2/docs/running-our-containers/README.md) documentation, the most common directory you will wish to persist is the `/config` directory.
+Firstly, you must understand which directories from _within_ your container you wish to persist. All of our images come with side-by-side documentation on which internal directories are used by the application. As mentioned in the [Running our Containers](general/running-our-containers.md) documentation, the most common directory you will wish to persist is the `/config` directory.
 
 Before you create your container, first create a directory on the host machine that will act as the home for your persisted data. We recommend creating the directory `/opt/appdata`. Under this tree, you can create a single configuration directory for each of your containers.
 
