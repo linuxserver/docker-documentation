@@ -37,6 +37,7 @@ docker create \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
+  -e UMASK_SET=<022> `#optional` \
   -p 8096:8096 \
   -p 8920:8920 `#optional` \
   -v </path/to/library>:/config \
@@ -64,6 +65,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
+      - UMASK_SET=<022> #optional
     volumes:
       - </path/to/library>:/config
       - <path/to/tvseries>:/data/tvshows
@@ -98,6 +100,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
+| `UMASK_SET=<022>` | for umask setting of Emby, default if left unset is 022. |
 
 ### Volume Mappings (`-v`)
 
