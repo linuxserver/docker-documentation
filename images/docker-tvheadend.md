@@ -56,7 +56,7 @@ docker create \
   -v <path to data>:/config \
   -v <path to recordings>:/recordings \
   --device /dev/dri:/dev/dri `#optional` \
-  --device /dev/drb:/dev/dvb `#optional` \
+  --device /dev/dvb:/dev/dvb `#optional` \
   --restart unless-stopped \
   linuxserver/tvheadend
 ```
@@ -91,7 +91,7 @@ services:
       - 9982:9982
     devices:
       - /dev/dri:/dev/dri #optional
-      - /dev/drb:/dev/dvb #optional
+      - /dev/dvb:/dev/dvb #optional
     restart: unless-stopped
 ```
 
@@ -218,6 +218,7 @@ In some cases it might be necessary to start tvheadend with additional parameter
 
 ## Versions
 
+* **18.08.19:** - Add AMD drivers.
 * **02.08.19:** - Attempt to automatically fix permissions on /dev/dri and /dev/dvb.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **27.03.19:** - Rebase to Alpine 3.9, fix init logic to only chown once.
