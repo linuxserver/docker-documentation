@@ -40,8 +40,8 @@ docker create \
   -e VERSION=docker \
   -e UMASK_SET=022 `#optional` \
   -v </path/to/library>:/config \
-  -v <path/to/tvseries>:/data/tvshows \
-  -v </path/to/movies>:/data/movies \
+  -v <path/to/tvseries>:/tv \
+  -v </path/to/movies>:/movies \
   -v </path for transcoding>:/transcode \
   --restart unless-stopped \
   linuxserver/plex
@@ -67,8 +67,8 @@ services:
       - UMASK_SET=022 #optional
     volumes:
       - </path/to/library>:/config
-      - <path/to/tvseries>:/data/tvshows
-      - </path/to/movies>:/data/movies
+      - <path/to/tvseries>:/tv
+      - </path/to/movies>:/movies
       - </path for transcoding>:/transcode
     restart: unless-stopped
 ```
@@ -101,8 +101,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Volume | Function |
 | :----: | --- |
 | `/config` | Plex library location. *This can grow very large, 50gb+ is likely for a large collection.* |
-| `/data/tvshows` | Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc. |
-| `/data/movies` | Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc. |
+| `/tv` | Media goes here. Add as many as needed e.g. `/movies`, `/tv`, etc. |
+| `/movies` | Media goes here. Add as many as needed e.g. `/movies`, `/tv`, etc. |
 | `/transcode` | Path for transcoding folder, *optional*. |
 
 
