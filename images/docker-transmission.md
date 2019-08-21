@@ -38,6 +38,8 @@ docker create \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -e TRANSMISSION_WEB_HOME=/combustion-release/ `#optional` \
+  -e USER=username `#optional` \
+  -e PASS=password `#optional` \
   -p 9091:9091 \
   -p 51413:51413 \
   -p 51413:51413/udp \
@@ -65,6 +67,8 @@ services:
       - PGID=1000
       - TZ=Europe/London
       - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
+      - USER=username #optional
+      - PASS=password #optional
     volumes:
       - <path to data>:/config
       - <path to downloads>:/downloads
@@ -97,6 +101,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 | `TRANSMISSION_WEB_HOME=/combustion-release/` | Specify an alternative UI options are `/combustion-release/`, `/transmission-web-control/`, and `/kettu/` . |
+| `USER=username` | Specify an optional username for the interface |
+| `PASS=password` | Specify an optional password for the interface |
 
 ### Volume Mappings (`-v`)
 
@@ -166,6 +172,7 @@ The automatic update will run once a day at 3am local server time.
 
 ## Versions
 
+* **21.08.19:** - Add optional user/pass environment variables, fix transmission shut down if user/pass are set.
 * **19.07.19:** - Send SIGTERM in blocklist update to properly close pid.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
