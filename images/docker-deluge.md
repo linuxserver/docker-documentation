@@ -43,8 +43,9 @@ docker create \
   --net=host \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e UMASK_SET=<022> \
   -e TZ=<timezone> \
+  -e UMASK_SET=022 `#optional` \
+  -e DELUGE_LOGLEVEL=error `#optional` \
   -v </path/to/deluge/config>:/config \
   -v </path/to/your/downloads>:/downloads \
   --restart unless-stopped \
@@ -67,8 +68,9 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - UMASK_SET=<022>
       - TZ=<timezone>
+      - UMASK_SET=022 #optional
+      - DELUGE_LOGLEVEL=error #optional
     volumes:
       - </path/to/deluge/config>:/config
       - </path/to/your/downloads>:/downloads
@@ -95,8 +97,9 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `UMASK_SET=<022>` | for umask setting of deluge, *optional* , default if left unset is 022. |
 | `TZ=<timezone>` | Specify a timezone to use EG Europe/London |
+| `UMASK_SET=022` | for umask setting of deluge, default if left unset is 022 |
+| `DELUGE_LOGLEVEL=error` | set the loglevel output when running Deluge, default is info for deluged and warning for delgued-web |
 
 ### Volume Mappings (`-v`)
 
@@ -143,6 +146,7 @@ Change the downloads location in the webui in Preferences->Downloads and use /do
 
 ## Versions
 
+* **24.08.19:** - Add ability to set LogLevel for Deluge.
 * **09.06.19:** - Update to 2.x using deluge ppa.
 * **02.05.19:** - Install full version of 7zip.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
