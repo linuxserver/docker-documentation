@@ -151,6 +151,7 @@ The "admin" account is a system (PAM) account and after container update or recr
 
 ## Versions
 
+* **27.08.19:** - Add new clients package to install and upgrade process.
 * **22.08.19:** - Prevent auto-start of openvpn after first time install, before configuration is completed.
 * **25.07.19:** - Create a xenial branch/tag and rebase master/latest to bionic.
 * **07.04.19:** - Fix first time config.
