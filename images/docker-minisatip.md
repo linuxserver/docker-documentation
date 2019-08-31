@@ -1,18 +1,18 @@
 # [linuxserver/minisatip](https://github.com/linuxserver/docker-minisatip)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/minisatip.svg)](https://microbadger.com/images/linuxserver/minisatip "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/minisatip.svg)](https://microbadger.com/images/linuxserver/minisatip "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/minisatip.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/minisatip.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-minisatip/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-minisatip/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-minisatip.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-minisatip/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/minisatip.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/minisatip "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/minisatip.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/minisatip "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/minisatip.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/minisatip/minisatip)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/minisatip.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/minisatip/minisatip)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-minisatip/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-minisatip/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/minisatip/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/minisatip/latest/index.html)
 
 [Minisatip](https://github.com/catalinii/minisatip) is a multi-threaded satip server version 1.2 that runs under Linux and it was tested with DVB-S, DVB-S2, DVB-T, DVB-T2, DVB-C, DVB-C2, ATSC and ISDB-T cards.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/minisatip` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -139,11 +139,11 @@ You can then use your cards as DVB inputs in apps such as tvheadend.
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it minisatip /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f minisatip`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' minisatip`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/minisatip`
