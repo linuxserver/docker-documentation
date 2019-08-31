@@ -1,18 +1,18 @@
 # [linuxserver/sabnzbd](https://github.com/linuxserver/docker-sabnzbd)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/sabnzbd.svg)](https://microbadger.com/images/linuxserver/sabnzbd "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/sabnzbd.svg)](https://microbadger.com/images/linuxserver/sabnzbd "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/sabnzbd.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/sabnzbd.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-sabnzbd/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-sabnzbd/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-sabnzbd.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-sabnzbd/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/sabnzbd.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/sabnzbd "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/sabnzbd.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/sabnzbd "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/sabnzbd.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/sabnzbd/sabnzbd)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/sabnzbd.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/sabnzbd/sabnzbd)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-sabnzbd/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-sabnzbd/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/sabnzbd/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/sabnzbd/latest/index.html)
 
 [Sabnzbd](http://sabnzbd.org/) makes Usenet as simple and streamlined as possible by automating everything we can. All you have to do is add an .nzb. SABnzbd takes over from there, where it will be automatically downloaded, verified, repaired, extracted and filed away with zero human interaction.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/sabnzbd` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -134,11 +134,11 @@ See here for info on some of the switch settings for sabnzbd https://sabnzbd.org
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it sabnzbd /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f sabnzbd`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' sabnzbd`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/sabnzbd`
