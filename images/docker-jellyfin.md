@@ -1,18 +1,18 @@
 # [linuxserver/jellyfin](https://github.com/linuxserver/docker-jellyfin)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/jellyfin.svg)](https://microbadger.com/images/linuxserver/jellyfin "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/jellyfin.svg)](https://microbadger.com/images/linuxserver/jellyfin "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/jellyfin.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/jellyfin.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-jellyfin/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-jellyfin/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-jellyfin.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-jellyfin/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/jellyfin.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/jellyfin "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/jellyfin.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/jellyfin "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/jellyfin.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/jellyfin)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/jellyfin.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/jellyfin)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-jellyfin/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-jellyfin/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/jellyfin/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/jellyfin/latest/index.html)
 
 [Jellyfin](https://jellyfin.github.io/) is a Free Software Media System that puts you in control of managing and streaming your media. It is an alternative to the proprietary Emby and Plex, to provide media from a dedicated server to end-user devices via multiple apps. Jellyfin is descended from Emby's 3.5.2 release and ported to the .NET Core framework to enable full cross-platform support. There are no strings attached, no premium licenses or features, and no hidden agendas: just a team who want to build something better and work together to achieve it.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/jellyfin` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -152,11 +152,11 @@ We automatically add the necessary environment variable that will utilise all th
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it jellyfin /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f jellyfin`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' jellyfin`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/jellyfin`
