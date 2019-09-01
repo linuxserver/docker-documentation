@@ -1,18 +1,18 @@
 # [linuxserver/freshrss](https://github.com/linuxserver/docker-freshrss)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/freshrss.svg)](https://microbadger.com/images/linuxserver/freshrss "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/freshrss.svg)](https://microbadger.com/images/linuxserver/freshrss "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/freshrss.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/freshrss.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-freshrss/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-freshrss/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-freshrss.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-freshrss/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/freshrss.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/freshrss "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/freshrss.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/freshrss "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/freshrss.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/freshrss)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/freshrss.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/freshrss)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-freshrss/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-freshrss/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/freshrss/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/freshrss/latest/index.html)
 
 [Freshrss](https://freshrss.org/) is a free, self-hostable aggregator for rss feeds.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/freshrss` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -114,11 +114,11 @@ Create a user and database in your mysql/mariadb server (not root) and then foll
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it freshrss /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f freshrss`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' freshrss`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/freshrss`
