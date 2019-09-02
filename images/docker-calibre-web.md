@@ -1,11 +1,11 @@
 # [linuxserver/calibre-web](https://github.com/linuxserver/docker-calibre-web)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/calibre-web.svg)](https://microbadger.com/images/linuxserver/calibre-web "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/calibre-web.svg)](https://microbadger.com/images/linuxserver/calibre-web "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/calibre-web.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/calibre-web.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-calibre-web/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-calibre-web/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-calibre-web.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-calibre-web/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/calibre-web.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/calibre-web "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/calibre-web.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/calibre-web "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/calibre-web.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/calibre-web)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/calibre-web.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/calibre-web)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-calibre-web/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-calibre-web/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/calibre-web/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/calibre-web/latest/index.html)
 
 [Calibre-web](https://github.com/janeczku/calibre-web) is a web app providing a clean interface for browsing, reading and downloading eBooks using an existing Calibre database.   It is also possible to integrate google drive and edit metadata and your calibre library through the app itself.
@@ -15,7 +15,7 @@ This software is a fork of library and licensed under the GPL v3 License.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/calibre-web` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -147,11 +147,11 @@ To reverse proxy with our Letsencrypt docker container we include a preconfigure
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it calibre-web /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f calibre-web`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' calibre-web`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/calibre-web`
