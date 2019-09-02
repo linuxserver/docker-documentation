@@ -1,11 +1,11 @@
 # [linuxserver/quassel-core](https://github.com/linuxserver/docker-quassel-core)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/quassel-core.svg)](https://microbadger.com/images/linuxserver/quassel-core "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/quassel-core.svg)](https://microbadger.com/images/linuxserver/quassel-core "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/quassel-core.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/quassel-core.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-quassel-core/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-quassel-core/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-quassel-core.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-quassel-core/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/quassel-core.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/quassel-core "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/quassel-core.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/quassel-core "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/quassel-core.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/quassel-core)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/quassel-core.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/quassel-core)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-quassel-core/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-quassel-core/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/quassel-core/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/quassel-core/latest/index.html)
 
 [Quassel-core](http://quassel-irc.org/) is a modern, cross-platform, distributed IRC client, meaning that one (or multiple) client(s) can attach to and detach from a central core.
@@ -15,7 +15,7 @@ This container handles the IRC connection (quasselcore) and requires a desktop c
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/quassel-core` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -179,11 +179,11 @@ docker create \
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it quassel-core /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f quassel-core`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' quassel-core`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/quassel-core`
