@@ -1,18 +1,18 @@
 # [linuxserver/calibre](https://github.com/linuxserver/docker-calibre)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/calibre.svg)](https://microbadger.com/images/linuxserver/calibre "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/calibre.svg)](https://microbadger.com/images/linuxserver/calibre "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/calibre.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/calibre.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-calibre/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-calibre/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-calibre.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-calibre/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/calibre.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/calibre "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/calibre.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/calibre "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/calibre.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/calibre)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/calibre.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/calibre)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-calibre/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-calibre/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/calibre/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/calibre/latest/index.html)
 
 [Calibre](https://calibre-ebook.com/) is a powerful and easy to use e-book manager. Users say it’s outstanding and a must-have. It’ll allow you to do nearly everything and it takes things a step beyond normal e-book software. It’s also completely free and open source and great for both casual users and computer experts.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/calibre` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -135,11 +135,11 @@ You can access advanced features of the Guacamole remote desktop using `ctrl`+`a
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it calibre /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f calibre`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' calibre`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/calibre`
