@@ -1,18 +1,18 @@
 # [linuxserver/emby](https://github.com/linuxserver/docker-emby)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/emby.svg)](https://microbadger.com/images/linuxserver/emby "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/emby.svg)](https://microbadger.com/images/linuxserver/emby "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/emby.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/emby.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-emby/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-emby/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-emby.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-emby/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/emby.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/emby "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/emby.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/emby "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/emby.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/emby)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/emby.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/emby)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-emby/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-emby/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/emby/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/emby/latest/index.html)
 
 [Emby](https://emby.media/) organizes video, music, live TV, and photos from personal media libraries and streams them to smart TVs, streaming boxes and mobile devices. This container is packaged as a standalone emby Media Server.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/emby` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -160,11 +160,11 @@ We automatically add the necessary environment variable that will utilise all th
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it emby /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f emby`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' emby`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/emby`
