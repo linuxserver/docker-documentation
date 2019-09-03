@@ -1,11 +1,11 @@
 # [linuxserver/habridge](https://github.com/linuxserver/docker-habridge)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/habridge.svg)](https://microbadger.com/images/linuxserver/habridge "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/habridge.svg)](https://microbadger.com/images/linuxserver/habridge "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/habridge.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/habridge.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-habridge/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-habridge/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-habridge.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-habridge/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/habridge.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/habridge "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/habridge.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/habridge "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/habridge.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/habridge)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/habridge.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/habridge)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-habridge/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-habridge/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/habridge/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/habridge/latest/index.html)
 
 [Habridge](http://bwssystems.com/#/habridge) emulates Philips Hue API to other home automation gateways such as an Amazon Echo/Dot Gen 1 (gen 2 has issues discovering ha-bridge) or other systems that support Philips Hue. The Bridge handles basic commands such as "On", "Off" and "brightness" commands of the hue protocol. This bridge can control most devices that have a distinct API.
@@ -19,7 +19,7 @@ For more information about how to use this software have a look at their Wiki [h
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/habridge` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -129,11 +129,11 @@ For information on how to configure ha-bridge, go to their wiki at [https://gith
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it habridge /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f habridge`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' habridge`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/habridge`
