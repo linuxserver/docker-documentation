@@ -1,18 +1,18 @@
 # [linuxserver/letsencrypt](https://github.com/linuxserver/docker-letsencrypt)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/letsencrypt.svg)](https://microbadger.com/images/linuxserver/letsencrypt "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/letsencrypt.svg)](https://microbadger.com/images/linuxserver/letsencrypt "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/letsencrypt.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/letsencrypt.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-letsencrypt/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-letsencrypt/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-letsencrypt.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-letsencrypt/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/letsencrypt.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/letsencrypt "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/letsencrypt.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/letsencrypt "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/letsencrypt.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/letsencrypt)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/letsencrypt.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/letsencrypt)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-letsencrypt/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-letsencrypt/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/letsencrypt/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/letsencrypt/latest/index.html)
 
 [Letsencrypt](https://letsencrypt.org/) sets up an Nginx webserver and reverse proxy with php support and a built-in letsencrypt client that automates free SSL server certificate generation and renewal processes. It also contains fail2ban for intrusion prevention.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/letsencrypt` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -193,11 +193,11 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it letsencrypt /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f letsencrypt`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' letsencrypt`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/letsencrypt`
