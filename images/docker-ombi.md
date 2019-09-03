@@ -1,11 +1,11 @@
 # [linuxserver/ombi](https://github.com/linuxserver/docker-ombi)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/ombi.svg)](https://microbadger.com/images/linuxserver/ombi "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/ombi.svg)](https://microbadger.com/images/linuxserver/ombi "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/ombi.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/ombi.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-ombi/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-ombi/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-ombi.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-ombi/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/ombi.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/ombi "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/ombi.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/ombi "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/ombi.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/ombi)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/ombi.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/ombi)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-ombi/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-ombi/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/ombi/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/ombi/latest/index.html)
 
 [Ombi](https://ombi.io) allows you to host your own Plex Request and user management system.
@@ -16,7 +16,7 @@ Even automatically send them weekly newsletters of new content that has been add
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/ombi` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -129,11 +129,11 @@ Access the webui at `<your-ip>:3579`. Follow the setup wizard on initial install
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it ombi /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f ombi`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' ombi`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/ombi`
