@@ -1,18 +1,18 @@
 # [linuxserver/photoshow](https://github.com/linuxserver/docker-photoshow)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/photoshow.svg)](https://microbadger.com/images/linuxserver/photoshow "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/photoshow.svg)](https://microbadger.com/images/linuxserver/photoshow "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/photoshow.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/photoshow.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-photoshow/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-photoshow/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-photoshow.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-photoshow/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/photoshow.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/photoshow "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/photoshow.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/photoshow "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/photoshow.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/photoshow)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/photoshow.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/photoshow)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-photoshow/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-photoshow/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/photoshow/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/photoshow/latest/index.html)
 
 [Photoshow](https://github.com/thibaud-rohmer/PhotoShow) is gallery software at its easiest, it doesn't even require a database.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/photoshow` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -120,11 +120,11 @@ On first run create an admin account, any folder and its subfolders that you map
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it photoshow /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f photoshow`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' photoshow`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/photoshow`
