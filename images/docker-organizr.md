@@ -1,11 +1,11 @@
 # [linuxserver/organizr](https://github.com/linuxserver/docker-organizr)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/organizr.svg)](https://microbadger.com/images/linuxserver/organizr "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/organizr.svg)](https://microbadger.com/images/linuxserver/organizr "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/organizr.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/organizr.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-organizr/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-organizr/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-organizr.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-organizr/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/organizr.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/organizr "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/organizr.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/organizr "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/organizr.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/organizr)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/organizr.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/organizr)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-organizr/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-organizr/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/organizr/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/organizr/latest/index.html)
 
 [Organizr](https://github.com/causefx/Organizr) is a HTPC/Homelab Services Organizer - Written in PHP
@@ -22,7 +22,7 @@ For more information on Organizr and information on how to use it visit their si
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/organizr` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -124,11 +124,11 @@ Dead simple to get running, create the container as instructed and start it. Whe
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it organizr /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f organizr`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' organizr`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/organizr`
