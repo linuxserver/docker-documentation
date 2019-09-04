@@ -1,11 +1,11 @@
 # [linuxserver/medusa](https://github.com/linuxserver/docker-medusa)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/medusa.svg)](https://microbadger.com/images/linuxserver/medusa "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/medusa.svg)](https://microbadger.com/images/linuxserver/medusa "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/medusa.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/medusa.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-medusa/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-medusa/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-medusa.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-medusa/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/medusa.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/medusa "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/medusa.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/medusa "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/medusa.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/medusa)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/medusa.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/medusa)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-medusa/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-medusa/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/medusa/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/medusa/latest/index.html)
 
 [Medusa](https://pymedusa.com/) is an automatic Video Library Manager for TV Shows. It watches for new episodes of your favorite shows, and when they are posted it does its magic.
@@ -13,7 +13,7 @@
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/medusa` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -121,11 +121,11 @@ Web interface is at `<your ip>:8081` , set paths for downloads, tv-shows to matc
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it medusa /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f medusa`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' medusa`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/medusa`
