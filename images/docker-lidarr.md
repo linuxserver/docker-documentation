@@ -1,18 +1,18 @@
 # [linuxserver/lidarr](https://github.com/linuxserver/docker-lidarr)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/lidarr.svg)](https://microbadger.com/images/linuxserver/lidarr "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/lidarr.svg)](https://microbadger.com/images/linuxserver/lidarr "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/lidarr.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/lidarr.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-lidarr/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-lidarr/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-lidarr.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-lidarr/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/lidarr.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/lidarr "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/lidarr.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/lidarr "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/lidarr.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/lidarr)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/lidarr.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/lidarr)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-lidarr/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-lidarr/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/lidarr/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/lidarr/latest/index.html)
 
 [Lidarr](https://github.com/lidarr/Lidarr) is a music collection manager for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new tracks from your favorite artists and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/lidarr` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -131,11 +131,11 @@ Access the webui at `<your-ip>:8686`, for more information check out [Lidarr](ht
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it lidarr /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f lidarr`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lidarr`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/lidarr`
