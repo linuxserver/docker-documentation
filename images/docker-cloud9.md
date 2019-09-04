@@ -1,11 +1,11 @@
 # [linuxserver/cloud9](https://github.com/linuxserver/docker-cloud9)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/cloud9.svg)](https://microbadger.com/images/linuxserver/cloud9 "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/cloud9.svg)](https://microbadger.com/images/linuxserver/cloud9 "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/cloud9.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/cloud9.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-cloud9/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-cloud9/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-cloud9.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-cloud9/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/cloud9.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/cloud9 "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/cloud9.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/cloud9 "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/cloud9.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/cloud9)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/cloud9.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/cloud9)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-cloud9/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-cloud9/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/cloud9/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/cloud9/latest/index.html)
 
 [Cloud9](https://github.com/c9/core) Cloud9 is a complete web based IDE with terminal access. This container is for running their core SDK locally and developing plugins.
@@ -13,7 +13,7 @@
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/cloud9` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -133,11 +133,11 @@ Access the webui at http://your-ip:8000, for more information check out [here](h
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it cloud9 /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f cloud9`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' cloud9`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/cloud9`
