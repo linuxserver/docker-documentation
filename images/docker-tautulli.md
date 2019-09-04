@@ -1,18 +1,18 @@
 # [linuxserver/tautulli](https://github.com/linuxserver/docker-tautulli)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/tautulli.svg)](https://microbadger.com/images/linuxserver/tautulli "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/tautulli.svg)](https://microbadger.com/images/linuxserver/tautulli "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/tautulli.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/tautulli.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-tautulli/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-tautulli/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-tautulli.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-tautulli/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/tautulli.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/tautulli "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/tautulli.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/tautulli "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/tautulli.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/tautulli)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/tautulli.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/tautulli)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-tautulli/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-tautulli/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/tautulli/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/tautulli/latest/index.html)
 
 [Tautulli](http://tautulli.com) is a python based web application for monitoring, analytics and notifications for Plex Media Server.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/tautulli` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -126,11 +126,11 @@ In tautulli gui settings, under `Plex Media Server`, turn on `Show Advanced` and
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it tautulli /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f tautulli`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' tautulli`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/tautulli`
