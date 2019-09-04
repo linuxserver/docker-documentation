@@ -1,18 +1,18 @@
 # [linuxserver/qbittorrent](https://github.com/linuxserver/docker-qbittorrent)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/qbittorrent.svg)](https://microbadger.com/images/linuxserver/qbittorrent "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/qbittorrent.svg)](https://microbadger.com/images/linuxserver/qbittorrent "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/qbittorrent.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/qbittorrent.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-qbittorrent/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-qbittorrent/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-qbittorrent.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-qbittorrent/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/qbittorrent.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/qbittorrent "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/qbittorrent.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/qbittorrent "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/qbittorrent.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/qbittorrent)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/qbittorrent.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/qbittorrent)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-qbittorrent/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-qbittorrent/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/qbittorrent/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/qbittorrent/latest/index.html)
 
 The [Qbittorrent](https://www.qbittorrent.org/) project aims to provide an open-source software alternative to µTorrent. qBittorrent is based on the Qt toolkit and libtorrent-rasterbar library.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/qbittorrent` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -150,11 +150,11 @@ WebUI\ServerDomains=*
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it qbittorrent /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f qbittorrent`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' qbittorrent`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/qbittorrent`
