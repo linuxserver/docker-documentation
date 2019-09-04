@@ -1,18 +1,18 @@
 # [linuxserver/kanzi](https://github.com/linuxserver/docker-kanzi)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/kanzi.svg)](https://microbadger.com/images/linuxserver/kanzi "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/kanzi.svg)](https://microbadger.com/images/linuxserver/kanzi "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/kanzi.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/kanzi.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-kanzi/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-kanzi/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-kanzi.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-kanzi/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/kanzi.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/kanzi "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/kanzi.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/kanzi "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/kanzi.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/kanzi)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/kanzi.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/kanzi)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-kanzi/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-kanzi/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/kanzi/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/kanzi/latest/index.html)
 
 [Kanzi](https://lexigr.am/), formerly titled Kodi-Alexa, this custom skill is the ultimate voice remote control for navigating Kodi. It can do anything you can think of (100+ intents).  This container also contains lexigram-cli to setup Kanzi with an Amazon Developer Account and automatically deploy it to Amazon.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/kanzi` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -152,11 +152,11 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it kanzi /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f kanzi`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' kanzi`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/kanzi`
