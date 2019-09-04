@@ -1,11 +1,11 @@
 # [linuxserver/hydra2](https://github.com/linuxserver/docker-hydra2)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/hydra2.svg)](https://microbadger.com/images/linuxserver/hydra2 "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/hydra2.svg)](https://microbadger.com/images/linuxserver/hydra2 "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/hydra2.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/hydra2.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-hydra2/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-hydra2/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-hydra2.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-hydra2/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/hydra2.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/hydra2 "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/hydra2.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/hydra2 "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/hydra2.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/hydra2)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/hydra2.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/hydra2)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-hydra2/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-hydra2/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/hydra2/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/hydra2/latest/index.html)
 
 [Hydra2](https://github.com/theotherp/nzbhydra2) is a meta search application for NZB indexers, the "spiritual successor" to NZBmegasearcH, and an evolution of the original application [NZBHydra](https://github.com/theotherp/nzbhydra).
@@ -15,7 +15,7 @@ It provides easy access to a number of raw and newznab based indexers. The appli
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/hydra2` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -120,11 +120,11 @@ The web interface is at `<your ip>:5076` , to set up indexers and connections to
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it hydra2 /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f hydra2`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' hydra2`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/hydra2`
