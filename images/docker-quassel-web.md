@@ -1,11 +1,11 @@
 # [linuxserver/quassel-web](https://github.com/linuxserver/docker-quassel-web)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/quassel-web.svg)](https://microbadger.com/images/linuxserver/quassel-web "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/quassel-web.svg)](https://microbadger.com/images/linuxserver/quassel-web "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/quassel-web.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/quassel-web.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-quassel-web/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-quassel-web/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-quassel-web.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-quassel-web/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/quassel-web.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/quassel-web "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/quassel-web.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/quassel-web "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/quassel-web.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/quassel-web)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/quassel-web.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/quassel-web)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-quassel-web/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-quassel-web/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/quassel-web/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/quassel-web/latest/index.html)
 
 [Quassel-web](https://github.com/magne4000/quassel-webserver) is a web client for Quassel.  Note that a Quassel-Core instance is required, we have a container available [here.](https://hub.docker.com/r/linuxserver/quassel-core/) 
@@ -13,7 +13,7 @@
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/quassel-web` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -125,11 +125,11 @@ The configuration file using this method can be found at:
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it quassel-web /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f quassel-web`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' quassel-web`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/quassel-web`
