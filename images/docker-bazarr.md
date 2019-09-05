@@ -1,18 +1,18 @@
 # [linuxserver/bazarr](https://github.com/linuxserver/docker-bazarr)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/bazarr.svg)](https://microbadger.com/images/linuxserver/bazarr "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/bazarr.svg)](https://microbadger.com/images/linuxserver/bazarr "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/bazarr.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/bazarr.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-bazarr/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-bazarr/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-bazarr.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-bazarr/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/bazarr.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/bazarr "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/bazarr.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/bazarr "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/bazarr.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/bazarr)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/bazarr.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/bazarr)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-bazarr/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-bazarr/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/bazarr/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/bazarr/latest/index.html)
 
 [Bazarr](https://www.bazarr.media/) is a companion application to Sonarr and Radarr. It can manage and download subtitles based on your requirements. You define your preferences by TV show or movie and Bazarr takes care of everything for you.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/bazarr` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -129,11 +129,11 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it bazarr /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f bazarr`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' bazarr`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/bazarr`
