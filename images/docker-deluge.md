@@ -1,11 +1,11 @@
 # [linuxserver/deluge](https://github.com/linuxserver/docker-deluge)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/deluge.svg)](https://microbadger.com/images/linuxserver/deluge "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/deluge.svg)](https://microbadger.com/images/linuxserver/deluge "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/deluge.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/deluge.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-deluge/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-deluge/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-deluge.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-deluge/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/deluge.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/deluge "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/deluge.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/deluge "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/deluge.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/deluge)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/deluge.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/deluge)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-deluge/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-deluge/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/deluge/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/deluge/latest/index.html)
 
 [Deluge](http://deluge-torrent.org/) is a lightweight, Free Software, cross-platform BitTorrent client.
@@ -18,7 +18,7 @@
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/deluge` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -135,11 +135,11 @@ Change the downloads location in the webui in Preferences->Downloads and use /do
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it deluge /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f deluge`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' deluge`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/deluge`
