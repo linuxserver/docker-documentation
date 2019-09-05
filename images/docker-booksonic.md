@@ -1,18 +1,18 @@
 # [linuxserver/booksonic](https://github.com/linuxserver/docker-booksonic)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/booksonic.svg)](https://microbadger.com/images/linuxserver/booksonic "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/booksonic.svg)](https://microbadger.com/images/linuxserver/booksonic "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/booksonic.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/booksonic.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-booksonic/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-booksonic/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-booksonic.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-booksonic/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/booksonic.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/booksonic "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/booksonic.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/booksonic "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/booksonic.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/booksonic)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/booksonic.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/booksonic)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-booksonic/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-booksonic/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/booksonic/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/booksonic/latest/index.html)
 
 [Booksonic](http://booksonic.org) is a server and an app for streaming your audiobooks to any pc or android phone. Most of the functionality is also availiable on other platforms that have apps for subsonic.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/booksonic` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -125,11 +125,11 @@ Default user/pass is admin/admin
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it booksonic /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f booksonic`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' booksonic`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/booksonic`
