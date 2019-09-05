@@ -1,18 +1,18 @@
 # [lsiocommunity/pixapop](https://github.com/linuxserver/docker-pixapop)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/pixapop.svg)](https://microbadger.com/images/linuxserver/pixapop "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/pixapop.svg)](https://microbadger.com/images/linuxserver/pixapop "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/pixapop.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/pixapop.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-pixapop/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-pixapop/job/master/)
-[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/pixapop/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/pixapop/latest/index.html)
+[![GitHub Release](https://img.shields.io/github/release/lsiocommunity/docker-pixapop.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-pixapop/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/lsiocommunity/pixapop.svg?style=flat-square&color=E68523)](https://microbadger.com/images/lsiocommunity/pixapop "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/lsiocommunity/pixapop.svg?style=flat-square&color=E68523)](https://microbadger.com/images/lsiocommunity/pixapop "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/lsiocommunity/pixapop.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/lsiocommunity/pixapop)
+[![Docker Stars](https://img.shields.io/docker/stars/lsiocommunity/pixapop.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/lsiocommunity/pixapop)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-pixapop/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-pixapop/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/lsiocommunity/pixapop/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/lsiocommunity/pixapop/latest/index.html)
 
 [Pixapop](https://github.com/bierdok/pixapop) is an open-source single page application to view your photos in the easiest way possible.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `lsiocommunity/pixapop` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -123,11 +123,11 @@ Any photos included in /photos will be presented as galleries split by month. Co
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it pixapop /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f pixapop`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' pixapop`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lsiocommunity/pixapop`
