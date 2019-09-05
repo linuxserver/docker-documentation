@@ -1,11 +1,11 @@
 # [linuxserver/guacd](https://github.com/linuxserver/docker-guacd)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/guacd.svg)](https://microbadger.com/images/linuxserver/guacd "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/guacd.svg)](https://microbadger.com/images/linuxserver/guacd "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/guacd.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/guacd.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-guacd/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-guacd/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-guacd.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-guacd/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/guacd.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/guacd "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/guacd.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/guacd "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/guacd.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/guacd)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/guacd.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/guacd)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-guacd/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-guacd/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/guacd/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/guacd/latest/index.html)
 
 [Guacd](https://guacamole.apache.org/) - Apache Guacamole is a clientless remote desktop gateway. It supports standard protocols like VNC, RDP, and SSH. This container is only the backend server component needed to use The official or 3rd party HTML5 frontends.
@@ -13,7 +13,7 @@
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/guacd` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -88,11 +88,11 @@ This is a backend only service, to leverage Guacd server you need to use either 
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it guacd /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f guacd`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' guacd`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/guacd`
