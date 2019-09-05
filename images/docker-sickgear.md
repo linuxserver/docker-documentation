@@ -1,11 +1,11 @@
 # [linuxserver/sickgear](https://github.com/linuxserver/docker-sickgear)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/sickgear.svg)](https://microbadger.com/images/linuxserver/sickgear "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/sickgear.svg)](https://microbadger.com/images/linuxserver/sickgear "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/sickgear.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/sickgear.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-sickgear/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-sickgear/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-sickgear.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-sickgear/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/sickgear.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/sickgear "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/sickgear.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/sickgear "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/sickgear.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/sickgear)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/sickgear.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/sickgear)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-sickgear/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-sickgear/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/sickgear/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/sickgear/latest/index.html)
 
 [SickGear](https://github.com/sickgear/sickgear) provides management of TV shows and/or Anime, it detects new episodes, links downloader apps, and more.. 
@@ -15,7 +15,7 @@ For more information on SickGear visit their website and check it out: https://g
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/sickgear` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -148,11 +148,11 @@ It is recommended that a clean install be completed, rather than a migration, ho
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it sickgear /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f sickgear`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' sickgear`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/sickgear`
