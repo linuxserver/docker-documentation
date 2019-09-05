@@ -1,18 +1,18 @@
 # [linuxserver/raneto](https://github.com/linuxserver/docker-raneto)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/raneto.svg)](https://microbadger.com/images/linuxserver/raneto "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/raneto.svg)](https://microbadger.com/images/linuxserver/raneto "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/raneto.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/raneto.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-raneto/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-raneto/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-raneto.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-raneto/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/raneto.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/raneto "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/raneto.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/raneto "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/raneto.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/raneto)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/raneto.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/raneto)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-raneto/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-raneto/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/raneto/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/raneto/latest/index.html)
 
 [Raneto](http://raneto.com/) - is an open source Knowledgebase platform that uses static Markdown files to power your Knowledgebase.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/raneto` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -123,11 +123,11 @@ You need to understand the following paths and the role they play for the applic
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it raneto /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f raneto`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' raneto`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/raneto`
