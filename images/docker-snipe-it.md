@@ -1,18 +1,18 @@
 # [linuxserver/snipe-it](https://github.com/linuxserver/docker-snipe-it)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/snipe-it.svg)](https://microbadger.com/images/linuxserver/snipe-it "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/snipe-it.svg)](https://microbadger.com/images/linuxserver/snipe-it "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/snipe-it.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/snipe-it.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-snipe-it/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-snipe-it/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-snipe-it.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-snipe-it/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/snipe-it.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/snipe-it "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/snipe-it.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/snipe-it "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/snipe-it.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/snipe-it)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/snipe-it.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/snipe-it)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-snipe-it/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-snipe-it/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/snipe-it/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/snipe-it/latest/index.html)
 
 [Snipe-it](https://github.com/snipe/snipe-it) makes asset management easy. It was built by people solving real-world IT and asset management problems, and a solid UX has always been a top priority. Straightforward design and bulk actions mean getting things done faster.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/snipe-it` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -172,11 +172,11 @@ Access the webui at `<your-ip>:8080`, for more information check out [Snipe-it](
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it snipe-it /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f snipe-it`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' snipe-it`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/snipe-it`
