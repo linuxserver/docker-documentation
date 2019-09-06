@@ -1,11 +1,11 @@
 # [linuxserver/heimdall](https://github.com/linuxserver/docker-heimdall)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/heimdall.svg)](https://microbadger.com/images/linuxserver/heimdall "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/heimdall.svg)](https://microbadger.com/images/linuxserver/heimdall "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/heimdall.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/heimdall.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-heimdall/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-heimdall/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-heimdall.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-heimdall/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/heimdall.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/heimdall "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/heimdall.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/heimdall "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/heimdall.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/heimdall)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/heimdall.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/heimdall)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-heimdall/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-heimdall/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/heimdall/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/heimdall/latest/index.html)
 
 [Heimdall](https://heimdall.site) is a way to organise all those links to your most used web sites and web applications in a simple way.
@@ -14,7 +14,7 @@ Why not use it as your browser start page? It even has the ability to include a 
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/heimdall` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -132,11 +132,11 @@ This image now supports password protection through htpasswd. Run the following 
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it heimdall /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f heimdall`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' heimdall`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/heimdall`
