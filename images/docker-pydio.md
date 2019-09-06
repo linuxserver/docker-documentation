@@ -1,18 +1,18 @@
 # [linuxserver/pydio](https://github.com/linuxserver/docker-pydio)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/pydio.svg)](https://microbadger.com/images/linuxserver/pydio "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/pydio.svg)](https://microbadger.com/images/linuxserver/pydio "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/pydio.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/pydio.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-pydio/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-pydio/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-pydio.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-pydio/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/pydio.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/pydio "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/pydio.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/pydio "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/pydio.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/pydio)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/pydio.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/pydio)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-pydio/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-pydio/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/pydio/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/pydio/latest/index.html)
 
 [Pydio](https://pydio.com/) (formerly AjaXplorer) is a mature open source software solution for file sharing and synchronization. With intuitive user interfaces (web / mobile / desktop), Pydio provides enterprise-grade features to gain back control and privacy of your data: user directory connectors, legacy filesystems drivers, comprehensive admin interface, and much more.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/pydio` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -124,11 +124,11 @@ For email settings edit the file /config/ssmtp.conf and restart the container.
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it pydio /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f pydio`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' pydio`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/pydio`
