@@ -1,18 +1,18 @@
 # [linuxserver/diskover](https://github.com/linuxserver/docker-diskover)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/diskover.svg)](https://microbadger.com/images/linuxserver/diskover "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/diskover.svg)](https://microbadger.com/images/linuxserver/diskover "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/diskover.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/diskover.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-diskover/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-diskover/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-diskover.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-diskover/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/diskover.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/diskover "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/diskover.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/diskover "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/diskover.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/diskover)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/diskover.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/diskover)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-diskover/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-diskover/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/diskover/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/diskover/latest/index.html)
 
 [diskover](https://github.com/shirosaidev/diskover) is a file system crawler and disk space usage software that uses Elasticsearch to index and manage data across heterogeneous storage systems.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/diskover` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -186,11 +186,11 @@ For specific questions or help setting up diskover in your environment please re
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it diskover /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f diskover`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' diskover`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/diskover`
