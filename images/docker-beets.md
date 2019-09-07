@@ -1,18 +1,18 @@
 # [linuxserver/beets](https://github.com/linuxserver/docker-beets)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/beets.svg)](https://microbadger.com/images/linuxserver/beets "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/beets.svg)](https://microbadger.com/images/linuxserver/beets "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/beets.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/beets.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-beets/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-beets/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-beets.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-beets/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/beets.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/beets "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/beets.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/beets "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/beets.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/beets)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/beets.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/beets)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-beets/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-beets/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/beets/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/beets/latest/index.html)
 
 [Beets](http://beets.io/) is a music library manager and not, for the most part, a music player. It does include a simple player plugin and an experimental Web-based player, but it generally leaves actual sound-reproduction to specialized tools.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/beets` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -124,11 +124,11 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it beets /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f beets`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' beets`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/beets`
