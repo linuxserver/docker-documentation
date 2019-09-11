@@ -1,18 +1,18 @@
 # [linuxserver/tt-rss](https://github.com/linuxserver/docker-tt-rss)
 
-[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
-[![](https://images.microbadger.com/badges/version/linuxserver/tt-rss.svg)](https://microbadger.com/images/linuxserver/tt-rss "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/linuxserver/tt-rss.svg)](https://microbadger.com/images/linuxserver/tt-rss "Get your own version badge on microbadger.com")
-![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/tt-rss.svg)
-![Docker Stars](https://img.shields.io/docker/stars/linuxserver/tt-rss.svg)
-[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-tt-rss/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-tt-rss/job/master/)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-tt-rss.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-tt-rss/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/tt-rss.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/tt-rss "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/tt-rss.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/tt-rss "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/tt-rss.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/tt-rss)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/tt-rss.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/tt-rss)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-tt-rss/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-tt-rss/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/tt-rss/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/tt-rss/latest/index.html)
 
 [Tt-rss](https://tt-rss.org) is an open source web-based news feed (RSS/Atom) reader and aggregator, designed to allow you to read news from any location, while feeling as close to a real desktop application as possible.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/). 
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `linuxserver/tt-rss` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -136,11 +136,11 @@ Please note if you use this method you need to have an already initialized datab
 
 ## Support Info
 
-* Shell access whilst the container is running: 
+* Shell access whilst the container is running:
   * `docker exec -it tt-rss /bin/bash`
-* To monitor the logs of the container in realtime: 
+* To monitor the logs of the container in realtime:
   * `docker logs -f tt-rss`
-* Container version number 
+* Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' tt-rss`
 * Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/tt-rss`
