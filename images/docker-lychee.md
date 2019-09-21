@@ -8,7 +8,7 @@
 [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-lychee/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-lychee/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/lychee/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/lychee/latest/index.html)
 
-[Lychee](https://lychee.electerious.com/) is a free photo-management tool, which runs on your server or web-space. Installing is a matter of seconds. Upload, manage and share photos like from a native application. Lychee comes with everything you need and all your photos are stored securely.
+[Lychee](https://lycheeorg.github.io/) is a free photo-management tool, which runs on your server or web-space. Installing is a matter of seconds. Upload, manage and share photos like from a native application. Lychee comes with everything you need and all your photos are stored securely.
 
 ## Supported Architectures
 
@@ -112,7 +112,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 ## Application Setup
 
 Setup mysql/mariadb and account via the webui, accessible at http://SERVERIP:PORT  
-More info at [lychee](https://lychee.electerious.com/).  
+More info at [lychee](https://lycheeorg.github.io/).  
 
 
 
@@ -129,6 +129,7 @@ More info at [lychee](https://lychee.electerious.com/).
 
 ## Versions
 
+* **19.09.19:** - Update project website url.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **05.05.19:** - Rebase to alpine 3.9, use new armv7 image format.
 * **21.01.18:** - Added ffmpeg for video thumbnail creation, switched to installing zip release instead of source tarball, created small thumbnails folder, switched to dynamic readme.
