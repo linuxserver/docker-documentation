@@ -204,6 +204,7 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 
 ## Versions
 
+* **23.09.19:** - Move GeoIP2 db to /config to make it persistent.
 * **14.08.19:** - Add inwx dns validation plugin.
 * **06.08.19:** - Add php7-ftp.
 * **04.08.19:** - Add php7-bcmath, php7-pear, php7-xmlrpc.
