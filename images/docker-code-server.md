@@ -149,6 +149,7 @@ git config --global user.email "email address"
 
 ## Versions
 
+* **28.09.19:** - Update project logo.
 * **21.09.19:** - Add development builds/tag.
 * **09.07.19:** - Add optional sudo access.
 * **01.07.19:** - Add nano.
