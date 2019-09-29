@@ -1,14 +1,8 @@
-# [linuxserver/tt-rss](https://github.com/linuxserver/docker-tt-rss)
+# linuxserver/tt-rss
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-tt-rss.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-tt-rss/releases)
-[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/tt-rss.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/tt-rss "Get your own version badge on microbadger.com")
-[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/tt-rss.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/tt-rss "Get your own version badge on microbadger.com")
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/tt-rss.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/tt-rss)
-[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/tt-rss.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/tt-rss)
-[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-tt-rss/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-tt-rss/job/master/)
-[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/tt-rss/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/tt-rss/latest/index.html)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-tt-rss.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-tt-rss/releases) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/tt-rss.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/tt-rss) [![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/tt-rss.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/tt-rss) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/tt-rss.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/tt-rss) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/tt-rss.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/tt-rss) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-tt-rss/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-tt-rss/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/tt-rss/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/tt-rss/latest/index.html)
 
-[Tt-rss](https://tt-rss.org) is an open source web-based news feed (RSS/Atom) reader and aggregator, designed to allow you to read news from any location, while feeling as close to a real desktop application as possible.
+[Tt-rss](https://tt-rss.org) is an open source web-based news feed \(RSS/Atom\) reader and aggregator, designed to allow you to read news from any location, while feeling as close to a real desktop application as possible.
 
 ## Supported Architectures
 
@@ -19,7 +13,7 @@ Simply pulling `linuxserver/tt-rss` should retrieve the correct image for your a
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :----: | --- |
+| :---: | :--- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
@@ -29,7 +23,7 @@ The architectures supported by this image are:
 This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
 
 | Tag | Description |
-| :----: | --- |
+| :---: | :--- |
 | latest | Stable Tiny Tiny RSS releases |
 | develop | Develop Tiny Tiny RSS releases from HEAD of their master branch |
 
@@ -39,7 +33,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```
+```text
 docker create \
   --name=tt-rss \
   -e PUID=1000 \
@@ -50,7 +44,6 @@ docker create \
   --restart unless-stopped \
   linuxserver/tt-rss
 ```
-
 
 ### docker-compose
 
@@ -76,63 +69,60 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports (`-p`)
+### Ports \(`-p`\)
 
 | Parameter | Function |
-| :----: | --- |
+| :---: | :--- |
 | `80` | WebUI |
 
-
-### Environment Variables (`-e`)
+### Environment Variables \(`-e`\)
 
 | Env | Function |
-| :----: | --- |
+| :---: | :--- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 
-### Volume Mappings (`-v`)
+### Volume Mappings \(`-v`\)
 
 | Volume | Function |
-| :----: | --- |
+| :---: | :--- |
 | `/config` | Where tt-rss should store it's config files and data. |
-
-
 
 ## User / Group Identifiers
 
-When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```
+```text
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
 
-You must create a user and database for tt-rss to use in a mysql/mariadb or postgresql server. PostgreSQL is recommended, as InnoDB is required if using MySQL. A basic nginx configuration file can be found in /config/nginx/site-confs , edit the file to enable ssl (port 443 by default), set servername etc.. Self-signed keys are generated the first time you run the container and can be found in /config/keys , if needed, you can replace them with your own.
+You must create a user and database for tt-rss to use in a mysql/mariadb or postgresql server. PostgreSQL is recommended, as InnoDB is required if using MySQL. A basic nginx configuration file can be found in /config/nginx/site-confs , edit the file to enable ssl \(port 443 by default\), set servername etc.. Self-signed keys are generated the first time you run the container and can be found in /config/keys , if needed, you can replace them with your own.
 
 **The default username and password after initial configuration is admin/password**
 
 ## Power users
+
 The container can configure itself using environment variables, the gaurd for this logic to run is if the variable `DB_TYPE` is set. The most common variables to set are a URL for the application and a database endpoint. IE:
-* -e DB_TYPE=mysql
-* -e DB_HOST=host
-* -e DB_USER=user
-* -e DB_NAME=name
-* -e DB_PASS=password
-* -e DB_PORT=3306
-* -e SELF_URL_PATH=http://localhost/
 
-Please note if you use this method you need to have an already initialized database endpoint. We do our best to ensure that anything in the config.php can be set via these environment variables. 
+* -e DB\_TYPE=mysql
+* -e DB\_HOST=host
+* -e DB\_USER=user
+* -e DB\_NAME=name
+* -e DB\_PASS=password
+* -e DB\_PORT=3306
+* -e SELF\_URL\_PATH=[http://localhost/](http://localhost/)
 
-
+Please note if you use this method you need to have an already initialized database endpoint. We do our best to ensure that anything in the config.php can be set via these environment variables.
 
 ## Support Info
 
@@ -161,3 +151,4 @@ Please note if you use this method you need to have an already initialized datab
 * **14.10.16:** - Add version layer information.
 * **10.09.16:** - Add layer badges to README.
 * **31.08.15:** - Initial Release.
+

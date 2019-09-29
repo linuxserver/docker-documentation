@@ -1,12 +1,6 @@
-# [linuxserver/clarkson](https://github.com/linuxserver/docker-clarkson)
+# linuxserver/clarkson
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-clarkson.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-clarkson/releases)
-[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/clarkson.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/clarkson "Get your own version badge on microbadger.com")
-[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/clarkson.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/clarkson "Get your own version badge on microbadger.com")
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/clarkson.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/clarkson)
-[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/clarkson.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/clarkson)
-[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-clarkson/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-clarkson/job/master/)
-[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/clarkson/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/clarkson/latest/index.html)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-clarkson.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-clarkson/releases) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/clarkson.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/clarkson) [![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/clarkson.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/clarkson) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/clarkson.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/clarkson) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/clarkson.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/clarkson) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-clarkson/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-clarkson/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/clarkson/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/clarkson/latest/index.html)
 
 [Clarkson](https://github.com/linuxserver/Clarkson) is a web-based dashboard application that gives you a neat and clean interface for logging your fuel fill-ups for all of your vehicles. The application has full multi-user support, as well as multiple vehicles per user. Whenever you fill-up your car or motorcycle, keep the receipt and record the data in Clarkson.
 
@@ -19,11 +13,10 @@ Simply pulling `linuxserver/clarkson` should retrieve the correct image for your
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :----: | --- |
+| :---: | :--- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
-
 
 ## Usage
 
@@ -31,7 +24,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```
+```text
 docker create \
   --name=clarkson \
   -e PUID=1000 \
@@ -45,7 +38,6 @@ docker create \
   --restart unless-stopped \
   linuxserver/clarkson
 ```
-
 
 ### docker-compose
 
@@ -73,50 +65,48 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports (`-p`)
+### Ports \(`-p`\)
 
 | Parameter | Function |
-| :----: | --- |
+| :---: | :--- |
 | `3000` | WebUI |
 
-
-### Environment Variables (`-e`)
+### Environment Variables \(`-e`\)
 
 | Env | Function |
-| :----: | --- |
+| :---: | :--- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `MYSQL_HOST=<mysql_host>` | Points the backend to the MySQL database. This can be either a docker hostname or an IP. |
 | `MYSQL_USERNAME=<mysql_username>` | The user with access to the _clarkson_ schema. |
 | `MYSQL_PASSWORD=<mysql_password>` | The password for the user. |
-| `ENABLE_REGISTRATIONS=<true/false>` | **Defaults to _false_.** If set to _true_, allows new users to register. |
+| `ENABLE_REGISTRATIONS=<true/false>` | **Defaults to** _**false**_**.** If set to _true_, allows new users to register. |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 
-### Volume Mappings (`-v`)
+### Volume Mappings \(`-v`\)
 
 | Volume | Function |
-| :----: | --- |
-
+| :---: | :--- |
 
 
 ## User / Group Identifiers
 
-When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```
+```text
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
 
-**Clarkson requires v5.7.* of MySQL and please ensure MySQL is running before starting this container**.
+**Clarkson requires v5.7.\* of MySQL and please ensure MySQL is running before starting this container**.
 
 It is preferred if you create the `clarkson` schema before initially running the container, then creating a user with granted permissions for the schema. Creating the schema before running the app is important as the "clarkson" user will not have permission to create the schema on your behalf. You can, of course, use the "root" user, which has the ability to create schemas automatically, but this is not recommended.
 
@@ -127,8 +117,6 @@ GRANT ALL ON `clarkson`.* TO 'clarkson_user';
 ```
 
 Once running, the container will run an initial MySQL migration, which populates the schema with all tables and procedures. The application will start immediately afterwards. You will need to register an initial user, of which will be the admin of the application. All subsequent users will be standard users. You can disable registrations after the fact by recreating the container with the `ENABLE_REGISTRATIONS` flag set to `false`. This will not hide the "Register" link, but will disable the functionality.
-
-
 
 ## Support Info
 
@@ -150,3 +138,4 @@ Once running, the container will run an initial MySQL migration, which populates
 * **11.02.19:** - Add pipeline logic and multi arch.
 * **22.08.18:** - Rebase to alpine linux 3.8.
 * **19.02.18:** - Initial Release.
+

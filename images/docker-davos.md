@@ -1,15 +1,8 @@
-# [linuxserver/davos](https://github.com/linuxserver/docker-davos)
+# linuxserver/davos
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-davos.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-davos/releases)
-[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/davos.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/davos "Get your own version badge on microbadger.com")
-[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/davos.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/davos "Get your own version badge on microbadger.com")
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/davos.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/davos)
-[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/davos.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/davos)
-[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-davos/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-davos/job/master/)
-[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/davos/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/davos/latest/index.html)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-davos.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-davos/releases) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/davos.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/davos) [![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/davos.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/davos) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/davos.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/davos) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/davos.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/davos) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-davos/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-davos/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/davos/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/davos/latest/index.html)
 
 [Davos](https://github.com/linuxserver/davos) is an FTP automation tool that periodically scans given host locations for new files. It can be configured for various purposes, including listening for specific files to appear in the host location, ready for it to download and then move, if required. It also supports completion notifications as well as downstream API calls, to further the workflow.
-
 
 ## Supported Architectures
 
@@ -20,11 +13,10 @@ Simply pulling `linuxserver/davos` should retrieve the correct image for your ar
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :----: | --- |
+| :---: | :--- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
-
 
 ## Usage
 
@@ -32,7 +24,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```
+```text
 docker create \
   --name=davos \
   -e PUID=1000 \
@@ -43,7 +35,6 @@ docker create \
   --restart unless-stopped \
   linuxserver/davos
 ```
-
 
 ### docker-compose
 
@@ -69,40 +60,37 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports (`-p`)
+### Ports \(`-p`\)
 
 | Parameter | Function |
-| :----: | --- |
+| :---: | :--- |
 | `8080` | This is the default port that davos runs under |
 
-
-### Environment Variables (`-e`)
+### Environment Variables \(`-e`\)
 
 | Env | Function |
-| :----: | --- |
+| :---: | :--- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 
-### Volume Mappings (`-v`)
+### Volume Mappings \(`-v`\)
 
 | Volume | Function |
-| :----: | --- |
+| :---: | :--- |
 | `/config` | davos's config location. This is where it stores its database file and logs. |
 | `/download` | davos's file download location |
 
-
-
 ## User / Group Identifiers
 
-When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```
+```text
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
@@ -110,8 +98,6 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 ## Application Setup
 
 The application does not require any set up other than starting the docker container. Further documentation can be found on the [davos GitHub repository page](https://github.com/linuxserver/davos).
-
-
 
 ## Support Info
 
@@ -132,3 +118,4 @@ The application does not require any set up other than starting the docker conta
 * **08.03.19:** - Updating build environment to pass proper build flags and use gradle wrapper.
 * **22.02.19:** - Rebasing to alpine 3.9.
 * **18.11.16:** - Initial Release.
+

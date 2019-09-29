@@ -1,15 +1,8 @@
-# [linuxserver/cardigann](https://github.com/linuxserver/docker-cardigann)
+# linuxserver/cardigann
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-cardigann.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-cardigann/releases)
-[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/cardigann.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/cardigann "Get your own version badge on microbadger.com")
-[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/cardigann.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/cardigann "Get your own version badge on microbadger.com")
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/cardigann.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/cardigann)
-[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/cardigann.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/cardigann)
-[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-cardigann/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-cardigann/job/master/)
-[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/cardigann/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/cardigann/latest/index.html)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-cardigann.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-cardigann/releases) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/cardigann.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/cardigann) [![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/cardigann.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/cardigann) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/cardigann.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/cardigann) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/cardigann.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/cardigann) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-cardigann/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-cardigann/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/cardigann/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/cardigann/latest/index.html)
 
 [Cardigann](https://github.com/cardigann/cardigann) a server for adding extra indexers to Sonarr, SickRage and CouchPotato via Torznab and TorrentPotato proxies. Behind the scenes Cardigann logs in and runs searches and then transforms the results into a compatible format.
-
 
 ## Supported Architectures
 
@@ -20,11 +13,10 @@ Simply pulling `linuxserver/cardigann` should retrieve the correct image for you
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :----: | --- |
+| :---: | :--- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
-
 
 ## Usage
 
@@ -32,7 +24,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```
+```text
 docker create \
   --name=cardigann \
   -e PUID=1000 \
@@ -44,7 +36,6 @@ docker create \
   --restart unless-stopped \
   linuxserver/cardigann
 ```
-
 
 ### docker-compose
 
@@ -71,41 +62,38 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports (`-p`)
+### Ports \(`-p`\)
 
 | Parameter | Function |
-| :----: | --- |
+| :---: | :--- |
 | `5060` | The port for the Cardigann webinterface |
 
-
-### Environment Variables (`-e`)
+### Environment Variables \(`-e`\)
 
 | Env | Function |
-| :----: | --- |
+| :---: | :--- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `SOCKS_PROXY=IP:PORT` | for using a socks proxy (optional) |
-| `HTTP_PROXY=IP:PORT` | for using a HTTP proxy (optional) |
+| `SOCKS_PROXY=IP:PORT` | for using a socks proxy \(optional\) |
+| `HTTP_PROXY=IP:PORT` | for using a HTTP proxy \(optional\) |
 
-### Volume Mappings (`-v`)
+### Volume Mappings \(`-v`\)
 
 | Volume | Function |
-| :----: | --- |
+| :---: | :--- |
 | `/config` | Cardigann config |
-
-
 
 ## User / Group Identifiers
 
-When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```
+```text
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
@@ -114,11 +102,9 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 Access the webui at `<your-ip>:5060`, for more information check out [Cardigann](https://github.com/cardigann/cardigann).
 
-By adding a variable to the run command, `SOCKS_PROXY` or `HTTP_PROXY` cardigann can be used with a proxy, *eg* `-e SOCKS_PROXY=localhost:1080`
+By adding a variable to the run command, `SOCKS_PROXY` or `HTTP_PROXY` cardigann can be used with a proxy, _eg_ `-e SOCKS_PROXY=localhost:1080`
 
-The folder `/config/definitions` can be used to add additional tracker definitions (for more info see [Additional definitions](https://github.com/cardigann/cardigann#definitions) ).
-
-
+The folder `/config/definitions` can be used to add additional tracker definitions \(for more info see [Additional definitions](https://github.com/cardigann/cardigann#definitions) \).
 
 ## Support Info
 
@@ -144,3 +130,4 @@ The folder `/config/definitions` can be used to add additional tracker definitio
 * **07.02.17:** - Rebase to alpine 3.5
 * **03.11.16:** - Compiled using [sstamoulis'](https://github.com/sstamoulis) method
 * **01.11.16:** - Initial Release
+

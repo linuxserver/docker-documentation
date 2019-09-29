@@ -18,7 +18,7 @@ docker stop <container_name>
 
 Once the container has been stopped, remove it.
 
-> **Important**: Did you remember to persist the `/config` volume when you originally created the container? Bear in mind, you'll lose any configuration inside the container if this volume was not persisted. [Read up on why this is important](https://github.com/linuxserver/docker-documentation/tree/2fbbd392c7399b6dc743a8c7ea97e2e124870cff/docs/running-our-containers/README.md#the-code-classlanguage-textconfigcode-volume).
+> **Important**: Did you remember to persist the `/config` volume when you originally created the container? Bear in mind, you'll lose any configuration inside the container if this volume was not persisted. [Read up on why this is important](volumes.md).
 
 ```bash
 docker rm <container_name>
@@ -34,7 +34,7 @@ docker pull linuxserver/<image_name>
 
 ### Recreate the container
 
-Finally, you can recreate the container. This is often cited as the most arduous task as it requires you to remember all of the mappings you set beforehand. You can help mitigate this step by using Docker Compose instead - this topic has been [outlined in our documentation](https://github.com/linuxserver/docker-documentation/tree/2fbbd392c7399b6dc743a8c7ea97e2e124870cff/docs/started-with-compose/README.md).
+Finally, you can recreate the container. This is often cited as the most arduous task as it requires you to remember all of the mappings you set beforehand. You can help mitigate this step by using Docker Compose instead - this topic has been [outlined in our documentation](docker-compose.md).
 
 ```bash
 docker create \

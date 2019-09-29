@@ -1,15 +1,8 @@
-# [linuxserver/pylon](https://github.com/linuxserver/docker-pylon)
+# linuxserver/pylon
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-pylon.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-pylon/releases)
-[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/pylon.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/pylon "Get your own version badge on microbadger.com")
-[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/pylon.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/pylon "Get your own version badge on microbadger.com")
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/pylon.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/pylon)
-[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/pylon.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/pylon)
-[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-pylon/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-pylon/job/master/)
-[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/pylon/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/pylon/latest/index.html)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-pylon.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-pylon/releases) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/pylon.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/pylon) [![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/pylon.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/pylon) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/pylon.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/pylon) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/pylon.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/pylon) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-pylon/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-pylon/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/pylon/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/pylon/latest/index.html)
 
 [Pylon](https://github.com/pylonide/pylon) is a web based integrated development environment built with Node.js as a backend and with a supercharged JavaScript/HTML5 frontend, licensed under GPL version 3. This project originates from Cloud9 v2 project.
-
 
 ## Supported Architectures
 
@@ -20,11 +13,10 @@ Simply pulling `linuxserver/pylon` should retrieve the correct image for your ar
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :----: | --- |
+| :---: | :--- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
-
 
 ## Usage
 
@@ -32,7 +24,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```
+```text
 docker create \
   --name=pylon \
   -e PUID=1000 \
@@ -46,7 +38,6 @@ docker create \
   --restart unless-stopped \
   linuxserver/pylon
 ```
-
 
 ### docker-compose
 
@@ -76,19 +67,18 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports (`-p`)
+### Ports \(`-p`\)
 
 | Parameter | Function |
-| :----: | --- |
+| :---: | :--- |
 | `3131` | The port for the Pylon web interface |
 
-
-### Environment Variables (`-e`)
+### Environment Variables \(`-e`\)
 
 | Env | Function |
-| :----: | --- |
+| :---: | :--- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
@@ -96,32 +86,28 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PYUSER=myuser` | Specify a basic auth user. |
 | `PYPASS=mypass` | Specify a basic auth password. |
 
-### Volume Mappings (`-v`)
+### Volume Mappings \(`-v`\)
 
 | Volume | Function |
-| :----: | --- |
+| :---: | :--- |
 | `/code` | Optionally if you want the bind mount your own code and have changes survive container upgrades. |
-
-
 
 ## User / Group Identifiers
 
-When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```
+```text
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
 
-Access the webui at http://your-ip:3131, more information [here](https://github.com/pylonide/pylon).
-
-
+Access the webui at [http://your-ip:3131](http://your-ip:3131), more information [here](https://github.com/pylonide/pylon).
 
 ## Support Info
 
@@ -137,3 +123,4 @@ Access the webui at http://your-ip:3131, more information [here](https://github.
 ## Versions
 
 * **19.09.19:** - Initial Release.
+

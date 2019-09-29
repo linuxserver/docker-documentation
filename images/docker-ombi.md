@@ -1,18 +1,8 @@
-# [linuxserver/ombi](https://github.com/linuxserver/docker-ombi)
+# linuxserver/ombi
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-ombi.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-ombi/releases)
-[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/ombi.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/ombi "Get your own version badge on microbadger.com")
-[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/ombi.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/ombi "Get your own version badge on microbadger.com")
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/ombi.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/ombi)
-[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/ombi.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/ombi)
-[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-ombi/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-ombi/job/master/)
-[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/ombi/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/ombi/latest/index.html)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-ombi.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-ombi/releases) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/ombi.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/ombi) [![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/ombi.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/ombi) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/ombi.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/ombi) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/ombi.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/ombi) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-ombi/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-ombi/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/ombi/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/ombi/latest/index.html)
 
-[Ombi](https://ombi.io) allows you to host your own Plex Request and user management system.
-If you are sharing your Plex server with other users, allow them to request new content using an easy to manage interface!
-Manage all your requests for Movies and TV with ease, leave notes for the user and get notification when a user requests something.
-Allow your users to post issues against their requests so you know there is a problem with the audio etc.
-Even automatically send them weekly newsletters of new content that has been added to your Plex server!
+[Ombi](https://ombi.io) allows you to host your own Plex Request and user management system. If you are sharing your Plex server with other users, allow them to request new content using an easy to manage interface! Manage all your requests for Movies and TV with ease, leave notes for the user and get notification when a user requests something. Allow your users to post issues against their requests so you know there is a problem with the audio etc. Even automatically send them weekly newsletters of new content that has been added to your Plex server!
 
 ## Supported Architectures
 
@@ -23,7 +13,7 @@ Simply pulling `linuxserver/ombi` should retrieve the correct image for your arc
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :----: | --- |
+| :---: | :--- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
@@ -33,7 +23,7 @@ The architectures supported by this image are:
 This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
 
 | Tag | Description |
-| :----: | --- |
+| :---: | :--- |
 | latest | Stable Ombi releases |
 | development | Releases from the `develop` branch of Ombi |
 
@@ -43,7 +33,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```
+```text
 docker create \
   --name=ombi \
   -e PUID=1000 \
@@ -55,7 +45,6 @@ docker create \
   --restart unless-stopped \
   linuxserver/ombi
 ```
-
 
 ### docker-compose
 
@@ -82,50 +71,45 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports (`-p`)
+### Ports \(`-p`\)
 
 | Parameter | Function |
-| :----: | --- |
+| :---: | :--- |
 | `3579` | web gui |
 
-
-### Environment Variables (`-e`)
+### Environment Variables \(`-e`\)
 
 | Env | Function |
-| :----: | --- |
+| :---: | :--- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
 | `BASE_URL=/ombi` | Subfolder can optionally be defined as an env variable for reverse proxies. Keep in mind that once this value is defined, the gui setting for base url no longer works. To use the gui setting, remove this env variable. |
 
-### Volume Mappings (`-v`)
+### Volume Mappings \(`-v`\)
 
 | Volume | Function |
-| :----: | --- |
+| :---: | :--- |
 | `/config` | Contains all relevant configuration files. |
-
-
 
 ## User / Group Identifiers
 
-When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```
+```text
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
 
-Access the webui at `<your-ip>:3579`. Follow the setup wizard on initial install.  Then configure the required services.
-
-
+Access the webui at `<your-ip>:3579`. Follow the setup wizard on initial install. Then configure the required services.
 
 ## Support Info
 
@@ -150,3 +134,4 @@ Access the webui at `<your-ip>:3579`. Follow the setup wizard on initial install
 * **26.01.18:** - Fix continuation lines.
 * **16.04.17:** - Switch to using inhouse mono baseimage.
 * **17.02.17:** - Initial Release.
+

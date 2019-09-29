@@ -24,8 +24,8 @@ Or, if you use `docker-compose`, add them to the `environment:` section:
 
 ```yaml
 environment:
-  PUID: 1000
-  PGID: 1000
+  - PUID=1000
+  - PGID=1000
 ```
 
 It is most likely that you will use the `id` of yourself, which can be obtained by running the command below. The two values you will be interested in are the `uid` and `gid`.

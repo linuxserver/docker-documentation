@@ -1,14 +1,8 @@
-# [linuxserver/thelounge](https://github.com/linuxserver/docker-thelounge)
+# linuxserver/thelounge
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-thelounge.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-thelounge/releases)
-[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/thelounge.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/thelounge "Get your own version badge on microbadger.com")
-[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/thelounge.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/thelounge "Get your own version badge on microbadger.com")
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/thelounge.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/thelounge)
-[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/thelounge.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/thelounge)
-[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-thelounge/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-thelounge/job/master/)
-[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/thelounge/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/thelounge/latest/index.html)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-thelounge.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-thelounge/releases) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/thelounge.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/thelounge) [![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/thelounge.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/thelounge) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/thelounge.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/thelounge) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/thelounge.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/thelounge) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-thelounge/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-thelounge/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/thelounge/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/thelounge/latest/index.html)
 
-[Thelounge](https://thelounge.github.io/) (a fork of shoutIRC) is a web IRC client that you host on your own server.
+[Thelounge](https://thelounge.github.io/) \(a fork of shoutIRC\) is a web IRC client that you host on your own server.
 
 ## Supported Architectures
 
@@ -19,11 +13,10 @@ Simply pulling `linuxserver/thelounge` should retrieve the correct image for you
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :----: | --- |
+| :---: | :--- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
-
 
 ## Usage
 
@@ -31,7 +24,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```
+```text
 docker create \
   --name=thelounge \
   -e PUID=1000 \
@@ -42,7 +35,6 @@ docker create \
   --restart unless-stopped \
   linuxserver/thelounge
 ```
-
 
 ### docker-compose
 
@@ -68,54 +60,50 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports (`-p`)
+### Ports \(`-p`\)
 
 | Parameter | Function |
-| :----: | --- |
+| :---: | :--- |
 | `9000` | Application WebUI |
 
-
-### Environment Variables (`-e`)
+### Environment Variables \(`-e`\)
 
 | Env | Function |
-| :----: | --- |
+| :---: | :--- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 
-### Volume Mappings (`-v`)
+### Volume Mappings \(`-v`\)
 
 | Volume | Function |
-| :----: | --- |
+| :---: | :--- |
 | `/config` | Configuration files. |
-
-
 
 ## User / Group Identifiers
 
-When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```
+```text
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
 
- * To log in to the application, browse to https://<hostip>:9000.
-* To setup user account(s) edit `/config/config.json`
-* Change the value `public: true,` to `public: false,`
-* restart the container and enter the following from the command line of the host:
-* `docker exec -it thelounge thelounge add <user>`
-* Enter a password when prompted, refresh your browser.
-* You should now be prompted for a password on the webinterface. 
-
+* To log in to the application, browse to https://:9000.
+  * To setup user account\(s\) edit `/config/config.json`
+  * Change the value `public: true,` to `public: false,`
+  * restart the container and enter the following from the command line of the host:
+  * `docker exec -it thelounge thelounge add <user>`
+  * Enter a password when prompted, refresh your browser.
+  * You should now be prompted for a password on the webinterface. 
 
 ## Support Info
 
@@ -144,3 +132,4 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 * **14.10.16:** - Add version layer information.
 * **11.09.16:** - Add layer badges to README.
 * **31.08.16:** - Initial Release.
+

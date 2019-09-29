@@ -41,7 +41,7 @@ If the maintainer of the image, or upstream application no longer wishes to prov
 
 ## API
 
-Fleet exposes a single API endpoint which can be used to obtain image list and pull count information for all relevant images maintained by the repository 
+Fleet exposes a single API endpoint which can be used to obtain image list and pull count information for all relevant images maintained by the repository
 
 {% api-method method="get" host="https://fleet.base.url" path="/api/v1/images" %}
 {% api-method-summary %}
@@ -121,7 +121,7 @@ Grab the latest Fleet release from [GitHub](https://github.com/linuxserver/fleet
 
 ### SQL
 
-Fleet stores its data in a MariaDB database which you need to provide. In order for the application to manage its tables and procedures, the user you provide it needs to have the relevant `GRANT` permissions to the fleet database. The following script should be sufficient to get the initial database set up. 
+Fleet stores its data in a MariaDB database which you need to provide. In order for the application to manage its tables and procedures, the user you provide it needs to have the relevant `GRANT` permissions to the fleet database. The following script should be sufficient to get the initial database set up.
 
 ```sql
 CREATE SCHEMA `fleet`;
@@ -165,31 +165,25 @@ All configuration can be loaded either via the config file, via JVM arguments, o
 If you place a property in the system environment, ensure that the property uses underscores rather than periods. This is due to a limitation in BASH environments where exported variables must not contain this character. E.g. `fleet.app.port=8080` becomes `export fleet_app_port=8080`
 {% endhint %}
 
+| Property Name | Purpose |
+| :--- | :--- |
+
+
+| `fleet.app.port` | The port which the application will be running under. |
+| :--- | :--- |
+
+
+| `fleet.refresh.interval` | How often the application should synchronise with Docker Hub to update its list of known images. **This is in minutes**. |
+| :--- | :--- |
+
+
 <table>
   <thead>
     <tr>
-      <th style="text-align:left">Property Name</th>
-      <th style="text-align:left">Purpose</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"><code>fleet.app.port</code>
-      </td>
-      <td style="text-align:left">The port which the application will be running under.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>fleet.refresh.interval</code>
-      </td>
-      <td style="text-align:left">How often the application should synchronise with Docker Hub to update
-        its list of known images. <b>This is in minutes</b>.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>fleet.admin.authentication.type</code>
-      </td>
-      <td style="text-align:left">
+      <th style="text-align:left"><code>fleet.admin.authentication.type</code>
+      </th>
+      <th style="text-align:left">
         <p>Which method to use when authentication users. There are two options:</p>
-        <p></p>
         <ul>
           <li><code>PROPERTIES</code>
           </li>
@@ -199,65 +193,45 @@ If you place a property in the system environment, ensure that the property uses
           set (see below). If you specify <code>DATABASE</code>, the application will
           use its own Users table to provide the persistence of an authenticated
           user. The password is hashed using a strong key derivation function (PBKDF2).</p>
-      </td>
+      </th>
     </tr>
-    <tr>
-      <td style="text-align:left"><code>fleet.admin.secret</code>
-      </td>
-      <td style="text-align:left">A string used as part of the password key derivation process. This secret
-        is prepended to the raw password before its key is derived, providing further
-        pseudo-randomness to hashed passwords. <b>Once set, this must not be changed!</b> It
-        is vital to remain the same, as it will be used during the password verification
-        step. If Fleet is restarted with this removed or set differently, the password
-        verification process will fail because previously hashed passwords will
-        have been derived with the old secret.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>fleet.admin.username</code>
-      </td>
-      <td style="text-align:left">The username of the administrator who will be managing the application.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>fleet.admin.password</code>
-      </td>
-      <td style="text-align:left">A plain-text password for the administrator user.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>fleet.database.driver</code>
-      </td>
-      <td style="text-align:left">The driver to use for connections to Fleet&apos;s database. This should
-        be <code>org.mariadb.jdbc.Driver</code>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>fleet.database.url</code>
-      </td>
-      <td style="text-align:left">The full JDBC connection string to the database.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>fleet.database.username</code>
-      </td>
-      <td style="text-align:left">The username of the SQL user which will be managing the data in the Fleet
-        database. <b>This should have full GRANT access</b> to the fleet database
-        as it also manages any database migrations.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>fleet.database.password</code>
-      </td>
-      <td style="text-align:left">The password for the SQL user</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>fleet.dockerhub.username</code>
-      </td>
-      <td style="text-align:left">The username for the Docker Hub repository owner.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>fleet.dockerhub.password</code>
-      </td>
-      <td style="text-align:left">The password for the Docker Hub repository owner.</td>
-    </tr>
-  </tbody>
-</table>#### Runtime Configuration
+  </thead>
+  <tbody></tbody>
+</table>| `fleet.admin.secret` | A string used as part of the password key derivation process. This secret is prepended to the raw password before its key is derived, providing further pseudo-randomness to hashed passwords. **Once set, this must not be changed!** It is vital to remain the same, as it will be used during the password verification step. If Fleet is restarted with this removed or set differently, the password verification process will fail because previously hashed passwords will have been derived with the old secret. |
+| :--- | :--- |
+
+
+| `fleet.admin.username` | The username of the administrator who will be managing the application. |
+| :--- | :--- |
+
+
+| `fleet.admin.password` | A plain-text password for the administrator user. |
+| :--- | :--- |
+
+
+| `fleet.database.driver` | The driver to use for connections to Fleet's database. This should be `org.mariadb.jdbc.Driver` |
+| :--- | :--- |
+
+
+| `fleet.database.url` | The full JDBC connection string to the database. |
+| :--- | :--- |
+
+
+| `fleet.database.username` | The username of the SQL user which will be managing the data in the Fleet database. **This should have full GRANT access** to the fleet database as it also manages any database migrations. |
+| :--- | :--- |
+
+
+| `fleet.database.password` | The password for the SQL user |
+| :--- | :--- |
+
+
+| `fleet.dockerhub.username` | The username for the Docker Hub repository owner. |
+| :--- | :--- |
+
+
+| `fleet.dockerhub.password` | The password for the Docker Hub repository owner. |
+| :--- | :--- |
+
 
 As well as the base configuration file, Fleet also supports some runtime arguments by means of the `-D` flag. These can be used to direct Fleet to behave in a specific way at runtime.
 

@@ -1,14 +1,8 @@
-# [linuxserver/jackett](https://github.com/linuxserver/docker-jackett)
+# linuxserver/jackett
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-jackett.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-jackett/releases)
-[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/jackett.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/jackett "Get your own version badge on microbadger.com")
-[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/jackett.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/jackett "Get your own version badge on microbadger.com")
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/jackett.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/jackett)
-[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/jackett.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/jackett)
-[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-jackett/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-jackett/job/master/)
-[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/jackett/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/jackett/latest/index.html)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-jackett.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-jackett/releases) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/jackett.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/jackett) [![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/jackett.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/jackett) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/jackett.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/jackett) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/jackett.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/jackett) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-jackett/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-jackett/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/jackett/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/jackett/latest/index.html)
 
-[Jackett](https://github.com/Jackett/Jackett) works as a proxy server: it translates queries from apps (Sonarr, SickRage, CouchPotato, Mylar, etc) into tracker-site-specific http queries, parses the html response, then sends results back to the requesting software. This allows for getting recent uploads (like RSS) and performing searches. Jackett is a single repository of maintained indexer scraping & translation logic - removing the burden from other apps.
+[Jackett](https://github.com/Jackett/Jackett) works as a proxy server: it translates queries from apps \(Sonarr, SickRage, CouchPotato, Mylar, etc\) into tracker-site-specific http queries, parses the html response, then sends results back to the requesting software. This allows for getting recent uploads \(like RSS\) and performing searches. Jackett is a single repository of maintained indexer scraping & translation logic - removing the burden from other apps.
 
 ## Supported Architectures
 
@@ -19,7 +13,7 @@ Simply pulling `linuxserver/jackett` should retrieve the correct image for your 
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :----: | --- |
+| :---: | :--- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
@@ -29,7 +23,7 @@ The architectures supported by this image are:
 This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
 
 | Tag | Description |
-| :----: | --- |
+| :---: | :--- |
 | latest | Stable Jackett Releases |
 | development | Latest Jackett Releases |
 
@@ -39,7 +33,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```
+```text
 docker create \
   --name=jackett \
   -e PUID=1000 \
@@ -52,7 +46,6 @@ docker create \
   --restart unless-stopped \
   linuxserver/jackett
 ```
-
 
 ### docker-compose
 
@@ -80,54 +73,48 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports (`-p`)
+### Ports \(`-p`\)
 
 | Parameter | Function |
-| :----: | --- |
+| :---: | :--- |
 | `9117` | WebUI |
 
-
-### Environment Variables (`-e`)
+### Environment Variables \(`-e`\)
 
 | Env | Function |
-| :----: | --- |
+| :---: | :--- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 | `RUN_OPTS=<run options here>` | Optionally specify additional arguments to be passed. EG. `--ProxyConnection=10.0.0.100:1234`. |
 
-### Volume Mappings (`-v`)
+### Volume Mappings \(`-v`\)
 
 | Volume | Function |
-| :----: | --- |
+| :---: | :--- |
 | `/config` | Where Jackett should store its config file. |
 | `/downloads` | Path to torrent blackhole. |
 
-
-
 ## User / Group Identifiers
 
-When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```
+```text
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
 
-The web interface is at `<your-ip>:9117` , configure various trackers and connections to other apps there.
-More info at [Jackett](https://github.com/Jackett/Jackett).
+The web interface is at `<your-ip>:9117` , configure various trackers and connections to other apps there. More info at [Jackett](https://github.com/Jackett/Jackett).
 
 Disable autoupdates in the webui to prevent jackett crashing, the image is refreshed when new versions are released.
-
-
 
 ## Support Info
 
@@ -156,3 +143,4 @@ Disable autoupdates in the webui to prevent jackett crashing, the image is refre
 * **28.08.16:** - Add badges to README.
 * **06.08.16:** - Rebase to alpine linux for smaller image.
 * **25.01.16:** - Initial Release.
+
