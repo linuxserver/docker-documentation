@@ -1,6 +1,12 @@
-# linuxserver/htpcmanager
+# [linuxserver/htpcmanager](https://github.com/linuxserver/docker-htpcmanager)
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-htpcmanager.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-htpcmanager/releases) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/htpcmanager.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/htpcmanager) [![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/htpcmanager.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/htpcmanager) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/htpcmanager.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/htpcmanager) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/htpcmanager.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/htpcmanager) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-htpcmanager/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-htpcmanager/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/htpcmanager/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/htpcmanager/latest/index.html)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-htpcmanager.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-htpcmanager/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/htpcmanager.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/htpcmanager "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/htpcmanager.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/htpcmanager "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/htpcmanager.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/htpcmanager)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/htpcmanager.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/htpcmanager)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-htpcmanager/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-htpcmanager/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/htpcmanager/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/htpcmanager/latest/index.html)
 
 [Htpcmanager](https://github.com/Hellowlol/HTPC-Manager) is a front end for many htpc related applications. Hellowlol version.
 
@@ -13,10 +19,11 @@ Simply pulling `linuxserver/htpcmanager` should retrieve the correct image for y
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :---: | :--- |
+| :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
+
 
 ## Usage
 
@@ -24,7 +31,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```text
+```
 docker create \
   --name=htpcmanager \
   -e PUID=1000 \
@@ -35,6 +42,7 @@ docker create \
   --restart unless-stopped \
   linuxserver/htpcmanager
 ```
+
 
 ### docker-compose
 
@@ -60,37 +68,40 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports \(`-p`\)
+### Ports (`-p`)
 
 | Parameter | Function |
-| :---: | :--- |
+| :----: | --- |
 | `8085` | Application WebUI |
 
-### Environment Variables \(`-e`\)
+
+### Environment Variables (`-e`)
 
 | Env | Function |
-| :---: | :--- |
+| :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 
-### Volume Mappings \(`-v`\)
+### Volume Mappings (`-v`)
 
 | Volume | Function |
-| :---: | :--- |
+| :----: | --- |
 | `/config` | Configuration files. |
+
+
 
 ## User / Group Identifiers
 
-When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```text
+```
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
@@ -98,6 +109,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 ## Application Setup
 
 The webui is found at port 8085. Smartmontools has not been included, you can safely ignore the warning error in the log.
+
 
 ## Support Info
 
@@ -128,4 +140,3 @@ The webui is found at port 8085. Smartmontools has not been included, you can sa
 * **08.08.16:** - Rebase to alpine linux.
 * **14.01.15:** - Remove hardcoded loglevel from the run command, set in webui
 * **19.09.15:** - Initial Release.
-
