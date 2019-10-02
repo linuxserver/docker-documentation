@@ -1,10 +1,17 @@
-# linuxserver/codimd
+# [linuxserver/codimd](https://github.com/linuxserver/docker-codimd)
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-codimd.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-codimd/releases) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/codimd.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/codimd) [![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/codimd.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/codimd) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/codimd.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/codimd) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/codimd.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/codimd) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-codimd/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-codimd/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/codimd/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/codimd/latest/index.html)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-codimd.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-codimd/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/codimd.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/codimd "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/codimd.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/codimd "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/codimd.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/codimd)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/codimd.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/codimd)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-codimd/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-codimd/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/codimd/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/codimd/latest/index.html)
 
 [Codimd](https://demo.codimd.org) gives you access to all your files wherever you are.
 
-CodiMD is a real-time, multi-platform collaborative markdown note editor. This means that you can write notes with other people on your desktop, tablet or even on the phone. You can sign-in via multiple auth providers like Facebook, Twitter, GitHub and many more on the homepage.
+CodiMD is a real-time, multi-platform collaborative markdown note editor.  This means that you can write notes with other people on your desktop, tablet or even on the phone.  You can sign-in via multiple auth providers like Facebook, Twitter, GitHub and many more on the homepage.
+
 
 ## Supported Architectures
 
@@ -15,10 +22,11 @@ Simply pulling `linuxserver/codimd` should retrieve the correct image for your a
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :---: | :--- |
+| :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
+
 
 ## Usage
 
@@ -26,7 +34,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```text
+```
 docker create \
   --name=codimd \
   -e PUID=1000 \
@@ -42,6 +50,7 @@ docker create \
   --restart unless-stopped \
   linuxserver/codimd
 ```
+
 
 ### docker-compose
 
@@ -83,22 +92,24 @@ services:
       - TZ=Europe/London
     ports:
       - "3000:3000"
+
 ```
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports \(`-p`\)
+### Ports (`-p`)
 
 | Parameter | Function |
-| :---: | :--- |
-| `3000` | If you wish to access this container from [http://{IP}:${PORT}\`](http://{IP}:${PORT}`) this _must_ be left unchanged. |
+| :----: | --- |
+| `3000` | If you wish to access this container from http://{IP}:${PORT}` this *must* be left unchanged. |
 
-### Environment Variables \(`-e`\)
+
+### Environment Variables (`-e`)
 
 | Env | Function |
-| :---: | :--- |
+| :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `DB_HOST=<hostname or ip>` | Host address of mysql database |
@@ -108,34 +119,38 @@ Docker images are configured using parameters passed at runtime \(such as those 
 | `DB_NAME=codimd` | Database name |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 
-### Volume Mappings \(`-v`\)
+### Volume Mappings (`-v`)
 
 | Volume | Function |
-| :---: | :--- |
+| :----: | --- |
 | `/config` | CodiMD config and configurable files |
+
+
 
 ## User / Group Identifiers
 
-When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```text
+```
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
 
-CodiMD web interface can be accessed `http://${IP}:3000/`, if you want to use a custom domain or anything besides port 3000 you will need to leverage their env settings for callbacks: \(specifically for CMD\_DOMAIN and CMD\_URL\_ADDPORT\)
+CodiMD web interface can be accessed `http://${IP}:3000/`, if you want to use a custom domain or anything besides port 3000 you will need to leverage their env settings for callbacks: (specifically for CMD_DOMAIN and CMD_URL_ADDPORT)
 
 [Full list of CodiMD options](https://github.com/codimd/server/blob/master/docs/configuration-env-vars.md)
 
 For convience we provide a working example using Mysql as a backend in this document, if you do not wish to use our custom environment values or a Mysql database backend feel free to leverage any of the settings laid out in the link above.
 
 To run behind a reverse proxy we have a [preconfigured config](https://github.com/linuxserver/reverse-proxy-confs/blob/master/codimd.subdomain.conf.sample) using docker networking included in our [LetsEncrypt](https://github.com/linuxserver/docker-letsencrypt) image and you can read how to use this in the [Reverse Proxy Confs repository](https://github.com/linuxserver/reverse-proxy-confs/#how-to-use-these-reverse-proxy-configs)
+
+
 
 ## Support Info
 
@@ -151,4 +166,3 @@ To run behind a reverse proxy we have a [preconfigured config](https://github.co
 ## Versions
 
 * **23.05.19:** - Initial release
-
