@@ -1,8 +1,15 @@
-# linuxserver/mstream
+# [linuxserver/mstream](https://github.com/linuxserver/docker-mstream)
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-mstream.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-mstream/releases) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/mstream.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/mstream) [![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/mstream.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/mstream) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/mstream.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/mstream) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/mstream.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/mstream) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-mstream/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-mstream/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/mstream/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/mstream/latest/index.html)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-mstream.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-mstream/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/mstream.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/mstream "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/mstream.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/mstream "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/mstream.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/mstream)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/mstream.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/mstream)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-mstream/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-mstream/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/mstream/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/mstream/latest/index.html)
 
-[mstream](https://mstream.io/) is a personal music streaming server. You can use mStream to stream your music from your home computer to any device, anywhere. There are mobile apps available for both Android and iPhone.
+[mstream](https://mstream.io/) is a personal music streaming server. You can use mStream to stream your music from your home computer to any device, anywhere.  There are mobile apps available for both Android and iPhone.
+
 
 ## Supported Architectures
 
@@ -13,10 +20,11 @@ Simply pulling `linuxserver/mstream` should retrieve the correct image for your 
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :---: | :--- |
+| :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
+
 
 ## Usage
 
@@ -24,7 +32,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```text
+```
 docker create \
   --name=mstream \
   -e PUID=1000 \
@@ -39,6 +47,7 @@ docker create \
   --restart unless-stopped \
   linuxserver/mstream
 ```
+
 
 ### docker-compose
 
@@ -68,18 +77,19 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports \(`-p`\)
+### Ports (`-p`)
 
 | Parameter | Function |
-| :---: | :--- |
+| :----: | --- |
 | `3000` | The port for the mStream webinterface |
 
-### Environment Variables \(`-e`\)
+
+### Environment Variables (`-e`)
 
 | Env | Function |
-| :---: | :--- |
+| :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `USER=admin` | Set username to login |
@@ -87,29 +97,33 @@ Docker images are configured using parameters passed at runtime \(such as those 
 | `USE_JSON=true/false` | Run mStream using the config specified at `/config/config.json`, note this will mean user/password is defined in `config.json` |
 | `TZ=Europe/London` | Specify a timezone to use e.g. Europe/London |
 
-### Volume Mappings \(`-v`\)
+### Volume Mappings (`-v`)
 
 | Volume | Function |
-| :---: | :--- |
+| :----: | --- |
 | `/config` | mStream config |
 | `/music` | Music location |
 
+
+
 ## User / Group Identifiers
 
-When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```text
+```
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
 
-Access the webui at `http://<your-ip>:3000`, For most users specifying a `$USER` and `$PASSWORD` is sufficient, the `USE_JSON` option allows for more granular control of mStream, but with added complexity, requiring manual editing of `config.json` to configure your install, for more information check out [Mstream](https://github.com/IrosTheBeggar/mStream/blob/master/docs/json_config.md#json-config). Note using this option will make the default username:password `admin` and `password` respectively and any environmental variables will be ignored.
+Access the webui at `http://<your-ip>:3000`, For most users specifying a `$USER` and `$PASSWORD` is sufficient, the `USE_JSON` option allows for more granular control of mStream, but with added complexity, requiring manual editing of `config.json` to configure your install, for more information check out [Mstream](https://github.com/IrosTheBeggar/mStream/blob/master/docs/json_config.md#json-config).  Note using this option will make the default username:password `admin` and `password` respectively and any environmental variables will be ignored.
+
+
 
 ## Support Info
 
@@ -126,4 +140,3 @@ Access the webui at `http://<your-ip>:3000`, For most users specifying a `$USER`
 
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **18.05.19:** - Inital Release
-
