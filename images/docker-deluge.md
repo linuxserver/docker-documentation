@@ -1,6 +1,12 @@
-# linuxserver/deluge
+# [linuxserver/deluge](https://github.com/linuxserver/docker-deluge)
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-deluge.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-deluge/releases) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/deluge.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/deluge) [![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/deluge.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/deluge) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/deluge.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/deluge) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/deluge.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/deluge) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-deluge/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-deluge/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/deluge/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/deluge/latest/index.html)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-deluge.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-deluge/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/deluge.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/deluge "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/deluge.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/deluge "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/deluge.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/deluge)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/deluge.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/deluge)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-deluge/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-deluge/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/deluge/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/deluge/latest/index.html)
 
 [Deluge](http://deluge-torrent.org/) is a lightweight, Free Software, cross-platform BitTorrent client.
 
@@ -8,6 +14,7 @@
 * WebUI
 * Plugin System
 * Much more...
+
 
 ## Supported Architectures
 
@@ -18,10 +25,11 @@ Simply pulling `linuxserver/deluge` should retrieve the correct image for your a
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :---: | :--- |
+| :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
+
 
 ## Usage
 
@@ -29,7 +37,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```text
+```
 docker create \
   --name=deluge \
   --net=host \
@@ -43,6 +51,7 @@ docker create \
   --restart unless-stopped \
   linuxserver/deluge
 ```
+
 
 ### docker-compose
 
@@ -70,57 +79,59 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports \(`-p`\)
-
-| Parameter | Function |
-| :---: | :--- |
-
-
-#### Networking \(`--net`\)
+### Ports (`-p`)
 
 | Parameter | Function |
-| :---: | :--- |
+| :----: | --- |
+
+#### Networking (`--net`)
+| Parameter | Function |
+| :-----:   | --- |
 | `--net=host` | Shares host networking with container, **required**. |
 
-### Environment Variables \(`-e`\)
+### Environment Variables (`-e`)
 
 | Env | Function |
-| :---: | :--- |
+| :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=<timezone>` | Specify a timezone to use EG Europe/London |
 | `UMASK_SET=022` | for umask setting of deluge, default if left unset is 022 |
 | `DELUGE_LOGLEVEL=error` | set the loglevel output when running Deluge, default is info for deluged and warning for delgued-web |
 
-### Volume Mappings \(`-v`\)
+### Volume Mappings (`-v`)
 
 | Volume | Function |
-| :---: | :--- |
+| :----: | --- |
 | `/config` | deluge configs |
 | `/downloads` | torrent download directory |
 
+
+
 ## User / Group Identifiers
 
-When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```text
+```
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
 
-The admin interface is available at http://:8112 with a default user/password of admin/deluge.
+The admin interface is available at http://<ip>:8112 with a default user/password of admin/deluge.
 
-To change the password \(recommended\) log in to the web interface and go to Preferences-&gt;Interface-&gt;Password.
+To change the password (recommended) log in to the web interface and go to Preferences->Interface->Password.
 
-Change the downloads location in the webui in Preferences-&gt;Downloads and use /downloads for completed downloads.
+Change the downloads location in the webui in Preferences->Downloads and use /downloads for completed downloads.
+
+
 
 ## Support Info
 
@@ -159,4 +170,3 @@ Change the downloads location in the webui in Preferences-&gt;Downloads and use 
 * **15.08.16:** - Rebase to alpine linux.
 * **09.11.15:** - Add unrar and unzip
 * **15.10.15:** - Initial Release.
-
