@@ -1,6 +1,12 @@
-# linuxserver/raneto
+# [linuxserver/raneto](https://github.com/linuxserver/docker-raneto)
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-raneto.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-raneto/releases) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/raneto.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/raneto) [![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/raneto.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/raneto) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/raneto.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/raneto) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/raneto.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/raneto) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-raneto/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-raneto/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/raneto/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/raneto/latest/index.html)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-raneto.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-raneto/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/raneto.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/raneto "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/raneto.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/raneto "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/raneto.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/raneto)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/raneto.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/raneto)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-raneto/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-raneto/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/raneto/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/raneto/latest/index.html)
 
 [Raneto](http://raneto.com/) - is an open source Knowledgebase platform that uses static Markdown files to power your Knowledgebase.
 
@@ -13,10 +19,11 @@ Simply pulling `linuxserver/raneto` should retrieve the correct image for your a
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :---: | :--- |
+| :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
+
 
 ## Usage
 
@@ -24,7 +31,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```text
+```
 docker create \
   --name=raneto \
   -e PUID=1000 \
@@ -35,6 +42,7 @@ docker create \
   --restart unless-stopped \
   linuxserver/raneto
 ```
+
 
 ### docker-compose
 
@@ -60,52 +68,58 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports \(`-p`\)
+### Ports (`-p`)
 
 | Parameter | Function |
-| :---: | :--- |
+| :----: | --- |
 | `3000` | The port for the Raneto web interface |
 
-### Environment Variables \(`-e`\)
+
+### Environment Variables (`-e`)
 
 | Env | Function |
-| :---: | :--- |
+| :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
 
-### Volume Mappings \(`-v`\)
+### Volume Mappings (`-v`)
 
 | Volume | Function |
-| :---: | :--- |
+| :----: | --- |
 | `/config` | Raneto config and Markdown files |
+
+
 
 ## User / Group Identifiers
 
-When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```text
+```
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
 
-Access the webui at http://:3000
+Access the webui at http://<your-ip>:3000
 
-The default username and password is _admin/password_
+The default username and password is *admin/password*
 
-This application can only be configured through file storage the web interface is only for editing Markdown files. You need to understand the following paths and the role they play for the application:
+This application can only be configured through file storage the web interface is only for editing Markdown files.
+You need to understand the following paths and the role they play for the application: 
 
 * /config/config.default.js - Main configuation file to setup your user/site name/etc
 * /config/content - All of your markdown files go here [more info](http://docs.raneto.com/usage/creating-pages)
-* /config/images - This folder will serve content on http://:3000/images/.png you can put anything in here but it is specifically for image files so you can embedd them in your markdown files without using external hosting.
+* /config/images - This folder will serve content on http://<your-ip>:3000/images/<image name>.png you can put anything in here but it is specifically for image files so you can embedd them in your markdown files without using external hosting.
+
+
 
 ## Support Info
 
@@ -122,4 +136,3 @@ This application can only be configured through file storage the web interface i
 
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **01.06.19:** - Initial Release.
-
