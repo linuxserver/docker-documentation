@@ -1,6 +1,12 @@
-# linuxserver/pixapop
+# [lsiocommunity/pixapop](https://github.com/linuxserver/docker-pixapop)
 
-[![GitHub Release](https://img.shields.io/github/release/lsiocommunity/docker-pixapop.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-pixapop/releases) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/lsiocommunity/pixapop.svg?style=flat-square&color=E68523)](https://microbadger.com/images/lsiocommunity/pixapop) [![MicroBadger Size](https://img.shields.io/microbadger/image-size/lsiocommunity/pixapop.svg?style=flat-square&color=E68523)](https://microbadger.com/images/lsiocommunity/pixapop) [![Docker Pulls](https://img.shields.io/docker/pulls/lsiocommunity/pixapop.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/lsiocommunity/pixapop) [![Docker Stars](https://img.shields.io/docker/stars/lsiocommunity/pixapop.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/lsiocommunity/pixapop) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-pixapop/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-pixapop/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/lsiocommunity/pixapop/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/lsiocommunity/pixapop/latest/index.html)
+[![GitHub Release](https://img.shields.io/github/release/lsiocommunity/docker-pixapop.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-pixapop/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/lsiocommunity/pixapop.svg?style=flat-square&color=E68523)](https://microbadger.com/images/lsiocommunity/pixapop "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/lsiocommunity/pixapop.svg?style=flat-square&color=E68523)](https://microbadger.com/images/lsiocommunity/pixapop "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/lsiocommunity/pixapop.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/lsiocommunity/pixapop)
+[![Docker Stars](https://img.shields.io/docker/stars/lsiocommunity/pixapop.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/lsiocommunity/pixapop)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-pixapop/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-pixapop/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/lsiocommunity/pixapop/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/lsiocommunity/pixapop/latest/index.html)
 
 [Pixapop](https://github.com/bierdok/pixapop) is an open-source single page application to view your photos in the easiest way possible.
 
@@ -13,10 +19,11 @@ Simply pulling `lsiocommunity/pixapop` should retrieve the correct image for you
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :---: | :--- |
+| :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
+
 
 ## Usage
 
@@ -24,7 +31,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```text
+```
 docker create \
   --name=pixapop \
   -e PUID=1000 \
@@ -38,6 +45,7 @@ docker create \
   --restart unless-stopped \
   lsiocommunity/pixapop
 ```
+
 
 ### docker-compose
 
@@ -66,40 +74,43 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports \(`-p`\)
+### Ports (`-p`)
 
 | Parameter | Function |
-| :---: | :--- |
+| :----: | --- |
 | `80` | WebUI |
 
-### Environment Variables \(`-e`\)
+
+### Environment Variables (`-e`)
 
 | Env | Function |
-| :---: | :--- |
+| :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 | `APP_USERNAME=admin` | Specify a username to enable authentication. |
 | `APP_PASSWORD=admin` | Specify a password to enable authentication. |
 
-### Volume Mappings \(`-v`\)
+### Volume Mappings (`-v`)
 
 | Volume | Function |
-| :---: | :--- |
+| :----: | --- |
 | `/config` | Stores config and logs for nginx base. |
 | `/photos` | Your local folder of photos. |
 
+
+
 ## User / Group Identifiers
 
-When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```text
+```
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
@@ -107,6 +118,8 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 ## Application Setup
 
 Any photos included in /photos will be presented as galleries split by month. Config settings are persistent and stored into /config.
+
+
 
 ## Support Info
 
@@ -124,4 +137,3 @@ Any photos included in /photos will be presented as galleries split by month. Co
 * **18.03.19** - Update build dependencies
 * **18.03.19** - Add build dependencies
 * **17.03.19** - Initial release
-
