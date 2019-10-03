@@ -1,6 +1,12 @@
-# linuxserver/tautulli
+# [linuxserver/tautulli](https://github.com/linuxserver/docker-tautulli)
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-tautulli.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-tautulli/releases) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/tautulli.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/tautulli) [![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/tautulli.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/tautulli) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/tautulli.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/tautulli) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/tautulli.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/tautulli) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-tautulli/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-tautulli/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/tautulli/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/tautulli/latest/index.html)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-tautulli.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-tautulli/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/tautulli.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/tautulli "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/tautulli.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/tautulli "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/tautulli.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/tautulli)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/tautulli.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/tautulli)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-tautulli/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-tautulli/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/tautulli/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/tautulli/latest/index.html)
 
 [Tautulli](http://tautulli.com) is a python based web application for monitoring, analytics and notifications for Plex Media Server.
 
@@ -13,7 +19,7 @@ Simply pulling `linuxserver/tautulli` should retrieve the correct image for your
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :---: | :--- |
+| :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
@@ -23,7 +29,7 @@ The architectures supported by this image are:
 This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
 
 | Tag | Description |
-| :---: | :--- |
+| :----: | --- |
 | latest | Stable Tautulli releases |
 | develop | Built at head of Tautulli nightly branch |
 
@@ -33,7 +39,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```text
+```
 docker create \
   --name=tautulli \
   -e PUID=1000 \
@@ -45,6 +51,7 @@ docker create \
   --restart unless-stopped \
   linuxserver/tautulli
 ```
+
 
 ### docker-compose
 
@@ -71,45 +78,51 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports \(`-p`\)
+### Ports (`-p`)
 
 | Parameter | Function |
-| :---: | :--- |
+| :----: | --- |
 | `8181` | WebUI |
 
-### Environment Variables \(`-e`\)
+
+### Environment Variables (`-e`)
 
 | Env | Function |
-| :---: | :--- |
+| :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 
-### Volume Mappings \(`-v`\)
+### Volume Mappings (`-v`)
 
 | Volume | Function |
-| :---: | :--- |
+| :----: | --- |
 | `/config` | Contains tautulli config and database. |
 | `/logs` | Map this to Plex log directory - recommended RO. |
 
+
+
 ## User / Group Identifiers
 
-When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```text
+```
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
 
-Access the webui at `<your-ip>:8181`, for more information check out [Tautulli](http://tautulli.com). In tautulli gui settings, under `Plex Media Server`, turn on `Show Advanced` and set the `Logs Folder` to `/logs`
+Access the webui at `<your-ip>:8181`, for more information check out [Tautulli](http://tautulli.com).
+In tautulli gui settings, under `Plex Media Server`, turn on `Show Advanced` and set the `Logs Folder` to `/logs`
+
+
 
 ## Support Info
 
@@ -141,4 +154,3 @@ Access the webui at `<your-ip>:8181`, for more information check out [Tautulli](
 * **27.08.16:** - Add badges to README.
 * **08.08.16:** - Rebase to alpine linux.
 * **16.07.15:** - Inital Release.
-
