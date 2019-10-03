@@ -1,8 +1,15 @@
-# linuxserver/quassel-web
+# [linuxserver/quassel-web](https://github.com/linuxserver/docker-quassel-web)
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-quassel-web.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-quassel-web/releases) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/quassel-web.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/quassel-web) [![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/quassel-web.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/quassel-web) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/quassel-web.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/quassel-web) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/quassel-web.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/quassel-web) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-quassel-web/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-quassel-web/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/quassel-web/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/quassel-web/latest/index.html)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-quassel-web.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-quassel-web/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/quassel-web.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/quassel-web "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/quassel-web.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/quassel-web "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/quassel-web.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/quassel-web)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/quassel-web.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/quassel-web)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-quassel-web/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-quassel-web/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/quassel-web/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/quassel-web/latest/index.html)
 
-[Quassel-web](https://github.com/magne4000/quassel-webserver) is a web client for Quassel. Note that a Quassel-Core instance is required, we have a container available [here.](https://hub.docker.com/r/linuxserver/quassel-core/)
+[Quassel-web](https://github.com/magne4000/quassel-webserver) is a web client for Quassel.  Note that a Quassel-Core instance is required, we have a container available [here.](https://hub.docker.com/r/linuxserver/quassel-core/) 
+
 
 ## Supported Architectures
 
@@ -13,10 +20,11 @@ Simply pulling `linuxserver/quassel-web` should retrieve the correct image for y
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :---: | :--- |
+| :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v6-latest |
+
 
 ## Usage
 
@@ -24,7 +32,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```text
+```
 docker create \
   --name=quassel-web \
   -e PUID=1000 \
@@ -37,6 +45,7 @@ docker create \
   --restart unless-stopped \
   linuxserver/quassel-web
 ```
+
 
 ### docker-compose
 
@@ -64,50 +73,55 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports \(`-p`\)
+### Ports (`-p`)
 
 | Parameter | Function |
-| :---: | :--- |
+| :----: | --- |
 | `64080` | will map the container's port 64080 to port 64080 on the host |
 
-### Environment Variables \(`-e`\)
+
+### Environment Variables (`-e`)
 
 | Env | Function |
-| :---: | :--- |
+| :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `QUASSEL_CORE=192.168.1.10` | specify the URL or IP address of your Quassel Core instance |
 | `QUASSEL_PORT=4242` | specify the port of your Quassel Core instance |
 | `URL_BASE=/quassel` | Specify a url-base in reverse proxy setups ie. `/quassel` |
 
-### Volume Mappings \(`-v`\)
+### Volume Mappings (`-v`)
 
 | Volume | Function |
-| :---: | :--- |
+| :----: | --- |
 | `/config` | this will store config on the docker host |
+
+
 
 ## User / Group Identifiers
 
-When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```text
+```
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
 
-By default this container webui will be available on `http://$SERVER_IP:64080`. To setup this container you can either use the envrionment variables we recommend or manually setup the configuration file by leaving out the `QUASSEL_CORE` environment variable among others. The configuration file using this method can be found at:
-
-```text
+By default this container webui will be available on `http://$SERVER_IP:64080`. To setup this container you can either use the envrionment variables we recommend or manually setup the configuration file by leaving out the `QUASSEL_CORE` environment variable among others. 
+The configuration file using this method can be found at:
+```
 /config/settings-user.js
 ```
+
+
 
 ## Support Info
 
@@ -125,4 +139,3 @@ By default this container webui will be available on `http://$SERVER_IP:64080`. 
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **18.05.19:** - Reconfigure environmental variable setup.
 * **28.04.19:** - Initial Release.
-
