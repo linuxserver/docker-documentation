@@ -1,6 +1,12 @@
-# linuxserver/duplicati
+# [linuxserver/duplicati](https://github.com/linuxserver/docker-duplicati)
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-duplicati.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-duplicati/releases) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/duplicati.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/duplicati) [![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/duplicati.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/duplicati) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/duplicati.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/duplicati) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/duplicati.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/duplicati) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-duplicati/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-duplicati/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/duplicati/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/duplicati/latest/index.html)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-duplicati.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-duplicati/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/duplicati.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/duplicati "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/duplicati.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/duplicati "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/duplicati.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/duplicati)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/duplicati.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/duplicati)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-duplicati/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-duplicati/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/duplicati/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/duplicati/latest/index.html)
 
 [Duplicati](https://www.duplicati.com/) works with standard protocols like FTP, SSH, WebDAV as well as popular services like Microsoft OneDrive, Amazon Cloud Drive & S3, Google Drive, box.com, Mega, hubiC and many others.
 
@@ -13,7 +19,7 @@ Simply pulling `linuxserver/duplicati` should retrieve the correct image for you
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :---: | :--- |
+| :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
@@ -23,7 +29,7 @@ The architectures supported by this image are:
 This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
 
 | Tag | Description |
-| :---: | :--- |
+| :----: | --- |
 | latest | Beta releases of Duplicati |
 | development | Canary releases of Duplicati |
 
@@ -33,7 +39,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```text
+```
 docker create \
   --name=duplicati \
   -e PUID=1000 \
@@ -47,6 +53,7 @@ docker create \
   --restart unless-stopped \
   linuxserver/duplicati
 ```
+
 
 ### docker-compose
 
@@ -75,40 +82,43 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports \(`-p`\)
+### Ports (`-p`)
 
 | Parameter | Function |
-| :---: | :--- |
+| :----: | --- |
 | `8200` | http gui |
 
-### Environment Variables \(`-e`\)
+
+### Environment Variables (`-e`)
 
 | Env | Function |
-| :---: | :--- |
+| :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
 | `CLI_ARGS=` | Optionally specify any [CLI variables](https://duplicati.readthedocs.io/en/latest/07-other-command-line-utilities/) you want to launch the app with |
 
-### Volume Mappings \(`-v`\)
+### Volume Mappings (`-v`)
 
 | Volume | Function |
-| :---: | :--- |
+| :----: | --- |
 | `/config` | Contains all relevant configuration files. |
 | `/backups` | Path to store local backups. |
 | `/source` | Path to source for files to backup. |
 
+
+
 ## User / Group Identifiers
 
-When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```text
+```
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
@@ -116,6 +126,8 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 ## Application Setup
 
 The webui is at `<your ip>:8200` , create backup jobs etc via the webui, for local backups select `/backups` as the destination. For more information see [Duplicati](https://www.duplicati.com/).
+
+
 
 ## Support Info
 
@@ -138,6 +150,5 @@ The webui is at `<your ip>:8200` , create backup jobs etc via the webui, for loc
 * **13.01.19:** - Use jq instead of awk in dockerfiles.
 * **11.01.19:** - Multi-arch image.
 * **09.12.17:** - Fix continuation lines.
-* **31.08.17:** - Build only beta or release versions \(thanks deasmi\).
+* **31.08.17:** - Build only beta or release versions (thanks deasmi).
 * **24.04.17:** - Initial release.
-
