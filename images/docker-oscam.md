@@ -1,6 +1,12 @@
-# linuxserver/oscam
+# [linuxserver/oscam](https://github.com/linuxserver/docker-oscam)
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-oscam.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-oscam/releases) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/oscam.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/oscam) [![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/oscam.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/oscam) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/oscam.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/oscam) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/oscam.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/oscam) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-oscam/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-oscam/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/oscam/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/oscam/latest/index.html)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-oscam.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-oscam/releases)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/oscam.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/oscam "Get your own version badge on microbadger.com")
+[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/oscam.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/oscam "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/oscam.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/oscam)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/oscam.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/oscam)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-oscam/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-oscam/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/oscam/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/oscam/latest/index.html)
 
 [Oscam](http://www.streamboard.tv/oscam/) is an Open Source Conditional Access Module software used for descrambling DVB transmissions using smart cards. It's both a server and a client.
 
@@ -13,10 +19,11 @@ Simply pulling `linuxserver/oscam` should retrieve the correct image for your ar
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :---: | :--- |
+| :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
+
 
 ## Usage
 
@@ -24,7 +31,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```text
+```
 docker create \
   --name=oscam \
   -e PUID=1000 \
@@ -39,7 +46,8 @@ docker create \
 
 ### Passing through Smart Card Readers
 
-If you want to pass through a smart card reader, you need to specify the reader with the `--device=` tag. The method used depends on how the reader is recognized. The first is /dev/ttyUSBX. To find the correct device, connect the reader and run `dmesg | tail` on the host. In the output you will find /dev/ttyUSBX, where X is the number of the device. If this is the first reader you connect to your host, it will be /dev/ttyUSB0. If you add one more it will be /dev/ttyUSB1.
+If you want to pass through a smart card reader, you need to specify the reader with the `--device=` tag. The method used depends on how the reader is recognized.
+The first is /dev/ttyUSBX. To find the correct device, connect the reader and run `dmesg | tail` on the host. In the output you will find /dev/ttyUSBX, where X is the number of the device. If this is the first reader you connect to your host, it will be /dev/ttyUSB0. If you add one more it will be /dev/ttyUSB1.
 
 If there are no /dev/ttyUSBX device in `dmesg | tail`, you have to use the USB bus path. It will look similar to the below.
 
@@ -56,6 +64,7 @@ The first number, the Bus, is 002. The second number, the Device, is 005. This w
 `--device=/dev/bus/usb/002/005`
 
 If you have multiple smart card readers, you add one `--device=` tag for each reader.
+
 
 ### docker-compose
 
@@ -83,50 +92,54 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports \(`-p`\)
+### Ports (`-p`)
 
 | Parameter | Function |
-| :---: | :--- |
+| :----: | --- |
 | `8888` | WebUI |
 
-### Environment Variables \(`-e`\)
+
+### Environment Variables (`-e`)
 
 | Env | Function |
-| :---: | :--- |
+| :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 
-### Volume Mappings \(`-v`\)
+### Volume Mappings (`-v`)
 
 | Volume | Function |
-| :---: | :--- |
+| :----: | --- |
 | `/config` | Where oscam should store config files and logs. |
 
-#### Device Mappings \(`--device`\)
-
+#### Device Mappings (`--device`)
 | Parameter | Function |
-| :---: | :--- |
+| :-----:   | --- |
 | `/dev/ttyUSB0` | For passing through smart card readers. |
+
 
 ## User / Group Identifiers
 
-When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```text
+```
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
 
-To set up oscam there are numerous guides on the internet. There are too many scenarios to make a quick guide. The web interface is at port 8888.
+To set up oscam there are numerous guides on the internet. There are too many scenarios to make a quick guide.
+The web interface is at port 8888.
+
+
 
 ## Support Info
 
@@ -145,7 +158,7 @@ To set up oscam there are numerous guides on the internet. There are too many sc
 * **28.04.19:** - Switch back to streamboard svn to fix version not showing in UI.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **19.02.19:** - Add pipeline logic and multi arch, rebase to Alpine 3.8.
-* **03.01.18:** - Deprecate cpu\_core routine lack of scaling.
+* **03.01.18:** - Deprecate cpu_core routine lack of scaling.
 * **13.12.17:** - Rebase to alpine 3.7.
 * **19.10.17:** - Add ccid package for usb card readers.
 * **17.10.17:** - Switch to using bzr for source code, streamboard awol.
@@ -154,4 +167,3 @@ To set up oscam there are numerous guides on the internet. There are too many sc
 * **14.10.16:** - Add version layer information.
 * **02.10.16:** - Add info on passing through devices to README.
 * **25.09.16:** - Initial release.
-
