@@ -98,7 +98,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
-| `UMASK_SET=022` | control permissions of files and directories created by Sonarr |
+| `UMASK_SET=022` | control permissions of files and directories created by Lidarr. |
 
 ### Volume Mappings (`-v`)
 
