@@ -158,6 +158,7 @@ To reverse proxy with our Letsencrypt docker container we include a preconfigure
 
 ## Versions
 
+* **10.13.19:** - Migrate to Python3.
 * **01.08.19:** - Add libxcomposite1.
 * **13.06.19:** - Add docker mod to enable optional ebook conversion on x86-64.  Add unrar.
 * **02.06.19:** - Rebase to Ubuntu Bionic & add Gdrive support.
