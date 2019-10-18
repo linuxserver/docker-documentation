@@ -146,6 +146,7 @@ You can access advanced features of the Guacamole remote desktop using `ctrl`+`a
 
 ## Versions
 
+* **18.10.19:** - Add python-xdg.
 * **08.10.19:** - Add fonts-wqy-microhei ttf-wqy-zenhei fcitx-rime dependency to resolve issue with Chinese encoding.
 * **04.10.19:** - Add libxkbcommon-x11-0 dependency to resolve issue with Calibre 4.
 * **08.08.19:** - Add zenity for international character support in dialog boxes.
