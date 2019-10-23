@@ -129,6 +129,7 @@ More info at [lychee](https://lycheeorg.github.io/).
 
 ## Versions
 
+* **23.10.19:** - Increase fastcgi timeouts (existing users need to manually update).
 * **19.09.19:** - Update project website url.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **05.05.19:** - Rebase to alpine 3.9, use new armv7 image format.
