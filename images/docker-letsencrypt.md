@@ -204,6 +204,7 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 
 ## Versions
 
+* **23.10.19:** - Update Host header in `proxy.conf` to fix CSRF issues.
 * **12.10.19:** - Add linode dns validation plugin.
 * **23.09.19:** - Move GeoIP2 db to /config to make it persistent.
 * **14.08.19:** - Add inwx dns validation plugin.
