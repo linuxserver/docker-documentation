@@ -204,6 +204,7 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 
 ## Versions
 
+* **24.10.19:** - Add php7-pecl-imagick.
 * **23.10.19:** - Update Host header in `proxy.conf` to fix CSRF issues.
 * **12.10.19:** - Add linode dns validation plugin.
 * **23.09.19:** - Move GeoIP2 db to /config to make it persistent.
