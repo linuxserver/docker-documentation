@@ -204,6 +204,7 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 
 ## Versions
 
+* **27.10.19:** - Turn off lua resty core to get rid of error message in the log (existing users will have to delete `/config/nginx/nginx.conf` and restart the container).
 * **26.10.19:** - Add new package for stream-geoip2, remove geoip2 module patch.
 * **24.10.19:** - Add php7-pecl-imagick.
 * **23.10.19:** - Update Host header in `proxy.conf` to fix CSRF issues.
