@@ -36,13 +36,14 @@ docker create \
   --name=mariadb \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e MYSQL_ROOT_PASSWORD=<DATABASE PASSWORD> \
+  -e MYSQL_ROOT_PASSWORD=ROOT_ACCESS_PASSWORD \
   -e TZ=Europe/London \
-  -e MYSQL_DATABASE=<USER DB NAME> `#optional` \
-  -e MYSQL_USER=<MYSQL USER> `#optional` \
-  -e MYSQL_PASSWORD=<DATABASE PASSWORD> `#optional` \
+  -e MYSQL_DATABASE=USER_DB_NAME `#optional` \
+  -e MYSQL_USER=MYSQL_USER `#optional` \
+  -e MYSQL_PASSWORD=DATABASE_PASSWORD `#optional` \
+  -e REMOTE_SQL=http://URL1/your.sql,https://URL2/your.sql `#optional` \
   -p 3306:3306 \
-  -v <path to data>:/config \
+  -v path_to_data:/config \
   --restart unless-stopped \
   linuxserver/mariadb
 ```
@@ -62,13 +63,14 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - MYSQL_ROOT_PASSWORD=<DATABASE PASSWORD>
+      - MYSQL_ROOT_PASSWORD=ROOT_ACCESS_PASSWORD
       - TZ=Europe/London
-      - MYSQL_DATABASE=<USER DB NAME> #optional
-      - MYSQL_USER=<MYSQL USER> #optional
-      - MYSQL_PASSWORD=<DATABASE PASSWORD> #optional
+      - MYSQL_DATABASE=USER_DB_NAME #optional
+      - MYSQL_USER=MYSQL_USER #optional
+      - MYSQL_PASSWORD=DATABASE_PASSWORD #optional
+      - REMOTE_SQL=http://URL1/your.sql,https://URL2/your.sql #optional
     volumes:
-      - <path to data>:/config
+      - path_to_data:/config
     ports:
       - 3306:3306
     restart: unless-stopped
@@ -91,11 +93,12 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `MYSQL_ROOT_PASSWORD=<DATABASE PASSWORD>` | Set this to root password for installation (minimum 4 characters). |
+| `MYSQL_ROOT_PASSWORD=ROOT_ACCESS_PASSWORD` | Set this to root password for installation (minimum 4 characters). |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
-| `MYSQL_DATABASE=<USER DB NAME>` | Specify the name of a database to be created on image startup. |
-| `MYSQL_USER=<MYSQL USER>` | This user will have superuser access to the database specified by MYSQL_DATABASE. |
-| `MYSQL_PASSWORD=<DATABASE PASSWORD>` | Set this to the password you want to use for you MYSQL_USER (minimum 4 characters). |
+| `MYSQL_DATABASE=USER_DB_NAME` | Specify the name of a database to be created on image startup. |
+| `MYSQL_USER=MYSQL_USER` | This user will have superuser access to the database specified by MYSQL_DATABASE (do not use root here). |
+| `MYSQL_PASSWORD=DATABASE_PASSWORD` | Set this to the password you want to use for you MYSQL_USER (minimum 4 characters). |
+| `REMOTE_SQL=http://URL1/your.sql,https://URL2/your.sql` | Set this to ingest sql files from an http/https endpoint (comma seperated array). |
 
 ### Volume Mappings (`-v`)
 
@@ -133,6 +136,35 @@ Unraid users, it is advisable to edit the template/webui after setup and remove 
 Find custom.cnf in /config for config changes (restart container for them to take effect)
 , the databases in /config/databases and the log in /config/log/myqsl
 
+### Loading passwords and users from files
+
+The `MYSQL_ROOT_PASSWORD MYSQL_DATABASE MYSQL_USER MYSQL_PASSWORD REMOTE_SQL` env values can be set in a file: 
+
+```
+/config/env
+```
+
+Using the following format: 
+
+```
+MYSQL_ROOT_PASSWORD="ROOT_ACCESS_PASSWORD"
+MYSQL_DATABASE="USER_DB_NAME"
+MYSQL_USER="MYSQL_USER"
+MYSQL_PASSWORD="DATABASE_PASSWORD"
+REMOTE_SQL="http://URL1/your.sql,https://URL2/your.sql"
+```
+
+These settings can be mixed and matched with Docker ENV settings as you require, but the settings in the file will always take precedence.
+
+### Bootstrapping a new instance
+
+We support a one time run of custom sql files on init. In order to use this place `*.sql` files in:
+
+```
+/config/initdb.d/
+```
+This will have the same effect as setting the `REMOTE_SQL` environment variable. The sql will only be run on the containers first boot and setup.
+
 
 
 ## Support Info
@@ -148,6 +180,7 @@ Find custom.cnf in /config for config changes (restart container for them to tak
 
 ## Versions
 
+* **27.10.19:** - Bump to 10.4, ability use custom sql on initial init ,defining root passwords via file.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **07.03.19:** - Add ability to setup a database and default user on first spinup.
 * **26.01.19:** - Add pipeline logic and multi arch.
