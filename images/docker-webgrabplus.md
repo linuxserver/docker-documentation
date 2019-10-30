@@ -1,10 +1,13 @@
 # [linuxserver/webgrabplus](https://github.com/linuxserver/docker-webgrabplus)
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-webgrabplus.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-webgrabplus/releases)
+[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-webgrabplus.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-webgrabplus)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-webgrabplus.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-webgrabplus/releases)
+[![GitHub Package Repository](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitHub%20Package&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-webgrabplus/packages)
+[![GitLab Container Registry](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab&logoColor=FFFFFF)](https://gitlab.com/Linuxserver.io/docker-webgrabplus/container_registry)
+[![Quay.io](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/webgrabplus)
 [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/webgrabplus.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/webgrabplus "Get your own version badge on microbadger.com")
-[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/webgrabplus.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/webgrabplus "Get your own version badge on microbadger.com")
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/webgrabplus.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/webgrabplus)
-[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/webgrabplus.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/webgrabplus)
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/webgrabplus.svg?style=flat-square&color=E68523&label=pulls&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/webgrabplus)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/webgrabplus.svg?style=flat-square&color=E68523&label=stars&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/webgrabplus)
 [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-webgrabplus/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-webgrabplus/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/webgrabplus/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/webgrabplus/latest/index.html)
 
