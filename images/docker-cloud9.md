@@ -1,10 +1,13 @@
 # [linuxserver/cloud9](https://github.com/linuxserver/docker-cloud9)
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-cloud9.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-cloud9/releases)
+[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-cloud9.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-cloud9)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-cloud9.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-cloud9/releases)
+[![GitHub Package Repository](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitHub%20Package&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-cloud9/packages)
+[![GitLab Container Registry](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab&logoColor=FFFFFF)](https://gitlab.com/Linuxserver.io/docker-cloud9/container_registry)
+[![Quay.io](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/cloud9)
 [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/cloud9.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/cloud9 "Get your own version badge on microbadger.com")
-[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/cloud9.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/cloud9 "Get your own version badge on microbadger.com")
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/cloud9.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/cloud9)
-[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/cloud9.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/cloud9)
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/cloud9.svg?style=flat-square&color=E68523&label=pulls&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/cloud9)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/cloud9.svg?style=flat-square&color=E68523&label=stars&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/cloud9)
 [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-cloud9/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-cloud9/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/cloud9/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/cloud9/latest/index.html)
 
