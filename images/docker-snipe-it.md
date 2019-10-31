@@ -1,10 +1,13 @@
 # [linuxserver/snipe-it](https://github.com/linuxserver/docker-snipe-it)
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-snipe-it.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-snipe-it/releases)
+[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-snipe-it.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-snipe-it)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-snipe-it.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-snipe-it/releases)
+[![GitHub Package Repository](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitHub%20Package&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-snipe-it/packages)
+[![GitLab Container Registry](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab&logoColor=FFFFFF)](https://gitlab.com/Linuxserver.io/docker-snipe-it/container_registry)
+[![Quay.io](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/snipe-it)
 [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/snipe-it.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/snipe-it "Get your own version badge on microbadger.com")
-[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/snipe-it.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/snipe-it "Get your own version badge on microbadger.com")
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/snipe-it.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/snipe-it)
-[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/snipe-it.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/snipe-it)
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/snipe-it.svg?style=flat-square&color=E68523&label=pulls&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/snipe-it)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/snipe-it.svg?style=flat-square&color=E68523&label=stars&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/snipe-it)
 [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-snipe-it/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-snipe-it/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/snipe-it/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/snipe-it/latest/index.html)
 
