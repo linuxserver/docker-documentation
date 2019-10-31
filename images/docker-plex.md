@@ -1,10 +1,13 @@
 # [linuxserver/plex](https://github.com/linuxserver/docker-plex)
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-plex.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-plex/releases)
+[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-plex.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-plex)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-plex.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-plex/releases)
+[![GitHub Package Repository](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitHub%20Package&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-plex/packages)
+[![GitLab Container Registry](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab&logoColor=FFFFFF)](https://gitlab.com/Linuxserver.io/docker-plex/container_registry)
+[![Quay.io](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/plex)
 [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/plex.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/plex "Get your own version badge on microbadger.com")
-[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/plex.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/plex "Get your own version badge on microbadger.com")
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/plex.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/plex)
-[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/plex.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/plex)
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/plex.svg?style=flat-square&color=E68523&label=pulls&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/plex)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/plex.svg?style=flat-square&color=E68523&label=stars&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/plex)
 [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-plex/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-plex/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/plex/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/plex/latest/index.html)
 
