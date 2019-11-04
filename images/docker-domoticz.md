@@ -1,10 +1,13 @@
 # [linuxserver/domoticz](https://github.com/linuxserver/docker-domoticz)
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-domoticz.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-domoticz/releases)
+[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-domoticz.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-domoticz)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-domoticz.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-domoticz/releases)
+[![GitHub Package Repository](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitHub%20Package&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-domoticz/packages)
+[![GitLab Container Registry](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab&logoColor=FFFFFF)](https://gitlab.com/Linuxserver.io/docker-domoticz/container_registry)
+[![Quay.io](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/domoticz)
 [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/domoticz.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/domoticz "Get your own version badge on microbadger.com")
-[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/domoticz.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/domoticz "Get your own version badge on microbadger.com")
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/domoticz.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/domoticz)
-[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/domoticz.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/domoticz)
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/domoticz.svg?style=flat-square&color=E68523&label=pulls&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/domoticz)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/domoticz.svg?style=flat-square&color=E68523&label=stars&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/domoticz)
 [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-domoticz/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-domoticz/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/domoticz/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/domoticz/latest/index.html)
 
@@ -165,6 +168,7 @@ The user manual is available at [www.domoticz.com](https://www.domoticz.com)
 
 ## Versions
 
+* **03.11.19:** - Set capabilities for domoticz binary and move cmake from edge repo.
 * **28.06.19:** - Rebasing to alpine 3.10. Add iputils for ping. Fix typo in readme. Fix permissions for custom icons.
 * **12.05.19:** - Add boost dependencies and turn off static boost build. Bump to Alpine 3.9.
 * **30.03.19:** - Add env variable to set webroot.
