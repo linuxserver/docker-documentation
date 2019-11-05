@@ -1,10 +1,13 @@
 # [linuxserver/photoshow](https://github.com/linuxserver/docker-photoshow)
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-photoshow.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-photoshow/releases)
+[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-photoshow.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-photoshow)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-photoshow.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-photoshow/releases)
+[![GitHub Package Repository](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitHub%20Package&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-photoshow/packages)
+[![GitLab Container Registry](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab&logoColor=FFFFFF)](https://gitlab.com/Linuxserver.io/docker-photoshow/container_registry)
+[![Quay.io](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/photoshow)
 [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/photoshow.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/photoshow "Get your own version badge on microbadger.com")
-[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/photoshow.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/photoshow "Get your own version badge on microbadger.com")
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/photoshow.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/photoshow)
-[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/photoshow.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/photoshow)
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/photoshow.svg?style=flat-square&color=E68523&label=pulls&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/photoshow)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/photoshow.svg?style=flat-square&color=E68523&label=stars&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/photoshow)
 [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-photoshow/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-photoshow/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/photoshow/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/photoshow/latest/index.html)
 
