@@ -168,6 +168,7 @@ The user manual is available at [www.domoticz.com](https://www.domoticz.com)
 
 ## Versions
 
+* **24.11.19:** - Change to using domoticz builtin Lua and MQTT.
 * **03.11.19:** - Set capabilities for domoticz binary and move cmake from edge repo.
 * **28.06.19:** - Rebasing to alpine 3.10. Add iputils for ping. Fix typo in readme. Fix permissions for custom icons.
 * **12.05.19:** - Add boost dependencies and turn off static boost build. Bump to Alpine 3.9.
