@@ -128,5 +128,6 @@ Access the webui at `<your-ip>:6555`. Follow the setup wizard on initial install
 
 ## Versions
 
+* **04.12.19:** - Disable in app updates.
 * **12.11.19:** - Multi-arch builds.
 * **10.09.19:** - Initial Release.
