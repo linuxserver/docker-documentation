@@ -42,10 +42,10 @@ docker create \
   -e PGID=1000 \
   -e VERSION=docker \
   -e UMASK_SET=022 `#optional` \
+  -e PLEX_CLAIM= `#optional` \
   -v </path/to/library>:/config \
   -v <path/to/tvseries>:/tv \
   -v </path/to/movies>:/movies \
-  -v </path for transcoding>:/transcode \
   --restart unless-stopped \
   linuxserver/plex
 ```
@@ -68,11 +68,11 @@ services:
       - PGID=1000
       - VERSION=docker
       - UMASK_SET=022 #optional
+      - PLEX_CLAIM= #optional
     volumes:
       - </path/to/library>:/config
       - <path/to/tvseries>:/tv
       - </path/to/movies>:/movies
-      - </path for transcoding>:/transcode
     restart: unless-stopped
 ```
 
@@ -98,6 +98,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PGID=1000` | for GroupID - see below for explanation |
 | `VERSION=docker` | Set whether to update plex or not - see Application Setup section. |
 | `UMASK_SET=022` | control permissions of files and directories created by Plex |
+| `PLEX_CLAIM=` | Optionally you can obtain a claim token from https://plex.tv/claim and input here. Keep in mind that the claim tokens expire within 4 minutes. |
 
 ### Volume Mappings (`-v`)
 
@@ -106,12 +107,11 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `/config` | Plex library location. *This can grow very large, 50gb+ is likely for a large collection.* |
 | `/tv` | Media goes here. Add as many as needed e.g. `/movies`, `/tv`, etc. |
 | `/movies` | Media goes here. Add as many as needed e.g. `/movies`, `/tv`, etc. |
-| `/transcode` | Path for transcoding folder, *optional*. |
 
 
 ## Optional Parameters
 
-*Special note* - If you'd like to run Plex without requiring `--net=host` (`NOT recommended`) then you will need the following ports in your `docker create` command:
+*Special note* - If you'd like to run Plex without requiring `--net=host` (`NOT recommended`) then you will need the following ports in your `docker create` command (you need to set PLEX_CLAIM to claim a server set up with bridge networking):
 
 ```
   -p 32400:32400 \
@@ -126,8 +126,8 @@ The application accepts a series of environment variables to further customize i
 
 | Parameter | Function |
 | :---: | --- |
-| `-v /transcode` | Path for transcoding folder|
 | `--device=/dev/dri:/dev/dri` | Add this option to your run command if you plan on using Quicksync hardware acceleration - see Application Setup section.|
+| `--device=/dev/dvb:/dev/dvb` | Add this option to your run command if you plan on using dvb devices.|
 
 
 
@@ -188,6 +188,7 @@ We automatically add the necessary environment variable that will utilise all th
 
 ## Versions
 
+* **04.12.19:** - Add variable for setting PLEX_CLAIM. Remove `/transcode` volume mapping as it is now set via plex gui and defaults to a location under `/config`.
 * **06.08.19:** - Add variable for setting UMASK.
 * **10.07.19:** - Fix permissions for tuner (/dev/dvb) devices.
 * **20.05.19:** - Bugfix do not allow Root group for Intel QuickSync ownership rules.
