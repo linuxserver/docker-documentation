@@ -1,10 +1,13 @@
 # [linuxserver/openssh-server](https://github.com/linuxserver/docker-openssh-server)
 
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-openssh-server.svg?style=flat-square&color=E68523)](https://github.com/linuxserver/docker-openssh-server/releases)
+[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-openssh-server.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-openssh-server)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-openssh-server.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-openssh-server/releases)
+[![GitHub Package Repository](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitHub%20Package&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-openssh-server/packages)
+[![GitLab Container Registry](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab&logoColor=FFFFFF)](https://gitlab.com/Linuxserver.io/docker-openssh-server/container_registry)
+[![Quay.io](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/openssh-server)
 [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/openssh-server.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/openssh-server "Get your own version badge on microbadger.com")
-[![MicroBadger Size](https://img.shields.io/microbadger/image-size/linuxserver/openssh-server.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/openssh-server "Get your own version badge on microbadger.com")
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/openssh-server.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/openssh-server)
-[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/openssh-server.svg?style=flat-square&color=E68523)](https://hub.docker.com/r/linuxserver/openssh-server)
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/openssh-server.svg?style=flat-square&color=E68523&label=pulls&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/openssh-server)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/openssh-server.svg?style=flat-square&color=E68523&label=stars&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/openssh-server)
 [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-openssh-server/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-openssh-server/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/openssh-server/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/openssh-server/latest/index.html)
 
