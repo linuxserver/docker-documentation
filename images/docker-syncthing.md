@@ -99,7 +99,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
-| `UMASK_SET=<022>` | Umask setting - [explaination](https://askubuntu.com/questions/44542/what-is-umask-and-how-does-it-work) |
+| `UMASK_SET=<022>` | Umask setting - [explanation](https://askubuntu.com/questions/44542/what-is-umask-and-how-does-it-work) |
 
 ### Volume Mappings (`-v`)
 
