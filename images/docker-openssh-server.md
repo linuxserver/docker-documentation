@@ -39,6 +39,7 @@ Here are some example snippets to help you get started creating a container from
 ```
 docker create \
   --name=openssh-server \
+  --hostname=openssh-server `#optional` \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
@@ -67,6 +68,7 @@ services:
   openssh-server:
     image: linuxserver/openssh-server
     container_name: openssh-server
+    hostname: openssh-server #optional
     environment:
       - PUID=1000
       - PGID=1000
