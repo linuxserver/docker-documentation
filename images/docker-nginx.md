@@ -133,6 +133,7 @@ Modify the nginx, php and site config files under `/config` as needed
 
 ## Versions
 
+* **18.12.19:** - Add php7-imap and php7-pecl-apcu.
 * **13.11.19:** - Add php7-pdo_odbc.
 * **24.10.19:** - Add php7-pecl-imagick.
 * **06.08.19:** - Add php7-bcmath, ph7-pear, php7-xmlrpc and php7-ftp.
