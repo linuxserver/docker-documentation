@@ -134,6 +134,7 @@ by visiting http://your.ip:9283 - once the page loads, you can log in with the d
 
 ## Versions
 
+* **19.12.19:** - Rebasing to alpine 3.11.
 * **22.09.19:** - Add 'gd' PHP extension.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
