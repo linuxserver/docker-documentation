@@ -135,6 +135,7 @@ Web interface is at `<your ip>:8081` , set paths for downloads, tv-shows to matc
 
 ## Versions
 
+* **19.12.19:** - Rebasing to alpine 3.11.
 * **22.09.19:** - Switch to python3.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
