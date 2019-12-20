@@ -215,6 +215,7 @@ This image also contains `netboot.xyz.efi` which can be used to boot using UEFI 
 
 ## Versions
 
+* **19.12.19:** - Rebasing to alpine 3.11.
 * **13.12.19:** - Swapping latest tag over to webapp stack for management.
 * **10.12.19:** - Adding tftp branch to provide tftp only option to latest users.
 * **22.10.19:** - Initial release.
