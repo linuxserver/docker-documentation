@@ -207,6 +207,7 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 
 ## Versions
 
+* **19.12.19:** - Rebasing to alpine 3.11.
 * **19.12.19:** - Increase large_client_header_buffers in nginx.conf to prevent 414 errors.
 * **18.12.19:** - Add php7-imap and php7-pecl-apcu.
 * **11.12.19:** - Fix Google Cloud DNS to use .json file for authentication.
