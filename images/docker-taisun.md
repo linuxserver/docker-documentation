@@ -116,6 +116,7 @@ The webui is at http://localhost:3000, for more information on usage see [here](
 
 ## Versions
 
+* **19.12.19:** - Rebasing to alpine 3.11.
 * **20.07.19:** - Build compose bins from source, use minimal docker install from repos.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **30.03.19:** - Updating docker-compose build dependancies for musl libc.
