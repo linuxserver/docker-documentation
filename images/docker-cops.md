@@ -163,6 +163,7 @@ Unlike other implementations of COPS in a docker container,  the linuxserver ver
 
 ## Versions
 
+* **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **27.02.19:** - Upgrade packages during install to prevent mismatch with baseimage.
