@@ -130,6 +130,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Versions
 
+* **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **09.05.19:** - Add default UTC timezone if user does not set it.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
