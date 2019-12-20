@@ -146,6 +146,7 @@ Once running, the container will run an initial MySQL migration, which populates
 
 ## Versions
 
+* **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **23.03.19:** - Updating runtime dependancies for the JRE.
