@@ -179,6 +179,7 @@ The path to wkhtmltopdf in this image to include in your .env file is `/usr/bin/
 
 ## Versions
 
+* **19.12.19:** - Rebasing to alpine 3.11.
 * **26.07.19:** - Use old version of tidyhtml pending upstream fixes.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **14.06.19:** - Add wkhtmltopdf to image for PDF rendering.
