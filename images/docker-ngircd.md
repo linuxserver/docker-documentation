@@ -129,4 +129,5 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Versions
 
+* **19.12.19:** - Rebasing to alpine 3.11.
 * **04.07.19:** - Initial release.
