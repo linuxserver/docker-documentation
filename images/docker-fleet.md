@@ -160,6 +160,7 @@ Once complete, you can log into the app via `http://your_ip_here:8080/login` to 
 
 ## Versions
 
+* **19.12.19:** - Rebasing to alpine 3.11.
 * **02.07.19:** - Rebasing to alpine 3.10.
 * **02.07.19:** - Stop container if fleet fails.
 * **19.05.19:** - Use new base images for arm versions.
