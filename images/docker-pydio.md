@@ -138,6 +138,7 @@ For email settings edit the file /config/ssmtp.conf and restart the container.
 
 ## Versions
 
+* **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **11.02.19:** - Add pipeline logic and multi arch, rebase to alpine 3.8.
