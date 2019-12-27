@@ -139,4 +139,5 @@ Access the webui at http://your-ip:3131, more information [here](https://github.
 
 ## Versions
 
+* **19.12.19:** - Rebasing to alpine 3.11.
 * **19.09.19:** - Initial Release.
