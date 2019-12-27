@@ -137,5 +137,6 @@ You need to understand the following paths and the role they play for the applic
 
 ## Versions
 
+* **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **01.06.19:** - Initial Release.
