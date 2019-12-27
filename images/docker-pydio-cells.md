@@ -131,4 +131,5 @@ You must first create a mysql database for Pydio Cells. Using our [mariadb image
 
 ## Versions
 
+* **19.12.19:** - Rebasing to alpine 3.11.
 * **12.12.19:** - Initial Release
