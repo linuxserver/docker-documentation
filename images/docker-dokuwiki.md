@@ -136,5 +136,6 @@ Upon first install go to `http://$IP:$PORT/install.php` once you have completed 
 
 ## Versions
 
+* **19.12.19:** - Rebasing to alpine 3.11.
 * **01.12.19:** - Add php7-ldap package to support LDAP authentication.
 * **28.05.19:** - Initial Release.
