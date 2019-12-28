@@ -33,13 +33,13 @@ Execute it with `dtail <container_name>`.
 
 If you are experiencing issues with one of our containers, it helps us to know which version of the image your container is running from. The primary reason we ask for this is because you may be reporting an issue we are aware of and have subsequently fixed. However, if you are running on the latest version of our image, it could indeed be a newly found bug, which we'd want to know more about.
 
-To obtain the build version for the image:
+To obtain the build version for the container:
 
 ```bash
 docker inspect -f '{{ index .Config.Labels "build_version" }}' <container_name>
 ```
 
-Or the container:
+Or the image:
 
 ```bash
 docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/<image_name>
