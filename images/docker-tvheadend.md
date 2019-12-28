@@ -221,6 +221,7 @@ In some cases it might be necessary to start tvheadend with additional parameter
 
 ## Versions
 
+* **27.12.19:** - Update to Alpine 3.11.
 * **02.10.19:** - Improve permission fixing on render & dvb devices.
 * **18.08.19:** - Add AMD drivers.
 * **02.08.19:** - Attempt to automatically fix permissions on /dev/dri and /dev/dvb.
