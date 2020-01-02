@@ -175,6 +175,7 @@ The automatic update will run once a day at 3am local server time.
 
 ## Versions
 
+* **19.12.19:** - Rebasing to alpine 3.11.
 * **04.10.19:** - Update package label.
 * **21.08.19:** - Add optional user/pass environment variables, fix transmission shut down if user/pass are set.
 * **19.07.19:** - Send SIGTERM in blocklist update to properly close pid.
