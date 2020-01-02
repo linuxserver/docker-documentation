@@ -145,6 +145,7 @@ Disable autoupdates in the webui to prevent jackett crashing, the image is refre
 
 ## Versions
 
+* **31.12.19:** - Remove agressive startup chowning.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **10.03.19:** - Switch to net-core builds of jackett, not dependant on mono and smaller images.
 * **11.02.19:** - Add pipeline logic and multi arch.
