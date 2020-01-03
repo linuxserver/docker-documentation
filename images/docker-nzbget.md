@@ -157,6 +157,7 @@ for example, and changing the setting for InterDir in the PATHS tab of settings 
 
 ## Versions
 
+* **01.01.20:** - Add python3 alongside python2 during transition.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **13.06.19:** - Add apprise, chardet & pynzbget packages.
