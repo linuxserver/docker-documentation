@@ -148,6 +148,7 @@ See here for info on some of the switch settings for sabnzbd https://sabnzbd.org
 
 ## Versions
 
+* **02.01.20:** - Add python3 on top of python2 to image during transition.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **25.02.19:** - Rebase to Bionic, add python deps for scripts.
 * **26.01.19:** - Add pipeline logic and multi arch.
