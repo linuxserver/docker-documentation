@@ -30,6 +30,14 @@ The architectures supported by this image are:
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
 
+## Version Tags
+
+This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
+
+| Tag | Description |
+| :----: | --- |
+| latest | Stable releases |
+| dev | Prereleases from their GitHub |
 
 ## Usage
 
@@ -134,6 +142,7 @@ The web interface is at `<your ip>:5076` , to set up indexers and connections to
 
 ## Versions
 
+* **05.01.20:** - Add dev tag for prereleases.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **11.02.19:** - Add pipeline logic and multi arch.
 * **18.08.18:** - Bump java version to 10, (bionic currently refers to it as version 11).
