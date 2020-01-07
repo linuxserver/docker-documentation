@@ -190,7 +190,7 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 * You can check which jails are active via `docker exec -it letsencrypt fail2ban-client status`
 * You can check the status of a specific jail via `docker exec -it letsencrypt fail2ban-client status <jail name>`
 * You can unban an IP via `docker exec -it letsencrypt fail2ban-client set <jail name> unbanip <IP>`
-* A list of commands can be found here: https://www.fail2ban.org/wiki/index.php/Commands  
+* A list of commands can be found here: https://www.fail2ban.org/wiki/index.php/Commands
 
 
 
@@ -207,6 +207,7 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 
 ## Versions
 
+* **07.01.20:** - Update ciphers from Mozilla ssl-config recommendations.
 * **01.01.20:** - Add support for gandi dns validation.
 * **31.12.19:** - GeoIP2 databases now require personal license keys to download. Auto download is disabled and log message is added.
 * **19.12.19:** - Rebasing to alpine 3.11.
