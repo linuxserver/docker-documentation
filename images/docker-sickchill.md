@@ -135,6 +135,7 @@ Web interface is at `<your ip>:8081` , set paths for downloads, tv-shows to matc
 
 ## Versions
 
+* **09.01.20:** - Remove creating data volumes, fix build args for armhf and aarch64.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **17.04.19:** - Adding Nodejs dependancy.
