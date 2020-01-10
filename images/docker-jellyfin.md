@@ -47,7 +47,9 @@ docker create \
   -v <path/to/tvseries>:/data/tvshows \
   -v </path/to/movies>:/data/movies \
   -v </path for transcoding>:/transcode `#optional` \
+  -v /opt/vc/lib:/opt/vc/lib `#optional` \
   --device /dev/dri:/dev/dri `#optional` \
+  --device /dev/vchiq:/dev/vchiq `#optional` \
   --restart unless-stopped \
   linuxserver/jellyfin
 ```
@@ -75,12 +77,14 @@ services:
       - </path/to/movies>:/data/movies
     volumes:
       - </path for transcoding>:/transcode #optional
+      - /opt/vc/lib:/opt/vc/lib #optional
     ports:
       - 8096:8096
     ports:
       - 8920:8920 #optional
     devices:
       - /dev/dri:/dev/dri #optional
+      - /dev/vchiq:/dev/vchiq #optional
     restart: unless-stopped
 ```
 
@@ -113,11 +117,13 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `/data/tvshows` | Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc. |
 | `/data/movies` | Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc. |
 | `/transcode` | Path for transcoding folder, *optional*. |
+| `/opt/vc/lib` | Path for Raspberry Pi OpenMAX libs *optional*. |
 
 #### Device Mappings (`--device`)
 | Parameter | Function |
 | :-----:   | --- |
 | `/dev/dri` | Only needed if you want to use your Intel GPU for hardware accelerated video encoding (vaapi). |
+| `/dev/vchiq` | Only needed if you want to use your Raspberry Pi OpenMax video encoding (Bellagio). |
 
 
 ## User / Group Identifiers
@@ -139,17 +145,32 @@ Webui can be found at `http://<your-ip>:8096`
 
 More information can be found in their official documentation [here](https://github.com/MediaBrowser/Wiki/wiki) .
 
+## Hardware Acceleration
+
+### Intel
+
 Hardware acceleration users for Intel Quicksync will need to mount their /dev/dri video device inside of the container by passing the following command when running or creating the container:
 
 ```--device=/dev/dri:/dev/dri```
 
 We will automatically ensure the abc user inside of the container has the proper permissions to access this device.
 
+### Nvidia
+
 Hardware acceleration users for Nvidia will need to install the container runtime provided by Nvidia on their host, instructions can be found here:
 
 https://github.com/NVIDIA/nvidia-docker
 
 We automatically add the necessary environment variable that will utilise all the features available on a GPU on the host. Once nvidia-docker is installed on your host you will need to re/create the docker container with the nvidia container runtime `--runtime=nvidia` and add an environment variable `-e NVIDIA_VISIBLE_DEVICES=all` (can also be set to a specific gpu's UUID, this can be discovered by running `nvidia-smi --query-gpu=gpu_name,gpu_uuid --format=csv` ). NVIDIA automatically mounts the GPU and drivers from your host into the jellyfin docker container.
+
+### OpenMAX (Raspberry Pi)
+
+Hardware acceleration users for Raspberry Pi OpenMAX will need to mount their /dev/vchiq video device inside of the container and their system OpenMax libs by passing the following options when running or creating the container:
+
+```
+--device=/dev/vchiq:/dev/vchiq
+-v /opt/vc/lib:/opt/vc/lib
+```
 
 
 
@@ -166,6 +187,7 @@ We automatically add the necessary environment variable that will utilise all th
 
 ## Versions
 
+* **09.01.20:** - Add Pi OpenMax support.
 * **02.10.19:** - Improve permission fixing for render & dvb devices.
 * **31.07.19:** - Add AMD drivers for vaapi support on x86.
 * **13.06.19:** - Add Intel drivers for vaapi support on x86.
