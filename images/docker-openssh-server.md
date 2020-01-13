@@ -173,5 +173,6 @@ You can optionally set the docker argument `hostname`
 
 ## Versions
 
+* **13.01.20:** - Add openssh-sftp-server.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **17.10.19:** - Initial Release.
