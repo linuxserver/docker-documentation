@@ -48,6 +48,7 @@ docker create \
   -v </path/to/playlists>:/playlists \
   -v </path/to/podcasts>:/podcasts \
   -v </path/to/other media>:/media `#optional` \
+  --device /dev/snd:/dev/snd `#optional` \
   --restart unless-stopped \
   linuxserver/airsonic
 ```
@@ -79,6 +80,8 @@ services:
       - </path/to/other media>:/media #optional
     ports:
       - 4040:4040
+    devices:
+      - /dev/snd:/dev/snd #optional
     restart: unless-stopped
 ```
 
@@ -113,6 +116,10 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `/podcasts` | Location of podcasts. |
 | `/media` | Location of other media. |
 
+#### Device Mappings (`--device`)
+| Parameter | Function |
+| :-----:   | --- |
+| `/dev/snd` | Only needed to pass your host sound device to Airsonic's Java jukebox player. |
 
 
 ## User / Group Identifiers
@@ -135,6 +142,8 @@ Access WebUI at `<your-ip>:4040`.
 Default user/pass is admin/admin
 
 Extra java options can be passed with the JAVA_OPTS environment variable, eg `-e JAVA_OPTS="-Xmx256m -Xms256m"`. For some reverse proxies, you may need to pass `JAVA_OPTS=-Dserver.use-forward-headers=true` for airsonic to generate the proper URL schemes.
+
+Note that if you want to use [Airsonic's Java jukebox player](https://airsonic.github.io/docs/jukebox/), then `PGID` will need to match the group of your sound device (e.g. `/dev/snd`).
 
 
 
