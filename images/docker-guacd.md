@@ -102,4 +102,5 @@ This is a backend only service, to leverage Guacd server you need to use either 
 
 ## Versions
 
+* **08.02.20:** - Bump to 1.1.0.
 * **25.05.19:** - Initial Release.
