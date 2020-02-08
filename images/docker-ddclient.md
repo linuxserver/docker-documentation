@@ -11,7 +11,7 @@
 [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-ddclient/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-ddclient/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/ddclient/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/ddclient/latest/index.html)
 
-[Ddclient](https://sourceforge.net/p/ddclient/wiki/Home/) is a Perl client used to update dynamic DNS entries for accounts on Dynamic DNS Network Service Provider. It was originally written by Paul Burry and is now mostly by wimpunk. It has the capability to update more than just dyndns and it can fetch your WAN-ipaddress in a few different ways.
+[Ddclient](https://github.com/ddclient/ddclient) is a Perl client used to update dynamic DNS entries for accounts on Dynamic DNS Network Service Provider. It was originally written by Paul Burry and is now mostly by wimpunk. It has the capability to update more than just dyndns and it can fetch your WAN-ipaddress in a few different ways.
 
 ## Supported Architectures
 
@@ -124,6 +124,7 @@ Edit the ddclient.conf file found in your /config volume. This config file has m
 
 ## Versions
 
+* **08.02.20:** - Ingest from Github.
 * **06.02.19:** - Fix permissions.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
