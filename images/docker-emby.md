@@ -174,6 +174,7 @@ We automatically add the necessary environment variable that will utilise all th
 
 ## Versions
 
+* **15.02.20:** - Allow restarting emby from the gui (also allows for auto restarts after addon updates).
 * **02.10.19:** - Improve permission fixing for render and dvb devices.
 * **13.08.19:** - Add umask environment variable.
 * **24.06.19:** - Fix typos in readme.
