@@ -133,6 +133,7 @@ Modify the nginx, php and site config files under `/config` as needed
 
 ## Versions
 
+* **18.02.20:** - Add geoip2, suppress lua warning.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **18.12.19:** - Add php7-imap and php7-pecl-apcu.
 * **13.11.19:** - Add php7-pdo_odbc.
