@@ -109,6 +109,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 ## Versions
 
+* **20.02.20:** - Switch to python3.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **01.07.19:** - Fall back to base64 encoding when basic http auth is used.
 * **28.06.19:** - Rebasing to alpine 3.10.
