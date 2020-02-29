@@ -135,8 +135,8 @@ Umask can be set in the /config/rtorrent/rtorrent.rc file by changing value in `
 If you are seeing this error `Caught internal_error: 'DhtRouter::get_tracker did not actually insert tracker.'.` , a possible fix is to disable dht in `/config/rtorrent/rtorrent.rc` by changing the following values.
 
 ```shell
-dht = disable
-protocol.pex.set = 0
+dht.mode.set = disable
+protocol.pex.set = no
 ```
 
 If after updating you see an error about connecting to rtorrent in the webui,
@@ -144,8 +144,8 @@ remove or comment out these lines in /config/rtorrent/rtorrent.rc ,whatever valu
 Just setting them to no will still cause the error..
 
 ```
-use_udp_trackers = yes
-peer_exchange = yes
+trackers.use_udp.set = yes
+protocol.pex.set = no
 ```
 
 To add themes, create a themes folder in your /config directory and add your theme folders. Ensure proper user and group ownership is set once you add the directories.
@@ -165,6 +165,7 @@ To add themes, create a themes folder in your /config directory and add your the
 
 ## Versions
 
+* **29.02.20:** - Update readme for pex/dht.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **20.05.19:** - Shift to building from official releases instead of commits.
 * **13.05.19:** - Add libffi and openssl.
