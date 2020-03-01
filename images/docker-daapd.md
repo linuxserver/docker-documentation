@@ -137,6 +137,7 @@ For further setup options of remotes etc, check out the daapd website, [Forked-d
 
 ## Versions
 
+* **16.01.20:** - Rebase to alpine linux 3.11 and build antlr3c from source.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **14.01.19:** - Add pipeline logic and multi arch.
 * **20.08.18:** - Rebase to alpine linux 3.8.
