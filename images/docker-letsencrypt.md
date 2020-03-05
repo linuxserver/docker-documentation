@@ -206,6 +206,7 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 
 ## Versions
 
+* **05.03.20:** - Use port and proto upstream variables for ldap and default sample confs.
 * **24.02.20:** - Remove world/group read permissions in dns-conf.
 * **23.02.20:** - Add aliyun dns validation plugin.
 * **28.01.20:** - Deprecate tls-sni validation method, remove from docs.
