@@ -51,13 +51,15 @@ docker create \
   -e UMASK_SET=<022> `#optional` \
   -p 8096:8096 \
   -p 8920:8920 `#optional` \
-  -v </path/to/library>:/config \
-  -v <path/to/tvseries>:/data/tvshows \
-  -v </path/to/movies>:/data/movies \
-  -v </path for transcoding>:/transcode `#optional` \
+  -v /path/to/library:/config \
+  -v /path/to/tvseries:/data/tvshows \
+  -v /path/to/movies:/data/movies \
   -v /opt/vc/lib:/opt/vc/lib `#optional` \
   --device /dev/dri:/dev/dri `#optional` \
   --device /dev/vchiq:/dev/vchiq `#optional` \
+  --device /dev/video10:/dev/video10 `#optional` \
+  --device /dev/video11:/dev/video11 `#optional` \
+  --device /dev/video12:/dev/video12 `#optional` \
   --restart unless-stopped \
   linuxserver/jellyfin
 ```
@@ -80,11 +82,10 @@ services:
       - TZ=Europe/London
       - UMASK_SET=<022> #optional
     volumes:
-      - </path/to/library>:/config
-      - <path/to/tvseries>:/data/tvshows
-      - </path/to/movies>:/data/movies
+      - /path/to/library:/config
+      - /path/to/tvseries:/data/tvshows
+      - /path/to/movies:/data/movies
     volumes:
-      - </path for transcoding>:/transcode #optional
       - /opt/vc/lib:/opt/vc/lib #optional
     ports:
       - 8096:8096
@@ -93,6 +94,9 @@ services:
     devices:
       - /dev/dri:/dev/dri #optional
       - /dev/vchiq:/dev/vchiq #optional
+      - /dev/video10:/dev/video10 #optional
+      - /dev/video11:/dev/video11 #optional
+      - /dev/video12:/dev/video12 #optional
     restart: unless-stopped
 ```
 
@@ -105,7 +109,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Parameter | Function |
 | :----: | --- |
 | `8096` | Http webUI. |
-| `8920` | Https webUI (you need to setup your own certificate). |
+| `8920` | Https webUI (you need to set up your own certificate). |
 
 
 ### Environment Variables (`-e`)
@@ -124,14 +128,16 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `/config` | Jellyfin data storage location. *This can grow very large, 50gb+ is likely for a large collection.* |
 | `/data/tvshows` | Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc. |
 | `/data/movies` | Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc. |
-| `/transcode` | Path for transcoding folder, *optional*. |
 | `/opt/vc/lib` | Path for Raspberry Pi OpenMAX libs *optional*. |
 
 #### Device Mappings (`--device`)
 | Parameter | Function |
 | :-----:   | --- |
 | `/dev/dri` | Only needed if you want to use your Intel GPU for hardware accelerated video encoding (vaapi). |
-| `/dev/vchiq` | Only needed if you want to use your Raspberry Pi OpenMax video encoding (Bellagio). |
+| `/dev/vchiq` | Only needed if you want to use your Raspberry Pi OpenMax video encoding. |
+| `/dev/video10` | Only needed if you want to use your Raspberry Pi V4L2 video encoding. |
+| `/dev/video11` | Only needed if you want to use your Raspberry Pi V4L2 video encoding. |
+| `/dev/video12` | Only needed if you want to use your Raspberry Pi V4L2 video encoding. |
 
 
 ## User / Group Identifiers
@@ -151,7 +157,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 Webui can be found at `http://<your-ip>:8096`
 
-More information can be found in their official documentation [here](https://github.com/MediaBrowser/Wiki/wiki) .
+More information can be found in their official documentation [here](https://jellyfin.org/docs/general/quick-start.html) .
 
 ## Hardware Acceleration
 
@@ -180,6 +186,16 @@ Hardware acceleration users for Raspberry Pi OpenMAX will need to mount their /d
 -v /opt/vc/lib:/opt/vc/lib
 ```
 
+### V4L2 (Raspberry Pi)
+
+Hardware acceleration users for Raspberry Pi V4L2 will need to mount their /dev/videoX video devices inside of the container by passing the following options when running or creating the container:
+
+```
+--device=/dev/video10:/dev/video10
+--device=/dev/video11:/dev/video11
+--device=/dev/video12:/dev/video12
+```
+
 
 
 ## Support Info
@@ -195,6 +211,7 @@ Hardware acceleration users for Raspberry Pi OpenMAX will need to mount their /d
 
 ## Versions
 
+* **11.03.20:** - Add Pi V4L2 support, remove optional transcode mapping (location is selected in the gui, defaults to path under `/config`).
 * **30.01.20:** - Add nightly tag.
 * **09.01.20:** - Add Pi OpenMax support.
 * **02.10.19:** - Improve permission fixing for render & dvb devices.
