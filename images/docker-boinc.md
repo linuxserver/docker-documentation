@@ -24,6 +24,8 @@ The architectures supported by this image are:
 | Architecture | Tag |
 | :----: | --- |
 | x86-64 | latest |
+| arm64 | arm64v8-latest |
+| armhf | arm32v7-latest |
 
 
 ## Usage
@@ -169,5 +171,6 @@ We automatically add the necessary environment variable that will utilise all th
 
 ## Versions
 
+* **17.03.20:** - Add armhf and aarch64 builds and switch to multi-arch image.
 * **16.03.20:** - Clean up old pid files.
 * **15.03.20:** - Initial release.
