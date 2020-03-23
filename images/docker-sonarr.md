@@ -53,7 +53,7 @@ docker create \
   -e TZ=Europe/London \
   -e UMASK_SET=022 `#optional` \
   -p 8989:8989 \
-  -v <path to data>:/config \
+  -v <path/to/data>:/config \
   -v <path/to/tvseries>:/tv \
   -v <path/to/downloadclient-downloads>:/downloads \
   --restart unless-stopped \
@@ -78,7 +78,7 @@ services:
       - TZ=Europe/London
       - UMASK_SET=022 #optional
     volumes:
-      - <path to data>:/config
+      - <path/to/data>:/config
       - <path/to/tvseries>:/tv
       - <path/to/downloadclient-downloads>:/downloads
     ports:
@@ -111,8 +111,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Volume | Function |
 | :----: | --- |
 | `/config` | Database and sonarr configs |
-| `/tv` | Location of TV library on disk |
-| `/downloads` | Location of download managers output directory |
+| `/tv` | Location of TV library on disk (See note in Application setup) |
+| `/downloads` | Location of download managers output directory (See note in Application setup) |
 
 
 
@@ -132,6 +132,8 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 ## Application Setup
 
 Access the webui at `<your-ip>:8989`, for more information check out [Sonarr](https://sonarr.tv/).
+Special Note: Following our current folder structure will result in an inability to hardlink from your downloads to your TV folder because they are on seperate volumes. To support hardlinking, simply ensure that the TV and downloads data are on a single volume. For example, if you have /mnt/storage/TV and /mnt/storage/downloads/completed/TV, you would want something like /mnt/storage:/media for your volume. Then you can hardlink from /media/downloads/completed to /media/TV.
+Another item to keep in mind, is that within sonarr itself, you should then map your torrent client folder to your sonarr folder: Settings -> Download Client -> advanded -> remote path mappings. I input the host of my download client (matches the download client defined) remote path is /downloads/TV (relative to the internal container path) and local path is /media/downloads/completed/TV, assuming you have folders to seperate your downloaded data types.
 
 
 
