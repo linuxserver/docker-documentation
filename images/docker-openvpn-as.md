@@ -157,6 +157,7 @@ To ensure your devices can connect to your VPN properly, goto Configuration -> N
 
 ## Versions
 
+* **26.03.20:** - Switch to using the openvpn-as repo for packages.
 * **29.08.19:** - Update Application Setup instructions in readme to fix 2.7.5 login issue for existing users.
 * **27.08.19:** - Add new clients package to install and upgrade process.
 * **22.08.19:** - Prevent auto-start of openvpn after first time install, before configuration is completed.
