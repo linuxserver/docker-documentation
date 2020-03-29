@@ -119,8 +119,10 @@ Note that there are some things in the guide that does not apply to this contain
 
 The /data volume mapping is where WebGrab+Plus outputs the xml file. To use the xml file in another program, you have to point it to the host path you mapped the /data volume to.
 
-To adjust the scheduled cron job for grabbing, edit the wg-cron file found in the `/config` folder. After you have edited the the wg-cron file, restart the container to apply the new schedule.
+To adjust the scheduled cron job for grabbing, edit the wg3-cron file found in the `/config` folder. After you have edited the the wg3-cron file, restart the container to apply the new schedule.
 Do not adjust the command!
+
+**Note that due to something in version 3, we had to change the commands for scheduling the grab. If you have a version where there is a wg-cron file in your /config mount, delete it and use wg3-cron instead.**
 
 Below is the syntax of the cron file.
 
@@ -133,7 +135,7 @@ Below is the syntax of the cron file.
  │ │ │ │ │                                       7 is also Sunday on some systems)
  │ │ │ │ │
  │ │ │ │ │
- * * * * *  s6-setuidgid abc /bin/bash /defaults/update.sh
+ * * * * *  /bin/bash /defaults/update.sh
 ```
 
 
@@ -151,6 +153,7 @@ Below is the syntax of the cron file.
 
 ## Versions
 
+* **29.03.20:** - Update to v3.0.0. Changed to use wg3-cron file.
 * **28.05.19:** - Update to v2.1.0 and beta v2.1.9, rebase to bionic.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **21.03.19:** - Update to beta 2.1.7.
