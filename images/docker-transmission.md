@@ -165,6 +165,7 @@ The automatic update will run once a day at 3am local server time.
 
 ## Versions
 
+* **30.03.20:** - Internalize blocklist-update.sh.
 * **29.03.20:** - Update auth info in readme.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **04.10.19:** - Update package label.
