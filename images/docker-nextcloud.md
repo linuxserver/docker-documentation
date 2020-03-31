@@ -44,8 +44,8 @@ docker create \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -p 443:443 \
-  -v </path/to/appdata>:/config \
-  -v <path/to/data>:/data \
+  -v /path/to/appdata:/config \
+  -v /path/to/data:/data \
   --restart unless-stopped \
   linuxserver/nextcloud
 ```
@@ -67,8 +67,8 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - </path/to/appdata>:/config
-      - <path/to/data>:/data
+      - /path/to/appdata:/config
+      - /path/to/data:/data
     ports:
       - 443:443
     restart: unless-stopped
@@ -142,6 +142,7 @@ Then restart the container to replace it with the latest one.
 
 ## Versions
 
+* **31.03.20:** - Allow crontab to be user customized, fix logrotate.
 * **17.01.20:** - Updated php.ini defaults and site config, including an optional HSTS directive (existing users should delete `/config/nginx/site-confs/default` and restart the container).
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **18.11.19:** - Nginx default site config updated for v17 (existing users should delete `/config/nginx/site-confs/default` and restart the container).
