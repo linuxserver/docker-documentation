@@ -41,7 +41,7 @@ docker create \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -p 80:80 \
-  -v <path to data>:/config \
+  -v /path/to/data:/config \
   --restart unless-stopped \
   linuxserver/freshrss
 ```
@@ -63,7 +63,7 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - <path to data>:/config
+      - /path/to/data:/config
     ports:
       - 80:80
     restart: unless-stopped
@@ -111,7 +111,11 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Application Setup
 
-Create a user and database in your mysql/mariadb server (not root) and then follow the setup wizard in the webui. Use the IP address for "host" of your database server.
+Access the webui set up wizard at `http://serverIP:port`
+
+For external databases, create a user and database in your mysql/mariadb server (not root) and then follow the setup wizard in the webui. Use the IP address for "host" of your database server.  
+
+Additional extensions can be dropped into `/config/www/freshrss/extensions` and will be active after container restart.
 
 
 
@@ -128,6 +132,7 @@ Create a user and database in your mysql/mariadb server (not root) and then foll
 
 ## Versions
 
+* **31.03.20:** - Internalize app and enable updates for existing users, allow user customized crontab.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
