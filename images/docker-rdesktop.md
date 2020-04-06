@@ -166,4 +166,5 @@ All of these containers are configured with passwordless sudo, we make no effort
 
 ## Versions
 
+* **06.04.20:** - Start PulseAudio in images to support audio
 * **28.02.20:** - Initial Releases
