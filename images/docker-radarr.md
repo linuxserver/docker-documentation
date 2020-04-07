@@ -67,7 +67,7 @@ Compatible with docker-compose v2 schemas.
 
 ```yaml
 ---
-version: "2"
+version: "2.1"
 services:
   radarr:
     image: linuxserver/radarr
@@ -116,6 +116,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 
 
+
 ## User / Group Identifiers
 
 When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
@@ -137,6 +138,11 @@ Special Note: Following our current folder structure will result in an inability
 
 Another item to keep in mind, is that within radarr itself, you should then map your torrent client folder to your radarr folder: Settings -> Download Client -> advanced -> remote path mappings. I input the host of my download client (matches the download client defined) remote path is /downloads/Movies (relative to the internal container path) and local path is /media/downloads/completed/Movies, assuming you have folders to seperate your downloaded data types.
 
+
+## Docker Mods
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?style=for-the-badge&color=E68523&label=mods&query=%24.mods%5B%27radarr%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=radarr "view available mods for this container.")
+
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
 
 
 ## Support Info
