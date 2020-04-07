@@ -44,9 +44,11 @@ docker create \
   -e SERVERPORT=51820 `#optional` \
   -e PEERS=1 `#optional` \
   -e PEERDNS=8.8.8.8 `#optional` \
+  -e INTERNAL_SUBNET=10.13.13.0 `#optional` \
   -p 51820:51820/udp \
   -v /path/to/appdata/config:/config \
   -v /lib/modules:/lib/modules \
+  --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
   --restart unless-stopped \
   linuxserver/wireguard
 ```
@@ -57,6 +59,7 @@ docker create \
 Compatible with docker-compose v2 schemas.
 
 ```yaml
+---
 version: "2.1"
 services:
   wireguard:
@@ -73,6 +76,7 @@ services:
       - SERVERPORT=51820 #optional
       - PEERS=1 #optional
       - PEERDNS=8.8.8.8 #optional
+      - INTERNAL_SUBNET=10.13.13.0 #optional
     volumes:
       - /path/to/appdata/config:/config
       - /lib/modules:/lib/modules
@@ -81,7 +85,6 @@ services:
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
-
 ```
 
 ## Parameters
@@ -102,10 +105,11 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
-| `SERVERURL=wireguard.domain.com` | External IP or domain name for docker host. Required for server mode. |
-| `SERVERPORT=51820` | External port for docker host. Required for server mode. |
+| `SERVERURL=wireguard.domain.com` | External IP or domain name for docker host. Used in server mode. If set to `auto`, the container will try to determine and set the external IP automatically |
+| `SERVERPORT=51820` | External port for docker host. Used in server mode. |
 | `PEERS=1` | Number of peers to create confs for. Required for server mode. |
-| `PEERDNS=8.8.8.8` | DNS server set in peer/client configs. |
+| `PEERDNS=8.8.8.8` | DNS server set in peer/client configs. Used in server mode. |
+| `INTERNAL_SUBNET=10.13.13.0` | Internal subnet for the wireguard and server and peers (only change if it clashes). Used in server mode. |
 
 ### Volume Mappings (`-v`)
 
@@ -114,6 +118,11 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `/config` | Contains all relevant configuration files. |
 | `/lib/modules` | Maps host's modules folder. |
 
+
+#### Miscellaneous Options
+| Parameter | Function |
+| :-----:   | --- |
+| `--sysctl=` | Required for client mode. |
 
 
 ## User / Group Identifiers
@@ -138,17 +147,24 @@ If you're on a debian/ubuntu based host with a custom or downstream distro provi
 This can be run as a server or a client, based on the parameters used. 
 
 ## Server Mode
-Pass the environment variables `SERVERURL`, `SERVERPORT`, `PEERS` and `PEERDNS`, and the container will generate all necessary confs for both the server and the clients. The client config qr codes will be output in the docker log. They will also be saved in text and png format under `/config/peerX`.
+If the environment variable `PEERS` is set to a number, the container will run in server mode and the necessary server and peer/client confs will be generated. The peer/client config qr codes will be output in the docker log. They will also be saved in text and png format under `/config/peerX`.
 
-If there is an existing `/config/wg0.conf`, the above environment variables won't have any affect. To add more peers/clients later on, you can run `docker exec -it wireguard /app/add-peer` while the container is running.
+Variables `SERVERURL`, `SERVERPORT`, `INTERNAL_SUBNET` and `PEERDNS` are optional variables used for server mode. Any changes to these environment variables will trigger regeneration of server and peer confs. Peer/client confs will be recreated with existing private/public keys. Delete the peer folders for the keys to be recreated along with the confs.
+
+To add more peers/clients later on, you can run `docker exec -it wireguard /app/add-peer` while the container is running.
 
 To display the QR codes of active peers again, you can use the following command and list the peer numbers as arguments: `docker exec -it wireguard /app/show-peer 1 4 5` (Keep in mind that the QR codes are also stored as PNGs in the config folder).
 
-To recreate all server and client confs, set the above env vars, delete `/config/wg0.conf` and restart the container. Client confs will be recreated with existing private/public keys. Delete the peer folders for the keys to be recreated along with the confs.
+The templates used for server and peer confs are saved under `/config/templates`. Advanced users can modify these templates and force conf generation by deleting `/config/wg0.conf` and restarting the container.
 
 ## Client Mode
-Drop your client conf into the config folder as `/config/wg0.conf` and start the container. 
+Do not set the `PEERS` environment variable. Drop your client conf into the config folder as `/config/wg0.conf` and start the container. 
 
+
+## Docker Mods
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?style=for-the-badge&color=E68523&label=mods&query=%24.mods%5B%27wireguard%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=wireguard "view available mods for this container.")
+
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
 
 
 ## Support Info
@@ -164,5 +180,6 @@ Drop your client conf into the config folder as `/config/wg0.conf` and start the
 
 ## Versions
 
+* **05.04.20:** - Add `INTERNAL_SUBNET` variable to prevent subnet clashes. Add templates for server and peer confs.
 * **01.04.20:** - Add `show-peer` script and include info on host installed headers.
 * **31.03.20:** - Initial Release.
