@@ -16,9 +16,11 @@ If you need to test functionality just navigate to the folder with the jenkins-v
 docker run --rm \
   -v $(pwd):/tmp \
   -e LOCAL=true \
-  linuxserver/jenkins-builder:latest
+  -e PUID=$(id -u) -e PGID=$(id -g) \
+  linuxserver/jenkins-builder:latest && \
+rm -f "$(basename $PWD).md"
 ```
-The output will be in a GENERATED.Jenkinsfile in your current working directory.
+Newly generated files (including `README.md`, `Jenkinsfile`, issue templates, etc.) will overwrite the existing files in your current working directory.
 
 The following line is only in this repo for loop testing:
 
