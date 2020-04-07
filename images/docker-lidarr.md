@@ -64,7 +64,7 @@ Compatible with docker-compose v2 schemas.
 
 ```yaml
 ---
-version: "2"
+version: "2.1"
 services:
   lidarr:
     image: linuxserver/lidarr
@@ -113,6 +113,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 
 
+
 ## User / Group Identifiers
 
 When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
@@ -132,6 +133,11 @@ Access the webui at `<your-ip>:8686`, for more information check out [Lidarr](ht
 Special Note: Following our current folder structure will result in an inability to hardlink from your downloads to your Music folder because they are on seperate volumes. To support hardlinking, simply ensure that the Music and downloads data are on a single volume. For example, if you have /mnt/storage/Music and /mnt/storage/downloads/completed/Music, you would want something like /mnt/storage:/media for your volume. Then you can hardlink from /media/downloads/completed to /media/Music.
 Another item to keep in mind, is that within lidarr itself, you should then map your torrent client folder to your lidarr folder: Settings -> Download Client -> advanded -> remote path mappings. I input the host of my download client (matches the download client defined) remote path is /downloads/Music (relative to the internal container path) and local path is /media/downloads/completed/Music, assuming you have folders to seperate your downloaded data types.
 
+
+## Docker Mods
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?style=for-the-badge&color=E68523&label=mods&query=%24.mods%5B%27lidarr%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=lidarr "view available mods for this container.")
+
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
 
 
 ## Support Info
