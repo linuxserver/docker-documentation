@@ -53,7 +53,7 @@ Compatible with docker-compose v2 schemas.
 
 ```yaml
 ---
-version: "2"
+version: "2.1"
 services:
   pydio-cells:
     image: linuxserver/pydio-cells
@@ -98,6 +98,11 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `/config` | All the config files reside here. |
 
 
+#### Miscellaneous Options
+| Parameter | Function |
+| :-----:   | --- |
+| `--hostname=` | Pydio Cells uses the hostname to verify local files. This setting is required and should not be changed after it has been set. |
+
 
 ## User / Group Identifiers
 
@@ -116,6 +121,11 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 You must first create a mysql database for Pydio Cells. Using our [mariadb image](https://hub.docker.com/r/linuxserver/mariadb) is recommended.  
 
+
+## Docker Mods
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?style=for-the-badge&color=E68523&label=mods&query=%24.mods%5B%27pydio-cells%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=pydio-cells "view available mods for this container.")
+
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
 
 
 ## Support Info
