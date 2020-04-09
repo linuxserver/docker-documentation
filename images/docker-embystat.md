@@ -134,6 +134,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **08.04.20:** - Structural changes for beta18.
 * **04.12.19:** - Disable in app updates.
 * **12.11.19:** - Multi-arch builds.
 * **10.09.19:** - Initial Release.
