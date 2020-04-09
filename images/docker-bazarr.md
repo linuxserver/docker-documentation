@@ -149,7 +149,8 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
-* **28.12.19** - Upgrade to Python 3.
+* **08.04.20:** - Removed /movies and /tv volumes from Dockerfiles.
+* **28.12.19:** - Upgrade to Python 3.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **13.06.19:** - Add env variable for setting umask.
