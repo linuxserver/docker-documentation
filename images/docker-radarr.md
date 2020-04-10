@@ -158,6 +158,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **05.04.20:** - Move app to /app.
 * **01.08.19:** - Rebase to Linuxserver LTS mono version.
 * **13.06.19:** - Add env variable for setting umask.
 * **10.05.19:** - Rebase to Bionic.
