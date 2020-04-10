@@ -63,6 +63,7 @@ docker create \
   -p 3389:3389 \
   -v /var/run/docker.sock:/var/run/docker.sock `#optional` \
   -v /path/to/data:/config `#optional` \
+  --shm-size="1gb" `#optional` \
   --restart unless-stopped \
   linuxserver/rdesktop
 ```
@@ -74,7 +75,7 @@ Compatible with docker-compose v2 schemas.
 
 ```yaml
 ---
-version: "2"
+version: "2.1"
 services:
   rdesktop:
     image: linuxserver/rdesktop
@@ -90,6 +91,7 @@ services:
       - /path/to/data:/config #optional
     ports:
       - 3389:3389
+    shm_size: "1gb" #optional
     restart: unless-stopped
 ```
 
@@ -119,6 +121,11 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `/var/run/docker.sock` | Docker Socket on the system, if you want to use Docker in the container |
 | `/config` | abc users home directory |
 
+
+#### Miscellaneous Options
+| Parameter | Function |
+| :-----:   | --- |
+| `--shm-size=` | We set this to 1 gig to prevent modern web browsers from crashing |
 
 
 ## User / Group Identifiers
@@ -151,6 +158,11 @@ docker exec -it rdesktop passwd abc
 By default we perform all logic for the abc user and we reccomend using that user only in the container, but new users can be added as long as there is a `startwm.sh` executable script in their home directory.
 All of these containers are configured with passwordless sudo, we make no efforts to secure or harden these containers and we do not reccomend ever publishing their ports to the public Internet. 
 
+
+## Docker Mods
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?style=for-the-badge&color=E68523&label=mods&query=%24.mods%5B%27rdesktop%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=rdesktop "view available mods for this container.")
+
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
 
 
 ## Support Info
