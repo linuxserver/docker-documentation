@@ -56,7 +56,7 @@ Compatible with docker-compose v2 schemas.
 
 ```yaml
 ---
-version: "2"
+version: "2.1"
 services:
   boinc:
     image: linuxserver/boinc
@@ -109,6 +109,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `/dev/dri` | Only needed if you want to use your Intel GPU (vaapi). |
 
 
+
 ## User / Group Identifiers
 
 When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
@@ -156,6 +157,11 @@ Hardware acceleration users for Nvidia will need to install the container runtim
 https://github.com/NVIDIA/nvidia-docker
 We automatically add the necessary environment variable that will utilise all the features available on a GPU on the host. Once nvidia-docker is installed on your host you will need to re/create the docker container with the nvidia container runtime `--runtime=nvidia` and add an environment variable `-e NVIDIA_VISIBLE_DEVICES=all` (can also be set to a specific gpu's UUID, this can be discovered by running `nvidia-smi --query-gpu=gpu_name,gpu_uuid --format=csv` ). NVIDIA automatically mounts the GPU and drivers from your host into the BOINC docker container.
 
+
+## Docker Mods
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?style=for-the-badge&color=E68523&label=mods&query=%24.mods%5B%27boinc%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=boinc "view available mods for this container.")
+
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
 
 
 ## Support Info
