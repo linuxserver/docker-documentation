@@ -52,7 +52,7 @@ Compatible with docker-compose v2 schemas.
 
 ```yaml
 ---
-version: "2"
+version: "2.1"
 services:
   foldingathome:
     image: linuxserver/foldingathome
@@ -98,6 +98,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 
 
+
 ## User / Group Identifiers
 
 When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
@@ -117,6 +118,10 @@ This image sets up the Folding@home client. The interface is available at `http:
 
 The built-in webserver provides very basic control (ie. GPUs are only active when set to `Medium` or higher). For more fine grained control of individual devices, you can use the FAHControl app on a different device and connect remotely via port `36330` (no password).
 
+There are a couple of minor issues with the webgui:
+- If you get an "ERR_EMPTY_RESPONSE" error when trying to access via IP, it's most likely due to a clash of cookies/cache. Try opening in an incgnito window.
+- If you're getting a constant refresh of the window but no display of info, try a force refresh via `shft-F5` or `ctrl-F5`.
+
 ## GPU Hardware Acceleration
 
 ### Nvidia
@@ -125,6 +130,11 @@ Hardware acceleration users for Nvidia will need to install the container runtim
 https://github.com/NVIDIA/nvidia-docker
 We automatically add the necessary environment variable that will utilise all the features available on a GPU on the host. Once nvidia-docker is installed on your host you will need to re/create the docker container with the nvidia container runtime `--runtime=nvidia` and add an environment variable `-e NVIDIA_VISIBLE_DEVICES=all` (can also be set to a specific gpu's UUID, this can be discovered by running `nvidia-smi --query-gpu=gpu_name,gpu_uuid --format=csv` ). NVIDIA automatically mounts the GPU and drivers from your host into the foldingathome docker container.
 
+
+## Docker Mods
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?style=for-the-badge&color=E68523&label=mods&query=%24.mods%5B%27foldingathome%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=foldingathome "view available mods for this container.")
+
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
 
 
 ## Support Info
@@ -140,4 +150,5 @@ We automatically add the necessary environment variable that will utilise all th
 
 ## Versions
 
+* **14.04.20:** - Add Folding@home donation links.
 * **20.03.20:** - Initial release.
