@@ -149,6 +149,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **14.04.20:** - Add Ombi donate links.
 * **10.05.19:** - Added an optional env variable for base url setting.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **22.02.19:** - Clarify info on tags and development builds.
