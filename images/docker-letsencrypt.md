@@ -212,6 +212,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **13.04.20:** - Update cloudflare.ini with token info.
 * **11.03.20:** - Add php7-sodium.
 * **06.03.20:** - Implement cert renewal attempt during container start (only if the cert is already expired or will expire within the next 24 hours, otherwise it will be attempted at 2:08am).
 * **05.03.20:** - Use port and proto upstream variables for ldap and default sample confs.
