@@ -40,7 +40,9 @@ docker create \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -e EXTERNALURL=yourdomain.url \
+  -e SERVER_IP=0.0.0.0 `#optional` \
   -p 8080:8080 \
+  -p 33060:33060 `#optional` \
   -v /path/to/appdata/config:/config \
   --restart unless-stopped \
   linuxserver/pydio-cells
@@ -64,10 +66,13 @@ services:
       - PGID=1000
       - TZ=Europe/London
       - EXTERNALURL=yourdomain.url
+      - SERVER_IP=0.0.0.0 #optional
     volumes:
       - /path/to/appdata/config:/config
     ports:
       - 8080:8080
+    ports:
+      - 33060:33060 #optional
     restart: unless-stopped
 ```
 
@@ -80,6 +85,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Parameter | Function |
 | :----: | --- |
 | `8080` | Http port |
+| `33060` | gRPC port (required for CellsSync). |
 
 
 ### Environment Variables (`-e`)
@@ -89,7 +95,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
-| `EXTERNALURL=yourdomain.url` | The external url you would like to use to access Pydio Cells (Can be https://domain.url or http://IP:PORT). |
+| `EXTERNALURL=yourdomain.url` | The external url you would like to use to access Pydio Cells (Can be https://domain.url or https://IP:PORT). |
+| `SERVER_IP=0.0.0.0` | Enter the LAN IP of the docker server. Required for local access by IP, added to self signed cert as SAN (not required if accessing only through reverse proxy). |
 
 ### Volume Mappings (`-v`)
 
@@ -121,7 +128,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 You must first create a mysql database for Pydio Cells. Using our [mariadb image](https://hub.docker.com/r/linuxserver/mariadb) is recommended.  
 
-Then access the web gui setup wizard at `http://SERVER_IP:8080`
+Then access the web gui setup wizard at `https://SERVER_IP:8080` if accessing locally (must set `SERVER_IP` env var), or at `https://pydio-cells.domain.com` if reverse proxying.
 
 
 ## Docker Mods
@@ -143,6 +150,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **18.04.20:** - Switch to https as default (only affects new installs). Add self signed cert, add `SERVER_IP` var for adding to cert as SAN. Add optional gRPC port mapping for CellsSync.
 * **17.04.20:** - Update compile options, previous release was broken for new installs.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **12.12.19:** - Initial Release
