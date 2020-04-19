@@ -11,6 +11,8 @@
 [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-hydra2/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-hydra2/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/hydra2/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/hydra2/latest/index.html)
 
+THIS IMAGE IS DEPRECATED. We will continue releases with a new image under the correct name: linuxserver/nzbhydra2.
+
 [Hydra2](https://github.com/theotherp/nzbhydra2) is a meta search application for NZB indexers, the "spiritual successor" to NZBmegasearcH, and an evolution of the original application [NZBHydra](https://github.com/theotherp/nzbhydra).
 
 It provides easy access to a number of raw and newznab based indexers. The application NZBHydra 2 is replacing NZBHydra 1 and supports migrating from V1. Be wary that there may be some compatibility issues for those migrating from V1 to V2, so ensure you back up your old configuration before moving over to the new version. **NOTE:** The last version that supports migration is `linuxserver/hydra2:v2.10.2-ls49`
@@ -148,6 +150,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **19.04.20:** - Deprecated. New repo at `linuxserver/docker-nzbhydra2`.
 * **08.01.20:** - Switch to python3.
 * **05.01.20:** - Add dev tag for prereleases.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
