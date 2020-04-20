@@ -34,7 +34,7 @@
 * [linuxserver/deluge](images/docker-deluge.md)
 * [linuxserver/dillinger](images/docker-dillinger.md)
 * [linuxserver/diskover](images/docker-diskover.md)
-* [linuxserver/docuwiki](images/docker-docuwiki.md)
+* [linuxserver/dokuwiki](images/docker-dokuwiki.md)
 * [linuxserver/domoticz](images/docker-domoticz.md)
 * [linuxserver/duckdns](images/docker-duckdns.md)
 * [linuxserver/duplicati](images/docker-duplicati.md)
