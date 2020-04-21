@@ -52,7 +52,7 @@ docker create \
   -e SUPERUSER_EMAIL=<SUPERUSER_EMAIL> \
   -e SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD> \
   -p 8000:8000 \
-  -v <path to data>:/config \
+  -v <path to data on host>:/config \
   --restart unless-stopped \
   linuxserver/healthchecks
 ```
@@ -84,7 +84,7 @@ services:
       - SUPERUSER_EMAIL=<SUPERUSER_EMAIL>
       - SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD>
     volumes:
-      - <path to data>:/config
+      - <path to data on host>:/config
     ports:
       - 8000:8000
     restart: unless-stopped
@@ -107,15 +107,15 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `SITE_ROOT=<SITE_ROOT>` | The site's domain (i.e., example.com) |
-| `SITE_NAME=<SITE_NAME>` | The site's name |
+| `SITE_ROOT=<SITE_ROOT>` | The site's top-level URL (e.g., https://healthchecks.example.com) |
+| `SITE_NAME=<SITE_NAME>` | The site's name (e.g., "Example Corp HealthChecks") |
 | `DEFAULT_FROM_EMAIL=<DEFAULT_FROM_EMAIL>` | From email for alerts |
 | `EMAIL_HOST=<EMAIL_HOST>` | SMTP host |
 | `EMAIL_PORT=<EMAIL_PORT>` | SMTP port |
 | `EMAIL_HOST_USER=<EMAIL_HOST_USER>` | SMTP user |
 | `EMAIL_HOST_PASSWORD=<EMAIL_HOST_PASSWORD>` | SMTP password |
-| `EMAIL_USE_TLS=<EMAIL_USE_TLS>` | Use TLS for SMTP |
-| `ALLOWED_HOSTS=<ALLOWED_HOSTS>` | array of valid hostnames for the server ["test.com","test2.com"] |
+| `EMAIL_USE_TLS=<EMAIL_USE_TLS>` | Use TLS for SMTP (`True` or `False`) |
+| `ALLOWED_HOSTS=<ALLOWED_HOSTS>` | array of valid hostnames for the server `["test.com","test2.com"]` or `"*"` |
 | `SUPERUSER_EMAIL=<SUPERUSER_EMAIL>` | Superuser emai |
 | `SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD>` | Superuser password |
 
@@ -123,7 +123,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | database and healthchecks config |
+| `/config` | database and healthchecks config directory volume mapping |
 
 
 
