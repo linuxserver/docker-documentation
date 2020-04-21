@@ -47,7 +47,7 @@ docker create \
   -e EMAIL_PORT=<EMAIL_PORT> \
   -e EMAIL_HOST_USER=<EMAIL_HOST_USER> \
   -e EMAIL_HOST_PASSWORD=<EMAIL_HOST_PASSWORD> \
-  -e EMAIL_USE_TLS=<EMAIL_USE_TLS> \
+  -e EMAIL_USE_TLS=<True or False> \
   -e ALLOWED_HOSTS=<ALLOWED_HOSTS> \
   -e SUPERUSER_EMAIL=<SUPERUSER_EMAIL> \
   -e SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD> \
@@ -79,7 +79,7 @@ services:
       - EMAIL_PORT=<EMAIL_PORT>
       - EMAIL_HOST_USER=<EMAIL_HOST_USER>
       - EMAIL_HOST_PASSWORD=<EMAIL_HOST_PASSWORD>
-      - EMAIL_USE_TLS=<EMAIL_USE_TLS>
+      - EMAIL_USE_TLS=<True or False>
       - ALLOWED_HOSTS=<ALLOWED_HOSTS>
       - SUPERUSER_EMAIL=<SUPERUSER_EMAIL>
       - SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD>
@@ -114,9 +114,9 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `EMAIL_PORT=<EMAIL_PORT>` | SMTP port |
 | `EMAIL_HOST_USER=<EMAIL_HOST_USER>` | SMTP user |
 | `EMAIL_HOST_PASSWORD=<EMAIL_HOST_PASSWORD>` | SMTP password |
-| `EMAIL_USE_TLS=<EMAIL_USE_TLS>` | Use TLS for SMTP (`True` or `False`) |
+| `EMAIL_USE_TLS=<True or False>` | Use TLS for SMTP (`True` or `False`) |
 | `ALLOWED_HOSTS=<ALLOWED_HOSTS>` | array of valid hostnames for the server `["test.com","test2.com"]` or `"*"` |
-| `SUPERUSER_EMAIL=<SUPERUSER_EMAIL>` | Superuser emai |
+| `SUPERUSER_EMAIL=<SUPERUSER_EMAIL>` | Superuser email |
 | `SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD>` | Superuser password |
 
 ### Volume Mappings (`-v`)
