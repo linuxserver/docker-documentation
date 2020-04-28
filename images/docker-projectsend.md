@@ -118,9 +118,9 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Application Setup
 
-Requires a user and database in either mssql, mysql or mariadb.
+*IMPORTANT* This image no longer supports MSSQL since being migrated to PHP7, if you want MSSQL support please use the tag `linuxserver/projectsend:r1053-ls27`
 
-On first run go to `<your-ip>/install/make-config.php` and enter your database details.
+Requires a user and database in either mysql or mariadb.
 
 More info at [ProjectSend](http://www.projectsend.org).
 
@@ -144,6 +144,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **31.12.19:** - Rebase to Alpine 3.11 and upgrade to PHP7.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **11.02.19:** - Add pipeline logic and multi arch.
 * **11.06.17:** - Fetch version from github.
