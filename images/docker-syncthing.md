@@ -1,15 +1,6 @@
-# [linuxserver/syncthing](https://github.com/linuxserver/docker-syncthing)
+# linuxserver/syncthing
 
-[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-syncthing.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-syncthing)
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-syncthing.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-syncthing/releases)
-[![GitHub Package Repository](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitHub%20Package&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-syncthing/packages)
-[![GitLab Container Registry](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab&logoColor=FFFFFF)](https://gitlab.com/Linuxserver.io/docker-syncthing/container_registry)
-[![Quay.io](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/syncthing)
-[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/syncthing.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/syncthing "Get your own version badge on microbadger.com")
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/syncthing.svg?style=flat-square&color=E68523&label=pulls&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/syncthing)
-[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/syncthing.svg?style=flat-square&color=E68523&label=stars&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/syncthing)
-[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-syncthing/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-syncthing/job/master/)
-[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/syncthing/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/syncthing/latest/index.html)
+[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-syncthing.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-syncthing) [![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-syncthing.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-syncthing/releases) [![GitHub Package Repository](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitHub%20Package&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-syncthing/packages) [![GitLab Container Registry](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab&logoColor=FFFFFF)](https://gitlab.com/Linuxserver.io/docker-syncthing/container_registry) [![Quay.io](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/syncthing) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/syncthing.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/syncthing) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/syncthing.svg?style=flat-square&color=E68523&label=pulls&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/syncthing) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/syncthing.svg?style=flat-square&color=E68523&label=stars&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/syncthing) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-syncthing/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-syncthing/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/syncthing/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/syncthing/latest/index.html)
 
 [Syncthing](https://syncthing.net) replaces proprietary sync and cloud services with something open, trustworthy and decentralized. Your data is your data alone and you deserve to choose where it is stored, if it is shared with some third party and how it's transmitted over the Internet.
 
@@ -22,11 +13,10 @@ Simply pulling `linuxserver/syncthing` should retrieve the correct image for you
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :----: | --- |
+| :---: | :--- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
-
 
 ## Usage
 
@@ -34,7 +24,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```
+```text
 docker create \
   --name=syncthing \
   -e PUID=1000 \
@@ -50,7 +40,6 @@ docker create \
   --restart unless-stopped \
   linuxserver/syncthing
 ```
-
 
 ### docker-compose
 
@@ -81,59 +70,55 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports (`-p`)
+### Ports \(`-p`\)
 
 | Parameter | Function |
-| :----: | --- |
+| :---: | :--- |
 | `8384` | Application WebUI |
 | `22000` | Listening port |
 | `21027/udp` | Protocol discovery |
 
-
-### Environment Variables (`-e`)
+### Environment Variables \(`-e`\)
 
 | Env | Function |
-| :----: | --- |
+| :---: | :--- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 | `UMASK_SET=<022>` | Umask setting - [explanation](https://askubuntu.com/questions/44542/what-is-umask-and-how-does-it-work) |
 
-### Volume Mappings (`-v`)
+### Volume Mappings \(`-v`\)
 
 | Volume | Function |
-| :----: | --- |
+| :---: | :--- |
 | `/config` | Configuration files. |
 | `/data1` | Data1 |
 | `/data2` | Data2 |
 
-
-
-
 ## User / Group Identifiers
 
-When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```
+```text
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
 
-**Note: ** The Syncthing devs highly suggest setting a password for this container as it listens on 0.0.0.0. To do this go to `Actions -> Settings -> set user/password` for the webUI.
+**Note:**  The Syncthing devs highly suggest setting a password for this container as it listens on 0.0.0.0. To do this go to `Actions -> Settings -> set user/password` for the webUI.
 
 ## Docker Mods
-[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?style=for-the-badge&color=E68523&label=mods&query=%24.mods%5B%27syncthing%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=syncthing "view available mods for this container.")
 
-We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?style=for-the-badge&color=E68523&label=mods&query=%24.mods%5B%27syncthing%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=syncthing)
 
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image \(if any\) can be accessed via the dynamic badge above.
 
 ## Support Info
 
@@ -157,7 +142,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * **30.07.18:** - Rebase to alpine 3.8 and use buildstage.
 * **13.12.17:** - Rebase to alpine 3.7.
 * **25.10.17:** - Add env for manual setting of umask.
-* **29.07.17:** - Simplify build structure as symlinks failing on > 0.14.32
+* **29.07.17:** - Simplify build structure as symlinks failing on &gt; 0.14.32
 * **28.05.17:** - Rebase to alpine 3.6.
 * **08.02.17:** - Rebase to alpine 3.5.
 * **01.11.16:** - Switch to compiling latest version from git source.
@@ -166,5 +151,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * **09.09.16:** - Add layer badges to README.
 * **28.08.16:** - Add badges to README.
 * **11.08.16:** - Rebase to alpine linux.
-* **18.12.15:** - Initial testing / release (IronicBadger)
-* **24.09.15:** - Inital dev complete (Lonix)
+* **18.12.15:** - Initial testing / release \(IronicBadger\)
+* **24.09.15:** - Inital dev complete \(Lonix\)
+

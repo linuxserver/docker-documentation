@@ -8,7 +8,7 @@ description: >-
 
 ## How Fleet works
 
-Fleet stores a snapshot of Docker Images in its own database, consisting of metadata deemed most pertinent to both the users of the images, and the repository owner. It will synchronise with Docker Hub over a set interval in order to update its stored data.
+Fleet stores a snapshot of Docker Images in its own database, consisting of metadata deemed most pertinent to both the users of the images, and the repository owner. It will synchronize with Docker Hub over a set interval in order to update its stored data.
 
 It then displays this snapshot data on its own status page as a useful list, containing links to each repository and image owned by the repository owner. Each image also contains a status which is managed by the repository owner, who can define images as either _Stable_ or _Unstable_. This is designed to quickly help users know when an image is undergoing a state of instability which is known by the owner.
 
@@ -49,7 +49,7 @@ Get All Repositories and Images
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Returns all synchronised images.
+Returns all synchronized images.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -58,7 +58,7 @@ Returns all synchronised images.
 {% api-method-response %}
 {% api-method-response-example httpCode=200 %}
 {% api-method-response-example-description %}
-All synchronised repositories and images returned.
+All synchronized repositories and images returned.
 {% endapi-method-response-example-description %}
 
 ```javascript
@@ -108,13 +108,13 @@ All synchronised repositories and images returned.
 {% endapi-method %}
 
 {% hint style="info" %}
-Any repositories not synchronised with Docker Hub \(e.g. staging or metadata repositories\) will not be returned as part of the API. This also applies to images which the repository owner does not wish to be part of the primary image list.
+Any repositories not synchronized with Docker Hub \(e.g. staging or metadata repositories\) will not be returned as part of the API. This also applies to images which the repository owner does not wish to be part of the primary image list.
 {% endhint %}
 
 ## Running Fleet
 
 {% hint style="warning" %}
-Fleet is a Java application, so requires at least JRE 1.8.
+Fleet is a Java application and requires at least JRE 11.
 {% endhint %}
 
 Grab the latest Fleet release from [GitHub](https://github.com/linuxserver/fleet/releases).
@@ -138,15 +138,6 @@ All primary configuration for Fleet at runtime is loaded in via a `fleet.propert
 ```bash
 # Runtime
 fleet.app.port=8080
-fleet.refresh.interval=60
-
-# If set to DATABASE, fleet.admin.username and fleet.admin.password are not used.
-fleet.admin.authentication.type=PROPERTIES|DATABASE
-fleet.admin.secret=<your_secret_string>
-
-# User for management of images and repositories
-fleet.admin.username=test
-fleet.admin.password=test
 
 # Database Connectivity
 fleet.database.driver=org.mariadb.jdbc.Driver
@@ -154,9 +145,8 @@ fleet.database.url=jdbc:mariadb://<IP_OR_URL>:3306/fleet
 fleet.database.username=<fleet_sql_user>
 fleet.database.password=<fleet_sql_password>
 
-# Docker Hub
-fleet.dockerhub.username=<username_for_your_dockerhub_account>
-fleet.dockerhub.password=<password_for_your_dockerhub_account>
+# Password security
+fleet.admin.secret=<a_random_string>
 ```
 
 All configuration can be loaded either via the config file, via JVM arguments, or via the system environment. Fleet will first look in the configuration file, then JVM runtime, and finally in the system environment. It will load the first value it finds, which can be useful when needing to override specific properties.
@@ -167,71 +157,14 @@ If you place a property in the system environment, ensure that the property uses
 
 | Property Name | Purpose |
 | :--- | :--- |
-
-
 | `fleet.app.port` | The port which the application will be running under. |
-| :--- | :--- |
-
-
-| `fleet.refresh.interval` | How often the application should synchronise with Docker Hub to update its list of known images. **This is in minutes**. |
-| :--- | :--- |
-
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left"><code>fleet.admin.authentication.type</code>
-      </th>
-      <th style="text-align:left">
-        <p>Which method to use when authentication users. There are two options:</p>
-        <ul>
-          <li><code>PROPERTIES</code>
-          </li>
-          <li><code>DATABASE</code>.</li>
-        </ul>
-        <p>If you specify <code>PROPERTIES</code>, ensure <code>fleet.admin.username</code> and <code>fleet.admin.password</code> are
-          set (see below). If you specify <code>DATABASE</code>, the application will
-          use its own Users table to provide the persistence of an authenticated
-          user. The password is hashed using a strong key derivation function (PBKDF2).</p>
-      </th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>| `fleet.admin.secret` | A string used as part of the password key derivation process. This secret is prepended to the raw password before its key is derived, providing further pseudo-randomness to hashed passwords. **Once set, this must not be changed!** It is vital to remain the same, as it will be used during the password verification step. If Fleet is restarted with this removed or set differently, the password verification process will fail because previously hashed passwords will have been derived with the old secret. |
-| :--- | :--- |
-
-
-| `fleet.admin.username` | The username of the administrator who will be managing the application. |
-| :--- | :--- |
-
-
-| `fleet.admin.password` | A plain-text password for the administrator user. |
-| :--- | :--- |
-
-
+| `fleet.admin.secret` | A string used as part of the password key derivation process. This secret is prepended to the raw password before its key is derived, providing further pseudo-randomness to hashed passwords. **Once set, this must not be changed!** It is vital to remain the same, as it will be used during the password verification step. If Fleet is restarted with this removed or set differently, the password verification process will fail because previously hashed passwords will have been derived with the old secret. |
 | `fleet.database.driver` | The driver to use for connections to Fleet's database. This should be `org.mariadb.jdbc.Driver` |
-| :--- | :--- |
-
-
 | `fleet.database.url` | The full JDBC connection string to the database. |
-| :--- | :--- |
-
-
 | `fleet.database.username` | The username of the SQL user which will be managing the data in the Fleet database. **This should have full GRANT access** to the fleet database as it also manages any database migrations. |
-| :--- | :--- |
-
-
 | `fleet.database.password` | The password for the SQL user |
-| :--- | :--- |
 
-
-| `fleet.dockerhub.username` | The username for the Docker Hub repository owner. |
-| :--- | :--- |
-
-
-| `fleet.dockerhub.password` | The password for the Docker Hub repository owner. |
-| :--- | :--- |
-
+### Runtime Arguments
 
 As well as the base configuration file, Fleet also supports some runtime arguments by means of the `-D` flag. These can be used to direct Fleet to behave in a specific way at runtime.
 
