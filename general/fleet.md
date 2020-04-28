@@ -43,7 +43,7 @@ If the maintainer of the image, or upstream application no longer wishes to prov
 
 Fleet exposes a single API endpoint which can be used to obtain image list and pull count information for all relevant images maintained by the repository
 
-{% api-method method="get" host="https://fleet.base.url" path="/api/v1/images" %}
+{% api-method method="get" host="https://fleet.linuxserver.io" path="/api/v1/images" %}
 {% api-method-summary %}
 Get All Repositories and Images
 {% endapi-method-summary %}
