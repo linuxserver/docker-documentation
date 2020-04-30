@@ -1,6 +1,15 @@
-# linuxserver/deluge
+# [linuxserver/deluge](https://github.com/linuxserver/docker-deluge)
 
-[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-deluge.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-deluge) [![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-deluge.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-deluge/releases) [![GitHub Package Repository](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitHub%20Package&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-deluge/packages) [![GitLab Container Registry](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab&logoColor=FFFFFF)](https://gitlab.com/Linuxserver.io/docker-deluge/container_registry) [![Quay.io](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/deluge) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/deluge.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/deluge) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/deluge.svg?style=flat-square&color=E68523&label=pulls&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/deluge) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/deluge.svg?style=flat-square&color=E68523&label=stars&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/deluge) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-deluge/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-deluge/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/deluge/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/deluge/latest/index.html)
+[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-deluge.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-deluge)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-deluge.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-deluge/releases)
+[![GitHub Package Repository](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitHub%20Package&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-deluge/packages)
+[![GitLab Container Registry](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab&logoColor=FFFFFF)](https://gitlab.com/Linuxserver.io/docker-deluge/container_registry)
+[![Quay.io](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/deluge)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/deluge.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/deluge "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/deluge.svg?style=flat-square&color=E68523&label=pulls&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/deluge)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/deluge.svg?style=flat-square&color=E68523&label=stars&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/deluge)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-deluge/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-deluge/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/deluge/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/deluge/latest/index.html)
 
 [Deluge](http://deluge-torrent.org/) is a lightweight, Free Software, cross-platform BitTorrent client.
 
@@ -8,6 +17,7 @@
 * WebUI
 * Plugin System
 * Much more...
+
 
 ## Supported Architectures
 
@@ -18,10 +28,11 @@ Simply pulling `linuxserver/deluge` should retrieve the correct image for your a
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :---: | :--- |
+| :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
+
 
 ## Usage
 
@@ -29,7 +40,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```text
+```
 docker create \
   --name=deluge \
   --net=host \
@@ -43,6 +54,7 @@ docker create \
   --restart unless-stopped \
   linuxserver/deluge
 ```
+
 
 ### docker-compose
 
@@ -70,63 +82,65 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports \(`-p`\)
-
-| Parameter | Function |
-| :---: | :--- |
-
-
-#### Networking \(`--net`\)
+### Ports (`-p`)
 
 | Parameter | Function |
-| :---: | :--- |
+| :----: | --- |
+
+#### Networking (`--net`)
+| Parameter | Function |
+| :-----:   | --- |
 | `--net=host` | Shares host networking with container, **required**. |
 
-### Environment Variables \(`-e`\)
+### Environment Variables (`-e`)
 
 | Env | Function |
-| :---: | :--- |
+| :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=<timezone>` | Specify a timezone to use EG Europe/London |
 | `UMASK_SET=022` | for umask setting of deluge, default if left unset is 022 |
 | `DELUGE_LOGLEVEL=error` | set the loglevel output when running Deluge, default is info for deluged and warning for delgued-web |
 
-### Volume Mappings \(`-v`\)
+### Volume Mappings (`-v`)
 
 | Volume | Function |
-| :---: | :--- |
+| :----: | --- |
 | `/config` | deluge configs |
 | `/downloads` | torrent download directory |
 
+
+
+
 ## User / Group Identifiers
 
-When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```text
+```
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
 
-The admin interface is available at http://:8112 with a default user/password of admin/deluge.
+The admin interface is available at http://<ip>:8112 with a default user/password of admin/deluge.
 
-To change the password \(recommended\) log in to the web interface and go to Preferences-&gt;Interface-&gt;Password.
+To change the password (recommended) log in to the web interface and go to Preferences->Interface->Password.
 
-Change the downloads location in the webui in Preferences-&gt;Downloads and use /downloads for completed downloads.
+Change the downloads location in the webui in Preferences->Downloads and use /downloads for completed downloads.
+
 
 ## Docker Mods
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?style=for-the-badge&color=E68523&label=mods&query=%24.mods%5B%27deluge%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=deluge "view available mods for this container.")
 
-[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?style=for-the-badge&color=E68523&label=mods&query=%24.mods%5B%27deluge%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=deluge)
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
 
-We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image \(if any\) can be accessed via the dynamic badge above.
 
 ## Support Info
 
@@ -165,4 +179,3 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * **15.08.16:** - Rebase to alpine linux.
 * **09.11.15:** - Add unrar and unzip
 * **15.10.15:** - Initial Release.
-
