@@ -1,6 +1,15 @@
-# linuxserver/diskover
+# [linuxserver/diskover](https://github.com/linuxserver/docker-diskover)
 
-[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-diskover.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-diskover) [![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-diskover.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-diskover/releases) [![GitHub Package Repository](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitHub%20Package&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-diskover/packages) [![GitLab Container Registry](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab&logoColor=FFFFFF)](https://gitlab.com/Linuxserver.io/docker-diskover/container_registry) [![Quay.io](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/diskover) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/diskover.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/diskover) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/diskover.svg?style=flat-square&color=E68523&label=pulls&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/diskover) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/diskover.svg?style=flat-square&color=E68523&label=stars&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/diskover) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-diskover/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-diskover/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/diskover/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/diskover/latest/index.html)
+[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-diskover.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-diskover)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-diskover.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-diskover/releases)
+[![GitHub Package Repository](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitHub%20Package&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-diskover/packages)
+[![GitLab Container Registry](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab&logoColor=FFFFFF)](https://gitlab.com/Linuxserver.io/docker-diskover/container_registry)
+[![Quay.io](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/diskover)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/diskover.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/diskover "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/diskover.svg?style=flat-square&color=E68523&label=pulls&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/diskover)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/diskover.svg?style=flat-square&color=E68523&label=stars&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/diskover)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-diskover/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-diskover/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/diskover/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/diskover/latest/index.html)
 
 [diskover](https://github.com/shirosaidev/diskover) is a file system crawler and disk space usage software that uses Elasticsearch to index and manage data across heterogeneous storage systems.
 
@@ -13,10 +22,11 @@ Simply pulling `linuxserver/diskover` should retrieve the correct image for your
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :---: | :--- |
+| :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
+
 
 ## Usage
 
@@ -24,7 +34,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```text
+```
 docker create \
   --name=diskover \
   -e PUID=1000 \
@@ -49,6 +59,7 @@ docker create \
   --restart unless-stopped \
   linuxserver/diskover
 ```
+
 
 ### docker-compose
 
@@ -101,65 +112,71 @@ services:
     image: redis:alpine
     volumes:
       - ${HOME}/docker/redis:/data
+
 ```
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports \(`-p`\)
+### Ports (`-p`)
 
 | Parameter | Function |
-| :---: | :--- |
+| :----: | --- |
 | `80` | diskover Web UI |
 | `9181` | rq-dashboard web UI |
 | `9999` | diskover socket server |
 
-### Environment Variables \(`-e`\)
+
+### Environment Variables (`-e`)
 
 | Env | Function |
-| :---: | :--- |
+| :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
-| `REDIS_HOST=redis` | Redis host \(optional\) |
-| `REDIS_PORT=6379` | Redis port \(optional\) |
-| `ES_HOST=elasticsearch` | ElasticSearch host \(optional\) |
-| `ES_PORT=9200` | ElasticSearch port \(optional\) |
-| `ES_USER=elastic` | ElasticSearch username \(optional\) |
-| `ES_PASS=changeme` | ElasticSearch password \(optional\) |
-| `INDEX_NAME=diskover-` | Index name prefix \(optional\) |
-| `DISKOVER_OPTS=` | Optional arguments to pass to the diskover crawler \(optional\) |
-| `WORKER_OPTS=` | Optional argumens to pass to the diskover bots launcher \(optional\) |
-| `RUN_ON_START=true` | Initiate a crawl every time the container is started \(optional\) |
-| `USE_CRON=true` | Run a crawl on as a cron job \(optional\) |
+| `REDIS_HOST=redis` | Redis host (optional) |
+| `REDIS_PORT=6379` | Redis port (optional) |
+| `ES_HOST=elasticsearch` | ElasticSearch host (optional) |
+| `ES_PORT=9200` | ElasticSearch port (optional) |
+| `ES_USER=elastic` | ElasticSearch username (optional) |
+| `ES_PASS=changeme` | ElasticSearch password (optional) |
+| `INDEX_NAME=diskover-` | Index name prefix (optional) |
+| `DISKOVER_OPTS=` | Optional arguments to pass to the diskover crawler (optional) |
+| `WORKER_OPTS=` | Optional argumens to pass to the diskover bots launcher (optional) |
+| `RUN_ON_START=true` | Initiate a crawl every time the container is started (optional) |
+| `USE_CRON=true` | Run a crawl on as a cron job (optional) |
 
-### Volume Mappings \(`-v`\)
+### Volume Mappings (`-v`)
 
 | Volume | Function |
-| :---: | :--- |
+| :----: | --- |
 | `/config` | Persistent config files |
 | `/data` | Default mount point to crawl |
 
+
+
+
 ## User / Group Identifiers
 
-When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```text
+```
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
 ## Application Setup
 
-Once running the URL will be `http://<host-ip>/` initial application spinup will take some time so please reload if you get an empty response. We highly reccomend using Docker compose for this image as it includes multiple database backends to link into. If you are looking to mount the elasticsearch and redis data to your host machine for access neither of them currently support setting a custom UID or GID they will run by default as:
+Once running the URL will be `http://<host-ip>/` initial application spinup will take some time so please reload if you get an empty response. We highly reccomend using Docker compose for this image as it includes multiple database backends to link into.
+If you are looking to mount the elasticsearch and redis data to your host machine for access neither of them currently support setting a custom UID or GID they will run by default as:
 
-* Redis - UID=999 GID=999
-* Elasticsearch - UID=1000 GID=1000
+- Redis - UID=999 GID=999
+- Elasticsearch - UID=1000 GID=1000
 
 ElasticSearch also requires a sysctl setting on the host machine to run properly. Running `sysctl -w vm.max_map_count=262144` will solve this issue. To make this setting persistent through reboots, set this value in `/etc/sysctl.conf`.
 
@@ -169,11 +186,12 @@ By default this compose example is pointed to a single directory and the UID and
 
 For specific questions or help setting up diskover in your environment please refer to the project's Github page [Diskover](https://github.com/shirosaidev/diskover).
 
+
 ## Docker Mods
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?style=for-the-badge&color=E68523&label=mods&query=%24.mods%5B%27diskover%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=diskover "view available mods for this container.")
 
-[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?style=for-the-badge&color=E68523&label=mods&query=%24.mods%5B%27diskover%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=diskover)
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
 
-We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image \(if any\) can be accessed via the dynamic badge above.
 
 ## Support Info
 
@@ -193,4 +211,3 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * **12.04.19:** - Rebase to Alpine 3.9.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **01.11.18:** - Initial Release.
-
