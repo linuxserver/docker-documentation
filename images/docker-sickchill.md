@@ -141,6 +141,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **22.04.20:** - Switch to git clone and using git tags for versioning.
 * **09.01.20:** - Remove creating data volumes, fix build args for armhf and aarch64.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
