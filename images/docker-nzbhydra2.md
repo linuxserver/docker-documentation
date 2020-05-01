@@ -148,6 +148,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **01.05.20:** - Reorganize container, Relocate app to /app/nzbhydra2/bin, Create /app/nzbhydra2/package_info, Use nzbhydra2wrapperPy3.py from zip.
 * **14.04.20:** - Correct Name, Hydra2 -> NZBHydra2.
 * **08.01.20:** - Switch to python3.
 * **05.01.20:** - Add dev tag for prereleases.
