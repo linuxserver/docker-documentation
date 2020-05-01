@@ -25,9 +25,9 @@ services:
 
 If you save the above snippet in a file named `docker-compose.yml`, you can simply run `docker-compose up -d` from within the same folder and the heimdall image will be automatically pulled, and a container will be created and started. `up` means bring the services up, and `-d` means do it in the background.
 
-If you want to do it from a different folder or if you named the yaml file differently, ie. `heimdall.yml`, then you can define it in the command with `-f`: `docker-compose up -d -f /path/to/heimdall.yml`
+If you want to do it from a different folder or if you named the yaml file differently, ie. `heimdall.yml`, then you can define it in the command with `-f`: `docker-compose -f /path/to/heimdall.yml up -d`
 
-To bring down the services, simply do `docker-compose down` or `docker-compose down -f /path/to/heimdall.yml` and all containers defined by the yml will be stopped and destroyed.
+To bring down the services, simply do `docker-compose down` or `docker-compose -f /path/to/heimdall.yml down` and all containers defined by the yml will be stopped and destroyed.
 
 ## Multiple Services
 You can have multiple services managed by a single compose yaml. Copy the contents below the `services:` line in any of our readme yaml samples into the same yaml file and the `docker-compose up/down` commands will apply to all services at once.
