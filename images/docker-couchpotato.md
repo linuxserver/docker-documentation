@@ -1,6 +1,15 @@
-# linuxserver/couchpotato
+# [linuxserver/couchpotato](https://github.com/linuxserver/docker-couchpotato)
 
-[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-couchpotato.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-couchpotato) [![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-couchpotato.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-couchpotato/releases) [![GitHub Package Repository](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitHub%20Package&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-couchpotato/packages) [![GitLab Container Registry](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab&logoColor=FFFFFF)](https://gitlab.com/Linuxserver.io/docker-couchpotato/container_registry) [![Quay.io](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/couchpotato) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/couchpotato.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/couchpotato) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/couchpotato.svg?style=flat-square&color=E68523&label=pulls&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/couchpotato) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/couchpotato.svg?style=flat-square&color=E68523&label=stars&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/couchpotato) [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-couchpotato/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-couchpotato/job/master/) [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/couchpotato/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/couchpotato/latest/index.html)
+[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-couchpotato.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-couchpotato)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-couchpotato.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-couchpotato/releases)
+[![GitHub Package Repository](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitHub%20Package&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-couchpotato/packages)
+[![GitLab Container Registry](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab&logoColor=FFFFFF)](https://gitlab.com/Linuxserver.io/docker-couchpotato/container_registry)
+[![Quay.io](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/couchpotato)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/couchpotato.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/couchpotato "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/couchpotato.svg?style=flat-square&color=E68523&label=pulls&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/couchpotato)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/couchpotato.svg?style=flat-square&color=E68523&label=stars&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/couchpotato)
+[![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-couchpotato/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-couchpotato/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/couchpotato/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/couchpotato/latest/index.html)
 
 [Couchpotato](https://couchpota.to/) is an automatic NZB and torrent downloader. You can keep a `movies I want` list and it will search for NZBs/torrents of these movies every X hours. Once a movie is found, it will send it to SABnzbd or download the torrent to a specified directory.
 
@@ -13,10 +22,11 @@ Simply pulling `linuxserver/couchpotato` should retrieve the correct image for y
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :---: | :--- |
+| :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
+
 
 ## Usage
 
@@ -24,7 +34,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```text
+```
 docker create \
   --name=couchpotato \
   -e PUID=1000 \
@@ -38,6 +48,7 @@ docker create \
   --restart unless-stopped \
   linuxserver/couchpotato
 ```
+
 
 ### docker-compose
 
@@ -66,40 +77,44 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports \(`-p`\)
+### Ports (`-p`)
 
 | Parameter | Function |
-| :---: | :--- |
+| :----: | --- |
 | `5050` | http gui |
 
-### Environment Variables \(`-e`\)
+
+### Environment Variables (`-e`)
 
 | Env | Function |
-| :---: | :--- |
+| :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
 | `UMASK_SET=022` | for umask setting of couchpotato, optional , default if left unset is 022 |
 
-### Volume Mappings \(`-v`\)
+### Volume Mappings (`-v`)
 
 | Volume | Function |
-| :---: | :--- |
+| :----: | --- |
 | `/config` | Couchpotato Application Data. |
 | `/downloads` | Downloads Folder. |
 | `/movies` | Movie Share. |
 
+
+
+
 ## User / Group Identifiers
 
-When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```text
+```
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
@@ -108,11 +123,12 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 Access the webui at `<your-ip>:5050`, for more information check out [CouchPotato](https://couchpota.to).
 
+
 ## Docker Mods
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?style=for-the-badge&color=E68523&label=mods&query=%24.mods%5B%27couchpotato%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=couchpotato "view available mods for this container.")
 
-[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?style=for-the-badge&color=E68523&label=mods&query=%24.mods%5B%27couchpotato%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=couchpotato)
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
 
-We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image \(if any\) can be accessed via the dynamic badge above.
 
 ## Support Info
 
@@ -134,16 +150,15 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * **14.01.19:** - Multi-arch builds.
 * **16.08.18:** - Rebase to alpine 3.8.
 * **06.11.17:** - Rebase to alpine 3.7.
-* **20.07.17:** - Internal git pull instead of at runtime, add UMASK\_SET variable.
+* **20.07.17:** - Internal git pull instead of at runtime, add UMASK_SET variable.
 * **12.07.17:** - Add inspect commands to README, move to jenkins build and push
 * **25.05.17:** - Rebase to alpine 3.6
 * **07.02.17:** - Rebase to alpine 3.5.
-* **11.11.16:** - Stop cp logging to docker log \(they are accessible in the webui and the config folder\).
+* **11.11.16:** - Stop cp logging to docker log (they are accessible in the webui and the config folder).
 * **30.09.16:** - Fix umask.
 * **09.09.16:** - Add layer badges to README.
 * **27.08.16:** - Add badges to README.
 * **08.08.16:** - Rebase to alpine linux.
 * **12.11.15:** - Misc Code Cleanup.
 * **02.10.15:** - Change to python baseimage.
-* **28.07.15:** - Updated to latest baseimage \(for testing\), and a fix to autoupdate.
-
+* **28.07.15:** - Updated to latest baseimage (for testing), and a fix to autoupdate.
