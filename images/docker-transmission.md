@@ -171,6 +171,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **11.05.20:** - Remove unnecessary chmod (remnant of previous change).
 * **28.04.20:** - Use transmission-remote to update blocklist.
 * **30.03.20:** - Internalize blocklist-update.sh.
 * **29.03.20:** - Update auth info in readme.
