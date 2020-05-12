@@ -41,6 +41,7 @@ docker create \
   -e GUAC_USER=abc `#optional` \
   -e GUAC_PASS=900150983cd24fb0d6963f7d28e17f72 `#optional` \
   -e UMASK_SET=022 `#optional` \
+  -e CLI_ARGS= `#optional` \
   -p 8080:8080 \
   -p 8081:8081 \
   -v /path/to/data:/config \
@@ -67,6 +68,7 @@ services:
       - GUAC_USER=abc #optional
       - GUAC_PASS=900150983cd24fb0d6963f7d28e17f72 #optional
       - UMASK_SET=022 #optional
+      - CLI_ARGS= #optional
     volumes:
       - /path/to/data:/config
     ports:
@@ -97,6 +99,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `GUAC_USER=abc` | Username for the calibre desktop gui. |
 | `GUAC_PASS=900150983cd24fb0d6963f7d28e17f72` | Password's md5 hash for the calibre desktop gui. |
 | `UMASK_SET=022` | for umask setting of Calibre, default if left unset is 022. |
+| `CLI_ARGS=` | Optionally pass cli start arguments to calibre. |
 
 ### Volume Mappings (`-v`)
 
@@ -158,6 +161,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **10.05.19:** - Add new env var `CLI_ARGS` to pass start arguments to calibre.
 * **18.03.19:** - Let Calibre access environment variables, add optional umask setting.
 * **23.10.19:** - Remove reccomended deps and zenity for character compatibility.
 * **18.10.19:** - Add python-xdg.
