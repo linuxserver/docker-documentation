@@ -169,6 +169,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **13.05.20:** - Add rarfile python package (for DeepUnrar).
 * **01.01.20:** - Add python3 alongside python2 during transition.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
