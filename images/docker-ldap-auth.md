@@ -115,7 +115,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
-* **20.08.20:** - Add support for self-signed CA certs.
+* **17.05.20:** - Add support for self-signed CA certs.
 * **20.02.20:** - Switch to python3.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **01.07.19:** - Fall back to base64 encoding when basic http auth is used.
