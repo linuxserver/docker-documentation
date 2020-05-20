@@ -30,6 +30,8 @@ The architectures supported by this image are:
 | Architecture | Tag |
 | :----: | --- |
 | x86-64 | amd64-latest |
+| arm64 | arm64v8-latest |
+| armhf | arm32v7-latest |
 
 ## Version Tags
 
@@ -158,6 +160,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **18.05.20:** - Switch to multi-arch images, install via npm.
 * **29.04.20:** - Update start arguments.
 * **01.04.20:** - Structural changes required for v3.
 * **17.01.20:** - Fix artifact url retrieval from github.
