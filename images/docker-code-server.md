@@ -160,6 +160,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **21.05.20:** - Shrink images, install via yarn, fix arm32v7 build.
 * **18.05.20:** - Switch to multi-arch images, install via npm.
 * **29.04.20:** - Update start arguments.
 * **01.04.20:** - Structural changes required for v3.
