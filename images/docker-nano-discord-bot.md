@@ -1,15 +1,15 @@
-# [linuxserver/nano-discord-bot](https://github.com/linuxserver/docker-nano-discord-bot)
+# [lsiodev/nano-discord-bot](https://github.com/linuxserver/docker-nano-discord-bot)
 
-[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-nano-discord-bot.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-nano-discord-bot)
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-nano-discord-bot.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-nano-discord-bot/releases)
+[![GitHub Stars](https://img.shields.io/github/stars/lsiodev/docker-nano-discord-bot.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-nano-discord-bot)
+[![GitHub Release](https://img.shields.io/github/release/lsiodev/docker-nano-discord-bot.svg?style=flat-square&color=E68523&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-nano-discord-bot/releases)
 [![GitHub Package Repository](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitHub%20Package&logo=github&logoColor=FFFFFF)](https://github.com/linuxserver/docker-nano-discord-bot/packages)
 [![GitLab Container Registry](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab&logoColor=FFFFFF)](https://gitlab.com/Linuxserver.io/docker-nano-discord-bot/container_registry)
 [![Quay.io](https://img.shields.io/static/v1.svg?style=flat-square&color=E68523&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/nano-discord-bot)
-[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/nano-discord-bot.svg?style=flat-square&color=E68523)](https://microbadger.com/images/linuxserver/nano-discord-bot "Get your own version badge on microbadger.com")
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/nano-discord-bot.svg?style=flat-square&color=E68523&label=pulls&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/nano-discord-bot)
-[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/nano-discord-bot.svg?style=flat-square&color=E68523&label=stars&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/linuxserver/nano-discord-bot)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/lsiodev/nano-discord-bot.svg?style=flat-square&color=E68523)](https://microbadger.com/images/lsiodev/nano-discord-bot "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/lsiodev/nano-discord-bot.svg?style=flat-square&color=E68523&label=pulls&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/lsiodev/nano-discord-bot)
+[![Docker Stars](https://img.shields.io/docker/stars/lsiodev/nano-discord-bot.svg?style=flat-square&color=E68523&label=stars&logo=docker&logoColor=FFFFFF)](https://hub.docker.com/r/lsiodev/nano-discord-bot)
 [![Build Status](https://ci.linuxserver.io/view/all/job/Docker-Pipeline-Builders/job/docker-nano-discord-bot/job/master/badge/icon?style=flat-square)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-nano-discord-bot/job/master/)
-[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/nano-discord-bot/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/nano-discord-bot/latest/index.html)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/lsiodev/nano-discord-bot/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/lsiodev/nano-discord-bot/latest/index.html)
 
 [Nano-discord-bot](https://discord.com/developers/docs/intro) - A bot used to hook into a [self hosted Nano RPC endpoint](https://hub.docker.com/r/linuxserver/nano) and discord server to Distribute funds from a faucet account.
 
@@ -18,7 +18,7 @@
 
 Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `linuxserver/nano-discord-bot` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lsiodev/nano-discord-bot` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
@@ -47,7 +47,7 @@ docker create \
   -e FAUCET_AMOUNT="1000" \
   -v /path/to/data:/config \
   --restart unless-stopped \
-  linuxserver/nano-discord-bot
+  lsiodev/nano-discord-bot
 ```
 
 
@@ -60,7 +60,7 @@ Compatible with docker-compose v2 schemas.
 version: "2.1"
 services:
   nano-discord-bot:
-    image: linuxserver/nano-discord-bot
+    image: lsiodev/nano-discord-bot
     container_name: nano-discord-bot
     environment:
       - PUID=1000
@@ -140,7 +140,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' nano-discord-bot`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/nano-discord-bot`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lsiodev/nano-discord-bot`
 
 ## Versions
 
