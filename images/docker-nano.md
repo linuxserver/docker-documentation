@@ -54,8 +54,7 @@ docker create \
   -e LIVE_GENESIS_SIG=BLOCK_SIGNATURE `#optional` \
   -e CLI_OPTIONS=--config node.enable_voting=true `#optional` \
   -e LMDB_BOOTSTRAP_URL=http://example.com/Nano_64_version_20.7z `#optional` \
-  -p 7075:7075/udp \
-  -p 7075:7075/tcp \
+  -p 8075:8075 \
   -p 7076:3000 \
   -p 7077:3001 \
   -v /path/to/data:/config \
@@ -89,8 +88,7 @@ services:
     volumes:
       - /path/to/data:/config
     ports:
-      - 7075:7075/udp
-      - 7075:7075/tcp
+      - 8075:8075
       - 7076:3000
       - 7077:3001
     restart: unless-stopped
@@ -104,8 +102,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :----: | --- |
-| `7075/udp` | Nano communication port UDP |
-| `7075/tcp` | Nano communication port TCP |
+| `8075` | Nano communication port |
 | `3000` | RPC interface filtered through a proxy |
 | `3001` | Https RPC interface filtered through a proxy |
 
@@ -305,8 +302,7 @@ docker create \
   -e LIVE_GENESIS_ACCOUNT=nano_1da7hqsgp4hb55bzkptzsbntdzbyni5gyzar41a88b8fhcezoasfjkgmyk5y \
   -e LIVE_GENESIS_WORK=7fd88e48684600b7 \
   -e LIVE_GENESIS_SIG=D1DF3A64BB43C131944401632215569A40AAE858ACF6CB59D5C77070E69DBF6435D93807877628A8B142DBF1AC4C562CD2F4CEBEB7D15486BDB7494A6146E007 \
-  -p 7075:7075/udp \
-  -p 7075:7075/tcp \
+  -p 8075:8075 \
   -p 7076:3000 \
   -p 7077:3001 \
   -v /path/to/data:/config \
@@ -343,8 +339,7 @@ docker create \
   -e LIVE_GENESIS_ACCOUNT=nano_1yhkw7ducsmz5k7pskufytaxoi3kq3gyrgh489bbkxpwxn4zdefyn4rmrrkk \
   -e LIVE_GENESIS_WORK=c51204c6b69384cb \
   -e LIVE_GENESIS_SIG=90DDE7B4DC038811180FF5DDE8594F1774542A7AADE3DB71A57AA38A5AED42672E1E8D7ACFAC315BDB0EB5DCB542C610B9C49B2560AE575073855259AF065509 \
-  -p 7075:7075/udp \
-  -p 7075:7075/tcp \
+  -p 8075:8075 \
   -p 7076:3000 \
   -p 7077:3001 \
   -v /path/to/data:/config \
