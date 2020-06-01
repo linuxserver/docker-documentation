@@ -105,7 +105,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Parameter | Function |
 | :----: | --- |
 | `443` | Https port |
-| `80` | Http port (required for http validation only) |
+| `80` | Http port (required for http validation and http -> https redirect) |
 
 
 ### Environment Variables (`-e`)
@@ -190,6 +190,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 * If you wish to hide your site from search engine crawlers, you may find it useful to add this configuration line to your site config, within the server block, above the line where ssl.conf is included
 `add_header X-Robots-Tag "noindex, nofollow, nosnippet, noarchive";`
 This will *ask* Google et al not to index and list your site. Be careful with this, as you will eventually be de-listed if you leave this line in on a site you wish to be present on search engines
+* If you wish to redirect http to https, you must expose port 80
 ### Using certs in other containers
 * This container includes auto-generated pfx and private-fullchain-bundle pem certs that are needed by other apps like Emby and Znc.
   * To use these certs in other containers, do either of the following:
