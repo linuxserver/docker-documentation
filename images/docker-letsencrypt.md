@@ -53,7 +53,7 @@ docker create \
   -e STAGING=false `#optional` \
   -p 443:443 \
   -p 80:80 `#optional` \
-  -v </path/to/appdata/config>:/config \
+  -v /path/to/appdata/config:/config \
   --restart unless-stopped \
   linuxserver/letsencrypt
 ```
@@ -88,7 +88,7 @@ services:
       - EXTRA_DOMAINS= #optional
       - STAGING=false #optional
     volumes:
-      - </path/to/appdata/config>:/config
+      - /path/to/appdata/config:/config
     ports:
       - 443:443
     ports:
@@ -232,6 +232,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **01.06.20:** - Rebasing to alpine 3.12, change ldap login address to `/ldaplogin` to avoid clashes (existing users need to manually update).
 * **31.05.20:** - Tweak Authelia confs (existing users can delete `authelia-server.conf` and `authelia-location.conf`, and restart to update).
 * **23.05.20:** - Add support for Authelia.
 * **15.05.20:** - Remove `php7-pecl-imagick` due to upstream issues. Add support for `Geoip2` auto db retrieval.
