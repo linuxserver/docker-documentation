@@ -367,5 +367,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **02.06.20:** - Rebase to Alpine 3.12.
 * **28.05.20:** - Add beta tag.
 * **17.05.20:** - Initial Release.
