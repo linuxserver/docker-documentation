@@ -209,6 +209,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **01.06.20:** - Rebasing to alpine 3.12.
 * **18.01.20:** - Add key generation script.
 * **13.01.20:** - Add openssh-sftp-server.
 * **19.12.19:** - Rebasing to alpine 3.11.
