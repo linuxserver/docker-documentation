@@ -42,9 +42,9 @@ docker create \
   -e PUID=1000 \
   -e PGID=1000 \
   -p 8081:8081 \
-  -v <path to data>:/config \
-  -v <path to data>:/tv \
-  -v <path to data>:/downloads \
+  -v /path/to/data:/config \
+  -v /path/to/data:/tv \
+  -v /path/to/data:/downloads \
   --restart unless-stopped \
   linuxserver/sickgear
 ```
@@ -65,9 +65,9 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - <path to data>:/config
-      - <path to data>:/tv
-      - <path to data>:/downloads
+      - /path/to/data:/config
+      - /path/to/data:/tv
+      - /path/to/data:/downloads
     ports:
       - 8081:8081
     restart: unless-stopped
@@ -97,7 +97,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `/config` | this will store any uploaded data on the docker host |
 | `/tv` | where you store your tv shows |
-| `/downloads` | your downloads folder for post processing (must not be donwload in progress) |
+| `/downloads` | your downloads folder for post processing (must not be download in progress) |
 
 
 
@@ -184,6 +184,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **03.06.20:** - Rebasing to alpine 3.12, switch to python3.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
