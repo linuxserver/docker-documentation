@@ -41,9 +41,9 @@ docker create \
   -e TZ=Europe/London \
   -e UMASK_SET=022 \
   -p 5050:5050 \
-  -v </path/to/appdata/config>:/config \
-  -v </path/to/downloads>:/downloads \
-  -v </path/to/movies>:/movies \
+  -v /path/to/appdata/config:/config \
+  -v /path/to/downloads:/downloads \
+  -v /path/to/movies:/movies \
   --restart unless-stopped \
   linuxserver/couchpotato
 ```
@@ -66,9 +66,9 @@ services:
       - TZ=Europe/London
       - UMASK_SET=022
     volumes:
-      - </path/to/appdata/config>:/config
-      - </path/to/downloads>:/downloads
-      - </path/to/movies>:/movies
+      - /path/to/appdata/config:/config
+      - /path/to/downloads:/downloads
+      - /path/to/movies:/movies
     ports:
       - 5050:5050
     restart: unless-stopped
@@ -159,6 +159,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **06.06.19:** - Rebasing to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
