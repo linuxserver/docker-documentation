@@ -159,6 +159,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **02.06.20:** - Rebasing to alpine 3.11.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **01.06.19:** - Initial Release.
