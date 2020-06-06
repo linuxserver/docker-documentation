@@ -8,7 +8,7 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/unifi-controller.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/unifi-controller)
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/unifi-controller.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/unifi-controller)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-unifi-controller%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-unifi-controller/job/master/)
-[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Flsio-ci.ams3.digitaloceanspaces.com%2Flspipepr%2Funifi-controller%2Flatest%2Fci-status.yml)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/unifi-controller/latest/index.html)
+[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Flsio-ci.ams3.digitaloceanspaces.com%2Flinuxserver%2Funifi-controller%2Flatest%2Fci-status.yml)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/unifi-controller/latest/index.html)
 
 The [Unifi-controller](https://www.ubnt.com/enterprise/#unifi) Controller software is a powerful, enterprise wireless software engine ideal for high-density client deployments requiring low latency and high uptime performance.
 
@@ -43,11 +43,12 @@ docker create \
   -p 3478:3478/udp \
   -p 10001:10001/udp \
   -p 8080:8080 \
-  -p 8081:8081 \
   -p 8443:8443 \
-  -p 8843:8843 \
-  -p 8880:8880 \
-  -p 6789:6789 \
+  -p 1900:1900/udp `#optional` \
+  -p 8843:8843 `#optional` \
+  -p 8880:8880 `#optional` \
+  -p 6789:6789 `#optional` \
+  -p 5514:5514 `#optional` \
   -v <path to data>:/config \
   --restart unless-stopped \
   linuxserver/unifi-controller
@@ -90,11 +91,13 @@ services:
       - 3478:3478/udp
       - 10001:10001/udp
       - 8080:8080
-      - 8081:8081
       - 8443:8443
-      - 8843:8843
-      - 8880:8880
-      - 6789:6789
+    ports:
+      - 1900:1900/udp #optional
+      - 8843:8843 #optional
+      - 8880:8880 #optional
+      - 6789:6789 #optional
+      - 5514:5514 #optional
     restart: unless-stopped
 ```
 
@@ -106,14 +109,15 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :----: | --- |
-| `3478/udp` | Unifi communication port |
-| `10001/udp` | required for AP discovery |
-| `8080` | required for Unifi to function |
-| `8081` | Unifi communication port |
-| `8443` | Unifi communication port |
-| `8843` | Unifi communication port |
-| `8880` | Unifi communication port |
-| `6789` | For throughput test |
+| `3478/udp` | Unifi STUN port |
+| `10001/udp` | Required for AP discovery |
+| `8080` | Required for device communication |
+| `8443` | Unifi web admin port |
+| `1900/udp` | Required for `Make controller discoverable on L2 network` option |
+| `8843` | Unifi guest portal HTTPS redirect port |
+| `8880` | Unifi guest portal HTTP redirect port |
+| `6789` | For mobile throughput test |
+| `5514` | Remote syslog port |
 
 
 ### Environment Variables (`-e`)
@@ -173,7 +177,6 @@ Alternatively to manually adopt a device take these steps:
 
 ```
 ssh ubnt@$AP-IP
-mca-cli
 set-inform http://$address:8080/inform
 ```
 
@@ -199,6 +202,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **02.06.20:** - Updated port list & descriptions. Moved some ports to optional.
 * **14.11.19:** - Changed url for deb package to match new Ubiquity domain.
 * **29.07.19:** - Allow for changing Java mem limit via new optional environment variable.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
