@@ -39,7 +39,7 @@ docker create \
   -e TZ=Europe/London \
   -p 3000:3000 \
   -v /path/to/config:/config \
-  --cap_add="IPC_LOCK" \
+  --cap-add="IPC_LOCK" \
   --restart unless-stopped \
   linuxserver/mysql-workbench
 ```
@@ -98,7 +98,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 #### Miscellaneous Options
 | Parameter | Function |
 | :-----:   | --- |
-| `--cap_add=` | Required for keyring functionality |
+| `--cap-add=` | Required for keyring functionality |
 
 ## Environment variables from files (Docker secrets)
 
