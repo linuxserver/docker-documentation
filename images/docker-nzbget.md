@@ -179,6 +179,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **08.06.20:** - Symlink python3 bin to python.
 * **01.06.20:** - Rebasing to alpine 3.12. Removing python2.
 * **13.05.20:** - Add rarfile python package (for DeepUnrar).
 * **01.01.20:** - Add python3 alongside python2 during transition.
