@@ -165,6 +165,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **01.06.20:** - Rebasing to alpine 3.12.
 * **13.05.20:** - Add donation links for Bazarr to Github sponsors button and container log.
 * **08.04.20:** - Removed /movies and /tv volumes from Dockerfiles.
 * **28.12.19:** - Upgrade to Python 3.
