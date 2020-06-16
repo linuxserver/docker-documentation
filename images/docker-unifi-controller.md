@@ -202,6 +202,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **16.06.20:** - Add logrotate.
 * **02.06.20:** - Updated port list & descriptions. Moved some ports to optional.
 * **14.11.19:** - Changed url for deb package to match new Ubiquity domain.
 * **29.07.19:** - Allow for changing Java mem limit via new optional environment variable.
