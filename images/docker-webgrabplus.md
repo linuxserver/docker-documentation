@@ -175,6 +175,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **18.06.20:** - Update to v3.1.0.
 * **29.03.20:** - Update to v3.0.0. Changed to use wg3-cron file.
 * **28.05.19:** - Update to v2.1.0 and beta v2.1.9, rebase to bionic.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
