@@ -146,6 +146,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **01.06.20:** - Rebasing to alpine 3.12.
 * **08.02.20:** - Ingest from Github.
 * **06.02.19:** - Fix permissions.
 * **19.12.19:** - Rebasing to alpine 3.11.
