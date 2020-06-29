@@ -1,14 +1,6 @@
-# [linuxserver/airsonic](https://github.com/linuxserver/docker-airsonic)
+# linuxserver/airsonic
 
-[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-airsonic.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-airsonic)
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-airsonic.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-airsonic/releases)
-[![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub%20Package&logo=github)](https://github.com/linuxserver/docker-airsonic/packages)
-[![GitLab Container Registry](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab)](https://gitlab.com/Linuxserver.io/docker-airsonic/container_registry)
-[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/airsonic.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge)](https://microbadger.com/images/linuxserver/airsonic "Get your own version badge on microbadger.com")
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/airsonic.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/airsonic)
-[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/airsonic.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/airsonic)
-[![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-airsonic%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-airsonic/job/master/)
-[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Flsio-ci.ams3.digitaloceanspaces.com%2Flinuxserver%2Fairsonic%2Flatest%2Fci-status.yml)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/airsonic/latest/index.html)
+[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-airsonic.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-airsonic) [![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-airsonic.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-airsonic/releases) [![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub%20Package&logo=github)](https://github.com/linuxserver/docker-airsonic/packages) [![GitLab Container Registry](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab)](https://gitlab.com/Linuxserver.io/docker-airsonic/container_registry) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/airsonic.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge)](https://microbadger.com/images/linuxserver/airsonic) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/airsonic.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/airsonic) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/airsonic.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/airsonic) [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-airsonic%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-airsonic/job/master/) [![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Flsio-ci.ams3.digitaloceanspaces.com%2Flinuxserver%2Fairsonic%2Flatest%2Fci-status.yml)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/airsonic/latest/index.html)
 
 [Airsonic](https://github.com/airsonic/airsonic) is a free, web-based media streamer, providing ubiquitious access to your music. Use it to share your music with friends, or to listen to your own music while at work. You can stream to multiple players simultaneously, for instance to one player in your kitchen and another in your living room.
 
@@ -21,11 +13,10 @@ Simply pulling `linuxserver/airsonic` should retrieve the correct image for your
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :----: | --- |
+| :---: | :--- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
-
 
 ## Usage
 
@@ -33,7 +24,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```
+```text
 docker create \
   --name=airsonic \
   -e PUID=1000 \
@@ -51,7 +42,6 @@ docker create \
   --restart unless-stopped \
   linuxserver/airsonic
 ```
-
 
 ### docker-compose
 
@@ -86,48 +76,47 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports (`-p`)
+### Ports \(`-p`\)
 
 | Parameter | Function |
-| :----: | --- |
+| :---: | :--- |
 | `4040` | WebUI |
 
-
-### Environment Variables (`-e`)
+### Environment Variables \(`-e`\)
 
 | Env | Function |
-| :----: | --- |
+| :---: | :--- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 | `CONTEXT_PATH=<URL_BASE>` | For setting url-base in reverse proxy setups. |
 | `JAVA_OPTS=<options>` | For passing additional java options. |
 
-### Volume Mappings (`-v`)
+### Volume Mappings \(`-v`\)
 
 | Volume | Function |
-| :----: | --- |
+| :---: | :--- |
 | `/config` | Configuration file location. |
 | `/music` | Location of music. |
 | `/playlists` | Location for playlists to be saved to. |
 | `/podcasts` | Location of podcasts. |
 | `/media` | Location of other media. |
 
-#### Device Mappings (`--device`)
+#### Device Mappings \(`--device`\)
+
 | Parameter | Function |
-| :-----:   | --- |
+| :---: | :--- |
 | `/dev/snd` | Only needed to pass your host sound device to Airsonic's Java jukebox player. |
 
-
-## Environment variables from files (Docker secrets)
+## Environment variables from files \(Docker secrets\)
 
 You can set any environment variable from a file by using a special prepend `FILE__`.
 
 As an example:
 
-```
+```text
 -e FILE__PASSWORD=/run/secrets/mysecretpassword
 ```
 
@@ -135,19 +124,17 @@ Will set the environment variable `PASSWORD` based on the contents of the `/run/
 
 ## Umask for running applications
 
-For all of our images we provide the ability to override the default umask settings for services started within the containers using the optional `-e UMASK=022` setting.
-Keep in mind umask is not chmod it subtracts from permissions based on it's value it does not add. Please read up [here](https://en.wikipedia.org/wiki/Umask) before asking for support.
-
+For all of our images we provide the ability to override the default umask settings for services started within the containers using the optional `-e UMASK=022` setting. Keep in mind umask is not chmod it subtracts from permissions based on it's value it does not add. Please read up [here](https://en.wikipedia.org/wiki/Umask) before asking for support.
 
 ## User / Group Identifiers
 
-When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```
+```text
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
@@ -158,16 +145,15 @@ Access WebUI at `<your-ip>:4040`.
 
 Default user/pass is admin/admin
 
-Extra java options can be passed with the JAVA_OPTS environment variable, eg `-e JAVA_OPTS="-Xmx256m -Xms256m"`. For some reverse proxies, you may need to pass `JAVA_OPTS=-Dserver.use-forward-headers=true` for airsonic to generate the proper URL schemes.
+Extra java options can be passed with the JAVA\_OPTS environment variable, eg `-e JAVA_OPTS="-Xmx256m -Xms256m"`. For some reverse proxies, you may need to pass `JAVA_OPTS=-Dserver.use-forward-headers=true` for airsonic to generate the proper URL schemes.
 
-Note that if you want to use [Airsonic's Java jukebox player](https://airsonic.github.io/docs/jukebox/), then `PGID` will need to match the group of your sound device (e.g. `/dev/snd`).
-
+Note that if you want to use [Airsonic's Java jukebox player](https://airsonic.github.io/docs/jukebox/), then `PGID` will need to match the group of your sound device \(e.g. `/dev/snd`\).
 
 ## Docker Mods
-[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=mods&query=%24.mods%5B%27airsonic%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=airsonic "view available mods for this container.")
 
-We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=mods&query=%24.mods%5B%27airsonic%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=airsonic)
 
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image \(if any\) can be accessed via the dynamic badge above.
 
 ## Support Info
 
@@ -187,5 +173,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * **05.01.19:** - Linting fixes.
 * **27.08.18:** - Use new inhouse java baseimage for quicker builds.
 * **23.08.18:** - Rebase to ubuntu bionic for increased performance across all arch's.
-* **22.04.18:** - Add the forgotten JAVA_OPTS to the run command.
+* **22.04.18:** - Add the forgotten JAVA\_OPTS to the run command.
 * **29.12.17:** - Initial Release.
+

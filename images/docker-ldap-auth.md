@@ -1,16 +1,8 @@
-# [linuxserver/ldap-auth](https://github.com/linuxserver/docker-ldap-auth)
+# linuxserver/ldap-auth
 
-[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-ldap-auth.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-ldap-auth)
-[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-ldap-auth.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-ldap-auth/releases)
-[![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub%20Package&logo=github)](https://github.com/linuxserver/docker-ldap-auth/packages)
-[![GitLab Container Registry](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab)](https://gitlab.com/Linuxserver.io/docker-ldap-auth/container_registry)
-[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/ldap-auth.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge)](https://microbadger.com/images/linuxserver/ldap-auth "Get your own version badge on microbadger.com")
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/ldap-auth.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/ldap-auth)
-[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/ldap-auth.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/ldap-auth)
-[![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-ldap-auth%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-ldap-auth/job/master/)
-[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Flsio-ci.ams3.digitaloceanspaces.com%2Flinuxserver%2Fldap-auth%2Flatest%2Fci-status.yml)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/ldap-auth/latest/index.html)
+[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-ldap-auth.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-ldap-auth) [![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-ldap-auth.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-ldap-auth/releases) [![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub%20Package&logo=github)](https://github.com/linuxserver/docker-ldap-auth/packages) [![GitLab Container Registry](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab)](https://gitlab.com/Linuxserver.io/docker-ldap-auth/container_registry) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/ldap-auth.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge)](https://microbadger.com/images/linuxserver/ldap-auth) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/ldap-auth.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/ldap-auth) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/ldap-auth.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/ldap-auth) [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-ldap-auth%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-ldap-auth/job/master/) [![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Flsio-ci.ams3.digitaloceanspaces.com%2Flinuxserver%2Fldap-auth%2Flatest%2Fci-status.yml)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/ldap-auth/latest/index.html)
 
-[Ldap-auth](https://github.com/nginxinc/nginx-ldap-auth) software is for authenticating users who request protected resources from servers proxied by nginx. It includes a daemon (ldap-auth) that communicates with an authentication server, and a webserver daemon that generates an authentication cookie based on the user’s credentials. The daemons are written in Python for use with a Lightweight Directory Access Protocol (LDAP) authentication server (OpenLDAP or Microsoft Windows Active Directory 2003 and 2012).
+[Ldap-auth](https://github.com/nginxinc/nginx-ldap-auth) software is for authenticating users who request protected resources from servers proxied by nginx. It includes a daemon \(ldap-auth\) that communicates with an authentication server, and a webserver daemon that generates an authentication cookie based on the user’s credentials. The daemons are written in Python for use with a Lightweight Directory Access Protocol \(LDAP\) authentication server \(OpenLDAP or Microsoft Windows Active Directory 2003 and 2012\).
 
 ## Supported Architectures
 
@@ -21,11 +13,10 @@ Simply pulling `linuxserver/ldap-auth` should retrieve the correct image for you
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :----: | --- |
+| :---: | :--- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
-
 
 ## Usage
 
@@ -33,7 +24,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```
+```text
 docker create \
   --name=ldap-auth \
   -e TZ=Europe/London \
@@ -42,7 +33,6 @@ docker create \
   --restart unless-stopped \
   linuxserver/ldap-auth
 ```
-
 
 ### docker-compose
 
@@ -65,36 +55,34 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports (`-p`)
+### Ports \(`-p`\)
 
 | Parameter | Function |
-| :----: | --- |
+| :---: | :--- |
 | `8888` | the port for ldap auth daemon |
 | `9000` | the port for ldap login page |
 
-
-### Environment Variables (`-e`)
+### Environment Variables \(`-e`\)
 
 | Env | Function |
-| :----: | --- |
+| :---: | :--- |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
 
-### Volume Mappings (`-v`)
+### Volume Mappings \(`-v`\)
 
 | Volume | Function |
-| :----: | --- |
+| :---: | :--- |
 
 
-
-## Environment variables from files (Docker secrets)
+## Environment variables from files \(Docker secrets\)
 
 You can set any environment variable from a file by using a special prepend `FILE__`.
 
 As an example:
 
-```
+```text
 -e FILE__PASSWORD=/run/secrets/mysecretpassword
 ```
 
@@ -102,23 +90,20 @@ Will set the environment variable `PASSWORD` based on the contents of the `/run/
 
 ## Umask for running applications
 
-For all of our images we provide the ability to override the default umask settings for services started within the containers using the optional `-e UMASK=022` setting.
-Keep in mind umask is not chmod it subtracts from permissions based on it's value it does not add. Please read up [here](https://en.wikipedia.org/wiki/Umask) before asking for support.
-
+For all of our images we provide the ability to override the default umask settings for services started within the containers using the optional `-e UMASK=022` setting. Keep in mind umask is not chmod it subtracts from permissions based on it's value it does not add. Please read up [here](https://en.wikipedia.org/wiki/Umask) before asking for support.
 
 ## Application Setup
 
-- This container itself does not have any settings and it relies on the pertinent information passed through in http headers of incoming requests. Make sure that your webserver is set up with the right config.
-- Here's a sample config: [nginx-ldap-auth.conf](https://github.com/nginxinc/nginx-ldap-auth/blob/master/nginx-ldap-auth.conf).
-- Unlike the upstream project, this image encodes the cookie information with fernet, using a randomly generated key during container creation.
-- Also unlike the upstream project, this image serves the login page at `/ldaplogin` (as well as `/login`) to prevent clashes with reverse proxied apps that may also use `/login` for their internal auth.
-
+* This container itself does not have any settings and it relies on the pertinent information passed through in http headers of incoming requests. Make sure that your webserver is set up with the right config.
+* Here's a sample config: [nginx-ldap-auth.conf](https://github.com/nginxinc/nginx-ldap-auth/blob/master/nginx-ldap-auth.conf).
+* Unlike the upstream project, this image encodes the cookie information with fernet, using a randomly generated key during container creation.
+* Also unlike the upstream project, this image serves the login page at `/ldaplogin` \(as well as `/login`\) to prevent clashes with reverse proxied apps that may also use `/login` for their internal auth.
 
 ## Docker Mods
-[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=mods&query=%24.mods%5B%27ldap-auth%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=ldap-auth "view available mods for this container.")
 
-We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=mods&query=%24.mods%5B%27ldap-auth%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=ldap-auth)
 
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image \(if any\) can be accessed via the dynamic badge above.
 
 ## Support Info
 
@@ -144,3 +129,4 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * **18.09.18:** - Update pip
 * **14.09.18:** - Add TZ parameter, remove unnecessary PUID/PGID params
 * **11.08.18:** - Initial release.
+

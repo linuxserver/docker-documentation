@@ -179,3 +179,15 @@ Unlike the properties defined above, these properties are only accessed via the 
 | `fleet.nuke.database` | **Be very careful.** This will tell Fleet to completely wipe and rebuild its database. This can be useful if the owner deems the database to be too far out of synchronisation with Docker Hub, or if images have since been removed but are still showing in Fleet. |
 | `fleet.skip.sync.on.startup` | By default, Fleet will run a synchronisation process when it first starts up. Setting this flag will tell it to skip the first run. The next synchronisation will be at the set interval. |
 
+### Default User
+
+When starting Fleet for the first time it will create a default user in order for you to log in and manage the repositories/images synchronised by the application. The default username and password are:
+
+**Username**: admin
+
+**Password**: admin
+
+{% hint style="warning" %}
+You should change the default password for this user as soon as possible! This can be done via the `Admin` -&gt; `Users` menu options.
+{% endhint %}
+
