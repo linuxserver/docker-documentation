@@ -207,6 +207,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **05.07.20:** - Add Debian updates and security repos for headers.
 * **25.06.20:** - Simplify module tests, prevent iptables issues from resulting in false negatives.
 * **19.06.20:** - Add support for Ubuntu Focal (20.04) kernels. Compile wireguard tools and kernel module instead of using the ubuntu packages. Make module install optional. Improve verbosity in logs.
 * **29.05.20:** - Add support for 64bit raspbian.
