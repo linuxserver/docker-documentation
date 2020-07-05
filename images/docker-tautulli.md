@@ -162,6 +162,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **05.06.20:** - Rebasing to alpine 3.12. Rework to python3.
 * **12.04.20:** - Added mock from pip and donate links.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
