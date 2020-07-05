@@ -1,6 +1,14 @@
-# linuxserver/jellyfin
+# [linuxserver/jellyfin](https://github.com/linuxserver/docker-jellyfin)
 
-[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-jellyfin.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-jellyfin) [![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-jellyfin.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-jellyfin/releases) [![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub%20Package&logo=github)](https://github.com/linuxserver/docker-jellyfin/packages) [![GitLab Container Registry](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab)](https://gitlab.com/Linuxserver.io/docker-jellyfin/container_registry) [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/jellyfin.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge)](https://microbadger.com/images/linuxserver/jellyfin) [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/jellyfin.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/jellyfin) [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/jellyfin.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/jellyfin) [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-jellyfin%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-jellyfin/job/master/) [![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Flsio-ci.ams3.digitaloceanspaces.com%2Flinuxserver%2Fjellyfin%2Flatest%2Fci-status.yml)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/jellyfin/latest/index.html)
+[![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-jellyfin.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-jellyfin)
+[![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-jellyfin.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-jellyfin/releases)
+[![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub%20Package&logo=github)](https://github.com/linuxserver/docker-jellyfin/packages)
+[![GitLab Container Registry](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab)](https://gitlab.com/Linuxserver.io/docker-jellyfin/container_registry)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/jellyfin.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge)](https://microbadger.com/images/linuxserver/jellyfin "Get your own version badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/jellyfin.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/jellyfin)
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/jellyfin.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/jellyfin)
+[![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-jellyfin%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-jellyfin/job/master/)
+[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Flsio-ci.ams3.digitaloceanspaces.com%2Flinuxserver%2Fjellyfin%2Flatest%2Fci-status.yml)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/jellyfin/latest/index.html)
 
 [Jellyfin](https://jellyfin.github.io/) is a Free Software Media System that puts you in control of managing and streaming your media. It is an alternative to the proprietary Emby and Plex, to provide media from a dedicated server to end-user devices via multiple apps. Jellyfin is descended from Emby's 3.5.2 release and ported to the .NET Core framework to enable full cross-platform support. There are no strings attached, no premium licenses or features, and no hidden agendas: just a team who want to build something better and work together to achieve it.
 
@@ -13,7 +21,7 @@ Simply pulling `linuxserver/jellyfin` should retrieve the correct image for your
 The architectures supported by this image are:
 
 | Architecture | Tag |
-| :---: | :--- |
+| :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
@@ -23,7 +31,7 @@ The architectures supported by this image are:
 This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
 
 | Tag | Description |
-| :---: | :--- |
+| :----: | --- |
 | latest | Stable Jellyfin releases |
 | nightly | Nightly Jellyfin releases |
 
@@ -33,7 +41,7 @@ Here are some example snippets to help you get started creating a container from
 
 ### docker
 
-```text
+```
 docker create \
   --name=jellyfin \
   -e PUID=1000 \
@@ -55,6 +63,7 @@ docker create \
   --restart unless-stopped \
   linuxserver/jellyfin
 ```
+
 
 ### docker-compose
 
@@ -94,51 +103,52 @@ services:
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime \(such as those above\). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-### Ports \(`-p`\)
+### Ports (`-p`)
 
 | Parameter | Function |
-| :---: | :--- |
+| :----: | --- |
 | `8096` | Http webUI. |
-| `8920` | Https webUI \(you need to set up your own certificate\). |
+| `8920` | Https webUI (you need to set up your own certificate). |
 
-### Environment Variables \(`-e`\)
+
+### Environment Variables (`-e`)
 
 | Env | Function |
-| :---: | :--- |
+| :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
 | `UMASK_SET=<022>` | for umask setting of Emby, default if left unset is 022. |
 
-### Volume Mappings \(`-v`\)
+### Volume Mappings (`-v`)
 
 | Volume | Function |
-| :---: | :--- |
-| `/config` | Jellyfin data storage location. _This can grow very large, 50gb+ is likely for a large collection._ |
+| :----: | --- |
+| `/config` | Jellyfin data storage location. *This can grow very large, 50gb+ is likely for a large collection.* |
 | `/data/tvshows` | Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc. |
 | `/data/movies` | Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc. |
-| `/opt/vc/lib` | Path for Raspberry Pi OpenMAX libs _optional_. |
+| `/opt/vc/lib` | Path for Raspberry Pi OpenMAX libs *optional*. |
 
-#### Device Mappings \(`--device`\)
-
+#### Device Mappings (`--device`)
 | Parameter | Function |
-| :---: | :--- |
-| `/dev/dri` | Only needed if you want to use your Intel GPU for hardware accelerated video encoding \(vaapi\). |
-| `/dev/vcsm` | Only needed if you want to use your Raspberry Pi MMAL video decoding \(Enabled as OpenMax H264 decode in gui settings\). |
+| :-----:   | --- |
+| `/dev/dri` | Only needed if you want to use your Intel GPU for hardware accelerated video encoding (vaapi). |
+| `/dev/vcsm` | Only needed if you want to use your Raspberry Pi MMAL video decoding (Enabled as OpenMax H264 decode in gui settings). |
 | `/dev/vchiq` | Only needed if you want to use your Raspberry Pi OpenMax video encoding. |
 | `/dev/video10` | Only needed if you want to use your Raspberry Pi V4L2 video encoding. |
 | `/dev/video11` | Only needed if you want to use your Raspberry Pi V4L2 video encoding. |
 | `/dev/video12` | Only needed if you want to use your Raspberry Pi V4L2 video encoding. |
 
-## Environment variables from files \(Docker secrets\)
+
+## Environment variables from files (Docker secrets)
 
 You can set any environment variable from a file by using a special prepend `FILE__`.
 
 As an example:
 
-```text
+```
 -e FILE__PASSWORD=/run/secrets/mysecretpassword
 ```
 
@@ -146,17 +156,19 @@ Will set the environment variable `PASSWORD` based on the contents of the `/run/
 
 ## Umask for running applications
 
-For all of our images we provide the ability to override the default umask settings for services started within the containers using the optional `-e UMASK=022` setting. Keep in mind umask is not chmod it subtracts from permissions based on it's value it does not add. Please read up [here](https://en.wikipedia.org/wiki/Umask) before asking for support.
+For all of our images we provide the ability to override the default umask settings for services started within the containers using the optional `-e UMASK=022` setting.
+Keep in mind umask is not chmod it subtracts from permissions based on it's value it does not add. Please read up [here](https://en.wikipedia.org/wiki/Umask) before asking for support.
+
 
 ## User / Group Identifiers
 
-When using volumes \(`-v` flags\), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```text
+```
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
@@ -181,35 +193,36 @@ We will automatically ensure the abc user inside of the container has the proper
 
 Hardware acceleration users for Nvidia will need to install the container runtime provided by Nvidia on their host, instructions can be found here:
 
-[https://github.com/NVIDIA/nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
+https://github.com/NVIDIA/nvidia-docker
 
-We automatically add the necessary environment variable that will utilise all the features available on a GPU on the host. Once nvidia-docker is installed on your host you will need to re/create the docker container with the nvidia container runtime `--runtime=nvidia` and add an environment variable `-e NVIDIA_VISIBLE_DEVICES=all` \(can also be set to a specific gpu's UUID, this can be discovered by running `nvidia-smi --query-gpu=gpu_name,gpu_uuid --format=csv` \). NVIDIA automatically mounts the GPU and drivers from your host into the jellyfin docker container.
+We automatically add the necessary environment variable that will utilise all the features available on a GPU on the host. Once nvidia-docker is installed on your host you will need to re/create the docker container with the nvidia container runtime `--runtime=nvidia` and add an environment variable `-e NVIDIA_VISIBLE_DEVICES=all` (can also be set to a specific gpu's UUID, this can be discovered by running `nvidia-smi --query-gpu=gpu_name,gpu_uuid --format=csv` ). NVIDIA automatically mounts the GPU and drivers from your host into the jellyfin docker container.
 
-### OpenMAX \(Raspberry Pi\)
+### OpenMAX (Raspberry Pi)
 
 Hardware acceleration users for Raspberry Pi MMAL/OpenMAX will need to mount their `/dev/vcsm` and `/dev/vchiq` video devices inside of the container and their system OpenMax libs by passing the following options when running or creating the container:
 
-```text
+```
 --device=/dev/vcsm:/dev/vcsm
 --device=/dev/vchiq:/dev/vchiq
 -v /opt/vc/lib:/opt/vc/lib
 ```
 
-### V4L2 \(Raspberry Pi\)
+### V4L2 (Raspberry Pi)
 
 Hardware acceleration users for Raspberry Pi V4L2 will need to mount their `/dev/video1X` devices inside of the container by passing the following options when running or creating the container:
 
-```text
+```
 --device=/dev/video10:/dev/video10
 --device=/dev/video11:/dev/video11
 --device=/dev/video12:/dev/video12
 ```
 
+
 ## Docker Mods
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=mods&query=%24.mods%5B%27jellyfin%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=jellyfin "view available mods for this container.")
 
-[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=mods&query=%24.mods%5B%27jellyfin%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=jellyfin)
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
 
-We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image \(if any\) can be accessed via the dynamic badge above.
 
 ## Support Info
 
@@ -225,12 +238,11 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 ## Versions
 
 * **28.04.20:** - Replace MMAL/OMX dependency device `/dev/vc-mem` with `/dev/vcsm` as the former was not sufficient for raspbian.
-* **11.04.20:** - Enable hw decode \(mmal\) on Raspberry Pi, update readme instructions, add donation info, create missing default transcodes folder.
-* **11.03.20:** - Add Pi V4L2 support, remove optional transcode mapping \(location is selected in the gui, defaults to path under `/config`\).
+* **11.04.20:** - Enable hw decode (mmal) on Raspberry Pi, update readme instructions, add donation info, create missing default transcodes folder.
+* **11.03.20:** - Add Pi V4L2 support, remove optional transcode mapping (location is selected in the gui, defaults to path under `/config`).
 * **30.01.20:** - Add nightly tag.
 * **09.01.20:** - Add Pi OpenMax support.
 * **02.10.19:** - Improve permission fixing for render & dvb devices.
 * **31.07.19:** - Add AMD drivers for vaapi support on x86.
 * **13.06.19:** - Add Intel drivers for vaapi support on x86.
 * **07.06.19:** - Initial release.
-
