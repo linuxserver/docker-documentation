@@ -151,7 +151,7 @@ Unrar is included by default and needs to be set in the Calibre-Web admin page (
 This optional layer will be rebuilt automatically on our CI pipeline upon new Calibre releases so you can stay up to date.
 To use this option add the optional environmental variable as detailed above to pull an addition docker layer to enable ebook conversion and then in the Calibre-Web admin page (Basic Configuration:External Binaries) set the **Path to Calibre E-Book Converter** to `/usr/bin/ebook-convert`  
 
-**x86-64 & arm32v7 only** This image contains the [kepubify](https://pgaskin.net/kepubify/) ebook conversion tool (MIT License) to convert epub to kepub.  In the Calibre-Web admin page (Basic Configuration:External Binaries) set the **Path to Kepubify E-Book Converter** to `/usr/bin/kepubify`
+This image contains the [kepubify](https://pgaskin.net/kepubify/) ebook conversion tool (MIT License) to convert epub to kepub.  In the Calibre-Web admin page (Basic Configuration:External Binaries) set the **Path to Kepubify E-Book Converter** to `/usr/bin/kepubify`
 
 To reverse proxy with our Letsencrypt docker container we include a preconfigured reverse proxy config, for other instances of Nginx use the following location block:
 ```
@@ -184,6 +184,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.07.20:** - Add kepubify for arm64v8
 * **05.06.20:** - Add kepubify for x86-64 and arm32v7
 * **06.05.20:** - Add libxslt1.1 and update ImageMagick policy
 * **19.01.20:** - Adding LDAP libs.
