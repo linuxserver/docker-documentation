@@ -154,6 +154,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **01.06.20:** - Rebasing to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **02.11.19:** - Add znc-palaver module.
 * **28.06.19:** - Rebasing to alpine 3.10.
