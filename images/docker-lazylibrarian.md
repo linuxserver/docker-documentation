@@ -40,7 +40,7 @@ docker create \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
-  -e DOCKER_MODS=linuxserver/calibre-web:calibre `#optional` \
+  -e DOCKER_MODS=linuxserver/calibre-web:calibre|linuxserver/mods:lazylibrarian-ffmpeg `#optional` \
   -p 5299:5299 \
   -v <path to data>:/config \
   -v <path to downloads>:/downloads \
@@ -65,7 +65,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - DOCKER_MODS=linuxserver/calibre-web:calibre #optional
+      - DOCKER_MODS=linuxserver/calibre-web:calibre|linuxserver/mods:lazylibrarian-ffmpeg #optional
     volumes:
       - <path to data>:/config
       - <path to downloads>:/downloads
@@ -93,7 +93,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use e.g. Europe/London |
-| `DOCKER_MODS=linuxserver/calibre-web:calibre` | #optional & **x86-64 only** Adds the ability to enable the Calibredb import program |
+| `DOCKER_MODS=linuxserver/calibre-web:calibre|linuxserver/mods:lazylibrarian-ffmpeg` | Allows additional functionality to be added, e.g. the Calibredb import program (optional, more info below) |
 
 ### Volume Mappings (`-v`)
 
@@ -140,9 +140,17 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 Access the webui at `http://<your-ip>:5299/home`, for more information check out [Lazylibrarian](https://lazylibrarian.gitlab.io/).
 
+### Calibredb import
+
 **x86-64 only** We have implemented the optional ability to pull in the dependencies to enable the Calibredb import program:, this means if you don't require this feature the container isn't uneccessarily bloated but should you require it, it is easily available.
 This optional layer will be rebuilt automatically on our CI pipeline upon new Calibre releases so you can stay up to date.
 To use this option add the optional environmental variable as detailed above to pull an addition docker layer to enable ebook conversion and then in the LazyLibrarian config page (Processing:Calibredb import program:) set the path to converter tool to `/usr/bin/calibredb`
+
+### ffmpeg
+
+By adding `linuxserver/mods:lazylibrarian-ffmpeg` to your `DOCKER_MODS` environment variable you can install ffmpeg into your container on startup.
+This allows you to use the audiobook conversion features of LazyLibrarian.
+You can enable it in the Web UI under Settings > Processing > External Programs by setting the ffmpeg path to `ffmpeg`.
 
 
 ## Docker Mods
