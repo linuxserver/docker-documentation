@@ -202,6 +202,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **17.07.20:** - Rebase 64 bit containers to Bionic and Mongo 3.6.
 * **16.06.20:** - Add logrotate.
 * **02.06.20:** - Updated port list & descriptions. Moved some ports to optional.
 * **14.11.19:** - Changed url for deb package to match new Ubiquity domain.
