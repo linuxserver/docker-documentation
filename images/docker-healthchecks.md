@@ -181,6 +181,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **19.07.20:** - Rebasing to alpine 3.12, fixed 'ALLOWED_HOSTS' bug, now defaults to wildcard
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **31.10.19:** - Add postgres client and fix config for CSRF.
 * **23.10.19:** - Allow to create superuser
