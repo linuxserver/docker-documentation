@@ -37,6 +37,7 @@ Here are some example snippets to help you get started creating a container from
 docker create \
   --name=ldap-auth \
   -e TZ=Europe/London \
+  -e FERNETKEY= `#optional` \
   -p 8888:8888 \
   -p 9000:9000 \
   --restart unless-stopped \
@@ -57,6 +58,7 @@ services:
     container_name: ldap-auth
     environment:
       - TZ=Europe/London
+      - FERNETKEY= #optional
     ports:
       - 8888:8888
       - 9000:9000
@@ -80,6 +82,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Env | Function |
 | :----: | --- |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
+| `FERNETKEY=` | Optionally define a custom fernet key, has to be base64-encoded 32-byte (only needed if container is frequently recreated, or if using multi-node setups, invalidating previous authentications) |
 
 ### Volume Mappings (`-v`)
 
@@ -110,7 +113,7 @@ Keep in mind umask is not chmod it subtracts from permissions based on it's valu
 
 - This container itself does not have any settings and it relies on the pertinent information passed through in http headers of incoming requests. Make sure that your webserver is set up with the right config.
 - Here's a sample config: [nginx-ldap-auth.conf](https://github.com/nginxinc/nginx-ldap-auth/blob/master/nginx-ldap-auth.conf).
-- Unlike the upstream project, this image encodes the cookie information with fernet, using a randomly generated key during container creation.
+- Unlike the upstream project, this image encodes the cookie information with fernet, using a randomly generated key during container creation (or optionally user defined).
 - Also unlike the upstream project, this image serves the login page at `/ldaplogin` (as well as `/login`) to prevent clashes with reverse proxied apps that may also use `/login` for their internal auth.
 
 
@@ -133,6 +136,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **21.07.20:** - Add support for optional user defined fernet key.
 * **02.06.20:** - Rebasing to alpine 3.12, serve login page at `/ldaplogin` as well as `/login`, to prevent clashes with reverese proxied apps.
 * **17.05.20:** - Add support for self-signed CA certs.
 * **20.02.20:** - Switch to python3.
