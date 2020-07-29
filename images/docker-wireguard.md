@@ -207,7 +207,8 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
-* **27.07.20:** - Update Coredns config to prevent issues with non-user-defined bridge networks.
+* **29.07.20:** - Update Coredns config to detect dns loops (existing users need to delete `/config/coredns/Corefile` and restart).
+* **27.07.20:** - Update Coredns config to prevent issues with non-user-defined bridge networks (existing users need to delete `/config/coredns/Corefile` and restart).
 * **05.07.20:** - Add Debian updates and security repos for headers.
 * **25.06.20:** - Simplify module tests, prevent iptables issues from resulting in false negatives.
 * **19.06.20:** - Add support for Ubuntu Focal (20.04) kernels. Compile wireguard tools and kernel module instead of using the ubuntu packages. Make module install optional. Improve verbosity in logs.
