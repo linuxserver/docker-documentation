@@ -169,6 +169,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **11.08.20:** - Changed upstream github repo location
 * **22.12.19:** - Revert to pulling in external war, upgrade jetty.
 * **30.04.19:** - Switching to build war from source, use stable booksonic releases.
 * **24.03.19:** - Switching to new Base images, shift to arm32v7 tag.
