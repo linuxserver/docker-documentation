@@ -1,2 +1,0 @@
-# linuxserver/sabnzb
-
