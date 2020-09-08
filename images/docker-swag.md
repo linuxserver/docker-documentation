@@ -219,6 +219,18 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 * You can check the status of a specific jail via `docker exec -it swag fail2ban-client status <jail name>`
 * You can unban an IP via `docker exec -it swag fail2ban-client set <jail name> unbanip <IP>`
 * A list of commands can be found here: https://www.fail2ban.org/wiki/index.php/Commands
+### Updating configs
+* This container creates a number of configs for nginx, proxy samples, etc.
+* Config updates are noted in the changelog but not automatically applied to your files.
+* If you have modified a file with noted changes in the changelog:
+  1. Keep your existing configs as is (not broken, don't fix)
+  2. Review our repository commits and apply the new changes yourself
+  3. Delete the modified config file with listed updates, restart the container, reapply your changes
+* If you have NOT modified a file with noted changes in the changelog:
+  1. Delete the config file with listed updates, restart the container, reapply your changes
+* Proxy sample updates are not listed in the changelog. See the changes here: [https://github.com/linuxserver/reverse-proxy-confs/commits/master](https://github.com/linuxserver/reverse-proxy-confs/commits/master)
+* Proxy sample files WILL be updated, however your renamed (enabled) proxy files will not.
+* You can check the new sample and adjust your active config as needed.
 
 
 ## Docker Mods
@@ -240,4 +252,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **01.09.20:** - Update nginx.conf and proxy.conf (and various proxy samples) to better handle websockets.
 * **03.08.20:** - Initial release.
