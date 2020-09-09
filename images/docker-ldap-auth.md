@@ -142,6 +142,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **08.09.20:** - Set form action correctly.
 * **30.07.20:** - Fix bug related to unset optional `CERTFILE` and `KEYFILE` vars.
 * **27.07.20:** - Add support for HTTP over SSL (HTTPS).
 * **21.07.20:** - Add support for optional user defined fernet key.
