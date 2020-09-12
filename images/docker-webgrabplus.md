@@ -175,7 +175,8 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
-* **22.06.20:** - Add mono webrequest library 
+* **12.10.20:** - Update to version 3.1.1 beta.
+* **22.06.20:** - Add mono webrequest library.
 * **18.06.20:** - Update to v3.1.0.
 * **29.03.20:** - Update to v3.0.0. Changed to use wg3-cron file.
 * **28.05.19:** - Update to v2.1.0 and beta v2.1.9, rebase to bionic.
