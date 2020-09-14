@@ -252,5 +252,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **08.09.20:** - Add php7-xsl.
 * **01.09.20:** - Update nginx.conf and proxy.conf (and various proxy samples) to better handle websockets.
 * **03.08.20:** - Initial release.
