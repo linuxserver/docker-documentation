@@ -36,16 +36,16 @@ Here are some example snippets to help you get started creating a container from
 ```
 docker create \
   --name=syncthing \
+  --hostname=syncthing `#optional` \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
-  -e UMASK_SET=<022> \
   -p 8384:8384 \
   -p 22000:22000 \
   -p 21027:21027/udp \
-  -v </path/to/appdata/config>:/config \
-  -v </path/to/data1>:/data1 \
-  -v </path/to/data2>:/data2 \
+  -v /path/to/appdata/config:/config \
+  -v /path/to/data1:/data1 \
+  -v /path/to/data2:/data2 \
   --restart unless-stopped \
   linuxserver/syncthing
 ```
@@ -62,15 +62,15 @@ services:
   syncthing:
     image: linuxserver/syncthing
     container_name: syncthing
+    hostname: syncthing #optional
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - UMASK_SET=<022>
     volumes:
-      - </path/to/appdata/config>:/config
-      - </path/to/data1>:/data1
-      - </path/to/data2>:/data2
+      - /path/to/appdata/config:/config
+      - /path/to/data1:/data1
+      - /path/to/data2:/data2
     ports:
       - 8384:8384
       - 22000:22000
@@ -98,7 +98,6 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
-| `UMASK_SET=<022>` | Umask setting - [explanation](https://askubuntu.com/questions/44542/what-is-umask-and-how-does-it-work) |
 
 ### Volume Mappings (`-v`)
 
@@ -109,6 +108,10 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `/data2` | Data2 |
 
 
+#### Miscellaneous Options
+| Parameter | Function |
+| :-----:   | --- |
+| `--hostname=` | Optionally the hostname can be defined. |
 
 ## Environment variables from files (Docker secrets)
 
@@ -164,6 +167,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **15.09.20:** - Use go from alpine edge repo to compile. Remove duplicate UMASK env var. Add hostname setting.
 * **01.06.20:** - Rebasing to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
