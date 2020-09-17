@@ -41,6 +41,7 @@ docker create \
   -e TZ=Europe/London \
   -p 80:80 \
   -p 443:443 \
+  -v <path to config>:/config \
   --restart unless-stopped \
   linuxserver/snapdrop
 ```
@@ -61,6 +62,8 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
+    volumes:
+      - <path to config>:/config
     ports:
       - 80:80
       - 443:443
@@ -91,6 +94,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Volume | Function |
 | :----: | --- |
+| `/config` | Persistent configs and logs. |
 
 
 
