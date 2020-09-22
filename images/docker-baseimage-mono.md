@@ -2,7 +2,7 @@
 [forumurl]: https://forum.linuxserver.io
 [ircurl]: https://www.linuxserver.io/irc/
 [appurl]: https://cloud-images.ubuntu.com
-[dockerfileurl]: https://github.com/linuxserver/docker-baseimage-ubuntu/blob/master/Dockerfile
+[dockerfileurl]: https://github.com/linuxserver/docker-baseimage-mono/blob/master/Dockerfile
 [monourl]: https://www.mono-project.com
 
 
