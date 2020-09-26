@@ -96,7 +96,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Cardigann config |
+| `/config` | Medusa config |
 | `/downloads` | Download location |
 | `/tv` | TV Shows location |
 
@@ -135,7 +135,9 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Application Setup
 
-Web interface is at `<your ip>:8081` , set paths for downloads, tv-shows to match docker mappings via the webui, for more information check out [Medusa](https://pymedusa.com/).
+Web interface is at `<your ip>:8081`. 
+
+Set paths for downloads, tv-shows to match docker mappings via the webui, for more information check out [Medusa](https://pymedusa.com/).
 
 
 ## Docker Mods
