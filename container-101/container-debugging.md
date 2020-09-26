@@ -1,10 +1,12 @@
-# Container Execution
+# Container Debugging
 
-You may find at some point you need to view the internal data of a container.
+Here are some tools to debug containers when they aren't working quite right.
 
-## Shell Access
+## "Exec" into a specific container
 
-Particularly useful when debugging the application - to shell in to one of our containers, run the following:
+You may find at some point you need to be "inside" a particular container. We can use the `docker exec` command to do this - see the [docker documentation](https://docs.docker.com/engine/reference/commandline/exec/).
+
+This is particularly useful when debugging the application - to shell in to one of our containers, run the following:
 
 ```bash
 docker exec -it <container_name> /bin/bash

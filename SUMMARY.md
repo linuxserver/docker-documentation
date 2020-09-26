@@ -2,17 +2,24 @@
 
 * [Introduction](README.md)
 
-## General
+## Container 101
 
-* [Container Execution](general/container-execution.md)
-* [Docker Containers: 101](general/containers-101.md)
-* [Running LinuxServer Containers](general/running-our-containers.md)
-* [Docker Compose](general/docker-compose.md)
-* [Understanding PUID and PGID](general/understanding-puid-and-pgid.md)
-* [Updating our containers](general/updating-our-containers.md)
-* [Volumes](general/volumes.md)
-* [Fleet](general/fleet.md)
-* [SWAG setup](general/swag.md)
+* [Container Basics](container-101/containers-101.md)
+* [Container Debugging](container-101/container-debugging.md)
+* [Understanding PUID and PGID](container-101/understanding-puid-and-pgid.md)
+* [Persist data with Volumes](container-101/volumes.md)
+* [docker-compose](container-101/docker-compose.md)
+
+## Container config
+
+* [Running our containers](lsio-config/running-our-containers.md)
+* [Updating our containers](lsio-config/updating-our-containers.md)
+* [Building our images locally](lsio-config/building-our-images-locally.md)
+
+## LinuxServer containers
+
+* [Fleet - Our Full Image List](lsio-containers/fleet.md)
+* [SWAG - Our Official Reverse Proxy](lsio-containers/swag.md)
 
 ## Images
 
