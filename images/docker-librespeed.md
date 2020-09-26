@@ -41,6 +41,7 @@ docker create \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -e PASSWORD=PASSWORD \
+  -e CUSTOM_RESULTS=true `#optional` \
   -e DB_TYPE=sqlite `#optional` \
   -e DB_NAME=DB_NAME `#optional` \
   -e DB_HOSTNAME=DB_HOSTNAME `#optional` \
@@ -69,6 +70,7 @@ services:
       - PGID=1000
       - TZ=Europe/London
       - PASSWORD=PASSWORD
+      - CUSTOM_RESULTS=true #optional
       - DB_TYPE=sqlite #optional
       - DB_NAME=DB_NAME #optional
       - DB_HOSTNAME=DB_HOSTNAME #optional
@@ -100,6 +102,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
 | `PASSWORD=PASSWORD` | Set the password for the results database. |
+| `CUSTOM_RESULTS=true` | (optional) enables custom results page in `/config/www/results/index.php`. |
 | `DB_TYPE=sqlite` | Defaults to `sqlite`, can also be set to `mysql` or `postgresql`. |
 | `DB_NAME=DB_NAME` | Database name. Required for mysql and pgsql. |
 | `DB_HOSTNAME=DB_HOSTNAME` | Database address. Required for mysql and pgsql. |
@@ -154,6 +157,8 @@ You can optionally place customized `speedtest.js` and `speedtest_worker.js` fil
 
 If you are setting up a mysql or postgresql database, you first need to import the tables into your database as described at the following link  
 https://github.com/librespeed/speedtest/blob/master/doc.md#creating-the-database
+
+To enable a custom results page set the environment variable `CUSTOM_RESULTS=true` and start (or restart) the container at least once for `/config/www/results/index.php` to be created and modify this file to your liking.
 
 
 ## Docker Mods
