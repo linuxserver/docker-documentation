@@ -114,7 +114,7 @@
 * [linuxserver/remmina](images/docker-remmina.md)
 * [linuxserver/resilio-sync](images/docker-resilio-sync.md)
 * [linuxserver/rutorrent](images/docker-rutorrent.md)
-* [linuxserver/sabnzb](images/linuxserver-sabnzb.md)
+* [linuxserver/sabnzbd](images/docker-sabnzbd.md)
 * [linuxserver/shout-irc](images/docker-shout-irc.md)
 * [linuxserver/sickchill](images/docker-sickchill.md)
 * [linuxserver/sickgear](images/docker-sickgear.md)
