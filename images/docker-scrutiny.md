@@ -45,8 +45,8 @@ docker create \
   -e SCRUTINY_COLLECTOR=true \
   -p 8080:8080 \
   -v <path to config>:/config \
-  -v /dev/disk:/dev/disk \
-  -v /run/udev:ro:/run/udev \
+  -v /dev/disk:/dev/disk:ro \
+  -v /run/udev:/run/udev:ro \
   --restart unless-stopped \
   linuxserver/scrutiny
 ```
@@ -73,8 +73,8 @@ services:
       - SCRUTINY_COLLECTOR=true
     volumes:
       - <path to config>:/config
-      - /dev/disk:/dev/disk
-      - /run/udev:ro:/run/udev
+      - /dev/disk:/dev/disk:ro
+      - /run/udev:/run/udev:ro
     ports:
       - 8080:8080
     restart: unless-stopped
@@ -107,8 +107,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Volume | Function |
 | :----: | --- |
 | `/config` | Where config is stored. |
-| `/dev/disk` | This is how Scrutiny accesses drives. |
-| `/run/udev` | Provides necessary metadata to Scrutiny. |
+| `/dev/disk:ro` | This is how Scrutiny accesses drives. |
+| `/run/udev:ro` | Provides necessary metadata to Scrutiny. |
 
 
 
