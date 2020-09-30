@@ -100,7 +100,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Volume | Function |
 | :----: | --- |
 | `/config` | Where calibre-web stores the internal database and config. |
-| `/books` | Where your calibre database is locate. |
+| `/books` | Where your preexisting calibre database is locate. |
 
 
 
