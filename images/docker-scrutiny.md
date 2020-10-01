@@ -36,8 +36,8 @@ Here are some example snippets to help you get started creating a container from
 ```
 docker create \
   --name=scrutiny \
-  --cap-add=SYS_ADMIN \
   --cap-add=SYS_RAWIO \
+  --cap-add=SYS_ADMIN `#optional` \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
@@ -45,11 +45,11 @@ docker create \
   -e SCRUTINY_WEB=true \
   -e SCRUTINY_COLLECTOR=true \
   -p 8080:8080 \
-  -v <path to config>:/config \
-  -v /dev/sda:/dev/sda:ro \
-  -v /dev/sdb:/dev/sdb:ro \
-  -v /dev/nvme1n1:/dev/nvme1n1:ro \
+  -v /path/to/config:/config \
   -v /run/udev:/run/udev:ro \
+  --device /dev/sda:/dev/sda \
+  --device /dev/sdb:/dev/sdb \
+  --device /dev/nvme1n1:/dev/nvme1n1 \
   --restart unless-stopped \
   linuxserver/scrutiny
 ```
@@ -67,8 +67,8 @@ services:
     image: linuxserver/scrutiny
     container_name: scrutiny
     cap_add:
-      - SYS_ADMIN
       - SYS_RAWIO
+      - SYS_ADMIN #optional
     environment:
       - PUID=1000
       - PGID=1000
@@ -77,13 +77,14 @@ services:
       - SCRUTINY_WEB=true
       - SCRUTINY_COLLECTOR=true
     volumes:
-      - <path to config>:/config
-      - /dev/sda:/dev/sda:ro
-      - /dev/sdb:/dev/sdb:ro
-      - /dev/nvme1n1:/dev/nvme1n1:ro
+      - /path/to/config:/config
       - /run/udev:/run/udev:ro
     ports:
       - 8080:8080
+    devices:
+      - /dev/sda:/dev/sda
+      - /dev/sdb:/dev/sdb
+      - /dev/nvme1n1:/dev/nvme1n1
     restart: unless-stopped
 ```
 
@@ -105,7 +106,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
-| `SCRUTINY_API_ENDPOINT=http://localhost:8080` | # optional - API endpoint of the scrutiny UI. |
+| `SCRUTINY_API_ENDPOINT=http://localhost:8080` | # optional - API endpoint of the scrutiny UI. Do not change unless using as a remote collector |
 | `SCRUTINY_WEB=true` | # optional - Run the web service. |
 | `SCRUTINY_COLLECTOR=true` | # optional - Run the metrics collector. |
 
@@ -114,11 +115,14 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Volume | Function |
 | :----: | --- |
 | `/config` | Where config is stored. |
-| `/dev/sda:ro` | This is how Scrutiny accesses drives. Optionally supply `/dev:/dev` instead for all devices. |
-| `/dev/sdb:ro` | A second drive. |
-| `/dev/nvme1n1:ro` | An NVMe drive. NVMe requires `--cap-add=SYS_RAWIO`. |
 | `/run/udev:ro` | Provides necessary metadata to Scrutiny. |
 
+#### Device Mappings (`--device`)
+| Parameter | Function |
+| :-----:   | --- |
+| `/dev/sda` | This is how Scrutiny accesses drives. Optionally supply `/dev:/dev` instead for all devices. |
+| `/dev/sdb` | A second drive. |
+| `/dev/nvme1n1` | An NVMe drive. NVMe requires `--cap-add=SYS_ADMIN`. |
 
 
 ## Environment variables from files (Docker secrets)
@@ -156,11 +160,13 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 This container can be run as an 'all-in-one' deployment or as a hub / spoke deployment. Use the environment variables `SCRUTINY_WEB` and `SCRUTINY_COLLECTOR` to control the mode of the container. Setting both to `true` will deploy the container as both a collector and the web UI - this is the simplest and most straightforward deployment approach. To make use of the hub and spoke model, run this container in "collector" mode by specifying `SCRUTINY_API_ENDPOINT`. Set this to the host that is running the API. For this to work, you will need to expose the API port directly from the container (by default this is `8080`).
 
+You may need to manually enter the container to run `scrutiny-collector-metrics run` for your first job or wait until around midnight for it to kick off.
+
 A fully commented example configuration yaml file can be found in the original project repository [here](https://github.com/AnalogJ/scrutiny/blob/master/example.scrutiny.yaml). Place this file in the location mounted to `/config`.
 
 A note on `--cap-add` for this container: 
-  * `SYS_ADMIN` is necessary to allow smartctl permission to query your device SMART data.
-  * `SYS_RAWIO` is required for NVMe drives as per upstream issue [#26](https://github.com/AnalogJ/scrutiny/issues/26#issuecomment-696817130). 
+  * `SYS_RAWIO` is necessary to allow smartctl permission to query your device SMART data.
+  * `SYS_ADMIN` is required for NVMe drives as per upstream issue [#26](https://github.com/AnalogJ/scrutiny/issues/26#issuecomment-696817130). 
 
 
 ## Docker Mods
