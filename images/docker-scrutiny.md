@@ -36,7 +36,8 @@ Here are some example snippets to help you get started creating a container from
 ```
 docker create \
   --name=scrutiny \
-  --privileged \
+  --cap-add=SYS_ADMIN \
+  --cap-add=SYS_RAWIO \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
@@ -45,7 +46,9 @@ docker create \
   -e SCRUTINY_COLLECTOR=true \
   -p 8080:8080 \
   -v <path to config>:/config \
-  -v /dev/disk:/dev/disk:ro \
+  -v /dev/sda:/dev/sda:ro \
+  -v /dev/sdb:/dev/sdb:ro \
+  -v /dev/nvme1n1:/dev/nvme1n1:ro \
   -v /run/udev:/run/udev:ro \
   --restart unless-stopped \
   linuxserver/scrutiny
@@ -63,7 +66,9 @@ services:
   scrutiny:
     image: linuxserver/scrutiny
     container_name: scrutiny
-    privileged: true
+    cap_add:
+      - SYS_ADMIN
+      - SYS_RAWIO
     environment:
       - PUID=1000
       - PGID=1000
@@ -73,7 +78,9 @@ services:
       - SCRUTINY_COLLECTOR=true
     volumes:
       - <path to config>:/config
-      - /dev/disk:/dev/disk:ro
+      - /dev/sda:/dev/sda:ro
+      - /dev/sdb:/dev/sdb:ro
+      - /dev/nvme1n1:/dev/nvme1n1:ro
       - /run/udev:/run/udev:ro
     ports:
       - 8080:8080
@@ -107,7 +114,9 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Volume | Function |
 | :----: | --- |
 | `/config` | Where config is stored. |
-| `/dev/disk:ro` | This is how Scrutiny accesses drives. |
+| `/dev/sda:ro` | This is how Scrutiny accesses drives. Optionally supply `/dev:/dev` instead for all devices. |
+| `/dev/sdb:ro` | A second drive. |
+| `/dev/nvme1n1:ro` | An NVMe drive. NVMe requires `--cap-add=SYS_RAWIO`. |
 | `/run/udev:ro` | Provides necessary metadata to Scrutiny. |
 
 
@@ -145,9 +154,13 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Application Setup
 
-This container can be run as an 'all-in-one' deployment or as a hub / spoke deployment. Use the environment variables `SCRUTINY_WEB` and `SCRUTINY_COLLECTOR` to control the mode of the container. Setting both to `true` will deploy the container as both a collector and the web UI - this is the simplest and most straightforward deployment approach.
+This container can be run as an 'all-in-one' deployment or as a hub / spoke deployment. Use the environment variables `SCRUTINY_WEB` and `SCRUTINY_COLLECTOR` to control the mode of the container. Setting both to `true` will deploy the container as both a collector and the web UI - this is the simplest and most straightforward deployment approach. To make use of the hub and spoke model, run this container in "collector" mode by specifying `SCRUTINY_API_ENDPOINT`. Set this to the host that is running the API. For this to work, you will need to expose the API port directly from the container (by default this is `8080`).
 
-To make use of the hub and spoke model, run this container in "collector" mode by specifying `SCRUTINY_API_ENDPOINT`. Set this to the host that is running the API. For this to work, you will need to expose the API port directly from the container (by default this is `8080`).
+A fully commented example configuration yaml file can be found in the original project repository [here](https://github.com/AnalogJ/scrutiny/blob/master/example.scrutiny.yaml). Place this file in the location mounted to `/config`.
+
+A note on `--cap-add` for this container: 
+  * `SYS_ADMIN` is necessary to allow smartctl permission to query your device SMART data.
+  * `SYS_RAWIO` is required for NVMe drives as per upstream issue [#26](https://github.com/AnalogJ/scrutiny/issues/26#issuecomment-696817130). 
 
 
 ## Docker Mods
