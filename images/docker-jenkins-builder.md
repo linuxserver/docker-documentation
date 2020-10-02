@@ -18,7 +18,8 @@ docker run --rm \
   -e LOCAL=true \
   -e PUID=$(id -u) -e PGID=$(id -g) \
   linuxserver/jenkins-builder:latest && \
-rm -f "$(basename $PWD).md"
+rm -f "$(basename $PWD).md" && \
+rm -f README.lite
 ```
 Newly generated files (including `README.md`, `Jenkinsfile`, issue templates, etc.) will overwrite the existing files in your current working directory.
 
