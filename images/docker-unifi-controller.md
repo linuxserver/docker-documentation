@@ -32,10 +32,40 @@ The architectures supported by this image are:
 
 Here are some example snippets to help you get started creating a container from this image.
 
-### docker
+### docker-compose ([recommended](https://docs.linuxserver.io/general/docker-compose))
+
+Compatible with docker-compose v2 schemas.
+
+```yaml
+---
+version: "2.1"
+services:
+  unifi-controller:
+    image: linuxserver/unifi-controller
+    container_name: unifi-controller
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - MEM_LIMIT=1024M #optional
+    volumes:
+      - <path to data>:/config
+    ports:
+      - 3478:3478/udp
+      - 10001:10001/udp
+      - 8080:8080
+      - 8443:8443
+      - 1900:1900/udp #optional
+      - 8843:8843 #optional
+      - 8880:8880 #optional
+      - 6789:6789 #optional
+      - 5514:5514 #optional
+    restart: unless-stopped
+```
+
+### docker cli
 
 ```
-docker create \
+docker run -d \
   --name=unifi-controller \
   -e PUID=1000 \
   -e PGID=1000 \
@@ -69,37 +99,6 @@ This image provides various versions that are available via tags. `latest` tag p
 ## Common problems
 When using a Security Gateway (router) it could be that network connected devices are unable to obtain an ip address. This can be fixed by setting "DHCP Gateway IP", under Settings > Networks > network_name, to a correct (and accessable) ip address.
 
-
-### docker-compose
-
-Compatible with docker-compose v2 schemas.
-
-```yaml
----
-version: "2.1"
-services:
-  unifi-controller:
-    image: linuxserver/unifi-controller
-    container_name: unifi-controller
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - MEM_LIMIT=1024M #optional
-    volumes:
-      - <path to data>:/config
-    ports:
-      - 3478:3478/udp
-      - 10001:10001/udp
-      - 8080:8080
-      - 8443:8443
-    ports:
-      - 1900:1900/udp #optional
-      - 8843:8843 #optional
-      - 8880:8880 #optional
-      - 6789:6789 #optional
-      - 5514:5514 #optional
-    restart: unless-stopped
-```
 
 ## Parameters
 
@@ -184,9 +183,9 @@ Use `ubnt` as the password to login and `$address` is the IP address of the host
 
 
 ## Docker Mods
-[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=mods&query=%24.mods%5B%27unifi-controller%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=unifi-controller "view available mods for this container.")
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=unifi-controller&query=%24.mods%5B%27unifi-controller%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=unifi-controller "view available mods for this container.") [![Docker Universal Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=universal&query=%24.mods%5B%27universal%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=universal "view available universal mods.")
 
-We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) as well as universal mods that can be applied to any one of our images can be accessed via the dynamic badges above.
 
 
 ## Support Info
