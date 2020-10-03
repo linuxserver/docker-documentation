@@ -8,7 +8,6 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/wireguard.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/wireguard)
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/wireguard.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/wireguard)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-wireguard%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-wireguard/job/master/)
-[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Flsio-ci.ams3.digitaloceanspaces.com%2Flinuxserver%2Fwireguard%2Flatest%2Fci-status.yml)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/wireguard/latest/index.html)
 
 [WireGuard®](https://www.wireguard.com/) is an extremely simple yet fast and modern VPN that utilizes state-of-the-art cryptography. It aims to be faster, simpler, leaner, and more useful than IPsec, while avoiding the massive headache. It intends to be considerably more performant than OpenVPN. WireGuard is designed as a general purpose VPN for running on embedded interfaces and super computers alike, fit for many different circumstances. Initially released for the Linux kernel, it is now cross-platform (Windows, macOS, BSD, iOS, Android) and widely deployable. It is currently under heavy development, but already it might be regarded as the most secure, easiest to use, and simplest VPN solution in the industry.
 
@@ -31,31 +30,7 @@ The architectures supported by this image are:
 
 Here are some example snippets to help you get started creating a container from this image.
 
-### docker
-
-```
-docker create \
-  --name=wireguard \
-  --cap-add=NET_ADMIN \
-  --cap-add=SYS_MODULE \
-  -e PUID=1000 \
-  -e PGID=1000 \
-  -e TZ=Europe/London \
-  -e SERVERURL=wireguard.domain.com `#optional` \
-  -e SERVERPORT=51820 `#optional` \
-  -e PEERS=1 `#optional` \
-  -e PEERDNS=auto `#optional` \
-  -e INTERNAL_SUBNET=10.13.13.0 `#optional` \
-  -p 51820:51820/udp \
-  -v /path/to/appdata/config:/config \
-  -v /lib/modules:/lib/modules \
-  --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
-  --restart unless-stopped \
-  linuxserver/wireguard
-```
-
-
-### docker-compose
+### docker-compose ([recommended](https://docs.linuxserver.io/general/docker-compose))
 
 Compatible with docker-compose v2 schemas.
 
@@ -87,6 +62,30 @@ services:
       - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
 ```
+
+### docker cli
+
+```
+docker run -d \
+  --name=wireguard \
+  --cap-add=NET_ADMIN \
+  --cap-add=SYS_MODULE \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Europe/London \
+  -e SERVERURL=wireguard.domain.com `#optional` \
+  -e SERVERPORT=51820 `#optional` \
+  -e PEERS=1 `#optional` \
+  -e PEERDNS=auto `#optional` \
+  -e INTERNAL_SUBNET=10.13.13.0 `#optional` \
+  -p 51820:51820/udp \
+  -v /path/to/appdata/config:/config \
+  -v /lib/modules:/lib/modules \
+  --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
+  --restart unless-stopped \
+  linuxserver/wireguard
+```
+
 
 ## Parameters
 
@@ -206,9 +205,9 @@ When routing via Wireguard from another container using the `service` option in 
 
 
 ## Docker Mods
-[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=mods&query=%24.mods%5B%27wireguard%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=wireguard "view available mods for this container.")
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=wireguard&query=%24.mods%5B%27wireguard%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=wireguard "view available mods for this container.") [![Docker Universal Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=universal&query=%24.mods%5B%27universal%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=universal "view available universal mods.")
 
-We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) as well as universal mods that can be applied to any one of our images can be accessed via the dynamic badges above.
 
 
 ## Support Info
