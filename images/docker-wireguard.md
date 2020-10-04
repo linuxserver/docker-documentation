@@ -53,6 +53,7 @@ services:
       - PEERS=1 #optional
       - PEERDNS=auto #optional
       - INTERNAL_SUBNET=10.13.13.0 #optional
+      - ALLOWEDIPS=192.168.1.0/24,192.168.2.0/24 #optional
     volumes:
       - /path/to/appdata/config:/config
       - /lib/modules:/lib/modules
@@ -78,6 +79,7 @@ docker run -d \
   -e PEERS=1 `#optional` \
   -e PEERDNS=auto `#optional` \
   -e INTERNAL_SUBNET=10.13.13.0 `#optional` \
+  -e ALLOWEDIPS=192.168.1.0/24,192.168.2.0/24 `#optional` \
   -p 51820:51820/udp \
   -v /path/to/appdata/config:/config \
   -v /lib/modules:/lib/modules \
@@ -107,9 +109,10 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
 | `SERVERURL=wireguard.domain.com` | External IP or domain name for docker host. Used in server mode. If set to `auto`, the container will try to determine and set the external IP automatically |
 | `SERVERPORT=51820` | External port for docker host. Used in server mode. |
-| `PEERS=1` | Number of peers to create confs for. Required for server mode. |
+| `PEERS=1` | Number of peers to create confs for. Required for server mode. Can be a list of names too: myPC,myPhone,myTablet... |
 | `PEERDNS=auto` | DNS server set in peer/client configs (can be set as `8.8.8.8`). Used in server mode. Defaults to `auto`, which uses wireguard docker host's DNS via included CoreDNS forward. |
 | `INTERNAL_SUBNET=10.13.13.0` | Internal subnet for the wireguard and server and peers (only change if it clashes). Used in server mode. |
+| `ALLOWEDIPS=192.168.1.0/24,192.168.2.0/24` | The IPs/Ranges that the peers will be able to reach using the VPN connection. If not specified the default value is: '0.0.0.0/0, ::0/0' |
 
 ### Volume Mappings (`-v`)
 
@@ -166,13 +169,13 @@ With regards to arm32/64 devices, Raspberry Pi 2-4 running the [official ubuntu 
 This can be run as a server or a client, based on the parameters used. 
 
 ## Server Mode
-If the environment variable `PEERS` is set to a number, the container will run in server mode and the necessary server and peer/client confs will be generated. The peer/client config qr codes will be output in the docker log. They will also be saved in text and png format under `/config/peerX`.
+If the environment variable `PEERS` is set to a number or a list of strings separated by comma, the container will run in server mode and the necessary server and peer/client confs will be generated. The peer/client config qr codes will be output in the docker log. They will also be saved in text and png format under `/config/peerX` in case `PEERS` is a variable and an integer or `/config/peer_X` in case a list of names was provided instead of an integer.
 
 Variables `SERVERURL`, `SERVERPORT`, `INTERNAL_SUBNET` and `PEERDNS` are optional variables used for server mode. Any changes to these environment variables will trigger regeneration of server and peer confs. Peer/client confs will be recreated with existing private/public keys. Delete the peer folders for the keys to be recreated along with the confs.
 
-To add more peers/clients later on, you increment the `PEERS` environment variable and recreate the container.
+To add more peers/clients later on, you increment the `PEERS` environment variable or add more elements to the list and recreate the container.
 
-To display the QR codes of active peers again, you can use the following command and list the peer numbers as arguments: `docker exec -it wireguard /app/show-peer 1 4 5` (Keep in mind that the QR codes are also stored as PNGs in the config folder).
+To display the QR codes of active peers again, you can use the following command and list the peer numbers as arguments: `docker exec -it wireguard /app/show-peer 1 4 5` or `docker exec -it wireguard /app/show-peer myPC myPhone myTablet` (Keep in mind that the QR codes are also stored as PNGs in the config folder).
 
 The templates used for server and peer confs are saved under `/config/templates`. Advanced users can modify these templates and force conf generation by deleting `/config/wg0.conf` and restarting the container.
 
@@ -223,6 +226,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **04.10.20:** - Allow to specify a list of names as PEERS and add ALLOWEDIPS environment variable. Also, add peer name/id to each one of the peer sections in wg0.conf. Important: Existing users need to delete `/config/templates/peer.conf` and restart
 * **27.09.20:** - Cleaning service binding example to have accurate PreDown script.
 * **06.08.20:** - Replace resolvconf with openresolv due to dns issues when a client based on this image is connected to a server also based on this image. Add IPv6 info to readme. Display kernel version in logs.
 * **29.07.20:** - Update Coredns config to detect dns loops (existing users need to delete `/config/coredns/Corefile` and restart).
