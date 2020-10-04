@@ -31,26 +31,7 @@ The architectures supported by this image are:
 
 Here are some example snippets to help you get started creating a container from this image.
 
-### docker
-
-```
-docker create \
-  --name=synclounge \
-  -e TZ=Europe/London \
-  -e EXTERNAL_URL=your.domain.com \
-  -e EXTERNAL_SERVER_PORT=80 `#optional` \
-  -e AUTH_LIST=plexuser1,plexuser2,email1,machineid1 `#optional` \
-  -e AUTOJOIN_ENABLED=false `#optional` \
-  -e AUTOJOIN_ROOM=roomname `#optional` \
-  -e AUTOJOIN_PASSWORD=password `#optional` \
-  -p 8088:8088 \
-  -p 8089:8089 \
-  --restart unless-stopped \
-  linuxserver/synclounge
-```
-
-
-### docker-compose
+### docker-compose ([recommended](https://docs.linuxserver.io/general/docker-compose))
 
 Compatible with docker-compose v2 schemas.
 
@@ -74,6 +55,25 @@ services:
       - 8089:8089
     restart: unless-stopped
 ```
+
+### docker cli
+
+```
+docker run -d \
+  --name=synclounge \
+  -e TZ=Europe/London \
+  -e EXTERNAL_URL=your.domain.com \
+  -e EXTERNAL_SERVER_PORT=80 `#optional` \
+  -e AUTH_LIST=plexuser1,plexuser2,email1,machineid1 `#optional` \
+  -e AUTOJOIN_ENABLED=false `#optional` \
+  -e AUTOJOIN_ROOM=roomname `#optional` \
+  -e AUTOJOIN_PASSWORD=password `#optional` \
+  -p 8088:8088 \
+  -p 8089:8089 \
+  --restart unless-stopped \
+  linuxserver/synclounge
+```
+
 
 ## Parameters
 
@@ -132,9 +132,9 @@ Note: The server address is hardcoded to `http` as `https` is not recommended du
 
 
 ## Docker Mods
-[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=mods&query=%24.mods%5B%27synclounge%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=synclounge "view available mods for this container.")
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=synclounge&query=%24.mods%5B%27synclounge%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=synclounge "view available mods for this container.") [![Docker Universal Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=universal&query=%24.mods%5B%27universal%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=universal "view available universal mods.")
 
-We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) as well as universal mods that can be applied to any one of our images can be accessed via the dynamic badges above.
 
 
 ## Support Info
