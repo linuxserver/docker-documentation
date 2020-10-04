@@ -31,34 +31,7 @@ The architectures supported by this image are:
 
 Here are some example snippets to help you get started creating a container from this image.
 
-### docker
-
-```
-docker create \
-  --name=swag \
-  --cap-add=NET_ADMIN \
-  -e PUID=1000 \
-  -e PGID=1000 \
-  -e TZ=Europe/London \
-  -e URL=yourdomain.url \
-  -e SUBDOMAINS=www, \
-  -e VALIDATION=http \
-  -e DNSPLUGIN=cloudflare `#optional` \
-  -e PROPAGATION= `#optional` \
-  -e DUCKDNSTOKEN= `#optional` \
-  -e EMAIL= `#optional` \
-  -e ONLY_SUBDOMAINS=false `#optional` \
-  -e EXTRA_DOMAINS= `#optional` \
-  -e STAGING=false `#optional` \
-  -p 443:443 \
-  -p 80:80 `#optional` \
-  -v /path/to/appdata/config:/config \
-  --restart unless-stopped \
-  linuxserver/swag
-```
-
-
-### docker-compose
+### docker-compose ([recommended](https://docs.linuxserver.io/general/docker-compose))
 
 Compatible with docker-compose v2 schemas.
 
@@ -85,14 +58,42 @@ services:
       - ONLY_SUBDOMAINS=false #optional
       - EXTRA_DOMAINS= #optional
       - STAGING=false #optional
+      - MAXMINDDB_LICENSE_KEY= #optional
     volumes:
       - /path/to/appdata/config:/config
     ports:
       - 443:443
-    ports:
       - 80:80 #optional
     restart: unless-stopped
 ```
+
+### docker cli
+
+```
+docker run -d \
+  --name=swag \
+  --cap-add=NET_ADMIN \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Europe/London \
+  -e URL=yourdomain.url \
+  -e SUBDOMAINS=www, \
+  -e VALIDATION=http \
+  -e DNSPLUGIN=cloudflare `#optional` \
+  -e PROPAGATION= `#optional` \
+  -e DUCKDNSTOKEN= `#optional` \
+  -e EMAIL= `#optional` \
+  -e ONLY_SUBDOMAINS=false `#optional` \
+  -e EXTRA_DOMAINS= `#optional` \
+  -e STAGING=false `#optional` \
+  -e MAXMINDDB_LICENSE_KEY= `#optional` \
+  -p 443:443 \
+  -p 80:80 `#optional` \
+  -v /path/to/appdata/config:/config \
+  --restart unless-stopped \
+  linuxserver/swag
+```
+
 
 ## Parameters
 
@@ -123,6 +124,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `ONLY_SUBDOMAINS=false` | If you wish to get certs only for certain subdomains, but not the main domain (main domain may be hosted on another machine and cannot be validated), set this to `true` |
 | `EXTRA_DOMAINS=` | Additional fully qualified domain names (comma separated, no spaces) ie. `extradomain.com,subdomain.anotherdomain.org,*.anotherdomain.org` |
 | `STAGING=false` | Set to `true` to retrieve certs in staging mode. Rate limits will be much higher, but the resulting cert will not pass the browser's security test. Only to be used for testing purposes. |
+| `MAXMINDDB_LICENSE_KEY=` | Add your MaxmindDB license key to automatically download the GeoLite2-City.mmdb database. Download location is /config/geoip2db. The database is updated weekly. |
 
 ### Volume Mappings (`-v`)
 
@@ -234,9 +236,9 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 
 
 ## Docker Mods
-[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=mods&query=%24.mods%5B%27swag%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=swag "view available mods for this container.")
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=swag&query=%24.mods%5B%27swag%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=swag "view available mods for this container.") [![Docker Universal Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=universal&query=%24.mods%5B%27universal%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=universal "view available universal mods.")
 
-We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) as well as universal mods that can be applied to any one of our images can be accessed via the dynamic badges above.
 
 
 ## Support Info
@@ -252,6 +254,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **20.09.20:** - Update nginx.conf - Added geoip2 configs. Added MAXMINDDB_LICENSE_KEY variable to readme.
 * **08.09.20:** - Add php7-xsl.
 * **01.09.20:** - Update nginx.conf and proxy.conf (and various proxy samples) to better handle websockets.
 * **03.08.20:** - Initial release.
