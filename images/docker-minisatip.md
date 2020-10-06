@@ -31,31 +31,7 @@ The architectures supported by this image are:
 
 Here are some example snippets to help you get started creating a container from this image.
 
-### docker
-
-```
-docker create \
-  --name=minisatip \
-  -e PUID=1000 \
-  -e PGID=1000 \
-  -e TZ=Europe/London \
-  -e RUN_OPTS=<parameter> \
-  -p 8875:8875 \
-  -p 554:554 \
-  -p 1900:1900/udp \
-  -v </path/to/appdata/config>:/config \
-  --device /dev/dvb:/dev/dvb \
-  --restart unless-stopped \
-  linuxserver/minisatip
-```
-
-### Additional runtime parameters
-
-In some cases it might be necessary to start minisatip with additional parameters, for example to configure a unicable LNB. Add the parameters you need and restart the container. Be sure to have the right parameters set as adding the wrong once might lead to the container not starting correctly.
-For a list of minisatip parameters visit [Minisatip](https://github.com/catalinii/minisatip) page.
-
-
-### docker-compose
+### docker-compose ([recommended](https://docs.linuxserver.io/general/docker-compose))
 
 Compatible with docker-compose v2 schemas.
 
@@ -81,6 +57,30 @@ services:
       - /dev/dvb:/dev/dvb
     restart: unless-stopped
 ```
+
+### docker cli
+
+```
+docker run -d \
+  --name=minisatip \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Europe/London \
+  -e RUN_OPTS=<parameter> \
+  -p 8875:8875 \
+  -p 554:554 \
+  -p 1900:1900/udp \
+  -v </path/to/appdata/config>:/config \
+  --device /dev/dvb:/dev/dvb \
+  --restart unless-stopped \
+  linuxserver/minisatip
+```
+
+### Additional runtime parameters
+
+In some cases it might be necessary to start minisatip with additional parameters, for example to configure a unicable LNB. Add the parameters you need and restart the container. Be sure to have the right parameters set as adding the wrong once might lead to the container not starting correctly.
+For a list of minisatip parameters visit [Minisatip](https://github.com/catalinii/minisatip) page.
+
 
 ## Parameters
 
@@ -157,9 +157,9 @@ You can then use your cards as DVB inputs in apps such as tvheadend.
 
 
 ## Docker Mods
-[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=mods&query=%24.mods%5B%27minisatip%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=minisatip "view available mods for this container.")
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=minisatip&query=%24.mods%5B%27minisatip%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=minisatip "view available mods for this container.") [![Docker Universal Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=universal&query=%24.mods%5B%27universal%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=universal "view available universal mods.")
 
-We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) as well as universal mods that can be applied to any one of our images can be accessed via the dynamic badges above.
 
 
 ## Support Info
