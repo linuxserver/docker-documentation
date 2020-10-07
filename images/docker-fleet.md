@@ -31,26 +31,7 @@ The architectures supported by this image are:
 
 Here are some example snippets to help you get started creating a container from this image.
 
-### docker
-
-```
-docker create \
-  --name=fleet \
-  -e PUID=1000 \
-  -e PGID=1000 \
-  -e fleet_admin_authentication_type=DATABASE \
-  -e fleet_database_url=jdbc:mariadb://<url>:3306/fleet \
-  -e fleet_database_username=fleet_user \
-  -e fleet_database_password=dbuserpassword \
-  -e fleet_admin_secret=randomstring `#optional` \
-  -p 8080:8080 \
-  -v </path/to/appdata/config>:/config \
-  --restart unless-stopped \
-  linuxserver/fleet
-```
-
-
-### docker-compose
+### docker-compose ([recommended](https://docs.linuxserver.io/general/docker-compose))
 
 Compatible with docker-compose v2 schemas.
 
@@ -75,6 +56,25 @@ services:
       - 8080:8080
     restart: unless-stopped
 ```
+
+### docker cli
+
+```
+docker run -d \
+  --name=fleet \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e fleet_admin_authentication_type=DATABASE \
+  -e fleet_database_url=jdbc:mariadb://<url>:3306/fleet \
+  -e fleet_database_username=fleet_user \
+  -e fleet_database_password=dbuserpassword \
+  -e fleet_admin_secret=randomstring `#optional` \
+  -p 8080:8080 \
+  -v </path/to/appdata/config>:/config \
+  --restart unless-stopped \
+  linuxserver/fleet
+```
+
 
 ## Parameters
 
@@ -146,9 +146,9 @@ Once complete, you can log into the app via `http://your_ip_here:8080/login` to 
 
 
 ## Docker Mods
-[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=mods&query=%24.mods%5B%27fleet%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=fleet "view available mods for this container.")
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=fleet&query=%24.mods%5B%27fleet%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=fleet "view available mods for this container.") [![Docker Universal Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=universal&query=%24.mods%5B%27universal%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=universal "view available universal mods.")
 
-We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) as well as universal mods that can be applied to any one of our images can be accessed via the dynamic badges above.
 
 
 ## Support Info
