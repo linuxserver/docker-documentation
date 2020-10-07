@@ -6,7 +6,8 @@ Compose is a tool for defining and running multi-container Docker applications. 
 
 ## Installation
 
-The recommended method of install is to use our [docker-compose image](https://github.com/linuxserver/docker-docker-compose) via a run script. You can simply run the following commands on your system and you should have a functional install that you can call from anywhere as `docker-compose`:
+### Install Option 1 (recommended):
+You can install docker-compose using our [docker-compose image](https://github.com/linuxserver/docker-docker-compose) via a run script. You can simply run the following commands on your system and you should have a functional install that you can call from anywhere as `docker-compose`:
 ```
 sudo curl -L --fail https://raw.githubusercontent.com/linuxserver/docker-docker-compose/master/run.sh -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
@@ -18,13 +19,14 @@ docker image prune -f
 ```
 To use the slimmer and more lightweight alpine based image, you can set an env var `DOCKER_COMPOSE_IMAGE_TAG=alpine` in your respective `.profile`. Alternatively you can set that var to a versioned image tag like `version-1.27.4` or `version-alpine-1.27.4` to pin it to a specific docker-compose version.
 
+### Install Option 2:
 We also publish binaries for docker-compose in [this repo](https://github.com/linuxserver/docker-docker-compose/releases). There are two versions, one for glibc based systems like Ubuntu and Debian, and one for musl based systems like Alpine. The latter are marked with the `alpine` tag. Each version contains binaries for `amd64`, `armhf` and `arm64`. You can pull these binaries into your system via the following commands to have a functional docker-compose install:
 ```
 sudo curl -L --fail https://github.com/linuxserver/docker-docker-compose/releases/download/1.27.4-ls17/docker-compose-amd64 -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-## Single service
+## Single service Usage
 
 Here's a basic example for deploying a Linuxserver container with docker-compose:
 
@@ -52,7 +54,7 @@ If you want to do it from a different folder or if you named the yaml file diffe
 
 To bring down the services, simply do `docker-compose down` or `docker-compose -f /path/to/heimdall.yml down` and all containers defined by the yml will be stopped and destroyed.
 
-## Multiple Services
+## Multiple Service Usage
 
 You can have multiple services managed by a single compose yaml. Copy the contents below the `services:` line in any of our readme yaml samples into the same yaml file and the `docker-compose up/down` commands will apply to all services at once.
 
