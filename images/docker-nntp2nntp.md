@@ -35,24 +35,7 @@ The architectures supported by this image are:
 
 Here are some example snippets to help you get started creating a container from this image.
 
-### docker
-
-```
-docker create \
-  --name=nntp2nntp \
-  -e PUID=1000 \
-  -e PGID=1000 \
-  -e PUID=<yourUID> \
-  -e PGID=<yourGID> \
-  -e TZ=Europe/London \
-  -p 1563:1563 \
-  -v <path to data>:/config \
-  --restart unless-stopped \
-  linuxserver/nntp2nntp
-```
-
-
-### docker-compose
+### docker-compose ([recommended](https://docs.linuxserver.io/general/docker-compose))
 
 Compatible with docker-compose v2 schemas.
 
@@ -75,6 +58,23 @@ services:
       - 1563:1563
     restart: unless-stopped
 ```
+
+### docker cli
+
+```
+docker run -d \
+  --name=nntp2nntp \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e PUID=<yourUID> \
+  -e PGID=<yourGID> \
+  -e TZ=Europe/London \
+  -p 1563:1563 \
+  -v <path to data>:/config \
+  --restart unless-stopped \
+  linuxserver/nntp2nntp
+```
+
 
 ## Parameters
 
@@ -153,9 +153,9 @@ Dave    = 5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
 
 
 ## Docker Mods
-[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=mods&query=%24.mods%5B%27nntp2nntp%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=nntp2nntp "view available mods for this container.")
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=nntp2nntp&query=%24.mods%5B%27nntp2nntp%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=nntp2nntp "view available mods for this container.") [![Docker Universal Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=universal&query=%24.mods%5B%27universal%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=universal "view available universal mods.")
 
-We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) as well as universal mods that can be applied to any one of our images can be accessed via the dynamic badges above.
 
 
 ## Support Info
