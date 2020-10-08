@@ -44,32 +44,7 @@ This image provides various versions that are available via tags. `latest` tag u
 
 Here are some example snippets to help you get started creating a container from this image.
 
-### docker
-
-```
-docker create \
-  --name=tvheadend \
-  -e PUID=1000 \
-  -e PGID=1000 \
-  -e TZ=Europe/London \
-  -e RUN_OPTS=<run options here> `#optional` \
-  -p 9981:9981 \
-  -p 9982:9982 \
-  -v <path to data>:/config \
-  -v <path to recordings>:/recordings \
-  --device /dev/dri:/dev/dri `#optional` \
-  --device /dev/dvb:/dev/dvb `#optional` \
-  --restart unless-stopped \
-  linuxserver/tvheadend
-```
-
-#### Host vs. Bridge
-
-If you use IPTV, SAT>IP or HDHomeRun, you need to create the container with --net=host and remove the -p flags. This is because to work with these services Tvheadend requires a multicast address of `239.255.255.250` and a UDP port of `1900` which at this time is not possible with docker bridge mode.
-If you have other host services which also use multicast such as SSDP/DLNA/Emby you may experience stabilty problems. These can be solved by giving tvheadend its own IP using macavlan.
-
-
-### docker-compose
+### docker-compose ([recommended](https://docs.linuxserver.io/general/docker-compose))
 
 Compatible with docker-compose v2 schemas.
 
@@ -96,6 +71,31 @@ services:
       - /dev/dvb:/dev/dvb #optional
     restart: unless-stopped
 ```
+
+### docker cli
+
+```
+docker run -d \
+  --name=tvheadend \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Europe/London \
+  -e RUN_OPTS=<run options here> `#optional` \
+  -p 9981:9981 \
+  -p 9982:9982 \
+  -v <path to data>:/config \
+  -v <path to recordings>:/recordings \
+  --device /dev/dri:/dev/dri `#optional` \
+  --device /dev/dvb:/dev/dvb `#optional` \
+  --restart unless-stopped \
+  linuxserver/tvheadend
+```
+
+#### Host vs. Bridge
+
+If you use IPTV, SAT>IP or HDHomeRun, you need to create the container with --net=host and remove the -p flags. This is because to work with these services Tvheadend requires a multicast address of `239.255.255.250` and a UDP port of `1900` which at this time is not possible with docker bridge mode.
+If you have other host services which also use multicast such as SSDP/DLNA/Emby you may experience stabilty problems. These can be solved by giving tvheadend its own IP using macavlan.
+
 
 ## Parameters
 
@@ -225,9 +225,9 @@ In some cases it might be necessary to start tvheadend with additional parameter
 
 
 ## Docker Mods
-[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=mods&query=%24.mods%5B%27tvheadend%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=tvheadend "view available mods for this container.")
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=tvheadend&query=%24.mods%5B%27tvheadend%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=tvheadend "view available mods for this container.") [![Docker Universal Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=universal&query=%24.mods%5B%27universal%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=universal "view available universal mods.")
 
-We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) as well as universal mods that can be applied to any one of our images can be accessed via the dynamic badges above.
 
 
 ## Support Info
