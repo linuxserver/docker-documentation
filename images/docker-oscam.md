@@ -31,10 +31,34 @@ The architectures supported by this image are:
 
 Here are some example snippets to help you get started creating a container from this image.
 
-### docker
+### docker-compose ([recommended](https://docs.linuxserver.io/general/docker-compose))
+
+Compatible with docker-compose v2 schemas.
+
+```yaml
+---
+version: "2.1"
+services:
+  oscam:
+    image: linuxserver/oscam
+    container_name: oscam
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - <path to data>:/config
+    ports:
+      - 8888:8888
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    restart: unless-stopped
+```
+
+### docker cli
 
 ```
-docker create \
+docker run -d \
   --name=oscam \
   -e PUID=1000 \
   -e PGID=1000 \
@@ -67,30 +91,6 @@ The first number, the Bus, is 002. The second number, the Device, is 005. This w
 
 If you have multiple smart card readers, you add one `--device=` tag for each reader.
 
-
-### docker-compose
-
-Compatible with docker-compose v2 schemas.
-
-```yaml
----
-version: "2.1"
-services:
-  oscam:
-    image: linuxserver/oscam
-    container_name: oscam
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/London
-    volumes:
-      - <path to data>:/config
-    ports:
-      - 8888:8888
-    devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
-    restart: unless-stopped
-```
 
 ## Parameters
 
@@ -161,9 +161,9 @@ The web interface is at port 8888.
 
 
 ## Docker Mods
-[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=mods&query=%24.mods%5B%27oscam%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=oscam "view available mods for this container.")
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=oscam&query=%24.mods%5B%27oscam%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=oscam "view available mods for this container.") [![Docker Universal Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=universal&query=%24.mods%5B%27universal%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=universal "view available universal mods.")
 
-We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) as well as universal mods that can be applied to any one of our images can be accessed via the dynamic badges above.
 
 
 ## Support Info
