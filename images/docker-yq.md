@@ -144,4 +144,5 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **09.10.20:** - Fix run scripts evaluating `$` in cases where they should not (ex: inside single quotes). Please rerun the [Recommended method](https://github.com/linuxserver/docker-yq#recommended-method) install/setup commands.
 * **07.10.20:** - Initial Release.
