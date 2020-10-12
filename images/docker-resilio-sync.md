@@ -46,11 +46,11 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - UMASK_SET=<022>
+      - UMASK_SET=022 #optional
     volumes:
-      - <path to config>:/config
-      - <path to downloads>:/downloads
-      - <path to data>:/sync
+      - /path/to/config:/config
+      - /path/to/downloads:/downloads
+      - /path/to/data:/sync
     ports:
       - 8888:8888
       - 55555:55555
@@ -65,12 +65,12 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
-  -e UMASK_SET=<022> \
+  -e UMASK_SET=022 `#optional` \
   -p 8888:8888 \
   -p 55555:55555 \
-  -v <path to config>:/config \
-  -v <path to downloads>:/downloads \
-  -v <path to data>:/sync \
+  -v /path/to/config:/config \
+  -v /path/to/downloads:/downloads \
+  -v /path/to/data:/sync \
   --restart unless-stopped \
   linuxserver/resilio-sync
 ```
@@ -95,7 +95,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
-| `UMASK_SET=<022>` | For umask setting of resilio-sync, default if left unset is 022. |
+| `UMASK_SET=022` | For umask setting of resilio-sync, default if left unset is 022. |
 
 ### Volume Mappings (`-v`)
 
