@@ -2,7 +2,7 @@ The goal of this guide is to give you ideas on what can be accomplished with the
 
 # Table of Contents
 * [Introduction](#introduction)
-    * [What are SSL certs?](#what-are-ssl-certs?)
+    * [What are SSL certs?](#what-are-ssl-certs)
     * [What is Let's Encrypt?](#what-is-lets-encrypt)
 * [Creating a SWAG container](#creating-a-swag-container)
     * [Docker cli](#docker-cli)
