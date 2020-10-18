@@ -47,8 +47,8 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - </path/to/pyload/config>:/config
-      - </path/to/downloads>:/downloads
+      - /path/to/pyload/config:/config
+      - /path/to/downloads:/downloads
     ports:
       - 8000:8000
       - 7227:7227 #optional
@@ -65,8 +65,8 @@ docker run -d \
   -e TZ=Europe/London \
   -p 8000:8000 \
   -p 7227:7227 `#optional` \
-  -v </path/to/pyload/config>:/config \
-  -v </path/to/downloads>:/downloads \
+  -v /path/to/pyload/config:/config \
+  -v /path/to/downloads:/downloads \
   --restart unless-stopped \
   linuxserver/pyload
 ```
@@ -160,6 +160,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **18.10.20:** - Chown app folder to fix plugin updater.
 * **18.07.19:** - Add ffmpeg for plugins the do video processing.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **08.06.19:** - Initial release.
