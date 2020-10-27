@@ -10,7 +10,7 @@
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-htpcmanager%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-htpcmanager/job/master/)
 [![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Flsio-ci.ams3.digitaloceanspaces.com%2Flinuxserver%2Fhtpcmanager%2Flatest%2Fci-status.yml)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/htpcmanager/latest/index.html)
 
-[Htpcmanager](https://github.com/Hellowlol/HTPC-Manager) is a front end for many htpc related applications. Hellowlol version.
+[Htpcmanager](https://github.com/HTPC-Manager/HTPC-Manager) is a front end for many htpc related applications.
 
 ## Supported Architectures
 
@@ -47,7 +47,7 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - </path/to/appdata/config>:/config
+      - /path/to/appdata/config:/config
     ports:
       - 8085:8085
     restart: unless-stopped
@@ -62,7 +62,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -p 8085:8085 \
-  -v </path/to/appdata/config>:/config \
+  -v /path/to/appdata/config:/config \
   --restart unless-stopped \
   linuxserver/htpcmanager
 ```
@@ -128,7 +128,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Application Setup
 
-The webui is found at port 8085. Smartmontools has not been included, you can safely ignore the warning error in the log.
+The webui is found at port 8085. Smartmontools and psutil have not been included, you can safely ignore the warning error in the log.
 
 ## Docker Mods
 [![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=htpcmanager&query=%24.mods%5B%27htpcmanager%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=htpcmanager "view available mods for this container.") [![Docker Universal Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=universal&query=%24.mods%5B%27universal%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=universal "view available universal mods.")
@@ -149,6 +149,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **26.10.20:** - Rebase to alpine 3.12, python3, change upstream project
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
