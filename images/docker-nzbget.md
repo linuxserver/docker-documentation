@@ -179,6 +179,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **26.10.20:** - Fix python dependencies.
 * **24.08.20:** - Fix ignored umask environment variable.
 * **08.06.20:** - Symlink python3 bin to python.
 * **01.06.20:** - Rebasing to alpine 3.12. Removing python2.
