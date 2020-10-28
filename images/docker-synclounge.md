@@ -44,15 +44,11 @@ services:
     container_name: synclounge
     environment:
       - TZ=Europe/London
-      - EXTERNAL_URL=your.domain.com
-      - EXTERNAL_SERVER_PORT=80 #optional
       - AUTH_LIST=plexuser1,plexuser2,email1,machineid1 #optional
       - AUTOJOIN_ENABLED=false #optional
       - AUTOJOIN_ROOM=roomname #optional
-      - AUTOJOIN_PASSWORD=password #optional
     ports:
       - 8088:8088
-      - 8089:8089
     restart: unless-stopped
 ```
 
@@ -62,14 +58,10 @@ services:
 docker run -d \
   --name=synclounge \
   -e TZ=Europe/London \
-  -e EXTERNAL_URL=your.domain.com \
-  -e EXTERNAL_SERVER_PORT=80 `#optional` \
   -e AUTH_LIST=plexuser1,plexuser2,email1,machineid1 `#optional` \
   -e AUTOJOIN_ENABLED=false `#optional` \
   -e AUTOJOIN_ROOM=roomname `#optional` \
-  -e AUTOJOIN_PASSWORD=password `#optional` \
   -p 8088:8088 \
-  -p 8089:8089 \
   --restart unless-stopped \
   linuxserver/synclounge
 ```
@@ -83,8 +75,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :----: | --- |
-| `8088` | Web app port |
-| `8089` | Server port |
+| `8088` | Web app and server port |
 
 
 ### Environment Variables (`-e`)
@@ -92,12 +83,9 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Env | Function |
 | :----: | --- |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
-| `EXTERNAL_URL=your.domain.com` | The webapp and the server will be accessible at this address via reverse proxy (alternatively, you can define an external IP address). |
-| `EXTERNAL_SERVER_PORT=80` | If you're not using a reverse proxy, you can define the external port for the server here. |
 | `AUTH_LIST=plexuser1,plexuser2,email1,machineid1` | If set, only the users defined here and the users of the plex servers defined here will be able to access the server. Use e-mails, plex usernames and/or plex server machine ids, comma separated, no spaces. |
-| `AUTOJOIN_ENABLED=false` | Set to `true` to let users autojoin the server and a room (specified by the `AUTOJOIN_ROOM` var). |
-| `AUTOJOIN_ROOM=roomname` | Set the room name for auto joining (requires `AUTOJOIN_ENABLED` set to `true`). |
-| `AUTOJOIN_PASSWORD=password` | Set the password for the room for auto joining (requires `AUTOJOIN_ENABLED` set to `true`). |
+| `AUTOJOIN_ENABLED=false` | DEPRECATED - (Still works but will be removed in the future in favor of the built-in var `autojoin__room`) - Set to `true` to let users autojoin the server and a room (specified by the `AUTOJOIN_ROOM` var). |
+| `AUTOJOIN_ROOM=roomname` | DEPRECATED - (Still works but will be removed in the future in favor of the built-in var `autojoin__room`) - Set the room name for auto joining (requires `AUTOJOIN_ENABLED` set to `true`). |
 
 ### Volume Mappings (`-v`)
 
@@ -126,9 +114,9 @@ Keep in mind umask is not chmod it subtracts from permissions based on it's valu
 
 ## Application Setup
 
-The web app is accessible at `http://SERVERIP:8088`. The server by default is available at `http://SERVERIP:EXTERNAL_SERVER_PORT/slserver`.
+The web app and the server are both accessible at `http://SERVERIP:8088`.
 
-Note: The server address is hardcoded to `http` as `https` is not recommended due to not working with external plex clients. When you reverse proxy, use `http` as the external proto for both webapp and server.
+Note: It is recommended to use `http` as the external proto with a reverse proxy due to `https` not working with external plex clients.
 
 
 ## Docker Mods
@@ -150,6 +138,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **28.10.20:** - Update to v4. Env vars `EXTERNAL_URL`, `EXTERNAL_SERVER_PORT` and `AUTOJOIN_PASSWORD` are deprecated and no longer have any effect. Env vars `AUTOJOIN_ENABLED` and `AUTOJOIN_ROOM` are still working but will be removed in the future in favor of synclounge's built-in var `autojoin__room`. If you are reverse proxying, do not forget to update your proxy settings ([here](https://github.com/linuxserver/reverse-proxy-confs/blob/master/synclounge.subdomain.conf.sample) and [here](https://github.com/linuxserver/reverse-proxy-confs/blob/master/synclounge.subfolder.conf.sample)) as the server port and addresses are changed.
 * **11.10.20:** - Pin builds to upstream commit `6aecc9bd` while evaluating the breaking changes upstream.
 * **27.09.20:** - Updating the external repo endpoint.
 * **01.06.20:** - Rebasing to alpine 3.12.
