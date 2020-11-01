@@ -34,13 +34,13 @@ sudo docker run --rm -i \
 -e TAGS="<single tag or array seperated by |>" \
 -e META_TAG=<manifest main dockerhub tag> \
 -e BASE=<alpine or debian based distro> \
--e SECRET_KEY=<Digital Ocean spaces secret> \
--e ACCESS_KEY=<Digital Ocean spaces key> \
+-e SECRET_KEY=<S3 secret> \
+-e ACCESS_KEY=<S3 key> \
 -e DOCKER_ENV="<optional, Array of env vars seperated by | IE test=test|test2=test2 or single var>" \
 -e WEB_AUTH="<optional, format user:passord>" \
 -e WEB_PATH="<optional, format /yourpath>" \
--e DO_REGION=<optional, custom Digital Ocean Region> \
--e DO_BUCKET=<optional, custom Digital Ocean Bucket> \
+-e S3_REGION=<optional, custom S3 Region> \
+-e S3_BUCKET=<optional, custom S3 Bucket> \
 -e WEB_SCREENSHOT=<optional, set to false if not a web app> \
 -e DELAY_START=<optional, time in seconds to delay before taking screenshot> \
 -e PORT=<optional, port web application listens on internal docker port> \
