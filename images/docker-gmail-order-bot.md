@@ -8,7 +8,6 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/lsiodev/gmail-order-bot.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/lsiodev/gmail-order-bot)
 [![Docker Stars](https://img.shields.io/docker/stars/lsiodev/gmail-order-bot.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/lsiodev/gmail-order-bot)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-gmail-order-bot%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-gmail-order-bot/job/master/)
-[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Flsio-ci.ams3.digitaloceanspaces.com%2Flinuxserver%2Fgmail-order-bot%2Flatest%2Fci-status.yml)](https://lsio-ci.ams3.digitaloceanspaces.com/lsiodev/gmail-order-bot/latest/index.html)
 
 [Gmail-order-bot](https://developers.google.com/gmail/api) - A bot used to leverage a Gmail account as an order messaging service to consume email orders from [Nano Checkout](https://github.com/linuxserver/nano-checkout) and process them using any custom logic you choose.
 
@@ -17,7 +16,7 @@
 
 Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lsiodev/gmail-order-bot` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `ghcr.io/lsiodev/gmail-order-bot` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
@@ -32,22 +31,7 @@ The architectures supported by this image are:
 
 Here are some example snippets to help you get started creating a container from this image.
 
-### docker
-
-```
-docker create \
-  --name=gmail-order-bot \
-  -e PUID=1000 \
-  -e PGID=1000 \
-  -e BOT_NAME=discord \
-  -e LOOP_TIME=60 \
-  -v /path/to/data:/config \
-  --restart unless-stopped \
-  lsiodev/gmail-order-bot
-```
-
-
-### docker-compose
+### docker-compose ([recommended](https://docs.linuxserver.io/general/docker-compose))
 
 Compatible with docker-compose v2 schemas.
 
@@ -56,7 +40,7 @@ Compatible with docker-compose v2 schemas.
 version: "2.1"
 services:
   gmail-order-bot:
-    image: lsiodev/gmail-order-bot
+    image: ghcr.io/lsiodev/gmail-order-bot
     container_name: gmail-order-bot
     environment:
       - PUID=1000
@@ -67,6 +51,21 @@ services:
       - /path/to/data:/config
     restart: unless-stopped
 ```
+
+### docker cli
+
+```
+docker run -d \
+  --name=gmail-order-bot \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e BOT_NAME=discord \
+  -e LOOP_TIME=60 \
+  -v /path/to/data:/config \
+  --restart unless-stopped \
+  ghcr.io/lsiodev/gmail-order-bot
+```
+
 
 ## Parameters
 
@@ -172,9 +171,9 @@ From there the bot will loop in for your defined timeout and pull in emails and 
 
 
 ## Docker Mods
-[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=mods&query=%24.mods%5B%27gmail-order-bot%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=gmail-order-bot "view available mods for this container.")
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=gmail-order-bot&query=%24.mods%5B%27gmail-order-bot%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=gmail-order-bot "view available mods for this container.") [![Docker Universal Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=universal&query=%24.mods%5B%27universal%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=universal "view available universal mods.")
 
-We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) as well as universal mods that can be applied to any one of our images can be accessed via the dynamic badges above.
 
 
 ## Support Info
@@ -186,7 +185,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' gmail-order-bot`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lsiodev/gmail-order-bot`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' ghcr.io/lsiodev/gmail-order-bot`
 
 ## Versions
 
