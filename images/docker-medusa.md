@@ -8,7 +8,7 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/medusa.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/medusa)
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/medusa.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/medusa)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-medusa%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-medusa/job/master/)
-[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Flsio-ci.ams3.digitaloceanspaces.com%2Flinuxserver%2Fmedusa%2Flatest%2Fci-status.yml)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/medusa/latest/index.html)
+[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.linuxserver.io%2Flinuxserver%2Fmedusa%2Flatest%2Fci-status.yml)](https://ci-tests.linuxserver.io/linuxserver/medusa/latest/index.html)
 
 [Medusa](https://pymedusa.com/) is an automatic Video Library Manager for TV Shows. It watches for new episodes of your favorite shows, and when they are posted it does its magic.
 
@@ -17,7 +17,7 @@
 
 Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `linuxserver/medusa` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `ghcr.io/linuxserver/medusa` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
@@ -41,7 +41,7 @@ Compatible with docker-compose v2 schemas.
 version: "2.1"
 services:
   medusa:
-    image: linuxserver/medusa
+    image: ghcr.io/linuxserver/medusa
     container_name: medusa
     environment:
       - PUID=1000
@@ -69,7 +69,7 @@ docker run -d \
   -v <path to downloads>:/downloads \
   -v <path to tv shows>:/tv \
   --restart unless-stopped \
-  linuxserver/medusa
+  ghcr.io/linuxserver/medusa
 ```
 
 
@@ -155,7 +155,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' medusa`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/medusa`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' ghcr.io/linuxserver/medusa`
 
 ## Versions
 
