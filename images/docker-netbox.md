@@ -8,7 +8,7 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/netbox.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/netbox)
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/netbox.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/netbox)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-netbox%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-netbox/job/master/)
-[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Flsio-ci.ams3.digitaloceanspaces.com%2Flinuxserver%2Fnetbox%2Flatest%2Fci-status.yml)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/netbox/latest/index.html)
+[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.linuxserver.io%2Flinuxserver%2Fnetbox%2Flatest%2Fci-status.yml)](https://ci-tests.linuxserver.io/linuxserver/netbox/latest/index.html)
 
 [Netbox](https://github.com/netbox-community/netbox) is an IP address management (IPAM) and data center infrastructure management (DCIM) tool. Initially conceived by the network engineering team at DigitalOcean, NetBox was developed specifically to address the needs of network and infrastructure engineers. It is intended to function as a domain-specific source of truth for network operations.
 
@@ -17,7 +17,7 @@
 
 Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `linuxserver/netbox` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `ghcr.io/linuxserver/netbox` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
@@ -32,33 +32,7 @@ The architectures supported by this image are:
 
 Here are some example snippets to help you get started creating a container from this image.
 
-### docker
-
-```
-docker create \
-  --name=netbox \
-  -e PUID=1000 \
-  -e PGID=1000 \
-  -e SUPERUSER_EMAIL=<SUPERUSER_EMAIL> \
-  -e SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD> \
-  -e ALLOWED_HOST=<ALLOWED_HOST> \
-  -e DB_NAME=<DB_NAME> \
-  -e DB_USER=<DB_USER> \
-  -e DB_PASSWORD=<DB_PASSWORD> \
-  -e DB_HOST=<DB_HOST> \
-  -e DB_PORT=<DB_PORT> \
-  -e REDIS_HOST=<REDIS_HOST> \
-  -e REDIS_PORT=<REDIS_PORT> \
-  -e REDIS_PASSWORD=<REDIS_PASSWORD> \
-  -e TZ=<TZ> \
-  -p 8000:8000 \
-  -v <path to data on host>:/config \
-  --restart unless-stopped \
-  linuxserver/netbox
-```
-
-
-### docker-compose
+### docker-compose ([recommended](https://docs.linuxserver.io/general/docker-compose))
 
 Compatible with docker-compose v2 schemas.
 
@@ -67,7 +41,7 @@ Compatible with docker-compose v2 schemas.
 version: "2.1"
 services:
   netbox:
-    image: linuxserver/netbox
+    image: ghcr.io/linuxserver/netbox
     container_name: netbox
     environment:
       - PUID=1000
@@ -90,6 +64,32 @@ services:
       - 8000:8000
     restart: unless-stopped
 ```
+
+### docker cli
+
+```
+docker run -d \
+  --name=netbox \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e SUPERUSER_EMAIL=<SUPERUSER_EMAIL> \
+  -e SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD> \
+  -e ALLOWED_HOST=<ALLOWED_HOST> \
+  -e DB_NAME=<DB_NAME> \
+  -e DB_USER=<DB_USER> \
+  -e DB_PASSWORD=<DB_PASSWORD> \
+  -e DB_HOST=<DB_HOST> \
+  -e DB_PORT=<DB_PORT> \
+  -e REDIS_HOST=<REDIS_HOST> \
+  -e REDIS_PORT=<REDIS_PORT> \
+  -e REDIS_PASSWORD=<REDIS_PASSWORD> \
+  -e TZ=<TZ> \
+  -p 8000:8000 \
+  -v <path to data on host>:/config \
+  --restart unless-stopped \
+  ghcr.io/linuxserver/netbox
+```
+
 
 ## Parameters
 
@@ -166,9 +166,9 @@ Access the WebUI at <your-ip>:8000. For more information, check out [NetBox](htt
 
 
 ## Docker Mods
-[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=mods&query=%24.mods%5B%27netbox%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=netbox "view available mods for this container.")
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=netbox&query=%24.mods%5B%27netbox%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=netbox "view available mods for this container.") [![Docker Universal Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=universal&query=%24.mods%5B%27universal%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=universal "view available universal mods.")
 
-We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) as well as universal mods that can be applied to any one of our images can be accessed via the dynamic badges above.
 
 
 ## Support Info
@@ -180,7 +180,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' netbox`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/netbox`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' ghcr.io/linuxserver/netbox`
 
 ## Versions
 
