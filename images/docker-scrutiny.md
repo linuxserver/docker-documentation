@@ -8,7 +8,7 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/scrutiny.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/scrutiny)
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/scrutiny.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/scrutiny)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-scrutiny%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-scrutiny/job/master/)
-[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Flsio-ci.ams3.digitaloceanspaces.com%2Flinuxserver%2Fscrutiny%2Flatest%2Fci-status.yml)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/scrutiny/latest/index.html)
+[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.linuxserver.io%2Flinuxserver%2Fscrutiny%2Flatest%2Fci-status.yml)](https://ci-tests.linuxserver.io/linuxserver/scrutiny/latest/index.html)
 
 [Scrutiny](https://github.com/AnalogJ/scrutiny) WebUI for smartd S.M.A.R.T monitoring. Scrutiny is a Hard Drive Health Dashboard & Monitoring solution, merging manufacturer provided S.M.A.R.T metrics with real-world failure rates from Backblaze.
 
@@ -16,7 +16,7 @@
 
 Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `linuxserver/scrutiny` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `ghcr.io/linuxserver/scrutiny` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
@@ -31,31 +31,7 @@ The architectures supported by this image are:
 
 Here are some example snippets to help you get started creating a container from this image.
 
-### docker
-
-```
-docker create \
-  --name=scrutiny \
-  --cap-add=SYS_RAWIO \
-  --cap-add=SYS_ADMIN `#optional` \
-  -e PUID=1000 \
-  -e PGID=1000 \
-  -e TZ=Europe/London \
-  -e SCRUTINY_API_ENDPOINT=http://localhost:8080 \
-  -e SCRUTINY_WEB=true \
-  -e SCRUTINY_COLLECTOR=true \
-  -p 8080:8080 \
-  -v /path/to/config:/config \
-  -v /run/udev:/run/udev:ro \
-  --device /dev/sda:/dev/sda \
-  --device /dev/sdb:/dev/sdb \
-  --device /dev/nvme1n1:/dev/nvme1n1 \
-  --restart unless-stopped \
-  linuxserver/scrutiny
-```
-
-
-### docker-compose
+### docker-compose ([recommended](https://docs.linuxserver.io/general/docker-compose))
 
 Compatible with docker-compose v2 schemas.
 
@@ -64,7 +40,7 @@ Compatible with docker-compose v2 schemas.
 version: "2.1"
 services:
   scrutiny:
-    image: linuxserver/scrutiny
+    image: ghcr.io/linuxserver/scrutiny
     container_name: scrutiny
     cap_add:
       - SYS_RAWIO
@@ -87,6 +63,30 @@ services:
       - /dev/nvme1n1:/dev/nvme1n1
     restart: unless-stopped
 ```
+
+### docker cli
+
+```
+docker run -d \
+  --name=scrutiny \
+  --cap-add=SYS_RAWIO \
+  --cap-add=SYS_ADMIN `#optional` \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Europe/London \
+  -e SCRUTINY_API_ENDPOINT=http://localhost:8080 \
+  -e SCRUTINY_WEB=true \
+  -e SCRUTINY_COLLECTOR=true \
+  -p 8080:8080 \
+  -v /path/to/config:/config \
+  -v /run/udev:/run/udev:ro \
+  --device /dev/sda:/dev/sda \
+  --device /dev/sdb:/dev/sdb \
+  --device /dev/nvme1n1:/dev/nvme1n1 \
+  --restart unless-stopped \
+  ghcr.io/linuxserver/scrutiny
+```
+
 
 ## Parameters
 
@@ -170,9 +170,9 @@ A note on `--cap-add` for this container:
 
 
 ## Docker Mods
-[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=mods&query=%24.mods%5B%27scrutiny%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=scrutiny "view available mods for this container.")
+[![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=scrutiny&query=%24.mods%5B%27scrutiny%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=scrutiny "view available mods for this container.") [![Docker Universal Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=universal&query=%24.mods%5B%27universal%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=universal "view available universal mods.")
 
-We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) can be accessed via the dynamic badge above.
+We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) as well as universal mods that can be applied to any one of our images can be accessed via the dynamic badges above.
 
 
 ## Support Info
@@ -184,7 +184,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' scrutiny`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/scrutiny`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' ghcr.io/linuxserver/scrutiny`
 
 ## Versions
 
