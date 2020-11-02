@@ -8,7 +8,7 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/jellyfin.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/jellyfin)
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/jellyfin.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/jellyfin)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-jellyfin%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-jellyfin/job/master/)
-[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Flsio-ci.ams3.digitaloceanspaces.com%2Flinuxserver%2Fjellyfin%2Flatest%2Fci-status.yml)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/jellyfin/latest/index.html)
+[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.linuxserver.io%2Flinuxserver%2Fjellyfin%2Flatest%2Fci-status.yml)](https://ci-tests.linuxserver.io/linuxserver/jellyfin/latest/index.html)
 
 [Jellyfin](https://jellyfin.github.io/) is a Free Software Media System that puts you in control of managing and streaming your media. It is an alternative to the proprietary Emby and Plex, to provide media from a dedicated server to end-user devices via multiple apps. Jellyfin is descended from Emby's 3.5.2 release and ported to the .NET Core framework to enable full cross-platform support. There are no strings attached, no premium licenses or features, and no hidden agendas: just a team who want to build something better and work together to achieve it.
 
@@ -16,7 +16,7 @@
 
 Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `linuxserver/jellyfin` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `ghcr.io/linuxserver/jellyfin` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
@@ -48,7 +48,7 @@ Compatible with docker-compose v2 schemas.
 version: "2.1"
 services:
   jellyfin:
-    image: linuxserver/jellyfin
+    image: ghcr.io/linuxserver/jellyfin
     container_name: jellyfin
     environment:
       - PUID=1000
@@ -99,7 +99,7 @@ docker run -d \
   --device /dev/video11:/dev/video11 `#optional` \
   --device /dev/video12:/dev/video12 `#optional` \
   --restart unless-stopped \
-  linuxserver/jellyfin
+  ghcr.io/linuxserver/jellyfin
 ```
 
 
@@ -251,7 +251,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' jellyfin`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/jellyfin`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' ghcr.io/linuxserver/jellyfin`
 
 ## Versions
 
