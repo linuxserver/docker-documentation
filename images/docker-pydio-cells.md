@@ -8,7 +8,7 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/pydio-cells.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/pydio-cells)
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/pydio-cells.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/pydio-cells)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-pydio-cells%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-pydio-cells/job/master/)
-[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Flsio-ci.ams3.digitaloceanspaces.com%2Flinuxserver%2Fpydio-cells%2Flatest%2Fci-status.yml)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/pydio-cells/latest/index.html)
+[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.linuxserver.io%2Flinuxserver%2Fpydio-cells%2Flatest%2Fci-status.yml)](https://ci-tests.linuxserver.io/linuxserver/pydio-cells/latest/index.html)
 
 [Pydio-cells](https://pydio.com/) is the nextgen file sharing platform for organizations. It is a full rewrite of the Pydio project using the Go language following a micro-service architecture.
 
@@ -16,7 +16,7 @@
 
 Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `linuxserver/pydio-cells` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `ghcr.io/linuxserver/pydio-cells` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
@@ -38,7 +38,7 @@ Compatible with docker-compose v2 schemas.
 version: "2.1"
 services:
   pydio-cells:
-    image: linuxserver/pydio-cells
+    image: ghcr.io/linuxserver/pydio-cells
     container_name: pydio-cells
     hostname: pydio-cells
     environment:
@@ -70,7 +70,7 @@ docker run -d \
   -p 33060:33060 `#optional` \
   -v /path/to/appdata/config:/config \
   --restart unless-stopped \
-  linuxserver/pydio-cells
+  ghcr.io/linuxserver/pydio-cells
 ```
 
 
@@ -161,7 +161,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' pydio-cells`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/pydio-cells`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' ghcr.io/linuxserver/pydio-cells`
 
 ## Versions
 
