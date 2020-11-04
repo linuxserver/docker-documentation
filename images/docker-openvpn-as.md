@@ -31,7 +31,7 @@ This image provides various versions that are available via tags. `latest` tag u
 | Tag | Description |
 | :----: | --- |
 | latest | Stable releases based on ubuntu bionic |
-| xenial | Stable releases based on ubuntu xenial |
+| xenial | DEPRECATED, no longer updated - Stable releases based on ubuntu xenial |
 
 ## Usage
 
@@ -179,6 +179,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **04.11.20:** - `xenial` tag is deprecated and there will be no further releases for that tag.
 * **22.06.20:** - Added Support for persistent Customization Folders.
 * **26.03.20:** - Switch to using the openvpn-as repo for packages.
 * **29.08.19:** - Update Application Setup instructions in readme to fix 2.7.5 login issue for existing users.
