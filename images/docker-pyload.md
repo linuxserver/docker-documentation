@@ -160,6 +160,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **04.11.20:** - Rebase to alpine 3.11.
 * **18.10.20:** - Chown app folder to fix plugin updater.
 * **18.07.19:** - Add ffmpeg for plugins the do video processing.
 * **28.06.19:** - Rebasing to alpine 3.10.
