@@ -226,6 +226,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **13.11.20:** - Fix issue with samba and ffmpeg.
 * **03.07.20:** - Add support for amd vaapi hw transcode.
 * **29.02.20:** - Add v4l2 support on Raspberry Pi.
 * **26.02.20:** - Add openmax support on Raspberry Pi.
