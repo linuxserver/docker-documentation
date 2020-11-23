@@ -9,7 +9,7 @@
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/musicbrainz.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/musicbrainz)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-musicbrainz%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-musicbrainz/job/master/)
 
-[Musicbrainz](https://musicbrainz.org/) is an open music encyclopedia that collects music metadata and makes it available to the public.
+[MusicBrainz](https://musicbrainz.org/) is an open music encyclopedia that collects music metadata and makes it available to the public.
 
 ## Supported Architectures
 
@@ -45,7 +45,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - BRAINZCODE=<code from musicbrainz>
+      - BRAINZCODE=<code from MusicBrainz>
       - WEBADDRESS=<ip of host>
       - NPROC=<parameter> #optional
     volumes:
@@ -64,7 +64,7 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
-  -e BRAINZCODE=<code from musicbrainz> \
+  -e BRAINZCODE=<code from MusicBrainz> \
   -e WEBADDRESS=<ip of host> \
   -e NPROC=<parameter> `#optional` \
   -p 5000:5000 \
@@ -93,7 +93,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
-| `BRAINZCODE=<code from musicbrainz>` | To enter musicbrainz code. see Setting up the application |
+| `BRAINZCODE=<code from MusicBrainz>` | To enter MusicBrainz code. See Setting up the application |
 | `WEBADDRESS=<ip of host>` | To set ip for host to allow css to render properly, DO NOT ENTER PORT NUMBER. |
 | `NPROC=<parameter>` | To set number of proceses, defaults to 5 if unset. |
 
@@ -143,7 +143,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 + **If you did not set WEBADDRESS env variable, then AFTER iniatilisation is complete you will need to edit the line `sub WEB_SERVER { "localhost:5000" }` in file /config/DBDefs.pm changing localhost to the ip of your host, this is to allow css to display properly**
 
-* You must register here to recieve a musicbrainz code to allow you to recieve database updates, it is free. [Get Code here](https://metabrainz.org/supporters/account-type).
+* You must register here to receive a MusicBrainz code to allow you to receive database updates, it is free. [Get Code here](https://metabrainz.org/supporters/account-type).
 * The initial import and setup of the database can take quite a long time, dependant on your download speed etc, be patient and don't restart the container before it's complete.
 * It appears there are issues with unraid and using /mnt/user/cache/appdata instead of /mnt/cache/appdata, use /mnt/cache/appdata.
 
