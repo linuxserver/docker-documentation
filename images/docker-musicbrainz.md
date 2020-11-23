@@ -167,6 +167,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **03.10.20:** - Rebase to alpine 3.12, add gettext and move to nodejs-current.
 * **17.05.19:** - Update DBDefs.pm to schema 25 database.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **02.03.19:** - Revert to alpine 3.8 to fix incompatibilities with frontend build tools.
