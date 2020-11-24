@@ -32,7 +32,8 @@ This image provides various versions that are available via tags. `latest` tag u
 
 | Tag | Description |
 | :----: | --- |
-| latest | Stable Jellyfin releases |
+| latest | Stable Jellyfin releases - Focal baseimage |
+| bionic | Stable Jellyfin releases - Bionic baseimage |
 | nightly | Nightly Jellyfin releases |
 
 ## Usage
@@ -255,6 +256,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.11.20:** - Rebase to Focal, branch off Bionic.
 * **22.07.20:** - Ingest releases from Jellyfin repo.
 * **28.04.20:** - Replace MMAL/OMX dependency device `/dev/vc-mem` with `/dev/vcsm` as the former was not sufficient for raspbian.
 * **11.04.20:** - Enable hw decode (mmal) on Raspberry Pi, update readme instructions, add donation info, create missing default transcodes folder.
