@@ -12,7 +12,7 @@ This is due to a bug in the libseccomp2 library (dependency of docker itself), w
 
 You have a few options, some are short-term.
 
-1. Use another tag, not based on Focal. At the time of writing we currently offer a `bionic` tag for [Plex](https://github.com/linuxserver/docker-plex) and [Jellyfin](https://github.com/linuxserver/docker-jellyfin) that will recive the same care as latest for the foreseeable future.
+1. Use another tag, not based on Focal. At the time of writing we currently offer a `bionic` tag for [Plex](https://github.com/linuxserver/docker-plex) and [Jellyfin](https://github.com/linuxserver/docker-jellyfin) that will receive the same care as latest for the foreseeable future.
 
 2. Add the backports repo for DebianBuster. As seen [here](https://github.com/linuxserver/docker-jellyfin/issues/71#issuecomment-733621693).
 
@@ -22,7 +22,7 @@ You have a few options, some are short-term.
     sudo apt install -t buster-backports libseccomp2
     ```
 
-3. Manually install a updated version of the library with dpkg.
+3. Manually install an updated version of the library with dpkg.
 
     ```bash
     wget http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.4.4-1~bpo10+1_armhf.deb -o libseccomp2.deb
@@ -34,6 +34,8 @@ You have a few options, some are short-term.
 4. Reinstall/update your OS to a version that still gets updates.
     * Any distro based on DebianStretch does not seem to have this package available
     * DebianBuster based distros can get the package trough backports, as outlined in point 2.
+
+    RaspberryPI OS (formerly Raspbian) Can be upgraded to run with a 64bit
 
 Symptoms of this can be:
 
