@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Introduction](README.md)
+* [FAQ](FAQ.md)
 
 ## General
 
@@ -144,5 +145,3 @@
 * [linuxserver/wireguard](images/docker-wireguard.md)
 * [linuxserver/wireshark](images/docker-wireshark.md)
 * [linuxserver/znc](images/docker-znc.md)
-
-## [FAQ](FAQ.md)
