@@ -19,14 +19,15 @@ You have a few options, some are short-term.
     ```bash
     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC 648ACFD622F3D138
     echo "deb http://deb.debian.org/debian buster-backports main" | sudo tee -a /etc/apt/sources.list.d/buster-backports.list
+    sudo apt update
     sudo apt install -t buster-backports libseccomp2
     ```
 
 3. Manually install an updated version of the library with dpkg.
 
     ```bash
-    wget http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.4.4-1~bpo10+1_armhf.deb -o libseccomp2.deb
-    sudo dpkg -i libseccomp2.deb
+    wget http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.4.4-1~bpo10+1_armhf.deb
+    sudo dpkg -i libseccomp2_2.4.4-1~bpo10+1_armhf.deb
     ```
 
     Note this url may have been updated. Find the latest by browsing [here](http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/).
