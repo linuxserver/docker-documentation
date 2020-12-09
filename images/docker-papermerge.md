@@ -155,4 +155,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **09.12.20:** - Fix locales.
 * **08.08.20:** - Initial Release.
