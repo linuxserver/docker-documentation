@@ -1,9 +1,9 @@
-# [lsiocommunity/pixapop](https://github.com/linuxserver/docker-pixapop)
+# [lsiocommunity/pixapop](https://github.com/lsiocommunity/docker-pixapop)
 
-[![GitHub Stars](https://img.shields.io/github/stars/lsiocommunity/docker-pixapop.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-pixapop)
-[![GitHub Release](https://img.shields.io/github/release/lsiocommunity/docker-pixapop.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-pixapop/releases)
-[![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub%20Package&logo=github)](https://github.com/linuxserver/docker-pixapop/packages)
-[![GitLab Container Registry](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab)](https://gitlab.com/Linuxserver.io/docker-pixapop/container_registry)
+[![GitHub Stars](https://img.shields.io/github/stars/lsiocommunity/docker-pixapop.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/lsiocommunity/docker-pixapop)
+[![GitHub Release](https://img.shields.io/github/release/lsiocommunity/docker-pixapop.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/lsiocommunity/docker-pixapop/releases)
+[![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub%20Package&logo=github)](https://github.com/lsiocommunity/docker-pixapop/packages)
+[![GitLab Container Registry](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab)](https://gitlab.com/linuxserver.io/docker-pixapop/container_registry)
 [![MicroBadger Layers](https://img.shields.io/microbadger/layers/lsiocommunity/pixapop.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge)](https://microbadger.com/images/lsiocommunity/pixapop "Get your own version badge on microbadger.com")
 [![Docker Pulls](https://img.shields.io/docker/pulls/lsiocommunity/pixapop.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/lsiocommunity/pixapop)
 [![Docker Stars](https://img.shields.io/docker/stars/lsiocommunity/pixapop.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/lsiocommunity/pixapop)
@@ -49,8 +49,8 @@ services:
       - APP_USERNAME=admin #optional
       - APP_PASSWORD=admin #optional
     volumes:
-      - <path to config>:/config
-      - <path to photos>:/photos
+      - /path/to/config:/config
+      - /path/to/photos:/photos
     ports:
       - 80:80
     restart: unless-stopped
@@ -67,8 +67,8 @@ docker run -d \
   -e APP_USERNAME=admin `#optional` \
   -e APP_PASSWORD=admin `#optional` \
   -p 80:80 \
-  -v <path to config>:/config \
-  -v <path to photos>:/photos \
+  -v /path/to/config:/config \
+  -v /path/to/photos:/photos \
   --restart unless-stopped \
   ghcr.io/lsiocommunity/pixapop
 ```
@@ -143,7 +143,7 @@ Any photos included in /photos will be presented as galleries split by month. Co
 ## Docker Mods
 [![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pixapop&query=%24.mods%5B%27pixapop%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=pixapop "view available mods for this container.") [![Docker Universal Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=universal&query=%24.mods%5B%27universal%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=universal "view available universal mods.")
 
-We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) as well as universal mods that can be applied to any one of our images can be accessed via the dynamic badges above.
+We publish various [Docker Mods](https://github.com/lsiocommunity/docker-mods) to enable additional functionality within the containers. The list of Mods available for this image (if any) as well as universal mods that can be applied to any one of our images can be accessed via the dynamic badges above.
 
 
 ## Support Info
@@ -159,6 +159,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **17.12.20** - Move image to main linuxserver repo, add notice to container log
 * **18.03.19** - Update build dependencies
 * **18.03.19** - Add build dependencies
 * **17.03.19** - Initial release
