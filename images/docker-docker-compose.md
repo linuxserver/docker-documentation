@@ -76,10 +76,12 @@ You can replace the last line with any docker-compose command and argument, whic
 ### Recommended method
 
 We provide a very convenient script that allows the docker-compose container to run as if it was installed natively:
+
 ```
 sudo curl -L --fail https://raw.githubusercontent.com/linuxserver/docker-docker-compose/master/run.sh -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 ```
+
 Running these two commands on your docker host once will let you issue commands such as `docker-compose up -d` and the docker-compose container will do its job behind the scenes.
 
 ### Binaries
@@ -125,6 +127,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **17.12.20:** - Update run.sh with formatting changes.
 * **04.10.20:** - Update run.sh with changes from upstream.
 * **31.08.20:** - Update tox and virtualenv.
 * **31.07.20:** - Add support for global env var `DOCKER_COMPOSE_IMAGE_TAG` in the `run.sh` script.
