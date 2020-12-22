@@ -175,6 +175,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **22.12.20:** - Update to version 3.1.4 beta.
 * **12.10.20:** - Fix version number in jenkinsfile.
 * **12.10.20:** - Update to version 3.1.1 beta.
 * **22.06.20:** - Add mono webrequest library.
