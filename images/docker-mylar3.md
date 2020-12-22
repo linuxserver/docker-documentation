@@ -26,6 +26,14 @@ The architectures supported by this image are:
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
 
+## Version Tags
+
+This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
+
+| Tag | Description |
+| :----: | --- |
+| latest | Stable Mylar3 releases |
+| nightly | Commits to Mylar3 `python3-dev` branch |
 
 ## Usage
 
@@ -132,7 +140,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 ## Application Setup
 
 The web ui for settings etc, is on `<your-ip>:8090`
-For more detailed setup refer [Mylar3](https://github.com/mylar3/mylar3).
+For more detailed setup options, refer to [Mylar3](https://github.com/mylar3/mylar3).
 
 
 ## Docker Mods
@@ -154,4 +162,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **21.12.20:** - Release `nightly` tag based on commits to upstream `python3-dev` branch.
 * **28.09.20:** - Initial release.
