@@ -226,6 +226,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **21.12.20:** - Rebase to Focal, see [here](https://docs.linuxserver.io/faq#my-host-is-incompatible-with-images-based-on-ubuntu-focal) for troubleshooting armhf.
 * **03.11.20:** - Fix issue with missing samba folder.
 * **13.11.20:** - Fix issue with samba and ffmpeg.
 * **03.07.20:** - Add support for amd vaapi hw transcode.
