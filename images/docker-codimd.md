@@ -162,6 +162,8 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Application Setup
 
+THIS IMAGE IS DEPRECATED. CodiMD is rebranded as `HedgeDoc` and the new docker image is at [linuxserver/hedgedoc](https://github.com/linuxserver/docker-hedgedoc).
+
 CodiMD web interface can be accessed `http://${IP}:3000/`, if you want to use a custom domain or anything besides port 3000 you will need to leverage their env settings for callbacks: (specifically for CMD_DOMAIN and CMD_URL_ADDPORT)
 
 [Full list of CodiMD options](https://github.com/codimd/server/blob/master/docs/configuration-env-vars.md)
@@ -190,4 +192,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **22.12.20:** - Deprecate image in favor of the new rebranded image at [linuxserver/hedgedoc](https://github.com/linuxserver/docker-hedgedoc).
 * **23.05.19:** - Initial release
