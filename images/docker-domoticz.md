@@ -3,7 +3,7 @@
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-domoticz.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-domoticz)
 [![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-domoticz.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-domoticz/releases)
 [![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub%20Package&logo=github)](https://github.com/linuxserver/docker-domoticz/packages)
-[![GitLab Container Registry](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab)](https://gitlab.com/Linuxserver.io/docker-domoticz/container_registry)
+[![GitLab Container Registry](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab)](https://gitlab.com/linuxserver.io/docker-domoticz/container_registry)
 [![MicroBadger Layers](https://img.shields.io/microbadger/layers/linuxserver/domoticz.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge)](https://microbadger.com/images/linuxserver/domoticz "Get your own version badge on microbadger.com")
 [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/domoticz.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/domoticz)
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/domoticz.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/domoticz)
@@ -32,8 +32,8 @@ This image provides various versions that are available via tags. `latest` tag u
 
 | Tag | Description |
 | :----: | --- |
-| latest | Current latest head from development at https://github.com/domoticz/domoticz. |
-| stable | Latest stable version. |
+| latest | Current latest stable. |
+| stable | old stable version. Please change to latest branch for stable releases. |
 | stable-4.9700 | Old stable version. Will not be updated anymore! |
 | stable-3.815 | Old stable version. Will not be updated anymore! |
 | stable-3.5877 | Old stable version. Will not be updated anymore! |
@@ -190,6 +190,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **07.05.20:** - Rebase to Ubuntu. Change to using prebuilt binaries. Move to stable release only.
 * **24.11.19:** - Change to using domoticz builtin Lua and MQTT.
 * **03.11.19:** - Set capabilities for domoticz binary and move cmake from edge repo.
 * **28.06.19:** - Rebasing to alpine 3.10. Add iputils for ping. Fix typo in readme. Fix permissions for custom icons.
