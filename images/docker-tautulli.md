@@ -56,7 +56,6 @@ services:
       - TZ=Europe/London
     volumes:
       - <path to data>:/config
-      - <path to plex logs>:/logs
     ports:
       - 8181:8181
     restart: unless-stopped
@@ -72,7 +71,6 @@ docker run -d \
   -e TZ=Europe/London \
   -p 8181:8181 \
   -v <path to data>:/config \
-  -v <path to plex logs>:/logs \
   --restart unless-stopped \
   ghcr.io/linuxserver/tautulli
 ```
@@ -102,7 +100,6 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Volume | Function |
 | :----: | --- |
 | `/config` | Contains tautulli config and database. |
-| `/logs` | Map this to Plex log directory - recommended RO. |
 
 
 
@@ -140,7 +137,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 ## Application Setup
 
 Access the webui at `<your-ip>:8181`, for more information check out [Tautulli](http://tautulli.com).
-In tautulli gui settings, under `Plex Media Server`, turn on `Show Advanced` and set the `Logs Folder` to `/logs`
+To use the build-in Plex LogViewer you have to add a volume, preferably ReadOnly. Then in tautulli gui settings, under `Plex Media Server`, turn on `Show Advanced` and set the `Logs Folder` to the folder you mapped.
 
 
 ## Docker Mods
