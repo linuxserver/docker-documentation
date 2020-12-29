@@ -101,7 +101,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 | `AUTO_UPDATE=true` | Allow Jackett to update inside of the container (currently recommended by Jackett and enabled by default) |
-| `RUN_OPTS=<run options here>` | Optionally specify additional arguments to be passed. EG. `--ProxyConnection=10.0.0.100:1234`. |
+| `RUN_OPTS=<run options here>` | Optionally specify additional arguments to be passed. |
 
 ### Volume Mappings (`-v`)
 
