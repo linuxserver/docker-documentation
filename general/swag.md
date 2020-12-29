@@ -1136,6 +1136,32 @@ If we want to password protect our new homepage, we can run the following on the
     auth_basic_user_file /config/nginx/.htpasswd;
 ```
 
+# Troubleshooting
+
+We wrote a blogpost for the deprecated letsencrypt image diving into troubleshooting issues regarding dns and port-forwards, which still is a very good resource: [blog.linuxserver.io](https://blog.linuxserver.io/2019/07/10/troubleshooting-letsencrypt-image-port-mapping-and-forwarding/)
+
+## Common errors
+
+### 404
+
+This error simply means that the resource was not found. Commonly happening when you try to access a subfolder that is not enabled.
+
+### 502
+
+This error means that nginx can't talk to the application. There is a few common reasons for this:
+
+* The application and SWAG is not on the same custom docker network
+
+    Further up we talk about how to set up [Docker networking](#docker-networking), however there is some few other common traps
+
+* The container name does not match the application name.
+
+    Covered in the section for [Understanding the proxy conf structure](understanding-the-proxy-conf-structure)
+
+* You manually changed the port.
+
+    Also covered in the section for [Understanding the proxy conf structure](understanding-the-proxy-conf-structure)
+
 # Final Thoughts
 
 This image can be used in many different scenarios as it is a full fledged web server with some bells and whistles added. The above examples should be enough to get you started. For more information, please refer to the official documentation on either [Github](https://github.com/linuxserver/docker-swag/blob/master/README.md) or [Docker Hub](https://hub.docker.com/r/linuxserver/swag). If you have questions or issues, or want to discuss and share ideas, feel free to visit our discord: https://discord.gg/YWrKVTn
