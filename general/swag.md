@@ -1160,7 +1160,7 @@ This error means that nginx can't talk to the application. There is a few common
 
 * You manually changed the port.
 
-    Also covered in the section for [Understanding the proxy conf structure](understanding-the-proxy-conf-structure)
+    Also covered in the section for [Understanding the proxy conf structure](#understanding-the-proxy-conf-structure)
 
 # Final Thoughts
 
