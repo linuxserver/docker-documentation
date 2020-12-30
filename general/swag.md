@@ -1156,7 +1156,7 @@ This error means that nginx can't talk to the application. There is a few common
 
 * The container name does not match the application name.
 
-    Covered in the section for [Understanding the proxy conf structure](understanding-the-proxy-conf-structure)
+    Covered in the section for [Understanding the proxy conf structure](#understanding-the-proxy-conf-structure)
 
 * You manually changed the port.
 
