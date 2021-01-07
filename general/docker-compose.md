@@ -39,8 +39,8 @@ services:
     volumes:
       - /home/user/appdata/heimdall:/config
     environment:
-      - PUID: 1000
-      - PGID: 1000
+      - PUID=1000
+      - PGID=1000
       - TZ=Europe/London
     ports:
       - 80:80
@@ -69,8 +69,8 @@ services:
     volumes:
       - /home/user/appdata/heimdall:/config
     environment:
-      - PUID: 1000
-      - PGID: 1000
+      - PUID=1000
+      - PGID=1000
       - TZ=Europe/London
     ports:
       - 80:80
