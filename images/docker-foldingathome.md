@@ -165,5 +165,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **09.01.21:** - Add nvidia.icd.
 * **14.04.20:** - Add Folding@home donation links.
 * **20.03.20:** - Initial release.
