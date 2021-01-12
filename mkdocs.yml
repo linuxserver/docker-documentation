@@ -1,0 +1,35 @@
+---
+site_name: LinuxServer.io
+site_description: Welcome to the home of the LinuxServer.io documentation!
+site_author: LinuxServer.io
+site_url: https://docs.linuxserver.io
+
+repo_url: https://github.com/linuxserver/docker-documentation
+repo_name: linuxserver/docker-documentation
+edit_uri: ""
+
+copyright: Copyright &copy; 2021 LinuxServer.io
+
+extra:
+  manifest: manifest.webmanifest
+  social:
+    - icon: fontawesome/brands/github-square
+      link: https://github.com/linuxserver
+    - icon: fontawesome/brands/gitlab
+      link: https://gitlab.com/linuxserver.io
+    - icon: fontawesome/brands/twitter-square
+      link: https://twitter.com/linuxserverio
+
+plugins:
+  - search
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+  language: en
+  favicon: https://gblobscdn.gitbook.com/spaces%2F-LWuIse8qFJj2MqDi90T%2Favatar-1590244439115.png?alt=media
+  logo: https://gblobscdn.gitbook.com/spaces%2F-LWuIse8qFJj2MqDi90T%2Favatar-1590244439115.png?alt=media
+  palette:
+    primary: purple
+    accent: indigo
