@@ -21,7 +21,7 @@ docker run --rm \
 rm -f "$(basename $PWD).md" && \
 rm -f README.lite && \
 rm -f .github/ISSUE_TEMPLATE.md \
-rm -f "$(basename $PWD).xml"
+rm -f "$(basename $PWD | sed 's|^docker-||').xml"
 ```
 Newly generated files (including `README.md`, `Jenkinsfile`, issue templates, etc.) will overwrite the existing files in your current working directory.
 
