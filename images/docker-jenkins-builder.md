@@ -20,7 +20,8 @@ docker run --rm \
   linuxserver/jenkins-builder:latest && \
 rm -f "$(basename $PWD).md" && \
 rm -f README.lite && \
-rm -f .github/ISSUE_TEMPLATE.md
+rm -f .github/ISSUE_TEMPLATE.md \
+rm -f "$(basename $PWD).xml"
 ```
 Newly generated files (including `README.md`, `Jenkinsfile`, issue templates, etc.) will overwrite the existing files in your current working directory.
 
