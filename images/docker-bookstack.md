@@ -202,6 +202,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.01.21:** - Remove unused requirement, as of release 0.31.0.
 * **17.12.20:** - Make APP_URL var required (upstream changes).
 * **17.09.20:** - Rebase to alpine 3.12. Fix APP_URL setting. Bump php post max and upload max filesizes to 100MB by default.
 * **19.12.19:** - Rebasing to alpine 3.11.
