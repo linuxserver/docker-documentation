@@ -4,11 +4,12 @@ The goal of this guide is to give you ideas on what can be accomplished with the
 
 * [Introduction](#introduction)
   * [What are SSL certs?](#what-are-ssl-certs)
-  * [What is Let's Encrypt?](#what-is-lets-encrypt)
+  * [What is Let's Encrypt (and/or ZeroSSL)?](#what-is-lets-encrypt-andor-zerossl)
 * [Creating a SWAG container](#creating-a-swag-container)
   * [Docker cli](#docker-cli)
   * [Docker compose](#docker-compose)
   * [Authorization method](#authorization-method)
+  * [Cert provider (Let's Encrypt vs ZeroSSL)](#cert-provider-lets-encrypt-vs-zerossl)
   * [Port forwards](#port-forwards)
   * [Docker networking](#docker-networking)
 * [Container setup examples](#container-setup-examples)
@@ -36,9 +37,9 @@ The goal of this guide is to give you ideas on what can be accomplished with the
 
 SSL certs allow users of a service to communicate via encrypted data transmitted up and down. Third party trusted certs also allow users to make sure that the remote service they are connecting to is really who they say they are and not someone else in the middle. When we run a web server for reasons like hosting websites or reverse proxying services on our own domain, we need to set it up with third party trusted ssl certs so client browsers trust it and communicate with it securely. When you connect to a website with a trusted cert, most browsers show a padlock icon next to the address bar to indicate that. Without a trusted cert (ie. with self signed cert) most browsers show warning pages or may block access to the website as the website identity cannot be confirmed via a trusted third party.
 
-## What is Let's Encrypt?
+## What is Let's Encrypt (and/or ZeroSSL)?
 
-In the past, the common way to get a trusted ssl cert was to contact one of the providers, send them the relevant info to prove ownership of a domain and pay for the service. Nowadays, with [Let's Encrypt](https://letsencrypt.org/), one can get free certs via automated means.
+In the past, the common way to get a trusted ssl cert was to contact one of the providers, send them the relevant info to prove ownership of a domain and pay for the service. Nowadays, with [Let's Encrypt](https://letsencrypt.org/) and [ZeroSSL](https://zerossl.com/), one can get free certs via automated means.
 
 The [SWAG docker image](https://hub.docker.com/r/linuxserver/swag), published and maintained by [LinuxServer.io](https://linuxserver.io), makes setting up a full-fledged web server with auto generated and renewed ssl certs very easy. It is essentially an nginx webserver with php7, fail2ban (intrusion prevention) and Let's Encrypt cert validation built-in. It is just MySQL short of a LEMP stack and therefore is best paired with our [MariaDB docker image](https://hub.docker.com/r/linuxserver/mariadb).
 
@@ -58,6 +59,7 @@ docker create \
   -e URL=yourdomain.url \
   -e SUBDOMAINS=www, \
   -e VALIDATION=http \
+  -e CERTPROVIDER= `#optional` \
   -e DNSPLUGIN=cloudflare `#optional` \
   -e DUCKDNSTOKEN=<token> `#optional` \
   -e EMAIL=<e-mail> `#optional` \
@@ -68,7 +70,7 @@ docker create \
   -p 80:80 `#optional` \
   -v </path/to/appdata/config>:/config \
   --restart unless-stopped \
-  linuxserver/swag
+  ghcr.io/linuxserver/swag
 ```
 
 ## docker-compose
@@ -77,10 +79,10 @@ Compatible with docker-compose v2 schemas.
 
 ```yaml
 ---
-version: "2"
+version: "2.1"
 services:
   swag:
-    image: linuxserver/swag
+    image: ghcr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -91,6 +93,7 @@ services:
       - URL=yourdomain.url
       - SUBDOMAINS=www,
       - VALIDATION=http
+      - CERTPROVIDER= #optional
       - DNSPLUGIN=cloudflare #optional
       - DUCKDNSTOKEN=<token> #optional
       - EMAIL=<e-mail> #optional
@@ -125,6 +128,16 @@ Our image currently supports three different methods to validate domain ownershi
 The validation is performed when the container is started for the first time. Nginx won't be up until ssl certs are successfully generated.
 
 The certs are valid for 90 days. The container will check the cert expiration status every night and if they are to expire within 30 days, it will attempt to auto-renew. If your certs are about to expire in less than 30 days, check the logs under `/config/log/letsencrypt` to see why the auto-renewals failed.
+
+## Cert Provider (Let's Encrypt vs ZeroSSL)
+
+As of January 2021, SWAG supports getting certs validated by either [Let's Encrypt](https://letsencrypt.org/) or [ZeroSSL](https://zerossl.com/). Both services use the [ACME protocol](https://en.wikipedia.org/wiki/Automated_Certificate_Management_Environment) as the underlying method to validate ownership. Our Certbot client in the SWAG image is ACME compliant and therefore supports both services.
+
+Although very similar, ZeroSSL does (at the time of writing) have a couple of advantages over Let's Encrypt:
+* ZeroSSL provides unlimited certs via ACME and has no rate limits or throttling (it's quite common for new users to get throttled by Let's Encrypt due to multiple unsuccessful attempts to validate)
+* ZeroSSL provides a web interface that allows users to list and manage the certs they have received
+
+SWAG currently defaults to Let's Encrypt as the cert provider so as not to break existing installs, however users can override that behavior by setting the environment variable `CERTPROVIDER=zerossl` to retrieve a cert from ZeroSSL instead. The only gotcha is that ZeroSSL requires the `EMAIL` env var to be set so the certs can be tied to a ZeroSSL account for management over their web interface.
 
 ## Port forwards
 
@@ -167,7 +180,7 @@ docker create \
   -p 80:80 \
   -v /home/aptalca/appdata/swag:/config \
   --restart unless-stopped \
-  linuxserver/swag
+  ghcr.io/linuxserver/swag
 ```
 
 Once created, we do `docker start swag` to start it.
@@ -176,10 +189,10 @@ With docker compose, we can use the following yml:
 
 ```yaml
 ---
-version: "2"
+version: "2.1"
 services:
   swag:
-    image: linuxserver/swag
+    image: ghcr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -232,7 +245,7 @@ docker create \
   -p 80:80 \
   -v /home/aptalca/appdata/swag:/config \
   --restart unless-stopped \
-  linuxserver/swag
+  ghcr.io/linuxserver/swag
 ```
 
 And we start the container via `docker start swag`
@@ -241,10 +254,10 @@ With docker compose, we'll use:
 
 ```yaml
 ---
-version: "2"
+version: "2.1"
 services:
   swag:
-    image: linuxserver/swag
+    image: ghcr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -294,7 +307,7 @@ docker create \
   -p 80:80 \
   -v /home/aptalca/appdata/swag:/config \
   --restart unless-stopped \
-  linuxserver/swag
+  ghcr.io/linuxserver/swag
 ```
 
 And we start the container via `docker start swag`
@@ -303,10 +316,10 @@ With docker compose, we'll use:
 
 ```yaml
 ---
-version: "2"
+version: "2.1"
 services:
   swag:
-    image: linuxserver/swag
+    image: ghcr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -368,10 +381,10 @@ Here's a docker compose stack to get both containers set up. For this exercise, 
 
 ```yaml
 ---
-version: "2"
+version: "2.1"
 services:
   mariadb:
-    image: linuxserver/mariadb
+    image: ghcr.io/linuxserver/mariadb
     container_name: mariadb
     environment:
       - PUID=1000
@@ -385,7 +398,7 @@ services:
       - /home/aptalca/appdata/mariadb:/config
     restart: unless-stopped
   swag:
-    image: linuxserver/swag
+    image: ghcr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -423,7 +436,7 @@ docker create \
   -e MYSQL_PASSWORD=WP_dbpassword \
   -v /home/aptalca/appdata/mariadb:/config \
   --restart unless-stopped \
-  linuxserver/mariadb
+  ghcr.io/linuxserver/mariadb
 ```
 
 SWAG:
@@ -444,7 +457,7 @@ docker create \
   -p 80:80 \
   -v /home/aptalca/appdata/swag:/config \
   --restart unless-stopped \
-  linuxserver/swag
+  ghcr.io/linuxserver/swag
 ```
 
 Once the SWAG container is set up with ssl certs and the webserver is up, we'll download the latest Wordpress and untar it into our www folder:
@@ -721,10 +734,10 @@ Here's a docker compose stack we can use to set up both containers:
 
 ```yaml
 ---
-version: "2"
+version: "2.1"
 services:
   ombi:
-    image: linuxserver/ombi
+    image: ghcr.io/linuxserver/ombi
     container_name: ombi
     environment:
       - PUID=1000
@@ -736,7 +749,7 @@ services:
       - 3579:3579
     restart: unless-stopped
   swag:
-    image: linuxserver/swag
+    image: ghcr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -769,7 +782,7 @@ docker create \
   -p 3579:3579 \
   -v /home/aptalca/appdata/ombi:/config \
   --restart unless-stopped \
-  linuxserver/ombi
+  ghcr.io/linuxserver/ombi
 ```
 
 SWAG:
@@ -790,7 +803,7 @@ docker create \
   -p 80:80 \
   -v /home/aptalca/appdata/swag:/config \
   --restart unless-stopped \
-  linuxserver/swag
+  ghcr.io/linuxserver/swag
 ```
 
 Once our containers up and running (and we confirm we can reach the placeholder page at `https://linuxserver-test.com`), we simply rename the file `ombi.subdomain.conf.sample` under `/config/nginx/proxy-confs/` to `ombi.subdomain.conf` and we restart the SWAG container. Now when we browser to `https://ombi.linuxserver-test.com` we should see the Ombi gui.
@@ -808,10 +821,10 @@ Here's a docker compose stack to set up our SWAG, nextcloud and mariadb containe
 
 ```yaml
 ---
-version: "2"
+version: "2.1"
 services:
   nextcloud:
-    image: linuxserver/nextcloud
+    image: ghcr.io/linuxserver/nextcloud
     container_name: nextcloud
     environment:
       - PUID=1000
@@ -824,7 +837,7 @@ services:
       - mariadb
     restart: unless-stopped
   mariadb:
-    image: linuxserver/mariadb
+    image: ghcr.io/linuxserver/mariadb
     container_name: mariadb
     environment:
       - PUID=1000
@@ -838,7 +851,7 @@ services:
       - /home/aptalca/appdata/mariadb:/config
     restart: unless-stopped
   swag:
-    image: linuxserver/swag
+    image: ghcr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -871,7 +884,7 @@ docker create \
   -v /home/aptalca/appdata/nextcloud/config:/config \
   -v /home/aptalca/appdata/nextcloud/data:/data \
   --restart unless-stopped \
-  linuxserver/nextcloud
+  ghcr.io/linuxserver/nextcloud
 ```
 
 Mariadb:
@@ -889,7 +902,7 @@ docker create \
   -e MYSQL_PASSWORD=ncpassword \
   -v /home/aptalca/appdata/mariadb:/config \
   --restart unless-stopped \
-  linuxserver/mariadb
+  ghcr.io/linuxserver/mariadb
 ```
 
 SWAG:
@@ -910,7 +923,7 @@ docker create \
   -p 80:80 \
   -v /home/aptalca/appdata/swag:/config \
   --restart unless-stopped \
-  linuxserver/swag
+  ghcr.io/linuxserver/swag
 ```
 
 Now we find the file named `nextcloud.subdomain.conf.sample` under SWAG's `/config/nginx/proxy-confs` folder and rename it to `nextcloud.subdomain.conf`, then restart the SWAG container.
@@ -955,10 +968,10 @@ Here's a docker compose stack we can use to set up both containers:
 
 ```yaml
 ---
-version: "2"
+version: "2.1"
 services:
   plex:
-    image: linuxserver/plex
+    image: ghcr.io/linuxserver/plex
     container_name: plex
     network_mode: host
     environment:
@@ -971,7 +984,7 @@ services:
       - /home/aptalca/movies:/data/movies
     restart: unless-stopped
   swag:
-    image: linuxserver/swag
+    image: ghcr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -1005,7 +1018,7 @@ docker create \
   -v /home/aptalca/tvshows:/data/tvshows \
   -v /home/aptalca/movies:/data/movies \
   --restart unless-stopped \
-  linuxserver/plex
+  ghcr.io/linuxserver/plex
 ```
 
 SWAG:
@@ -1026,7 +1039,7 @@ docker create \
   -p 80:80 \
   -v /home/aptalca/appdata/swag:/config \
   --restart unless-stopped \
-  linuxserver/swag
+  ghcr.io/linuxserver/swag
 ```
 
 Once the containers are set up, we browse to `http://LOCALSERVERIP:32400/web` and set up our Plex server with our Plex account. Then we can find the file named `plex.subfolder.conf.sample` under our SWAG container's `/config/nginx/proxy-confs` folder and rename it to `plex.subfolder.conf`.
@@ -1047,10 +1060,10 @@ Here's a docker compose stack we can use to set up both containers:
 
 ```yaml
 ---
-version: "2"
+version: "2.1"
 services:
   heimdall:
-    image: linuxserver/heimdall
+    image: ghcr.io/linuxserver/heimdall
     container_name: heimdall
     environment:
       - PUID=1000
@@ -1060,7 +1073,7 @@ services:
       - /home/aptalca/appdata/heimdall:/config
     restart: unless-stopped
   swag:
-    image: linuxserver/swag
+    image: ghcr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -1092,7 +1105,7 @@ docker create \
   -e TZ=Europe/London \
   -v /home/aptalca/appdata/heimdall:/config \
   --restart unless-stopped \
-  linuxserver/heimdall
+  ghcr.io/linuxserver/heimdall
 ```
 
 SWAG:
@@ -1113,7 +1126,7 @@ docker create \
   -p 80:80 \
   -v /home/aptalca/appdata/swag:/config \
   --restart unless-stopped \
-  linuxserver/swag
+  ghcr.io/linuxserver/swag
 ```
 
 Once the containers are set up, we'll find the file named `heimdall.subfolder.conf.sample` under SWAG's `/config/nginx/proxy-confs` folder and rename it to `heimdall.subfolder.conf`. If we look inside that conf file, we'll see that it is set to use `location / {`, which will cause an issue because there is already a location defined for `/` inside the default site config for SWAG. So we need to edit the default site config at `/config/nginx/site-confs/default` and comment out the location block for `/` inside our main server block so it reads:
