@@ -41,26 +41,43 @@ Here are some example snippets to help you get started creating a container from
 Compatible with docker-compose v2 schemas.
 
 ```yaml
----
-version: "2.1"
+version: "3"
 services:
-  lychee:
-    image: ghcr.io/linuxserver/lychee
-    container_name: lychee
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/London
-      - DB_HOST=<yourdbhost>
-      - DB_USERNAME=<yourdbuser>
-      - DB_PASSWORD=<yourdbpass>
-      - DB_DATABASE=monica
+  mariadb:
+    image: ghcr.io/linuxserver/mariadb:latest
+    container_name: lychee_mariadb
+    restart: always
     volumes:
-      - </path/to/appdata/config>:/config
-      - </path/to/pictures>:/pictures
+      - /path/to/mariadb/data:/config
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=lychee
+      - MYSQL_USER=lychee
+      - MYSQL_PASSWORD=dbpassword
+      - PGID=1000
+      - PUID=1000
+      - TZ=Europe/London
+  lychee:
+    image: ghcr.io/linuxserver/lychee:latest
+    container_name: lychee
+    restart: always
+    depends_on:
+      - mariadb
+    volumes:
+      - /path/to/config:/config
+      - /path/to/pictures:/pictures
+    environment:
+      - DB_HOST=mariadb
+      - DB_USER=lychee
+      - DB_PASS=dbpassword
+      - DB_NAME=lychee
+      - DB_PORT=3306
+      - PGID=1000
+      - PUID=1000
+      - TZ=Europe/London
     ports:
       - 80:80
-    restart: unless-stopped
+
 ```
 
 ### docker cli
@@ -71,13 +88,13 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
-  -e DB_HOST=<yourdbhost> \
-  -e DB_USERNAME=<yourdbuser> \
-  -e DB_PASSWORD=<yourdbpass> \
-  -e DB_DATABASE=monica \
+  -e DB_HOST=mariadb \
+  -e DB_USERNAME=lychee \
+  -e DB_PASSWORD=dbpassword \
+  -e DB_DATABASE=lychee \
   -p 80:80 \
-  -v </path/to/appdata/config>:/config \
-  -v </path/to/pictures>:/pictures \
+  -v /path/to/config:/config \
+  -v /path/to/pictures:/pictures \
   --restart unless-stopped \
   ghcr.io/linuxserver/lychee
 ```
@@ -101,10 +118,10 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
-| `DB_HOST=<yourdbhost>` | for specifying the database host |
-| `DB_USERNAME=<yourdbuser>` | for specifying the database user |
-| `DB_PASSWORD=<yourdbpass>` | for specifying the database password |
-| `DB_DATABASE=monica` | for specifying the database to be used |
+| `DB_HOST=mariadb` | for specifying the database host |
+| `DB_USERNAME=lychee` | for specifying the database user |
+| `DB_PASSWORD=dbpassword` | for specifying the database password |
+| `DB_DATABASE=lychee` | for specifying the database to be used |
 
 ### Volume Mappings (`-v`)
 
@@ -171,6 +188,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **15.01.21:** - Rebase to alpine 3.13, add php7-ctype.
 * **10.07.20:** - Upgrade to Lychee v4 and rebased to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **23.10.19:** - Increase fastcgi timeouts (existing users need to manually update).
