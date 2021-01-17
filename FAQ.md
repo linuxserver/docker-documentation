@@ -2,9 +2,9 @@
 
 Here will some Frequently Asked Questions reside
 
-## My host is incompatible with images based on Ubuntu Focal
+## My host is incompatible with images based on Ubuntu Focal and Alpine 3.13
 
-This seems to only affect 32 bit installs of distros based on Debian Buster.
+This only affect 32 bit installs of distros based on Debian Buster.
 
 This is due to a bug in the libseccomp2 library (dependency of docker itself), which is fixed. However it's not pushed to all the repositories.
 
@@ -14,7 +14,7 @@ You have a few options, 1 and 2 are short-term, 3 is to be considered the best o
 
 ### Resolution
 
-If you decide to do option 2 or 3, you should just need to restart the container after confirming you have libseccomp2.4.4 installed. 
+If you decide to do option 2 or 3, you should just need to restart the container after confirming you have libseccomp2.4.4 installed.
 
 1. Use another tag, not based on Focal. At the time of writing we currently offer a `bionic` tag for [Plex](https://github.com/linuxserver/docker-plex) and [Jellyfin](https://github.com/linuxserver/docker-jellyfin) that will receive the same care as latest for the foreseeable future.
 
@@ -47,4 +47,5 @@ If you decide to do option 2 or 3, you should just need to restart the container
 * 502 errors in __Jellyfin__ as seen in [linuxserver/docker-jellyfin#71](https://github.com/linuxserver/docker-jellyfin/issues/71)
 * `Error starting framework core` messages in the docker log for __Plex__. [linuxserver/docker-plex#247](https://github.com/linuxserver/docker-plex/issues/247)
 * No WebUI for __Radarr__, even though the container is running. [linuxserver/docker-radarr#118](https://github.com/linuxserver/docker-radarr/issues/118)
+* Images based on our Nginx base-image(Nextcloud, SWAG, Nginx, etc.) fails to generate a certificate, with a message similar to `error getting time:crypto/asn1/a_time.c:330`
 * `docker exec <container-name> date` returns 1970
