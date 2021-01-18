@@ -357,7 +357,7 @@ All the necessary files are under `/config` which is mapped from the host locati
 
 We can drop all of our web/html files into `/config/www`.
 
-The main site config nginx uses can be found at `/config/nginx/default`. Don't delete this file, as it will be regenerated on container restart, but feel free to modify as needed. By default, it is listening on port 443, and the root folder is set to `/config/www`, so if you drop a `page1.html` into that location, it will be accessible at `https://linuxserver-test.com/page1.html`.
+The main site config nginx uses can be found at `/config/nginx/site-confs/default`. Don't delete this file, as it will be regenerated on container restart, but feel free to modify as needed. By default, it is listening on port 443, and the root folder is set to `/config/www`, so if you drop a `page1.html` into that location, it will be accessible at `https://linuxserver-test.com/page1.html`.
 
 To enable listening on port 80 and automatically redirecting to port 443 for enforcing ssl, uncomment the lines at the top of the `default` site config so it reads:
 
