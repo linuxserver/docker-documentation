@@ -54,12 +54,10 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - UMASK_SET=<022> #optional
     volumes:
       - /path/to/library:/config
       - /path/to/tvshows:/data/tvshows
       - /path/to/movies:/data/movies
-      - /path/for/transcoding:/transcode #optional
       - /opt/vc/lib:/opt/vc/lib #optional
     ports:
       - 8096:8096
@@ -81,13 +79,11 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
-  -e UMASK_SET=<022> `#optional` \
   -p 8096:8096 \
   -p 8920:8920 `#optional` \
   -v /path/to/library:/config \
   -v /path/to/tvshows:/data/tvshows \
   -v /path/to/movies:/data/movies \
-  -v /path/for/transcoding:/transcode `#optional` \
   -v /opt/vc/lib:/opt/vc/lib `#optional` \
   --device /dev/dri:/dev/dri `#optional` \
   --device /dev/vchiq:/dev/vchiq `#optional` \
@@ -118,7 +114,6 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
-| `UMASK_SET=<022>` | for umask setting of Emby, default if left unset is 022. |
 
 ### Volume Mappings (`-v`)
 
@@ -127,7 +122,6 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `/config` | Emby data storage location. *This can grow very large, 50gb+ is likely for a large collection.* |
 | `/data/tvshows` | Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc. |
 | `/data/movies` | Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc. |
-| `/transcode` | Path for transcoding folder, *optional*. |
 | `/opt/vc/lib` | Path for Raspberry Pi OpenMAX libs *optional*. |
 
 #### Device Mappings (`--device`)
@@ -226,6 +220,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **17.01.21:** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information. Remove no longer used mapping for /transcode.
 * **21.12.20:** - Rebase to Focal, see [here](https://docs.linuxserver.io/faq#my-host-is-incompatible-with-images-based-on-ubuntu-focal) for troubleshooting armhf.
 * **03.11.20:** - Fix issue with missing samba folder.
 * **13.11.20:** - Fix issue with samba and ffmpeg.
