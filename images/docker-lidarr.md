@@ -54,7 +54,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - UMASK_SET=022 #optional
     volumes:
       - /path/to/appdata/config:/config
       - /path/to/music:/music
@@ -72,7 +71,6 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
-  -e UMASK_SET=022 `#optional` \
   -p 8686:8686 \
   -v /path/to/appdata/config:/config \
   -v /path/to/music:/music \
@@ -100,7 +98,6 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
-| `UMASK_SET=022` | control permissions of files and directories created by Lidarr. |
 
 ### Volume Mappings (`-v`)
 
@@ -171,6 +168,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **20.01.21:** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information.
 * **18.04.20:** - Removed /downloads and /music volumes from Dockerfiles.
 * **05.04.20:** - Move app to /app.
 * **01.08.19:** - Rebase to Linuxserver LTS mono version.
