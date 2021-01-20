@@ -76,7 +76,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :----: | --- |
-| `3000` | WireShark desktop gui, only use this if you are not using host mode and sniffing Docker network traffic. |
+| `3000` | Sqlitebrowser desktop gui, only use this if you are not using host mode and sniffing Docker network traffic. |
 
 
 ### Environment Variables (`-e`)
@@ -152,4 +152,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **20.01.21:** - Remove Wireshark reference.
 * **29.07.20:** - Initial release.
