@@ -184,6 +184,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **19.01.21:** - Add python3-pkg-resources
 * **13.01.21:** - Rebase to Ubuntu Focal, see [here](https://docs.linuxserver.io/faq#my-host-is-incompatible-with-images-based-on-ubuntu-focal) for troubleshooting armhf.
 * **12.10.20:** - Add libxi6
 * **12.07.20:** - Add kepubify for arm64v8
