@@ -55,6 +55,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
+      - JELLYFIN_PublishedServerUrl=192.168.0.5 #optional
     volumes:
       - /path/to/library:/config
       - /path/to/tvseries:/data/tvshows
@@ -83,6 +84,7 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
+  -e JELLYFIN_PublishedServerUrl=192.168.0.5 `#optional` \
   -p 8096:8096 \
   -p 8920:8920 `#optional` \
   -p 7359:7359/udp `#optional` \
@@ -122,7 +124,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
+| `TZ=Europe/London` | Specify a timezone to use (e.g. Europe/London). |
+| `JELLYFIN_PublishedServerUrl=192.168.0.5` | Set the autodiscovery response domain or IP address. |
 
 ### Volume Mappings (`-v`)
 
@@ -174,6 +177,8 @@ Client Discovery (`7359/udp`) - Allows clients to discover Jellyfin on the local
   -p 1900:1900/udp \
 ```
 
+The [official documentation for environmentals](https://jellyfin.org/docs/general/administration/configuration.html) has additional environmentals that can provide additional configurability such as migrating to the native Jellyfin image.
+
 
 
 ## User / Group Identifiers
@@ -193,7 +198,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 Webui can be found at `http://<your-ip>:8096`
 
-More information can be found in their official documentation [here](https://jellyfin.org/docs/general/quick-start.html) .
+More information can be found on the official documentation [here](https://jellyfin.org/docs/general/quick-start.html).
 
 ## Hardware Acceleration
 
@@ -253,7 +258,8 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
-* **20.01.21:"** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information.
+* **20.01.21:** - Add Jellyfin Binary Environmentals
+* **20.01.21:** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information.
 * **23.11.20:** - Rebase to Focal, branch off Bionic.
 * **22.07.20:** - Ingest releases from Jellyfin repo.
 * **28.04.20:** - Replace MMAL/OMX dependency device `/dev/vc-mem` with `/dev/vcsm` as the former was not sufficient for raspbian.
