@@ -54,7 +54,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - UMASK_SET=022
       - WEBUI_PORT=8080
     volumes:
       - </path/to/appdata/config>:/config
@@ -74,7 +73,6 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
-  -e UMASK_SET=022 \
   -e WEBUI_PORT=8080 \
   -p 6881:6881 \
   -p 6881:6881/udp \
@@ -106,7 +104,6 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
-| `UMASK_SET=022` | for umask setting of qbittorrent, optional , default if left unset is 022 |
 | `WEBUI_PORT=8080` | for changing the port of the webui, see below for explanation |
 
 ### Volume Mappings (`-v`)
@@ -194,6 +191,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **20.01.21:"** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information.
 * **12.11.20:** - Stop creating /config/data directory on startup
 * **03.04.20:** - Fix adding search engine plugin
 * **02.08.19:** - Add qbitorrent-cli for processing scripts.
