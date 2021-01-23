@@ -53,7 +53,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - UMASK_SET=022 #optional
       - DELUGE_LOGLEVEL=error #optional
     volumes:
       - /path/to/deluge/config:/config
@@ -70,7 +69,6 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
-  -e UMASK_SET=022 `#optional` \
   -e DELUGE_LOGLEVEL=error `#optional` \
   -v /path/to/deluge/config:/config \
   -v /path/to/your/downloads:/downloads \
@@ -100,7 +98,6 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use |
-| `UMASK_SET=022` | for umask setting of deluge, default if left unset is 022 |
 | `DELUGE_LOGLEVEL=error` | set the loglevel output when running Deluge, default is info for deluged and warning for delgued-web |
 
 ### Volume Mappings (`-v`)
@@ -171,6 +168,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.01.21:** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information.
 * **09.05.19:** - Add python3 requests and future modules.
 * **24.08.19:** - Add ability to set LogLevel for Deluge.
 * **09.06.19:** - Update to 2.x using deluge ppa.
