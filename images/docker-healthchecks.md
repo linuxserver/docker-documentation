@@ -108,7 +108,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `SITE_ROOT=<SITE_ROOT>` | The site's top-level URL and the port it listens to if differrent than 80 or 443 (e.g., https://healthchecks.example.com:8000) |
+| `SITE_ROOT=<SITE_ROOT>` | The site's top-level URL (e.g., https://healthchecks.example.com) |
 | `SITE_NAME=<SITE_NAME>` | The site's name (e.g., "Example Corp HealthChecks") |
 | `DEFAULT_FROM_EMAIL=<DEFAULT_FROM_EMAIL>` | From email for alerts |
 | `EMAIL_HOST=<EMAIL_HOST>` | SMTP host |
