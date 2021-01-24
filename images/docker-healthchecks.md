@@ -57,6 +57,7 @@ services:
       - ALLOWED_HOSTS=<ALLOWED_HOSTS>
       - SUPERUSER_EMAIL=<SUPERUSER_EMAIL>
       - SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD>
+      - REGENERATE_SETTINGS=True/False
     volumes:
       - <path to data on host>:/config
     ports:
@@ -82,6 +83,7 @@ docker run -d \
   -e ALLOWED_HOSTS=<ALLOWED_HOSTS> \
   -e SUPERUSER_EMAIL=<SUPERUSER_EMAIL> \
   -e SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD> \
+  -e REGENERATE_SETTINGS=True/False \
   -p 8000:8000 \
   -v <path to data on host>:/config \
   --restart unless-stopped \
@@ -117,6 +119,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `ALLOWED_HOSTS=<ALLOWED_HOSTS>` | array of valid hostnames for the server `["test.com","test2.com"]` or `"*"` |
 | `SUPERUSER_EMAIL=<SUPERUSER_EMAIL>` | Superuser email |
 | `SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD>` | Superuser password |
+| `REGENERATE_SETTINGS=True/False` | Defaults to False. Set to true to always override the `local_settings.py` file with values from environment variables. Do not set to True if you have made manual modifications to this file. |
 
 ### Volume Mappings (`-v`)
 
