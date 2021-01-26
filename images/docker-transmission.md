@@ -49,6 +49,7 @@ services:
       - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
       - USER=username #optional
       - PASS=password #optional
+      - WHITELIST=iplist #optional
     volumes:
       - <path to data>:/config
       - <path to downloads>:/downloads
@@ -71,6 +72,7 @@ docker run -d \
   -e TRANSMISSION_WEB_HOME=/combustion-release/ `#optional` \
   -e USER=username `#optional` \
   -e PASS=password `#optional` \
+  -e WHITELIST=iplist `#optional` \
   -p 9091:9091 \
   -p 51413:51413 \
   -p 51413:51413/udp \
@@ -105,6 +107,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `TRANSMISSION_WEB_HOME=/combustion-release/` | Specify an alternative UI options are `/combustion-release/`, `/transmission-web-control/`, and `/kettu/` . |
 | `USER=username` | Specify an optional username for the interface |
 | `PASS=password` | Specify an optional password for the interface |
+| `WHITELIST=iplist` | Specify an optional list of comma separated host whitelist |
 
 ### Volume Mappings (`-v`)
 
@@ -151,8 +154,6 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 Webui is on port 9091, the settings.json file in /config has extra settings not available in the webui. Stop the container before editing it or any changes won't be saved.
 
-For users pulling an update and unable to access the webui setting you may need to set "rpc-host-whitelist-enabled": false, in /config/settings.json`
-
 If you choose to use transmission-web-control as your default UI, just note that the origional Web UI will not be available to you despite the button being present.
 
 ## Securing the webui with a username/password.
@@ -166,6 +167,10 @@ This requires `"blocklist-enabled": true,` to be set. By setting this to true, i
 The automatic update is a shell script that downloads a blocklist from the url stored in the settings.json, gunzips it, and restarts the transmission daemon.
 
 The automatic update will run once a day at 3am local server time.
+
+## Using whitelist
+
+Use `WHITELIST` to enable an ip of whitelist. Both notation `rpc-whitelist` and `rpc-host-whitelist` are supported. When `WHITELIST` is empty the whitelist is disabled.
 
 
 ## Docker Mods
