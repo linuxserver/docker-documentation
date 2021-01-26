@@ -33,6 +33,7 @@ This image provides various versions that are available via tags. `latest` tag u
 | Tag | Description |
 | :----: | --- |
 | latest | Stable Lidarr releases. |
+| develop | Develop Lidarr Releases. |
 | nightly | Nightly Lidarr Releases. |
 
 ## Usage
@@ -168,6 +169,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **25.01.21:** - Publish `develop` tag.
 * **20.01.21:** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information.
 * **18.04.20:** - Removed /downloads and /music volumes from Dockerfiles.
 * **05.04.20:** - Move app to /app.
