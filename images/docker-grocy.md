@@ -156,6 +156,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **26.01.21:** - Add 'ldap' PHP extension.
 * **22.12.20:** - Add 'ctype' PHP extension.
 * **01.06.20:** - Rebasing to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.
