@@ -2,7 +2,7 @@
 
 Here will some Frequently Asked Questions reside
 
-## My host is incompatible with images based on Ubuntu Focal and Alpine 3.13
+## My host is incompatible with images based on Ubuntu Focal and Alpine 3.13 {#libseccomp}
 
 This only affect 32 bit installs of distros based on Debian Buster.
 
