@@ -46,7 +46,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - UMASK_SET=022
     volumes:
       - /path/to/appdata/config:/config
       - /path/to/downloads:/downloads
@@ -64,7 +63,6 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
-  -e UMASK_SET=022 \
   -p 5050:5050 \
   -v /path/to/appdata/config:/config \
   -v /path/to/downloads:/downloads \
@@ -92,7 +90,6 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
-| `UMASK_SET=022` | for umask setting of couchpotato, optional , default if left unset is 022 |
 
 ### Volume Mappings (`-v`)
 
@@ -159,6 +156,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **29.01.21:** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information.
 * **23.01.21:** - Rebasing to alpine 3.13.
 * **10.06.19:** - Add back unrar & unzip that were accidentally left out during rebase.
 * **06.06.19:** - Rebasing to alpine 3.12.
