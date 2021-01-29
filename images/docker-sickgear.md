@@ -10,7 +10,7 @@
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-sickgear%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-sickgear/job/master/)
 [![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.linuxserver.io%2Flinuxserver%2Fsickgear%2Flatest%2Fci-status.yml)](https://ci-tests.linuxserver.io/linuxserver/sickgear/latest/index.html)
 
-[SickGear](https://github.com/sickgear/sickgear) provides management of TV shows and/or Anime, it detects new episodes, links downloader apps, and more.. 
+[SickGear](https://github.com/sickgear/sickgear) provides management of TV shows and/or Anime, it detects new episodes, links downloader apps, and more..
 
 For more information on SickGear visit their website and check it out: https://github.com/SickGear/SickGear
 
@@ -148,8 +148,8 @@ Non linuxserver.io containers are known to have the following configuration diff
 
 * The configuration file directory which is volume mounted as `config` within this container may be set as the environmetal variable `APP_DATA` in other versions.
 
-* The cache directory which is set in `config.ini` may be configured as a fixed path `cache_dir = /data/cache`. 
-Symptoms of this issue include port usage problems and a failure to start the web server log entries. 
+* The cache directory which is set in `config.ini` may be configured as a fixed path `cache_dir = /data/cache`.
+Symptoms of this issue include port usage problems and a failure to start the web server log entries.
 Whilst the container is stopped alter this directive to `cache_dir = cache` which will allow SickGear to look for the folder relative to the volume mounted `/config` directory.
 
 It is recommended that a clean install be completed, rather than a migration, however if migration is necessary:
@@ -184,6 +184,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **29.01.21:** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information.
 * **23.01.21:** - Rebasing to alpine 3.13.
 * **03.06.20:** - Rebasing to alpine 3.12, switch to python3.
 * **19.12.19:** - Rebasing to alpine 3.11.
