@@ -184,6 +184,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.01.21:** - Rebasing to alpine 3.13.
 * **03.06.20:** - Rebasing to alpine 3.12, switch to python3.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
