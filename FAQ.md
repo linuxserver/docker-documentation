@@ -16,6 +16,8 @@ You have a few options, 1 and 2 are short-term, 3 is to be considered the best o
 
 If you decide to do option 2 or 3, you should just need to restart the container after confirming you have libseccomp2.4.4 installed.
 
+If 2 or 3 did not work, ensure you have an up-to-date install of Docker, [refer to the official Docker docs for installation.](https://docs.docker.com/engine/install/debian/)
+
 1. Use another tag, not based on Focal. At the time of writing we currently offer a `bionic` tag for [Plex](https://github.com/linuxserver/docker-plex) and [Jellyfin](https://github.com/linuxserver/docker-jellyfin) that will receive the same care as latest for the foreseeable future.
 
 2. Manually install an updated version of the library with dpkg.
