@@ -192,6 +192,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.01.21:** - Rebasing to alpine 3.13.
 * **02.11.20:** - Add ca-certificates package to allow connecting to https trackers.
 * **02.06.20:** - Rebase to alpine 3.12, update to transmission 3.0, remove python2, add python3.
 * **11.05.20:** - Remove unnecessary chmod (remnant of previous change).
