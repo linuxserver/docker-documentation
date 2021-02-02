@@ -49,6 +49,7 @@ services:
       - SUPERUSER_EMAIL=<SUPERUSER_EMAIL>
       - SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD>
       - ALLOWED_HOST=<ALLOWED_HOST>
+      - BASE_PATH=<BASE_PATH>
       - DB_NAME=<DB_NAME>
       - DB_USER=<DB_USER>
       - DB_PASSWORD=<DB_PASSWORD>
@@ -75,6 +76,7 @@ docker run -d \
   -e SUPERUSER_EMAIL=<SUPERUSER_EMAIL> \
   -e SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD> \
   -e ALLOWED_HOST=<ALLOWED_HOST> \
+  -e BASE_PATH=<BASE_PATH> \
   -e DB_NAME=<DB_NAME> \
   -e DB_USER=<DB_USER> \
   -e DB_PASSWORD=<DB_PASSWORD> \
@@ -110,13 +112,14 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PGID=1000` | for GroupID - see below for explanation |
 | `SUPERUSER_EMAIL=<SUPERUSER_EMAIL>` | Username for admin account |
 | `SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD>` | Password for admin account |
-| `ALLOWED_HOST=<ALLOWED_HOST>` | The hostname you will use to access the app (i.e., netbox.example.com |
+| `ALLOWED_HOST=<ALLOWED_HOST>` | The hostname you will use to access the app (i.e., netbox.example.com) |
+| `BASE_PATH=<BASE_PATH>` | The path you will use to access the app (i.e., /netbox, optional, default: none) |
 | `DB_NAME=<DB_NAME>` | Databaes name (optional, default: netbox) |
 | `DB_USER=<DB_USER>` | Database user |
 | `DB_PASSWORD=<DB_PASSWORD>` | Database password |
-| `DB_HOST=<DB_HOST>` | Database post (optional, default: postgres |
+| `DB_HOST=<DB_HOST>` | Database post (optional, default: postgres) |
 | `DB_PORT=<DB_PORT>` | Database port (optional) |
-| `REDIS_HOST=<REDIS_HOST>` | Redis host (optional, default: redis |
+| `REDIS_HOST=<REDIS_HOST>` | Redis host (optional, default: redis) |
 | `REDIS_PORT=<REDIS_PORT>` | Redis port number (optional, default: 6379) |
 | `REDIS_PASSWORD=<REDIS_PASSWORD>` | Redis password (optional, default: none) |
 | `TZ=<TZ>` | Timezone (i.e., America/New_York) |
@@ -184,4 +187,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **02.01.21:** - Added BASE_PATH environment variable.
 * **23.08.20:** - Initial Release.
