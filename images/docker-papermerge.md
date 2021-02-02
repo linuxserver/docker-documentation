@@ -47,6 +47,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=America/New_York
+      - REDIS_URL= #optional
     volumes:
       - </path/to/appdata/config>:/config
       - </path/to/appdata/data>:/data
@@ -63,6 +64,7 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=America/New_York \
+  -e REDIS_URL= `#optional` \
   -p 8000:8000 \
   -v </path/to/appdata/config>:/config \
   -v </path/to/appdata/data>:/data \
@@ -89,6 +91,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=America/New_York` | Specify a timezone to use EG America/New_York |
+| `REDIS_URL=` | Specify an external redis instance to use. Can optionally include a port (`redis:6379`) and/or db (`redis/foo`). If left blank or not included, will use a built-in redis instance. If changed after initial setup will also require manual modification of /config/settings.py |
 
 ### Volume Mappings (`-v`)
 
@@ -155,5 +158,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **01.02.21:** - Add redis.
 * **09.12.20:** - Fix locales.
 * **08.08.20:** - Initial Release.
