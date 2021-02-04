@@ -117,7 +117,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `DB_NAME=<DB_NAME>` | Database name (optional, default: netbox) |
 | `DB_USER=<DB_USER>` | Database user |
 | `DB_PASSWORD=<DB_PASSWORD>` | Database password |
-| `DB_HOST=<DB_HOST>` | Database post (optional, default: postgres) |
+| `DB_HOST=<DB_HOST>` | Database host (optional, default: postgres) |
 | `DB_PORT=<DB_PORT>` | Database port (optional) |
 | `REDIS_HOST=<REDIS_HOST>` | Redis host (optional, default: redis) |
 | `REDIS_PORT=<REDIS_PORT>` | Redis port number (optional, default: 6379) |
