@@ -114,7 +114,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD>` | Password for admin account |
 | `ALLOWED_HOST=<ALLOWED_HOST>` | The hostname you will use to access the app (i.e., netbox.example.com) |
 | `BASE_PATH=<BASE_PATH>` | The path you will use to access the app (i.e., /netbox, optional, default: none) |
-| `DB_NAME=<DB_NAME>` | Databaes name (optional, default: netbox) |
+| `DB_NAME=<DB_NAME>` | Database name (optional, default: netbox) |
 | `DB_USER=<DB_USER>` | Database user |
 | `DB_PASSWORD=<DB_PASSWORD>` | Database password |
 | `DB_HOST=<DB_HOST>` | Database post (optional, default: postgres) |
