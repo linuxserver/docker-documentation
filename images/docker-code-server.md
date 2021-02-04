@@ -61,6 +61,7 @@ services:
       - PGID=1000
       - TZ=Europe/London
       - PASSWORD=password #optional
+      - HASHED_PASSWORD= #optional
       - SUDO_PASSWORD=password #optional
       - SUDO_PASSWORD_HASH= #optional
       - PROXY_DOMAIN=code-server.my.domain #optional
@@ -80,6 +81,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -e PASSWORD=password `#optional` \
+  -e HASHED_PASSWORD= `#optional` \
   -e SUDO_PASSWORD=password `#optional` \
   -e SUDO_PASSWORD_HASH= `#optional` \
   -e PROXY_DOMAIN=code-server.my.domain `#optional` \
@@ -108,7 +110,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
-| `PASSWORD=password` | Optional web gui password, if not provided, there will be no auth. |
+| `PASSWORD=password` | Optional web gui password, if `PASSWORD` or `HASHED_PASSWORD` is not provided, there will be no auth. |
+| `HASHED_PASSWORD=` | Optional web gui password, overrides `PASSWORD`, instructions on how to create it is below. |
 | `SUDO_PASSWORD=password` | If this optional variable is set, user will have sudo access in the code-server terminal with the specified password. |
 | `SUDO_PASSWORD_HASH=` | Optionally set sudo password via hash (takes priority over `SUDO_PASSWORD` var). Format is `$type$salt$hashed`. |
 | `PROXY_DOMAIN=code-server.my.domain` | If this optional variable is set, this domain will be proxied for subdomain proxying. See [Documentation](https://github.com/cdr/code-server/blob/master/doc/FAQ.md#sub-domains) |
@@ -154,13 +157,17 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Application Setup
 
-Access the webui at `http://<your-ip>:8443`.  
-For github integration, drop your ssh key in to `/config/.ssh`.  
-Then open a terminal from the top menu and set your github username and email via the following commands  
-```
+Access the webui at `http://<your-ip>:8443`.
+For github integration, drop your ssh key in to `/config/.ssh`.
+Then open a terminal from the top menu and set your github username and email via the following commands
+
+```bash
 git config --global user.name "username"
 git config --global user.email "email address"
 ```
+
+### Hashed code-server password
+To create the [hashed password](https://github.com/cdr/code-server/blob/master/doc/FAQ.md#can-i-store-my-password-hashed), use printf instead of echo as echo introduces newlines in the hash.
 
 
 ## Docker Mods
@@ -182,6 +189,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **04.02.20:** - Allow setting gui password via hash using env var `HASHED_PASSWORD`.
 * **23.12.20:** - Allow setting sudo password via hash using env var `SUDO_PASSWORD_HASH`.
 * **29.05.20:** - Add --domain-proxy support.
 * **21.05.20:** - Shrink images, install via yarn, fix arm32v7 build.
