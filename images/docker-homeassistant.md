@@ -160,4 +160,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **06.02.21:** - Add iputils so ping works as non root user.
 * **30.01.21:** - Initial Release.
