@@ -154,6 +154,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.01.21:** - Rebasing to alpine 3.13.
 * **01.06.20:** - Rebasing to alpine 3.12.
 * **31.03.20:** - Internalize app and enable updates for existing users, allow user customized crontab.
 * **19.12.19:** - Rebasing to alpine 3.11.
