@@ -75,6 +75,7 @@ It is based on alpine and is not meant to run as a service. The sync is performe
 
 |  Date | Changes |
 | :---: | --- |
+| 13.01.21 |  Use ghcr baseimages. Fall back to `external` folder for readme lite. |
 | 28.07.20 |  Rebase to alpine 3.12. |
 | 20.08.18 |  Rebase to alpine 3.8. |
 | 28.02.18 |  convert repo to use node.js implementation. |
