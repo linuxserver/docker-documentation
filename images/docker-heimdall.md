@@ -168,7 +168,8 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
-* **23.01.21:** - Rebasing to alpine 3.13.
+* **10.02.21:** - Revert to alpine 3.12 as php 7.4 broke laravel.
+* **10.02.21:** - Rebasing to alpine 3.13.
 * **17.08.20:** - Add php7-curl.
 * **01.06.20:** - Rebasing to alpine 3.12.
 * **17.01.20:** - Use nginx from baseimage.
