@@ -21,7 +21,7 @@ docker run --rm \
   -e LOCAL=true \
   -e PUID=$(id -u) -e PGID=$(id -g) \
   linuxserver/jenkins-builder:latest && \
-rm -rf .jenkins-external"
+rm -rf .jenkins-external
 ```
 Newly generated files (including `README.md`, `Jenkinsfile`, issue templates, etc.) will overwrite the existing files in your current working directory.
 
