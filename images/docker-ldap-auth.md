@@ -1,3 +1,6 @@
+---
+title: ldap-auth
+---
 # [linuxserver/ldap-auth](https://github.com/linuxserver/docker-ldap-auth)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-ldap-auth.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-ldap-auth)
