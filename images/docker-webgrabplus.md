@@ -1,3 +1,6 @@
+---
+title: webgrabplus
+---
 # [linuxserver/webgrabplus](https://github.com/linuxserver/docker-webgrabplus)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-webgrabplus.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-webgrabplus)
