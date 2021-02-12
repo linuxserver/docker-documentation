@@ -1,3 +1,6 @@
+---
+title: sickchill
+---
 # [linuxserver/sickchill](https://github.com/linuxserver/docker-sickchill)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-sickchill.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-sickchill)
@@ -157,6 +160,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.02.21:** - Rebasing to alpine 3.13. Add python certifi.
 * **17.09.20:** - Update dependencies.
 * **06.09.20:** - Switch to python3, install pip package.
 * **22.04.20:** - Switch to git clone and using git tags for versioning.
