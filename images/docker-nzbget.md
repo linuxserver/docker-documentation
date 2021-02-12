@@ -1,3 +1,6 @@
+---
+title: nzbget
+---
 # [linuxserver/nzbget](https://github.com/linuxserver/docker-nzbget)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-nzbget.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-nzbget)
@@ -179,6 +182,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.01.21:** - Rebasing to alpine 3.13.
 * **26.10.20:** - Fix python dependencies.
 * **24.08.20:** - Fix ignored umask environment variable.
 * **08.06.20:** - Symlink python3 bin to python.
