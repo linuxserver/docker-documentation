@@ -1,3 +1,6 @@
+---
+title: ubooquity
+---
 # [linuxserver/ubooquity](https://github.com/linuxserver/docker-ubooquity)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-ubooquity.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-ubooquity)
