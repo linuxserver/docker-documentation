@@ -158,6 +158,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **09.02.21:** - Rebasing to alpine 3.13. Add nginx mods brotli and dav-ext. Remove nginx mods lua and lua-upstream (due to regression over the last couple of years).
 * **08.09.20:** - Add php7-xsl.
 * **01.06.20:** - Rebasing to alpine 3.12.
 * **18.04.20:** - Fix unwanted shutdown of the container.
