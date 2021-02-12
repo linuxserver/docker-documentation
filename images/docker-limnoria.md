@@ -1,3 +1,6 @@
+---
+title: limnoria
+---
 # [linuxserver/limnoria](https://github.com/linuxserver/docker-limnoria)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-limnoria.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-limnoria)
