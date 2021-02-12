@@ -1,3 +1,6 @@
+---
+title: duplicati
+---
 # [linuxserver/duplicati](https://github.com/linuxserver/docker-duplicati)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-duplicati.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-duplicati)
