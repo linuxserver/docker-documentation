@@ -141,6 +141,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.01.21:** - Rebasing to alpine 3.13.
 * **02.06.20:** - Rebasing to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **20.07.19:** - Build compose bins from source, use minimal docker install from repos.
