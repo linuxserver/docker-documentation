@@ -50,7 +50,7 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - <path to config>:/config
+      - path/to/config:/config
     ports:
       - 8080:8080
     restart: unless-stopped
@@ -65,7 +65,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -p 8080:8080 \
-  -v <path to config>:/config \
+  -v path/to/config:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/limnoria
 ```
@@ -171,5 +171,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **13.02.21:** - Rebasing to alpine 3.13.
 * **01.06.20:** - Rebasing to alpine 3.12.
 * **13.01.20:** - Initial Release.
