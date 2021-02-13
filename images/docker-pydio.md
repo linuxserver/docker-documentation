@@ -1,3 +1,6 @@
+---
+title: pydio
+---
 # [linuxserver/pydio](https://github.com/linuxserver/docker-pydio)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-pydio.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-pydio)
@@ -160,6 +163,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.01.21:** - Rebasing to alpine 3.13.
 * **01.06.20:** - Rebasing to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
