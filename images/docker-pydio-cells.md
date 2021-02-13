@@ -1,3 +1,6 @@
+---
+title: pydio-cells
+---
 # [linuxserver/pydio-cells](https://github.com/linuxserver/docker-pydio-cells)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-pydio-cells.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-pydio-cells)
@@ -165,6 +168,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.01.21:** - Rebasing to alpine 3.13.
 * **01.06.20:** - Rebasing to alpine 3.12.
 * **18.04.20:** - Switch to https as default (only affects new installs). Add self signed cert, add `SERVER_IP` var for adding to cert as SAN. Add optional gRPC port mapping for CellsSync.
 * **17.04.20:** - Update compile options, previous release was broken for new installs.
