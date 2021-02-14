@@ -1,3 +1,6 @@
+---
+title: dokuwiki
+---
 # [linuxserver/dokuwiki](https://github.com/linuxserver/docker-dokuwiki)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-dokuwiki.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-dokuwiki)
