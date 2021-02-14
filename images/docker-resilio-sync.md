@@ -1,3 +1,6 @@
+---
+title: resilio-sync
+---
 # [linuxserver/resilio-sync](https://github.com/linuxserver/docker-resilio-sync)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-resilio-sync.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-resilio-sync)
