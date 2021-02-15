@@ -1,3 +1,6 @@
+---
+title: embystat
+---
 # [linuxserver/embystat](https://github.com/linuxserver/docker-embystat)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-embystat.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-embystat)
