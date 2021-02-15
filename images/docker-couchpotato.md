@@ -1,3 +1,6 @@
+---
+title: couchpotato
+---
 # [linuxserver/couchpotato](https://github.com/linuxserver/docker-couchpotato)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-couchpotato.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-couchpotato)
