@@ -1,3 +1,6 @@
+---
+title: calibre-web
+---
 # [linuxserver/calibre-web](https://github.com/linuxserver/docker-calibre-web)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-calibre-web.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-calibre-web)
