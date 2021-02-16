@@ -29,6 +29,14 @@ The architectures supported by this image are:
 | arm64 | arm64v8-latest |
 | armhf | arm32v7-latest |
 
+## Version Tags
+
+This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
+
+| Tag | Description |
+| :----: | --- |
+| latest | Stable releases from Pyload |
+| ng | Development releases from Pyload-ng (currently alpha) |
 
 ## Usage
 
@@ -141,6 +149,8 @@ Access the web interface at `http://your-ip:8000` the default login is:
 username - **admin**
 password - **password**
 
+For the `ng` tag, the default user/pass are `pyload/pyload`.
+
 For general usage please see the pyLoad wiki [here](https://github.com/pyload/pyload/wiki) .
 
 
@@ -163,6 +173,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **16.02.21:** - Publish `ng` tag for pyload-ng (currently alpha).
 * **04.11.20:** - Rebase to alpine 3.11.
 * **18.10.20:** - Chown app folder to fix plugin updater.
 * **18.07.19:** - Add ffmpeg for plugins the do video processing.
