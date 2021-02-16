@@ -1,3 +1,6 @@
+---
+title: mylar3
+---
 # [linuxserver/mylar3](https://github.com/linuxserver/docker-mylar3)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-mylar3.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-mylar3)
