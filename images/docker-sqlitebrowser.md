@@ -1,3 +1,6 @@
+---
+title: sqlitebrowser
+---
 # [linuxserver/sqlitebrowser](https://github.com/linuxserver/docker-sqlitebrowser)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-sqlitebrowser.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-sqlitebrowser)
