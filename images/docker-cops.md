@@ -1,3 +1,6 @@
+---
+title: cops
+---
 # [linuxserver/cops](https://github.com/linuxserver/docker-cops)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-cops.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-cops)
