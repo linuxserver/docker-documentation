@@ -61,7 +61,7 @@ services:
       - 8843:8843 #optional
       - 8880:8880 #optional
       - 6789:6789 #optional
-      - 5514:5514 #optional
+      - 5514:5514/udp #optional
     restart: unless-stopped
 ```
 
@@ -81,7 +81,7 @@ docker run -d \
   -p 8843:8843 `#optional` \
   -p 8880:8880 `#optional` \
   -p 6789:6789 `#optional` \
-  -p 5514:5514 `#optional` \
+  -p 5514:5514/udp `#optional` \
   -v <path to data>:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/unifi-controller
@@ -119,7 +119,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `8843` | Unifi guest portal HTTPS redirect port |
 | `8880` | Unifi guest portal HTTP redirect port |
 | `6789` | For mobile throughput test |
-| `5514` | Remote syslog port |
+| `5514/udp` | Remote syslog port |
 
 
 ### Environment Variables (`-e`)
