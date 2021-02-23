@@ -173,6 +173,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.02.21:** - Add Python plugin `passlib`.
 * **16.02.21:** - Publish `ng` tag for pyload-ng (currently alpha).
 * **04.11.20:** - Rebase to alpine 3.11.
 * **18.10.20:** - Chown app folder to fix plugin updater.
