@@ -10,7 +10,7 @@ This is due to a bug in the libseccomp2 library (dependency of docker itself), w
 
 [A GitHub issue tracking this](https://github.com/moby/moby/issues/40734)
 
-You have a few options, 1 and 2 are short-term, 3 is to be considered the best option if you dont plan to reinstall the device.
+You have a few options as noted below. Options 1 and 2 are short-term, while option 3 is considered the best option if you don't plan to reinstall the device (option 4).
 
 ### Resolution
 
@@ -18,9 +18,11 @@ If you decide to do option 2 or 3, you should just need to restart the container
 
 If 2 or 3 did not work, ensure you have an up-to-date install of Docker, [refer to the official Docker docs for installation.](https://docs.docker.com/engine/install/debian/)
 
-1. Use another tag, not based on Focal. At the time of writing we currently offer a `bionic` tag for [Plex](https://github.com/linuxserver/docker-plex) and [Jellyfin](https://github.com/linuxserver/docker-jellyfin) that will receive the same care as latest for the foreseeable future.
+#### Option 1
+Use another tag, not based on Focal. At the time of writing we currently offer a `bionic` tag for [Plex](https://github.com/linuxserver/docker-plex) and [Jellyfin](https://github.com/linuxserver/docker-jellyfin) that will receive the same care as latest for the foreseeable future.
 
-2. Manually install an updated version of the library with dpkg.
+#### Option 2
+Manually install an updated version of the library with dpkg.
 
     ```bash
     wget http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.4.4-1~bpo10+1_armhf.deb
@@ -29,7 +31,8 @@ If 2 or 3 did not work, ensure you have an up-to-date install of Docker, [refer 
 
     Note this url may have been updated. Find the latest by browsing [here](http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/).
 
-3. Add the backports repo for DebianBuster. As seen [here](https://github.com/linuxserver/docker-jellyfin/issues/71#issuecomment-733621693).
+#### Option 3
+Add the backports repo for DebianBuster. As seen [here](https://github.com/linuxserver/docker-jellyfin/issues/71#issuecomment-733621693).
 
     ```bash
     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC 648ACFD622F3D138
@@ -38,7 +41,8 @@ If 2 or 3 did not work, ensure you have an up-to-date install of Docker, [refer 
     sudo apt install -t buster-backports libseccomp2
     ```
 
-4. Reinstall/update your OS to a version that still gets updates.
+#### Option 4
+Reinstall/update your OS to a version that still gets updates.
     * Any distro based on DebianStretch does not seem to have this package available
     * DebianBuster based distros can get the package trough backports, as outlined in point 2.
 
