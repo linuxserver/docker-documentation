@@ -183,6 +183,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **28.02.21:** - Added php7-ctype.
 * **23.01.21:** - Rebasing to alpine 3.13.
 * **01.06.20:** - Rebasing to alpine 3.12.
 * **29.04.20:** - Add donation links for LibreSpeed to Github sponsor button and container log.
