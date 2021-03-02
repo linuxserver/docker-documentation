@@ -1,3 +1,6 @@
+---
+title: openvpn-as
+---
 # [linuxserver/openvpn-as](https://github.com/linuxserver/docker-openvpn-as)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-openvpn-as.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-openvpn-as)

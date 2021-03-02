@@ -1,3 +1,6 @@
+---
+title: syncthing
+---
 # [linuxserver/syncthing](https://github.com/linuxserver/docker-syncthing)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-syncthing.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-syncthing)

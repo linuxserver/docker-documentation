@@ -1,3 +1,6 @@
+---
+title: nano-wallet
+---
 # [linuxserver/nano-wallet](https://github.com/linuxserver/docker-nano-wallet)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-nano-wallet.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-nano-wallet)

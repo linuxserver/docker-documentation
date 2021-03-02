@@ -1,6 +1,32 @@
 ---
 title: musicbrainz
 ---
+# IMPORTANT NOTICE: THIS IMAGE HAS BEEN DEPRECATED
+[![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png)](https://linuxserver.io)
+
+[![Blog](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=Blog)](https://blog.linuxserver.io "all the things you can do with our containers including How-To guides, opinions and much more!")
+[![Discord](https://img.shields.io/discord/354974912613449730.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=Discord&logo=discord)](https://discord.gg/YWrKVTn "realtime support / chat with the community and the team.")
+[![Discourse](https://img.shields.io/discourse/https/discourse.linuxserver.io/topics.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=discourse)](https://discourse.linuxserver.io "post on our community forum.")
+[![Fleet](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=Fleet)](https://fleet.linuxserver.io "an online web interface which displays all of our maintained images.")
+[![GitHub](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub&logo=github)](https://github.com/linuxserver "view the source for all of our repositories.")
+[![Open Collective](https://img.shields.io/opencollective/all/linuxserver.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=Supporters&logo=open%20collective)](https://opencollective.com/linuxserver "please consider helping us by either donating or contributing to our budget")
+
+The [LinuxServer.io](https://linuxserver.io) team brings you another container release featuring:
+
+* regular and timely application updates
+* easy user mappings (PGID, PUID)
+* custom base image with s6 overlay
+* weekly base OS updates with common layers across the entire LinuxServer.io ecosystem to minimise space usage, down time and bandwidth
+* regular security updates
+
+Find us at:
+* [Blog](https://blog.linuxserver.io) - all the things you can do with our containers including How-To guides, opinions and much more!
+* [Discord](https://discord.gg/YWrKVTn) - realtime support / chat with the community and the team.
+* [Discourse](https://discourse.linuxserver.io) - post on our community forum.
+* [Fleet](https://fleet.linuxserver.io) - an online web interface which displays all of our maintained images.
+* [GitHub](https://github.com/linuxserver) - view the source for all of our repositories.
+* [Open Collective](https://opencollective.com/linuxserver) - please consider helping us by either donating or contributing to our budget
+
 # [linuxserver/musicbrainz](https://github.com/linuxserver/docker-musicbrainz)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-musicbrainz.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-musicbrainz)
@@ -13,6 +39,8 @@ title: musicbrainz
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-musicbrainz%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-musicbrainz/job/master/)
 
 [MusicBrainz](https://musicbrainz.org/) is an open music encyclopedia that collects music metadata and makes it available to the public.
+
+[![musicbrainz](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/musicbrainz-icon.png)](https://musicbrainz.org/)
 
 ## Supported Architectures
 
@@ -31,7 +59,7 @@ The architectures supported by this image are:
 
 ## Usage
 
-Here are some example snippets to help you get started creating a container from this image.
+Here are some example snippets to help you get started creating a container.
 
 ### docker-compose ([recommended](https://docs.linuxserver.io/general/docker-compose))
 
@@ -80,34 +108,19 @@ docker run -d \
 
 ## Parameters
 
-Docker images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
-
-### Ports (`-p`)
+Container images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
 | Parameter | Function |
 | :----: | --- |
-| `5000` | WebUI |
-
-
-### Environment Variables (`-e`)
-
-| Env | Function |
-| :----: | --- |
-| `PUID=1000` | for UserID - see below for explanation |
-| `PGID=1000` | for GroupID - see below for explanation |
-| `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
-| `BRAINZCODE=<code from MusicBrainz>` | To enter MusicBrainz code. See Setting up the application |
-| `WEBADDRESS=<ip of host>` | To set ip for host to allow css to render properly, DO NOT ENTER PORT NUMBER. |
-| `NPROC=<parameter>` | To set number of proceses, defaults to 5 if unset. |
-
-### Volume Mappings (`-v`)
-
-| Volume | Function |
-| :----: | --- |
-| `/config` | Config files for musicbrainz. |
-| `/data` | Data files for musicbrainz. |
-
-
+| `-p 5000` | WebUI |
+| `-e PUID=1000` | for UserID - see below for explanation |
+| `-e PGID=1000` | for GroupID - see below for explanation |
+| `-e TZ=Europe/London` | Specify a timezone to use EG Europe/London |
+| `-e BRAINZCODE=<code from MusicBrainz>` | To enter MusicBrainz code. See Setting up the application |
+| `-e WEBADDRESS=<ip of host>` | To set ip for host to allow css to render properly, DO NOT ENTER PORT NUMBER. |
+| `-e NPROC=<parameter>` | To set number of proceses, defaults to 5 if unset. |
+| `-v /config` | Config files for musicbrainz. |
+| `-v /data` | Data files for musicbrainz. |
 
 ## Environment variables from files (Docker secrets)
 
@@ -126,10 +139,9 @@ Will set the environment variable `PASSWORD` based on the contents of the `/run/
 For all of our images we provide the ability to override the default umask settings for services started within the containers using the optional `-e UMASK=022` setting.
 Keep in mind umask is not chmod it subtracts from permissions based on it's value it does not add. Please read up [here](https://en.wikipedia.org/wiki/Umask) before asking for support.
 
-
 ## User / Group Identifiers
 
-When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+When using volumes (`-v` flags) permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
@@ -140,6 +152,8 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
 
+
+&nbsp;
 ## Application Setup
 
 + For all updates you should pull the latest image, clear all files and folders in /config and /data and reinitiate the database import by (re)starting the docker. We do not officially support upgrading this container in place with existing data sets. 
@@ -159,17 +173,70 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Support Info
 
-* Shell access whilst the container is running:
-  * `docker exec -it musicbrainz /bin/bash`
-* To monitor the logs of the container in realtime:
-  * `docker logs -f musicbrainz`
-* Container version number
+* Shell access whilst the container is running: `docker exec -it musicbrainz /bin/bash`
+* To monitor the logs of the container in realtime: `docker logs -f musicbrainz`
+* container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' musicbrainz`
-* Image version number
+* image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' ghcr.io/linuxserver/musicbrainz`
+
+## Updating Info
+
+Most of our images are static, versioned, and require an image update and container recreation to update the app inside. With some exceptions (ie. nextcloud, plex), we do not recommend or support updating apps inside the container. Please consult the [Application Setup](#application-setup) section above to see if it is recommended for the image.
+
+Below are the instructions for updating containers:
+
+### Via Docker Compose
+* Update all images: `docker-compose pull`
+  * or update a single image: `docker-compose pull musicbrainz`
+* Let compose update all containers as necessary: `docker-compose up -d`
+  * or update a single container: `docker-compose up -d musicbrainz`
+* You can also remove the old dangling images: `docker image prune`
+
+### Via Docker Run
+* Update the image: `docker pull ghcr.io/linuxserver/musicbrainz`
+* Stop the running container: `docker stop musicbrainz`
+* Delete the container: `docker rm musicbrainz`
+* Recreate a new container with the same docker run parameters as instructed above (if mapped correctly to a host folder, your `/config` folder and settings will be preserved)
+* You can also remove the old dangling images: `docker image prune`
+
+### Via Watchtower auto-updater (only use if you don't remember the original parameters)
+* Pull the latest image at its tag and replace it with the same env variables in one run:
+  ```
+  docker run --rm \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  containrrr/watchtower \
+  --run-once musicbrainz
+  ```
+* You can also remove the old dangling images: `docker image prune`
+
+**Note:** We do not endorse the use of Watchtower as a solution to automated updates of existing Docker containers. In fact we generally discourage automated updates. However, this is a useful tool for one-time manual updates of containers where you have forgotten the original parameters. In the long term, we highly recommend using [Docker Compose](https://docs.linuxserver.io/general/docker-compose).
+
+### Image Update Notifications - Diun (Docker Image Update Notifier)
+* We recommend [Diun](https://crazymax.dev/diun/) for update notifications. Other tools that automatically update containers unattended are not recommended or supported.
+
+## Building locally
+
+If you want to make local modifications to these images for development purposes or just to customize the logic:
+```
+git clone https://github.com/linuxserver/docker-musicbrainz.git
+cd docker-musicbrainz
+docker build \
+  --no-cache \
+  --pull \
+  -t ghcr.io/linuxserver/musicbrainz:latest .
+```
+
+The ARM variants can be built on x86_64 hardware using `multiarch/qemu-user-static`
+```
+docker run --rm --privileged multiarch/qemu-user-static:register --reset
+```
+
+Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64`.
 
 ## Versions
 
+* **23.02.21:** - Deprecate image as no one stepped up to take over as maintainer.
 * **03.10.20:** - Rebase to alpine 3.12, add gettext and move to nodejs-current.
 * **17.05.19:** - Update DBDefs.pm to schema 25 database.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.

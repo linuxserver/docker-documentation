@@ -1,3 +1,6 @@
+---
+title: nntp2nntp
+---
 # [linuxserver/nntp2nntp](https://github.com/linuxserver/docker-nntp2nntp)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-nntp2nntp.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-nntp2nntp)

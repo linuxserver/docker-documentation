@@ -1,3 +1,6 @@
+---
+title: beets
+---
 # [linuxserver/beets](https://github.com/linuxserver/docker-beets)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-beets.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-beets)
@@ -139,6 +142,18 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
+
+## Application Setup
+
+Edit the config file in /config
+
+To edit the config from within the container use `beet config -e`
+
+For a command prompt as user abc `docker exec -it -u abc beets bash`
+
+See [Beets](http://beets.io/) for more info.
+
+Contains [beets-copyartifacts](https://github.com/sbarakat/beets-copyartifacts) plugin, [configuration details](https://github.com/sbarakat/beets-copyartifacts#configuration)
 
 
 ## Docker Mods

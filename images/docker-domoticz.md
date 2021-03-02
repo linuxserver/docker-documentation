@@ -1,3 +1,6 @@
+---
+title: domoticz
+---
 # [linuxserver/domoticz](https://github.com/linuxserver/docker-domoticz)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-domoticz.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-domoticz)

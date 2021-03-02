@@ -1,3 +1,6 @@
+---
+title: diskover
+---
 # [linuxserver/diskover](https://github.com/linuxserver/docker-diskover)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-diskover.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-diskover)

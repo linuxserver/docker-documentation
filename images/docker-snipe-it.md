@@ -1,3 +1,6 @@
+---
+title: snipe-it
+---
 # [linuxserver/snipe-it](https://github.com/linuxserver/docker-snipe-it)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-snipe-it.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-snipe-it)

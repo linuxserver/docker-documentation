@@ -152,6 +152,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.01.21:** - Rebasing to alpine 3.13.
 * **01.06.20:** - Rebasing to alpine 3.12.
 * **28.04.20:** - Added python dependency for some NPM modules as well as git for storage module
 * **14.12.19:** - Initial Release.

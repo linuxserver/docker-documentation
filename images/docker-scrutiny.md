@@ -1,3 +1,6 @@
+---
+title: scrutiny
+---
 # [linuxserver/scrutiny](https://github.com/linuxserver/docker-scrutiny)
 
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-scrutiny.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-scrutiny)
