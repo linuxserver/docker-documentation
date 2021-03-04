@@ -191,6 +191,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **31.01.21:** - Add jpegoptim.
 * **15.01.21:** - Rebase to alpine 3.13, add php7-ctype.
 * **10.07.20:** - Upgrade to Lychee v4 and rebased to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.
