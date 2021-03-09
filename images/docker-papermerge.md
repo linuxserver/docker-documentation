@@ -161,6 +161,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **25.02.21:** - Updated dependencies for v2
 * **07.02.21:** - Support external MySQL/PSQL DBs.
 * **01.02.21:** - Add redis.
 * **09.12.20:** - Fix locales.
