@@ -135,6 +135,11 @@ alias dcpull='docker-compose -f ~/docker-compose.yml pull' #pulls all new images
 alias dclogs='docker-compose -f ~/docker-compose.yml logs -tf --tail="50" '
 alias dtail='docker logs -tf --tail="50" "$@"'
 ```
+There are multiple ways to see the logs of your containers. In some instances, using `docker logs` is preferable to `docker-compose logs`. By default `docker logs` will not run unless you define which service the logs are coming from. The `docker-compose logs` will pull all of the logs for the services defined in the `docker-compose.yml` file. 
+
+When asking for help, you should post your logs or be ready to provide logs if someone requests it. If you are running multiple containers in your `docker-compose.yml` file, it is not helpful to submit **all** of the logs. If you are experiencing issues with a single service, say Heimdall, then you would want to get your logs using `docker logs heimdall` or `docker-compose logs heimdall`. The bash_alias for `dclogs` can be used if you define your service after you've typed the alias. Likewise, the bash_alias `detail` will not run without defining the service after it.
+
+
 Some distributions, like Ubuntu, already have the code snippet below in the `~/.bashrc` file. If it is not included, you'll need to add the following to your `~/.bashrc` file in order for the aliases file to be picked up:
 
 ```bash
