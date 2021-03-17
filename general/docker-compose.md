@@ -116,18 +116,31 @@ Defining the containers running on your server as code is a core tenet of a "Dev
 
 ## Tips & Tricks
 
-`docker-compose` expects a `docker-compose.yml` file in the current directory and if one isn't present it will complain. In order to improve your quality of life we suggest the use of bash aliases.
+`docker-compose` expects a `docker-compose.yml` file in the current directory and if one isn't present it will complain. In order to improve your quality of life we suggest the use of bash aliases. The file path for the aliases below assumes that the `docker-compose.yml` file is being kept in the folder `/opt`. If your compose file is kept somewhere else, like in a home directory, then the path will need to be changed.
 
-Create the file `~/.bash_aliases` and populate with the following content:
+Create or open the file `~/.bash_aliases` and populate with the following content:
 
 ```bash
-alias dcp='docker-compose -f /opt/docker-compose.yml '
-alias dcpull='docker-compose -f /opt/docker-compose.yml pull'
-alias dclogs='docker-compose -f /opt/docker-compose.yml logs -tf --tail="50" '
+alias dcup='docker-compose -f /opt/docker-compose.yml up -d' #brings up all containers if one is not defined after dcup
+alias dcdown='docker-compose -f /opt/docker-compose.yml stop' #brings down all containers if one is not defined after dcdown
+alias dcpull='docker-compose -f /opt/docker-compose.yml pull' #pulls all new images is specified after dcpull
+alias dclogs='docker-compose -f /opt/docker-compose.yml logs -tf --tail="50" '  
 alias dtail='docker logs -tf --tail="50" "$@"'
 ```
+If the `docker-compose.yml` file is in a home directory, the following can be put in the `~/.bash_aliases` file.
+```
+alias dcup='docker-compose -f ~/docker-compose.yml up -d' #brings up all containers if one is not defined after dcup
+alias dcdown='docker-compose -f ~/docker-compose.yml stop` #brings down all containers if one is not defined after dcdown
+alias dcpull='docker-compose -f ~/docker-compose.yml pull' #pulls all new images unless one is specified
+alias dclogs='docker-compose -f ~/docker-compose.yml logs -tf --tail="50" '
+alias dtail='docker logs -tf --tail="50" "$@"'
+```
+There are multiple ways to see the logs of your containers. In some instances, using `docker logs` is preferable to `docker-compose logs`. By default `docker logs` will not run unless you define which service the logs are coming from. The `docker-compose logs` will pull all of the logs for the services defined in the `docker-compose.yml` file. 
 
-You'll need to add the following to your `~/.bashrc` file in order for the aliases file to be picked up:
+When asking for help, you should post your logs or be ready to provide logs if someone requests it. If you are running multiple containers in your `docker-compose.yml` file, it is not helpful to submit **all** of the logs. If you are experiencing issues with a single service, say Heimdall, then you would want to get your logs using `docker logs heimdall` or `docker-compose logs heimdall`. The bash_alias for `dclogs` can be used if you define your service after you've typed the alias. Likewise, the bash_alias `detail` will not run without defining the service after it.
+
+
+Some distributions, like Ubuntu, already have the code snippet below in the `~/.bashrc` file. If it is not included, you'll need to add the following to your `~/.bashrc` file in order for the aliases file to be picked up:
 
 ```bash
 if [ -f ~/.bash_aliases ]; then
@@ -135,5 +148,5 @@ if [ -f ~/.bash_aliases ]; then
 fi
 ```
 
-Once configured, log out and the log in again. Now you can type `dcpull` or `dcp up -d` to manage your entire fleet of containers at once. It's like magic.
+Once configured, you can run `source ~/.bashrc` or log out and the log in again. Now you can type `dcpull` or `dcup` to manage your entire fleet of containers at once. It's like magic.
 
