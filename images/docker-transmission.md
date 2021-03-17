@@ -53,6 +53,7 @@ services:
       - USER=username #optional
       - PASS=password #optional
       - WHITELIST=iplist #optional
+      - HOST_WHITELIST=dnsnane list #optional
     volumes:
       - <path to data>:/config
       - <path to downloads>:/downloads
@@ -76,6 +77,7 @@ docker run -d \
   -e USER=username `#optional` \
   -e PASS=password `#optional` \
   -e WHITELIST=iplist `#optional` \
+  -e HOST_WHITELIST=dnsnane list `#optional` \
   -p 9091:9091 \
   -p 51413:51413 \
   -p 51413:51413/udp \
@@ -110,7 +112,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `TRANSMISSION_WEB_HOME=/combustion-release/` | Specify an alternative UI options are `/combustion-release/`, `/transmission-web-control/`, and `/kettu/` . |
 | `USER=username` | Specify an optional username for the interface |
 | `PASS=password` | Specify an optional password for the interface |
-| `WHITELIST=iplist` | Specify an optional list of comma separated host whitelist |
+| `WHITELIST=iplist` | Specify an optional list of comma separated ip whitelist. Fill rpc-whitelist setting. |
+| `HOST_WHITELIST=dnsnane list` | Specify an optional list of comma separated dns name whitelist. Fill rpc-host-whitelist setting. |
 
 ### Volume Mappings (`-v`)
 
@@ -173,7 +176,9 @@ The automatic update will run once a day at 3am local server time.
 
 ## Using whitelist
 
-Use `WHITELIST` to enable an ip of whitelist. Both notation `rpc-whitelist` and `rpc-host-whitelist` are supported. When `WHITELIST` is empty the whitelist is disabled.
+Use `WHITELIST` to enable a list of ip as whitelist. This enable support for `rpc-whitelist`. When `WHITELIST` is empty support for whitelist is disabled.
+
+Use `HOST_WHITELIST` to enable an list of dns names as host-whitelist. This enable support for `rpc-host-whitelist`. When `HOST_WHITELIST` is empty support for host-whitelist is disabled.
 
 
 ## Docker Mods
