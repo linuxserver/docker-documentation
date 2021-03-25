@@ -61,6 +61,12 @@ services:
       - REDIS_HOST=<REDIS_HOST>
       - REDIS_PORT=<REDIS_PORT>
       - REDIS_PASSWORD=<REDIS_PASSWORD>
+      - REMOTE_AUTH_ENABLED=<REMOTE_AUTH_ENABLED>
+      - REMOTE_AUTH_BACKEND=<REMOTE_AUTH_BACKEND>
+      - REMOTE_AUTH_HEADER=<REMOTE_AUTH_HEADER>
+      - REMOTE_AUTH_AUTO_CREATE_USER=<REMOTE_AUTH_AUTO_CREATE_USER>
+      - REMOTE_AUTH_DEFAULT_GROUPS=<REMOTE_AUTH_DEFAULT_GROUPS>
+      - REMOTE_AUTH_DEFAULT_PERMISSIONS=<REMOTE_AUTH_DEFAULT_PERMISSIONS>
       - TZ=<TZ>
     volumes:
       - <path to data on host>:/config
@@ -88,6 +94,12 @@ docker run -d \
   -e REDIS_HOST=<REDIS_HOST> \
   -e REDIS_PORT=<REDIS_PORT> \
   -e REDIS_PASSWORD=<REDIS_PASSWORD> \
+  -e REMOTE_AUTH_ENABLED=<REMOTE_AUTH_ENABLED> \
+  -e REMOTE_AUTH_BACKEND=<REMOTE_AUTH_BACKEND> \
+  -e REMOTE_AUTH_HEADER=<REMOTE_AUTH_HEADER> \
+  -e REMOTE_AUTH_AUTO_CREATE_USER=<REMOTE_AUTH_AUTO_CREATE_USER> \
+  -e REMOTE_AUTH_DEFAULT_GROUPS=<REMOTE_AUTH_DEFAULT_GROUPS> \
+  -e REMOTE_AUTH_DEFAULT_PERMISSIONS=<REMOTE_AUTH_DEFAULT_PERMISSIONS> \
   -e TZ=<TZ> \
   -p 8000:8000 \
   -v <path to data on host>:/config \
@@ -125,6 +137,12 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `REDIS_HOST=<REDIS_HOST>` | Redis host (optional, default: redis) |
 | `REDIS_PORT=<REDIS_PORT>` | Redis port number (optional, default: 6379) |
 | `REDIS_PASSWORD=<REDIS_PASSWORD>` | Redis password (optional, default: none) |
+| `REMOTE_AUTH_ENABLED=<REMOTE_AUTH_ENABLED>` | Enable remote authentication (optional, default: False |
+| `REMOTE_AUTH_BACKEND=<REMOTE_AUTH_BACKEND>` | Python path to the custom Django authentication backend to use for external user authentication (optional, default: netbox.authentication.RemoteUserBackend |
+| `REMOTE_AUTH_HEADER=<REMOTE_AUTH_HEADER>` | Name of the HTTP header which informs NetBox of the currently authenticated user. (optional, default: HTTP_REMOTE_USER |
+| `REMOTE_AUTH_AUTO_CREATE_USER=<REMOTE_AUTH_AUTO_CREATE_USER>` | If true, NetBox will automatically create local accounts for users authenticated via a remote service (optional, default: False |
+| `REMOTE_AUTH_DEFAULT_GROUPS=<REMOTE_AUTH_DEFAULT_GROUPS>` | The list of groups to assign a new user account when created using remote authentication (optional, default: [] |
+| `REMOTE_AUTH_DEFAULT_PERMISSIONS=<REMOTE_AUTH_DEFAULT_PERMISSIONS>` | A mapping of permissions to assign a new user account when created using remote authentication (optional, default: {} |
 | `TZ=<TZ>` | Timezone (i.e., America/New_York) |
 
 ### Volume Mappings (`-v`)
@@ -190,5 +208,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **03.02.21:** - Added remote authentication environment variables.
 * **02.01.21:** - Added BASE_PATH environment variable.
 * **23.08.20:** - Initial Release.
