@@ -163,3 +163,4 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 ## Versions
 
 * **20.05.20:** - Initial release.
+* **27.03.21:** - Download link fixed.
