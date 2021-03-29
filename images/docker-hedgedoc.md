@@ -167,7 +167,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 HedgeDoc web interface can be accessed `http://${IP}:3000/`, if you want to use a custom domain or anything besides port 3000 you will need to leverage their env settings for callbacks: (specifically for CMD_DOMAIN and CMD_URL_ADDPORT)
 
-[Full list of HedgeDoc options](https://github.com/hedgedoc/hedgedoc/blob/master/docs/configuration.md)
+[Full list of HedgeDoc options](https://docs.hedgedoc.org/configuration/)
 
 For convience we provide a working example using Mysql as a backend in this document, if you do not wish to use our custom environment values or a Mysql database backend feel free to leverage any of the settings laid out in the link above.
 
