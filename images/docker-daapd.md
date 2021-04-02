@@ -162,6 +162,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **02.04.21:** - Update upstream repo, again.
 * **30.03.21:** - Update upstream repo.
 * **06.10.20:** - Enabled Spotify on Alpine 3.12 for X86_64 and ARMv7.
 * **01.06.20:** - Rebasing to alpine 3.12.
