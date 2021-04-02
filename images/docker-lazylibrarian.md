@@ -175,6 +175,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.10.19:** - Changed gitlab download link.
 * **23.10.19:** - Add python module Pillow.
 * **31.07.19:** - Add pyopenssl, remove git dependency during build time.
 * **09.07.19:** - Rebase to Ubuntu Bionic, enables Calibre docker mod.
