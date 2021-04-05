@@ -48,6 +48,7 @@ This image provides various versions that are available via tags. `latest` tag u
 | openbox-bionic | Openbox Bionic |
 | icewm-focal | IceWM Focal |
 | icewm-bionic | IceWM Bionic |
+| alpine | XFCE Alpine |
 
 ## Usage
 
@@ -196,5 +197,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **05.04.21:** - Add Alpine flavor.
 * **06.04.20:** - Start PulseAudio in images to support audio
 * **28.02.20:** - Initial Releases
