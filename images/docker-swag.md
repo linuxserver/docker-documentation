@@ -261,6 +261,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.04.21:** - Add php7-gmp and php7-pecl-mailparse.
 * **12.04.21:** - Add support for vultr dns validation.
 * **14.03.21:** - Add support for directadmin dns validation.
 * **12.02.21:** - Clean up rust/cargo cache, which ballooned the image size in the last couple of builds.
