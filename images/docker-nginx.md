@@ -158,6 +158,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.04.21:** - Add php7-gmp and php7-pecl-mailparse.
 * **13.02.21:** - Remove php7-pecl-imagick (it now installs the full imagemagick with too much crud). Users can install it via [this docker mod](https://github.com/linuxserver/docker-mods/tree/swag-imagemagick).
 * **09.02.21:** - Rebasing to alpine 3.13. Add nginx mods brotli and dav-ext. Remove nginx mods lua and lua-upstream (due to regression over the last couple of years).
 * **08.09.20:** - Add php7-xsl.
