@@ -109,7 +109,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
-| `TRANSMISSION_WEB_HOME=/combustion-release/` | Specify an alternative UI options are `/combustion-release/`, `/transmission-web-control/`, and `/kettu/` . |
+| `TRANSMISSION_WEB_HOME=/combustion-release/` | Specify an alternative UI options are [`/combustion-release/`](https://github.com/Secretmapper/combustion), [`/transmission-web-control/`](https://github.com/ronggang/transmission-web-control), [`/kettu/`](https://github.com/endor/kettu) and [`/flood-for-transmission/`](https://github.com/johman10/flood-for-transmission). |
 | `USER=username` | Specify an optional username for the interface |
 | `PASS=password` | Specify an optional password for the interface |
 | `WHITELIST=iplist` | Specify an optional list of comma separated ip whitelist. Fill rpc-whitelist setting. |
@@ -200,6 +200,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **06.03.21:** - Add Flood for Transmission as a UI option
 * **23.01.21:** - Rebasing to alpine 3.13.
 * **02.11.20:** - Add ca-certificates package to allow connecting to https trackers.
 * **02.06.20:** - Rebase to alpine 3.12, update to transmission 3.0, remove python2, add python3.
