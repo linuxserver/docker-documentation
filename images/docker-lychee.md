@@ -20,7 +20,7 @@ title: lychee
 
 ### UPGRADE WARNING
 
-Please note that the upgrade process resets ALL password-protected albums. Any albums that were made public with a password will need to be re-secured.
+Please note that the v4 upgrade process resets ALL password-protected albums. Any albums that were made public with a password will need to be re-secured.
 
 ## Supported Architectures
 
@@ -186,6 +186,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **18.04.21:** - Add php-intl for v4.3.
 * **31.01.21:** - Add jpegoptim.
 * **15.01.21:** - Rebase to alpine 3.13, add php7-ctype.
 * **10.07.20:** - Upgrade to Lychee v4 and rebased to alpine 3.12.
