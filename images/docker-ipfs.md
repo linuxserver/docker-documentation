@@ -44,7 +44,6 @@ Access the webui at http://localhost , if not using localhost scroll to the bott
 Cloudflare is a solid option as they actually edge cache the files on their CDN so even if your node pinning the item goes down for periods of time their cache will last up to a month. 
 
 For more on using IPFS please read the docs [here](https://docs.ipfs.io/)
- 
 
 ## Usage
 
