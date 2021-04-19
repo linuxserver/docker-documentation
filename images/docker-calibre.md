@@ -162,7 +162,8 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
-* **22.03.21:** - Rebase to rdesktop-web baseimage. Deprecate `GUAC_USER` and `GUAC_PASS` env vars. Existing users can set the new var `PASSWORD` for the user `abc`.
+* **18.04.21:** - Start calibre on container start rather than gui connect.
+* **15.04.21:** - Rebase to rdesktop-web baseimage. Deprecate `GUAC_USER` and `GUAC_PASS` env vars. Existing users can set the new var `PASSWORD` for the user `abc`.
 * **25.09.20:** - Switch to python3, add various new dependencies for calibre 5.0.
 * **10.05.19:** - Add new env var `CLI_ARGS` to pass start arguments to calibre.
 * **18.03.19:** - Let Calibre access environment variables, add optional umask setting.
