@@ -17,6 +17,7 @@ title: booksonic
 [![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.linuxserver.io%2Flinuxserver%2Fbooksonic%2Flatest%2Fci-status.yml)](https://ci-tests.linuxserver.io/linuxserver/booksonic/latest/index.html)
 
 [Booksonic](http://booksonic.org) is a server and an app for streaming your audiobooks to any pc or android phone. Most of the functionality is also availiable on other platforms that have apps for subsonic.
+
 ## Supported Architectures
 
 Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
@@ -43,6 +44,7 @@ This image provides various versions that are available via tags. `latest` tag u
 ## Application Setup
 
 Default user/pass is admin/admin
+
 ## Usage
 
 Here are some example snippets to help you get started creating a container from this image.
