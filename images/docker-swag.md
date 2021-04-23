@@ -257,6 +257,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **21.04.21:** - [Existing users should update:](https://github.com/linuxserver/docker-swag/blob/master/README.md#updating-configs) authelia-server.conf and authelia-location.conf - Add remote name/email headers and pass http method.
 * **12.04.21:** - Add php7-gmp and php7-pecl-mailparse.
 * **12.04.21:** - Add support for vultr dns validation.
 * **14.03.21:** - Add support for directadmin dns validation.
