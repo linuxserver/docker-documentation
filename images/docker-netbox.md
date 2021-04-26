@@ -34,6 +34,8 @@ The architectures supported by this image are:
 
 ## Application Setup
 
+Netbox requires a postgres database.
+
 Access the WebUI at <your-ip>:8000. For more information, check out [NetBox](https://github.com/netbox-community/netbox).
 
 ## Usage
@@ -128,8 +130,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `SUPERUSER_EMAIL=<SUPERUSER_EMAIL>` | Username for admin account |
-| `SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD>` | Password for admin account |
+| `SUPERUSER_EMAIL=<SUPERUSER_EMAIL>` | Email address for `admin` account |
+| `SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD>` | Password for `admin` account |
 | `ALLOWED_HOST=<ALLOWED_HOST>` | The hostname you will use to access the app (i.e., netbox.example.com) |
 | `BASE_PATH=<BASE_PATH>` | The path you will use to access the app (i.e., /netbox, optional, default: none) |
 | `DB_NAME=<DB_NAME>` | Database name (optional, default: netbox) |
