@@ -165,6 +165,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **26.04.21:** - Update tarball name, allow for v4 builds in stable.
 * **18.01.21:** - Update upstream repo. Deprecate `v4-preview` tag, which is merged to `development` tag upstream.
 * **14.04.20:** - Add Ombi donate links.
 * **10.05.19:** - Added an optional env variable for base url setting.
