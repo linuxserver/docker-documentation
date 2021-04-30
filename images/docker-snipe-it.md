@@ -70,7 +70,7 @@ services:
     volumes:
       - <path to data>:/config
     environment:
-      - APP_URL=< your application URL IE 192.168.10.1:8080>
+      - NGINX_APP_URL=< your application URL IE 192.168.10.1:8080>
       - MYSQL_PORT_3306_TCP_ADDR=mysql
       - MYSQL_PORT_3306_TCP_PORT=3306
       - MYSQL_DATABASE=snipe
@@ -90,7 +90,7 @@ docker run -d \
   --name=snipe-it \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e APP_URL=<hostname or ip> \
+  -e NGINX_APP_URL=<hostname or ip> \
   -e MYSQL_PORT_3306_TCP_ADDR=<mysql host> \
   -e MYSQL_PORT_3306_TCP_PORT=<mysql port> \
   -e MYSQL_DATABASE=<mysql database> \
@@ -118,7 +118,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `APP_URL=<hostname or ip>` | Hostname or IP and port if applicable IE <ip or hostname>:8080 |
+| `NGINX_APP_URL=<hostname or ip>` | Hostname or IP and port if applicable IE <ip or hostname>:8080 |
 | `MYSQL_PORT_3306_TCP_ADDR=<mysql host>` | Mysql hostname or IP to use |
 | `MYSQL_PORT_3306_TCP_PORT=<mysql port>` | Mysql port to use |
 | `MYSQL_DATABASE=<mysql database>` | Mysql database to use |
@@ -209,6 +209,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **30.04.21:** - Rebasing to alpine 3.13, add artisan migrate on spinup.
 * **01.06.20:** - Rebasing to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
