@@ -62,7 +62,8 @@ services:
       - /path/to/data2:/data2
     ports:
       - 8384:8384
-      - 22000:22000
+      - 22000:22000/tcp
+      - 22000:22000/udp
       - 21027:21027/udp
     restart: unless-stopped
 ```
@@ -77,7 +78,8 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -p 8384:8384 \
-  -p 22000:22000 \
+  -p 22000:22000/tcp \
+  -p 22000:22000/udp \
   -p 21027:21027/udp \
   -v /path/to/appdata/config:/config \
   -v /path/to/data1:/data1 \
@@ -95,7 +97,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Parameter | Function |
 | :----: | --- |
 | `8384` | Application WebUI |
-| `22000` | Listening port |
+| `22000/tcp` | Listening port (TCP) |
+| `22000/udp` | Listening port (UDP) |
 | `21027/udp` | Protocol discovery |
 
 ### Environment Variables (`-e`)
@@ -169,6 +172,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **03.05.21:** - Add port mapping for 22000/udp.
 * **29.01.21:** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information.
 * **23.01.21:** - Rebasing to alpine 3.13.
 * **15.09.20:** - Use go from alpine edge repo to compile. Remove duplicate UMASK env var. Add hostname setting.
