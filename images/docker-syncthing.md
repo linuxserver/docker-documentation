@@ -65,6 +65,8 @@ services:
       - 22000:22000/tcp
       - 22000:22000/udp
       - 21027:21027/udp
+    sysctls:
+      - net.core.rmem_max=2097152
     restart: unless-stopped
 ```
 
@@ -84,6 +86,7 @@ docker run -d \
   -v /path/to/appdata/config:/config \
   -v /path/to/data1:/data1 \
   -v /path/to/data2:/data2 \
+  --sysctl="net.core.rmem_max=2097152" \
   --restart unless-stopped \
   ghcr.io/linuxserver/syncthing
 ```
@@ -122,6 +125,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Parameter | Function |
 | :-----:   | --- |
 | `--hostname=` | Optionally the hostname can be defined. |
+| `--sysctl=` | Raise maximum UDP buffer size. |
 
 ## Environment variables from files (Docker secrets)
 
@@ -172,6 +176,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **03.05.21:** - Raise maximum UDP buffer size.
 * **03.05.21:** - Add port mapping for 22000/udp.
 * **29.01.21:** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information.
 * **23.01.21:** - Rebasing to alpine 3.13.
