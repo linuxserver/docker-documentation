@@ -188,4 +188,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **03.05.21:** - Remove deprecated sequalizerc step.
 * **22.12.20:** - Initial release
