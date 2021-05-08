@@ -188,5 +188,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **05.05.21:** - Remove symlinking some folders from config to /opt/hedgedoc/public.
 * **03.05.21:** - Remove deprecated sequalizerc step.
 * **22.12.20:** - Initial release
