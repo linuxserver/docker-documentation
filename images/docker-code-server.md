@@ -133,7 +133,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `HASHED_PASSWORD=` | Optional web gui password, overrides `PASSWORD`, instructions on how to create it is below. |
 | `SUDO_PASSWORD=password` | If this optional variable is set, user will have sudo access in the code-server terminal with the specified password. |
 | `SUDO_PASSWORD_HASH=` | Optionally set sudo password via hash (takes priority over `SUDO_PASSWORD` var). Format is `$type$salt$hashed`. |
-| `PROXY_DOMAIN=code-server.my.domain` | If this optional variable is set, this domain will be proxied for subdomain proxying. See [Documentation](https://github.com/cdr/code-server/blob/master/doc/FAQ.md#sub-domains) |
+| `PROXY_DOMAIN=code-server.my.domain` | If this optional variable is set, this domain will be proxied for subdomain proxying. See [Documentation](https://github.com/cdr/code-server/blob/master/docs/FAQ.md#sub-domains) |
 
 ### Volume Mappings (`-v`)
 
@@ -190,6 +190,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **08.05.21:** - Fix doc link
 * **04.02.20:** - Allow setting gui password via hash using env var `HASHED_PASSWORD`.
 * **23.12.20:** - Allow setting sudo password via hash using env var `SUDO_PASSWORD_HASH`.
 * **29.05.20:** - Add --domain-proxy support.
