@@ -38,7 +38,7 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-Grocy is simple to get running. Configure the container with the above instructions, start it, and you can then access it
+Grocy is simple to get running. Configure the container with instructions below, start it, and you can then access it
 by visiting http://your.ip:9283 - once the page loads, you can log in with the default username and password of admin / admin
 
 ## Usage
@@ -154,6 +154,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **08.04.21:** - Update docs to reflect jenkins builder changes
 * **17.02.21:** - Rebasing to alpine 3.13.
 * **26.01.21:** - Add 'ldap' PHP extension.
 * **22.12.20:** - Add 'ctype' PHP extension.
