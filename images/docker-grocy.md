@@ -59,9 +59,9 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=<your timezone, eg Europe/London>
+      - TZ=Europe/London
     volumes:
-      - <path to data>:/config
+      - /path/to/data:/config
     ports:
       - 9283:80
     restart: unless-stopped
@@ -74,9 +74,9 @@ docker run -d \
   --name=grocy \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e TZ=<your timezone, eg Europe/London> \
+  -e TZ=Europe/London \
   -p 9283:80 \
-  -v <path to data>:/config \
+  -v /path/to/data:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/grocy
 ```
@@ -97,7 +97,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `TZ=<your timezone, eg Europe/London>` | for specifying your timezone |
+| `TZ=Europe/London` | for specifying your timezone |
 
 ### Volume Mappings (`-v`)
 
@@ -154,7 +154,8 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
-* **08.04.21:** - Update docs to reflect jenkins builder changes
+* **10.05.21:** - Reduce image size.
+* **08.04.21:** - Update docs to reflect jenkins builder changes.
 * **17.02.21:** - Rebasing to alpine 3.13.
 * **26.01.21:** - Add 'ldap' PHP extension.
 * **22.12.20:** - Add 'ctype' PHP extension.
