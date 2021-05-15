@@ -1165,7 +1165,7 @@ This error means that nginx can't talk to the application. There is a few common
 
 * The application and SWAG is not on the same custom docker network
 
-    Further up we talk about how to set up [Docker networking](#docker-networking), however there is some few other common traps
+    Further up we talk about how to set up [Docker networking](#docker-networking), however there are some other common traps
 
 * The container name does not match the application name.
 
