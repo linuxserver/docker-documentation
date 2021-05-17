@@ -69,9 +69,9 @@ services:
       - TZ=Europe/London
       - DOCKER_MODS=linuxserver/calibre-web:calibre|linuxserver/mods:lazylibrarian-ffmpeg #optional
     volumes:
-      - <path to data>:/config
-      - <path to downloads>:/downloads
-      - <path to data>:/books
+      - /path/to/data:/config
+      - /path/to/downloads/:/downloads
+      - /path/to/data/:/books
     ports:
       - 5299:5299
     restart: unless-stopped
@@ -87,9 +87,9 @@ docker run -d \
   -e TZ=Europe/London \
   -e DOCKER_MODS=linuxserver/calibre-web:calibre|linuxserver/mods:lazylibrarian-ffmpeg `#optional` \
   -p 5299:5299 \
-  -v <path to data>:/config \
-  -v <path to downloads>:/downloads \
-  -v <path to data>:/books \
+  -v /path/to/data:/config \
+  -v /path/to/downloads/:/downloads \
+  -v /path/to/data/:/books \
   --restart unless-stopped \
   ghcr.io/linuxserver/lazylibrarian
 ```
@@ -170,6 +170,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **17.05.21:** - Add linuxserver wheel index.
 * **23.10.19:** - Changed gitlab download link.
 * **23.10.19:** - Add python module Pillow.
 * **31.07.19:** - Add pyopenssl, remove git dependency during build time.
