@@ -165,6 +165,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **16.05.21:** - Use wheel index.
 * **19.04.21:** - Install from release zip.
 * **07.04.21:** - Move app to /app/bazarr/bin, add `package_info`.
 * **23.01.21:** - Rebasing to alpine 3.13.
