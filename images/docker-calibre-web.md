@@ -93,8 +93,8 @@ services:
       - TZ=Europe/London
       - DOCKER_MODS=linuxserver/calibre-web:calibre
     volumes:
-      - <path to data>:/config
-      - <path to calibre library>:/books
+      - /path/to/data:/config
+      - /path/to/calibre/library:/books
     ports:
       - 8083:8083
     restart: unless-stopped
@@ -110,8 +110,8 @@ docker run -d \
   -e TZ=Europe/London \
   -e DOCKER_MODS=linuxserver/calibre-web:calibre \
   -p 8083:8083 \
-  -v <path to data>:/config \
-  -v <path to calibre library>:/books \
+  -v /path/to/data:/config \
+  -v /path/to/calibre/library:/books \
   --restart unless-stopped \
   ghcr.io/linuxserver/calibre-web
 ```
@@ -140,7 +140,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Volume | Function |
 | :----: | --- |
 | `/config` | Where calibre-web stores the internal database and config. |
-| `/books` | Where your preexisting calibre database is locate. |
+| `/books` | Where your preexisting calibre database is located. |
 
 ## Environment variables from files (Docker secrets)
 
@@ -191,6 +191,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **17.05.21:** - Add linuxserver wheel index.
 * **10.02.21:** - Add libxrandr2
 * **25.01.21:** - Add nightly tag
 * **19.01.21:** - Add python3-pkg-resources
