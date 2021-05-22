@@ -34,6 +34,7 @@ The architectures supported by this image are:
 
 ## Application Setup
 
+Docker image update and recreation of container alone won't update Piwigo version. In order to update Piwigo version, firstly make sure you are using the latest docker image, then go to Admin->Tools->Updates and use the app updater.
 * You must create a user and database for piwigo to use in a mysql/mariadb server.
 * In the setup page for database, use the ip address rather than hostname.
 * A basic nginx configuration file can be found in `/config/nginx/site-confs`, edit the file to enable ssl (port 443 by default), set servername etc.
@@ -61,6 +62,7 @@ services:
       - TZ=Europe/London
     volumes:
       - </path/to/appdata/config>:/config
+      - </path/to/appdata/gallery>:/gallery
     ports:
       - 80:80
     restart: unless-stopped
@@ -76,6 +78,7 @@ docker run -d \
   -e TZ=Europe/London \
   -p 80:80 \
   -v </path/to/appdata/config>:/config \
+  -v </path/to/appdata/gallery>:/gallery \
   --restart unless-stopped \
   ghcr.io/linuxserver/piwigo
 ```
@@ -103,6 +106,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Volume | Function |
 | :----: | --- |
 | `/config` | Configuration files. |
+| `/gallery` | Image, plugin, & theme storage for Piwigo |
 
 ## Environment variables from files (Docker secrets)
 
@@ -153,6 +157,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **20.05.21:** - Create separate volume for image data
 * **23.01.21:** - Rebasing to alpine 3.13.
 * **12.12.20:** - Increased upload_max_filesize in php.ini
 * **01.06.20:** - Rebasing to alpine 3.12.
