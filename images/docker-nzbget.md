@@ -83,8 +83,8 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - <path to data>:/config
-      - <path/to/downloads>:/downloads
+      - /path/to/data:/config
+      - /path/to/downloads:/downloads
     ports:
       - 6789:6789
     restart: unless-stopped
@@ -99,8 +99,8 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -p 6789:6789 \
-  -v <path to data>:/config \
-  -v <path/to/downloads>:/downloads \
+  -v /path/to/data:/config \
+  -v /path/to/downloads:/downloads \
   --restart unless-stopped \
   ghcr.io/linuxserver/nzbget
 ```
@@ -179,6 +179,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **28.05.21:** - Add linuxserver wheel index.
 * **23.01.21:** - Rebasing to alpine 3.13.
 * **26.10.20:** - Fix python dependencies.
 * **24.08.20:** - Fix ignored umask environment variable.
