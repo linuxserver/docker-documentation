@@ -162,6 +162,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **25.05.21:** - Add `libwebp` support.
 * **17.05.21:** - Add linuxserver wheel index.
 * **23.01.21:** - Rebasing to alpine 3.13.
 * **03.01.21:** - Output mylar log to docker log.
