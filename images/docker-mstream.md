@@ -34,7 +34,14 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-Access the webui at `http://<your-ip>:3000`, For most users specifying a `$USER` and `$PASSWORD` is sufficient, the `USE_JSON` option allows for more granular control of mStream, but with added complexity, requiring manual editing of `config.json` to configure your install, for more information check out [Mstream](https://github.com/IrosTheBeggar/mStream/blob/master/docs/json_config.md#json-config).  Note using this option will make the default username:password `admin` and `password` respectively and any environmental variables will be ignored.
+Access the webui at `http://<your-ip>:3000`
+
+Settings are adjusted through the web ui or via editing of `config.json`. For more information check out [Mstream](https://github.com/IrosTheBeggar/mStream/blob/master/docs/json_config.md#json-config).
+
+## IMPORTANT NOTICE:
+mStream v5 no longer accepts cli arguments for setting the user and password and requires the use of `config.json`. Therefore, the environment variables `USER`, `PASSWORD` and `USE_JSON` are deprecated.
+
+v4's `config.json` is not compatible with v5. Existing `config.json` will be renamed to `config.json.v4-bak` for your reference and a new default `config.json` will be created upon upgrade from v4 to v5.
 
 ## Usage
 
@@ -54,13 +61,10 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - USER=admin
-      - PASSWORD=password
-      - USE_JSON=true/false
       - TZ=Europe/London
     volumes:
-      - <path to data>:/config
-      - <path to music>:/music
+      - /path/to/data:/config
+      - /path/to/music:/music
     ports:
       - 3000:3000
     restart: unless-stopped
@@ -73,13 +77,10 @@ docker run -d \
   --name=mstream \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e USER=admin \
-  -e PASSWORD=password \
-  -e USE_JSON=true/false \
   -e TZ=Europe/London \
   -p 3000:3000 \
-  -v <path to data>:/config \
-  -v <path to music>:/music \
+  -v /path/to/data:/config \
+  -v /path/to/music:/music \
   --restart unless-stopped \
   ghcr.io/linuxserver/mstream
 ```
@@ -100,9 +101,6 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `USER=admin` | Set username to login |
-| `PASSWORD=password` | Set password for user |
-| `USE_JSON=true/false` | Run mStream using the config specified at `/config/config.json`, note this will mean user/password is defined in `config.json` |
 | `TZ=Europe/London` | Specify a timezone to use e.g. Europe/London |
 
 ### Volume Mappings (`-v`)
@@ -161,6 +159,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **17.05.21:** - Deprecating the env vars `USER`, `PASSWORD` and `USE_JSON` as mStream v5 requires the use of `config.json`.
 * **23.01.21:** - Rebasing to alpine 3.13.
 * **01.06.20:** - Rebasing to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.
