@@ -174,6 +174,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **04.06.21:** - Update to version 3.1.8 beta.
 * **22.03.21:** - Update to version 3.1.7 beta.
 * **07.03.21:** - Update to version 3.1.6 beta.
 * **29.01.21:** - Update external version number to show as 3.1.5.
