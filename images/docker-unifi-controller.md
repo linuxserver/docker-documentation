@@ -66,6 +66,7 @@ services:
       - PUID=1000
       - PGID=1000
       - MEM_LIMIT=1024M #optional
+      - MEM_STARTUP=1024M #optional
     volumes:
       - <path to data>:/config
     ports:
@@ -89,6 +90,7 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e MEM_LIMIT=1024M `#optional` \
+  -e MEM_STARTUP=1024M `#optional` \
   -p 3478:3478/udp \
   -p 10001:10001/udp \
   -p 8080:8080 \
@@ -143,6 +145,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `MEM_LIMIT=1024M` | Optionally change the Java memory limit (-Xmx) (default is 1024M). |
+| `MEM_STARTUP=1024M` | Optionally change the Java initial memory (-Xms) (default is 1024M). |
 
 ### Volume Mappings (`-v`)
 
@@ -199,6 +202,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **11.06.21:** - Allow for changing Java initial mem via new optional environment variable.
 * **12.01.21:** - Deprecate the `LTS` tag as Unifi no longer releases LTS stable builds. Existing users can switch to the `latest` tag. Direct upgrade from 5.6.42 (LTS) to 6.0.42 (latest) tested successfully.
 * **17.07.20:** - Rebase 64 bit containers to Bionic and Mongo 3.6.
 * **16.06.20:** - Add logrotate.
