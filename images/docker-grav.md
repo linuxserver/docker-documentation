@@ -36,8 +36,6 @@ The architectures supported by this image are:
 
 For more information check out the [Grav documentation](https://learn.getgrav.org/). Our image includes the [grav-admin](https://github.com/getgrav/grav-plugin-admin) plugin.
 
-There is a known issue where the admin plugin scheduler reports `Cron Not Available for user: abc` however this is purely cosmetic and the scheduler will function normally.
-
 ## Usage
 
 Here are some example snippets to help you get started creating a container from this image.
