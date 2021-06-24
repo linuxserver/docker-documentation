@@ -173,5 +173,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **24.06.21:** - Use prebuilt compose binaries for the linuxserver repo.
 * **07.02.20:** - Add optional http auth.
 * **02.06.19:** - Initial Release.
