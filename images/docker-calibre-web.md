@@ -91,7 +91,8 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - DOCKER_MODS=linuxserver/calibre-web:calibre
+      - DOCKER_MODS=linuxserver/calibre-web:calibre #optional
+      - OAUTHLIB_RELAX_TOKEN_SCOPE=1 #optional
     volumes:
       - /path/to/data:/config
       - /path/to/calibre/library:/books
@@ -108,7 +109,8 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
-  -e DOCKER_MODS=linuxserver/calibre-web:calibre \
+  -e DOCKER_MODS=linuxserver/calibre-web:calibre `#optional` \
+  -e OAUTHLIB_RELAX_TOKEN_SCOPE=1 `#optional` \
   -p 8083:8083 \
   -v /path/to/data:/config \
   -v /path/to/calibre/library:/books \
@@ -134,6 +136,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 | `DOCKER_MODS=linuxserver/calibre-web:calibre` | #optional & **x86-64 only** Adds the ability to perform ebook conversion |
+| `OAUTHLIB_RELAX_TOKEN_SCOPE=1` | Optionally set this to allow Google OAUTH to work |
 
 ### Volume Mappings (`-v`)
 
@@ -191,6 +194,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **24.06.21:** - Add note on optional OAUTHLIB_RELAX_TOKEN_SCOPE for Google OAUTH support.
 * **17.05.21:** - Add linuxserver wheel index.
 * **10.02.21:** - Add libxrandr2
 * **25.01.21:** - Add nightly tag
