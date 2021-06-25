@@ -10,7 +10,7 @@ This is due to a bug in the libseccomp2 library (dependency of docker itself), w
 
 [A GitHub issue tracking this](https://github.com/moby/moby/issues/40734)
 
-You have a few options as noted below. Options 1 and 2 are short-term, while option 3 is considered the best option if you don't plan to reinstall the device (option 4).
+You have a few options as noted below. Options 1 is short-term, while option 2 is considered the best option if you don't plan to reinstall the device (option 3).
 
 ### Resolution
 
