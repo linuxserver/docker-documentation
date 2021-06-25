@@ -10,18 +10,15 @@ This is due to a bug in the libseccomp2 library (dependency of docker itself), w
 
 [A GitHub issue tracking this](https://github.com/moby/moby/issues/40734)
 
-You have a few options as noted below. Options 1 and 2 are short-term, while option 3 is considered the best option if you don't plan to reinstall the device (option 4).
+You have a few options as noted below. Options 1 is short-term, while option 2 is considered the best option if you don't plan to reinstall the device (option 3).
 
 ### Resolution
 
-If you decide to do option 2 or 3, you should just need to restart the container after confirming you have libseccomp2.4.4 installed.
+If you decide to do option 1 or 2, you should just need to restart the container after confirming you have libseccomp2.4.4 installed.
 
-If 2 or 3 did not work, ensure you have an up-to-date install of Docker, [refer to the official Docker docs for installation.](https://docs.docker.com/engine/install/debian/)
+If 1 or 2 did not work, ensure you have an up-to-date install of Docker, [refer to the official Docker docs for installation.](https://docs.docker.com/engine/install/debian/)
 
 #### Option 1
-Use another tag, not based on Focal. At the time of writing we currently offer a `bionic` tag for [Plex](https://github.com/linuxserver/docker-plex) and [Jellyfin](https://github.com/linuxserver/docker-jellyfin) that will receive the same care as latest for the foreseeable future.
-
-#### Option 2
 Manually install an updated version of the library with dpkg.
 
     ```bash
@@ -31,7 +28,7 @@ Manually install an updated version of the library with dpkg.
 
     Note this url may have been updated. Find the latest by browsing [here](http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/).
 
-#### Option 3
+#### Option 2
 Add the backports repo for DebianBuster. As seen [here](https://github.com/linuxserver/docker-jellyfin/issues/71#issuecomment-733621693).
 
     ```bash
@@ -41,7 +38,7 @@ Add the backports repo for DebianBuster. As seen [here](https://github.com/linux
     sudo apt install -t buster-backports libseccomp2
     ```
 
-#### Option 4
+#### Option 3
 Reinstall/update your OS to a version that still gets updates.
     * Any distro based on DebianStretch does not seem to have this package available
     * DebianBuster based distros can get the package trough backports, as outlined in point 2.
