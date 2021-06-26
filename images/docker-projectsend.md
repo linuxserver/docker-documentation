@@ -159,6 +159,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **24.06.21:** - Rebasing to alpine 3.14, switch to nginx
 * **23.01.21:** - Rebasing to alpine 3.13.
 * **01.06.20:** - Rebasing to alpine 3.12.
 * **31.12.19:** - Rebase to Alpine 3.11 and upgrade to PHP7.
