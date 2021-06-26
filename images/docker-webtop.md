@@ -94,6 +94,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
+      - SUBFOLDER=/ #optional
     volumes:
       - /path/to/data:/config
       - /var/run/docker.sock:/var/run/docker.sock #optional
@@ -112,6 +113,7 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
+  -e SUBFOLDER=/ `#optional` \
   -p 3000:3000 \
   -v /path/to/data:/config \
   -v /var/run/docker.sock:/var/run/docker.sock `#optional` \
@@ -137,6 +139,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
+| `SUBFOLDER=/` | Specify a subfolder to use with reverse proxies, IE `/subfolder/` |
 
 ### Volume Mappings (`-v`)
 
