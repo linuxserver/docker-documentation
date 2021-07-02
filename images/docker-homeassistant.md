@@ -55,6 +55,8 @@ services:
       - TZ=Europe/London
     volumes:
       - /path/to/data:/config
+    ports:
+      - 8123:8123 #optional
     devices:
       - /path/to/device:/path/to/device
     restart: unless-stopped
@@ -69,11 +71,23 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
+  -p 8123:8123 `#optional` \
   -v /path/to/data:/config \
   --device /path/to/device:/path/to/device \
   --restart unless-stopped \
   ghcr.io/linuxserver/homeassistant
 ```
+
+#### Host vs. Bridge
+
+Home Assistant can [discover][hb0] and automatically configure
+[zeroconf][hb1]/[mDNS][hb2] and [UPnP][hb3] devices on your network. In
+order for this to work you must create the container with `--net=host`.
+
+[hb0]: https://www.home-assistant.io/integrations/discovery/#mdns-and-upnp
+[hb1]: https://en.wikipedia.org/wiki/Zero-configuration_networking
+[hb2]: https://en.wikipedia.org/wiki/Multicast_DNS
+[hb3]: https://en.wikipedia.org/wiki/Universal_Plug_and_Play
 
 ## Parameters
 
@@ -83,6 +97,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :----: | --- |
+| `8123` | Application WebUI, only use this if you are not using host mode. |
 
 #### Networking (`--net`)
 
