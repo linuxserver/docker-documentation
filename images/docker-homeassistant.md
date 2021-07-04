@@ -174,6 +174,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **01.07.21:** - Remove HACS dependencies as it caused a crash in Home-assistant.
 * **25.02.21:** - Add python dependencies from homeassistant base image.
 * **07.02.21:** - Fix building from the wrong requirement file. Add ssh client & external DB libs.
 * **06.02.21:** - Add iputils so ping works as non root user.
