@@ -28,6 +28,10 @@ The goal of this guide is to give you ideas on what can be accomplished with the
   * [Nextcloud subdomain reverse proxy example](#nextcloud-subdomain-reverse-proxy-example)
   * [Plex subfolder reverse proxy example](#plex-subfolder-reverse-proxy-example)
   * [Using Heimdall as the home page at domain root](#using-heimdall-as-the-home-page-at-domain-root)
+* [Troubleshooting](#troubleshooting)
+  * [Common errors](#common-errors)
+    * [404](#404)
+    * [502](#502)
 * [Final Thoughts](#final-thoughts)
   * [How to Request Support](#how-to-request-support)
 
@@ -1174,6 +1178,13 @@ This error means that nginx can't talk to the application. There is a few common
 * You manually changed the port.
 
     Also covered in the section for [Understanding the proxy conf structure](#understanding-the-proxy-conf-structure)
+
+* The container originally ran with host networking, or the default bridge.
+
+    In most cases the contents of `/config/nginx/resolver.conf;` should be `...resolver 127.0.0.11 valid=30s;`, if this is not the case, you can:
+
+    * Delete it, and restart the container to have it regenerate
+    * Manually set the content(we wont override it)
 
 # Final Thoughts
 
