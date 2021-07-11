@@ -156,6 +156,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **11.07.21:** - Add curl package.
 * **23.01.21:** - Rebasing to alpine 3.13.
 * **11.07.20:** - Add py3-openssl.
 * **05.06.20:** - Rebasing to alpine 3.12. Rework to python3.
