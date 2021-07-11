@@ -187,6 +187,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **11.07.21:** - Bump node to 14 to fix builds
 * **08.05.21:** - Fix doc link
 * **04.02.20:** - Allow setting gui password via hash using env var `HASHED_PASSWORD`.
 * **23.12.20:** - Allow setting sudo password via hash using env var `SUDO_PASSWORD_HASH`.
