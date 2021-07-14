@@ -58,9 +58,9 @@ services:
       - /path/to/config:/config
       - /path/to/log:/var/log #optional
     ports:
-      - 514:5514
-      - 601:6601
-      - 6514:6514
+      - 514:5514/udp
+      - 601:6601/tcp
+      - 6514:6514/tcp
     restart: unless-stopped
 ```
 
@@ -72,9 +72,9 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
-  -p 514:5514 \
-  -p 601:6601 \
-  -p 6514:6514 \
+  -p 514:5514/udp \
+  -p 601:6601/tcp \
+  -p 6514:6514/tcp \
   -v /path/to/config:/config \
   -v /path/to/log:/var/log `#optional` \
   --restart unless-stopped \
@@ -89,9 +89,9 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :----: | --- |
-| `5514` | Syslog UDP |
-| `6601` | Syslog TCP |
-| `6514` | Syslog TLS |
+| `5514/udp` | Syslog UDP |
+| `6601/tcp` | Syslog TCP |
+| `6514/tcp` | Syslog TLS |
 
 ### Environment Variables (`-e`)
 
