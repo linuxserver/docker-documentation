@@ -65,6 +65,8 @@ WebUI\Address=*
 WebUI\ServerDomains=*
 ```
 
+If you are running a very old (3.x) kernel you may run into [this issue](https://github.com/linuxserver/docker-qbittorrent/issues/103) which can be worked around using [this method](https://github.com/linuxserver/docker-qbittorrent/issues/103#issuecomment-831238484)
+
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
