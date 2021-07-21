@@ -15,7 +15,7 @@ title: daapd
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-daapd%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-daapd/job/master/)
 [![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.linuxserver.io%2Flinuxserver%2Fdaapd%2Flatest%2Fci-status.yml)](https://ci-tests.linuxserver.io/linuxserver/daapd/latest/index.html)
 
-[Daapd](https://ejurgensen.github.io/forked-daapd/) (iTunes) media server with support for AirPlay devices, Apple Remote (and compatibles), Chromecast, MPD and internet radio.
+[Daapd](https://owntone.github.io/owntone-server/) (iTunes) media server with support for AirPlay devices, Apple Remote (and compatibles), Chromecast, MPD and internet radio.
 
 ## Supported Architectures
 
@@ -37,7 +37,7 @@ Map your music folder, open up itunes on the same LAN to see your music there.
 
 The web interface is available at `http://<your ip>:3689`
 
-For further setup options of remotes etc, check out the daapd website, [Forked-daapd](https://ejurgensen.github.io/forked-daapd/).
+For further setup options of remotes etc, check out the daapd website, [Owntone](https://owntone.github.io/owntone-server/).
 
 ## Usage
 
@@ -157,6 +157,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **10.07.21:** - Change of paths to work with the new package name, OwnTone.
 * **02.04.21:** - Update upstream repo, again.
 * **30.03.21:** - Update upstream repo.
 * **06.10.20:** - Enabled Spotify on Alpine 3.12 for X86_64 and ARMv7.
