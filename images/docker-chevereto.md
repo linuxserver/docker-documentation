@@ -33,7 +33,13 @@ The architectures supported by this image are:
 
 ## Application Setup
 
+As per [this notice](https://github.com/Chevereto/Chevereto-Free#thats-all-folks) Chevereto-Free will be EOL on 2021-12-31 and no new releases will be produced for it. Our container will continue to be updated until at least that date but we cannot make any assurances beyond it.
+
 Access the WebUI at <your-ip>:443. For more information, check out [Chevereto Free](https://github.com/Chevereto/Chevereto-Free).
+
+Chevereto requires a MariaDB database, we have an image available [here](https://github.com/linuxserver/docker-mariadb) if you require it.
+
+If you are putting Chevereto behind a reverse proxy and need the Real IP to be passed through, edit /config/nginx/site-confs/default, and set `set_real_ip_from` to match the IP address/address block of your proxy server(s).
 
 ## Usage
 
@@ -43,7 +49,7 @@ To help you get started creating a container from this image you can either use 
 
 ```yaml
 ---
-version: "2.1"
+version: "2"
 services:
   chevereto:
     image: ghcr.io/linuxserver/chevereto
@@ -51,14 +57,32 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=<TZ>
+      - TZ=Europe/London
     volumes:
-      - <path to config on host>:/config
-      - <path to data on host>:/data
+      - /path/to/config:/config
+      - /path/to/data:/data
     ports:
       - 80:80
       - 443:443
     restart: unless-stopped
+    depends_on:
+      - chevereto-db
+
+  chevereto-db:
+    image: ghcr.io/linuxserver/mariadb
+    container_name: chevereto-db
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - MYSQL_ROOT_PASSWORD=<yourrootpass>
+      - MYSQL_DATABASE=chevereto
+      - MYSQL_USER=chevereto
+      - MYSQL_PASSWORD=<yourdbpass>
+    volumes:
+      - /path/to/config:/config
+    restart: unless-stopped
+
 ```
 
 ### docker cli ([click here for more info](https://docs.docker.com/engine/reference/commandline/cli/))
@@ -152,4 +176,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **22.07.21:** - Rebase to Alpine 3.14.
 * **28.08.20:** - Initial Release.
