@@ -129,6 +129,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **25.07.21:** - Add libpq for postgresql.
 * **08.07.21:** - Fix pip install issue.
 * **05.07.21:** - Update Gunicorn parameters to prevent `WORKER_TIMEOUT` issue.
 * **22.06.21:** - Initial release.
