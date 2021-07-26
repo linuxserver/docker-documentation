@@ -153,4 +153,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **24.07.21:** - Fixed directory config files (sqlite db) is all stored.
+* **23.07.21:** - Fixed initial user creation.
 * **10.07.21:** - Initial Release.
