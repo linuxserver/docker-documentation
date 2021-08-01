@@ -174,6 +174,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **01.08.21:** - Add libchromaprint-tools.
 * **11.07.21:** - Make the paths clearer to the user.
 * **18.04.21:** - Switch `latest` tag to net core.
 * **25.01.21:** - Publish `develop` tag.
