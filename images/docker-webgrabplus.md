@@ -171,6 +171,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **05.08.21:** - Update to version 3.2.1 beta.
 * **05.06.21:** - Added mono-devel dependency.
 * **04.06.21:** - Update to version 3.1.8 beta.
 * **22.03.21:** - Update to version 3.1.7 beta.
