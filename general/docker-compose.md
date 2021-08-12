@@ -130,7 +130,7 @@ alias dtail='docker logs -tf --tail="50" "$@"'
 If the `docker-compose.yml` file is in a home directory, the following can be put in the `~/.bash_aliases` file.
 ```
 alias dcup='docker-compose -f ~/docker-compose.yml up -d' #brings up all containers if one is not defined after dcup
-alias dcdown='docker-compose -f ~/docker-compose.yml stop` #brings down all containers if one is not defined after dcdown
+alias dcdown='docker-compose -f ~/docker-compose.yml stop' #brings down all containers if one is not defined after dcdown
 alias dcpull='docker-compose -f ~/docker-compose.yml pull' #pulls all new images unless one is specified
 alias dclogs='docker-compose -f ~/docker-compose.yml logs -tf --tail="50" '
 alias dtail='docker logs -tf --tail="50" "$@"'
