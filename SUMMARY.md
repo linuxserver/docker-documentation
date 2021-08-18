@@ -2,6 +2,7 @@
 
 * [Introduction](README.md)
 * [FAQ](FAQ.md)
+* [Finances](finances.md)
 
 ## General
 
