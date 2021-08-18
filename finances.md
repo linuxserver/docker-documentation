@@ -1,6 +1,6 @@
 # Finances
 
-* v0.1 Beta
+* v0.1 Beta (Work in progress)
 * Created 2021-08-18
 * Updated 2021-08-18
 
