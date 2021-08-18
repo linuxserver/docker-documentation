@@ -11,6 +11,7 @@ We will at all times attempt to keep a surplus of $2,000 in the bank account, or
 ## Annual Expenses
 * DigitalOcean yearly costs (currently paid for) - $1000
 * AWS - Approx $200
+* Contabo hosting - $287.76
 
 ## Votes
 In order for money to be approved for a project, the requesting member must go through every effort to bring to vote a fully formed idea that is ready to be actioned. This means that all the legwork is done before bringing an idea to vote, or at least as much as is reasonably possible. A vote will last for 3 days in order to give all team members the opportunity to participate without unnecessarily causing delays. A generasl consensus will need to be reached in order for it to proceed.
