@@ -9,7 +9,7 @@
 We will at all times attempt to keep a surplus of $2,000 in the bank account, or an amount which covers our yearly expenses, whichever is higher. All other money will be disbursed by agreement of a general consensus of linuxserver.io staff members.
 
 ## Annual Expenses
-* DigitalOcean yearly costs (currently paid for) - $1000
+* DigitalOcean yearly costs (currently paid for) - $1200
 * AWS - Approx $200
 * Contabo hosting - $287.76
 
