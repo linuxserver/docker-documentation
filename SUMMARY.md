@@ -2,7 +2,6 @@
 
 * [Introduction](README.md)
 * [FAQ](FAQ.md)
-* [Finances](finances.md)
 
 ## General
 
@@ -150,3 +149,6 @@
 * [linuxserver/wireshark](images/docker-wireshark.md)
 * [linuxserver/xbackbone](images/docker-xbackbone.md)
 * [linuxserver/znc](images/docker-znc.md)
+
+## Misc
+* [Finances](finances.md)
