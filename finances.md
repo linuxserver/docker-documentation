@@ -6,7 +6,7 @@
 
 
 ## Charter
-We will at all times attempt to keep a surplus of $2,000 in the bank account, or an amount which covers our yearly expenses, whichever is higher. All other money will be disbursed by agreement of a general consensus of linuxserver.io staff members.
+We will at all times attempt to keep a surplus of $6,000 in the bank account, or an amount which covers 3 years of expenses, whichever is higher. All other money will be disbursed by agreement of a general consensus of linuxserver.io staff members.
 
 ## Annual Expenses
 * DigitalOcean yearly costs (currently paid for) **$1200**
