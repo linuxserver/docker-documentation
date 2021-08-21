@@ -151,6 +151,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **22.08.21:** - Rebase to Alpine 3.14 and PHP 8.
 * **25.07.21:** - Add 'int','json' and 'zlib' PHP extensions.
 * **10.05.21:** - Reduce image size.
 * **08.04.21:** - Update docs to reflect jenkins builder changes.
