@@ -146,5 +146,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **03.09.21** - Added support for Redis caching.
 * **01.07.21:** - Rebase to Alpine 3.14.
 * **09.04.21:** - Initial Release.
