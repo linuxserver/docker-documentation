@@ -35,6 +35,7 @@ The architectures supported by this image are:
 
 Default login is admin:admin via the webui, accessible at http://SERVERIP:PORT
 More info at [paperless-ng](https://github.com/jonaswinkler/paperless-ng).
+For convenience this container provides an alias to perform administration management commands. Available administration commands are documented upstream [here](https://paperless-ng.readthedocs.io/en/latest/administration.html) and can be accessed with this container thus: `docker exec -it <container_name> manage <command>`. For example, `docker exec -it paperless manage  document_retagger -tT`.
 
 ## Usage
 
