@@ -39,6 +39,18 @@ The web interface is available at `http://<your ip>:3689`
 
 For further setup options of remotes etc, check out the daapd website, [Owntone](https://owntone.github.io/owntone-server/).
 
+## Enable spotify connect server
+
+Enable the spotify connect server by creating a pipe named 'spotify' in the root of your mounted music folder (not possible on most network mounts):
+
+```sh
+mkfifo <music_folder>/spotify
+```
+
+The spotify connect server should show up as the 'forked-daapd' device in your Spotify application.
+
+It is recommended to set the `pipe_autostart` option to `true` in your forked-daapd config.
+
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
@@ -157,6 +169,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **14.09.21:** - Enabled librespot. Disabled spotify on ARMv7
 * **10.07.21:** - Change of paths to work with the new package name, OwnTone.
 * **02.04.21:** - Update upstream repo, again.
 * **30.03.21:** - Update upstream repo.
