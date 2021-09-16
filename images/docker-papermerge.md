@@ -36,6 +36,8 @@ The architectures supported by this image are:
 Default login is admin:admin via the webui, accessible at http://SERVERIP:PORT
 More info at [papermerge](https://www.papermerge.com/).
 
+If you need non-English OCR language support, you can use [this mod](https://github.com/linuxserver/docker-mods/tree/papermerge-multilangocr).
+
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
