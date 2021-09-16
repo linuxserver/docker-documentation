@@ -187,6 +187,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **16.09.21:** - Fix slow `chown` on large workspace (contents of workspace folder no longer chowned).
 * **11.07.21:** - Bump node to 14 to fix builds
 * **08.05.21:** - Fix doc link
 * **04.02.20:** - Allow setting gui password via hash using env var `HASHED_PASSWORD`.
