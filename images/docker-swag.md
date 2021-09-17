@@ -33,17 +33,6 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-> ### Migrating from the old `linuxserver/letsencrypt` image
-> * If using docker cli:
->   * Stop and remove existing container via `docker stop letsencrypt` and `docker rm letsencrypt`
->   * Create new container using the sample on this page (container name: `swag`, image name: `linuxserver/swag`)
-> * If using docker compose:
->   * Edit the compose yaml to change the image to `linuxserver/swag` and change the service and container names to `swag`
->   * Issue `docker-compose up -d --remove-orphans`
->   * If you don't want to or can't use the option `--remove-orphans`, then you can first do `docker-compose down`, then edit the compose yaml as above, and then issue `docker-compose up -d`
-
-> Make sure to also update any references to this container by name. For instance, Nextcloud's `config.php` references this container in its `trusted_proxies` directive, which would have to be updated to `swag`.
-
 ### Validation and initial setup
 
 * Before running this container, make sure that the url and subdomains are properly forwarded to this container's host, and that port 443 (and/or 80) is not being used by another service on the host (NAS gui, another webserver, etc.).
@@ -113,6 +102,9 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 * Proxy sample files WILL be updated, however your renamed (enabled) proxy files will not.
 * You can check the new sample and adjust your active config as needed.
 
+### Migration from the old `linuxserver/letsencrypt` image
+Please follow the instructions [on this blog post](https://www.linuxserver.io/blog/2020-08-21-introducing-swag#migrate).
+
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
@@ -133,8 +125,8 @@ services:
       - PGID=1000
       - TZ=Europe/London
       - URL=yourdomain.url
-      - SUBDOMAINS=www,
       - VALIDATION=http
+      - SUBDOMAINS=www, #optional
       - CERTPROVIDER= #optional
       - DNSPLUGIN=cloudflare #optional
       - PROPAGATION= #optional
@@ -162,8 +154,8 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -e URL=yourdomain.url \
-  -e SUBDOMAINS=www, \
   -e VALIDATION=http \
+  -e SUBDOMAINS=www, `#optional` \
   -e CERTPROVIDER= `#optional` \
   -e DNSPLUGIN=cloudflare `#optional` \
   -e PROPAGATION= `#optional` \
@@ -199,8 +191,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 | `URL=yourdomain.url` | Top url you have control over (`customdomain.com` if you own it, or `customsubdomain.ddnsprovider.com` if dynamic dns). |
-| `SUBDOMAINS=www,` | Subdomains you'd like the cert to cover (comma separated, no spaces) ie. `www,ftp,cloud`. For a wildcard cert, set this _exactly_ to `wildcard` (wildcard cert is available via `dns` and `duckdns` validation only) |
 | `VALIDATION=http` | Certbot validation method to use, options are `http`, `dns` or `duckdns` (`dns` method also requires `DNSPLUGIN` variable set) (`duckdns` method requires `DUCKDNSTOKEN` variable set, and the `SUBDOMAINS` variable must be either empty or set to `wildcard`). |
+| `SUBDOMAINS=www,` | Subdomains you'd like the cert to cover (comma separated, no spaces) ie. `www,ftp,cloud`. For a wildcard cert, set this _exactly_ to `wildcard` (wildcard cert is available via `dns` and `duckdns` validation only) |
 | `CERTPROVIDER=` | Optionally define the cert provider. Set to `zerossl` for ZeroSSL certs (requires existing [ZeroSSL account](https://app.zerossl.com/signup) and the e-mail address entered in `EMAIL` env var). Otherwise defaults to Let's Encrypt. |
 | `DNSPLUGIN=cloudflare` | Required if `VALIDATION` is set to `dns`. Options are `aliyun`, `cloudflare`, `cloudxns`, `cpanel`, `digitalocean`, `directadmin`, `dnsimple`, `dnsmadeeasy`, `domeneshop`, `gandi`, `gehirn`, `google`, `hetzner`, `inwx`, `ionos`, `linode`, `luadns`, `netcup`, `njalla`, `nsone`, `ovh`, `rfc2136`, `route53`, `sakuracloud`, `transip` and `vultr`. Also need to enter the credentials into the corresponding ini (or json for some plugins) file under `/config/dns-conf`. |
 | `PROPAGATION=` | Optionally override (in seconds) the default propagation time for the dns plugins. |
@@ -266,6 +258,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **17.09.21:** - Mark `SUBDOMAINS` var as optional.
 * **01.08.21:** - Add support for ionos dns validation.
 * **15.07.21:** - Fix libmaxminddb issue due to upstream change.
 * **07.07.21:** - Rebase to alpine 3.14.
