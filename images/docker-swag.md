@@ -258,6 +258,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **19.09.21:** - Add an optional header to opt out of Google FLoC in `ssl.conf`.
 * **17.09.21:** - Mark `SUBDOMAINS` var as optional.
 * **01.08.21:** - Add support for ionos dns validation.
 * **15.07.21:** - Fix libmaxminddb issue due to upstream change.
