@@ -146,4 +146,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **27.09.21:** - Allow app to write to tmp folder.
 * **21.02.21:** - Initial Release.
