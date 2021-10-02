@@ -10,6 +10,7 @@ title: paperless-ng
 [![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-paperless-ng.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-paperless-ng/releases)
 [![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub%20Package&logo=github)](https://github.com/linuxserver/docker-paperless-ng/packages)
 [![GitLab Container Registry](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab)](https://gitlab.com/linuxserver.io/docker-paperless-ng/container_registry)
+[![Quay.io](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/paperless-ng)
 [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/paperless-ng.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/paperless-ng)
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/paperless-ng.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/paperless-ng)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-paperless-ng%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-paperless-ng/job/master/)
@@ -21,7 +22,7 @@ title: paperless-ng
 
 Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `ghcr.io/linuxserver/paperless-ng` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/paperless-ng` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
@@ -48,7 +49,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   paperless-ng:
-    image: ghcr.io/linuxserver/paperless-ng
+    image: lscr.io/linuxserver/paperless-ng
     container_name: paperless-ng
     environment:
       - PUID=1000
@@ -76,7 +77,7 @@ docker run -d \
   -v </path/to/appdata/config>:/config \
   -v </path/to/appdata/data>:/data \
   --restart unless-stopped \
-  ghcr.io/linuxserver/paperless-ng
+  lscr.io/linuxserver/paperless-ng
 ```
 
 ## Parameters
@@ -104,6 +105,11 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `/config` | Contains all relevant configuration files. |
 | `/data` | Storage location for all paperless-ng data files. |
+
+#### Miscellaneous Options
+
+| Parameter | Function |
+| :-----:   | --- |
 
 ## Environment variables from files (Docker secrets)
 
@@ -150,10 +156,11 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' paperless-ng`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' ghcr.io/linuxserver/paperless-ng`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/paperless-ng`
 
 ## Versions
 
+* **01.10.21:** - Replaced uwsgi with gunicorn due to websocket issues.
 * **24.07.21:** - Fixed directory config files (sqlite db) is all stored.
 * **23.07.21:** - Fixed initial user creation.
 * **10.07.21:** - Initial Release.
