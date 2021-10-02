@@ -10,6 +10,7 @@ title: tester
 [![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-tester.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-tester/releases)
 [![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub%20Package&logo=github)](https://github.com/linuxserver/docker-tester/packages)
 [![GitLab Container Registry](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab)](https://gitlab.com/linuxserver.io/docker-tester/container_registry)
+[![Quay.io](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/tester)
 [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/tester.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/tester)
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/tester.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/tester)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-tester%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-tester/job/master/)
@@ -21,7 +22,7 @@ This internal tool is used as a desktop sandbox in our CI process to grab a scre
 
 We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `ghcr.io/linuxserver/tester` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/tester` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
@@ -40,7 +41,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   tester:
-    image: ghcr.io/linuxserver/tester
+    image: lscr.io/linuxserver/tester
     container_name: tester
     environment:
       - URL=http://google.com
@@ -57,7 +58,7 @@ docker run -d \
   -e URL=http://google.com \
   -p 3000:3000 \
   --restart unless-stopped \
-  ghcr.io/linuxserver/tester
+  lscr.io/linuxserver/tester
 ```
 
 ## Parameters
@@ -80,6 +81,11 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Volume | Function |
 | :----: | --- |
+
+#### Miscellaneous Options
+
+| Parameter | Function |
+| :-----:   | --- |
 
 ## Environment variables from files (Docker secrets)
 
@@ -113,7 +119,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' tester`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' ghcr.io/linuxserver/tester`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/tester`
 
 ## Versions
 
