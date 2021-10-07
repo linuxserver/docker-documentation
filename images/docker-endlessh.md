@@ -167,5 +167,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **07.10.21:** - Fix typo on MAXLINES var.
 * **08.06.21:** - Add BINDFAMILY option.
 * **16.04.21:** - Initial Release.
