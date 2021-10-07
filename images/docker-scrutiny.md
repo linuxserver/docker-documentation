@@ -10,6 +10,7 @@ title: scrutiny
 [![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-scrutiny.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-scrutiny/releases)
 [![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub%20Package&logo=github)](https://github.com/linuxserver/docker-scrutiny/packages)
 [![GitLab Container Registry](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab)](https://gitlab.com/linuxserver.io/docker-scrutiny/container_registry)
+[![Quay.io](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/scrutiny)
 [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/scrutiny.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/scrutiny)
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/scrutiny.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/scrutiny)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-scrutiny%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-scrutiny/job/master/)
@@ -21,7 +22,7 @@ title: scrutiny
 
 Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `ghcr.io/linuxserver/scrutiny` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/scrutiny` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
@@ -54,7 +55,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   scrutiny:
-    image: ghcr.io/linuxserver/scrutiny
+    image: lscr.io/linuxserver/scrutiny
     container_name: scrutiny
     cap_add:
       - SYS_RAWIO
@@ -98,7 +99,7 @@ docker run -d \
   --device /dev/sdb:/dev/sdb \
   --device /dev/nvme1n1:/dev/nvme1n1 \
   --restart unless-stopped \
-  ghcr.io/linuxserver/scrutiny
+  lscr.io/linuxserver/scrutiny
 ```
 
 ## Parameters
@@ -136,6 +137,11 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `/dev/sda` | This is how Scrutiny accesses drives. Optionally supply `/dev:/dev` instead for all devices. |
 | `/dev/sdb` | A second drive. |
 | `/dev/nvme1n1` | An NVMe drive. NVMe requires `--cap-add=SYS_ADMIN`. |
+
+#### Miscellaneous Options
+
+| Parameter | Function |
+| :-----:   | --- |
 
 ## Environment variables from files (Docker secrets)
 
@@ -182,7 +188,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' scrutiny`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' ghcr.io/linuxserver/scrutiny`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/scrutiny`
 
 ## Versions
 
