@@ -14,6 +14,7 @@ Please migrate to <https://github.com/linuxserver/docker-booksonic-air>
 [![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-booksonic.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-booksonic/releases)
 [![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub%20Package&logo=github)](https://github.com/linuxserver/docker-booksonic/packages)
 [![GitLab Container Registry](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab)](https://gitlab.com/linuxserver.io/docker-booksonic/container_registry)
+[![Quay.io](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/booksonic)
 [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/booksonic.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/booksonic)
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/booksonic.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/booksonic)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-booksonic%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-booksonic/job/master/)
@@ -25,7 +26,7 @@ Please migrate to <https://github.com/linuxserver/docker-booksonic-air>
 
 Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `ghcr.io/linuxserver/booksonic` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/booksonic` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
@@ -59,7 +60,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   booksonic:
-    image: ghcr.io/linuxserver/booksonic
+    image: lscr.io/linuxserver/booksonic
     container_name: booksonic
     environment:
       - PUID=1000
@@ -91,7 +92,7 @@ docker run -d \
   -v </path/to/podcasts>:/podcasts \
   -v </path/to/othermedia>:/othermedia \
   --restart unless-stopped \
-  ghcr.io/linuxserver/booksonic
+  lscr.io/linuxserver/booksonic
 ```
 
 ## Parameters
@@ -121,6 +122,11 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `/audiobooks` | Audiobooks. |
 | `/podcasts` | Podcasts. |
 | `/othermedia` | Other media. |
+
+#### Miscellaneous Options
+
+| Parameter | Function |
+| :-----:   | --- |
 
 ## Environment variables from files (Docker secrets)
 
@@ -167,7 +173,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' booksonic`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' ghcr.io/linuxserver/booksonic`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/booksonic`
 
 ## Versions
 
