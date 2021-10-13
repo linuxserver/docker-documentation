@@ -2,11 +2,11 @@
 
 Here will some Frequently Asked Questions reside
 
-## My host is incompatible with images based on Ubuntu Focal and Alpine 3.13 {#libseccomp}
+## My host is incompatible with images based on Ubuntu Focal and Alpine 3.13 and later {#libseccomp}
 
-This only affect 32 bit installs of distros based on Debian Buster.
+This only affects 32 bit installs of distros based on Debian Buster.
 
-This is due to a bug in the libseccomp2 library (dependency of docker itself), which is fixed. However it's not pushed to all the repositories.
+This is due to a bug in the libseccomp2 library (dependency of Docker itself), which is fixed. However it's not pushed to all the repositories.
 
 [A GitHub issue tracking this](https://github.com/moby/moby/issues/40734)
 
@@ -16,7 +16,7 @@ You have a few options as noted below. Options 1 is short-term, while option 2 i
 
 If you decide to do option 1 or 2, you should just need to restart the container after confirming you have libseccomp2.4.4 installed.
 
-If 1 or 2 did not work, ensure you have an up-to-date install of Docker, [refer to the official Docker docs for installation.](https://docs.docker.com/engine/install/debian/)
+If 1 or 2 did not work, ensure your Docker install is at least version 20.10.0, [refer to the official Docker docs for installation.](https://docs.docker.com/engine/install/debian/)
 
 #### Option 1
 Manually install an updated version of the library with dpkg.
