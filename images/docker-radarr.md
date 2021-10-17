@@ -176,6 +176,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **17.10.21:** - Remove `UMASK_SET`.
 * **08.05.21:** - Make the paths clearer to the user
 * **17.01.21:** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information.
 * **11.30.20:** - Publish `develop` tag.
