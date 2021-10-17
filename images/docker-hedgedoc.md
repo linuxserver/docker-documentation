@@ -54,11 +54,11 @@ To help you get started creating a container from this image you can either use 
 version: "3"
 services:
   mariadb:
-    image: ghcr.io/linuxserver/mariadb:latest
+    image: lscr.io/linuxserver/mariadb:latest
     container_name: hedgedoc_mariadb
     restart: always
     volumes:
-      - path/to/mariadb/data:/config
+      - /path/to/mariadb/data:/config
     environment:
       - MYSQL_ROOT_PASSWORD=<secret password>
       - MYSQL_DATABASE=hedgedoc
@@ -68,7 +68,7 @@ services:
       - PUID=1000
       - TZ=Europe/London
   hedgedoc:
-    image: ghcr.io/linuxserver/hedgedoc:latest
+    image: lscr.io/linuxserver/hedgedoc:latest
     container_name: hedgedoc
     restart: always
     depends_on:
@@ -84,6 +84,8 @@ services:
       - PGID=1000
       - PUID=1000
       - TZ=Europe/London
+      - CMD_DOMAIN=localhost
+      - CMD_URL_ADDPORT=true #optional
     ports:
       - "3000:3000"
 
@@ -102,6 +104,8 @@ docker run -d \
   -e DB_PASS=<secret password> \
   -e DB_NAME=hedgedoc \
   -e TZ=Europe/London \
+  -e CMD_DOMAIN=localhost \
+  -e CMD_URL_ADDPORT=true `#optional` \
   -p 3000:3000 \
   -v /path/to/appdata:/config \
   --restart unless-stopped \
@@ -130,6 +134,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `DB_PASS=<secret password>` | Database password |
 | `DB_NAME=hedgedoc` | Database name |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
+| `CMD_DOMAIN=localhost` | The address the gui will be accessed at (ie. `192.168.1.1` or `hedgedoc.domain.com`). |
+| `CMD_URL_ADDPORT=true` | Set to `false` if accessing at port `80` or `443`. |
 
 ### Volume Mappings (`-v`)
 
@@ -191,6 +197,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **15.10.21:** - Add required env var `CMD_DOMAIN`.
 * **05.05.21:** - Remove symlinking some folders from config to /opt/hedgedoc/public.
 * **03.05.21:** - Remove deprecated sequalizerc step.
 * **22.12.20:** - Initial release
