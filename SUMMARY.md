@@ -21,6 +21,7 @@
 * [linuxserver/airsonic](images/docker-airsonic.md)
 * [linuxserver/apprise-api](images/docker-apprise-api.md)
 * [linuxserver/audacity](images/docker-audacity.md)
+* [linuxserver/babybuddy](images/docker-babybuddy.md)
 * [linuxserver/bazarr](images/docker-bazarr.md)
 * [linuxserver/beets](images/docker-beets.md)
 * [linuxserver/boinc](images/docker-boinc.md)
