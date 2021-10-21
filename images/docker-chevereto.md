@@ -16,7 +16,7 @@ title: chevereto
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-chevereto%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-chevereto/job/master/)
 [![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.linuxserver.io%2Flinuxserver%2Fchevereto%2Flatest%2Fci-status.yml)](https://ci-tests.linuxserver.io/linuxserver/chevereto/latest/index.html)
 
-[Chevereto](https://github.com/Chevereto/Chevereto-Free) is an image hosting software that allows you to create a beautiful and full-featured image hosting website on your own server. It's your hosting and your rules, so say goodbye to closures and restrictions.
+[Chevereto](https://github.com/rodber/chevereto-free) is an image hosting software that allows you to create a beautiful and full-featured image hosting website on your own server. It's your hosting and your rules, so say goodbye to closures and restrictions.
 
 ## Supported Architectures
 
@@ -34,9 +34,11 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-As per [this notice](https://github.com/Chevereto/Chevereto-Free#thats-all-folks) Chevereto-Free will be EOL on 2021-12-31 and no new releases will be produced for it. Our container will continue to be updated until at least that date but we cannot make any assurances beyond it.
+Chevereto-Free now has a maintainer!
 
-Access the WebUI at <your-ip>:443. For more information, check out [Chevereto Free](https://github.com/Chevereto/Chevereto-Free).
+~~Chevereto-Free will be EOL on 2021-12-31 and no new releases will be produced for it. Our container will continue to be updated until at least that date but we cannot make any assurances beyond it.~~
+
+Access the WebUI at <your-ip>:443. For more information, check out [Chevereto Free](https://github.com/rodber/chevereto-free).
 
 Chevereto requires a MariaDB database, we have an image available [here](https://github.com/linuxserver/docker-mariadb) if you require it.
 
@@ -182,5 +184,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **21.10.21:** - Removed deprecation warning, change reposiory links.
 * **22.07.21:** - Rebase to Alpine 3.14.
 * **28.08.20:** - Initial Release.
