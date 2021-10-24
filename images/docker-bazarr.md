@@ -168,6 +168,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **22.10.21:** - Added openblas package to prevent numpy error.
 * **16.05.21:** - Use wheel index.
 * **19.04.21:** - Install from release zip.
 * **07.04.21:** - Move app to /app/bazarr/bin, add `package_info`.
