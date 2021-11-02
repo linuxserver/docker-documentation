@@ -165,6 +165,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **02.11.21:** - Rebase to alpine 3.14. Remove `pathlib.py`.
 * **25.05.21:** - Add `libwebp` support.
 * **17.05.21:** - Add linuxserver wheel index.
 * **23.01.21:** - Rebasing to alpine 3.13.
