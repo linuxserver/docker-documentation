@@ -135,6 +135,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **14.11.21:** - Add lxml dependencies (temp fix for amd64 by force compiling lxml).
 * **25.07.21:** - Add libpq for postgresql.
 * **08.07.21:** - Fix pip install issue.
 * **05.07.21:** - Update Gunicorn parameters to prevent `WORKER_TIMEOUT` issue.
