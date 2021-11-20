@@ -158,6 +158,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **20.11.21:** - Modify binary usage from SickChill.py to SickChill.
 * **14.05.21:** - Add linuxserver wheel index.
 * **12.02.21:** - Rebasing to alpine 3.13. Add python certifi.
 * **17.09.20:** - Update dependencies.
