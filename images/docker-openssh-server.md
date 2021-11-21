@@ -89,6 +89,7 @@ services:
       - PUBLIC_KEY=yourpublickey #optional
       - PUBLIC_KEY_FILE=/path/to/file #optional
       - PUBLIC_KEY_DIR=/path/to/directory/containing/_only_/pubkeys #optional
+      - PUBLIC_KEY_URL=https://github.com/username.keys #optional
       - SUDO_ACCESS=false #optional
       - PASSWORD_ACCESS=false #optional
       - USER_PASSWORD=password #optional
@@ -113,6 +114,7 @@ docker run -d \
   -e PUBLIC_KEY=yourpublickey `#optional` \
   -e PUBLIC_KEY_FILE=/path/to/file `#optional` \
   -e PUBLIC_KEY_DIR=/path/to/directory/containing/_only_/pubkeys `#optional` \
+  -e PUBLIC_KEY_URL=https://github.com/username.keys `#optional` \
   -e SUDO_ACCESS=false `#optional` \
   -e PASSWORD_ACCESS=false `#optional` \
   -e USER_PASSWORD=password `#optional` \
@@ -144,6 +146,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUBLIC_KEY=yourpublickey` | Optional ssh public key, which will automatically be added to authorized_keys. |
 | `PUBLIC_KEY_FILE=/path/to/file` | Optionally specify a file containing the public key (works with docker secrets). |
 | `PUBLIC_KEY_DIR=/path/to/directory/containing/_only_/pubkeys` | Optionally specify a directory containing the public keys (works with docker secrets). |
+| `PUBLIC_KEY_URL=https://github.com/username.keys` | Optionally specify a URL containing the public key. |
 | `SUDO_ACCESS=false` | Set to `true` to allow `linuxserver.io`, the ssh user, sudo access. Without `USER_PASSWORD` set, this will allow passwordless sudo access. |
 | `PASSWORD_ACCESS=false` | Set to `true` to allow user/password ssh access. You will want to set `USER_PASSWORD` or `USER_PASSWORD_FILE` as well. |
 | `USER_PASSWORD=password` | Optionally set a sudo password for `linuxserver.io`, the ssh user. If this or `USER_PASSWORD_FILE` are not set but `SUDO_ACCESS` is set to true, the user will have passwordless sudo access. |
@@ -211,6 +214,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **16.11.21:** - Add PUBLIC_KEY_URL option
 * **28.06.21:** - Rebasing to alpine 3.14. Add support for PAM.
 * **10.02.21:** - Rebasing to alpine 3.13. Add openssh-client for scp.
 * **21.10.20:** - Implement s6-log for openssh, which adds local timestamps to logs and can be used with a log parser like fail2ban.
