@@ -57,7 +57,7 @@ To help you get started creating a container from this image you can either use 
 version: '2'
 services:
   diskover:
-    image: ghcr.io/linuxserver/diskover
+    image: lscr.io/linuxserver/diskover
     container_name: diskover
     environment:
       - PUID=1000
