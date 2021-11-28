@@ -74,7 +74,7 @@ services:
       - 6144:6144
       - 1443:1443
     devices:
-      - <path to device>:<path to device>
+      - path to device:path to device
     restart: unless-stopped
 ```
 
@@ -91,7 +91,7 @@ docker run -d \
   -p 6144:6144 \
   -p 1443:1443 \
   -v <path to data>:/config \
-  --device <path to device>:<path to device> \
+  --device path to device:path to device \
   --restart unless-stopped \
   lscr.io/linuxserver/domoticz
 ```
@@ -139,7 +139,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :-----:   | --- |
-| `<path to device>` | For passing through USB devices. |
+| `path to device` | For passing through USB devices. |
 
 #### Miscellaneous Options
 
