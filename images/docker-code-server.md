@@ -45,7 +45,7 @@ This image provides various versions that are available via tags. `latest` tag u
 | Tag | Description |
 | :----: | --- |
 | latest | Stable releases |
-| focal | Stable releases, based on Ubuntu Focal |
+| focal | DEPRECATED (no longer updated, `latest` is rebased on focal) - Stable releases, based on Ubuntu Focal |
 | development | DEPRECATED (no longer updated) - Prereleases from their GitHub |
 
 ## Application Setup
@@ -194,6 +194,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **29.11.21:** - Rebase to Ubuntu focal.
 * **16.09.21:** - Fix slow `chown` on large workspace (contents of workspace folder no longer chowned).
 * **11.07.21:** - Bump node to 14 to fix builds
 * **08.05.21:** - Fix doc link
