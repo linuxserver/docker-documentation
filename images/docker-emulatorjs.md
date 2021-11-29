@@ -174,7 +174,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
-* **29.11.21:** - Add wasm mime type to NGINX, rebase to Alpine 3.15.
+* **29.11.21:** - Add wasm mime type to NGINX
 * **26.11.21:** - Configure IPFS in a lower power mode, use homebuilt blobs for emu cores.
 * **19.11.21:** - Pin retroarch version.
 * **14.11.21:** - Update default cores to ingest.
