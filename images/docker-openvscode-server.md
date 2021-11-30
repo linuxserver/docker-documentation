@@ -177,4 +177,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **29.11.21:** - Create `.profile` and `.bashrc` for the user.
+* **29.11.21:** - Release `insiders` tag.
 * **28.11.21:** - Initial Release.
