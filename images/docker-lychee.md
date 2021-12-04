@@ -191,6 +191,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **04.12.21:** - Rebase to alpine 3.15 with php8.
 * **13.05.21:** - Make readme clearer.
 * **18.04.21:** - Add php-intl for v4.3.
 * **31.01.21:** - Add jpegoptim.
