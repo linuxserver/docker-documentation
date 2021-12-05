@@ -136,7 +136,6 @@ services:
       - ONLY_SUBDOMAINS=false #optional
       - EXTRA_DOMAINS= #optional
       - STAGING=false #optional
-      - MAXMINDDB_LICENSE_KEY= #optional
     volumes:
       - /path/to/appdata/config:/config
     ports:
@@ -165,7 +164,6 @@ docker run -d \
   -e ONLY_SUBDOMAINS=false `#optional` \
   -e EXTRA_DOMAINS= `#optional` \
   -e STAGING=false `#optional` \
-  -e MAXMINDDB_LICENSE_KEY= `#optional` \
   -p 443:443 \
   -p 80:80 `#optional` \
   -v /path/to/appdata/config:/config \
@@ -202,7 +200,6 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `ONLY_SUBDOMAINS=false` | If you wish to get certs only for certain subdomains, but not the main domain (main domain may be hosted on another machine and cannot be validated), set this to `true` |
 | `EXTRA_DOMAINS=` | Additional fully qualified domain names (comma separated, no spaces) ie. `extradomain.com,subdomain.anotherdomain.org,*.anotherdomain.org` |
 | `STAGING=false` | Set to `true` to retrieve certs in staging mode. Rate limits will be much higher, but the resulting cert will not pass the browser's security test. Only to be used for testing purposes. |
-| `MAXMINDDB_LICENSE_KEY=` | Add your MaxmindDB license key to automatically download the GeoLite2-City.mmdb database. Download location is /config/geoip2db. The database is updated weekly. |
 
 ### Volume Mappings (`-v`)
 
@@ -264,6 +261,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **30.11.21:** - Move maxmind to a [new mod](https://github.com/linuxserver/docker-mods/tree/swag-maxmind)
 * **22.11.21:** - Added support for Infomaniak DNS for certificate generation.
 * **20.11.21:** - Added support for dnspod validation.
 * **15.11.21:** - Added support for deSEC DNS for wildcard certificate generation.
