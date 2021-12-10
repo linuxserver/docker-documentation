@@ -160,6 +160,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **30.11.21:** - Added in jbig2enc.
 * **07.10.21:** - Fixed variable that determins if we should run redis locally.
 * **01.10.21:** - Replaced uwsgi with gunicorn due to websocket issues.
 * **24.07.21:** - Fixed directory config files (sqlite db) is all stored.
