@@ -180,6 +180,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.12.21:** - Use the new `build.yaml` to determine HA base version.
 * **25.09.21:** - Use the new lsio homeassistant wheel repo, instead of the HA wheels.
 * **13.09.21:** - Build psycopg locally as the HA provided wheel does not seem to work properly.
 * **13.09.21:** - Fix setcap in service. Build CISO8601 locally as the HA provided wheel does not seem to work properly.
