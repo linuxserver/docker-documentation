@@ -6,6 +6,7 @@ title: unifi-controller
 
 # [linuxserver/unifi-controller](https://github.com/linuxserver/docker-unifi-controller)
 
+[![Scarf.io pulls](https://scarf.sh/installs-badge/linuxserver-ci/linuxserver%2Funifi-controller?color=94398d&label-color=555555&logo-color=ffffff&style=for-the-badge&package-type=docker)](https://scarf.sh/gateway/linuxserver-ci/docker/linuxserver%2Funifi-controller)
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-unifi-controller.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-unifi-controller)
 [![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-unifi-controller.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-unifi-controller/releases)
 [![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub%20Package&logo=github)](https://github.com/linuxserver/docker-unifi-controller/packages)
@@ -192,7 +193,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
-* **13.12.20:** - Rebase 64 bit containers to Focal.
+* **13.12.21:** - Rebase 64 bit containers to Focal.
 * **11.12.21:** - Add java opts to mitigate CVE-2021-44228.
 * **11.06.21:** - Allow for changing Java initial mem via new optional environment variable.
 * **12.01.21:** - Deprecate the `LTS` tag as Unifi no longer releases LTS stable builds. Existing users can switch to the `latest` tag. Direct upgrade from 5.6.42 (LTS) to 6.0.42 (latest) tested successfully.
