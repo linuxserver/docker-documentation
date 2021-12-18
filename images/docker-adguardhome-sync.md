@@ -6,6 +6,7 @@ title: adguardhome-sync
 
 # [linuxserver/adguardhome-sync](https://github.com/linuxserver/docker-adguardhome-sync)
 
+[![Scarf.io pulls](https://scarf.sh/installs-badge/linuxserver-ci/linuxserver%2Fadguardhome-sync?color=94398d&label-color=555555&logo-color=ffffff&style=for-the-badge&package-type=docker)](https://scarf.sh/gateway/linuxserver-ci/docker/linuxserver%2Fadguardhome-sync)
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-adguardhome-sync.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-adguardhome-sync)
 [![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-adguardhome-sync.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-adguardhome-sync/releases)
 [![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub%20Package&logo=github)](https://github.com/linuxserver/docker-adguardhome-sync/packages)
@@ -163,5 +164,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **18.12.21:** - Rebase to Alpine 3.15.
 * **09.08.21:** - Rebase to Alpine 3.14.
 * **08.04.21:** - Initial Release.
