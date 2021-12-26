@@ -236,6 +236,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **25.12.21:** - Fix video device group perms error message.
 * **10.12.21:** - Rework readme, disable template sync.
 * **22.09.21:** - Pull only the server, web and ffmpeg packages instead of the wrapper.
 * **23.06.21:** - Add log message if device permissions are incorrect. Pin jellyfin dependency versions to prevent upstream apt repo issues. Deprecate the `bionic` tag.
