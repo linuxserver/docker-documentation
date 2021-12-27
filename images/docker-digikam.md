@@ -164,5 +164,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
-* **20.05.20:** - Initial release.
+* **27.12.21:** - Rebase to focal to resolve dependency issues.
 * **27.03.21:** - Download link fixed.
+* **20.05.20:** - Initial release.
