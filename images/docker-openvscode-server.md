@@ -184,6 +184,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **29.12.21:** - Add `install-extension` as a helper for mods to install extensions.
 * **10.12.21:** - Update deprecated connectionToken arg.
 * **30.11.21:** - Fix app folder permissions, add the optional sudo password vars.
 * **29.11.21:** - Create `.profile` and `.bashrc` for the user.
