@@ -216,6 +216,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **03.01.22:** - Rebase to alpine 3.15. Add new build deps and apply other fixes for 0.14.
 * **07.08.21:** - Fixing incorrect database password variable operator.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
