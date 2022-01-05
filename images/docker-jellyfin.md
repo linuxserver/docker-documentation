@@ -39,8 +39,7 @@ This image provides various versions that are available via tags. `latest` tag u
 
 | Tag | Description |
 | :----: | --- |
-| latest | Stable Jellyfin releases - Focal baseimage |
-| bionic | DEPRECATED, no longer updated - Stable Jellyfin releases - Bionic baseimage |
+| latest | Stable Jellyfin releases |
 | nightly | Nightly Jellyfin releases |
 
 ## Application Setup
@@ -236,6 +235,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **05.01.22:** - Specify Intel iHD driver versions to avoid mismatched libva errors.
 * **25.12.21:** - Fix video device group perms error message.
 * **10.12.21:** - Rework readme, disable template sync.
 * **22.09.21:** - Pull only the server, web and ffmpeg packages instead of the wrapper.
