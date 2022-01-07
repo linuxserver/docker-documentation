@@ -178,6 +178,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **06.01.22:** - Rebase to Ubuntu focal. Enable auto builds on version updates (beta and stable).
 * **17.12.21:** - Update to version 3.2.2 beta.
 * **05.08.21:** - Update to version 3.2.1 beta.
 * **05.06.21:** - Added mono-devel dependency.
