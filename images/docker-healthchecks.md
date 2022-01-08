@@ -192,6 +192,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **08.01.22:** - Fix CSRF setting for Django 4.0 (introduced in v1.25.0)
 * **10.09.21:** - Fix creation of superuser
 * **07.08.21:** - Update custom logo handling to support changes in v1.22.0
 * **11.07.21:** - Rebase to Alpine 3.14.
