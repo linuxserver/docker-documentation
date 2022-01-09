@@ -196,6 +196,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **07.01.22:** - Rebase to Alpine, build from source.
 * **06.01.22:** - Deprecate unstable branch.
 * **10.02.21:** - Rebase to focal.
 * **20.01.21:** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information.
