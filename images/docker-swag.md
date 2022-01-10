@@ -262,6 +262,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **09.01.22:** - Added a fail2ban jail for nginx unauthorized
 * **21.12.21:** - Fixed issue with iptables not working as expected
 * **30.11.21:** - Move maxmind to a [new mod](https://github.com/linuxserver/docker-mods/tree/swag-maxmind)
 * **22.11.21:** - Added support for Infomaniak DNS for certificate generation.
