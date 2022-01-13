@@ -40,6 +40,7 @@ This image provides various versions that are available via tags. `latest` tag u
 | Tag | Description |
 | :----: | --- |
 | latest | Stable SABnzbd releases |
+| alpine | Stable SABnzbd releases using our Alpine baseimage |
 | unstable | Pre-releases from their GitHub |
 
 ## Application Setup
@@ -83,7 +84,6 @@ services:
       - /path/to/incomplete/downloads:/incomplete-downloads #optional
     ports:
       - 8080:8080
-      - 9090:9090
     restart: unless-stopped
 ```
 
@@ -96,7 +96,6 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -p 8080:8080 \
-  -p 9090:9090 \
   -v /path/to/data:/config \
   -v /path/to/downloads:/downloads `#optional` \
   -v /path/to/incomplete/downloads:/incomplete-downloads `#optional` \
@@ -113,7 +112,6 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Parameter | Function |
 | :----: | --- |
 | `8080` | HTTP port for the WebUI. |
-| `9090` | HTTPS port for the WebUI. |
 
 ### Environment Variables (`-e`)
 
@@ -185,6 +183,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **13.01.22:** - Add Alpine branch.
 * **08.08.21:** - Bump to focal, dont enforce binding to ipv4 port 8080
 * **24.07.21:** - Add python3-setuptools.
 * **14.05.21:** - Use linuxserver.io wheel index for pip packages.
