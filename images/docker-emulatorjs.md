@@ -69,6 +69,7 @@ services:
       - TZ=Europe/London
       - SUBFOLDER=/ #optional
     volumes:
+      - /path/to/config:/config
       - /path/to/data:/data
     ports:
       - 3000:3000
@@ -89,6 +90,7 @@ docker run -d \
   -p 3000:3000 \
   -p 80:80 \
   -p 4001:4001 `#optional` \
+  -v /path/to/config:/config \
   -v /path/to/data:/data \
   --restart unless-stopped \
   lscr.io/linuxserver/emulatorjs
@@ -119,6 +121,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Volume | Function |
 | :----: | --- |
+| `/config` | Path to store user profiles |
 | `/data` | Path to store roms/artwork |
 
 #### Miscellaneous Options
@@ -175,6 +178,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **14.01.22:** - Add profile paths and rebase to Alpine 3.15.
 * **04.01.22:** - Add headers needed for Threaded emulators.
 * **29.11.21:** - Add wasm mime type to NGINX.
 * **26.11.21:** - Configure IPFS in a lower power mode, use homebuilt blobs for emu cores.
