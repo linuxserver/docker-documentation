@@ -192,6 +192,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **13.01.22:** - Deprecate in favor of airsonic-advanced.
 * **24.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **26.01.19:** - Add pipeline logic and multi arch.
 * **05.01.19:** - Linting fixes.
