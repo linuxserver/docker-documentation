@@ -155,6 +155,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **15.01.22:** - Rebase to Alpine 3.15
 * **15.05.21:** - Distribute script 'sample-get-ip-from-fritzbox' from ddclient repo
 * **08.03.21:** - Added bind-tools to provide nsupdate
 * **01.06.20:** - Rebasing to alpine 3.12.
