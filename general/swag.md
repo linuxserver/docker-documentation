@@ -227,7 +227,7 @@ Let's assume our domain name is `linuxserver-test.com` and we would like our cer
 
 We'll need to make sure that we are using a dns provider that is supported by this image. Currently the following dns plugins are supported: `cloudflare`, `cloudxns`, `digitalocean`, `dnsimple`, `dnsmadeeasy`, `google`, `luadns`, `nsone`, `ovh`, `rfc2136` and `route53`. Your dns provider by default is the provider of your domain name and if they are not supported, it is very easy to switch to a different dns provider. [Cloudflare](https://www.cloudflare.com/) is recommended due to being free and reliable. To switch to Cloudflare, you can register for a free account and follow their steps to point the nameservers to Cloudflare. The rest of the instructions assume that we are using the cloudflare dns plugin.
 
-On our dns provider, we'll create an `A` record for the main domain and point it to our server IP (wan). We'll also create a CNAME for `*` and point it to the `A` record for the domain. On Cloudflare, we'll click on the orange cloud to turn it grey so that it is dns only and not cached/proxied by Cloudflare, which would add more complexities.
+On our dns provider, we'll create an `A` record for the main domain and point it to our server IP (wan). We'll also create a CNAME for `*` and point it to the `A` record for the domain. On Cloudflare, we'll click on the orange cloud(A or CNAME record or Both?) to turn it grey so that it is dns only and not cached/proxied by Cloudflare, which would add more complexities.
 
 Now, let's get the container set up.
 
