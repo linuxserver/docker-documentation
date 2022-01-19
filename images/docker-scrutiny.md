@@ -193,4 +193,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **22.11.20:** - Added fix for `nsswitch.conf` to resolve local hosts
 * **17.09.20:** - Initial Release.
