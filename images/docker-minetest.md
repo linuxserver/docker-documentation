@@ -6,6 +6,7 @@ title: minetest
 
 # [linuxserver/minetest](https://github.com/linuxserver/docker-minetest)
 
+[![Scarf.io pulls](https://scarf.sh/installs-badge/linuxserver-ci/linuxserver%2Fminetest?color=94398d&label-color=555555&logo-color=ffffff&style=for-the-badge&package-type=docker)](https://scarf.sh/gateway/linuxserver-ci/docker/linuxserver%2Fminetest)
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-minetest.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-minetest)
 [![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-minetest.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-minetest/releases)
 [![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub%20Package&logo=github)](https://github.com/linuxserver/docker-minetest/packages)
@@ -59,7 +60,7 @@ services:
       - TZ=Europe/London
       - CLI_ARGS="--gameid minetest" #optional
     volumes:
-      - <path to data>:/config/.minetest
+      - /path/to/data:/config/.minetest
     ports:
       - 30000:30000/udp
     restart: unless-stopped
@@ -75,7 +76,7 @@ docker run -d \
   -e TZ=Europe/London \
   -e CLI_ARGS="--gameid minetest" `#optional` \
   -p 30000:30000/udp \
-  -v <path to data>:/config/.minetest \
+  -v /path/to/data:/config/.minetest \
   --restart unless-stopped \
   lscr.io/linuxserver/minetest
 ```
@@ -159,6 +160,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **19.01.21:** - Rebasing to alpine 3.15.
 * **02.06.20:** - Rebasing to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **12.07.19:** - Bugfix to support multiple CLI variables.
