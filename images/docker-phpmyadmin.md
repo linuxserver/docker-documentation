@@ -163,4 +163,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.01.22:** - Pin versions to 5.x.x.
 * **14.06.21:** - Initial Release.
