@@ -21,7 +21,7 @@ title: foldingathome
 
 ## Supported Architectures
 
-We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `lscr.io/linuxserver/foldingathome` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -30,6 +30,7 @@ The architectures supported by this image are:
 | Architecture | Tag |
 | :----: | --- |
 | x86-64 | latest |
+| arm64 | arm64v8-latest |
 
 ## Application Setup
 
@@ -168,6 +169,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **15.01.22:** - Rebase to Ubuntu Focal. Add arm64v8 builds (cpu only). Increase verbosity about gpu driver permission settings.
 * **09.01.21:** - Add nvidia.icd.
 * **14.04.20:** - Add Folding@home donation links.
 * **20.03.20:** - Initial release.
