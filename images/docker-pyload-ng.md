@@ -169,4 +169,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **24.01.22:** - Replace unrar with p7zip.
 * **24.01.22:** - Initial release.
