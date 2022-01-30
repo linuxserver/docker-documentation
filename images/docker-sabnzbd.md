@@ -41,7 +41,7 @@ This image provides various versions that are available via tags. `latest` tag u
 | :----: | --- |
 | latest | Stable SABnzbd releases |
 | alpine | Stable SABnzbd releases using our Alpine baseimage |
-| unstable | Pre-releases from their GitHub |
+| unstable | Pre-releases of SABnzbd |
 
 ## Application Setup
 
@@ -183,6 +183,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **25.01.22:** - Rebase Unstable branch to Alpine.
 * **13.01.22:** - Add Alpine branch.
 * **08.08.21:** - Bump to focal, dont enforce binding to ipv4 port 8080
 * **24.07.21:** - Add python3-setuptools.
