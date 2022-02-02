@@ -28,6 +28,10 @@ The goal of this guide is to give you ideas on what can be accomplished with the
   * [Nextcloud subdomain reverse proxy example](#nextcloud-subdomain-reverse-proxy-example)
   * [Plex subfolder reverse proxy example](#plex-subfolder-reverse-proxy-example)
   * [Using Heimdall as the home page at domain root](#using-heimdall-as-the-home-page-at-domain-root)
+* [Troubleshooting](#troubleshooting)
+  * [Common errors](#common-errors)
+    * [404](#404)
+    * [502](#502)
 * [Final Thoughts](#final-thoughts)
   * [How to Request Support](#how-to-request-support)
 
@@ -490,7 +494,7 @@ server {
 
 A reverse proxy is a type of proxy server that retrieves resources on behalf of a client from one or more servers. These resources are then returned to the client as if they originated from the Web server itself (Shamelessly borrowed from [another post on our blog](https://blog.linuxserver.io/2017/11/28/how-to-setup-a-reverse-proxy-with-letsencrypt-ssl-for-all-your-docker-apps/#whatisareverseproxy)).
 
-![reverseproxy](https://blog.linuxserver.io/content/images/2019/04/reverseproxy.png)
+![reverseproxy](https://www.linuxserver.io/user/pages/content/images/2019/04/reverseproxy.png)
 
 In this case, a user or a client browser can connect to our SWAG container via https on port 443, request a service such as Ombi, then our SWAG container connects to the ombi container, retrieves the data and passes it on to the client via https with our trusted cert. The connection to ombi is local and does not need to be encrypted, but all communication between our SWAG container and the client browser will be encrypted.
 
@@ -930,11 +934,11 @@ Now we find the file named `nextcloud.subdomain.conf.sample` under SWAG's `/conf
 
 If this is the first time we are accessing Nextcloud (we've never accessed it locally before), we can simply navigate to `https://nextcloud.linuxserver-test.duckdns.org` and we should see the Nextcloud set up page. We'll fill out the info, use the mariadb user `ncuser` and the password we selected in the environment variable (`ncpassword` in the above example) and we'll use `mariadb` as the Database Host address (container name as dns hostname).
 
-![Screenshot-2019-04-14-at-18.35.02---Edited](https://blog.linuxserver.io/content/images/2019/04/Screenshot-2019-04-14-at-18.35.02---Edited.png)
+![Screenshot-2019-04-14-at-18.35.02---Edited](https://www.linuxserver.io/user/pages/content/images/2019/04/Screenshot-2019-04-14-at-18.35.02---Edited.png)
 
 We should then be able to go through the intro slides and then see the Nextcloud dashboard with our shiny padlock icon next to the address bar.
 
-![Screenshot-2019-04-14-at-18.40.45---Edited](https://blog.linuxserver.io/content/images/2019/04/Screenshot-2019-04-14-at-18.40.45---Edited.png)
+![Screenshot-2019-04-14-at-18.40.45---Edited](https://www.linuxserver.io/user/pages/content/images/2019/04/Screenshot-2019-04-14-at-18.40.45---Edited.png)
 
 If this is an existing Nextcloud instance, or we set it up locally via the host IP address and local port, Nextcloud will reject proxied connections. In that case, we have to follow the instructions at the top of the `nextcloud.subdomain.conf` file:
 
@@ -1165,7 +1169,7 @@ This error means that nginx can't talk to the application. There is a few common
 
 * The application and SWAG is not on the same custom docker network
 
-    Further up we talk about how to set up [Docker networking](#docker-networking), however there is some few other common traps
+    Further up we talk about how to set up [Docker networking](#docker-networking), however there are some other common traps
 
 * The container name does not match the application name.
 
@@ -1174,6 +1178,13 @@ This error means that nginx can't talk to the application. There is a few common
 * You manually changed the port.
 
     Also covered in the section for [Understanding the proxy conf structure](#understanding-the-proxy-conf-structure)
+
+* The container originally ran with host networking, or the default bridge.
+
+    In most cases the contents of `/config/nginx/resolver.conf;` should be `...resolver 127.0.0.11 valid=30s;`, if this is not the case, you can:
+
+    * Delete it, and restart the container to have it regenerate
+    * Manually set the content(we wont override it)
 
 # Final Thoughts
 

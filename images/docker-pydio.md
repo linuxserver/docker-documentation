@@ -134,6 +134,8 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ## Application Setup
 
+THIS IMAGE IS DEPRECATED. You can switch to  [Pydio Cells](https://github.com/linuxserver/docker-pydio-cells) instead.
+
 You must create a user and database for pydio to use in a mysql/mariadb or postgresql server. You can use sqlite with no further config needed, but this should only be considered for testing purposes.
 In the setup page for database, use the ip address rather than hostname...
 
