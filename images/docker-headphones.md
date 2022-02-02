@@ -155,6 +155,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **02.02.22:** - Rebasing to alpine 3.15. Updating to Python 3.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **09.05.19:** - Add default UTC timezone if user does not set it.
