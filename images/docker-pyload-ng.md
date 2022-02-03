@@ -72,6 +72,7 @@ services:
       - /path/to/downloads:/downloads
     ports:
       - 8000:8000
+      - 9666:9666 #optional
     restart: unless-stopped
 ```
 
@@ -84,6 +85,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -p 8000:8000 \
+  -p 9666:9666 `#optional` \
   -v /path/to/appdata/config:/config \
   -v /path/to/downloads:/downloads \
   --restart unless-stopped \
@@ -99,6 +101,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Parameter | Function |
 | :----: | --- |
 | `8000` | Allows HTTP access to the application |
+| `9666` | Click'n'Load port. |
 
 ### Environment Variables (`-e`)
 
@@ -169,5 +172,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **02.02.22:** - Add ffmpeg for the Youtube plugin.
 * **24.01.22:** - Replace unrar with p7zip.
 * **24.01.22:** - Initial release.
