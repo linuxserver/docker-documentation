@@ -42,7 +42,6 @@ This image provides various versions that are available via tags. `latest` tag u
 | latest | Stable Radarr releases |
 | develop | Radarr releases from their develop branch |
 | nightly | Radarr releases from their nightly branch |
-| nightly-alpine | Radarr releases from their nightly branch using our Alpine baseimage |
 
 ## Application Setup
 
@@ -178,6 +177,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **04.02.22:** - Rebase nightly branch to Alpine and deprecate nightly-alpine branch.
 * **27.12.21:** - Add nightly-alpine branch.
 * **17.10.21:** - Remove `UMASK_SET`.
 * **08.05.21:** - Make the paths clearer to the user
