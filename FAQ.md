@@ -19,31 +19,39 @@ If you decide to do option 1 or 2, you should just need to restart the container
 If 1 or 2 did not work, ensure your Docker install is at least version 20.10.0, [refer to the official Docker docs for installation.](https://docs.docker.com/engine/install/debian/)
 
 #### Option 1
+
 Manually install an updated version of the library with dpkg.
 
-    ```bash
-    wget http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.4.4-1~bpo10+1_armhf.deb
-    sudo dpkg -i libseccomp2_2.4.4-1~bpo10+1_armhf.deb
-    ```
+```bash
+wget http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.4.4-1~bpo10+1_armhf.deb
+sudo dpkg -i libseccomp2_2.4.4-1~bpo10+1_armhf.deb
+```
 
-    Note this url may have been updated. Find the latest by browsing [here](http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/).
+{% hint style="info" %}
+This url may have been updated. Find the latest by browsing [here](http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/).
+{% endhint %}
 
 #### Option 2
+
 Add the backports repo for DebianBuster. As seen [here](https://github.com/linuxserver/docker-jellyfin/issues/71#issuecomment-733621693).
 
-    ```bash
-    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC 648ACFD622F3D138
-    echo "deb http://deb.debian.org/debian buster-backports main" | sudo tee -a /etc/apt/sources.list.d/buster-backports.list
-    sudo apt update
-    sudo apt install -t buster-backports libseccomp2
-    ```
+```bash
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC 648ACFD622F3D138
+echo "deb http://deb.debian.org/debian buster-backports main" | sudo tee -a /etc/apt/sources.list.d/buster-backports.list
+sudo apt update
+sudo apt install -t buster-backports libseccomp2
+```
 
 #### Option 3
-Reinstall/update your OS to a version that still gets updates.
-    * Any distro based on DebianStretch does not seem to have this package available
-    * DebianBuster based distros can get the package trough backports, as outlined in point 2.
 
-    RaspberryPI OS (formerly Raspbian) Can be upgraded to run with a 64bit kernel
+Reinstall/update your OS to a version that still gets updates.
+
+* Any distro based on DebianStretch does not seem to have this package available
+* DebianBuster based distros can get the package trough backports, as outlined in point 2.
+
+{% hint style="info" %}
+RaspberryPI OS (formerly Raspbian) Can be upgraded to run with a 64bit kernel
+{% endhint %}
 
 ### Symptoms
 
@@ -52,3 +60,25 @@ Reinstall/update your OS to a version that still gets updates.
 * No WebUI for __Radarr__, even though the container is running. [linuxserver/docker-radarr#118](https://github.com/linuxserver/docker-radarr/issues/118)
 * Images based on our Nginx base-image(Nextcloud, SWAG, Nginx, etc.) fails to generate a certificate, with a message similar to `error getting time:crypto/asn1/a_time.c:330`
 * `docker exec <container-name> date` returns 1970
+
+## I want to reverse proxy a application which defaults to https with a selfsigned certificate {#strict-proxy}
+
+### Traefik {#strict-proxy-traefik}
+
+In this example we will configure a serverTransport rule we can apply to a service, as well as telling Traefik to use https on the backend for the service.
+
+Create a [ServerTransport](https://doc.traefik.io/traefik/routing/services/#serverstransport_1) in your dynamic Traefik configuration, we are calling ours `ignorecert`.
+
+```yml
+    http:
+    serversTransports:
+        ignorecert:
+            insecureSkipVerify: true
+```
+
+Then on our `foo` service we tell it to use this rule, as well as telling Traefik the backend is running on https.
+
+```yml
+    - traefik.http.services.foo.loadbalancer.serverstransport=ignorecert
+    - traefik.http.services.foo.loadbalancer.server.scheme=https
+```
