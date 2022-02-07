@@ -42,7 +42,6 @@ This image provides various versions that are available via tags. `latest` tag u
 | latest | Stable Lidarr releases. |
 | develop | Develop Lidarr Releases. |
 | nightly | Nightly Lidarr Releases. |
-| nightly-alpine | Nightly Lidarr Releases using our Alpine baseimage. |
 
 ## Application Setup
 
@@ -182,6 +181,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **04.02.22:** - Rebase nightly branch to Alpine, deprecate nightly-alpine branch.
 * **30.12.21:** - Add nightly-alpine branch.
 * **01.08.21:** - Add libchromaprint-tools.
 * **11.07.21:** - Make the paths clearer to the user.
