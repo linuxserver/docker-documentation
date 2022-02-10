@@ -68,6 +68,7 @@ services:
       - PGID=1000
       - TZ=Europe/London
       - WEBROOT=domoticz #optional
+      - DBASE=<path to database> #optional
     volumes:
       - <path to data>:/config
     ports:
@@ -88,6 +89,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -e WEBROOT=domoticz `#optional` \
+  -e DBASE=<path to database> `#optional` \
   -p 8080:8080 \
   -p 6144:6144 \
   -p 1443:1443 \
@@ -129,6 +131,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 | `WEBROOT=domoticz` | Sets webroot to domoticz for usage with subfolder reverse proxy. Not needed unless reverse proxying. |
+| `DBASE=<path to database>` | Sets path to database. Do not set unless you know what this does. |
 
 ### Volume Mappings (`-v`)
 
@@ -196,6 +199,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **05.02.22:** - Set default webroot to /. Add env. variable for setting custom databas path.
 * **26.12.20:** - Rebase to Ubuntu Focal, see [here](https://docs.linuxserver.io/faq#my-host-is-incompatible-with-images-based-on-ubuntu-focal) for troubleshooting armhf.
 * **24.11.19:** - Change to using domoticz builtin Lua and MQTT.
 * **03.11.19:** - Set capabilities for domoticz binary and move cmake from edge repo.
