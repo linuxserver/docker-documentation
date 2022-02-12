@@ -184,6 +184,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.02.22:** - Update `install-extension` helper to compensate for upstream changes.
 * **04.02.22:** - Update binary for 1.64.0+. Allow for no token set when both toekn env vars are unset. Add libsecret for keytar.
 * **29.12.21:** - Add `install-extension` as a helper for mods to install extensions.
 * **10.12.21:** - Update deprecated connectionToken arg.
