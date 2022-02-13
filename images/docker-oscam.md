@@ -56,7 +56,7 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - <path to data>:/config
+      - /path/to/data:/config
     ports:
       - 8888:8888
     devices:
@@ -73,7 +73,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -p 8888:8888 \
-  -v <path to data>:/config \
+  -v /path/to/data:/config \
   --device /dev/ttyUSB0:/dev/ttyUSB0 \
   --restart unless-stopped \
   lscr.io/linuxserver/oscam
@@ -184,6 +184,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **19.12.19:** - Rebasing to alpine 3.15.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **29.04.19:** - Add revision check, so pipeline can build new revisions.
