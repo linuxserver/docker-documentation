@@ -35,7 +35,7 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-By default this container webui will be available on `http://$SERVER_IP:64080`. To setup this container you can either use the envrionment variables we recommend or manually setup the configuration file by leaving out the `QUASSEL_CORE` environment variable among others. 
+By default this container webui will be available on `https://$SERVER_IP:64443`. To setup this container you can either use the envrionment variables we recommend or manually setup the configuration file by leaving out the `QUASSEL_CORE` environment variable among others. 
 The configuration file using this method can be found at:
 ```
 /config/settings-user.js
@@ -61,9 +61,9 @@ services:
       - QUASSEL_PORT=4242
       - URL_BASE=/quassel #optional
     volumes:
-      - <path to data>:/config
+      - /path/to/data:/config
     ports:
-      - 64080:64080
+      - 64443:64443
     restart: unless-stopped
 ```
 
@@ -77,8 +77,8 @@ docker run -d \
   -e QUASSEL_CORE=192.168.1.10 \
   -e QUASSEL_PORT=4242 \
   -e URL_BASE=/quassel `#optional` \
-  -p 64080:64080 \
-  -v <path to data>:/config \
+  -p 64443:64443 \
+  -v /path/to/data:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/quassel-web
 ```
@@ -91,7 +91,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :----: | --- |
-| `64080` | will map the container's port 64080 to port 64080 on the host |
+| `64443` | Quassel-web https webui |
 
 ### Environment Variables (`-e`)
 
@@ -163,6 +163,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.02.22:** - Rebasing to alpine 3.15.
 * **01.06.20:** - Rebasing to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
