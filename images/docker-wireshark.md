@@ -174,4 +174,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **14.02.22:** - Rebase to Alpine.
 * **31.03.20:** - Initial release.
