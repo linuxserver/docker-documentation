@@ -21,7 +21,7 @@ title: mysql-workbench
 
 ## Supported Architectures
 
-We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
 Simply pulling `lscr.io/linuxserver/mysql-workbench` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
@@ -30,6 +30,8 @@ The architectures supported by this image are:
 | Architecture | Tag |
 | :----: | --- |
 | x86-64 | latest |
+| arm64 | arm64v8-latest |
+| armhf | arm32v7-latest |
 
 ## Application Setup
 
@@ -62,8 +64,6 @@ services:
       - /path/to/config:/config
     ports:
       - 3000:3000
-    cap_add:
-      - IPC_LOCK
     restart: unless-stopped
 ```
 
@@ -77,7 +77,6 @@ docker run -d \
   -e TZ=Europe/London \
   -p 3000:3000 \
   -v /path/to/config:/config \
-  --cap-add="IPC_LOCK" \
   --restart unless-stopped \
   lscr.io/linuxserver/mysql-workbench
 ```
@@ -110,7 +109,6 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :-----:   | --- |
-| `--cap-add=` | Required for keyring functionality |
 
 ## Environment variables from files (Docker secrets)
 
@@ -161,6 +159,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **15.02.22:** - Rebase to Arch.
 * **20.04.21:** - Rebase on focal.
 * **18.01.21:** - Update libpython dependency.
 * **26.03.20:** - Initial release.
