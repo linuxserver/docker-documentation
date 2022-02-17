@@ -85,7 +85,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :----: | --- |
-| `3000` | Sqlitebrowser desktop gui, only use this if you are not using host mode and sniffing Docker network traffic. |
+| `3000` | Sqlitebrowser desktop gui. |
 
 ### Environment Variables (`-e`)
 
@@ -155,5 +155,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **16.02.22:** - Rebase to Alpine.
 * **20.01.21:** - Remove Wireshark reference.
 * **29.07.20:** - Initial release.
