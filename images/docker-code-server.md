@@ -198,6 +198,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **20.02.22:** - Install using the official tarballs.
 * **29.12.21:** - Add `install-extension` as a helper for mods to install extensions.
 * **06.12.21:** - Add `DEFAULT_WORKSPACE` env var.
 * **29.11.21:** - Rebase to Ubuntu focal.
