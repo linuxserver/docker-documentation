@@ -57,6 +57,10 @@ Use `WHITELIST` to enable a list of ip as whitelist. This enable support for `rp
 
 Use `HOST_WHITELIST` to enable an list of dns names as host-whitelist. This enable support for `rpc-host-whitelist`. When `HOST_WHITELIST` is empty support for host-whitelist is disabled.
 
+## Use alternative Transmission torrent ports
+
+Use `PEERPORT` to specify the port(s) Transmission should listen on.  This disables random port selection.  This should be the same as the port mapped in your docker configuration.
+
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
@@ -78,6 +82,7 @@ services:
       - USER=username #optional
       - PASS=password #optional
       - WHITELIST=iplist #optional
+      - PEERPORT=peerport #optional
       - HOST_WHITELIST=dnsnane list #optional
     volumes:
       - <path to data>:/config
@@ -102,6 +107,7 @@ docker run -d \
   -e USER=username `#optional` \
   -e PASS=password `#optional` \
   -e WHITELIST=iplist `#optional` \
+  -e PEERPORT=peerport `#optional` \
   -e HOST_WHITELIST=dnsnane list `#optional` \
   -p 9091:9091 \
   -p 51413:51413 \
@@ -136,6 +142,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `USER=username` | Specify an optional username for the interface |
 | `PASS=password` | Specify an optional password for the interface |
 | `WHITELIST=iplist` | Specify an optional list of comma separated ip whitelist. Fill rpc-whitelist setting. |
+| `PEERPORT=peerport` | Specify an optional port for torrent TCP/UDP connections. Fill peer-port setting. |
 | `HOST_WHITELIST=dnsnane list` | Specify an optional list of comma separated dns name whitelist. Fill rpc-host-whitelist setting. |
 
 ### Volume Mappings (`-v`)
