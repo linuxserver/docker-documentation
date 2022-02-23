@@ -214,6 +214,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.02.22:** - Update ingestion point for emulatorjs bins.
 * **25.01.22:** - Allow users to mount in existing rom directories.
 * **14.01.22:** - Add profile paths and rebase to Alpine 3.15.
 * **04.01.22:** - Add headers needed for Threaded emulators.
