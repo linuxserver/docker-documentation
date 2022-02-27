@@ -196,6 +196,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.02.22:** - Rebase to Alpine Edge, install from Alpine repos.
 * **19.02.22:** - Add jq to build-stage
 * **07.01.22:** - Rebase to Alpine, build from source.
 * **06.01.22:** - Deprecate unstable branch.
