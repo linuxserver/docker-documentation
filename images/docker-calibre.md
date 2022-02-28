@@ -177,6 +177,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **28.02.22:** - Add speech support to bionic image.
 * **05.01.22:** - Add arch branch for arm platforms.
 * **20.04.21:** - Fix the HOME folder.
 * **19.04.21:** - Add libnss3 back in. Make sure Calibre can access environment variables.
