@@ -155,6 +155,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **28.02.21:** - Rebase to alpine 3.15.
 * **03.11.21:** - Increase uWSGI buffer size to 32kb.
 * **16.05.21:** - Add linuxserver wheel index.
 * **26.02.21:** - Initial Release.
