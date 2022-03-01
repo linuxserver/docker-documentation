@@ -196,6 +196,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **01.03.22:** - Add python for search plugin support.
 * **23.02.22:** - Rebase to Alpine Edge, install from Alpine repos.
 * **19.02.22:** - Add jq to build-stage
 * **07.01.22:** - Rebase to Alpine, build from source.
