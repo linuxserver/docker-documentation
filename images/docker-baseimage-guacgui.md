@@ -64,6 +64,7 @@ docker create \
   -e APPNAME=xclock \
   -e GUAC_USER=abc `#optional` \
   -e GUAC_PASS=900150983cd24fb0d6963f7d28e17f72 `#optional` \
+  -e GUAC_KEYBOARD_LAYOUT=de-de-qwertz `#optional` \
   -p 8080:8080 \
   -p 3389:3389 \
   -v </path/to/appdata>:/config \
@@ -90,6 +91,7 @@ services:
       - APPNAME=xclock
       - GUAC_USER=abc #optional
       - GUAC_PASS=900150983cd24fb0d6963f7d28e17f72 #optional
+      - GUAC_KEYBOARD_LAYOUT=de-de-qwertz #optional
     volumes:
       - </path/to/appdata>:/config
     ports:
@@ -112,6 +114,7 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-e APPNAME=xclock` | Specify the graphical application name shown on RDP access. |
 | `-e GUAC_USER=abc` | Specify the username for guacamole's web interface. |
 | `-e GUAC_PASS=900150983cd24fb0d6963f7d28e17f72` | Specify the password's md5 hash for guacamole's web interface. |
+| `-e GUAC_KEYBOARD_LAYOUT=de-de-qwertz` | Specify the used keyboard layout for the RDP session used by the gucamole client. Possible values are "en-us-qwerty" (default), de-de-qwertz (German keyboard (qwertz)), fr-fr-azerty (French keyboard (azerty)), fr-ch-qwertz (Swiss French keyboard (qwertz)), it-it-qwerty (Italian keyboard), ja-jp-qwerty (Japanese keyboard) and sv-se-qwerty (Swedish keyboard). |
 | `-v /config` | Contains X user's home directory contents. |
 
 &nbsp;
