@@ -197,6 +197,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **07.03.22:** - Add Exiftool and firefox for image exports.
 * **20.02.22:** - Add MariaDB, expand documentation.
 * **15.02.22:** - Rebase to Arch.
 * **27.12.21:** - Rebase to focal to resolve dependency issues.
