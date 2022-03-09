@@ -160,6 +160,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.02.22:** - Append to log file instead of overwriting every time.
 * **03.05.21:** - Re-adjust cron timings to prevent peak times, update code formatting.
 * **23.01.21:** - Rebasing to alpine 3.13.
 * **01.06.20:** - Rebasing to alpine 3.12.
