@@ -172,7 +172,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Parameter | Function |
 | :-----:   | --- |
 | `--shm-size=` | This might be needed to prevent crashing |
-| `--security-opt seccomp=unconfined` | For Docker Engine only, this is required on arm platforms. |
+| `--security-opt seccomp=unconfined` | For Docker Engine only, this may be required depending on your Docker and storage configuration. |
 
 ## Environment variables from files (Docker secrets)
 
@@ -223,4 +223,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **09.03.22:** - Update seccomp explanation.
 * **07.03.22:** - Initial release.
