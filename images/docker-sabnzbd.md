@@ -46,9 +46,11 @@ This image provides various versions that are available via tags. `latest` tag u
 
 Initial setup is done from the http port.
 
-Https access for sabnzbd needs to be enabled in either the intial setup wizard or in the configure settings of the webui, be sure to use 9090 as port for https.
+See the [SABnzbd wiki](https://sabnzbd.org/wiki/) for more information.
 
-See here for info on some of the switch settings for sabnzbd https://sabnzbd.org/wiki/configuration/2.3/switches .
+### nzb-notify
+
+nzb-notify is included with this image as a convenience script. To use it set the Scripts folder in the Folder settings to /app/nzbnotify and then configure it under Notifications. See [nzb-notify](https://github.com/caronc/nzb-notify/) for more information.
 
 ### Download folders
 
@@ -182,6 +184,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **10.03.22:** - Add nzb-notify.
 * **22.02.22:** - Rebase master branch to Alpine, build unrar from source, deprecate Alpine branch.
 * **25.01.22:** - Rebase Unstable branch to Alpine.
 * **13.01.22:** - Add alpine branch
