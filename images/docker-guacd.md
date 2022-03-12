@@ -126,6 +126,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **11.03.22:** - Bump to 1.4.0.
 * **15.05.21:** - Add terminus font for SSH support.
 * **08.05.21:** - Bump to 1.3.0, rebase to Alpine.
 * **27.07.20:** - Bump to 1.2.0.
