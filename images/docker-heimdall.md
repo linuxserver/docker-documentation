@@ -172,6 +172,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **13.03.21:** - Make searchproviders.yaml user configurable.
 * **11.03.21:** - Rebase to alpine 3.14.
 * **10.02.21:** - Revert to alpine 3.12 as php 7.4 broke laravel.
 * **10.02.21:** - Rebasing to alpine 3.13.
