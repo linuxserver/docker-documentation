@@ -203,6 +203,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **14.03.22:** - Add symlinks for theme support.
 * **11.07.21:** - Rebase to Alpine 3.14.
 * **12.01.21:** - Remove unused requirement, as of release 0.31.0.
 * **17.12.20:** - Make APP_URL var required (upstream changes).
