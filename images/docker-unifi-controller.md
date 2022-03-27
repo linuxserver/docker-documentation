@@ -71,10 +71,10 @@ services:
     volumes:
       - <path to data>:/config
     ports:
+      - 8443:8443
       - 3478:3478/udp
       - 10001:10001/udp
       - 8080:8080
-      - 8443:8443
       - 1900:1900/udp #optional
       - 8843:8843 #optional
       - 8880:8880 #optional
@@ -92,10 +92,10 @@ docker run -d \
   -e PGID=1000 \
   -e MEM_LIMIT=1024 `#optional` \
   -e MEM_STARTUP=1024 `#optional` \
+  -p 8443:8443 \
   -p 3478:3478/udp \
   -p 10001:10001/udp \
   -p 8080:8080 \
-  -p 8443:8443 \
   -p 1900:1900/udp `#optional` \
   -p 8843:8843 `#optional` \
   -p 8880:8880 `#optional` \
@@ -114,10 +114,10 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :----: | --- |
+| `8443` | Unifi web admin port |
 | `3478/udp` | Unifi STUN port |
 | `10001/udp` | Required for AP discovery |
 | `8080` | Required for device communication |
-| `8443` | Unifi web admin port |
 | `1900/udp` | Required for `Make controller discoverable on L2 network` option |
 | `8843` | Unifi guest portal HTTPS redirect port |
 | `8880` | Unifi guest portal HTTP redirect port |
