@@ -90,9 +90,9 @@ services:
       - /path/to/appdata/config:/config
       - /path/to/downloads:/downloads
     ports:
+      - 8080:8080
       - 6881:6881
       - 6881:6881/udp
-      - 8080:8080
     restart: unless-stopped
 ```
 
@@ -105,9 +105,9 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -e WEBUI_PORT=8080 \
+  -p 8080:8080 \
   -p 6881:6881 \
   -p 6881:6881/udp \
-  -p 8080:8080 \
   -v /path/to/appdata/config:/config \
   -v /path/to/downloads:/downloads \
   --restart unless-stopped \
@@ -122,9 +122,9 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :----: | --- |
+| `8080` | WebUI |
 | `6881` | tcp connection port |
 | `6881/udp` | udp connection port |
-| `8080` | http gui |
 
 ### Environment Variables (`-e`)
 
