@@ -37,6 +37,8 @@ The architectures supported by this image are:
 
 To configure WebGrab+Plus follow the [documentation](http://www.webgrabplus.com/documentation/configuration/)
 
+**Please note that depending on your host this container may not work with the `no-new-privileges=true` security-opt.**
+
 Note that there are some things in the guide that does not apply to this container. Below you can find the changes.
 
 **The configuration files are found where your config volume is mounted.**
@@ -178,6 +180,8 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.03.22:** - Rebase to Alpine 3.15.
+* **23.03.22:** - Update to use dotnet instead of mono.
 * **06.01.22:** - Rebase to Ubuntu focal. Enable auto builds on version updates (beta and stable).
 * **17.12.21:** - Update to version 3.2.2 beta.
 * **05.08.21:** - Update to version 3.2.1 beta.
