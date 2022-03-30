@@ -19,7 +19,7 @@ title: pydio
 
 Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `ghcr.io/linuxserver/pydio` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/pydio` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
@@ -43,7 +43,7 @@ Compatible with docker-compose v2 schemas.
 version: "2.1"
 services:
   pydio:
-    image: ghcr.io/linuxserver/pydio
+    image: lscr.io/linuxserver/pydio
     container_name: pydio
     environment:
       - PUID=1000
@@ -69,7 +69,7 @@ docker run -d \
   -v <path to data>:/config \
   -v <path to data>:/data \
   --restart unless-stopped \
-  ghcr.io/linuxserver/pydio
+  lscr.io/linuxserver/pydio
 ```
 
 
@@ -161,7 +161,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' pydio`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' ghcr.io/linuxserver/pydio`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/pydio`
 
 ## Versions
 

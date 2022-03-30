@@ -54,7 +54,7 @@ To help you get started creating a container from this image you can either use 
 version: "3"
 services:
   mariadb:
-    image: ghcr.io/linuxserver/mariadb:latest
+    image: lscr.io/linuxserver/mariadb:latest
     container_name: lychee_mariadb
     restart: always
     volumes:
@@ -68,7 +68,7 @@ services:
       - PUID=1000
       - TZ=Europe/London
   lychee:
-    image: ghcr.io/linuxserver/lychee:latest
+    image: lscr.io/linuxserver/lychee:latest
     container_name: lychee
     restart: always
     depends_on:

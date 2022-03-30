@@ -46,7 +46,7 @@ Find us at:
 
 Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `ghcr.io/linuxserver/musicbrainz` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/musicbrainz` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
@@ -70,7 +70,7 @@ Compatible with docker-compose v2 schemas.
 version: "2.1"
 services:
   musicbrainz:
-    image: ghcr.io/linuxserver/musicbrainz
+    image: lscr.io/linuxserver/musicbrainz
     container_name: musicbrainz
     environment:
       - PUID=1000
@@ -102,7 +102,7 @@ docker run -d \
   -v </path/to/appdata/config>:/config \
   -v </path/to/appdata/config>:/data \
   --restart unless-stopped \
-  ghcr.io/linuxserver/musicbrainz
+  lscr.io/linuxserver/musicbrainz
 ```
 
 
@@ -178,7 +178,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' musicbrainz`
 * image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' ghcr.io/linuxserver/musicbrainz`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/musicbrainz`
 
 ## Updating Info
 
@@ -194,7 +194,7 @@ Below are the instructions for updating containers:
 * You can also remove the old dangling images: `docker image prune`
 
 ### Via Docker Run
-* Update the image: `docker pull ghcr.io/linuxserver/musicbrainz`
+* Update the image: `docker pull lscr.io/linuxserver/musicbrainz`
 * Stop the running container: `docker stop musicbrainz`
 * Delete the container: `docker rm musicbrainz`
 * Recreate a new container with the same docker run parameters as instructed above (if mapped correctly to a host folder, your `/config` folder and settings will be preserved)
@@ -224,7 +224,7 @@ cd docker-musicbrainz
 docker build \
   --no-cache \
   --pull \
-  -t ghcr.io/linuxserver/musicbrainz:latest .
+  -t lscr.io/linuxserver/musicbrainz:latest .
 ```
 
 The ARM variants can be built on x86_64 hardware using `multiarch/qemu-user-static`

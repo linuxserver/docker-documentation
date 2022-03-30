@@ -14,7 +14,7 @@ Expects to run as part of the LSIO CI process. Not for public consumption.
 docker run --rm \
   -e CONTAINER_NAME=${CONTAINER_NAME} \
   -v ${TEMPDIR}:/ansible/jenkins \
-  ghcr.io/linuxserver/jenkins-builder:latest
+  lscr.io/linuxserver/jenkins-builder:latest
 ```
 
 ## Running against local project
@@ -22,12 +22,12 @@ docker run --rm \
 If you need to test functionality just navigate to the folder with the jenkins-vars.yml and run:
 
 ```shell
-docker pull ghcr.io/linuxserver/jenkins-builder:latest && \
+docker pull lscr.io/linuxserver/jenkins-builder:latest && \
 docker run --rm \
   -v $(pwd):/tmp \
   -e LOCAL=true \
   -e PUID=$(id -u) -e PGID=$(id -g) \
-  ghcr.io/linuxserver/jenkins-builder:latest && \
+  lscr.io/linuxserver/jenkins-builder:latest && \
 rm -rf .jenkins-external
 ```
 
@@ -43,7 +43,7 @@ cd docker-jenkins-builder
 docker build \
   --no-cache \
   --pull \
-  -t ghcr.io/linuxserver/jenkins-builder:latest .
+  -t lscr.io/linuxserver/jenkins-builder:latest .
 ```
 
 The ARM variants can be built on x86_64 hardware using `multiarch/qemu-user-static`
