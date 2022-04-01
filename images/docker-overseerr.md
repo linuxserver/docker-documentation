@@ -162,6 +162,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **01.04.22:** - Rebase main branch to Alpine 3.15.
 * **27.01.22:** - Rebase develop branch to Alpine 3.15.
 * **04.01.22:** - Remove cached files.
 * **10.10.21:** - Add additional post-build cleanup.
