@@ -183,6 +183,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **31.03.22:** - Install pycups.
 * **07.03.22:** - Install PySwitchbot.
 * **02.03.22:** - Update pip and use legacy resolver, clean up temp python files, reduce image size.
 * **04.02.22:** - Always compile grpcio on arm32v7 due to pypi pushing a glibc only wheel.
