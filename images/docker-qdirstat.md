@@ -162,5 +162,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **06.04.22:** - Add xfce terminal.
 * **13.01.22:** - Compile from source.
 * **11.01.22:** - Initial release.
