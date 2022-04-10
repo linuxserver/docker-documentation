@@ -122,6 +122,7 @@ services:
       - PEERDNS=auto #optional
       - INTERNAL_SUBNET=10.13.13.0 #optional
       - ALLOWEDIPS=0.0.0.0/0 #optional
+      - LOG_CONFS=true #optional
     volumes:
       - /path/to/appdata/config:/config
       - /lib/modules:/lib/modules
@@ -148,6 +149,7 @@ docker run -d \
   -e PEERDNS=auto `#optional` \
   -e INTERNAL_SUBNET=10.13.13.0 `#optional` \
   -e ALLOWEDIPS=0.0.0.0/0 `#optional` \
+  -e LOG_CONFS=true `#optional` \
   -p 51820:51820/udp \
   -v /path/to/appdata/config:/config \
   -v /lib/modules:/lib/modules \
@@ -179,6 +181,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PEERDNS=auto` | DNS server set in peer/client configs (can be set as `8.8.8.8`). Used in server mode. Defaults to `auto`, which uses wireguard docker host's DNS via included CoreDNS forward. |
 | `INTERNAL_SUBNET=10.13.13.0` | Internal subnet for the wireguard and server and peers (only change if it clashes). Used in server mode. |
 | `ALLOWEDIPS=0.0.0.0/0` | The IPs/Ranges that the peers will be able to reach using the VPN connection. If not specified the default value is: '0.0.0.0/0, ::0/0' This will cause ALL traffic to route through the VPN, if you want split tunneling, set this to only the IPs you would like to use the tunnel AND the ip of the server's WG ip, such as 10.13.13.1. |
+| `LOG_CONFS=true` | Generated QR codes will be displayed in the docker log. Set to `false` to skip log output. |
 
 ### Volume Mappings (`-v`)
 
@@ -242,6 +245,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **10.04.22:** - Rebase to Ubuntu Focal. Add `LOG_CONFS` env var. Remove deprecated `add-peer` command.
 * **28.10.21:** - Add site-to-site vpn support.
 * **11.02.21:** - Fix bug related to changing internal subnet and named peer confs not updating.
 * **06.10.20:** - Disable CoreDNS in client mode, or if port 53 is already in use in server mode.
