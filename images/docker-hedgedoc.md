@@ -204,6 +204,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **10.04.22:** - Use python3 to build node sqlite3.
 * **10.02.22:** - Rebase to Alpine 3.15.
 * **09.02.22:** - Add optional var `CMD_PORT` that is needed for accessing at port other than 80, 443 and 3000.
 * **09.12.21:** - Add optional var `CMD_PROTOCOL_USESSL` that is needed for reverse proxy.
