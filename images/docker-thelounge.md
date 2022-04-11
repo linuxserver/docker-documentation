@@ -36,18 +36,30 @@ The architectures supported by this image are:
 ## Application Setup
 
 * When the application first runs, it will populate its /config
+
 * Stop the container
+
 * Now from the host, edit `/config/config.js`, wherever you've mapped it
+
 * In most cases you want the value `public: false` to allow named users only
+
 * Setting the two prefetch values to true improves usability, but uses more storage
+
 * Once you have the configuration you want, save it and start the container again
+
 * For each user, run the command
+
 * `docker exec -it thelounge s6-setuidgid abc thelounge add <user>`
+
 * You will be prompted to enter a password that will not be echoed.
+
 * Saving logs to disk is the default, this consumes more space but allows scrollback.
+
 * To log in to the application, browse to `http://<hostip>:9000`
+
 * You should now be prompted for a username and password on the webinterface.
-* Once logged in, you can add an IRC network. Some defaults are preset for Freenode.
+
+* Once logged in, you can add an IRC network. Some defaults are preset for Freenode
 
 ## Usage
 
@@ -165,6 +177,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **11.04.22:** - Rebasing to alpine 3.15 and switching from python2-dev to python3-dev for building node sqlite on arm.
 * **23.01.21:** - Rebasing to alpine 3.13.
 * **02.06.20:** - Rebasing to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.
