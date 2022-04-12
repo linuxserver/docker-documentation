@@ -207,6 +207,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.04.22:** - Don't build development elements.
 * **02.03.22:** - Rework init logic, do not show default compose.
 * **29.06.21:** - Rebasing to alpine 3.14.
 * **30.04.21:** - Rebasing to alpine 3.13, add artisan migrate on spinup.
