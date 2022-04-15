@@ -156,4 +156,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **04.15.22:** - Added NPM command to run db migrations.
 * **02.05.22:** - Initial Release.
