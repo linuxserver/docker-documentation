@@ -29,6 +29,8 @@ echo "**** installing ffmpeg ****"
 apk add --no-cache ffmpeg
 ```
 
+**NOTE:** The folder `/config/custom-cont-init.d` needs to be owned by root! If this is not the case, this folder will be renamed and a new (empty) folder will be created. This is to prevent remote code execution by putting scripts in the aforementioned folder.
+
 ## Custom Services
 
 There might also be a need to run an additional service in a container alongside what we already package. Similarly to the custom scripts, just create a new directory at `/config/custom-services.d`. The files in this directory should be named after the service they will be running.
@@ -42,6 +44,8 @@ Running cron in our containers is now as simple as a single file. Drop this scri
 ```
 
 **NOTE:** With this example, you will most likely need to have cron installed via a custom script using the technique in the previous section, and will need to populate the crontab.
+
+**NOTE:** The folder `/config/custom-services.d` needs to be owned by root! If this is not the case, this folder will be renamed and a new (empty) folder will be created. This is to prevent remote code execution by putting scripts in the aforementioned folder.
 
 ## Docker Mods
 
