@@ -245,6 +245,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.04.22:** - Add pre-shared key support. Automatically added to all new peer confs generated, existing ones are left without to ensure no breaking changes.
 * **10.04.22:** - Rebase to Ubuntu Focal. Add `LOG_CONFS` env var. Remove deprecated `add-peer` command.
 * **28.10.21:** - Add site-to-site vpn support.
 * **11.02.21:** - Fix bug related to changing internal subnet and named peer confs not updating.
