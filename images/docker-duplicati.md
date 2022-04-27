@@ -171,6 +171,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **25.04.22:** - Rebase to mono:focal.
 * **01.08.19:** - Rebase to Linuxserver LTS mono version.
 * **16.07.19:** - Allow for additional command line arguments in an environment variable.
 * **28.06.19:** - Rebase to bionic.
