@@ -133,7 +133,7 @@ Defining the containers running on your server as code is a core tenet of a "Dev
 
 If you would like to request support, you can do so on [our forum](https://discourse.linuxserver.io/) or on [our discord server](https://discord.gg/YWrKVTn?target=_blank). When you do so, please provide all the necessary information like the server and platform info, docker container log and the compose yaml.
 
-If your compose yaml makes use of `.env`, please post an output of `docker compose convert` or `docker compose convert -f /path/to/compose.yml` as it will automatically replace the environment variables with their actual values.
+If your compose yaml makes use of `.env`, please post an output of `docker compose convert` or `docker compose convert -f /path/to/compose.yml` for the entire yaml, or `docker compose convert <service name>` for a single service, as it will automatically replace the environment variables with their actual values.
 
 ## Tips & Tricks
 
