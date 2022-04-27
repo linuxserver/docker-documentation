@@ -129,6 +129,12 @@ Similarly, if you edit the contents of the yaml file and re-issue `docker compos
 
 Defining the containers running on your server as code is a core tenet of a "Devops" approach to the world. Constructing elaborate `docker run` commands and then forgetting which variables you passed is a thing of the past when using `docker compose`.
 
+## Support Requests
+
+If you would like to request support, you can do so on [our forum](https://discourse.linuxserver.io/) or on [our discord server](https://discord.gg/YWrKVTn?target=_blank). When you do so, please provide all the necessary information like the server and platform info, docker container log and the compose yaml.
+
+If your compose yaml makes use of `.env`, please post an output of `docker compose convert` or `docker compose convert -f /path/to/compose.yml` as it will automatically replace the environment variables with their actual values.
+
 ## Tips & Tricks
 
 `docker compose` expects a `docker-compose.yml` file in the current directory and if one isn't present it will complain. In order to improve your quality of life we suggest the use of bash aliases. The file path for the aliases below assumes that the `docker-compose.yml` file is being kept in the folder `/opt`. If your compose file is kept somewhere else, like in a home directory, then the path will need to be changed.
