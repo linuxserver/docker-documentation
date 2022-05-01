@@ -71,7 +71,6 @@ services:
       - SONARR__API=<sonarr__api>
       - SONARR__URL=http://localhost:8989
       - DISCORD__MAX_RESULTS=25 #optional
-      - DISCORD__ROLE_ID=<not_set_by_default> #optional
       - DISCORD__REQUESTED_MSG_STYLE=:plain #optional
       - SONARR__QUALITY_PROFILE=<not_set_by_default> #optional
       - RADARR__QUALITY_PROFILE=<not_set_by_default> #optional
@@ -103,7 +102,6 @@ docker run -d \
   -e SONARR__API=<sonarr__api> \
   -e SONARR__URL=http://localhost:8989 \
   -e DISCORD__MAX_RESULTS=25 `#optional` \
-  -e DISCORD__ROLE_ID=<not_set_by_default> `#optional` \
   -e DISCORD__REQUESTED_MSG_STYLE=:plain `#optional` \
   -e SONARR__QUALITY_PROFILE=<not_set_by_default> `#optional` \
   -e RADARR__QUALITY_PROFILE=<not_set_by_default> `#optional` \
@@ -143,7 +141,6 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `SONARR__API=<sonarr__api>` | Specify your Sonarr API key. Leave blank if using Overseerr. |
 | `SONARR__URL=http://localhost:8989` | Specify your Sonarr URL. Leave blank if using Overseerr. |
 | `DISCORD__MAX_RESULTS=25` | Sets the maximum size of the search results selection |
-| `DISCORD__ROLE_ID=<not_set_by_default>` | The discord role id for users of the bot (omitting this lets everyone on the server use the bot) |
 | `DISCORD__REQUESTED_MSG_STYLE=:plain` | Sets the style of the request alert message. One of `:plain` `:embed` `:none` |
 | `SONARR__QUALITY_PROFILE=<not_set_by_default>` | The name of the quality profile to use by default for Sonarr |
 | `RADARR__QUALITY_PROFILE=<not_set_by_default>` | The name of the quality profile to use by default for Radarr |
@@ -215,5 +212,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **01.05.22:** - Remove `DISCORD__ROLE_ID` environment variable, see [Permissions Configuration](https://github.com/kiranshila/Doplarr/blob/main/docs/configuration.md#permissions).
 * **30.01.22:** - Variable adjustments.
 * **30.01.22:** - Initial Release.
