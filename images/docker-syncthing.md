@@ -171,6 +171,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **03.05.21:** - Rebase to alpine 3.15 (builds on edge for go 1.18).
 * **05.10.21:** - Rebase to alpine 3.14.
 * **12.05.21:** - Remove sysctl parameter again
 * **03.05.21:** - Raise maximum UDP buffer size.
