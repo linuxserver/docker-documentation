@@ -23,19 +23,26 @@ title: pydio-cells
 
 We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/pydio-cells` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/pydio-cells:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ❌ | |
+| armhf| ❌ | |
 
 ## Application Setup
 
 You must first create a mysql database for Pydio Cells. Using our [mariadb image](https://hub.docker.com/r/linuxserver/mariadb) is recommended.  
 
 Then access the web gui setup wizard at `https://SERVER_IP:8080` if accessing locally (must set `SERVER_IP` env var), or at `https://pydio-cells.domain.com` if reverse proxying.
+
+### Strict reverse proxies
+
+This image uses a self-signed certificate by default. This naturally means the scheme is `https`.
+If you are using a reverse proxy which validates certificates, you need to [disable this check for the container](https://docs.linuxserver.io/faq#strict-proxy).
 
 ## Usage
 
@@ -48,7 +55,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   pydio-cells:
-    image: lscr.io/linuxserver/pydio-cells
+    image: lscr.io/linuxserver/pydio-cells:latest
     container_name: pydio-cells
     hostname: pydio-cells
     environment:
@@ -80,7 +87,7 @@ docker run -d \
   -p 33060:33060 `#optional` \
   -v /path/to/appdata/config:/config \
   --restart unless-stopped \
-  lscr.io/linuxserver/pydio-cells
+  lscr.io/linuxserver/pydio-cells:latest
 ```
 
 ## Parameters
@@ -161,7 +168,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' pydio-cells`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/pydio-cells`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/pydio-cells:latest`
 
 ## Versions
 
