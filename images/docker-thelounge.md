@@ -21,27 +21,27 @@ title: thelounge
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/thelounge` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/thelounge:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Version Tags
 
-This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
+This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
 
-| Tag | Description |
-| :----: | --- |
-| latest | Stable releases. |
-| next | Next Pre-Releases. |
-| nightly | Nightly images from commits in master. |
+| Tag | Available | Description |
+| :----: | :----: |--- |
+| latest | ✅ | Stable releases. |
+| next | ✅ | Next Pre-Releases. |
+| nightly | ✅ | Nightly images from commits in master. |
 
 ## Application Setup
 
@@ -82,7 +82,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   thelounge:
-    image: lscr.io/linuxserver/thelounge
+    image: lscr.io/linuxserver/thelounge:latest
     container_name: thelounge
     environment:
       - PUID=1000
@@ -106,7 +106,7 @@ docker run -d \
   -p 9000:9000 \
   -v </path/to/appdata/config>:/config \
   --restart unless-stopped \
-  lscr.io/linuxserver/thelounge
+  lscr.io/linuxserver/thelounge:latest
 ```
 
 ## Parameters
@@ -183,7 +183,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' thelounge`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/thelounge`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/thelounge:latest`
 
 ## Versions
 
