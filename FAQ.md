@@ -2,6 +2,28 @@
 
 Here will some Frequently Asked Questions reside
 
+## My host is incompatible with images based on Ubuntu Jammy {#jammy}
+
+Some x86_64 hosts running older versions of the Docker engine are not compatible with some images based on Ubuntu Jammy.
+
+### Symptoms
+
+If your host is affected you may see errors in your containers such as:
+
+```shell
+ERROR - Unable to determine java version; make sure Java is installed and callable
+```
+
+Or
+
+```shell
+Failed to create CoreCLR, HRESULT: 0x80070008
+```
+
+### Resolution
+
+Upgrade your Docker engine install to at least version `20.10.10`. [Refer to the official Docker docs for installation/update details.](https://docs.docker.com/engine/install)
+
 ## My host is incompatible with images based on Ubuntu Focal and Alpine 3.13 and later {#libseccomp}
 
 This only affects 32 bit installs of distros based on Debian Buster.
