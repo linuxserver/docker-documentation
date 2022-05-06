@@ -20,9 +20,30 @@ Or
 Failed to create CoreCLR, HRESULT: 0x80070008
 ```
 
+Or
+
+```shell
+WARNING :: MAIN : webStart.py:initialize:249 : can't start new thread
+```
+
 ### Resolution
 
+#### Option 1 (Long-Term Fix)
+
 Upgrade your Docker engine install to at least version `20.10.10`. [Refer to the official Docker docs for installation/update details.](https://docs.docker.com/engine/install)
+
+#### Option 2 (Short-Term Fix)
+
+For Docker CLI, run your container with:
+
+`--security-opt seccomp=unconfined`
+
+For Docker Compose, run your container with:
+
+```yaml
+    security_opt:
+      - seccomp=unconfined
+```
 
 ## My host is incompatible with images based on Ubuntu Focal and Alpine 3.13 and later {#libseccomp}
 
