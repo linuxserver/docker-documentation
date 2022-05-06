@@ -181,6 +181,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **06.05.22:** - Rebase develop branch to Alpine.
 * **04.02.22:** - Rebase nightly branch to Alpine, deprecate nightly-alpine branch.
 * **30.12.21:** - Add nightly-alpine branch.
 * **01.08.21:** - Add libchromaprint-tools.
