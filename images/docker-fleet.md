@@ -167,6 +167,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **02.05.22:** - Rebase to Alpine 3.15.
 * **13.12.21:** - Add mitigations for CVE-2021-44228
 * **26.04.20:** - Updated to keep in line with v2.0.0 branch of Fleet
 * **19.12.19:** - Rebasing to alpine 3.11.
