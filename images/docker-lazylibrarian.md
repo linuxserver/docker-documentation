@@ -182,6 +182,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **07.05.22:** - Rebase to Ubuntu Focal.
 * **22.05.21:** - Make the paths clearer to the user, remove optional volume.
 * **17.05.21:** - Add linuxserver wheel index.
 * **23.10.19:** - Changed gitlab download link.
