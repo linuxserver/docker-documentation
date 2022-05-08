@@ -183,6 +183,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **07.05.22:** - Build matplotlib with the same Numpy version as HA req.
 * **31.03.22:** - Install pycups.
 * **07.03.22:** - Install PySwitchbot.
 * **02.03.22:** - Update pip and use legacy resolver, clean up temp python files, reduce image size.
