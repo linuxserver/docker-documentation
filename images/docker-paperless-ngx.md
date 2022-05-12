@@ -161,6 +161,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.05.22:** - Utilize lsio wheel for pikepdf.
 * **11.05.22:** - Update upstream artifact name and utilize lsio wheels for scipy and scikit-learn.
 * **05.05.22:** - Add runtime dependencies libxslt1.1 for armhf
 * **30.04.22:** - Add runtime dependencies lizbar and poppler-utils
