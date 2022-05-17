@@ -161,6 +161,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **16.05.22:** - Add correct libqpdf.so to arm builds.
 * **14.05.22:** - Fine tune disabling of redis.
 * **12.05.22:** - Move migrations to after multilangocr mod. Fix disabling of redis. Add missing dep for postgresql.
 * **12.05.22:** - Utilize lsio wheel for pikepdf.
