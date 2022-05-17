@@ -236,6 +236,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **16.05.22:** - Pin opencl version.
 * **04.03.22:** - Increase verbosity of video device permissions fix, attempt to fix missing group rw.
 * **25.12.21:** - Install Intel drivers from the official repo.
 * **20.01.21:** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information.
