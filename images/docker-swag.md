@@ -269,6 +269,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **18.05.22:** - Added support for Azure DNS validation.
 * **09.04.22:** - Added certbot-dns-loopia for DNS01 validation.
 * **05.04.22:** - Added support for standalone DNS validation.
 * **28.03.22:** - created a logfile for fail2ban nginx-unauthorized in /etc/cont-init.d/50-config
