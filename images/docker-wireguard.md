@@ -20,17 +20,17 @@ title: wireguard
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/wireguard` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/wireguard:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -107,7 +107,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   wireguard:
-    image: lscr.io/linuxserver/wireguard
+    image: lscr.io/linuxserver/wireguard:latest
     container_name: wireguard
     cap_add:
       - NET_ADMIN
@@ -122,6 +122,7 @@ services:
       - PEERDNS=auto #optional
       - INTERNAL_SUBNET=10.13.13.0 #optional
       - ALLOWEDIPS=0.0.0.0/0 #optional
+      - LOG_CONFS=true #optional
     volumes:
       - /path/to/appdata/config:/config
       - /lib/modules:/lib/modules
@@ -148,12 +149,13 @@ docker run -d \
   -e PEERDNS=auto `#optional` \
   -e INTERNAL_SUBNET=10.13.13.0 `#optional` \
   -e ALLOWEDIPS=0.0.0.0/0 `#optional` \
+  -e LOG_CONFS=true `#optional` \
   -p 51820:51820/udp \
   -v /path/to/appdata/config:/config \
   -v /lib/modules:/lib/modules \
   --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
   --restart unless-stopped \
-  lscr.io/linuxserver/wireguard
+  lscr.io/linuxserver/wireguard:latest
 ```
 
 ## Parameters
@@ -179,6 +181,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PEERDNS=auto` | DNS server set in peer/client configs (can be set as `8.8.8.8`). Used in server mode. Defaults to `auto`, which uses wireguard docker host's DNS via included CoreDNS forward. |
 | `INTERNAL_SUBNET=10.13.13.0` | Internal subnet for the wireguard and server and peers (only change if it clashes). Used in server mode. |
 | `ALLOWEDIPS=0.0.0.0/0` | The IPs/Ranges that the peers will be able to reach using the VPN connection. If not specified the default value is: '0.0.0.0/0, ::0/0' This will cause ALL traffic to route through the VPN, if you want split tunneling, set this to only the IPs you would like to use the tunnel AND the ip of the server's WG ip, such as 10.13.13.1. |
+| `LOG_CONFS=true` | Generated QR codes will be displayed in the docker log. Set to `false` to skip log output. |
 
 ### Volume Mappings (`-v`)
 
@@ -192,6 +195,12 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Parameter | Function |
 | :-----:   | --- |
 | `--sysctl=` | Required for client mode. |
+
+### Portainer notice
+
+{% hint style="warning" %}
+This image utilises `cap_add` or `sysctl` to work properly. This is not implemented properly in some versions of Portainer, thus this image may not work if deployed through Portainer.
+{% endhint %}
 
 ## Environment variables from files (Docker secrets)
 
@@ -238,10 +247,13 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' wireguard`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/wireguard`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/wireguard:latest`
 
 ## Versions
 
+* **16.05.22:** - Improve NAT handling in server mode when multiple ethernet devices are present.
+* **23.04.22:** - Add pre-shared key support. Automatically added to all new peer confs generated, existing ones are left without to ensure no breaking changes.
+* **10.04.22:** - Rebase to Ubuntu Focal. Add `LOG_CONFS` env var. Remove deprecated `add-peer` command.
 * **28.10.21:** - Add site-to-site vpn support.
 * **11.02.21:** - Fix bug related to changing internal subnet and named peer confs not updating.
 * **06.10.20:** - Disable CoreDNS in client mode, or if port 53 is already in use in server mode.

@@ -21,17 +21,17 @@ title: babybuddy
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/babybuddy` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/babybuddy:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -50,10 +50,11 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   babybuddy:
-    image: lscr.io/linuxserver/babybuddy
+    image: lscr.io/linuxserver/babybuddy:latest
     container_name: babybuddy
     environment:
       - TZ=Europe/London
+      - CSRF_TRUSTED_ORIGINS=http://127.0.0.1:8000,https://babybuddy.domain.com
     volumes:
       - /path/to/appdata:/config
     ports:
@@ -67,10 +68,11 @@ services:
 docker run -d \
   --name=babybuddy \
   -e TZ=Europe/London \
+  -e CSRF_TRUSTED_ORIGINS=http://127.0.0.1:8000,https://babybuddy.domain.com \
   -p 8000:8000 \
   -v /path/to/appdata:/config \
   --restart unless-stopped \
-  lscr.io/linuxserver/babybuddy
+  lscr.io/linuxserver/babybuddy:latest
 ```
 
 ## Parameters
@@ -88,6 +90,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Env | Function |
 | :----: | --- |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
+| `CSRF_TRUSTED_ORIGINS=http://127.0.0.1:8000,https://babybuddy.domain.com` | Add any address you'd like to access babybuddy at (comma separated, no spaces) |
 
 ### Volume Mappings (`-v`)
 
@@ -132,10 +135,11 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' babybuddy`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/babybuddy`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/babybuddy:latest`
 
 ## Versions
 
+* **03.04.22:** - Rebase to alpine-nginx baseimage. Add `CSRF_TRUSTED_ORIGINS` env var.
 * **11.12.21:** - Add py3-mysqlclient for mysql/mariadb.
 * **14.11.21:** - Add lxml dependencies (temp fix for amd64 by force compiling lxml).
 * **25.07.21:** - Add libpq for postgresql.

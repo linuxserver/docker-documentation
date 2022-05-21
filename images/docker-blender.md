@@ -21,17 +21,17 @@ title: blender
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/blender` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/blender:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -67,6 +67,8 @@ We automatically add the necessary environment variable that will utilise all th
 
 Arm devices can run this image, but generally should not mount in /dev/dri. The OpenGL ES version is not high enough to run Blender. The program can run on these platforms though, leveraging CPU LLVMPipe rendering.
 
+Due to lack of arm32/64 binaries from the upstream project, our arm32/64 images install the latest version from the ubuntu repo, which is usually behind and thus the version the image is tagged with does not match the version contained.
+
 #### Keyboard Layouts
 
 This should match the layout on the computer you are accessing the container from.
@@ -96,7 +98,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   blender:
-    image: lscr.io/linuxserver/blender
+    image: lscr.io/linuxserver/blender:latest
     container_name: blender
     security_opt:
       - seccomp:unconfined #optional
@@ -130,7 +132,7 @@ docker run -d \
   -v /path/to/config:/config \
   --device /dev/dri:/dev/dri `#optional` \
   --restart unless-stopped \
-  lscr.io/linuxserver/blender
+  lscr.io/linuxserver/blender:latest
 ```
 
 ## Parameters
@@ -216,8 +218,9 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' blender`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/blender`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/blender:latest`
 
 ## Versions
 
+* **06.05.22:** - Use the full semver version in image tags. Arm32/64 version tags are inaccurate due to installing from ubuntu repo, which is usually behind.
 * **12.03.22:** - Initial Release.

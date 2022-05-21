@@ -21,16 +21,17 @@ title: doplarr
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/doplarr` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/doplarr:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ❌ | |
 
 ## Application Setup
 
@@ -56,7 +57,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   doplarr:
-    image: lscr.io/linuxserver/doplarr
+    image: lscr.io/linuxserver/doplarr:latest
     container_name: doplarr
     environment:
       - PUID=1000
@@ -70,10 +71,11 @@ services:
       - SONARR__API=<sonarr__api>
       - SONARR__URL=http://localhost:8989
       - DISCORD__MAX_RESULTS=25 #optional
-      - DISCORD__ROLE_ID=<not_set_by_default> #optional
       - DISCORD__REQUESTED_MSG_STYLE=:plain #optional
       - SONARR__QUALITY_PROFILE=<not_set_by_default> #optional
       - RADARR__QUALITY_PROFILE=<not_set_by_default> #optional
+      - SONARR__ROOTFOLDER=<not_set_by_default> #optional
+      - RADARR__ROOTFOLDER=<not_set_by_default> #optional
       - SONARR__LANGUAGE_PROFILE=<not_set_by_default> #optional
       - OVERSEERR__DEFAULT_ID=<not_set_by_default> #optional
       - PARTIAL_SEASONS=true #optional
@@ -100,10 +102,11 @@ docker run -d \
   -e SONARR__API=<sonarr__api> \
   -e SONARR__URL=http://localhost:8989 \
   -e DISCORD__MAX_RESULTS=25 `#optional` \
-  -e DISCORD__ROLE_ID=<not_set_by_default> `#optional` \
   -e DISCORD__REQUESTED_MSG_STYLE=:plain `#optional` \
   -e SONARR__QUALITY_PROFILE=<not_set_by_default> `#optional` \
   -e RADARR__QUALITY_PROFILE=<not_set_by_default> `#optional` \
+  -e SONARR__ROOTFOLDER=<not_set_by_default> `#optional` \
+  -e RADARR__ROOTFOLDER=<not_set_by_default> `#optional` \
   -e SONARR__LANGUAGE_PROFILE=<not_set_by_default> `#optional` \
   -e OVERSEERR__DEFAULT_ID=<not_set_by_default> `#optional` \
   -e PARTIAL_SEASONS=true `#optional` \
@@ -111,7 +114,7 @@ docker run -d \
   -e JAVA_OPTS=<not_set_by_default> `#optional` \
   -v </path/to/appdata/config>:/config \
   --restart unless-stopped \
-  lscr.io/linuxserver/doplarr
+  lscr.io/linuxserver/doplarr:latest
 ```
 
 ## Parameters
@@ -138,11 +141,12 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `SONARR__API=<sonarr__api>` | Specify your Sonarr API key. Leave blank if using Overseerr. |
 | `SONARR__URL=http://localhost:8989` | Specify your Sonarr URL. Leave blank if using Overseerr. |
 | `DISCORD__MAX_RESULTS=25` | Sets the maximum size of the search results selection |
-| `DISCORD__ROLE_ID=<not_set_by_default>` | The discord role id for users of the bot (omitting this lets everyone on the server use the bot) |
 | `DISCORD__REQUESTED_MSG_STYLE=:plain` | Sets the style of the request alert message. One of `:plain` `:embed` `:none` |
 | `SONARR__QUALITY_PROFILE=<not_set_by_default>` | The name of the quality profile to use by default for Sonarr |
 | `RADARR__QUALITY_PROFILE=<not_set_by_default>` | The name of the quality profile to use by default for Radarr |
-| `SONARR__LANGUAGE_PROFILE=<not_set_by_default>` | The name of the language profile to use by default for Radarr |
+| `SONARR__ROOTFOLDER=<not_set_by_default>` | The root folder to use by default for Sonarr |
+| `RADARR__ROOTFOLDER=<not_set_by_default>` | The root folder to use by default for Radarr |
+| `SONARR__LANGUAGE_PROFILE=<not_set_by_default>` | The name of the language profile to use by default for Sonarr |
 | `OVERSEERR__DEFAULT_ID=<not_set_by_default>` | The Overseerr user id to use by default if there is no associated discord account for the requester |
 | `PARTIAL_SEASONS=true` | Sets whether users can request partial seasons. |
 | `LOG_LEVEL=:info` | The log level for the logging backend. This can be changed for debugging purposes. One of trace `:debug` `:info` `:warn` `:error` `:fatal` `:report` |
@@ -204,9 +208,10 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' doplarr`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/doplarr`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/doplarr:latest`
 
 ## Versions
 
+* **01.05.22:** - Remove `DISCORD__ROLE_ID` environment variable, see [Permissions Configuration](https://github.com/kiranshila/Doplarr/blob/main/docs/configuration.md#permissions).
 * **30.01.22:** - Variable adjustments.
 * **30.01.22:** - Initial Release.

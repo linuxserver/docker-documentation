@@ -21,17 +21,17 @@ SWAG - Secure Web Application Gateway (formerly known as letsencrypt, no relatio
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/swag` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/swag:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -78,11 +78,12 @@ This will *ask* Google et al not to index and list your site. Be careful with th
 
 ### Using fail2ban
 
-* This container includes fail2ban set up with 4 jails by default:
+* This container includes fail2ban set up with 5 jails by default:
   1. nginx-http-auth
   2. nginx-badbots
   3. nginx-botsearch
   4. nginx-deny
+  5. nginx-unauthorized
 * To enable or disable other jails, modify the file `/config/fail2ban/jail.local`
 * To modify filters and actions, instead of editing the `.conf` files, create `.local` files with the same name and edit those because .conf files get overwritten when the actions and filters are updated. `.local` files will append whatever's in the `.conf` files (ie. `nginx-http-auth.conf` --> `nginx-http-auth.local`)
 * You can check which jails are active via `docker exec -it swag fail2ban-client status`
@@ -118,7 +119,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   swag:
-    image: lscr.io/linuxserver/swag
+    image: lscr.io/linuxserver/swag:latest
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -169,7 +170,7 @@ docker run -d \
   -p 80:80 `#optional` \
   -v /path/to/appdata/config:/config \
   --restart unless-stopped \
-  lscr.io/linuxserver/swag
+  lscr.io/linuxserver/swag:latest
 ```
 
 ## Parameters
@@ -194,7 +195,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `VALIDATION=http` | Certbot validation method to use, options are `http`, `dns` or `duckdns` (`dns` method also requires `DNSPLUGIN` variable set) (`duckdns` method requires `DUCKDNSTOKEN` variable set, and the `SUBDOMAINS` variable must be either empty or set to `wildcard`). |
 | `SUBDOMAINS=www,` | Subdomains you'd like the cert to cover (comma separated, no spaces) ie. `www,ftp,cloud`. For a wildcard cert, set this _exactly_ to `wildcard` (wildcard cert is available via `dns` and `duckdns` validation only) |
 | `CERTPROVIDER=` | Optionally define the cert provider. Set to `zerossl` for ZeroSSL certs (requires existing [ZeroSSL account](https://app.zerossl.com/signup) and the e-mail address entered in `EMAIL` env var). Otherwise defaults to Let's Encrypt. |
-| `DNSPLUGIN=cloudflare` | Required if `VALIDATION` is set to `dns`. Options are `aliyun`, `cloudflare`, `cloudxns`, `cpanel`, `desec`, `digitalocean`, `directadmin`, `dnsimple`, `dnsmadeeasy`, `dnspod`, `domeneshop`, `gandi`, `gehirn`, `google`, `he`, `hetzner`, `infomaniak`, `inwx`, `ionos`, `linode`, `luadns`, `netcup`, `njalla`, `nsone`, `ovh`, `rfc2136`, `route53`, `sakuracloud`, `transip` and `vultr`. Also need to enter the credentials into the corresponding ini (or json for some plugins) file under `/config/dns-conf`. |
+| `DNSPLUGIN=cloudflare` | Required if `VALIDATION` is set to `dns`. Options are `aliyun`, `azure`, `cloudflare`, `cloudxns`, `cpanel`, `desec`, `digitalocean`, `directadmin`, `dnsimple`, `dnsmadeeasy`, `dnspod`, `domeneshop`, `gandi`, `gehirn`, `google`, `he`, `hetzner`, `infomaniak`, `inwx`, `ionos`, `linode`, `loopia`, `luadns`, `netcup`, `njalla`, `nsone`, `ovh`, `rfc2136`, `route53`, `sakuracloud`, `standalone`, `transip` and `vultr`. Also need to enter the credentials into the corresponding ini (or json for some plugins) file under `/config/dns-conf`. |
 | `PROPAGATION=` | Optionally override (in seconds) the default propagation time for the dns plugins. |
 | `DUCKDNSTOKEN=` | Required if `VALIDATION` is set to `duckdns`. Retrieve your token from https://www.duckdns.org |
 | `EMAIL=` | Optional e-mail address used for cert expiration notifications (Required for ZeroSSL). |
@@ -212,6 +213,12 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :-----:   | --- |
+
+### Portainer notice
+
+{% hint style="warning" %}
+This image utilises `cap_add` or `sysctl` to work properly. This is not implemented properly in some versions of Portainer, thus this image may not work if deployed through Portainer.
+{% endhint %}
 
 ## Environment variables from files (Docker secrets)
 
@@ -258,10 +265,13 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' swag`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/swag`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/swag:latest`
 
 ## Versions
 
+* **18.05.22:** - Added support for Azure DNS validation.
+* **09.04.22:** - Added certbot-dns-loopia for DNS01 validation.
+* **05.04.22:** - Added support for standalone DNS validation.
 * **28.03.22:** - created a logfile for fail2ban nginx-unauthorized in /etc/cont-init.d/50-config
 * **09.01.22:** - Added a fail2ban jail for nginx unauthorized
 * **21.12.21:** - Fixed issue with iptables not working as expected

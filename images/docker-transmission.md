@@ -21,17 +21,17 @@ title: transmission
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/transmission` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/transmission:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -72,7 +72,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   transmission:
-    image: lscr.io/linuxserver/transmission
+    image: lscr.io/linuxserver/transmission:latest
     container_name: transmission
     environment:
       - PUID=1000
@@ -83,11 +83,11 @@ services:
       - PASS=password #optional
       - WHITELIST=iplist #optional
       - PEERPORT=peerport #optional
-      - HOST_WHITELIST=dnsnane list #optional
+      - HOST_WHITELIST=dnsname list #optional
     volumes:
-      - <path to data>:/config
-      - <path to downloads>:/downloads
-      - <path to watch folder>:/watch
+      - /path/to/data:/config
+      - /path/to/downloads:/downloads
+      - /path/to/watch/folder:/watch
     ports:
       - 9091:9091
       - 51413:51413
@@ -108,15 +108,15 @@ docker run -d \
   -e PASS=password `#optional` \
   -e WHITELIST=iplist `#optional` \
   -e PEERPORT=peerport `#optional` \
-  -e HOST_WHITELIST=dnsnane list `#optional` \
+  -e HOST_WHITELIST=dnsname list `#optional` \
   -p 9091:9091 \
   -p 51413:51413 \
   -p 51413:51413/udp \
-  -v <path to data>:/config \
-  -v <path to downloads>:/downloads \
-  -v <path to watch folder>:/watch \
+  -v /path/to/data:/config \
+  -v /path/to/downloads:/downloads \
+  -v /path/to/watch/folder:/watch \
   --restart unless-stopped \
-  lscr.io/linuxserver/transmission
+  lscr.io/linuxserver/transmission:latest
 ```
 
 ## Parameters
@@ -138,12 +138,12 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
-| `TRANSMISSION_WEB_HOME=/combustion-release/` | Specify an alternative UI options are [`/combustion-release/`](https://github.com/Secretmapper/combustion), [`/transmission-web-control/`](https://github.com/ronggang/transmission-web-control), [`/kettu/`](https://github.com/endor/kettu) and [`/flood-for-transmission/`](https://github.com/johman10/flood-for-transmission). |
+| `TRANSMISSION_WEB_HOME=/combustion-release/` | Specify an alternative UI options are [`/combustion-release/`](https://github.com/Secretmapper/combustion), [`/transmission-web-control/`](https://github.com/ronggang/transmission-web-control), [`/kettu/`](https://github.com/endor/kettu), [`/flood-for-transmission/`](https://github.com/johman10/flood-for-transmission), and [`/transmissionic/`](https://github.com/6c65726f79/Transmissionic). |
 | `USER=username` | Specify an optional username for the interface |
 | `PASS=password` | Specify an optional password for the interface |
-| `WHITELIST=iplist` | Specify an optional list of comma separated ip whitelist. Fill rpc-whitelist setting. |
-| `PEERPORT=peerport` | Specify an optional port for torrent TCP/UDP connections. Fill peer-port setting. |
-| `HOST_WHITELIST=dnsnane list` | Specify an optional list of comma separated dns name whitelist. Fill rpc-host-whitelist setting. |
+| `WHITELIST=iplist` | Specify an optional list of comma separated ip whitelist. Fills rpc-whitelist setting. |
+| `PEERPORT=peerport` | Specify an optional port for torrent TCP/UDP connections. Fills peer-port setting. |
+| `HOST_WHITELIST=dnsname list` | Specify an optional list of comma separated dns name whitelist. Fills rpc-host-whitelist setting. |
 
 ### Volume Mappings (`-v`)
 
@@ -203,10 +203,11 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' transmission`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/transmission`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/transmission:latest`
 
 ## Versions
 
+* **03.04.22:** - Add Transmissionic as a UI option.
 * **21.02.22:** - Build unrar from source, rebase to Alpine 3.15, add symlinks neeeded for TWC. Credit @alexbelgium
 * **09.07.21:** - Wait for the transmission-daemon termination after a caught sigterm.
 * **06.03.21:** - Add Flood for Transmission as a UI option.
@@ -232,7 +233,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * **25.07.17:** - Add rsync package.
 * **27.05.17:** - Rebase to alpine linux 3.6.
 * **06.02.17:** - Rebase to alpine linux 3.5.
-* **15.01.17:** - Add p7zip, tar , unrar and unzip packages.
+* **15.01.17:** - Add p7zip, tar, unrar, and unzip packages.
 * **16.10.16:** - Blocklist autoupdate with optional authentication.
 * **14.10.16:** - Add version layer informationE.
 * **23.09.16:** - Add information about securing the webui to README.

@@ -23,13 +23,16 @@ This internal tool is used as a desktop sandbox in our CI process to grab a scre
 
 We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/tester` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/tester:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ❌ | |
+| armhf| ❌ | |
+
 
 ## Usage
 
@@ -42,7 +45,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   tester:
-    image: lscr.io/linuxserver/tester
+    image: lscr.io/linuxserver/tester:latest
     container_name: tester
     environment:
       - URL=http://google.com
@@ -59,7 +62,7 @@ docker run -d \
   -e URL=http://google.com \
   -p 3000:3000 \
   --restart unless-stopped \
-  lscr.io/linuxserver/tester
+  lscr.io/linuxserver/tester:latest
 ```
 
 ## Parameters
@@ -120,7 +123,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' tester`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/tester`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/tester:latest`
 
 ## Versions
 

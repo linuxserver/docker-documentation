@@ -21,17 +21,17 @@ title: paperless-ngx
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/paperless-ngx` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/paperless-ngx:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -50,7 +50,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   paperless-ngx:
-    image: lscr.io/linuxserver/paperless-ngx
+    image: lscr.io/linuxserver/paperless-ngx:latest
     container_name: paperless-ngx
     environment:
       - PUID=1000
@@ -58,8 +58,8 @@ services:
       - TZ=America/New_York
       - REDIS_URL= #optional
     volumes:
-      - </path/to/appdata/config>:/config
-      - </path/to/appdata/data>:/data
+      - /path/to/appdata/config:/config
+      - /path/to/appdata/data:/data
     ports:
       - 8000:8000
     restart: unless-stopped
@@ -75,10 +75,10 @@ docker run -d \
   -e TZ=America/New_York \
   -e REDIS_URL= `#optional` \
   -p 8000:8000 \
-  -v </path/to/appdata/config>:/config \
-  -v </path/to/appdata/data>:/data \
+  -v /path/to/appdata/config:/config \
+  -v /path/to/appdata/data:/data \
   --restart unless-stopped \
-  lscr.io/linuxserver/paperless-ngx
+  lscr.io/linuxserver/paperless-ngx:latest
 ```
 
 ## Parameters
@@ -157,8 +157,17 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' paperless-ngx`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/paperless-ngx`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/paperless-ngx:latest`
 
 ## Versions
 
+* **16.05.22:** - Add correct libqpdf.so to arm builds.
+* **14.05.22:** - Fine tune disabling of redis.
+* **12.05.22:** - Move migrations to after multilangocr mod. Fix disabling of redis. Add missing dep for postgresql.
+* **12.05.22:** - Utilize lsio wheel for pikepdf.
+* **11.05.22:** - Update upstream artifact name and utilize lsio wheels for scipy and scikit-learn.
+* **05.05.22:** - Add runtime dependencies libxslt1.1 for armhf
+* **30.04.22:** - Add runtime dependencies lizbar and poppler-utils
+* **27.04.22:** - Add build-dependencies for arm32 builds.
+* **11.04.22:** - Replaced uwsgi with gunicorn due to websocket issues.
 * **11.03.22:** - Initial Release.

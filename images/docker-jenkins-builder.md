@@ -10,7 +10,7 @@ Expects to run as part of the LSIO CI process. Not for public consumption.
 
 ## Running against remote project
 
-```shell
+```bash
 docker run --rm \
   -e CONTAINER_NAME=${CONTAINER_NAME} \
   -v ${TEMPDIR}:/ansible/jenkins \
@@ -21,7 +21,7 @@ docker run --rm \
 
 If you need to test functionality just navigate to the folder with the jenkins-vars.yml and run:
 
-```shell
+```bash
 docker pull lscr.io/linuxserver/jenkins-builder:latest && \
 docker run --rm \
   -v $(pwd):/tmp \
@@ -37,7 +37,7 @@ Newly generated files (including `README.md`, `Jenkinsfile`, issue templates, et
 
 If you want to make local modifications to these images for development purposes or just to customize the logic:
 
-```shell
+```bash
 git clone https://github.com/linuxserver/docker-jenkins-builder.git
 cd docker-jenkins-builder
 docker build \
@@ -48,7 +48,7 @@ docker build \
 
 The ARM variants can be built on x86_64 hardware using `multiarch/qemu-user-static`
 
-```shell
+```bash
 docker run --rm --privileged multiarch/qemu-user-static:register --reset
 ```
 

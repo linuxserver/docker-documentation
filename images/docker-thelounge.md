@@ -21,33 +21,55 @@ title: thelounge
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/thelounge` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/thelounge:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
+
+## Version Tags
+
+This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
+
+| Tag | Available | Description |
+| :----: | :----: |--- |
+| latest | ✅ | Stable releases. |
+| next | ✅ | Next Pre-Releases. |
+| nightly | ✅ | Nightly images from commits in master. |
 
 ## Application Setup
 
 * When the application first runs, it will populate its /config
+
 * Stop the container
+
 * Now from the host, edit `/config/config.js`, wherever you've mapped it
+
 * In most cases you want the value `public: false` to allow named users only
+
 * Setting the two prefetch values to true improves usability, but uses more storage
+
 * Once you have the configuration you want, save it and start the container again
+
 * For each user, run the command
+
 * `docker exec -it thelounge s6-setuidgid abc thelounge add <user>`
+
 * You will be prompted to enter a password that will not be echoed.
+
 * Saving logs to disk is the default, this consumes more space but allows scrollback.
+
 * To log in to the application, browse to `http://<hostip>:9000`
+
 * You should now be prompted for a username and password on the webinterface.
-* Once logged in, you can add an IRC network. Some defaults are preset for Freenode.
+
+* Once logged in, you can add an IRC network. Some defaults are preset for Freenode
 
 ## Usage
 
@@ -60,7 +82,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   thelounge:
-    image: lscr.io/linuxserver/thelounge
+    image: lscr.io/linuxserver/thelounge:latest
     container_name: thelounge
     environment:
       - PUID=1000
@@ -84,7 +106,7 @@ docker run -d \
   -p 9000:9000 \
   -v </path/to/appdata/config>:/config \
   --restart unless-stopped \
-  lscr.io/linuxserver/thelounge
+  lscr.io/linuxserver/thelounge:latest
 ```
 
 ## Parameters
@@ -161,10 +183,12 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' thelounge`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/thelounge`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/thelounge:latest`
 
 ## Versions
 
+* **12.04.22:** - Install from source using yarn.
+* **11.04.22:** - Rebasing to alpine 3.15 and switching from python2-dev to python3-dev for building node sqlite on arm.
 * **23.01.21:** - Rebasing to alpine 3.13.
 * **02.06.20:** - Rebasing to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.

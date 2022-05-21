@@ -17,30 +17,31 @@ title: booksonic-air
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-booksonic-air%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-booksonic-air/job/master/)
 [![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.linuxserver.io%2Flinuxserver%2Fbooksonic-air%2Flatest%2Fci-status.yml)](https://ci-tests.linuxserver.io/linuxserver/booksonic-air/latest/index.html)
 
-[Booksonic-air](http://booksonic.org) is a platform for accessing the audiobooks you own wherever you are. At the moment the platform consists of
-Booksonic Air - A server for streaming your audiobooks, successor to the original Booksonic server and based on Airsonic. Booksonic App - An DSub based Android app for connection to Booksonic-Air servers. .
+[Booksonic-air](http://booksonic.org) is a platform for accessing the audiobooks you own wherever you are. At the moment the platform consists of:
+* Booksonic Air - A server for streaming your audiobooks, successor to the original Booksonic server and based on Airsonic.
+* Booksonic App - An DSub based Android app for connection to Booksonic-Air servers.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/booksonic-air` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/booksonic-air:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Version Tags
 
-This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
+This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
 
-| Tag | Description |
-| :----: | --- |
-| latest | Stable booksonic-air releases |
+| Tag | Available | Description |
+| :----: | :----: |--- |
+| latest | ✅ | Stable booksonic-air releases |
 
 ## Application Setup
 
@@ -57,7 +58,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   booksonic-air:
-    image: lscr.io/linuxserver/booksonic-air
+    image: lscr.io/linuxserver/booksonic-air:latest
     container_name: booksonic-air
     environment:
       - PUID=1000
@@ -89,7 +90,7 @@ docker run -d \
   -v </path/to/podcasts>:/podcasts \
   -v </path/to/othermedia>:/othermedia \
   --restart unless-stopped \
-  lscr.io/linuxserver/booksonic-air
+  lscr.io/linuxserver/booksonic-air:latest
 ```
 
 ## Parameters
@@ -170,8 +171,9 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' booksonic-air`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/booksonic-air`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/booksonic-air:latest`
 
 ## Versions
 
+* **18.04.22:** - Rebase to Alpine 3.15.
 * **15.09.20:** - Initial Release.
