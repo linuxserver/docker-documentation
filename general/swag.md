@@ -74,7 +74,7 @@ docker create \
   -p 80:80 `#optional` \
   -v </path/to/appdata/config>:/config \
   --restart unless-stopped \
-  ghcr.io/linuxserver/swag
+  lscr.io/linuxserver/swag
 ```
 
 ## docker-compose
@@ -86,7 +86,7 @@ Compatible with docker-compose v2 schemas.
 version: "2.1"
 services:
   swag:
-    image: ghcr.io/linuxserver/swag
+    image: lscr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -184,7 +184,7 @@ docker create \
   -p 80:80 \
   -v /home/aptalca/appdata/swag:/config \
   --restart unless-stopped \
-  ghcr.io/linuxserver/swag
+  lscr.io/linuxserver/swag
 ```
 
 Once created, we do `docker start swag` to start it.
@@ -196,7 +196,7 @@ With docker compose, we can use the following yml:
 version: "2.1"
 services:
   swag:
-    image: ghcr.io/linuxserver/swag
+    image: lscr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -249,7 +249,7 @@ docker create \
   -p 80:80 \
   -v /home/aptalca/appdata/swag:/config \
   --restart unless-stopped \
-  ghcr.io/linuxserver/swag
+  lscr.io/linuxserver/swag
 ```
 
 And we start the container via `docker start swag`
@@ -261,7 +261,7 @@ With docker compose, we'll use:
 version: "2.1"
 services:
   swag:
-    image: ghcr.io/linuxserver/swag
+    image: lscr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -311,7 +311,7 @@ docker create \
   -p 80:80 \
   -v /home/aptalca/appdata/swag:/config \
   --restart unless-stopped \
-  ghcr.io/linuxserver/swag
+  lscr.io/linuxserver/swag
 ```
 
 And we start the container via `docker start swag`
@@ -323,7 +323,7 @@ With docker compose, we'll use:
 version: "2.1"
 services:
   swag:
-    image: ghcr.io/linuxserver/swag
+    image: lscr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -388,7 +388,7 @@ Here's a docker compose stack to get both containers set up. For this exercise, 
 version: "2.1"
 services:
   mariadb:
-    image: ghcr.io/linuxserver/mariadb
+    image: lscr.io/linuxserver/mariadb
     container_name: mariadb
     environment:
       - PUID=1000
@@ -402,7 +402,7 @@ services:
       - /home/aptalca/appdata/mariadb:/config
     restart: unless-stopped
   swag:
-    image: ghcr.io/linuxserver/swag
+    image: lscr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -440,7 +440,7 @@ docker create \
   -e MYSQL_PASSWORD=WP_dbpassword \
   -v /home/aptalca/appdata/mariadb:/config \
   --restart unless-stopped \
-  ghcr.io/linuxserver/mariadb
+  lscr.io/linuxserver/mariadb
 ```
 
 SWAG:
@@ -461,7 +461,7 @@ docker create \
   -p 80:80 \
   -v /home/aptalca/appdata/swag:/config \
   --restart unless-stopped \
-  ghcr.io/linuxserver/swag
+  lscr.io/linuxserver/swag
 ```
 
 Once the SWAG container is set up with ssl certs and the webserver is up, we'll download the latest Wordpress and untar it into our www folder:
@@ -741,7 +741,7 @@ Here's a docker compose stack we can use to set up both containers:
 version: "2.1"
 services:
   ombi:
-    image: ghcr.io/linuxserver/ombi
+    image: lscr.io/linuxserver/ombi
     container_name: ombi
     environment:
       - PUID=1000
@@ -753,7 +753,7 @@ services:
       - 3579:3579
     restart: unless-stopped
   swag:
-    image: ghcr.io/linuxserver/swag
+    image: lscr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -786,7 +786,7 @@ docker create \
   -p 3579:3579 \
   -v /home/aptalca/appdata/ombi:/config \
   --restart unless-stopped \
-  ghcr.io/linuxserver/ombi
+  lscr.io/linuxserver/ombi
 ```
 
 SWAG:
@@ -807,7 +807,7 @@ docker create \
   -p 80:80 \
   -v /home/aptalca/appdata/swag:/config \
   --restart unless-stopped \
-  ghcr.io/linuxserver/swag
+  lscr.io/linuxserver/swag
 ```
 
 Once our containers up and running (and we confirm we can reach the placeholder page at `https://linuxserver-test.com`), we simply rename the file `ombi.subdomain.conf.sample` under `/config/nginx/proxy-confs/` to `ombi.subdomain.conf` and we restart the SWAG container. Now when we browser to `https://ombi.linuxserver-test.com` we should see the Ombi gui.
@@ -828,7 +828,7 @@ Here's a docker compose stack to set up our SWAG, nextcloud and mariadb containe
 version: "2.1"
 services:
   nextcloud:
-    image: ghcr.io/linuxserver/nextcloud
+    image: lscr.io/linuxserver/nextcloud
     container_name: nextcloud
     environment:
       - PUID=1000
@@ -841,7 +841,7 @@ services:
       - mariadb
     restart: unless-stopped
   mariadb:
-    image: ghcr.io/linuxserver/mariadb
+    image: lscr.io/linuxserver/mariadb
     container_name: mariadb
     environment:
       - PUID=1000
@@ -855,7 +855,7 @@ services:
       - /home/aptalca/appdata/mariadb:/config
     restart: unless-stopped
   swag:
-    image: ghcr.io/linuxserver/swag
+    image: lscr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -888,7 +888,7 @@ docker create \
   -v /home/aptalca/appdata/nextcloud/config:/config \
   -v /home/aptalca/appdata/nextcloud/data:/data \
   --restart unless-stopped \
-  ghcr.io/linuxserver/nextcloud
+  lscr.io/linuxserver/nextcloud
 ```
 
 Mariadb:
@@ -906,7 +906,7 @@ docker create \
   -e MYSQL_PASSWORD=ncpassword \
   -v /home/aptalca/appdata/mariadb:/config \
   --restart unless-stopped \
-  ghcr.io/linuxserver/mariadb
+  lscr.io/linuxserver/mariadb
 ```
 
 SWAG:
@@ -927,7 +927,7 @@ docker create \
   -p 80:80 \
   -v /home/aptalca/appdata/swag:/config \
   --restart unless-stopped \
-  ghcr.io/linuxserver/swag
+  lscr.io/linuxserver/swag
 ```
 
 Now we find the file named `nextcloud.subdomain.conf.sample` under SWAG's `/config/nginx/proxy-confs` folder and rename it to `nextcloud.subdomain.conf`, then restart the SWAG container.
@@ -975,7 +975,7 @@ Here's a docker compose stack we can use to set up both containers:
 version: "2.1"
 services:
   plex:
-    image: ghcr.io/linuxserver/plex
+    image: lscr.io/linuxserver/plex
     container_name: plex
     network_mode: host
     environment:
@@ -988,7 +988,7 @@ services:
       - /home/aptalca/movies:/data/movies
     restart: unless-stopped
   swag:
-    image: ghcr.io/linuxserver/swag
+    image: lscr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -1022,7 +1022,7 @@ docker create \
   -v /home/aptalca/tvshows:/data/tvshows \
   -v /home/aptalca/movies:/data/movies \
   --restart unless-stopped \
-  ghcr.io/linuxserver/plex
+  lscr.io/linuxserver/plex
 ```
 
 SWAG:
@@ -1043,7 +1043,7 @@ docker create \
   -p 80:80 \
   -v /home/aptalca/appdata/swag:/config \
   --restart unless-stopped \
-  ghcr.io/linuxserver/swag
+  lscr.io/linuxserver/swag
 ```
 
 Once the containers are set up, we browse to `http://LOCALSERVERIP:32400/web` and set up our Plex server with our Plex account. Then we can find the file named `plex.subfolder.conf.sample` under our SWAG container's `/config/nginx/proxy-confs` folder and rename it to `plex.subfolder.conf`.
@@ -1067,7 +1067,7 @@ Here's a docker compose stack we can use to set up both containers:
 version: "2.1"
 services:
   heimdall:
-    image: ghcr.io/linuxserver/heimdall
+    image: lscr.io/linuxserver/heimdall
     container_name: heimdall
     environment:
       - PUID=1000
@@ -1077,7 +1077,7 @@ services:
       - /home/aptalca/appdata/heimdall:/config
     restart: unless-stopped
   swag:
-    image: ghcr.io/linuxserver/swag
+    image: lscr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -1109,7 +1109,7 @@ docker create \
   -e TZ=Europe/London \
   -v /home/aptalca/appdata/heimdall:/config \
   --restart unless-stopped \
-  ghcr.io/linuxserver/heimdall
+  lscr.io/linuxserver/heimdall
 ```
 
 SWAG:
@@ -1130,7 +1130,7 @@ docker create \
   -p 80:80 \
   -v /home/aptalca/appdata/swag:/config \
   --restart unless-stopped \
-  ghcr.io/linuxserver/swag
+  lscr.io/linuxserver/swag
 ```
 
 Once the containers are set up, we'll find the file named `heimdall.subfolder.conf.sample` under SWAG's `/config/nginx/proxy-confs` folder and rename it to `heimdall.subfolder.conf`. If we look inside that conf file, we'll see that it is set to use `location / {`, which will cause an issue because there is already a location defined for `/` inside the default site config for SWAG. So we need to edit the default site config at `/config/nginx/site-confs/default` and comment out the location block for `/` inside our main server block so it reads:
