@@ -104,6 +104,7 @@
 * [linuxserver/oscam](images/docker-oscam.md)
 * [linuxserver/overseerr](images/docker-overseerr.md)
 * [linuxserver/paperless-ng](images/docker-paperless-ng.md)
+* [linuxserver/paperless-ngx](images/docker-paperless-ngx.md)
 * [linuxserver/papermerge](images/docker-papermerge.md)
 * [linuxserver/photoshow](images/docker-photoshow.md)
 * [linuxserver/phpmyadmin](images/docker-phpmyadmin.md)
