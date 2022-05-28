@@ -177,6 +177,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **28.05.22:** - Rebase to focal.
 * **31.03.22:** - Fix umask.
 * **28.02.22:** - Add speech support to bionic image.
 * **05.01.22:** - Add arch branch for arm platforms.
