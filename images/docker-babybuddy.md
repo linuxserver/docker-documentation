@@ -53,6 +53,8 @@ services:
     image: lscr.io/linuxserver/babybuddy:latest
     container_name: babybuddy
     environment:
+      - PUID=1000
+      - PGID=1000
       - TZ=Europe/London
       - CSRF_TRUSTED_ORIGINS=http://127.0.0.1:8000,https://babybuddy.domain.com
     volumes:
@@ -67,6 +69,8 @@ services:
 ```bash
 docker run -d \
   --name=babybuddy \
+  -e PUID=1000 \
+  -e PGID=1000 \
   -e TZ=Europe/London \
   -e CSRF_TRUSTED_ORIGINS=http://127.0.0.1:8000,https://babybuddy.domain.com \
   -p 8000:8000 \
@@ -89,6 +93,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Env | Function |
 | :----: | --- |
+| `PUID=1000` | for UserID - see below for explanation |
+| `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
 | `CSRF_TRUSTED_ORIGINS=http://127.0.0.1:8000,https://babybuddy.domain.com` | Add any address you'd like to access babybuddy at (comma separated, no spaces) |
 
@@ -120,6 +126,19 @@ Will set the environment variable `PASSWORD` based on the contents of the `/run/
 For all of our images we provide the ability to override the default umask settings for services started within the containers using the optional `-e UMASK=022` setting.
 Keep in mind umask is not chmod it subtracts from permissions based on it's value it does not add. Please read up [here](https://en.wikipedia.org/wiki/Umask) before asking for support.
 
+## User / Group Identifiers
+
+When using volumes (`-v` flags), permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
+
+Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
+
+In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
+
+```bash
+  $ id username
+    uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
+```
+
 ## Docker Mods
 
 [![Docker Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=babybuddy&query=%24.mods%5B%27babybuddy%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=babybuddy "view available mods for this container.") [![Docker Universal Mods](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=universal&query=%24.mods%5B%27universal%27%5D.mod_count&url=https%3A%2F%2Fraw.githubusercontent.com%2Flinuxserver%2Fdocker-mods%2Fmaster%2Fmod-list.yml)](https://mods.linuxserver.io/?mod=universal "view available universal mods.")
@@ -139,6 +158,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **28.05.22:** - Add missing PUID/PGID vars to readme.
 * **03.04.22:** - Rebase to alpine-nginx baseimage. Add `CSRF_TRUSTED_ORIGINS` env var.
 * **11.12.21:** - Add py3-mysqlclient for mysql/mariadb.
 * **14.11.21:** - Add lxml dependencies (temp fix for amd64 by force compiling lxml).
