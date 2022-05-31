@@ -176,6 +176,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **31.05.22:** - Add new deps, flex and bison.
 * **12.02.22:** - Rebase to Alpine 3.15.
 * **14.09.21:** - Enabled librespot. Disabled spotify on ARMv7
 * **10.07.21:** - Change of paths to work with the new package name, OwnTone.
