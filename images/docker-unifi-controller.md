@@ -31,7 +31,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ✅ | arm32v7-\<version tag\> |
+| armhf| ❌ | |
 
 ## Application Setup
 
@@ -198,6 +198,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **01.06.22:** - Deprecate armhf.
 * **23.12.21:** - Move min/max memory config from run to system.properties.
 * **22.12.21:** - Move deb package install to first init to avoid overlayfs performance issues.
 * **13.12.21:** - Rebase 64 bit containers to Focal.
