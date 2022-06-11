@@ -235,6 +235,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **11.06.22:** - Switch to upstream repo's ffmpeg5 build.
 * **05.01.22:** - Specify Intel iHD driver versions to avoid mismatched libva errors.
 * **25.12.21:** - Fix video device group perms error message.
 * **10.12.21:** - Rework readme, disable template sync.
