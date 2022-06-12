@@ -153,6 +153,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **11.06.22:** - Rebase to focal, update disable updates flag.
 * **08.04.20:** - Structural changes for beta18.
 * **04.12.19:** - Disable in app updates.
 * **12.11.19:** - Multi-arch builds.
