@@ -177,6 +177,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **06.06.22:** - Rebase master branch to Alpine 3.15.
 * **20.02.22:** - Rebase develop branch to Alpine.
 * **04.02.22:** - Rebase nightly branch to Alpine and deprecate nightly-alpine branch.
 * **27.12.21:** - Add nightly-alpine branch.
