@@ -159,4 +159,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **19.06.22:** - Rebase to Focal. Drop Telepathy plugin due to lack of packages.
 * **27.03.20:** - Initial release.
