@@ -31,16 +31,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ✅ | arm32v7-\<version tag\> |
-
-## Version Tags
-
-This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
-
-| Tag | Available | Description |
-| :----: | :----: |--- |
-| latest | ✅ | Default Ubuntu based image |
-| arch | ✅ | Arch based image supporting arm platforms |
+| armhf| ❌ | |
 
 ## Application Setup
 
@@ -177,6 +168,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **24.07.22:** - Add arm64 build for master branch.
 * **11.07.22:** - Update dependencies for Calibre 6.
 * **28.05.22:** - Rebase to focal.
 * **31.03.22:** - Fix umask.
