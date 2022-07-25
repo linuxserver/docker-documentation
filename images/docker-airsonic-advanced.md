@@ -198,4 +198,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **25.07.22:** - Add vorbis-tools.
 * **02.01.22:** - Initial Release.
