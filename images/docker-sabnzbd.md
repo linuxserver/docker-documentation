@@ -40,7 +40,8 @@ This image provides various versions that are available via tags. Please read th
 | Tag | Available | Description |
 | :----: | :----: |--- |
 | latest | ✅ | Stable SABnzbd releases |
-| unstable | ✅ | Pre-releases from their GitHub |
+| unstable | ✅ | Pre-releases from the develop branch |
+| nightly | ✅ | Latest commits from the develop branch |
 
 ## Application Setup
 
@@ -184,6 +185,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **31.08.22:** - Add nightly tag.
 * **10.03.22:** - Add nzb-notify.
 * **22.02.22:** - Rebase master branch to Alpine, build unrar from source, deprecate Alpine branch.
 * **25.01.22:** - Rebase Unstable branch to Alpine.
