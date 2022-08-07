@@ -164,6 +164,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **06.08.22:** - Update irrlicht deps.
 * **02.05.22:** - Allow specifying the advertised port.
 * **17.03.22:** - Install forked irrlicht, add zstd.
 * **19.01.22:** - Rebasing to alpine 3.15.
