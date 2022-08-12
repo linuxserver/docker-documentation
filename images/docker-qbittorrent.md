@@ -196,6 +196,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.08.22:** - Bump unrar to 6.1.7.
 * **16.06.22:** - Rebase to Alpine 3.16 from edge.
 * **25.05.22:** - Fetch qbitorrent-cli from upstream repo.
 * **02.03.22:** - Add unrar, 7zip, and qbitorrent-cli.
