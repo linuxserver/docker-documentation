@@ -49,9 +49,9 @@ To help you get started creating a container from this image you can either use 
 ---
 version: "2.1"
 services:
-  changedetection.io:
+  changedetection:
     image: lscr.io/linuxserver/changedetection.io:latest
-    container_name: changedetection.io
+    container_name: changedetection
     environment:
       - PUID=1000
       - PGID=1000
@@ -62,6 +62,7 @@ services:
     ports:
       - 5000:5000
     restart: unless-stopped
+
 ```
 
 ### docker cli ([click here for more info](https://docs.docker.com/engine/reference/commandline/cli/))
