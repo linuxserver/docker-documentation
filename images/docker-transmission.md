@@ -207,6 +207,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.08.22:** - Bump unrar to 6.1.7.
 * **03.04.22:** - Add Transmissionic as a UI option.
 * **21.02.22:** - Build unrar from source, rebase to Alpine 3.15, add symlinks neeeded for TWC. Credit @alexbelgium
 * **09.07.21:** - Wait for the transmission-daemon termination after a caught sigterm.
