@@ -197,6 +197,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.08.22:** - Bump unrar to 6.1.7.
 * **22.02.22:** - Rebase to alpine 3.15, add six and python 7zip tools, allow env variables for credentials.
 * **04.07.21:** - Rebase to alpine 3.14.
 * **28.05.21:** - Add linuxserver wheel index.
