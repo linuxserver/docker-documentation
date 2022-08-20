@@ -246,6 +246,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **19.08.22:** - Switch to new picons builder.
 * **16.04.22:** - Added URL XMLTV grabber.
 * **05.01.22:** - Rebase to Alpine 3.15. Disable execinfo to fix builds. Update xmltv.
 * **11.05.21:** - Added Intel iHD driver support.
