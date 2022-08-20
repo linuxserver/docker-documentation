@@ -35,11 +35,11 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-For more information check out the [phpmyadmin documentation](https://www.phpmyadmin.net/docs/).
+This image uses nginx, in contrast to the official images which offer fpm-only or Apache variants.
 
 We support all of the official [environment variables](https://docs.phpmyadmin.net/en/latest/setup.html#docker-environment-variables) for configuration as well as directly editing the config files.
 
-# changelog
+For more information check out the [phpmyadmin documentation](https://www.phpmyadmin.net/docs/).
 
 ## Usage
 
@@ -163,5 +163,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **20.08.22:** - Rebasing to Alpine 3.15 with php8. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
 * **23.01.22:** - Pin versions to 5.x.x.
 * **14.06.21:** - Initial Release.
