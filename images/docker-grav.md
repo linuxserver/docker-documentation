@@ -155,6 +155,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
-* **03.09.21** - Added support for Redis caching.
+* **20.08.22:** - Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
+* **03.09.21:** - Added support for Redis caching.
 * **01.07.21:** - Rebase to Alpine 3.14.
 * **09.04.21:** - Initial Release.
