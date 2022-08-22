@@ -37,7 +37,7 @@ The architectures supported by this image are:
 
 Webui is accessible at http://SERVERIP:PORT
 
-If you intend to expose Snapdrop to the internet, edit /config/nginx/site-confs/default and uncomment the real_ip settings
+If you intend to expose Snapdrop to the internet, edit /config/nginx/site-confs/default.conf and uncomment the real_ip settings
 
 ## Usage
 
@@ -158,5 +158,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **20.08.22:** - Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
 * **09.08.21:** - Rebase to Alpine 3.14. Add real_ip block to nginx default site config.
 * **15.09.20:** - Initial Release.
