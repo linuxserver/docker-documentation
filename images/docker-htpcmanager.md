@@ -153,6 +153,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **24.08.22:** - Rebase to alpine 3.15, use linuxserver.io wheel repo.
 * **08.04.21:** - Fix build.
 * **10.02.21:** - Rebasing to alpine 3.13.
 * **26.10.20:** - Rebase to alpine 3.12, python3, change upstream project
