@@ -37,10 +37,8 @@ The architectures supported by this image are:
 
 This container is designed to allow fail2ban to function at the host level, as well as at the docker container level.
 If you are running applications on the host, you will need to set the `chain` to `INPUT` in the jail for that application.
-All jails require the ability to read the application log files.
-We recommend mounting each application's logs as a volume to the container (illustrated by the optional volumes in our documentation).
 
-### Configuration Files
+### [Configuration Files](https://github.com/linuxserver/fail2ban-confs)
 
 On first run, the container will create a number of folders and files in `/config`. The default configurations for fail2ban are all disabled by default.
 
@@ -48,10 +46,13 @@ Please refer to the [Configuration README](https://github.com/linuxserver/fail2b
 
 ### Remote Logs
 
+All jails require the ability to read the application log files.
+We recommend mounting each application's log folder as a volume to the container (illustrated by the optional volumes in our documentation).
+Mounting individual log files can cause issues and is not recommended.
+
 The `/remotelogs` path is designed to act as a parent for all log files you would like fail2ban to be able to use.
 Each log file should be mounted in a subfolder underneath `/remotelogs`, ex:
 - `/remotelogs/nginx/` would mount a folder containing the nginx logs to the container
-- `/remotelogs/unificontroller/server.log` would mount a single file for the unifi controller logs to the container
 
 ## Usage
 
@@ -77,28 +78,23 @@ services:
     volumes:
       - /path/to/appdata/config:/config
       - /var/log:/var/log:ro
-      - /path/to/airsonic/airsonic.log:/remotelogs/airsonic/airsonic.log:ro #optional
+      - /path/to/airsonic/log:/remotelogs/airsonic:ro #optional
       - /path/to/apache2/log:/remotelogs/apache2:ro #optional
-      - /path/to/audit/audit.log:/remotelogs/audit/audit.log:ro #optional
-      - /path/to/authelia/authelia.log:/remotelogs/authelia/authelia.log:ro #optional
-      - /path/to/emby/embyserver.txt:/remotelogs/emby/embyserver.txt:ro #optional
-      - /path/to/exim/mainlog:/remotelogs/exim/mainlog:ro #optional
-      - /path/to/filebrowser/filebrowser.log:/remotelogs/filebrowser/filebrowser.log:ro #optional
-      - /path/to/gitea/gitea.log:/remotelogs/gitea/gitea.log:ro #optional
-      - /path/to/homeassistant/home-assistant.log:/remotelogs/homeassistant/home-assistant.log:ro #optional
-      - /path/to/lighttpd/error.log:/remotelogs/lighttpd/error.log:ro #optional
-      - /path/to/nextcloud/nextcloud.log:/remotelogs/nextcloud/nextcloud.log:ro #optional
+      - /path/to/authelia/log:/remotelogs/authelia:ro #optional
+      - /path/to/emby/log:/remotelogs/emby:ro #optional
+      - /path/to/filebrowser/log:/remotelogs/filebrowser:ro #optional
+      - /path/to/homeassistant/log:/remotelogs/homeassistant:ro #optional
+      - /path/to/lighttpd/log:/remotelogs/lighttpd:ro #optional
+      - /path/to/nextcloud/log:/remotelogs/nextcloud:ro #optional
       - /path/to/nginx/log:/remotelogs/nginx:ro #optional
-      - /path/to/nzbget/nzbget.log:/remotelogs/nzbget/nzbget.log:ro #optional
-      - /path/to/overseerr/overseerr.log:/remotelogs/overseerr/overseerr.log:ro #optional
-      - /path/to/prowlarr/prowlarr.txt:/remotelogs/prowlarr/prowlarr.txt:ro #optional
-      - /path/to/radarr/radarr.txt:/remotelogs/radarr/radarr.txt:ro #optional
-      - /path/to/roundcube/errors:/remotelogs/roundcube/errors:ro #optional
-      - /path/to/sabnzbd/sabnzbd.log:/remotelogs/sabnzbd/sabnzbd.log:ro #optional
-      - /path/to/sonarr/sonarr.txt:/remotelogs/sonarr/sonarr.txt:ro #optional
-      - /path/to/unificontroller/server.log:/remotelogs/unificontroller/server.log:ro #optional
-      - /path/to/vaultwarden/vaultwarden.log:/remotelogs/vaultwarden/vaultwarden.log:ro #optional
-      - /path/to/vsftpd/vsftpd.log:/remotelogs/vsftpd/vsftpd.log:ro #optional
+      - /path/to/nzbget/log:/remotelogs/nzbget:ro #optional
+      - /path/to/overseerr/log:/remotelogs/overseerr:ro #optional
+      - /path/to/prowlarr/log:/remotelogs/prowlarr:ro #optional
+      - /path/to/radarr/log:/remotelogs/radarr:ro #optional
+      - /path/to/sabnzbd/log:/remotelogs/sabnzbd:ro #optional
+      - /path/to/sonarr/log:/remotelogs/sonarr:ro #optional
+      - /path/to/unificontroller/log:/remotelogs/unificontroller:ro #optional
+      - /path/to/vaultwarden/log:/remotelogs/vaultwarden:ro #optional
     restart: unless-stopped
 ```
 
@@ -115,28 +111,23 @@ docker run -d \
   -e TZ=America/New_York \
   -v /path/to/appdata/config:/config \
   -v /var/log:/var/log:ro \
-  -v /path/to/airsonic/airsonic.log:/remotelogs/airsonic/airsonic.log:ro `#optional` \
+  -v /path/to/airsonic/log:/remotelogs/airsonic:ro `#optional` \
   -v /path/to/apache2/log:/remotelogs/apache2:ro `#optional` \
-  -v /path/to/audit/audit.log:/remotelogs/audit/audit.log:ro `#optional` \
-  -v /path/to/authelia/authelia.log:/remotelogs/authelia/authelia.log:ro `#optional` \
-  -v /path/to/emby/embyserver.txt:/remotelogs/emby/embyserver.txt:ro `#optional` \
-  -v /path/to/exim/mainlog:/remotelogs/exim/mainlog:ro `#optional` \
-  -v /path/to/filebrowser/filebrowser.log:/remotelogs/filebrowser/filebrowser.log:ro `#optional` \
-  -v /path/to/gitea/gitea.log:/remotelogs/gitea/gitea.log:ro `#optional` \
-  -v /path/to/homeassistant/home-assistant.log:/remotelogs/homeassistant/home-assistant.log:ro `#optional` \
-  -v /path/to/lighttpd/error.log:/remotelogs/lighttpd/error.log:ro `#optional` \
-  -v /path/to/nextcloud/nextcloud.log:/remotelogs/nextcloud/nextcloud.log:ro `#optional` \
+  -v /path/to/authelia/log:/remotelogs/authelia:ro `#optional` \
+  -v /path/to/emby/log:/remotelogs/emby:ro `#optional` \
+  -v /path/to/filebrowser/log:/remotelogs/filebrowser:ro `#optional` \
+  -v /path/to/homeassistant/log:/remotelogs/homeassistant:ro `#optional` \
+  -v /path/to/lighttpd/log:/remotelogs/lighttpd:ro `#optional` \
+  -v /path/to/nextcloud/log:/remotelogs/nextcloud:ro `#optional` \
   -v /path/to/nginx/log:/remotelogs/nginx:ro `#optional` \
-  -v /path/to/nzbget/nzbget.log:/remotelogs/nzbget/nzbget.log:ro `#optional` \
-  -v /path/to/overseerr/overseerr.log:/remotelogs/overseerr/overseerr.log:ro `#optional` \
-  -v /path/to/prowlarr/prowlarr.txt:/remotelogs/prowlarr/prowlarr.txt:ro `#optional` \
-  -v /path/to/radarr/radarr.txt:/remotelogs/radarr/radarr.txt:ro `#optional` \
-  -v /path/to/roundcube/errors:/remotelogs/roundcube/errors:ro `#optional` \
-  -v /path/to/sabnzbd/sabnzbd.log:/remotelogs/sabnzbd/sabnzbd.log:ro `#optional` \
-  -v /path/to/sonarr/sonarr.txt:/remotelogs/sonarr/sonarr.txt:ro `#optional` \
-  -v /path/to/unificontroller/server.log:/remotelogs/unificontroller/server.log:ro `#optional` \
-  -v /path/to/vaultwarden/vaultwarden.log:/remotelogs/vaultwarden/vaultwarden.log:ro `#optional` \
-  -v /path/to/vsftpd/vsftpd.log:/remotelogs/vsftpd/vsftpd.log:ro `#optional` \
+  -v /path/to/nzbget/log:/remotelogs/nzbget:ro `#optional` \
+  -v /path/to/overseerr/log:/remotelogs/overseerr:ro `#optional` \
+  -v /path/to/prowlarr/log:/remotelogs/prowlarr:ro `#optional` \
+  -v /path/to/radarr/log:/remotelogs/radarr:ro `#optional` \
+  -v /path/to/sabnzbd/log:/remotelogs/sabnzbd:ro `#optional` \
+  -v /path/to/sonarr/log:/remotelogs/sonarr:ro `#optional` \
+  -v /path/to/unificontroller/log:/remotelogs/unificontroller:ro `#optional` \
+  -v /path/to/vaultwarden/log:/remotelogs/vaultwarden:ro `#optional` \
   --restart unless-stopped \
   lscr.io/linuxserver/fail2ban:latest
 ```
@@ -170,28 +161,23 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `/config` | Contains all relevant configuration files. |
 | `/var/log:ro` | Host logs. Mounted as Read Only. |
-| `/remotelogs/airsonic/airsonic.log:ro` | Optional path to airsonic log file. Mounted as Read Only. |
+| `/remotelogs/airsonic:ro` | Optional path to airsonic log folder. Mounted as Read Only. |
 | `/remotelogs/apache2:ro` | Optional path to apache2 log folder. Mounted as Read Only. |
-| `/remotelogs/audit/audit.log:ro` | Optional path to auditd log file. Mounted as Read Only. |
-| `/remotelogs/authelia/authelia.log:ro` | Optional path to authelia log file. Mounted as Read Only. |
-| `/remotelogs/emby/embyserver.txt:ro` | Optional path to emby log file. Mounted as Read Only. |
-| `/remotelogs/exim/mainlog:ro` | Optional path to exim log file. Mounted as Read Only. |
-| `/remotelogs/filebrowser/filebrowser.log:ro` | Optional path to filebrowser log file. Mounted as Read Only. |
-| `/remotelogs/gitea/gitea.log:ro` | Optional path to gitea log file. Mounted as Read Only. |
-| `/remotelogs/homeassistant/home-assistant.log:ro` | Optional path to homeassistant log file. Mounted as Read Only. |
-| `/remotelogs/lighttpd/error.log:ro` | Optional path to lighttpd error log file. Mounted as Read Only. |
-| `/remotelogs/nextcloud/nextcloud.log:ro` | Optional path to nextcloud log file. Mounted as Read Only. |
+| `/remotelogs/authelia:ro` | Optional path to authelia log folder. Mounted as Read Only. |
+| `/remotelogs/emby:ro` | Optional path to emby log folder. Mounted as Read Only. |
+| `/remotelogs/filebrowser:ro` | Optional path to filebrowser log folder. Mounted as Read Only. |
+| `/remotelogs/homeassistant:ro` | Optional path to homeassistant log folder. Mounted as Read Only. |
+| `/remotelogs/lighttpd:ro` | Optional path to lighttpd log folder. Mounted as Read Only. |
+| `/remotelogs/nextcloud:ro` | Optional path to nextcloud log folder. Mounted as Read Only. |
 | `/remotelogs/nginx:ro` | Optional path to nginx log folder. Mounted as Read Only. |
-| `/remotelogs/nzbget/nzbget.log:ro` | Optional path to nzbget log file. Mounted as Read Only. |
-| `/remotelogs/overseerr/overseerr.log:ro` | Optional path to overseerr log file. Mounted as Read Only. |
-| `/remotelogs/prowlarr/prowlarr.txt:ro` | Optional path to prowlarr log file. Mounted as Read Only. |
-| `/remotelogs/radarr/radarr.txt:ro` | Optional path to radarr log file. Mounted as Read Only. |
-| `/remotelogs/roundcube/errors:ro` | Optional path to roundcube error log file. Mounted as Read Only. |
-| `/remotelogs/sabnzbd/sabnzbd.log:ro` | Optional path to sabnzbd log file. Mounted as Read Only. |
-| `/remotelogs/sonarr/sonarr.txt:ro` | Optional path to sonarr log file. Mounted as Read Only. |
-| `/remotelogs/unificontroller/server.log:ro` | Optional path to unificontroller server log file. Mounted as Read Only. |
-| `/remotelogs/vaultwarden/vaultwarden.log:ro` | Optional path to vaultwarden log file. Mounted as Read Only. |
-| `/remotelogs/vsftpd/vsftpd.log:ro` | Optional path to vsftpd log file. Mounted as Read Only. |
+| `/remotelogs/nzbget:ro` | Optional path to nzbget log folder. Mounted as Read Only. |
+| `/remotelogs/overseerr:ro` | Optional path to overseerr log folder. Mounted as Read Only. |
+| `/remotelogs/prowlarr:ro` | Optional path to prowlarr log folder. Mounted as Read Only. |
+| `/remotelogs/radarr:ro` | Optional path to radarr log folder. Mounted as Read Only. |
+| `/remotelogs/sabnzbd:ro` | Optional path to sabnzbd log folder. Mounted as Read Only. |
+| `/remotelogs/sonarr:ro` | Optional path to sonarr log folder. Mounted as Read Only. |
+| `/remotelogs/unificontroller:ro` | Optional path to unificontroller log folder. Mounted as Read Only. |
+| `/remotelogs/vaultwarden:ro` | Optional path to vaultwarden log folder. Mounted as Read Only. |
 
 #### Miscellaneous Options
 
@@ -253,4 +239,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **25.08.22:** - Update README to clarify remote log information.
 * **09.08.22:** - Initial Release.
