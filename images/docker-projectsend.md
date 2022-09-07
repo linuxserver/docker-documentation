@@ -39,6 +39,8 @@ The architectures supported by this image are:
 
 Requires a user and database in either mysql or mariadb.
 
+To use translations, follow the instructions [here](https://www.projectsend.org/how-to-use-translation-files/). The necessary paths are symlinked under `/config/translations` (note that the "templates" paths don't need `lang` subdirectories).
+
 More info at [ProjectSend](http://www.projectsend.org).
 
 ## Usage
@@ -163,6 +165,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.08.22:** - Add translation support
 * **20.08.22:** - Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
 * **24.06.21:** - Rebasing to alpine 3.14, switch to nginx
 * **23.01.21:** - Rebasing to alpine 3.13.
