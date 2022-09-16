@@ -52,7 +52,7 @@ sudo docker run --rm -i \
 -e PORT=<optional, port web application listens on internal docker port> \
 -e SSL=<optional , use ssl for the screenshot true/false> \
 -t lsiodev/ci:latest \
-python /ci/ci.py
+python test_build.py
 ```
 
 The following line is only in this repo for loop testing:
