@@ -37,6 +37,8 @@ The architectures supported by this image are:
 
 Webui is accessible at http://SERVERIP:PORT
 
+Please note that this image does not contain the [Playwright content fetcher](https://github.com/dgtlmoon/changedetection.io/wiki/Playwright-content-fetcher#docker-compose-based) due to a lack of support for muslc-based systems. If you require this feature please use [Selenium](https://github.com/linuxserver/docker-changedetection.io/issues/3#issuecomment-1250251715) or the [official container](https://github.com/dgtlmoon/changedetection.io#docker)
+
 For more info read [the wiki](https://github.com/dgtlmoon/changedetection.io/wiki).
 
 ## Usage
