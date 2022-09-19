@@ -145,6 +145,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **19.09.22:** - Rebase to alpine 3.15.
 * **14.05.21:** - Add linuxserver wheel index.
 * **12.02.21:** - Clean up cargo/rust cache.
 * **10.02.21:** - Rebasing to alpine 3.13.
