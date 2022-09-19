@@ -83,6 +83,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
+      - TZ=Europe/London
     volumes:
       - /path/to/data:/config
       - /path/to/data:/tv
@@ -99,6 +100,7 @@ docker run -d \
   --name=sickgear \
   -e PUID=1000 \
   -e PGID=1000 \
+  -e TZ=Europe/London \
   -p 8081:8081 \
   -v /path/to/data:/config \
   -v /path/to/data:/tv \
@@ -123,6 +125,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
+| `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 
 ### Volume Mappings (`-v`)
 
@@ -186,6 +189,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **19.09.22:** - Rebase to alpine 3.15. Build unrar from source.
 * **31.01.21:** - Add unrar.
 * **29.01.21:** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information.
 * **23.01.21:** - Rebasing to alpine 3.13.
