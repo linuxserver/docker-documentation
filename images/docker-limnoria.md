@@ -183,6 +183,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **19.09.22:** - Rebase to alpine 3.15.
 * **25.05.21:** - Install plugin requirements on container init.
 * **17.05.21:** - Add linuxserver wheel index.
 * **13.02.21:** - Rebasing to alpine 3.13.
