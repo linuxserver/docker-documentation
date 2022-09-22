@@ -163,6 +163,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **15.09.22:** - Migrate to s6v3.
 * **26.07.22:** - Rebase on jammy.
 * **20.04.21:** - Rebase on focal.
 * **18.01.21:** - Update libpython dependency.
