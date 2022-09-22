@@ -223,5 +223,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **16.09.22:** - Migrate to s6v3.
 * **09.03.22:** - Update seccomp explanation.
 * **07.03.22:** - Initial release.
