@@ -162,6 +162,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **16.09.22:** - Migrate to s6v3.
 * **15.02.21:** - Rebase to Ubuntu Jammy.
 * **14.12.21:** - Rebase to Ubuntu focal.
 * **25.03.20:** - Initial release.
