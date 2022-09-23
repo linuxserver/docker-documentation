@@ -161,6 +161,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.09.22:** - Install ffmpeg for postprocessing.
 * **12.08.22:** - Bump unrar to 6.1.7.
 * **28.02.22:** - Install python3 requirements for app.
 * **19.01.22:** - Rebasing to alpine 3.15.
