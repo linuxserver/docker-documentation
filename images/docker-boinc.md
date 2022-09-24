@@ -72,6 +72,8 @@ services:
   boinc:
     image: lscr.io/linuxserver/boinc:latest
     container_name: boinc
+    security_opt:
+      - seccomp:unconfined #optional
     environment:
       - PUID=1000
       - PGID=1000
@@ -91,6 +93,7 @@ services:
 ```bash
 docker run -d \
   --name=boinc \
+  --security-opt seccomp=unconfined `#optional` \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
@@ -137,6 +140,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :-----:   | --- |
+| `--security-opt seccomp=unconfined` | For Docker Engine only, many modern gui apps need this to function as syscalls are unkown to Docker. |
 
 ## Environment variables from files (Docker secrets)
 
@@ -187,6 +191,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **18.09.22:** - Rebase to jammy.
 * **24.02.22:** - Rebase to focal.
 * **31.01.22:** - Improve device permissions setting verbosity.
 * **23.03.21:** - Rebase to rdesktop-web baseimage. Deprecate `GUAC_USER` and `GUAC_PASS` env vars. Existing users can set the new var `PASSWORD` for the user `abc`.
