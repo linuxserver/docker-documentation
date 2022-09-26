@@ -42,17 +42,19 @@ sudo docker run --rm -i \
 -e BASE=<alpine or debian based distro> \
 -e SECRET_KEY=<S3 secret> \
 -e ACCESS_KEY=<S3 key> \
--e DOCKER_ENV="<optional, Array of env vars seperated by | IE test=test|test2=test2 or single var>" \
--e WEB_AUTH="<optional, format user:passord>" \
--e WEB_PATH="<optional, format /yourpath>" \
--e S3_REGION=<optional, custom S3 Region> \
--e S3_BUCKET=<optional, custom S3 Bucket> \
--e WEB_SCREENSHOT=<optional, set to false if not a web app> \
--e DELAY_START=<optional, time in seconds to delay before taking screenshot> \
--e PORT=<optional, port web application listens on internal docker port> \
--e SSL=<optional , use ssl for the screenshot true/false> \
+-e DOCKER_ENV="<optional, Array of env vars seperated by | IE test=test|test2=test2 or single var. Defaults to ''>" \
+-e WEB_AUTH="<optional, format user:passord. Defaults to 'user:password'>" \
+-e WEB_PATH="<optional, format /yourpath>. Defaults to ''." \
+-e S3_REGION=<optional, custom S3 Region. Defaults to 'us-east-1'> \
+-e S3_BUCKET=<optional, custom S3 Bucket. Defaults to 'ci-tests.linuxserver.io'> \
+-e WEB_SCREENSHOT_DELAY=<optional, time in seconds to delay before taking screenshot. Defaults to '30'>
+-e WEB_SCREENSHOT=<optional, set to false if not a web app. Defaults to 'false'> \
+-e DELAY_START=<optional, time in seconds to delay before taking screenshot. Defaults to '5'> \
+-e PORT=<optional, port web application listens on internal docker port. Defaults to '80'> \
+-e SSL=<optional , use ssl for the screenshot true/false. Defaults to 'false'> \
+-e CI_S6_VERBOSITY=<optional, Updates the S6_VERBOSITY env. Defaults to '2'>
 -t lsiodev/ci:latest \
-python test_build.py
+python3 test_build.py
 ```
 
 The following line is only in this repo for loop testing:
