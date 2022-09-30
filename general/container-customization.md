@@ -18,7 +18,19 @@ All of the functionality described in this post is live on every one of the cont
 
 ## Custom Scripts
 
-The first part of this update is the support for a user's custom scripts to run at startup. In every container, simply create a new folder located at `/config/custom-cont-init.d` and add any scripts you want. These scripts can contain logic for installing packages, copying over custom files to other locations, or installing plugins.
+The first part of this update is the support for a user's custom scripts to run at startup. In every container, simply create a new folder located at `/custom-cont-init.d` and add any scripts you want. These scripts can contain logic for installing packages, copying over custom files to other locations, or installing plugins.
+
+Because this location is outside of `/config` you will need to mount it like any other volume if you wish to make use of it. e.g. `-v /home/foo/appdata/my-custom-files:/custom-cont-init.d` if using the Docker CLI or
+
+```yaml
+services:
+  bar:
+    volumes:
+      - /home/foo/appdata/bar:/config
+      - /home/foo/appdata/my-custom-files:/custom-cont-init.d:ro
+```
+
+if using compose. Where possible, to improve security, we recommend mounting them read-only (`:ro`) so that container processes cannot write to the location.
 
 One example use case is our Piwigo container has a plugin that supports video, but requires ffmpeg to be installed. No problem. Add this bad boy into a script file (can be named anything) and you're good to go.
 
@@ -29,13 +41,23 @@ echo "**** installing ffmpeg ****"
 apk add --no-cache ffmpeg
 ```
 
-**NOTE:** The folder `/config/custom-cont-init.d` needs to be owned by root! If this is not the case, this folder will be renamed and a new (empty) folder will be created. This is to prevent remote code execution by putting scripts in the aforementioned folder.
+**NOTE:** The folder `/custom-cont-init.d` needs to be owned by root! If this is not the case, this folder will be renamed and a new (empty) folder will be created. This is to prevent remote code execution by putting scripts in the aforementioned folder.
 
 ## Custom Services
 
-There might also be a need to run an additional service in a container alongside what we already package. Similarly to the custom scripts, just create a new directory at `/config/custom-services.d`. The files in this directory should be named after the service they will be running.
+There might also be a need to run an additional service in a container alongside what we already package. Similarly to the custom scripts, just create a new directory at `/custom-services.d`. The files in this directory should be named after the service they will be running. Similar to with custom scripts you will need to mount this folder like any other volume if you wish to make use of it. e.g. `-v /home/foo/appdata/my-custom-services:/custom-services.d` if using the Docker CLI or
 
-Running cron in our containers is now as simple as a single file. Drop this script in `/config/custom-services.d/cron` and it will run automatically in the container:
+```yaml
+services:
+  bar:
+    volumes:
+      - /home/foo/appdata/bar:/config
+      - /home/foo/appdata/my-custom-services:/custom-services.d:ro
+```
+
+if using compose. Where possible, to improve security, we recommend mounting them read-only (`:ro`) so that container processes cannot write to the location.
+
+Running cron in our containers is now as simple as a single file. Drop this script in `/custom-services.d/cron` and it will run automatically in the container:
 
 ```bash
 #!/usr/bin/with-contenv bash
@@ -45,7 +67,7 @@ Running cron in our containers is now as simple as a single file. Drop this scri
 
 **NOTE:** With this example, you will most likely need to have cron installed via a custom script using the technique in the previous section, and will need to populate the crontab.
 
-**NOTE:** The folder `/config/custom-services.d` needs to be owned by root! If this is not the case, this folder will be renamed and a new (empty) folder will be created. This is to prevent remote code execution by putting scripts in the aforementioned folder.
+**NOTE:** The folder `/custom-services.d` needs to be owned by root! If this is not the case, this folder will be renamed and a new (empty) folder will be created. This is to prevent remote code execution by putting scripts in the aforementioned folder.
 
 ## Docker Mods
 
