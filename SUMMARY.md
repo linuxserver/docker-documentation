@@ -8,6 +8,7 @@
 * [Container Execution](general/container-execution.md)
 * [Docker Containers: 101](general/containers-101.md)
 * [Running LinuxServer Containers](general/running-our-containers.md)
+* [Customizing LinuxServer Containers](general/container-customization.md)
 * [Docker Compose](general/docker-compose.md)
 * [Understanding PUID and PGID](general/understanding-puid-and-pgid.md)
 * [Updating our containers](general/updating-our-containers.md)
