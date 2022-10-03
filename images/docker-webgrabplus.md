@@ -186,6 +186,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.03.22:** - Rebase to Alpine 3.16 and s6v3. Update to dotnet 6.
 * **29.04.22:** - Add `hostname` and `mac_address` arguments that are needed for the license check to compose and cli samples.
 * **23.03.22:** - Rebase to Alpine 3.15.
 * **23.03.22:** - Update to use dotnet instead of mono.
