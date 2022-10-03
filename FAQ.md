@@ -45,6 +45,31 @@ For Docker Compose, run your container with:
       - seccomp=unconfined
 ```
 
+## My host is incompatible with images based on rdesktop {#rdesktop}
+
+Some x86_64 hosts have issues running rdesktop based images even with the latest docker version due to syscalls that are unknown to docker. 
+
+### Symptoms
+
+If your host is affected you may see errors in your containers such as:
+
+```shell
+Failed to close file descriptor for child process (Operation not permitted)
+```
+
+### Resolution
+
+For Docker CLI, run your container with:
+
+`--security-opt seccomp=unconfined`
+
+For Docker Compose, run your container with:
+
+```yaml
+    security_opt:
+      - seccomp=unconfined
+```
+
 ## My host is incompatible with images based on Ubuntu Focal and Alpine 3.13 and later {#libseccomp}
 
 This only affects 32 bit installs of distros based on Debian Buster.
