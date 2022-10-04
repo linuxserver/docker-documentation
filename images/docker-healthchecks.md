@@ -195,6 +195,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **27.09.22:** - Fix sending of Email Reports
 * **08.01.22:** - Fix CSRF setting for Django 4.0 (introduced in v1.25.0)
 * **11.11.21:** - Add Apprise to Docker as in v1.24.0
 * **10.09.21:** - Fix creation of superuser
