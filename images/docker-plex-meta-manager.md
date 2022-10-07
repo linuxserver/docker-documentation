@@ -39,6 +39,8 @@ There is a [walkthrough](https://github.com/meisnate12/Plex-Meta-Manager/wiki/Do
 
 This image supports all of the environment variables listed [here](https://github.com/meisnate12/Plex-Meta-Manager/wiki/Run-Commands-&-Environmental-Variables)
 
+To perform a one-time run use `docker run` (or `docker-compose run`) with the `--rm` and `-e PMM_RUN=True` arguments. This will cause the container to process your config immediately instead of waiting for the scheduled time, and delete the old container after completion.
+
 For more information see the [official wiki](https://github.com/meisnate12/Plex-Meta-Manager/wiki).
 
 ## Usage
@@ -168,4 +170,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **03.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **30.01.22:** - Initial Release.
