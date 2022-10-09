@@ -185,6 +185,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **03.10.22:** - Rebase master branch to Alpine 3.16, migrate to s6v3.
 * **12.08.22:** - Bump unrar to 6.1.7.
 * **31.07.22:** - Add nightly tag.
 * **10.03.22:** - Add nzb-notify.
