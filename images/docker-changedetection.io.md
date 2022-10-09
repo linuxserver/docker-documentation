@@ -161,4 +161,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **09.10.22:** - Add make as build dep to fix pip jq build on armhf.
 * **07.08.22:** - Initial release.
