@@ -141,7 +141,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `DB_HOST=<yourdbhost>` | for specifying the database host |
 | `DB_USER=<yourdbuser>` | for specifying the database user |
 | `DB_PASS=<yourdbpass>` | for specifying the database password |
-| `DB_DATABASE=bookstackapp` | for specifying the database to be used |
+| `DB_DATABASE=bookstackapp` | for specifying the database to be used (non-alphanumeric passwords must be properly escaped.) |
 
 ### Volume Mappings (`-v`)
 
@@ -203,6 +203,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **10.10.22:** - Remove password escape logic which caused problems for a small subset of users.
 * **20.08.22:** - Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
 * **14.03.22:** - Add symlinks for theme support.
 * **11.07.21:** - Rebase to Alpine 3.14.
