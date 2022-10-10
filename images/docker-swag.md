@@ -270,6 +270,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **06.10.22:** - Switch to certbot-dns-duckdns. Update cpanel and gandi dns plugin handling. Minor adjustments to init logic.
 * **05.10.22:** - Use certbot file hooks instead of command line hooks
 * **04.10.22:** - Add godaddy and porkbun dns plugins.
 * **03.10.22:** - Add default_server back to default site conf's https listen.
