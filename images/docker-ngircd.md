@@ -56,7 +56,7 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - </path/to/ngircd/config>:/config
+      - /path/to/ngircd/config:/config
     ports:
       - 6667:6667
     restart: unless-stopped
@@ -71,7 +71,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -p 6667:6667 \
-  -v </path/to/ngircd/config>:/config \
+  -v /path/to/ngircd/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/ngircd:latest
 ```
@@ -154,6 +154,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **11.10.22:** - Rebasing to alpine 3.16, migrate to s6v3.
 * **23.01.21:** - Rebasing to alpine 3.13.
 * **01.06.20:** - Rebasing to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.
