@@ -76,9 +76,9 @@ services:
       - PGID=1000
       - TZ=America/New_York
     volumes:
-      - </path/to/appdata/config>:/config
-      - </path/to/snapshots>:/.snapshots #optional
-      - </path/to/data>:/data #optional
+      - /path/to/appdata:/config
+      - /path/to/snapshots:/.snapshots #optional
+      - /path/to/data:/data #optional
     restart: unless-stopped
 ```
 
@@ -90,9 +90,9 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=America/New_York \
-  -v </path/to/appdata/config>:/config \
-  -v </path/to/snapshots>:/.snapshots `#optional` \
-  -v </path/to/data>:/data `#optional` \
+  -v /path/to/appdata:/config \
+  -v /path/to/snapshots:/.snapshots `#optional` \
+  -v /path/to/data:/data `#optional` \
   --restart unless-stopped \
   lscr.io/linuxserver/rsnapshot:latest
 ```
@@ -176,5 +176,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **11.10.22:** - Rebase to alpine 3.16, migrate to s6v3.
 * **10.10.21:** - Rebase to alpine 3.14.
 * **20.08.20:** - Initial Release.
