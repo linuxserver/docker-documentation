@@ -189,6 +189,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **10.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **19.09.22:** - Rebase to alpine 3.15. Build unrar from source.
 * **31.01.21:** - Add unrar.
 * **29.01.21:** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information.
