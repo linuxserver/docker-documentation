@@ -76,7 +76,7 @@ Networks -> LAN (or the network you want to boot from) -> ADVANCED DHCP OPTIONS
 
 #### EdgeOS/VyOS
 Connect via SSH
- ```
+```
 configure
 set service dhcp-server use-dnsmasq enable
 set service dns forwarding options "dhcp-match=set:bios,60,PXEClient:Arch:00000"
@@ -292,6 +292,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.10.22:** - Rebasing to Alpine 3.16, migrate to s6v3.
 * **29.04.21:** - Rebasing to alpine 3.13, add SUBFOLDER env variable.
 * **01.06.20:** - Rebasing to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.
