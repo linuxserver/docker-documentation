@@ -215,6 +215,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **11.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **15.09.22:** - add netcat-openbsd with support for proxies.
 * **18.07.22:** - Fix service perms to comply with upgrade to s6 v3.
 * **16.04.22:** - Rebase to alpine 3.15.
