@@ -172,6 +172,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **18.10.22:** - Deprecate Arch branch.
 * **07.10.22:** - Start calibre window maximized.
 * **16.09.22:** - Rebase to jammy.
 * **24.07.22:** - Add arm64 build for master branch.
