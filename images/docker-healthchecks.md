@@ -195,6 +195,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **18.10.22:** - Add curl-dev to fix broken pip builds.
 * **11.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **27.09.22:** - Fix sending of Email Reports
 * **08.01.22:** - Fix CSRF setting for Django 4.0 (introduced in v1.25.0)
