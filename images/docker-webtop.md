@@ -151,6 +151,7 @@ services:
       - TZ=Europe/London
       - SUBFOLDER=/ #optional
       - KEYBOARD=en-us-qwerty #optional
+      - TITLE=Webtop #optional
     volumes:
       - /path/to/data:/config
       - /var/run/docker.sock:/var/run/docker.sock #optional
@@ -173,6 +174,7 @@ docker run -d \
   -e TZ=Europe/London \
   -e SUBFOLDER=/ `#optional` \
   -e KEYBOARD=en-us-qwerty `#optional` \
+  -e TITLE=Webtop `#optional` \
   -p 3000:3000 \
   -v /path/to/data:/config \
   -v /var/run/docker.sock:/var/run/docker.sock `#optional` \
@@ -201,6 +203,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
 | `SUBFOLDER=/` | Specify a subfolder to use with reverse proxies, IE `/subfolder/` |
 | `KEYBOARD=en-us-qwerty` | See the keyboard layouts section for more information and options. |
+| `TITLE=Webtop` | String which will be used as page/tab title in the web browser. |
 
 ### Volume Mappings (`-v`)
 
