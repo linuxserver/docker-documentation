@@ -62,6 +62,8 @@ services:
     container_name: wireshark
     cap_add:
       - NET_ADMIN
+    security_opt:
+      - seccomp:unconfined #optional
     network_mode: host
     environment:
       - PUID=1000
@@ -81,6 +83,7 @@ docker run -d \
   --name=wireshark \
   --net=host \
   --cap-add=NET_ADMIN \
+  --security-opt seccomp=unconfined `#optional` \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
@@ -124,6 +127,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :-----:   | --- |
+| `--security-opt seccomp=unconfined` | For Docker Engine only, many modern gui apps need this to function on older hosts as syscalls are unknown to Docker. |
 
 ### Portainer notice
 
@@ -180,5 +184,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **14.02.22:** - Rebase to Alpine.
 * **31.03.20:** - Initial release.
