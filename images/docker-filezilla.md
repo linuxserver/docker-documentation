@@ -56,6 +56,8 @@ services:
   filezilla:
     image: lscr.io/linuxserver/filezilla:latest
     container_name: filezilla
+    security_opt:
+      - seccomp:unconfined #optional
     environment:
       - PUID=1000
       - PGID=1000
@@ -72,6 +74,7 @@ services:
 ```bash
 docker run -d \
   --name=filezilla \
+  --security-opt seccomp=unconfined `#optional` \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
@@ -109,6 +112,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :-----:   | --- |
+| `--security-opt seccomp=unconfined` | For Docker Engine only, many modern gui apps need this to function on older hosts as syscalls are unknown to Docker. |
 
 ## Environment variables from files (Docker secrets)
 
@@ -159,6 +163,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **21.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **23.12.21:** - Rebase to Alpine 3.15.
 * **26.09.21:** - Rebase to Alpine 3.14.
 * **18.04.21:** - Initial release.
