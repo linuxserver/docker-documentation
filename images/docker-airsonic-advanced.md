@@ -198,5 +198,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **25.07.22:** - Add vorbis-tools.
 * **02.01.22:** - Initial Release.
