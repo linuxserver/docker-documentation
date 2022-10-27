@@ -239,6 +239,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **27.10.22:** - Rebase all Ubuntu images to Jammy 22.04.
 * **26.10.22:** - Rebase Alpine xfce to 3.16, migrate to s6v3.
 * **05.03.22:** - Organize tags differently to run Ubuntu at latest LTS, make Alpine latest, add docs about GPU accel.
 * **05.05.21:** - Reduce default packages to their flavor specific basics.
