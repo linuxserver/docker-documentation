@@ -162,6 +162,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **27.10.22:** - Rebase main to 3.16, migrate to s6v3.
 * **20.08.22:** - Don't install cypress.
 * **01.04.22:** - Rebase main branch to Alpine 3.15.
 * **27.01.22:** - Rebase develop branch to Alpine 3.15.
