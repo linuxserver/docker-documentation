@@ -52,46 +52,30 @@ To help you get started creating a container from this image you can either use 
 ### docker-compose (recommended, [click here for more info](https://docs.linuxserver.io/general/docker-compose))
 
 ```yaml
-version: "3"
+---
+version: "2.1"
 services:
-  mariadb:
-    image: lscr.io/linuxserver/mariadb:latest
-    container_name: hedgedoc_mariadb
-    restart: always
-    volumes:
-      - /path/to/mariadb/data:/config
-    environment:
-      - MYSQL_ROOT_PASSWORD=<secret password>
-      - MYSQL_DATABASE=hedgedoc
-      - MYSQL_USER=hedgedoc
-      - MYSQL_PASSWORD=<secret password>
-      - PGID=1000
-      - PUID=1000
-      - TZ=Europe/London
   hedgedoc:
     image: lscr.io/linuxserver/hedgedoc:latest
     container_name: hedgedoc
-    restart: always
-    depends_on:
-      - mariadb
-    volumes:
-      - /path/to/config:/config
     environment:
-      - DB_HOST=mariadb
+      - PUID=1000
+      - PGID=1000
+      - DB_HOST=<hostname or ip>
+      - DB_PORT=3306
       - DB_USER=hedgedoc
       - DB_PASS=<secret password>
       - DB_NAME=hedgedoc
-      - DB_PORT=3306
-      - PGID=1000
-      - PUID=1000
       - TZ=Europe/London
       - CMD_DOMAIN=localhost
-      - CMD_URL_ADDPORT=true #optional
+      - CMD_URL_ADDPORT=false #optional
       - CMD_PROTOCOL_USESSL=false #optional
       - CMD_PORT=3000 #optional
+    volumes:
+      - /path/to/appdata:/config
     ports:
-      - "3000:3000"
-
+      - 3000:3000
+    restart: unless-stopped
 ```
 
 ### docker cli ([click here for more info](https://docs.docker.com/engine/reference/commandline/cli/))
@@ -108,7 +92,7 @@ docker run -d \
   -e DB_NAME=hedgedoc \
   -e TZ=Europe/London \
   -e CMD_DOMAIN=localhost \
-  -e CMD_URL_ADDPORT=true `#optional` \
+  -e CMD_URL_ADDPORT=false `#optional` \
   -e CMD_PROTOCOL_USESSL=false `#optional` \
   -e CMD_PORT=3000 `#optional` \
   -p 3000:3000 \
@@ -140,7 +124,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `DB_NAME=hedgedoc` | Database name |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 | `CMD_DOMAIN=localhost` | The address the gui will be accessed at (ie. `192.168.1.1` or `hedgedoc.domain.com`). |
-| `CMD_URL_ADDPORT=true` | Set to `false` if accessing at port `80` or `443`. |
+| `CMD_URL_ADDPORT=false` | Set to `true` if using a port other than `80` or `443`. |
 | `CMD_PROTOCOL_USESSL=false` | Set to `true` if accessing over https via reverse proxy. |
 | `CMD_PORT=3000` | If you wish to access hedgedoc at a port different than 80, 443 or 3000, you need to set this to that port (ie. `CMD_PORT=5000`) and change the port mapping accordingly (5000:5000). |
 
