@@ -35,13 +35,13 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-There is a [walkthrough](https://github.com/meisnate12/Plex-Meta-Manager/wiki/Docker-Walkthrough#setting-up-the-initial-config-file) available to help get you up and running.
+There is a [walkthrough](https://metamanager.wiki/en/latest/home/guides/docker.html#setting-up-the-initial-config-file) available to help get you up and running.
 
-This image supports all of the environment variables listed [here](https://github.com/meisnate12/Plex-Meta-Manager/wiki/Run-Commands-&-Environmental-Variables)
+This image supports all of the environment variables listed [here](https://metamanager.wiki/en/latest/home/environmental.html)
 
 To perform a one-time run use `docker run` (or `docker-compose run`) with the `--rm` and `-e PMM_RUN=True` arguments. This will cause the container to process your config immediately instead of waiting for the scheduled time, and delete the old container after completion.
 
-For more information see the [official wiki](https://github.com/meisnate12/Plex-Meta-Manager/wiki).
+For more information see the [official wiki](https://metamanager.wiki).
 
 ## Usage
 
@@ -170,5 +170,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **25.10.22:** - Support commandline args and relative paths.
 * **03.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **30.01.22:** - Initial Release.
