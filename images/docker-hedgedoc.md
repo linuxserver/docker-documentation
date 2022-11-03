@@ -71,6 +71,7 @@ services:
       - CMD_URL_ADDPORT=false #optional
       - CMD_PROTOCOL_USESSL=false #optional
       - CMD_PORT=3000 #optional
+      - CMD_ALLOW_ORIGIN=['localhost'] #optional
     volumes:
       - /path/to/appdata:/config
     ports:
@@ -95,6 +96,7 @@ docker run -d \
   -e CMD_URL_ADDPORT=false `#optional` \
   -e CMD_PROTOCOL_USESSL=false `#optional` \
   -e CMD_PORT=3000 `#optional` \
+  -e CMD_ALLOW_ORIGIN=['localhost'] `#optional` \
   -p 3000:3000 \
   -v /path/to/appdata:/config \
   --restart unless-stopped \
@@ -127,6 +129,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `CMD_URL_ADDPORT=false` | Set to `true` if using a port other than `80` or `443`. |
 | `CMD_PROTOCOL_USESSL=false` | Set to `true` if accessing over https via reverse proxy. |
 | `CMD_PORT=3000` | If you wish to access hedgedoc at a port different than 80, 443 or 3000, you need to set this to that port (ie. `CMD_PORT=5000`) and change the port mapping accordingly (5000:5000). |
+| `CMD_ALLOW_ORIGIN=['localhost']` | Comma-separated list of allowed hostnames |
 
 ### Volume Mappings (`-v`)
 
@@ -188,6 +191,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **02.11.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **10.04.22:** - Use python3 to build node sqlite3.
 * **10.02.22:** - Rebase to Alpine 3.15.
 * **09.02.22:** - Add optional var `CMD_PORT` that is needed for accessing at port other than 80, 443 and 3000.
