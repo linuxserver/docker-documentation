@@ -68,6 +68,7 @@ services:
       - ALLOWED_HOSTS= #optional
       - SECRET_KEY= #optional
       - APPRISE_ENABLED= #optional
+      - DEBUG= #optional
     volumes:
       - /path/to/data:/config
     ports:
@@ -97,6 +98,7 @@ docker run -d \
   -e ALLOWED_HOSTS= `#optional` \
   -e SECRET_KEY= `#optional` \
   -e APPRISE_ENABLED= `#optional` \
+  -e DEBUG= `#optional` \
   -p 8000:8000 \
   -v /path/to/data:/config \
   --restart unless-stopped \
@@ -134,6 +136,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `ALLOWED_HOSTS=` | Array of valid hostnames for the server `["test.com","test2.com"]` (default: `["*"]`) |
 | `SECRET_KEY=` | A secret key used for cryptographic signing. Will generate a secure value if one is not supplied |
 | `APPRISE_ENABLED=` | Defaults to False. A boolean that turns on/off the Apprise integration (https://github.com/caronc/apprise) |
+| `DEBUG=` | Defaults to True. Debug mode relaxes CSRF protections and increases logging verbosity but should be disabled for production instances as it will impact performance and security. |
 
 ### Volume Mappings (`-v`)
 
