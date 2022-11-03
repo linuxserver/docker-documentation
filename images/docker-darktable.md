@@ -56,6 +56,8 @@ services:
   darktable:
     image: lscr.io/linuxserver/darktable:latest
     container_name: darktable
+    security_opt:
+      - seccomp:unconfined #optional
     environment:
       - PUID=1000
       - PGID=1000
@@ -72,6 +74,7 @@ services:
 ```bash
 docker run -d \
   --name=darktable \
+  --security-opt seccomp=unconfined `#optional` \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
@@ -109,6 +112,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :-----:   | --- |
+| `--security-opt seccomp=unconfined` | For Docker Engine only, many modern gui apps need this to function on older hosts as syscalls are unknown to Docker. |
 
 ## Environment variables from files (Docker secrets)
 
@@ -159,6 +163,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **31.12.21:** - Rebase to Alpine 3.15.
 * **01.10.21:** - Rebase to Alpine 3.14.
 * **07.04.21:** - Initial release.
