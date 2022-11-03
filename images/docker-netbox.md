@@ -215,6 +215,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **02.11.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **01.08.22:** - Remove py3-pillow, add tiff to fix deps.
 * **26.07.22:** - Add py3-pillow package back on arm to fix build issue.
 * **10.12.21:** - Remove py3-pillow package to fix dependency issue with 3.2.0.
