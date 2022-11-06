@@ -42,7 +42,7 @@ This image provides various versions that are available via tags. Please read th
 | Tag | Available | Description |
 | :----: | :----: |--- |
 | latest | ✅ | Stable Heimdall releases. |
-| development | ✅ | Latest commit from the github master branch. |
+| development | ✅ | Latest commit from the github 2.x branch. |
 
 ## Application Setup
 
@@ -71,7 +71,7 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - </path/to/appdata/config>:/config
+      - /path/to/appdata/config:/config
     ports:
       - 80:80
       - 443:443
@@ -88,7 +88,7 @@ docker run -d \
   -e TZ=Europe/London \
   -p 80:80 \
   -p 443:443 \
-  -v </path/to/appdata/config>:/config \
+  -v /path/to/appdata/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/heimdall:latest
 ```
@@ -172,6 +172,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **04.11.22:** - Build commits to upstream branch 2.x for the `development` tag.
 * **13.03.21:** - Make searchproviders.yaml user configurable.
 * **11.03.21:** - Rebase to alpine 3.14.
 * **10.02.21:** - Revert to alpine 3.12 as php 7.4 broke laravel.
