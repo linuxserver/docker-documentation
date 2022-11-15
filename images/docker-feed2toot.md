@@ -16,7 +16,7 @@ title: feed2toot
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/feed2toot.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/feed2toot)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-feed2toot%2Fjob%2Fmain%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-feed2toot/job/main/)
 
-[Feed2toot](https://gitlab.com/chaica/feed2toot) Feed2toot automatically parses rss feeds, identifies new posts and posts them on the Mastodon social network.
+[Feed2toot](https://gitlab.com/chaica/feed2toot) automatically parses rss feeds, identifies new posts and posts them on the Mastodon social network.
 
 ## Supported Architectures
 
@@ -34,7 +34,7 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-Run `docker run --rm -it -w /config -v /path/to/data:/config -e PUID=1000 -e PGID=1000 lscr.io/linuxserver/feed2toot /usr/bin/register_feed2toot_app` to generate credential files (be sure to set the correct volume path and PUID/PGID values)."
+Run `docker run --rm -it -w /config -v /path/to/data:/config -e PUID=1000 -e PGID=1000 lscr.io/linuxserver/feed2toot /usr/bin/register_feed2toot_app` to generate credential files (be sure to set the correct volume path and PUID/PGID values).
 
 Edit the feed2toot.ini in /config to configure your instance name and RSS feeds.
 
