@@ -35,7 +35,7 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-This is a backend only service, to leverage Guacd server you need to use either the official Java frontend [guacamole-client](https://github.com/apache/guacamole-client) or an open source alterantive like [guacamole-lite](https://github.com/vadimpronin/guacamole-lite).
+This is a backend only service, to leverage Guacd server you need to use either the official Java frontend [guacamole-client](https://github.com/apache/guacamole-client) or an open source alternative like [guacamole-lite](https://github.com/vadimpronin/guacamole-lite).
 
 ## Usage
 
