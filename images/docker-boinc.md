@@ -191,6 +191,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **14.11.22:** - Fix opencl driver.
 * **18.09.22:** - Rebase to jammy.
 * **24.02.22:** - Rebase to focal.
 * **31.01.22:** - Improve device permissions setting verbosity.
