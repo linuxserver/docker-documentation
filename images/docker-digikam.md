@@ -197,6 +197,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **21.11.22:** - Trigger upon baseimage updates (arch being a rolling distro has too many dependency breaks otherwise). Release version will be the baseimage build date going forward.
 * **20.10.22:** - Migrate to s6v3.
 * **07.03.22:** - Add Exiftool and firefox for image exports.
 * **20.02.22:** - Add MariaDB, expand documentation.
