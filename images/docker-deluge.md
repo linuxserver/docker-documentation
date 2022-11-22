@@ -174,6 +174,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **22.11.22:** - Update GeoIP URL for new IPFS domain.
 * **29.08.22:** - Rebase to Alpine Edge again to follow latest releases.
 * **12.08.22:** - Bump unrar to 6.1.7.
 * **16.06.22:** - Rebase to Alpine 3.16 from edge.
