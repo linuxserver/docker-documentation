@@ -163,6 +163,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **18.11.22:** - Rebasing to Alpine 3.16, migrate to s6v3.
 * **20.08.22:** - Rebasing to Alpine 3.15 with php8. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
 * **23.01.22:** - Pin versions to 5.x.x.
 * **14.06.21:** - Initial Release.
