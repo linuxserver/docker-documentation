@@ -158,6 +158,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.11.22:** - Rebase to Alpine 3.16, migrate to s6v3. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
 * **28.05.22:** - Add missing PUID/PGID vars to readme.
 * **03.04.22:** - Rebase to alpine-nginx baseimage. Add `CSRF_TRUSTED_ORIGINS` env var.
 * **11.12.21:** - Add py3-mysqlclient for mysql/mariadb.
