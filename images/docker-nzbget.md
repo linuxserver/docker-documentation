@@ -21,26 +21,26 @@ title: nzbget
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/nzbget` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/nzbget:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Version Tags
 
-This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
+This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
 
-| Tag | Description |
-| :----: | --- |
-| latest | Stable nzbget releases |
-| testing | nzbget pre-releases |
+| Tag | Available | Description |
+| :----: | :----: |--- |
+| latest | ✅ | Stable nzbget releases |
+| testing | ✅ | nzbget pre-releases |
 
 ## Application Setup
 
@@ -83,12 +83,14 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   nzbget:
-    image: lscr.io/linuxserver/nzbget
+    image: lscr.io/linuxserver/nzbget:latest
     container_name: nzbget
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
+      - NZBGET_USER=nzbget #optional
+      - NZBGET_PASS=tegbzn6789 #optional
     volumes:
       - /path/to/data:/config
       - /path/to/downloads:/downloads #optional
@@ -105,11 +107,13 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
+  -e NZBGET_USER=nzbget `#optional` \
+  -e NZBGET_PASS=tegbzn6789 `#optional` \
   -p 6789:6789 \
   -v /path/to/data:/config \
   -v /path/to/downloads:/downloads `#optional` \
   --restart unless-stopped \
-  lscr.io/linuxserver/nzbget
+  lscr.io/linuxserver/nzbget:latest
 ```
 
 ## Parameters
@@ -129,6 +133,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
+| `NZBGET_USER=nzbget` | Specify the user for web authentication. |
+| `NZBGET_PASS=tegbzn6789` | Specify the password for web authentication. |
 
 ### Volume Mappings (`-v`)
 
@@ -187,11 +193,14 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' nzbget`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/nzbget`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/nzbget:latest`
 
 ## Versions
 
-* **04.07.21:** - Rebase to alpine 3.14
+* **13.11.22:** - Rebase master to 3.16, migrate to s6v3.
+* **12.08.22:** - Bump unrar to 6.1.7.
+* **22.02.22:** - Rebase to alpine 3.15, add six and python 7zip tools, allow env variables for credentials.
+* **04.07.21:** - Rebase to alpine 3.14.
 * **28.05.21:** - Add linuxserver wheel index.
 * **23.01.21:** - Rebasing to alpine 3.13.
 * **26.10.20:** - Fix python dependencies.

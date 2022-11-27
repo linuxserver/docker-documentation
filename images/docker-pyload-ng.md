@@ -21,26 +21,26 @@ title: pyload-ng
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/pyload-ng` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/pyload-ng:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Version Tags
 
-This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
+This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
 
-| Tag | Description |
-| :----: | --- |
-| latest | Stable releases from pyLoad Next |
-| develop | Releases from pyload Next develop branch |
+| Tag | Available | Description |
+| :----: | :----: |--- |
+| latest | ✅ | Stable releases from pyLoad Next |
+| develop | ✅ | Releases from pyload Next develop branch |
 
 ## Application Setup
 
@@ -61,7 +61,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   pyload-ng:
-    image: lscr.io/linuxserver/pyload-ng
+    image: lscr.io/linuxserver/pyload-ng:latest
     container_name: pyload-ng
     environment:
       - PUID=1000
@@ -72,6 +72,7 @@ services:
       - /path/to/downloads:/downloads
     ports:
       - 8000:8000
+      - 9666:9666 #optional
     restart: unless-stopped
 ```
 
@@ -84,10 +85,11 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -p 8000:8000 \
+  -p 9666:9666 `#optional` \
   -v /path/to/appdata/config:/config \
   -v /path/to/downloads:/downloads \
   --restart unless-stopped \
-  lscr.io/linuxserver/pyload-ng
+  lscr.io/linuxserver/pyload-ng:latest
 ```
 
 ## Parameters
@@ -99,6 +101,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Parameter | Function |
 | :----: | --- |
 | `8000` | Allows HTTP access to the application |
+| `9666` | Click'n'Load port. |
 
 ### Environment Variables (`-e`)
 
@@ -165,9 +168,10 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' pyload-ng`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/pyload-ng`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/pyload-ng:latest`
 
 ## Versions
 
+* **02.02.22:** - Add ffmpeg for the Youtube plugin.
 * **24.01.22:** - Replace unrar with p7zip.
 * **24.01.22:** - Initial release.

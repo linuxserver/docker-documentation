@@ -21,23 +21,25 @@ title: projectsend
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/projectsend` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/projectsend:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
 *IMPORTANT* This image no longer supports MSSQL since being migrated to PHP7, if you want MSSQL support please use the tag `linuxserver/projectsend:r1053-ls27`
 
 Requires a user and database in either mysql or mariadb.
+
+To use translations, follow the instructions [here](https://www.projectsend.org/how-to-use-translation-files/). The necessary paths are symlinked under `/config/translations` (note that the "templates" paths don't need `lang` subdirectories).
 
 More info at [ProjectSend](http://www.projectsend.org).
 
@@ -52,13 +54,13 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   projectsend:
-    image: lscr.io/linuxserver/projectsend
+    image: lscr.io/linuxserver/projectsend:latest
     container_name: projectsend
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - MAX_UPLOAD=<5000>
+      - MAX_UPLOAD=5000
     volumes:
       - <path to data>:/config
       - <path to data>:/data
@@ -75,12 +77,12 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
-  -e MAX_UPLOAD=<5000> \
+  -e MAX_UPLOAD=5000 \
   -p 80:80 \
   -v <path to data>:/config \
   -v <path to data>:/data \
   --restart unless-stopped \
-  lscr.io/linuxserver/projectsend
+  lscr.io/linuxserver/projectsend:latest
 ```
 
 ## Parameters
@@ -100,7 +102,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
-| `MAX_UPLOAD=<5000>` | To set maximum upload size (in MB), default if unset is 5000. |
+| `MAX_UPLOAD=5000` | To set maximum upload size (in MB), default if unset is 5000. |
 
 ### Volume Mappings (`-v`)
 
@@ -159,10 +161,12 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' projectsend`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/projectsend`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/projectsend:latest`
 
 ## Versions
 
+* **23.08.22:** - Add translation support
+* **20.08.22:** - Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
 * **24.06.21:** - Rebasing to alpine 3.14, switch to nginx
 * **23.01.21:** - Rebasing to alpine 3.13.
 * **01.06.20:** - Rebasing to alpine 3.12.

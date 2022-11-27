@@ -21,35 +21,37 @@ title: sabnzbd
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/sabnzbd` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/sabnzbd:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Version Tags
 
-This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
+This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
 
-| Tag | Description |
-| :----: | --- |
-| latest | Stable SABnzbd releases |
-| alpine | Stable SABnzbd releases using our Alpine baseimage |
-| unstable | Pre-releases of SABnzbd |
+| Tag | Available | Description |
+| :----: | :----: |--- |
+| latest | ✅ | Stable SABnzbd releases |
+| unstable | ✅ | Pre-releases from the develop branch |
+| nightly | ✅ | Latest commits from the develop branch |
 
 ## Application Setup
 
 Initial setup is done from the http port.
 
-Https access for sabnzbd needs to be enabled in either the intial setup wizard or in the configure settings of the webui, be sure to use 9090 as port for https.
+See the [SABnzbd wiki](https://sabnzbd.org/wiki/) for more information.
 
-See here for info on some of the switch settings for sabnzbd https://sabnzbd.org/wiki/configuration/2.3/switches .
+### nzb-notify
+
+nzb-notify is included with this image as a convenience script. To use it set the Scripts folder in the Folder settings to /app/nzbnotify and then configure it under Notifications. See [nzb-notify](https://github.com/caronc/nzb-notify/) for more information.
 
 ### Download folders
 
@@ -72,7 +74,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   sabnzbd:
-    image: lscr.io/linuxserver/sabnzbd
+    image: lscr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd
     environment:
       - PUID=1000
@@ -100,7 +102,7 @@ docker run -d \
   -v /path/to/downloads:/downloads `#optional` \
   -v /path/to/incomplete/downloads:/incomplete-downloads `#optional` \
   --restart unless-stopped \
-  lscr.io/linuxserver/sabnzbd
+  lscr.io/linuxserver/sabnzbd:latest
 ```
 
 ## Parameters
@@ -179,12 +181,17 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' sabnzbd`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/sabnzbd`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/sabnzbd:latest`
 
 ## Versions
 
+* **03.10.22:** - Rebase master branch to Alpine 3.16, migrate to s6v3.
+* **12.08.22:** - Bump unrar to 6.1.7.
+* **31.07.22:** - Add nightly tag.
+* **10.03.22:** - Add nzb-notify.
+* **22.02.22:** - Rebase master branch to Alpine, build unrar from source, deprecate Alpine branch.
 * **25.01.22:** - Rebase Unstable branch to Alpine.
-* **13.01.22:** - Add Alpine branch.
+* **13.01.22:** - Add alpine branch
 * **08.08.21:** - Bump to focal, dont enforce binding to ipv4 port 8080
 * **24.07.21:** - Add python3-setuptools.
 * **14.05.21:** - Use linuxserver.io wheel index for pip packages.

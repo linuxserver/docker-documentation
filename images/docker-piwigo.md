@@ -21,26 +21,25 @@ title: piwigo
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/piwigo` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/piwigo:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
-Docker image update and recreation of container alone won't update Piwigo version. In order to update Piwigo version, firstly make sure you are using the latest docker image, then go to Admin->Tools->Updates and use the app updater.
-* You must create a user and database for piwigo to use in a mysql/mariadb server.
-* In the setup page for database, use the ip address rather than hostname.
-* A basic nginx configuration file can be found in `/config/nginx/site-confs`, edit the file to enable ssl (port 443 by default), set servername etc.
+* You must create a user and database for piwigo to use in a mysql/mariadb server. 
+
 * Self-signed keys are generated the first time you run the container and can be found in `/config/keys`, if needed, you can replace them with your own.
-* The easiest way to edit the configuration file is to enable local files editor from the plugins page and use it to configure email settings etc.
+
+* The easiest way to edit the configuration file is to enable local files editor from the plugins page and use it to configure email settings etc."
 
 ## Usage
 
@@ -53,15 +52,15 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   piwigo:
-    image: lscr.io/linuxserver/piwigo
+    image: lscr.io/linuxserver/piwigo:latest
     container_name: piwigo
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - </path/to/appdata/config>:/config
-      - </path/to/appdata/gallery>:/gallery
+      - /path/to/appdata/config:/config
+      - /path/to/appdata/gallery:/gallery
     ports:
       - 80:80
     restart: unless-stopped
@@ -76,10 +75,10 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -p 80:80 \
-  -v </path/to/appdata/config>:/config \
-  -v </path/to/appdata/gallery>:/gallery \
+  -v /path/to/appdata/config:/config \
+  -v /path/to/appdata/gallery:/gallery \
   --restart unless-stopped \
-  lscr.io/linuxserver/piwigo
+  lscr.io/linuxserver/piwigo:latest
 ```
 
 ## Parameters
@@ -105,7 +104,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Volume | Function |
 | :----: | --- |
 | `/config` | Configuration files. |
-| `/gallery` | Image, plugin, & theme storage for Piwigo |
+| `/gallery` | Image storage for Piwigo |
 
 #### Miscellaneous Options
 
@@ -157,10 +156,12 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' piwigo`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/piwigo`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/piwigo:latest`
 
 ## Versions
 
+* **08.11.22:** - Rebase to Alpine 3.16, migrate to s6v3. Move application install to /app/www/public, add migration for existing users. Container updates should now update the application correctly.
+* **20.08.22:** - Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
 * **29.06.21:** - Rebase to 3.14, Add php7-zip package
 * **20.05.21:** - Create separate volume for image data
 * **23.01.21:** - Rebasing to alpine 3.13.

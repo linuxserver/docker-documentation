@@ -21,29 +21,17 @@ title: domoticz
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/domoticz` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/domoticz:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
-
-## Version Tags
-
-This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
-
-| Tag | Description |
-| :----: | --- |
-| latest | Current latest stable. |
-| stable | Old stable version. Please change to latest branch for stable releases. |
-| stable-4.9700 | Old stable version. Will not be updated anymore! |
-| stable-3.815 | Old stable version. Will not be updated anymore! |
-| stable-3.5877 | Old stable version. Will not be updated anymore! |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -61,13 +49,14 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   domoticz:
-    image: lscr.io/linuxserver/domoticz
+    image: lscr.io/linuxserver/domoticz:latest
     container_name: domoticz
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
       - WEBROOT=domoticz #optional
+      - DBASE=<path to database> #optional
     volumes:
       - <path to data>:/config
     ports:
@@ -88,13 +77,14 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -e WEBROOT=domoticz `#optional` \
+  -e DBASE=<path to database> `#optional` \
   -p 8080:8080 \
   -p 6144:6144 \
   -p 1443:1443 \
   -v <path to data>:/config \
   --device path to device:path to device \
   --restart unless-stopped \
-  lscr.io/linuxserver/domoticz
+  lscr.io/linuxserver/domoticz:latest
 ```
 
 ### Passing Through USB Devices
@@ -129,6 +119,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 | `WEBROOT=domoticz` | Sets webroot to domoticz for usage with subfolder reverse proxy. Not needed unless reverse proxying. |
+| `DBASE=<path to database>` | Sets path to database. Do not set unless you know what this does. |
 
 ### Volume Mappings (`-v`)
 
@@ -192,10 +183,12 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' domoticz`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/domoticz`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/domoticz:latest`
 
 ## Versions
 
+* **15.10.22:** - Remove deprecated legacy stable branches.
+* **05.02.22:** - Set default webroot to /. Add env. variable for setting custom databas path.
 * **26.12.20:** - Rebase to Ubuntu Focal, see [here](https://docs.linuxserver.io/faq#my-host-is-incompatible-with-images-based-on-ubuntu-focal) for troubleshooting armhf.
 * **24.11.19:** - Change to using domoticz builtin Lua and MQTT.
 * **03.11.19:** - Set capabilities for domoticz binary and move cmake from edge repo.

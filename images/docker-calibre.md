@@ -21,26 +21,17 @@ title: calibre
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/calibre` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/calibre:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | latest |
-| arm64 | arm64v8-arch |
-| armhf | arm32v7-arch |
-
-## Version Tags
-
-This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
-
-| Tag | Description |
-| :----: | --- |
-| latest | Default Ubuntu based image |
-| arch | Arch based image supporting arm platforms |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ❌ | |
 
 ## Application Setup
 
@@ -63,8 +54,10 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   calibre:
-    image: lscr.io/linuxserver/calibre
+    image: lscr.io/linuxserver/calibre:latest
     container_name: calibre
+    security_opt:
+      - seccomp:unconfined #optional
     environment:
       - PUID=1000
       - PGID=1000
@@ -84,6 +77,7 @@ services:
 ```bash
 docker run -d \
   --name=calibre \
+  --security-opt seccomp=unconfined `#optional` \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
@@ -93,7 +87,7 @@ docker run -d \
   -p 8081:8081 \
   -v /path/to/data:/config \
   --restart unless-stopped \
-  lscr.io/linuxserver/calibre
+  lscr.io/linuxserver/calibre:latest
 ```
 
 ## Parameters
@@ -127,6 +121,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :-----:   | --- |
+| `--security-opt seccomp=unconfined` | For Docker Engine only, many modern gui apps need this to function as syscalls are unkown to Docker. |
 
 ## Environment variables from files (Docker secrets)
 
@@ -173,10 +168,19 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' calibre`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/calibre`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/calibre:latest`
 
 ## Versions
 
+* **19.10.22:** - Set the window title to `Calibre`. Remove websocat as it is now handled properly in the baseimage.
+* **18.10.22:** - Deprecate Arch branch.
+* **07.10.22:** - Start calibre window maximized.
+* **16.09.22:** - Rebase to jammy.
+* **24.07.22:** - Add arm64 build for master branch.
+* **11.07.22:** - Update dependencies for Calibre 6.
+* **28.05.22:** - Rebase to focal.
+* **31.03.22:** - Fix umask.
+* **28.02.22:** - Add speech support to bionic image.
 * **05.01.22:** - Add arch branch for arm platforms.
 * **20.04.21:** - Fix the HOME folder.
 * **19.04.21:** - Add libnss3 back in. Make sure Calibre can access environment variables.

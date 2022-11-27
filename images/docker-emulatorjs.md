@@ -21,17 +21,17 @@ title: emulatorjs
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/emulatorjs` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/emulatorjs:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -44,7 +44,7 @@ The first thing you will need to do is click to download the default art/configs
 The frontend application has been initially optimized around being used with a standard gamepad (more specifically for modern Xbox consoles that have chromium based Edge browsers). The navigation revolves around the up/down/left/right keys to browse the menus and launch games.
 Mobile browsers will function, just keep in mind compatibility will be reduced especially for CD based games.
 
-**It is important to note that some of the current emulators used for this frontend are obfuscated code, efforts are being made to [reverese engineer it](https://github.com/ethanaobrien/emulatorjs/) but you should know it can potentially reach out to third party services if you manually enable features like netplay (this should never happen in a stock setup). The point of this message is that on top of the de-obfuscation effort there is also effort to stop using binary blobs and shift to built from source libretro emscripten blobs, for now this web based emulation stack is the best for useability and compatibility. We are in the process to transitioning to libretro cores for emulators, currently 27/30 emulators have been replaced.**
+**It is important to note that some of the current emulators used for this frontend are obfuscated code, efforts are being made to [reverse engineer it](https://github.com/ethanaobrien/emulatorjs/) but you should know it can potentially reach out to third party services if you manually enable features like netplay (this should never happen in a stock setup). The point of this message is that on top of the de-obfuscation effort there is also effort to stop using binary blobs and shift to built from source libretro emscripten blobs, for now this web based emulation stack is the best for useability and compatibility. We are in the process to transitioning to libretro cores for emulators, currently 27/30 emulators have been replaced.**
 
 **For Xbox users please click the select button a couple times after launching a game to ensure the B button does not trigger a "back" action in the browser. (official name "view button" it is the two small squares) Exiting the controller mode and back to browser controls can be triggered by holding the start button for 3 seconds. (official name "menu button" the three lines) You will be unable to use features like save states and modify controller layouts on the emulatorjs based emulators currently as I have not determined a methodology of re-entering controller mode once you exit it. All normal game saves will function given you exit the game play screen cleanly using the B button for back this includes multi disc games for psx. Your game saves are stored in browser storage by hostname so if you make any changes to your local hosted setup (port or IP) the saves will not follow with it. For libretro based emulators you can use the button combination start+select+L+R to access the libretro menu and change settings/save or load/etc.**
 
@@ -97,7 +97,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   emulatorjs:
-    image: lscr.io/linuxserver/emulatorjs
+    image: lscr.io/linuxserver/emulatorjs:latest
     container_name: emulatorjs
     environment:
       - PUID=1000
@@ -129,7 +129,7 @@ docker run -d \
   -v /path/to/config:/config \
   -v /path/to/data:/data \
   --restart unless-stopped \
-  lscr.io/linuxserver/emulatorjs
+  lscr.io/linuxserver/emulatorjs:latest
 ```
 
 ## Parameters
@@ -210,10 +210,13 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' emulatorjs`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/emulatorjs`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/emulatorjs:latest`
 
 ## Versions
 
+* **24.11.22:** - Update IPFS links for chdman.
+* **04.04.22:** - Ingest pre-built chdman bins during build time.
+* **23.02.22:** - Update ingestion point for emulatorjs bins.
 * **25.01.22:** - Allow users to mount in existing rom directories.
 * **14.01.22:** - Add profile paths and rebase to Alpine 3.15.
 * **04.01.22:** - Add headers needed for Threaded emulators.

@@ -26,25 +26,23 @@ title: deluge
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/deluge` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/deluge:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
 The admin interface is available at `http://SERVER-IP:8112` with a default user/password of admin/deluge.
 
 To change the password (recommended) log in to the web interface and go to Preferences->Interface->Password.
-
-Change the downloads location in the webui in Preferences->Downloads and use /downloads for completed downloads.
 
 Change the inbound port to 6881 (or whichever port you've mapped for the container) under Preferences->Network, otherwise random ports will be used.
 
@@ -59,7 +57,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   deluge:
-    image: lscr.io/linuxserver/deluge
+    image: lscr.io/linuxserver/deluge:latest
     container_name: deluge
     environment:
       - PUID=1000
@@ -91,7 +89,7 @@ docker run -d \
   -v /path/to/deluge/config:/config \
   -v /path/to/your/downloads:/downloads \
   --restart unless-stopped \
-  lscr.io/linuxserver/deluge
+  lscr.io/linuxserver/deluge:latest
 ```
 
 ## Parameters
@@ -172,10 +170,16 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' deluge`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/deluge`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/deluge:latest`
 
 ## Versions
 
+* **24.11.22:** - Remove GeoIP packages as geoip will not build under Py 3.11 and Deluge still doesn't support geoip2.
+* **22.11.22:** - Update GeoIP URL for new IPFS domain.
+* **29.08.22:** - Rebase to Alpine Edge again to follow latest releases.
+* **12.08.22:** - Bump unrar to 6.1.7.
+* **16.06.22:** - Rebase to Alpine 3.16 from edge.
+* **22.02.22:** - Rebase to Alpine, config on first startup, add GeoIP.
 * **15.01.22:** - Rebase to Focal.
 * **07.06.21:** - Remove host networking from readme examples
 * **23.01.21:** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information.

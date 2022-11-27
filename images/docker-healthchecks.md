@@ -21,17 +21,17 @@ title: healthchecks
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/healthchecks` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/healthchecks:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -48,28 +48,29 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   healthchecks:
-    image: lscr.io/linuxserver/healthchecks
+    image: lscr.io/linuxserver/healthchecks:latest
     container_name: healthchecks
     environment:
       - PUID=1000
       - PGID=1000
-      - SITE_ROOT=<SITE_ROOT>
-      - SITE_NAME=<SITE_NAME>
-      - DEFAULT_FROM_EMAIL=<DEFAULT_FROM_EMAIL>
-      - EMAIL_HOST=<EMAIL_HOST>
-      - EMAIL_PORT=<EMAIL_PORT>
-      - EMAIL_HOST_USER=<EMAIL_HOST_USER>
-      - EMAIL_HOST_PASSWORD=<EMAIL_HOST_PASSWORD>
-      - EMAIL_USE_TLS=<True or False>
-      - ALLOWED_HOSTS=<ALLOWED_HOSTS>
-      - SUPERUSER_EMAIL=<SUPERUSER_EMAIL>
-      - SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD>
-      - REGENERATE_SETTINGS=True/False #optional
-      - SITE_LOGO_URL=<SITE_LOGO_URL> #optional
-      - SECRET_KEY=<SECRET_KEY> #optional
-      - APPRISE_ENABLED=True/False #optional
+      - SITE_ROOT=
+      - SITE_NAME=
+      - DEFAULT_FROM_EMAIL=
+      - EMAIL_HOST=
+      - EMAIL_PORT=
+      - EMAIL_HOST_USER=
+      - EMAIL_HOST_PASSWORD=
+      - EMAIL_USE_TLS=
+      - SUPERUSER_EMAIL=
+      - SUPERUSER_PASSWORD=
+      - REGENERATE_SETTINGS= #optional
+      - SITE_LOGO_URL= #optional
+      - ALLOWED_HOSTS= #optional
+      - SECRET_KEY= #optional
+      - APPRISE_ENABLED= #optional
+      - DEBUG= #optional
     volumes:
-      - <path to data on host>:/config
+      - /path/to/data:/config
     ports:
       - 8000:8000
     restart: unless-stopped
@@ -82,25 +83,26 @@ docker run -d \
   --name=healthchecks \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e SITE_ROOT=<SITE_ROOT> \
-  -e SITE_NAME=<SITE_NAME> \
-  -e DEFAULT_FROM_EMAIL=<DEFAULT_FROM_EMAIL> \
-  -e EMAIL_HOST=<EMAIL_HOST> \
-  -e EMAIL_PORT=<EMAIL_PORT> \
-  -e EMAIL_HOST_USER=<EMAIL_HOST_USER> \
-  -e EMAIL_HOST_PASSWORD=<EMAIL_HOST_PASSWORD> \
-  -e EMAIL_USE_TLS=<True or False> \
-  -e ALLOWED_HOSTS=<ALLOWED_HOSTS> \
-  -e SUPERUSER_EMAIL=<SUPERUSER_EMAIL> \
-  -e SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD> \
-  -e REGENERATE_SETTINGS=True/False `#optional` \
-  -e SITE_LOGO_URL=<SITE_LOGO_URL> `#optional` \
-  -e SECRET_KEY=<SECRET_KEY> `#optional` \
-  -e APPRISE_ENABLED=True/False `#optional` \
+  -e SITE_ROOT= \
+  -e SITE_NAME= \
+  -e DEFAULT_FROM_EMAIL= \
+  -e EMAIL_HOST= \
+  -e EMAIL_PORT= \
+  -e EMAIL_HOST_USER= \
+  -e EMAIL_HOST_PASSWORD= \
+  -e EMAIL_USE_TLS= \
+  -e SUPERUSER_EMAIL= \
+  -e SUPERUSER_PASSWORD= \
+  -e REGENERATE_SETTINGS= `#optional` \
+  -e SITE_LOGO_URL= `#optional` \
+  -e ALLOWED_HOSTS= `#optional` \
+  -e SECRET_KEY= `#optional` \
+  -e APPRISE_ENABLED= `#optional` \
+  -e DEBUG= `#optional` \
   -p 8000:8000 \
-  -v <path to data on host>:/config \
+  -v /path/to/data:/config \
   --restart unless-stopped \
-  lscr.io/linuxserver/healthchecks
+  lscr.io/linuxserver/healthchecks:latest
 ```
 
 ## Parameters
@@ -119,27 +121,28 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `SITE_ROOT=<SITE_ROOT>` | The site's top-level URL and the port it listens to if differrent than 80 or 443 (e.g., https://healthchecks.example.com:8000) |
-| `SITE_NAME=<SITE_NAME>` | The site's name (e.g., "Example Corp HealthChecks") |
-| `DEFAULT_FROM_EMAIL=<DEFAULT_FROM_EMAIL>` | From email for alerts |
-| `EMAIL_HOST=<EMAIL_HOST>` | SMTP host |
-| `EMAIL_PORT=<EMAIL_PORT>` | SMTP port |
-| `EMAIL_HOST_USER=<EMAIL_HOST_USER>` | SMTP user |
-| `EMAIL_HOST_PASSWORD=<EMAIL_HOST_PASSWORD>` | SMTP password |
-| `EMAIL_USE_TLS=<True or False>` | Use TLS for SMTP (`True` or `False`) |
-| `ALLOWED_HOSTS=<ALLOWED_HOSTS>` | array of valid hostnames for the server `["test.com","test2.com"]` (default: `["*"]`) |
-| `SUPERUSER_EMAIL=<SUPERUSER_EMAIL>` | Superuser email |
-| `SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD>` | Superuser password |
-| `REGENERATE_SETTINGS=True/False` | Defaults to False. Set to true to always override the `local_settings.py` file with values from environment variables. Do not set to True if you have made manual modifications to this file. |
-| `SITE_LOGO_URL=<SITE_LOGO_URL>` | Custom site logo URL |
-| `SECRET_KEY=<SECRET_KEY>` | A secret key used for cryptographic signing. docker-healthchecks will generate a secure value if one does not exist |
-| `APPRISE_ENABLED=True/False` | Defaults to False. A boolean that turns on/off the Apprise integration (https://github.com/caronc/apprise) |
+| `SITE_ROOT=` | The site's top-level URL and the port it listens to if differrent than 80 or 443 (e.g., https://healthchecks.example.com:8000) |
+| `SITE_NAME=` | The site's name (e.g., "Example Corp HealthChecks") |
+| `DEFAULT_FROM_EMAIL=` | From email for alerts |
+| `EMAIL_HOST=` | SMTP host |
+| `EMAIL_PORT=` | SMTP port |
+| `EMAIL_HOST_USER=` | SMTP user |
+| `EMAIL_HOST_PASSWORD=` | SMTP password |
+| `EMAIL_USE_TLS=` | Use TLS for SMTP (`True` or `False`) |
+| `SUPERUSER_EMAIL=` | Superuser email |
+| `SUPERUSER_PASSWORD=` | Superuser password |
+| `REGENERATE_SETTINGS=` | Defaults to False. Set to true to always override the `local_settings.py` file with values from environment variables. Do not set to True if you have made manual modifications to this file. |
+| `SITE_LOGO_URL=` | Full URL to custom site logo |
+| `ALLOWED_HOSTS=` | Array of valid hostnames for the server `["test.com","test2.com"]` (default: `["*"]`) |
+| `SECRET_KEY=` | A secret key used for cryptographic signing. Will generate a secure value if one is not supplied |
+| `APPRISE_ENABLED=` | Defaults to False. A boolean that turns on/off the Apprise integration (https://github.com/caronc/apprise) |
+| `DEBUG=` | Defaults to True. Debug mode relaxes CSRF protections and increases logging verbosity but should be disabled for production instances as it will impact performance and security. |
 
 ### Volume Mappings (`-v`)
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | database and healthchecks config directory volume mapping |
+| `/config` | Database and healthchecks config directory |
 
 #### Miscellaneous Options
 
@@ -191,10 +194,13 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' healthchecks`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/healthchecks`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/healthchecks:latest`
 
 ## Versions
 
+* **18.10.22:** - Add curl-dev to fix broken pip builds.
+* **11.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
+* **27.09.22:** - Fix sending of Email Reports
 * **08.01.22:** - Fix CSRF setting for Django 4.0 (introduced in v1.25.0)
 * **11.11.21:** - Add Apprise to Docker as in v1.24.0
 * **10.09.21:** - Fix creation of superuser

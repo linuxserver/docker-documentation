@@ -23,17 +23,17 @@ For more information on SickGear visit their website and check it out: https://g
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/sickgear` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/sickgear:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -78,11 +78,12 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   sickgear:
-    image: lscr.io/linuxserver/sickgear
+    image: lscr.io/linuxserver/sickgear:latest
     container_name: sickgear
     environment:
       - PUID=1000
       - PGID=1000
+      - TZ=Europe/London
     volumes:
       - /path/to/data:/config
       - /path/to/data:/tv
@@ -99,12 +100,13 @@ docker run -d \
   --name=sickgear \
   -e PUID=1000 \
   -e PGID=1000 \
+  -e TZ=Europe/London \
   -p 8081:8081 \
   -v /path/to/data:/config \
   -v /path/to/data:/tv \
   -v /path/to/data:/downloads \
   --restart unless-stopped \
-  lscr.io/linuxserver/sickgear
+  lscr.io/linuxserver/sickgear:latest
 ```
 
 ## Parameters
@@ -123,6 +125,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
+| `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 
 ### Volume Mappings (`-v`)
 
@@ -182,10 +185,13 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' sickgear`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/sickgear`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/sickgear:latest`
 
 ## Versions
 
+* **18.11.22:** - Update service file from legacy SickBeard.py to sickgear.py.
+* **10.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
+* **19.09.22:** - Rebase to alpine 3.15. Build unrar from source.
 * **31.01.21:** - Add unrar.
 * **29.01.21:** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information.
 * **23.01.21:** - Rebasing to alpine 3.13.

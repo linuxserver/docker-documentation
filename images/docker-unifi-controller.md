@@ -21,17 +21,17 @@ The [Unifi-controller](https://www.ubnt.com/enterprise/#unifi) software is a pow
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/unifi-controller` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/unifi-controller:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ❌ | |
 
 ## Application Setup
 
@@ -50,6 +50,11 @@ The default device password is `ubnt`. `$address` is the IP address of the host 
 
 When using a Security Gateway (router) it could be that network connected devices are unable to obtain an ip address. This can be fixed by setting "DHCP Gateway IP", under Settings > Networks > network_name, to a correct (and accessable) ip address.
 
+### Strict reverse proxies
+
+This image uses a self-signed certificate by default. This naturally means the scheme is `https`.
+If you are using a reverse proxy which validates certificates, you need to [disable this check for the container](https://docs.linuxserver.io/faq#strict-proxy).
+
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
@@ -61,20 +66,21 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   unifi-controller:
-    image: lscr.io/linuxserver/unifi-controller
+    image: lscr.io/linuxserver/unifi-controller:latest
     container_name: unifi-controller
     environment:
       - PUID=1000
       - PGID=1000
+      - TZ=Europe/London
       - MEM_LIMIT=1024 #optional
       - MEM_STARTUP=1024 #optional
     volumes:
       - <path to data>:/config
     ports:
+      - 8443:8443
       - 3478:3478/udp
       - 10001:10001/udp
       - 8080:8080
-      - 8443:8443
       - 1900:1900/udp #optional
       - 8843:8843 #optional
       - 8880:8880 #optional
@@ -90,12 +96,13 @@ docker run -d \
   --name=unifi-controller \
   -e PUID=1000 \
   -e PGID=1000 \
+  -e TZ=Europe/London \
   -e MEM_LIMIT=1024 `#optional` \
   -e MEM_STARTUP=1024 `#optional` \
+  -p 8443:8443 \
   -p 3478:3478/udp \
   -p 10001:10001/udp \
   -p 8080:8080 \
-  -p 8443:8443 \
   -p 1900:1900/udp `#optional` \
   -p 8843:8843 `#optional` \
   -p 8880:8880 `#optional` \
@@ -103,7 +110,7 @@ docker run -d \
   -p 5514:5514/udp `#optional` \
   -v <path to data>:/config \
   --restart unless-stopped \
-  lscr.io/linuxserver/unifi-controller
+  lscr.io/linuxserver/unifi-controller:latest
 ```
 
 ## Parameters
@@ -114,10 +121,10 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :----: | --- |
+| `8443` | Unifi web admin port |
 | `3478/udp` | Unifi STUN port |
 | `10001/udp` | Required for AP discovery |
 | `8080` | Required for device communication |
-| `8443` | Unifi web admin port |
 | `1900/udp` | Required for `Make controller discoverable on L2 network` option |
 | `8843` | Unifi guest portal HTTPS redirect port |
 | `8880` | Unifi guest portal HTTP redirect port |
@@ -130,6 +137,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
+| `TZ=Europe/London` | Specify a timezone to use (e.g. Europe/London) - [see list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) |
 | `MEM_LIMIT=1024` | Optionally change the Java memory limit. Set to `default` to reset to default |
 | `MEM_STARTUP=1024` | Optionally change the Java initial/minimum memory. Set to `default` to reset to default |
 
@@ -189,10 +197,11 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' unifi-controller`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/unifi-controller`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/unifi-controller:latest`
 
 ## Versions
 
+* **01.06.22:** - Deprecate armhf.
 * **23.12.21:** - Move min/max memory config from run to system.properties.
 * **22.12.21:** - Move deb package install to first init to avoid overlayfs performance issues.
 * **13.12.21:** - Rebase 64 bit containers to Focal.

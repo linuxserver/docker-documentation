@@ -23,26 +23,25 @@ Where are your photos and documents? With Nextcloud you pick a server of your ch
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/nextcloud` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/nextcloud:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Version Tags
 
-This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
+This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
 
-| Tag | Description |
-| :----: | --- |
-| latest | Stable Nextcloud releases (currently php7) |
-| php8 | Experimental php8 based Nextcloud releases |
+| Tag | Available | Description |
+| :----: | :----: |--- |
+| latest | ✅ | Stable Nextcloud releases |
 
 ## Application Setup
 
@@ -60,7 +59,7 @@ Note:  Both `occ` and `updater.phar` can be run without prepending with `sudo -u
 
 If you are not customizing our default nginx configuration you will need to remove the file:
 ```
-/config/nginx/site-confs/default
+/config/nginx/site-confs/default.conf
 ```
 Then restart the container to replace it with the latest one. 
 
@@ -69,6 +68,11 @@ Then restart the container to replace it with the latest one.
 Nextcloud's built-in collaborative editing packages (Collabora/CODE and OnlyOffice) only work on x86_64 systems with glibc, and therefore they are not compatible with our images. You should create separate containers for them and set them up in Nextcloud with their respective connector addons.
 
 If (auto) installed, those built-in packages may cause instability and should be removed.
+
+### Strict reverse proxies
+
+This image uses a self-signed certificate by default. This naturally means the scheme is `https`.
+If you are using a reverse proxy which validates certificates, you need to [disable this check for the container](https://docs.linuxserver.io/faq#strict-proxy).
 
 ## Usage
 
@@ -81,7 +85,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   nextcloud:
-    image: lscr.io/linuxserver/nextcloud
+    image: lscr.io/linuxserver/nextcloud:latest
     container_name: nextcloud
     environment:
       - PUID=1000
@@ -107,7 +111,7 @@ docker run -d \
   -v /path/to/appdata:/config \
   -v /path/to/data:/data \
   --restart unless-stopped \
-  lscr.io/linuxserver/nextcloud
+  lscr.io/linuxserver/nextcloud:latest
 ```
 
 ## Parameters
@@ -185,26 +189,31 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' nextcloud`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/nextcloud`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/nextcloud:latest`
 
 ## Versions
 
+* **10.10.22:** - Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
+* **30.09.22:** - Disabled `output_buffering` as per [nextcloud docs](https://docs.nextcloud.com/server/latest/admin_manual/configuration_files/big_file_upload_configuration.html
+* **21.05.22:** - Update version check endpoint.
+* **28.04.22:** - Increase OPCache interned strings buffered setting to 16.
+* **14.04.22:** - Nginx default site config updated for v23 (existing users should delete `/config/nginx/site-confs/default.conf` and restart the container). Fix LDAP connection.
 * **11.09.21:** - Rebasing to alpine 3.14
 * **21.03.21:** - Publish `php8` tag for testing.
-* **25.02.21:** - Nginx default site config updated for v21 (existing users should delete `/config/nginx/site-confs/default` and restart the container).
+* **25.02.21:** - Nginx default site config updated for v21 (existing users should delete `/config/nginx/site-confs/default.conf` and restart the container).
 * **21.01.21:** - Fix php iconv (was breaking the mail addon). If installed, attempt to remove broken CODE Server app during startup.
-* **20.01.21:** - Increase php fcgi timeout to prevent 504 Gateway timeout errors (existing users should delete `/config/nginx/site-confs/default` and restart the container).
+* **20.01.21:** - Increase php fcgi timeout to prevent 504 Gateway timeout errors (existing users should delete `/config/nginx/site-confs/default.conf` and restart the container).
 * **16.01.21:** - Rebasing to alpine 3.13. Users with issues on 32-bit arm, [see this article](https://docs.linuxserver.io/faq#my-host-is-incompatible-with-images-based-on-ubuntu-focal-and-alpine-3-13).
-* **12.08.20:** - Various updates to default site config, including added support for webfinger (existing users should delete `/config/nginx/site-confs/default` and restart the container).
+* **12.08.20:** - Various updates to default site config, including added support for webfinger (existing users should delete `/config/nginx/site-confs/default.conf` and restart the container).
 * **03.06.20:** - Rebasing to alpine 3.12
 * **03.06.20:** - Add php7-bcmath and php7-fileinfo
 * **31.05.20:** - Add aliases for occ and updater.phar
 * **31.03.20:** - Allow crontab to be user customized, fix logrotate.
-* **17.01.20:** - Updated php.ini defaults and site config, including an optional HSTS directive (existing users should delete `/config/nginx/site-confs/default` and restart the container).
+* **17.01.20:** - Updated php.ini defaults and site config, including an optional HSTS directive (existing users should delete `/config/nginx/site-confs/default.conf` and restart the container).
 * **19.12.19:** - Rebasing to alpine 3.11.
-* **18.11.19:** - Nginx default site config updated for v17 (existing users should delete `/config/nginx/site-confs/default` and restart the container).
+* **18.11.19:** - Nginx default site config updated for v17 (existing users should delete `/config/nginx/site-confs/default.conf` and restart the container).
 * **28.10.19:** - Change cronjob to run every 5 minutes.
-* **24.10.19:** - Nginx default site config updated due to CVE-2019-11043 (existing users should delete `/config/nginx/site-confs/default` and restart the container).
+* **24.10.19:** - Nginx default site config updated due to CVE-2019-11043 (existing users should delete `/config/nginx/site-confs/default.conf` and restart the container).
 * **14.07.19:** - Download nextcloud during build time.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.

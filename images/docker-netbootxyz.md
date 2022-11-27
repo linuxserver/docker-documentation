@@ -21,26 +21,26 @@ title: netbootxyz
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/netbootxyz` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/netbootxyz:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Version Tags
 
-This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
+This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
 
-| Tag | Description |
-| :----: | --- |
-| latest | Web application for full self hosting |
-| tftp | TFTP server only with NETBOOT.XYZ boot files |
+| Tag | Available | Description |
+| :----: | :----: |--- |
+| latest | ✅ | Web application for full self hosting |
+| tftp | ✅ | TFTP server only with NETBOOT.XYZ boot files |
 
 ## Application Setup
 
@@ -76,7 +76,7 @@ Networks -> LAN (or the network you want to boot from) -> ADVANCED DHCP OPTIONS
 
 #### EdgeOS/VyOS
 Connect via SSH
- ```
+```
 configure
 set service dhcp-server use-dnsmasq enable
 set service dns forwarding options "dhcp-match=set:bios,60,PXEClient:Arch:00000"
@@ -172,7 +172,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   netbootxyz:
-    image: lscr.io/linuxserver/netbootxyz
+    image: lscr.io/linuxserver/netbootxyz:latest
     container_name: netbootxyz
     environment:
       - PUID=1000
@@ -206,7 +206,7 @@ docker run -d \
   -v /path/to/config:/config \
   -v /path/to/assets:/assets `#optional` \
   --restart unless-stopped \
-  lscr.io/linuxserver/netbootxyz
+  lscr.io/linuxserver/netbootxyz:latest
 ```
 
 ## Parameters
@@ -288,10 +288,11 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' netbootxyz`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/netbootxyz`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/netbootxyz:latest`
 
 ## Versions
 
+* **12.10.22:** - Rebasing to Alpine 3.16, migrate to s6v3.
 * **29.04.21:** - Rebasing to alpine 3.13, add SUBFOLDER env variable.
 * **01.06.20:** - Rebasing to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.

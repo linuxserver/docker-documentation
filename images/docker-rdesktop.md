@@ -17,58 +17,92 @@ title: rdesktop
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-rdesktop%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-rdesktop/job/master/)
 [![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.linuxserver.io%2Flinuxserver%2Frdesktop%2Flatest%2Fci-status.yml)](https://ci-tests.linuxserver.io/linuxserver/rdesktop/latest/index.html)
 
-[Rdesktop](http://xrdp.org/) - Ubuntu based containers containing full desktop environments in officially supported flavors accessible via RDP.
+[Rdesktop](http://xrdp.org/) - Containers containing full desktop environments in many popular flavors for Alpine, Ubuntu, Arch, and Fedora accessible via RDP.
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/rdesktop` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/rdesktop:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Version Tags
 
-This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
+This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
 
-| Tag | Description |
-| :----: | --- |
-| latest | XFCE Focal |
-| xfce-bionic | XFCE Bionic |
-| kde-focal | KDE Focal |
-| kde-bionic | KDE Bionic |
-| mate-focal | MATE Focal |
-| mate-bionic | MATE Bionic |
-| i3-focal | i3 Focal |
-| i3-bionic | i3 Bionic |
-| openbox-focal | Openbox Focal |
-| openbox-bionic | Openbox Bionic |
-| icewm-focal | IceWM Focal |
-| icewm-bionic | IceWM Bionic |
-| alpine | XFCE Alpine |
+| Tag | Available | Description |
+| :----: | :----: |--- |
+| latest | ✅ | XFCE Alpine |
+| ubuntu-xfce | ✅ | XFCE Ubuntu |
+| fedora-xfce | ✅ | XFCE Fedora |
+| arch-xfce | ✅ | XFCE Arch |
+| alpine-kde | ✅ | KDE Alpine |
+| ubuntu-kde | ✅ | KDE Ubuntu |
+| fedora-kde | ✅ | KDE Fedora |
+| arch-kde | ✅ | KDE Arch |
+| alpine-mate | ✅ | MATE Alpine |
+| ubuntu-mate | ✅ | MATE Ubuntu |
+| fedora-mate | ✅ | MATE Fedora |
+| arch-mate | ✅ | MATE Arch |
+| alpine-i3 | ✅ | i3 Alpine |
+| ubuntu-i3 | ✅ | i3 Ubuntu |
+| fedora-i3 | ✅ | i3 Fedora |
+| arch-i3 | ✅ | i3 Arch |
+| alpine-openbox | ✅ | Openbox Alpine |
+| ubuntu-openbox | ✅ | Openbox Ubuntu |
+| fedora-openbox | ✅ | Openbox Fedora |
+| arch-openbox | ✅ | Openbox Arch |
+| alpine-icewm | ✅ | IceWM Alpine |
+| ubuntu-icewm | ✅ | IceWM Ubuntu |
+| fedora-icewm | ✅ | IceWM Fedora |
+| arch-icewm | ✅ | IceWM Arch |
 
 ## Application Setup
 
 **The Default USERNAME and PASSWORD is: abc/abc**
 
-**Unlike our other containers these Desktops are not designed to be upgraded by Docker, you will keep your home directoy but anything you installed system level will be lost if you upgrade an existing container. To keep packages up to date instead use Ubuntu's own apt program**
-
-**The KDE and i3 flavors need to be run in privileged mode to function properly**
+**Unlike our other containers these Desktops are not designed to be upgraded by Docker, you will keep your home directoy but anything you installed system level will be lost if you upgrade an existing container. To keep packages up to date instead use Ubuntu's own apt, Alpine's apk, Fedora's dnf, or Arch's pacman program**
 
 You will need a Remote Desktop client to access this container [Wikipedia List](https://en.wikipedia.org/wiki/Comparison_of_remote_desktop_software), by default it listens on 3389, but you can change that port to whatever you wish on the host side IE `3390:3389`.
-The first thing you should do when you login to the container is to change the abc users password by issuing the `passwd` command. 
+The first thing you should do when you login to the container is to change the abc users password by issuing the `passwd` command.
+
+**Modern GUI desktop apps (including some flavors terminals) have issues with the latest Docker and syscall compatibility, you can use Docker with the `--security-opt seccomp=unconfined` setting to allow these syscalls or try [podman](https://podman.io/) as they have updated their codebase to support them**
+
 If you ever lose your password you can always reset it by execing into the container as root:
 ```
 docker exec -it rdesktop passwd abc
 ```
 By default we perform all logic for the abc user and we reccomend using that user only in the container, but new users can be added as long as there is a `startwm.sh` executable script in their home directory.
 All of these containers are configured with passwordless sudo, we make no efforts to secure or harden these containers and we do not reccomend ever publishing their ports to the public Internet.
+
+## Hardware Acceleration (Ubuntu Container Only)
+
+Many desktop application will need access to a GPU to function properly and even some Desktop Environments have compisitor effects that will not function without a GPU. This is not a hard requirement and all base images will function without a video device mounted into the container.
+
+### Intel/ATI/AMD
+
+To leverage hardware acceleration you will need to mount /dev/dri video device inside of the conainer.
+```
+--device=/dev/dri:/dev/dri
+```
+We will automatically ensure the abc user inside of the container has the proper permissions to access this device.
+### Nvidia
+
+Hardware acceleration users for Nvidia will need to install the container runtime provided by Nvidia on their host, instructions can be found here:
+https://github.com/NVIDIA/nvidia-docker
+
+We automatically add the necessary environment variable that will utilise all the features available on a GPU on the host. Once nvidia-docker is installed on your host you will need to re/create the docker container with the nvidia container runtime `--runtime=nvidia` and add an environment variable `-e NVIDIA_VISIBLE_DEVICES=all` (can also be set to a specific gpu's UUID, this can be discovered by running `nvidia-smi --query-gpu=gpu_name,gpu_uuid --format=csv` ). NVIDIA automatically mounts the GPU and drivers from your host into the container.
+
+### Arm Devices
+
+Best effort is made to install tools to allow mounting in /dev/dri on Arm devices. In most cases if /dev/dri exists on the host it should just work. If running a Raspberry Pi 4 be sure to enable `dtoverlay=vc4-fkms-v3d` in your usercfg.txt.
 
 ## Usage
 
@@ -81,9 +115,10 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   rdesktop:
-    image: lscr.io/linuxserver/rdesktop
+    image: lscr.io/linuxserver/rdesktop:latest
     container_name: rdesktop
-    privileged: true #optional
+    security_opt:
+      - seccomp:unconfined #optional
     environment:
       - PUID=1000
       - PGID=1000
@@ -93,6 +128,8 @@ services:
       - /path/to/data:/config #optional
     ports:
       - 3389:3389
+    devices:
+      - /dev/dri:/dev/dri #optional
     shm_size: "1gb" #optional
     restart: unless-stopped
 ```
@@ -102,16 +139,17 @@ services:
 ```bash
 docker run -d \
   --name=rdesktop \
-  --privileged `#optional` \
+  --security-opt seccomp=unconfined `#optional` \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -p 3389:3389 \
   -v /var/run/docker.sock:/var/run/docker.sock `#optional` \
   -v /path/to/data:/config `#optional` \
+  --device /dev/dri:/dev/dri `#optional` \
   --shm-size="1gb" `#optional` \
   --restart unless-stopped \
-  lscr.io/linuxserver/rdesktop
+  lscr.io/linuxserver/rdesktop:latest
 ```
 
 ## Parameters
@@ -139,11 +177,18 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `/var/run/docker.sock` | Docker Socket on the system, if you want to use Docker in the container |
 | `/config` | abc users home directory |
 
+### Device Mappings (`--device`)
+
+| Parameter | Function |
+| :-----:   | --- |
+| `/dev/dri` | Add this for GL support (Linux hosts only) |
+
 #### Miscellaneous Options
 
 | Parameter | Function |
 | :-----:   | --- |
 | `--shm-size=` | We set this to 1 gig to prevent modern web browsers from crashing |
+| `--security-opt seccomp=unconfined` | For Docker Engine only, many modern gui apps need this to function as syscalls are unkown to Docker |
 
 ## Environment variables from files (Docker secrets)
 
@@ -190,10 +235,13 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' rdesktop`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/rdesktop`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/rdesktop:latest`
 
 ## Versions
 
+* **27.10.22:** - Rebase all Ubuntu images to Jammy 22.04.
+* **26.10.22:** - Rebase Alpine xfce to 3.16, migrate to s6v3.
+* **05.03.22:** - Organize tags differently to run Ubuntu at latest LTS, make Alpine latest, add docs about GPU accel.
 * **05.05.21:** - Reduce default packages to their flavor specific basics.
 * **05.04.21:** - Add Alpine flavor.
 * **06.04.20:** - Start PulseAudio in images to support audio

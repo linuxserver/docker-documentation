@@ -23,21 +23,21 @@ HedgeDoc is a real-time, multi-platform collaborative markdown note editor.  Thi
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/hedgedoc` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/hedgedoc:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
-HedgeDoc web interface can be accessed `http://${IP}:3000/`, if you want to use a custom domain or anything besides port 3000 you will need to leverage their env settings for callbacks: (specifically for CMD_DOMAIN and CMD_URL_ADDPORT)
+HedgeDoc web interface can be accessed `http://${IP}:3000/`, if you want to use a custom domain or anything besides port 3000 you will need to leverage their env settings for callbacks: (specifically for CMD_DOMAIN, CMD_PORT and CMD_URL_ADDPORT)
 
 [Full list of HedgeDoc options](https://docs.hedgedoc.org/configuration/)
 
@@ -52,44 +52,31 @@ To help you get started creating a container from this image you can either use 
 ### docker-compose (recommended, [click here for more info](https://docs.linuxserver.io/general/docker-compose))
 
 ```yaml
-version: "3"
+---
+version: "2.1"
 services:
-  mariadb:
-    image: lscr.io/linuxserver/mariadb:latest
-    container_name: hedgedoc_mariadb
-    restart: always
-    volumes:
-      - /path/to/mariadb/data:/config
-    environment:
-      - MYSQL_ROOT_PASSWORD=<secret password>
-      - MYSQL_DATABASE=hedgedoc
-      - MYSQL_USER=hedgedoc
-      - MYSQL_PASSWORD=<secret password>
-      - PGID=1000
-      - PUID=1000
-      - TZ=Europe/London
   hedgedoc:
     image: lscr.io/linuxserver/hedgedoc:latest
     container_name: hedgedoc
-    restart: always
-    depends_on:
-      - mariadb
-    volumes:
-      - /path/to/config:/config
     environment:
-      - DB_HOST=mariadb
+      - PUID=1000
+      - PGID=1000
+      - DB_HOST=<hostname or ip>
+      - DB_PORT=3306
       - DB_USER=hedgedoc
       - DB_PASS=<secret password>
       - DB_NAME=hedgedoc
-      - DB_PORT=3306
-      - PGID=1000
-      - PUID=1000
       - TZ=Europe/London
       - CMD_DOMAIN=localhost
-      - CMD_URL_ADDPORT=true #optional
+      - CMD_URL_ADDPORT=false #optional
+      - CMD_PROTOCOL_USESSL=false #optional
+      - CMD_PORT=3000 #optional
+      - CMD_ALLOW_ORIGIN=['localhost'] #optional
+    volumes:
+      - /path/to/appdata:/config
     ports:
-      - "3000:3000"
-
+      - 3000:3000
+    restart: unless-stopped
 ```
 
 ### docker cli ([click here for more info](https://docs.docker.com/engine/reference/commandline/cli/))
@@ -106,12 +93,14 @@ docker run -d \
   -e DB_NAME=hedgedoc \
   -e TZ=Europe/London \
   -e CMD_DOMAIN=localhost \
-  -e CMD_URL_ADDPORT=true `#optional` \
+  -e CMD_URL_ADDPORT=false `#optional` \
   -e CMD_PROTOCOL_USESSL=false `#optional` \
+  -e CMD_PORT=3000 `#optional` \
+  -e CMD_ALLOW_ORIGIN=['localhost'] `#optional` \
   -p 3000:3000 \
   -v /path/to/appdata:/config \
   --restart unless-stopped \
-  lscr.io/linuxserver/hedgedoc
+  lscr.io/linuxserver/hedgedoc:latest
 ```
 
 ## Parameters
@@ -122,7 +111,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :----: | --- |
-| `3000` | If you wish to access this container from http://{IP}:${PORT}` this *must* be left unchanged. |
+| `3000` | Web gui port (internal port also needs to be changed if accessing at port other than 80, 443 and 3000). |
 
 ### Environment Variables (`-e`)
 
@@ -137,8 +126,10 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `DB_NAME=hedgedoc` | Database name |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 | `CMD_DOMAIN=localhost` | The address the gui will be accessed at (ie. `192.168.1.1` or `hedgedoc.domain.com`). |
-| `CMD_URL_ADDPORT=true` | Set to `false` if accessing at port `80` or `443`. |
+| `CMD_URL_ADDPORT=false` | Set to `true` if using a port other than `80` or `443`. |
 | `CMD_PROTOCOL_USESSL=false` | Set to `true` if accessing over https via reverse proxy. |
+| `CMD_PORT=3000` | If you wish to access hedgedoc at a port different than 80, 443 or 3000, you need to set this to that port (ie. `CMD_PORT=5000`) and change the port mapping accordingly (5000:5000). |
+| `CMD_ALLOW_ORIGIN=['localhost']` | Comma-separated list of allowed hostnames |
 
 ### Volume Mappings (`-v`)
 
@@ -196,10 +187,14 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' hedgedoc`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/hedgedoc`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/hedgedoc:latest`
 
 ## Versions
 
+* **02.11.22:** - Rebase to Alpine 3.16, migrate to s6v3.
+* **10.04.22:** - Use python3 to build node sqlite3.
+* **10.02.22:** - Rebase to Alpine 3.15.
+* **09.02.22:** - Add optional var `CMD_PORT` that is needed for accessing at port other than 80, 443 and 3000.
 * **09.12.21:** - Add optional var `CMD_PROTOCOL_USESSL` that is needed for reverse proxy.
 * **07.12.21:** - Rebase to ubuntu focal. Update to node 16. Make sure uploads are persistent.
 * **15.10.21:** - Add required env var `CMD_DOMAIN`.

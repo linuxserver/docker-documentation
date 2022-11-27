@@ -21,25 +21,36 @@ title: plex-meta-manager
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/plex-meta-manager` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/plex-meta-manager:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
+
+## Version Tags
+
+This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
+
+| Tag | Available | Description |
+| :----: | :----: |--- |
+| latest | ✅ | Stable releases. |
+| develop | ✅ | Latest commits from the develop branch |
 
 ## Application Setup
 
-There is a [walkthrough](https://github.com/meisnate12/Plex-Meta-Manager/wiki/Docker-Walkthrough#setting-up-the-initial-config-file) available to help get you up and running.
+There is a [walkthrough](https://metamanager.wiki/en/latest/home/guides/docker.html#setting-up-the-initial-config-file) available to help get you up and running.
 
-This image supports all of the environment variables listed [here](https://github.com/meisnate12/Plex-Meta-Manager/wiki/Run-Commands-&-Environmental-Variables)
+This image supports all of the environment variables listed [here](https://metamanager.wiki/en/latest/home/environmental.html) and all commandline arguments.
 
-For more information see the [official wiki](https://github.com/meisnate12/Plex-Meta-Manager/wiki).
+To perform a one-time run use `docker run` (or `docker-compose run`) with the `--rm` and `-e PMM_RUN=True` arguments. This will cause the container to process your config immediately instead of waiting for the scheduled time, and delete the old container after completion.
+
+For more information see the [official wiki](https://metamanager.wiki).
 
 ## Usage
 
@@ -52,7 +63,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   plex-meta-manager:
-    image: lscr.io/linuxserver/plex-meta-manager
+    image: lscr.io/linuxserver/plex-meta-manager:latest
     container_name: plex-meta-manager
     environment:
       - PUID=1000
@@ -83,7 +94,7 @@ docker run -d \
   -e PMM_NO_MISSING=False `#optional` \
   -v /path/to/appdata/config:/config \
   --restart unless-stopped \
-  lscr.io/linuxserver/plex-meta-manager
+  lscr.io/linuxserver/plex-meta-manager:latest
 ```
 
 ## Parameters
@@ -164,8 +175,11 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' plex-meta-manager`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/plex-meta-manager`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/plex-meta-manager:latest`
 
 ## Versions
 
+* **08.11.22:** - Add develop branch.
+* **25.10.22:** - Support commandline args and relative paths.
+* **03.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **30.01.22:** - Initial Release.

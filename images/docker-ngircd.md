@@ -21,17 +21,17 @@ title: ngircd
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/ngircd` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/ngircd:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -49,14 +49,14 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   ngircd:
-    image: lscr.io/linuxserver/ngircd
+    image: lscr.io/linuxserver/ngircd:latest
     container_name: ngircd
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - </path/to/ngircd/config>:/config
+      - /path/to/ngircd/config:/config
     ports:
       - 6667:6667
     restart: unless-stopped
@@ -71,9 +71,9 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -p 6667:6667 \
-  -v </path/to/ngircd/config>:/config \
+  -v /path/to/ngircd/config:/config \
   --restart unless-stopped \
-  lscr.io/linuxserver/ngircd
+  lscr.io/linuxserver/ngircd:latest
 ```
 
 ## Parameters
@@ -150,10 +150,11 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' ngircd`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/ngircd`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/ngircd:latest`
 
 ## Versions
 
+* **11.10.22:** - Rebasing to alpine 3.16, migrate to s6v3.
 * **23.01.21:** - Rebasing to alpine 3.13.
 * **01.06.20:** - Rebasing to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.

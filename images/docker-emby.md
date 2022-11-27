@@ -21,26 +21,26 @@ title: emby
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/emby` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/emby:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Version Tags
 
-This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
+This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
 
-| Tag | Description |
-| :----: | --- |
-| latest | Stable emby releases |
-| beta | Beta emby releases |
+| Tag | Available | Description |
+| :----: | :----: |--- |
+| latest | ✅ | Stable emby releases |
+| beta | ✅ | Beta emby releases |
 
 ## Application Setup
 
@@ -88,7 +88,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   emby:
-    image: lscr.io/linuxserver/emby
+    image: lscr.io/linuxserver/emby:latest
     container_name: emby
     environment:
       - PUID=1000
@@ -131,7 +131,7 @@ docker run -d \
   --device /dev/video11:/dev/video11 `#optional` \
   --device /dev/video12:/dev/video12 `#optional` \
   --restart unless-stopped \
-  lscr.io/linuxserver/emby
+  lscr.io/linuxserver/emby:latest
 ```
 
 ## Parameters
@@ -222,10 +222,12 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' emby`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/emby`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/emby:latest`
 
 ## Versions
 
+* **26.09.22:** - Update chown behavior.
+* **18.09.22:** - Migrate to s6v3, rebase to Ubuntu Jammy.
 * **19.05.21:** - Structural changes upstream.
 * **17.01.21:** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information. Remove no longer used mapping for /transcode.
 * **21.12.20:** - Rebase to Focal, see [here](https://docs.linuxserver.io/faq#my-host-is-incompatible-with-images-based-on-ubuntu-focal) for troubleshooting armhf.

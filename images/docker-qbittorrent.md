@@ -21,32 +21,32 @@ The [Qbittorrent](https://www.qbittorrent.org/) project aims to provide an open-
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/qbittorrent` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/qbittorrent:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Version Tags
 
-This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
+This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
 
-| Tag | Description |
-| :----: | --- |
-| latest | Stable qbittorrent releases |
+| Tag | Available | Description |
+| :----: | :----: |--- |
+| latest | ✅ | Stable qbittorrent releases |
+| libtorrentv1 | ✅ | Static qbittorrent builds using libtorrent v1 |
 
 ## Application Setup
 
 The webui is at `<your-ip>:8080` and the default username/password is `admin/adminadmin`.  
 
 Change username/password via the webui in the webui section of settings.  
-
 
 ### WEBUI_PORT variable
 
@@ -60,7 +60,7 @@ If you have no webui , check the file /config/qBittorrent/qBittorrent.conf
 
 edit or add the following lines  
 
-```
+```text
 WebUI\Address=*
 
 WebUI\ServerDomains=*
@@ -79,7 +79,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   qbittorrent:
-    image: lscr.io/linuxserver/qbittorrent
+    image: lscr.io/linuxserver/qbittorrent:latest
     container_name: qbittorrent
     environment:
       - PUID=1000
@@ -90,9 +90,9 @@ services:
       - /path/to/appdata/config:/config
       - /path/to/downloads:/downloads
     ports:
+      - 8080:8080
       - 6881:6881
       - 6881:6881/udp
-      - 8080:8080
     restart: unless-stopped
 ```
 
@@ -105,13 +105,13 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -e WEBUI_PORT=8080 \
+  -p 8080:8080 \
   -p 6881:6881 \
   -p 6881:6881/udp \
-  -p 8080:8080 \
   -v /path/to/appdata/config:/config \
   -v /path/to/downloads:/downloads \
   --restart unless-stopped \
-  lscr.io/linuxserver/qbittorrent
+  lscr.io/linuxserver/qbittorrent:latest
 ```
 
 ## Parameters
@@ -122,9 +122,9 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :----: | --- |
+| `8080` | WebUI |
 | `6881` | tcp connection port |
 | `6881/udp` | udp connection port |
-| `8080` | http gui |
 
 ### Environment Variables (`-e`)
 
@@ -192,10 +192,19 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' qbittorrent`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/qbittorrent`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/qbittorrent:latest`
 
 ## Versions
 
+* **31.10.22:** - Add libtorrentv1 branch.
+* **31.08.22:** - Rebase to Alpine Edge again to follow latest releases.
+* **12.08.22:** - Bump unrar to 6.1.7.
+* **16.06.22:** - Rebase to Alpine 3.16 from edge.
+* **25.05.22:** - Fetch qbitorrent-cli from upstream repo.
+* **02.03.22:** - Add unrar, 7zip, and qbitorrent-cli.
+* **01.03.22:** - Add python for search plugin support.
+* **23.02.22:** - Rebase to Alpine Edge, install from Alpine repos.
+* **19.02.22:** - Add jq to build-stage
 * **07.01.22:** - Rebase to Alpine, build from source.
 * **06.01.22:** - Deprecate unstable branch.
 * **10.02.21:** - Rebase to focal.

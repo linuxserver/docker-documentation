@@ -23,17 +23,17 @@ The users only have access to the folders mapped and the processes running insid
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/openssh-server` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/openssh-server:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -80,7 +80,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   openssh-server:
-    image: lscr.io/linuxserver/openssh-server
+    image: lscr.io/linuxserver/openssh-server:latest
     container_name: openssh-server
     hostname: openssh-server #optional
     environment:
@@ -124,7 +124,7 @@ docker run -d \
   -p 2222:2222 \
   -v /path/to/appdata/config:/config \
   --restart unless-stopped \
-  lscr.io/linuxserver/openssh-server
+  lscr.io/linuxserver/openssh-server:latest
 ```
 
 ## Parameters
@@ -211,10 +211,15 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' openssh-server`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/openssh-server`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/openssh-server:latest`
 
 ## Versions
 
+* **18.10.22:** - Fix wrong behavior of password/passwordless sudo
+* **11.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
+* **15.09.22:** - add netcat-openbsd with support for proxies.
+* **18.07.22:** - Fix service perms to comply with upgrade to s6 v3.
+* **16.04.22:** - Rebase to alpine 3.15.
 * **16.11.21:** - Add PUBLIC_KEY_URL option
 * **28.06.21:** - Rebasing to alpine 3.14. Add support for PAM.
 * **10.02.21:** - Rebasing to alpine 3.13. Add openssh-client for scp.

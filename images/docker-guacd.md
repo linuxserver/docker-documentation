@@ -21,21 +21,21 @@ title: guacd
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/guacd` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/guacd:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
-This is a backend only service, to leverage Guacd server you need to use either the official Java frontend [guacamole-client](https://github.com/apache/guacamole-client) or an open source alterantive like [guacamole-lite](https://github.com/vadimpronin/guacamole-lite).
+This is a backend only service, to leverage Guacd server you need to use either the official Java frontend [guacamole-client](https://github.com/apache/guacamole-client) or an open source alternative like [guacamole-lite](https://github.com/vadimpronin/guacamole-lite).
 
 ## Usage
 
@@ -48,7 +48,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   guacd:
-    image: lscr.io/linuxserver/guacd
+    image: lscr.io/linuxserver/guacd:latest
     container_name: guacd
     ports:
       - 4822:4822
@@ -62,7 +62,7 @@ docker run -d \
   --name=guacd \
   -p 4822:4822 \
   --restart unless-stopped \
-  lscr.io/linuxserver/guacd
+  lscr.io/linuxserver/guacd:latest
 ```
 
 ## Parameters
@@ -122,10 +122,11 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' guacd`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/guacd`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/guacd:latest`
 
 ## Versions
 
+* **11.03.22:** - Bump to 1.4.0.
 * **15.05.21:** - Add terminus font for SSH support.
 * **08.05.21:** - Bump to 1.3.0, rebase to Alpine.
 * **27.07.20:** - Bump to 1.2.0.

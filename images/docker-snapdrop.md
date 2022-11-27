@@ -21,23 +21,23 @@ title: snapdrop
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/snapdrop` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/snapdrop:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
 Webui is accessible at http://SERVERIP:PORT
 
-If you intend to expose Snapdrop to the internet, edit /config/nginx/site-confs/default and uncomment the real_ip settings
+If you intend to expose Snapdrop to the internet, edit /config/nginx/site-confs/default.conf and uncomment the real_ip settings
 
 ## Usage
 
@@ -50,7 +50,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   snapdrop:
-    image: lscr.io/linuxserver/snapdrop
+    image: lscr.io/linuxserver/snapdrop:latest
     container_name: snapdrop
     environment:
       - PUID=1000
@@ -76,7 +76,7 @@ docker run -d \
   -p 443:443 \
   -v <path to config>:/config \
   --restart unless-stopped \
-  lscr.io/linuxserver/snapdrop
+  lscr.io/linuxserver/snapdrop:latest
 ```
 
 ## Parameters
@@ -154,9 +154,10 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' snapdrop`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/snapdrop`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/snapdrop:latest`
 
 ## Versions
 
+* **20.08.22:** - Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
 * **09.08.21:** - Rebase to Alpine 3.14. Add real_ip block to nginx default site config.
 * **15.09.20:** - Initial Release.

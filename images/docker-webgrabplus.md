@@ -21,21 +21,23 @@ title: webgrabplus
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/webgrabplus` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/webgrabplus:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
 To configure WebGrab+Plus follow the [documentation](http://www.webgrabplus.com/documentation/configuration/)
+
+**Please note that depending on your host this container may not work with the `no-new-privileges=true` security-opt.**
 
 Note that there are some things in the guide that does not apply to this container. Below you can find the changes.
 
@@ -74,8 +76,10 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   webgrabplus:
-    image: lscr.io/linuxserver/webgrabplus
+    image: lscr.io/linuxserver/webgrabplus:latest
     container_name: webgrabplus
+    hostname: webgrabplus
+    mac_address: 00:00:00:00:00:00
     environment:
       - PUID=1000
       - PGID=1000
@@ -91,13 +95,15 @@ services:
 ```bash
 docker run -d \
   --name=webgrabplus \
+  --hostname=webgrabplus \
+  --mac-address=00:00:00:00:00:00 \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -v /path/to/config:/config \
   -v /path/to/data:/data \
   --restart unless-stopped \
-  lscr.io/linuxserver/webgrabplus
+  lscr.io/linuxserver/webgrabplus:latest
 ```
 
 ## Parameters
@@ -128,6 +134,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :-----:   | --- |
+| `--hostname=` | Set the hostname for the container for the license check. |
+| `--mac-address=` | Set the mac_address for the container for the license check. |
 
 ## Environment variables from files (Docker secrets)
 
@@ -174,10 +182,14 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' webgrabplus`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/webgrabplus`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/webgrabplus:latest`
 
 ## Versions
 
+* **23.03.22:** - Rebase to Alpine 3.16 and s6v3. Update to dotnet 6.
+* **29.04.22:** - Add `hostname` and `mac_address` arguments that are needed for the license check to compose and cli samples.
+* **23.03.22:** - Rebase to Alpine 3.15.
+* **23.03.22:** - Update to use dotnet instead of mono.
 * **06.01.22:** - Rebase to Ubuntu focal. Enable auto builds on version updates (beta and stable).
 * **17.12.21:** - Update to version 3.2.2 beta.
 * **05.08.21:** - Update to version 3.2.1 beta.

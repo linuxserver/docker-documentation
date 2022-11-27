@@ -21,16 +21,17 @@ title: doplarr
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/doplarr` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/doplarr:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ❌ | |
 
 ## Application Setup
 
@@ -56,31 +57,32 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   doplarr:
-    image: lscr.io/linuxserver/doplarr
+    image: lscr.io/linuxserver/doplarr:latest
     container_name: doplarr
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=America/New_York
-      - DISCORD__TOKEN=<discord__token>
-      - OVERSEERR__API=<overseerr__api>
+      - DISCORD__TOKEN=
+      - OVERSEERR__API=
       - OVERSEERR__URL=http://localhost:5055
-      - RADARR__API=<radarr__api>
+      - RADARR__API=
       - RADARR__URL=http://localhost:7878
-      - SONARR__API=<sonarr__api>
+      - SONARR__API=
       - SONARR__URL=http://localhost:8989
       - DISCORD__MAX_RESULTS=25 #optional
-      - DISCORD__ROLE_ID=<not_set_by_default> #optional
       - DISCORD__REQUESTED_MSG_STYLE=:plain #optional
-      - SONARR__QUALITY_PROFILE=<not_set_by_default> #optional
-      - RADARR__QUALITY_PROFILE=<not_set_by_default> #optional
-      - SONARR__LANGUAGE_PROFILE=<not_set_by_default> #optional
-      - OVERSEERR__DEFAULT_ID=<not_set_by_default> #optional
+      - SONARR__QUALITY_PROFILE= #optional
+      - RADARR__QUALITY_PROFILE= #optional
+      - SONARR__ROOTFOLDER= #optional
+      - RADARR__ROOTFOLDER= #optional
+      - SONARR__LANGUAGE_PROFILE= #optional
+      - OVERSEERR__DEFAULT_ID= #optional
       - PARTIAL_SEASONS=true #optional
       - LOG_LEVEL=:info #optional
-      - JAVA_OPTS=<not_set_by_default> #optional
+      - JAVA_OPTS= #optional
     volumes:
-      - </path/to/appdata/config>:/config
+      - /path/to/appdata/config:/config
     restart: unless-stopped
 ```
 
@@ -92,26 +94,27 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=America/New_York \
-  -e DISCORD__TOKEN=<discord__token> \
-  -e OVERSEERR__API=<overseerr__api> \
+  -e DISCORD__TOKEN= \
+  -e OVERSEERR__API= \
   -e OVERSEERR__URL=http://localhost:5055 \
-  -e RADARR__API=<radarr__api> \
+  -e RADARR__API= \
   -e RADARR__URL=http://localhost:7878 \
-  -e SONARR__API=<sonarr__api> \
+  -e SONARR__API= \
   -e SONARR__URL=http://localhost:8989 \
   -e DISCORD__MAX_RESULTS=25 `#optional` \
-  -e DISCORD__ROLE_ID=<not_set_by_default> `#optional` \
   -e DISCORD__REQUESTED_MSG_STYLE=:plain `#optional` \
-  -e SONARR__QUALITY_PROFILE=<not_set_by_default> `#optional` \
-  -e RADARR__QUALITY_PROFILE=<not_set_by_default> `#optional` \
-  -e SONARR__LANGUAGE_PROFILE=<not_set_by_default> `#optional` \
-  -e OVERSEERR__DEFAULT_ID=<not_set_by_default> `#optional` \
+  -e SONARR__QUALITY_PROFILE= `#optional` \
+  -e RADARR__QUALITY_PROFILE= `#optional` \
+  -e SONARR__ROOTFOLDER= `#optional` \
+  -e RADARR__ROOTFOLDER= `#optional` \
+  -e SONARR__LANGUAGE_PROFILE= `#optional` \
+  -e OVERSEERR__DEFAULT_ID= `#optional` \
   -e PARTIAL_SEASONS=true `#optional` \
   -e LOG_LEVEL=:info `#optional` \
-  -e JAVA_OPTS=<not_set_by_default> `#optional` \
-  -v </path/to/appdata/config>:/config \
+  -e JAVA_OPTS= `#optional` \
+  -v /path/to/appdata/config:/config \
   --restart unless-stopped \
-  lscr.io/linuxserver/doplarr
+  lscr.io/linuxserver/doplarr:latest
 ```
 
 ## Parameters
@@ -130,23 +133,24 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=America/New_York` | Specify a timezone to use EG America/New_York |
-| `DISCORD__TOKEN=<discord__token>` | Specify your discord bot token. |
-| `OVERSEERR__API=<overseerr__api>` | Specify your Overseerr API key. Leave blank if using Radarr/Sonarr. |
+| `DISCORD__TOKEN=` | Specify your discord bot token. |
+| `OVERSEERR__API=` | Specify your Overseerr API key. Leave blank if using Radarr/Sonarr. |
 | `OVERSEERR__URL=http://localhost:5055` | Specify your Overseerr URL. Leave blank if using Radarr/Sonarr. |
-| `RADARR__API=<radarr__api>` | Specify your Radarr API key. Leave blank if using Overseerr. |
+| `RADARR__API=` | Specify your Radarr API key. Leave blank if using Overseerr. |
 | `RADARR__URL=http://localhost:7878` | Specify your Radarr URL. Leave blank if using Overseerr. |
-| `SONARR__API=<sonarr__api>` | Specify your Sonarr API key. Leave blank if using Overseerr. |
+| `SONARR__API=` | Specify your Sonarr API key. Leave blank if using Overseerr. |
 | `SONARR__URL=http://localhost:8989` | Specify your Sonarr URL. Leave blank if using Overseerr. |
 | `DISCORD__MAX_RESULTS=25` | Sets the maximum size of the search results selection |
-| `DISCORD__ROLE_ID=<not_set_by_default>` | The discord role id for users of the bot (omitting this lets everyone on the server use the bot) |
 | `DISCORD__REQUESTED_MSG_STYLE=:plain` | Sets the style of the request alert message. One of `:plain` `:embed` `:none` |
-| `SONARR__QUALITY_PROFILE=<not_set_by_default>` | The name of the quality profile to use by default for Sonarr |
-| `RADARR__QUALITY_PROFILE=<not_set_by_default>` | The name of the quality profile to use by default for Radarr |
-| `SONARR__LANGUAGE_PROFILE=<not_set_by_default>` | The name of the language profile to use by default for Radarr |
-| `OVERSEERR__DEFAULT_ID=<not_set_by_default>` | The Overseerr user id to use by default if there is no associated discord account for the requester |
+| `SONARR__QUALITY_PROFILE=` | The name of the quality profile to use by default for Sonarr |
+| `RADARR__QUALITY_PROFILE=` | The name of the quality profile to use by default for Radarr |
+| `SONARR__ROOTFOLDER=` | The root folder to use by default for Sonarr |
+| `RADARR__ROOTFOLDER=` | The root folder to use by default for Radarr |
+| `SONARR__LANGUAGE_PROFILE=` | The name of the language profile to use by default for Sonarr |
+| `OVERSEERR__DEFAULT_ID=` | The Overseerr user id to use by default if there is no associated discord account for the requester |
 | `PARTIAL_SEASONS=true` | Sets whether users can request partial seasons. |
 | `LOG_LEVEL=:info` | The log level for the logging backend. This can be changed for debugging purposes. One of trace `:debug` `:info` `:warn` `:error` `:fatal` `:report` |
-| `JAVA_OPTS=<not_set_by_default>` | For passing additional java options. |
+| `JAVA_OPTS=` | For passing additional java options. |
 
 ### Volume Mappings (`-v`)
 
@@ -204,9 +208,10 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' doplarr`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/doplarr`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/doplarr:latest`
 
 ## Versions
 
+* **01.05.22:** - Remove `DISCORD__ROLE_ID` environment variable, see [Permissions Configuration](https://github.com/kiranshila/Doplarr/blob/main/docs/configuration.md#permissions).
 * **30.01.22:** - Variable adjustments.
 * **30.01.22:** - Initial Release.

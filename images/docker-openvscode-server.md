@@ -21,30 +21,30 @@ title: openvscode-server
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/openvscode-server` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/openvscode-server:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Version Tags
 
-This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
+This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
 
-| Tag | Description |
-| :----: | --- |
-| latest | Stable releases |
-| insiders | Insiders releases |
+| Tag | Available | Description |
+| :----: | :----: |--- |
+| latest | ✅ | Stable releases |
+| insiders | ✅ | Insiders releases |
 
 ## Application Setup
 
-Access the webui at `http://<your-ip>:3000?tkn=supersecrettoken`. If `CONNECTION_TOKEN` or `CONNECTION_SECRET` env vars are set, replace `supersecrettoken` with the value set. If not, view the container logs (`docker logs openvscode-server`) to see the randomly generated token and replace `supersecrettoken` with that.
+If `CONNECTION_TOKEN` or `CONNECTION_SECRET` env vars are set, you can access the webui at `http://<your-ip>:3000/?tkn=supersecrettoken` (replace `supersecrettoken` with the value set). If not, you can access the webui at `http://<your-ip>:3000`.
 
 For github integration, drop your ssh key in to `/config/.ssh`.
 Then open a terminal from the top menu and set your github username and email via the following commands
@@ -67,13 +67,13 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   openvscode-server:
-    image: lscr.io/linuxserver/openvscode-server
+    image: lscr.io/linuxserver/openvscode-server:latest
     container_name: openvscode-server
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - CONNECTION_TOKEN=supersecrettoken #optional
+      - CONNECTION_TOKEN= #optional
       - CONNECTION_SECRET= #optional
       - SUDO_PASSWORD=password #optional
       - SUDO_PASSWORD_HASH= #optional
@@ -92,14 +92,14 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
-  -e CONNECTION_TOKEN=supersecrettoken `#optional` \
+  -e CONNECTION_TOKEN= `#optional` \
   -e CONNECTION_SECRET= `#optional` \
   -e SUDO_PASSWORD=password `#optional` \
   -e SUDO_PASSWORD_HASH= `#optional` \
   -p 3000:3000 \
   -v /path/to/appdata/config:/config \
   --restart unless-stopped \
-  lscr.io/linuxserver/openvscode-server
+  lscr.io/linuxserver/openvscode-server:latest
 ```
 
 ## Parameters
@@ -119,7 +119,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use. |
-| `CONNECTION_TOKEN=supersecrettoken` | Optional security token for accessing the Web UI. |
+| `CONNECTION_TOKEN=` | Optional security token for accessing the Web UI (ie. `supersecrettoken`). |
 | `CONNECTION_SECRET=` | Optional path to a file inside the container that contains the security token for accessing the Web UI (ie. `/path/to/file`). Overrides `CONNECTION_TOKEN`. |
 | `SUDO_PASSWORD=password` | If this optional variable is set, user will have sudo access in the openvscode-server terminal with the specified password. |
 | `SUDO_PASSWORD_HASH=` | Optionally set sudo password via hash (takes priority over `SUDO_PASSWORD` var). Format is `$type$salt$hashed`. |
@@ -180,10 +180,13 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' openvscode-server`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/openvscode-server`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/openvscode-server:latest`
 
 ## Versions
 
+* **29.09.22:** - Rebase to jammy, switch to s6v3. Fix chown logic to skip `/config/workspace` contents.
+* **12.02.22:** - Update `install-extension` helper to compensate for upstream changes.
+* **04.02.22:** - Update binary for 1.64.0+. Allow for no token set when both toekn env vars are unset. Add libsecret for keytar.
 * **29.12.21:** - Add `install-extension` as a helper for mods to install extensions.
 * **10.12.21:** - Update deprecated connectionToken arg.
 * **30.11.21:** - Fix app folder permissions, add the optional sudo password vars.

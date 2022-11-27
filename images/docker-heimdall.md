@@ -23,26 +23,26 @@ Why not use it as your browser start page? It even has the ability to include a 
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/heimdall` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/heimdall:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Version Tags
 
-This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
+This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
 
-| Tag | Description |
-| :----: | --- |
-| latest | Stable Heimdall releases. |
-| development | Latest commit from the github master branch. |
+| Tag | Available | Description |
+| :----: | :----: |--- |
+| latest | ✅ | Stable Heimdall releases. |
+| development | ✅ | Latest commit from the github 2.x branch. |
 
 ## Application Setup
 
@@ -51,7 +51,7 @@ Access the web gui at http://SERVERIP:PORT
 
 ### Adding password protection
 
-This image now supports password protection through htpasswd. Run the following command on your host to generate the htpasswd file `docker exec -it heimdall htpasswd -c /config/nginx/.htpasswd <username>`. Replace <username> with a username of your choice and you will be asked to enter a password. New installs will automatically pick it up and implement password protected access. Existing users updating their image can delete their site config at `/config/nginx/site-confs/default` and restart the container after updating the image. A new site config with htpasswd support will be created in its place.
+This image now supports password protection through htpasswd. Run the following command on your host to generate the htpasswd file `docker exec -it heimdall htpasswd -c /config/nginx/.htpasswd <username>`. Replace <username> with a username of your choice and you will be asked to enter a password. Uncomment the `basic auth` lines in `/config/nginx/site-confs/default.conf` and restart the container.
 
 ## Usage
 
@@ -64,14 +64,14 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   heimdall:
-    image: lscr.io/linuxserver/heimdall
+    image: lscr.io/linuxserver/heimdall:latest
     container_name: heimdall
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - </path/to/appdata/config>:/config
+      - /path/to/appdata/config:/config
     ports:
       - 80:80
       - 443:443
@@ -88,9 +88,9 @@ docker run -d \
   -e TZ=Europe/London \
   -p 80:80 \
   -p 443:443 \
-  -v </path/to/appdata/config>:/config \
+  -v /path/to/appdata/config:/config \
   --restart unless-stopped \
-  lscr.io/linuxserver/heimdall
+  lscr.io/linuxserver/heimdall:latest
 ```
 
 ## Parameters
@@ -168,10 +168,13 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' heimdall`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/heimdall`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/heimdall:latest`
 
 ## Versions
 
+* **14.11.22:** - Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
+* **04.11.22:** - Build commits to upstream branch 2.x for the `development` tag.
+* **13.03.21:** - Make searchproviders.yaml user configurable.
 * **10.02.21:** - Revert to alpine 3.12 as php 7.4 broke laravel.
 * **10.02.21:** - Rebasing to alpine 3.13.
 * **17.08.20:** - Add php7-curl.
@@ -194,5 +197,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * **07.10.18:** - Symlink `.env` rather than copy. It now resides under `/config/www`
 * **30.09.18:** - Multi-arch image. Move `.env` to `/config`.
 * **05.09.18:** - Rebase to alpine linux 3.8.
-* **06.03.18:** - Use password protection if htpasswd is set. Existing users can delete their default site config at /config/nginx/site-confs/default and restart the container, a new default site config with htpasswd support will be created in its place
+* **06.03.18:** - Use password protection if htpasswd is set. Existing users can delete their default site config at /config/nginx/site-confs/default.conf and restart the container, a new default site config with htpasswd support will be created in its place
 * **12.02.18:** - Initial Release.

@@ -21,24 +21,25 @@ title: airsonic-advanced
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/airsonic-advanced` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/airsonic-advanced:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ❌ | |
 
 ## Version Tags
 
-This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
+This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
 
-| Tag | Description |
-| :----: | --- |
-| latest | Latest releases of Airsonic-Advanced |
+| Tag | Available | Description |
+| :----: | :----: |--- |
+| latest | ✅ | Latest releases of Airsonic-Advanced |
 
 ## Application Setup
 
@@ -65,7 +66,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   airsonic-advanced:
-    image: lscr.io/linuxserver/airsonic-advanced
+    image: lscr.io/linuxserver/airsonic-advanced:latest
     container_name: airsonic-advanced
     environment:
       - PUID=1000
@@ -104,7 +105,7 @@ docker run -d \
   -v </path/to/other media>:/media `#optional` \
   --device /dev/snd:/dev/snd `#optional` \
   --restart unless-stopped \
-  lscr.io/linuxserver/airsonic-advanced
+  lscr.io/linuxserver/airsonic-advanced:latest
 ```
 
 ## Parameters
@@ -193,8 +194,10 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' airsonic-advanced`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/airsonic-advanced`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/airsonic-advanced:latest`
 
 ## Versions
 
+* **23.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
+* **25.07.22:** - Add vorbis-tools.
 * **02.01.22:** - Initial Release.

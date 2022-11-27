@@ -21,48 +21,48 @@ title: webtop
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/webtop` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/webtop:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Version Tags
 
-This image provides various versions that are available via tags. `latest` tag usually provides the latest stable version. Others are considered under development and caution must be exercised when using them.
+This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
 
-| Tag | Description |
-| :----: | --- |
-| latest | XFCE Alpine |
-| ubuntu-xfce | XFCE Ubuntu |
-| fedora-xfce | XFCE Fedora |
-| arch-xfce | XFCE Arch |
-| alpine-kde | KDE Alpine |
-| ubuntu-kde | KDE Ubuntu |
-| fedora-kde | KDE Fedora |
-| arch-kde | KDE Arch |
-| alpine-mate | MATE Alpine |
-| ubuntu-mate | MATE Ubuntu |
-| fedora-mate | MATE Fedora |
-| arch-mate | MATE Arch |
-| alpine-i3 | i3 Alpine |
-| ubuntu-i3 | i3 Ubuntu |
-| fedora-i3 | i3 Fedora |
-| arch-i3 | i3 Arch |
-| alpine-openbox | Openbox Alpine |
-| ubuntu-openbox | Openbox Ubuntu |
-| fedora-openbox | Openbox Fedora |
-| arch-openbox | Openbox Arch |
-| alpine-icewm | IceWM Alpine |
-| ubuntu-icewm | IceWM Ubuntu |
-| fedora-icewm | IceWM Fedora |
-| arch-icewm | IceWM Arch |
+| Tag | Available | Description |
+| :----: | :----: |--- |
+| latest | ✅ | XFCE Alpine |
+| ubuntu-xfce | ✅ | XFCE Ubuntu |
+| fedora-xfce | ✅ | XFCE Fedora |
+| arch-xfce | ✅ | XFCE Arch |
+| alpine-kde | ✅ | KDE Alpine |
+| ubuntu-kde | ✅ | KDE Ubuntu |
+| fedora-kde | ✅ | KDE Fedora |
+| arch-kde | ✅ | KDE Arch |
+| alpine-mate | ✅ | MATE Alpine |
+| ubuntu-mate | ✅ | MATE Ubuntu |
+| fedora-mate | ✅ | MATE Fedora |
+| arch-mate | ✅ | MATE Arch |
+| alpine-i3 | ✅ | i3 Alpine |
+| ubuntu-i3 | ✅ | i3 Ubuntu |
+| fedora-i3 | ✅ | i3 Fedora |
+| arch-i3 | ✅ | i3 Arch |
+| alpine-openbox | ✅ | Openbox Alpine |
+| ubuntu-openbox | ✅ | Openbox Ubuntu |
+| fedora-openbox | ✅ | Openbox Fedora |
+| arch-openbox | ✅ | Openbox Arch |
+| alpine-icewm | ✅ | IceWM Alpine |
+| ubuntu-icewm | ✅ | IceWM Ubuntu |
+| fedora-icewm | ✅ | IceWM Fedora |
+| arch-icewm | ✅ | IceWM Arch |
 
 ## Application Setup
 
@@ -74,13 +74,32 @@ By default the user/pass is abc/abc, if you change your password or want to logi
 
 * http://yourhost:3000/?login=true
 
-You can access advanced features of the Guacamole remote desktop using ctrl+alt+shift enabling you to use remote copy/paste or an onscreen keyboard.
+You can also force login on the '/' path without this parameter by passing the environment variable `-e AUTO_LOGIN=false`.
 
-**Modern GUI desktop apps (including some flavors terminals) have issues with the latest Docker and syscall compatibility, you can use Docker with the seccomp unconfined setting to allow these syscalls or try [podman](https://podman.io/) as they have updated their codebase to support them**
+You can access advanced features of the Guacamole remote desktop using ctrl+alt+shift enabling you to use remote copy/paste, an onscreen keyboard, or a baked in file manager. This can also be accessed by clicking the small circle on the left side of the screen.
+
+**Modern GUI desktop apps (including some flavors terminals) have issues with the latest Docker and syscall compatibility, you can use Docker with the `--security-opt seccomp=unconfined` setting to allow these syscalls or try [podman](https://podman.io/) as they have updated their codebase to support them**
 
 **Unlike our other containers these Desktops are not designed to be upgraded by Docker, you will keep your home directoy but anything you installed system level will be lost if you upgrade an existing container. To keep packages up to date instead use Ubuntu's own apt, Alpine's apk, Fedora's dnf, or Arch's pacman program**
 
-**The KDE Ubuntu container needs to be run in privileged mode to function properly, in general the Ubuntu KDE container while functional is not reccomended, please try a different KDE distro if possible**
+#### Keyboard Layouts
+
+This should match the layout on the computer you are accessing the container from.
+
+The keyboard layouts available for use are:
+* da-dk-qwerty- Danish keyboard
+* de-ch-qwertz- Swiss German keyboard (qwertz)
+* de-de-qwertz- German keyboard (qwertz) - **OSK available**
+* en-gb-qwerty- English (UK) keyboard
+* en-us-qwerty- English (US) keyboard - **OSK available** **DEFAULT**
+* es-es-qwerty- Spanish keyboard - **OSK available**
+* fr-ch-qwertz- Swiss French keyboard (qwertz)
+* fr-fr-azerty- French keyboard (azerty) - **OSK available**
+* it-it-qwerty- Italian keyboard - **OSK available**
+* ja-jp-qwerty- Japanese keyboard
+* pt-br-qwerty- Portuguese Brazilian keyboard
+* sv-se-qwerty- Swedish keyboard
+* tr-tr-qwerty- Turkish-Q keyboard
 
 If you ever lose your password you can always reset it by execing into the container as root:
 ```
@@ -88,6 +107,28 @@ docker exec -it webtop passwd abc
 ```
 By default we perform all logic for the abc user and we reccomend using that user only in the container, but new users can be added as long as there is a `startwm.sh` executable script in their home directory.
 All of these containers are configured with passwordless sudo, we make no efforts to secure or harden these containers and we do not reccomend ever publishing their ports to the public Internet.
+
+## Hardware Acceleration (Ubuntu Container Only)
+
+Many desktop application will need access to a GPU to function properly and even some Desktop Environments have compisitor effects that will not function without a GPU. This is not a hard requirement and all base images will function without a video device mounted into the container.
+
+### Intel/ATI/AMD
+
+To leverage hardware acceleration you will need to mount /dev/dri video device inside of the conainer.
+```
+--device=/dev/dri:/dev/dri
+```
+We will automatically ensure the abc user inside of the container has the proper permissions to access this device.
+### Nvidia
+
+Hardware acceleration users for Nvidia will need to install the container runtime provided by Nvidia on their host, instructions can be found here:
+https://github.com/NVIDIA/nvidia-docker
+
+We automatically add the necessary environment variable that will utilise all the features available on a GPU on the host. Once nvidia-docker is installed on your host you will need to re/create the docker container with the nvidia container runtime `--runtime=nvidia` and add an environment variable `-e NVIDIA_VISIBLE_DEVICES=all` (can also be set to a specific gpu's UUID, this can be discovered by running `nvidia-smi --query-gpu=gpu_name,gpu_uuid --format=csv` ). NVIDIA automatically mounts the GPU and drivers from your host into the container.
+
+### Arm Devices
+
+Best effort is made to install tools to allow mounting in /dev/dri on Arm devices. In most cases if /dev/dri exists on the host it should just work. If running a Raspberry Pi 4 be sure to enable `dtoverlay=vc4-fkms-v3d` in your usercfg.txt.
 
 ## Usage
 
@@ -100,9 +141,8 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   webtop:
-    image: lscr.io/linuxserver/webtop
+    image: lscr.io/linuxserver/webtop:latest
     container_name: webtop
-    privileged: true #optional
     security_opt:
       - seccomp:unconfined #optional
     environment:
@@ -110,11 +150,15 @@ services:
       - PGID=1000
       - TZ=Europe/London
       - SUBFOLDER=/ #optional
+      - KEYBOARD=en-us-qwerty #optional
+      - TITLE=Webtop #optional
     volumes:
       - /path/to/data:/config
       - /var/run/docker.sock:/var/run/docker.sock #optional
     ports:
       - 3000:3000
+    devices:
+      - /dev/dri:/dev/dri #optional
     shm_size: "1gb" #optional
     restart: unless-stopped
 ```
@@ -124,18 +168,20 @@ services:
 ```bash
 docker run -d \
   --name=webtop \
-  --privileged `#optional` \
   --security-opt seccomp=unconfined `#optional` \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -e SUBFOLDER=/ `#optional` \
+  -e KEYBOARD=en-us-qwerty `#optional` \
+  -e TITLE=Webtop `#optional` \
   -p 3000:3000 \
   -v /path/to/data:/config \
   -v /var/run/docker.sock:/var/run/docker.sock `#optional` \
+  --device /dev/dri:/dev/dri `#optional` \
   --shm-size="1gb" `#optional` \
   --restart unless-stopped \
-  lscr.io/linuxserver/webtop
+  lscr.io/linuxserver/webtop:latest
 ```
 
 ## Parameters
@@ -156,6 +202,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
 | `SUBFOLDER=/` | Specify a subfolder to use with reverse proxies, IE `/subfolder/` |
+| `KEYBOARD=en-us-qwerty` | See the keyboard layouts section for more information and options. |
+| `TITLE=Webtop` | String which will be used as page/tab title in the web browser. |
 
 ### Volume Mappings (`-v`)
 
@@ -164,12 +212,18 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `/config` | abc users home directory |
 | `/var/run/docker.sock` | Docker Socket on the system, if you want to use Docker in the container |
 
+### Device Mappings (`--device`)
+
+| Parameter | Function |
+| :-----:   | --- |
+| `/dev/dri` | Add this for GL support (Linux hosts only) |
+
 #### Miscellaneous Options
 
 | Parameter | Function |
 | :-----:   | --- |
 | `--shm-size=` | We set this to 1 gig to prevent modern web browsers from crashing |
-| `--security-opt seccomp=unconfined` | For Docker Engine only, many modern gui apps need this to function as syscalls are unkown to Docker (try this before privileged) |
+| `--security-opt seccomp=unconfined` | For Docker Engine only, many modern gui apps need this to function on older hosts as syscalls are unknown to Docker. |
 
 ## Environment variables from files (Docker secrets)
 
@@ -216,10 +270,13 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' webtop`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/webtop`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/webtop:latest`
 
 ## Versions
 
+* **21.10.22:** - Rebase xfce to Alpine 3.16, migrate to s6v3.
+* **12.03.22:** - Add documentation for mounting in a GPU.
+* **05.02.22:** - Rebase KDE Ubuntu to Jammy, add new documentation for updated gclient, stop recommending priv mode.
 * **21.09.21:** - Add Fedora and Arch images, show seccomp settings in readme.
 * **26.09.21:** - Rebase to Alpine versions to 3.14.
 * **20.04.21:** - Initial release.

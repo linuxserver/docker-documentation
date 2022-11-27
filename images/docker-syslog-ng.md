@@ -21,21 +21,23 @@ title: syslog-ng
 
 ## Supported Architectures
 
-Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `lscr.io/linuxserver/syslog-ng` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/syslog-ng:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| x86-64 | ✅ | amd64-\<version tag\> |
+| arm64 | ✅ | arm64v8-\<version tag\> |
+| armhf| ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
 Edit `/config/syslog-ng.conf` to configure your logging sources and destinations. Note: As the application does not run as root you cannot listen on ports < 1024.
+
+The application pid, control file, etc. are all kept in /config so when using tools such as `syslog-ng-ctl` you need to specify the path e.g. `syslog-ng-ctl reload -c /config/syslog-ng.ctl`
 
 More info at [syslog-ng](https://www.syslog-ng.com/technical-documents/list/syslog-ng-open-source-edition).
 
@@ -50,7 +52,7 @@ To help you get started creating a container from this image you can either use 
 version: "2.1"
 services:
   syslog-ng:
-    image: lscr.io/linuxserver/syslog-ng
+    image: lscr.io/linuxserver/syslog-ng:latest
     container_name: syslog-ng
     environment:
       - PUID=1000
@@ -80,7 +82,7 @@ docker run -d \
   -v /path/to/config:/config \
   -v /path/to/log:/var/log `#optional` \
   --restart unless-stopped \
-  lscr.io/linuxserver/syslog-ng
+  lscr.io/linuxserver/syslog-ng:latest
 ```
 
 ## Parameters
@@ -160,10 +162,11 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * Container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' syslog-ng`
 * Image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/syslog-ng`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/syslog-ng:latest`
 
 ## Versions
 
+* **01.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **18.12.21:** - Rebase to Alpine 3.15.
 * **01.07.21:** - Rebase to Alpine 3.14.
 * **26.05.21:** - Initial release.
