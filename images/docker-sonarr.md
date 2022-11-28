@@ -40,7 +40,7 @@ This image provides various versions that are available via tags. Please read th
 | Tag | Available | Description |
 | :----: | :----: |--- |
 | latest | ✅ | Stable releases from Sonarr (currently v3) |
-| develop | ✅ | Development releases from Sonarr (currently v3) |
+| develop | ✅ | Development releases from Sonarr (currently v4) |
 
 ## Application Setup
 
@@ -176,6 +176,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **24.11.22:** - Bump develop branch to v4, rebase to Alpine 3.16.
 * **03.08.22:** - Deprecate armhf.
 * **02.08.22:** - Add armhf deprecation warning.
 * **28.04.22:** - Rebase master branch to mono 6.12 base (focal).
