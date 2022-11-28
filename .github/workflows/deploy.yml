@@ -18,8 +18,10 @@ jobs:
           path: .cache
       - run: pip install -r docs/requirements.txt
       - run: |
+          cp README.md docs/index.md
           cp -R general docs/
           cp -R images docs/
+          cp -R FAQ.md docs/
       - run: mkdocs build
 
   deploy:
@@ -40,6 +42,8 @@ jobs:
           path: .cache
       - run: pip install -r docs/requirements.txt
       - run: |
+          cp README.md docs/index.md
           cp -R general docs/
           cp -R images docs/
+          cp -R FAQ.md docs/
       - run: mkdocs gh-deploy --force
