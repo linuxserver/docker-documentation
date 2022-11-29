@@ -141,6 +141,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **29.11.22:** - Rebase to alpine 3.17, upgrade to s6v3.
 * **19.09.22:** - Rebase to alpine 3.15.
 * **12.02.21:** - Fix optional dependency builds in aarch64 image.
 * **12.02.21:** - Rebasing to alpine 3.13.
