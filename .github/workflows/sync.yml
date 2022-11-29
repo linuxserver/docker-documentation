@@ -38,7 +38,6 @@ jobs:
                   rutorrent
                   sickrage
                   tester
-                  tester
                   yq
               )
               if [[ "$image" =~ "baseimage" ]]; then
