@@ -196,6 +196,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **29.11.22:** - Add openssl1.1-compat for qbittorrent-cli.
 * **31.10.22:** - Add libtorrentv1 branch.
 * **31.08.22:** - Rebase to Alpine Edge again to follow latest releases.
 * **12.08.22:** - Bump unrar to 6.1.7.
