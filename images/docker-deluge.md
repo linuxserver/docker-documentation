@@ -174,6 +174,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **29.11.22:** - Restore geoip using py3-geoip as an interim measure.
 * **24.11.22:** - Remove GeoIP packages as geoip will not build under Py 3.11 and Deluge still doesn't support geoip2.
 * **22.11.22:** - Update GeoIP URL for new IPFS domain.
 * **29.08.22:** - Rebase to Alpine Edge again to follow latest releases.
