@@ -59,6 +59,18 @@ Access the installation wizard at https://`your ip`:3000 and follow the instruct
 
 Currently Synology systems are not supported due to them blocking CPU scheduling in their Kernel.
 
+### GPU Support
+
+During installation an option will be presented to force all Workspace containers to mount in and use a specific GPU. If using an NVIDIA GPU you will need to pass `-e NVIDIA_VISIBLE_DEVICES=all` or `--gpus all` and have the [NVIDIA Container Runtime](https://github.com/NVIDIA/nvidia-container-runtime) installed on the host. Also if using NVIDIA, Kasm Workspaces has [native NVIDIA support](https://www.kasmweb.com/docs/latest/how_to/gpu.html) so you can optionally opt to simply use that instead of he manual override during installation. 
+
+### Gamepad support
+
+In order to properly create virtual Gamepads you will need to mount from your host `/dev/input` and `/run/udev/data`. Please see [HERE](https://www.kasmweb.com/docs/develop/guide/gamepad_passthrough.html) for instructions on enabling gamepad support.
+
+### Persistant profiles
+
+In order to use persistant profiles in Workspaces you will need to mount in a folder to use from your host to `/profiles`. From there when configuring a workspace you can set the `Persistant Profile Path` to IE `/profiles/ubuntu-focal/{username}/`, more infomation can be found [HERE](https://www.kasmweb.com/docs/latest/how_to/persistent_profiles.html).
+
 ### Strict reverse proxies
 
 This image uses a self-signed certificate by default. This naturally means the scheme is `https`.
@@ -86,6 +98,8 @@ services:
     volumes:
       - /path/to/data:/opt
       - /path/to/profiles:/profiles #optional
+      - /dev/input:/dev/input #optional
+      - /run/udev/data:/run/udev/data #optional
     ports:
       - 3000:3000
       - 443:443
@@ -106,6 +120,8 @@ docker run -d \
   -p 443:443 \
   -v /path/to/data:/opt \
   -v /path/to/profiles:/profiles `#optional` \
+  -v /dev/input:/dev/input `#optional` \
+  -v /run/udev/data:/run/udev/data `#optional` \
   --restart unless-stopped \
   lscr.io/linuxserver/kasm:latest
 ```
@@ -136,6 +152,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `/opt` | Docker and installation storage. |
 | `/profiles` | Optionally specify a path for persistent profile storage. |
+| `/dev/input` | Optional for gamepad support. |
+| `/run/udev/data` | Optional for gamepad support. |
 
 #### Miscellaneous Options
 
@@ -178,5 +196,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **05.11.22:** - Rebase to Jammy, add support for GPUs, add support for Gamepads.
 * **23.09.22:** - Migrate to s6v3.
 * **02.07.22:** - Initial Release.
