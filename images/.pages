@@ -1,0 +1,2 @@
+nav:
+    - ... | regex=^docker-((?!(baseimage-|base-alpine-example|base-ubuntu-example|ci|doc-builder|gazee|gmail-order-bot|hydra2|jenkins-builder|letsencrypt|musicbrainz|mylar|pydio|readme-sync|rutorrent|sickrage|tester)).)*.md$

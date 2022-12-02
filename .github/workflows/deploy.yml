@@ -1,0 +1,45 @@
+name: Build mkdocs and deploy to GitHub Pages
+
+on: [push, pull_request]
+
+jobs:
+
+  build:
+    name: Build docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.1.0
+      - uses: actions/setup-python@v4.3.0
+        with:
+          python-version: 3.x
+      - uses: actions/cache@v3.0.11
+        with:
+          key: ${{ github.ref }}
+          path: .cache
+      - run: pip install -r docs/requirements.txt
+      - run: |
+          cp -R general docs/
+          cp -R images docs/
+      - run: mkdocs build
+
+  deploy:
+    if: github.event_name == 'push' && contains(fromJson('["refs/heads/master", "refs/heads/main", "refs/heads/mkdocs"]'), github.ref)
+    needs: build
+    name: Deploy docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.1.0
+        with:
+          fetch-depth: '0'
+      - uses: actions/setup-python@v4.3.0
+        with:
+          python-version: 3.x
+      - uses: actions/cache@v3.0.11
+        with:
+          key: ${{ github.ref }}
+          path: .cache
+      - run: pip install -r docs/requirements.txt
+      - run: |
+          cp -R general docs/
+          cp -R images docs/
+      - run: mkdocs gh-deploy --force
