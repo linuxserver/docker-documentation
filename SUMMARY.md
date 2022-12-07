@@ -95,7 +95,6 @@
 * [linuxserver/mstream](images/docker-mstream.md)
 * [linuxserver/mylar3](images/docker-mylar3.md)
 * [linuxserver/mysql-workbench](images/docker-mysql-workbench.md)
-* [linuxserver/nano-discord-bot](images/docker-nano-discord-bot.md)
 * [linuxserver/nano-wallet](images/docker-nano-wallet.md)
 * [linuxserver/nano](images/docker-nano.md)
 * [linuxserver/netbootxyz](images/docker-netbootxyz.md)
