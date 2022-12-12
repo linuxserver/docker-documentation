@@ -179,6 +179,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **11.12.22:** - Rebase master to Alpine 3.17.
 * **08.11.22:** - Add develop branch.
 * **25.10.22:** - Support commandline args and relative paths.
 * **03.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
