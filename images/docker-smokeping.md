@@ -57,8 +57,8 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - </path/to/smokeping/config>:/config
-      - </path/to/smokeping/data>:/data
+      - /path/to/smokeping/config:/config
+      - /path/to/smokeping/data:/data
     ports:
       - 80:80
     restart: unless-stopped
@@ -73,8 +73,8 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -p 80:80 \
-  -v </path/to/smokeping/config>:/config \
-  -v </path/to/smokeping/data>:/data \
+  -v /path/to/smokeping/config:/config \
+  -v /path/to/smokeping/data:/data \
   --restart unless-stopped \
   lscr.io/linuxserver/smokeping:latest
 ```
@@ -158,6 +158,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.12.22:** - Rebase to Alpine 3.17, migrate to s6v3, switch to nginx and fcgiwrap.
 * **29.03.21:** - Dockerfile: Install curl before we call it
 * **23.01.21:** - Rebasing to alpine 3.13.
 * **01.06.20:** - Rebasing to alpine 3.12.
