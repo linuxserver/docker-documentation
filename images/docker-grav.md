@@ -37,7 +37,7 @@ The architectures supported by this image are:
 
 For more information check out the [Grav documentation](https://learn.getgrav.org/). Our image includes the [grav-admin](https://github.com/getgrav/grav-plugin-admin) plugin.
 
-To use the CLI tools you need to pass the working directory as part of your exec command (or use an interactive shell), e.g. `docker exec -it -w /app/grav-admin grav bin/gpm`
+To use the CLI tools you need to pass the working directory as part of your exec command (or use an interactive shell), e.g. `docker exec -it -w /app/www/public/grav-admin grav bin/gpm`
 
 ## Usage
 
@@ -155,6 +155,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **11.12.22:** - Rebase to Alpine 3.17, PHP 8.1.
 * **05.09.22:** - All php to read envs passed to container.
 * **20.08.22:** - Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
 * **03.09.21:** - Added support for Redis caching.
