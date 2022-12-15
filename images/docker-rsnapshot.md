@@ -176,6 +176,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **15.12.22:** - Rebase to alpine 3.17.
 * **11.10.22:** - Rebase to alpine 3.16, migrate to s6v3.
 * **10.10.21:** - Rebase to alpine 3.14.
 * **20.08.20:** - Initial Release.
