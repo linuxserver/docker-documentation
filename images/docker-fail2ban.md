@@ -239,5 +239,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **15.12.22:** - Rebase to Alpine 3.17, Add ssmtp and whois packages. Symlink config to allow live reloading.
 * **25.08.22:** - Update README to clarify remote log information.
 * **09.08.22:** - Initial Release.
