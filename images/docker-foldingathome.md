@@ -170,6 +170,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **14.12.22:** - Rebase to Ubuntu Jammy, migrate to s6v3.
 * **15.01.22:** - Rebase to Ubuntu Focal. Add arm64v8 builds (cpu only). Increase verbosity about gpu driver permission settings.
 * **09.01.21:** - Add nvidia.icd.
 * **14.04.20:** - Add Folding@home donation links.
