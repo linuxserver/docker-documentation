@@ -163,6 +163,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **14.12.22:** - Rebase to Jammy, migrate to s6v3.
 * **03.10.21:** - Use upstream apt repo to install. Rebase to focal.
 * **20.01.21:** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
