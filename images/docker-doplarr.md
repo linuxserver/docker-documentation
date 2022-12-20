@@ -212,6 +212,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **18.12.22:** - Rebase to alpine 3.17, upgrade to openjdk17.
 * **01.05.22:** - Remove `DISCORD__ROLE_ID` environment variable, see [Permissions Configuration](https://github.com/kiranshila/Doplarr/blob/main/docs/configuration.md#permissions).
 * **30.01.22:** - Variable adjustments.
 * **30.01.22:** - Initial Release.
