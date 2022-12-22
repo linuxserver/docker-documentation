@@ -76,6 +76,7 @@ services:
       - PGID=1000
       - APP_URL=
       - DB_HOST=bookstack_db
+      - DB_PORT=3306
       - DB_USER=bookstack
       - DB_PASS=<yourdbpass>
       - DB_DATABASE=bookstackapp
@@ -112,6 +113,7 @@ docker run -d \
   -e PGID=1000 \
   -e APP_URL= \
   -e DB_HOST=<yourdbhost> \
+  -e DB_PORT=<yourdbport> \
   -e DB_USER=<yourdbuser> \
   -e DB_PASS=<yourdbpass> \
   -e DB_DATABASE=bookstackapp \
@@ -139,9 +141,10 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PGID=1000` | for GroupID - see below for explanation |
 | `APP_URL=` | for specifying the IP:port or URL your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com` |
 | `DB_HOST=<yourdbhost>` | for specifying the database host |
+| `DB_PORT=<yourdbport>` | for specifying the database port if not default 3306 |
 | `DB_USER=<yourdbuser>` | for specifying the database user |
-| `DB_PASS=<yourdbpass>` | for specifying the database password |
-| `DB_DATABASE=bookstackapp` | for specifying the database to be used (non-alphanumeric passwords must be properly escaped.) |
+| `DB_PASS=<yourdbpass>` | for specifying the database password (non-alphanumeric passwords must be properly escaped.) |
+| `DB_DATABASE=bookstackapp` | for specifying the database to be used |
 
 ### Volume Mappings (`-v`)
 
