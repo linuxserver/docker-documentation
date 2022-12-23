@@ -64,15 +64,18 @@ services:
       - SUPERUSER_EMAIL=
       - SUPERUSER_PASSWORD=
       - REGENERATE_SETTINGS= #optional
-      - SITE_LOGO_URL= #optional
       - ALLOWED_HOSTS= #optional
-      - SECRET_KEY= #optional
       - APPRISE_ENABLED= #optional
       - DEBUG= #optional
+      - INTEGRATIONS_ALLOW_PRIVATE_IPS= #optional
+      - PING_EMAIL_DOMAIN= #optional
+      - SECRET_KEY= #optional
+      - SITE_LOGO_URL= #optional
     volumes:
       - /path/to/data:/config
     ports:
       - 8000:8000
+      - 2525:2525 #optional
     restart: unless-stopped
 ```
 
@@ -94,12 +97,15 @@ docker run -d \
   -e SUPERUSER_EMAIL= \
   -e SUPERUSER_PASSWORD= \
   -e REGENERATE_SETTINGS= `#optional` \
-  -e SITE_LOGO_URL= `#optional` \
   -e ALLOWED_HOSTS= `#optional` \
-  -e SECRET_KEY= `#optional` \
   -e APPRISE_ENABLED= `#optional` \
   -e DEBUG= `#optional` \
+  -e INTEGRATIONS_ALLOW_PRIVATE_IPS= `#optional` \
+  -e PING_EMAIL_DOMAIN= `#optional` \
+  -e SECRET_KEY= `#optional` \
+  -e SITE_LOGO_URL= `#optional` \
   -p 8000:8000 \
+  -p 2525:2525 `#optional` \
   -v /path/to/data:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/healthchecks:latest
@@ -113,7 +119,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Parameter | Function |
 | :----: | --- |
-| `8000` | will map the container's port 8000 to port 8000 on the host |
+| `8000` | Healthchecks Web UI |
+| `2525` | Port for inbound SMTP pings |
 
 ### Environment Variables (`-e`)
 
@@ -131,12 +138,14 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `EMAIL_USE_TLS=` | Use TLS for SMTP (`True` or `False`) |
 | `SUPERUSER_EMAIL=` | Superuser email |
 | `SUPERUSER_PASSWORD=` | Superuser password |
-| `REGENERATE_SETTINGS=` | Defaults to False. Set to true to always override the `local_settings.py` file with values from environment variables. Do not set to True if you have made manual modifications to this file. |
-| `SITE_LOGO_URL=` | Full URL to custom site logo |
+| `REGENERATE_SETTINGS=` | Defaults to False. Set to True to always override the `local_settings.py` file with values from environment variables. Do not set to True if you have made manual modifications to this file. |
 | `ALLOWED_HOSTS=` | Array of valid hostnames for the server `["test.com","test2.com"]` (default: `["*"]`) |
-| `SECRET_KEY=` | A secret key used for cryptographic signing. Will generate a secure value if one is not supplied |
 | `APPRISE_ENABLED=` | Defaults to False. A boolean that turns on/off the Apprise integration (https://github.com/caronc/apprise) |
 | `DEBUG=` | Defaults to True. Debug mode relaxes CSRF protections and increases logging verbosity but should be disabled for production instances as it will impact performance and security. |
+| `INTEGRATIONS_ALLOW_PRIVATE_IPS=` | Defaults to False. Set to True to allow integrations to connect to private IP addresses. |
+| `PING_EMAIL_DOMAIN=` | The domain to use for generating ping email addresses. |
+| `SECRET_KEY=` | A secret key used for cryptographic signing. Will generate a secure value if one is not supplied |
+| `SITE_LOGO_URL=` | Full URL to custom site logo |
 
 ### Volume Mappings (`-v`)
 
@@ -198,6 +207,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **22.12.22:** - Rebase to Alpine 3.17. Add extra deps for pycurl. Add INTEGRATIONS_ALLOW_PRIVATE_IPS.
 * **18.10.22:** - Add curl-dev to fix broken pip builds.
 * **11.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **27.09.22:** - Fix sending of Email Reports
