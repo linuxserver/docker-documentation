@@ -150,6 +150,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **19.09.22:** - Rebase to 3.17.
 * **19.09.22:** - Rebase to 3.15.
 * **18.05.21:** - Rebase to 3.13. add linuxserver wheel repo.
 * **09.10.20:** - Fix run scripts evaluating `$` in cases where they should not (ex: inside single quotes). Please rerun the [Recommended method](https://github.com/linuxserver/docker-yq#recommended-method) install/setup commands.
