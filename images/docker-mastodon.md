@@ -55,6 +55,12 @@ We support all of the official [environment variables](https://docs.joinmastodon
 
 For more information check out the [mastodon documentation](https://docs.joinmastodon.org/).
 
+### Running separate sidekiq instances
+
+It is currently only supported to run a single queue per container instance *or* all queues in a single container instance.
+
+All containers must share the same `/config`` mount and be on a common docker network.
+
 ### Strict reverse proxies
 
 This image automatically redirects to https with a self-signed certificate. If you are using a reverse proxy which validates certificates, you need to [disable this check for the container](https://docs.linuxserver.io/faq#strict-proxy).
@@ -104,6 +110,11 @@ services:
       - AWS_ACCESS_KEY_ID= #optional
       - AWS_SECRET_ACCESS_KEY= #optional
       - S3_ALIAS_HOST= #optional
+      - SIDEKIQ_ONLY=false #optional
+      - SIDEKIQ_QUEUE= #optional
+      - SIDEKIQ_DEFAULT=false #optional
+      - SIDEKIQ_THREADS=5 #optional
+      - DB_POOL=5 #optional
     volumes:
       - /path/to/appdata/config:/config
     ports:
@@ -148,6 +159,11 @@ docker run -d \
   -e AWS_ACCESS_KEY_ID= `#optional` \
   -e AWS_SECRET_ACCESS_KEY= `#optional` \
   -e S3_ALIAS_HOST= `#optional` \
+  -e SIDEKIQ_ONLY=false `#optional` \
+  -e SIDEKIQ_QUEUE= `#optional` \
+  -e SIDEKIQ_DEFAULT=false `#optional` \
+  -e SIDEKIQ_THREADS=5 `#optional` \
+  -e DB_POOL=5 `#optional` \
   -p 80:80 \
   -p 443:443 \
   -v /path/to/appdata/config:/config \
@@ -201,6 +217,11 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `AWS_ACCESS_KEY_ID=` | S3 bucket access key ID |
 | `AWS_SECRET_ACCESS_KEY=` | S3 bucket secret access key |
 | `S3_ALIAS_HOST=` | Alternate hostname for object fetching if you are front the S3 connections. |
+| `SIDEKIQ_ONLY=false` | Only run the sidekiq service in this container instance. For large scale instances that need better queue handling. |
+| `SIDEKIQ_QUEUE=` | The name of the sidekiq queue to run in this container. See [notes](https://docs.joinmastodon.org/admin/scaling/#sidekiq-queues). |
+| `SIDEKIQ_DEFAULT=false` | Set to `true` on the main container if you're running additional sidekiq instances. It will run the `default` queue. |
+| `SIDEKIQ_THREADS=5` | The number of threads for sidekiq to use. See [notes](https://docs.joinmastodon.org/admin/scaling/#sidekiq-threads). |
+| `DB_POOL=5` | The size of the DB connection pool, must be *at least* the same as `SIDEKIQ_THREADS`. See [notes](https://docs.joinmastodon.org/admin/scaling/#sidekiq-threads). |
 
 ### Volume Mappings (`-v`)
 
@@ -262,4 +283,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **19.12.22:** - Support separate sidekiq queue instances.
 * **05.11.22:** - Initial Release.
