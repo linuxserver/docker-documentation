@@ -90,14 +90,14 @@ services:
       - PUID=1000
       - PGID=1000
       - APP_URL=http://localhost:8080
-      - MYSQL_PORT_3306_TCP_ADDR=<mysql host>
-      - MYSQL_PORT_3306_TCP_PORT=<mysql port>
-      - MYSQL_DATABASE=<mysql database>
-      - MYSQL_USER=<mysql pass>
-      - MYSQL_PASSWORD=changeme
+      - MYSQL_PORT_3306_TCP_ADDR=
+      - MYSQL_PORT_3306_TCP_PORT=
+      - MYSQL_DATABASE=
+      - MYSQL_USER=
+      - MYSQL_PASSWORD=
       - TZ=US/Pacific
     volumes:
-      - <path to snipe-it data>:/config
+      - /path/to/data:/config
     ports:
       - 8080:80
     restart: unless-stopped
@@ -111,14 +111,14 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e APP_URL=http://localhost:8080 \
-  -e MYSQL_PORT_3306_TCP_ADDR=<mysql host> \
-  -e MYSQL_PORT_3306_TCP_PORT=<mysql port> \
-  -e MYSQL_DATABASE=<mysql database> \
-  -e MYSQL_USER=<mysql pass> \
-  -e MYSQL_PASSWORD=changeme \
+  -e MYSQL_PORT_3306_TCP_ADDR= \
+  -e MYSQL_PORT_3306_TCP_PORT= \
+  -e MYSQL_DATABASE= \
+  -e MYSQL_USER= \
+  -e MYSQL_PASSWORD= \
   -e TZ=US/Pacific \
   -p 8080:80 \
-  -v <path to snipe-it data>:/config \
+  -v /path/to/data:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/snipe-it:latest
 ```
@@ -140,11 +140,11 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `APP_URL=http://localhost:8080` | Hostname or IP and port if applicable, be sure to define https/http |
-| `MYSQL_PORT_3306_TCP_ADDR=<mysql host>` | Mysql hostname or IP to use |
-| `MYSQL_PORT_3306_TCP_PORT=<mysql port>` | Mysql port to use |
-| `MYSQL_DATABASE=<mysql database>` | Mysql database to use |
-| `MYSQL_USER=<mysql pass>` | Mysql user to use |
-| `MYSQL_PASSWORD=changeme` | Mysql password to use |
+| `MYSQL_PORT_3306_TCP_ADDR=` | Mysql hostname or IP to use |
+| `MYSQL_PORT_3306_TCP_PORT=` | Mysql port to use |
+| `MYSQL_DATABASE=` | Mysql database to use |
+| `MYSQL_USER=` | Mysql user to use |
+| `MYSQL_PASSWORD=` | Mysql password to use |
 | `TZ=US/Pacific` | Specify a timezone to use EG Europe/London, this is required to run snipe-it |
 
 ### Volume Mappings (`-v`)
@@ -207,6 +207,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **28.12.22:** - Rebase to Alpine 3.17, migrate to s6v3.
 * **20.08.22:** - Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
 * **14.05.22:** - Add php7-sodium for v6.
 * **12.04.22:** - Don't build development elements.
