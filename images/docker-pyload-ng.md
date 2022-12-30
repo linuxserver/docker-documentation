@@ -172,6 +172,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **02.02.22:** - Rebase master to alpine 3.17.
 * **02.02.22:** - Add ffmpeg for the Youtube plugin.
 * **24.01.22:** - Replace unrar with p7zip.
 * **24.01.22:** - Initial release.
