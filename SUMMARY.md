@@ -117,6 +117,7 @@
 * [linuxserver/plex-meta-manager](images/docker-plex-meta-manager.md)
 * [linuxserver/plex](images/docker-plex.md)
 * [linuxserver/projectsend](images/docker-projectsend.md)
+* [linuxserver/prowlarr](images/docker-prowlarr.md)
 * [linuxserver/pwndrop](images/docker-pwndrop.md)
 * [linuxserver/pydio-cells](images/docker-pydio-cells.md)
 * [linuxserver/pyload-ng](images/docker-pyload-ng.md)
