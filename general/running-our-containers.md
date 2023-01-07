@@ -19,7 +19,7 @@ We do this because we believe that it makes it easier to answer the common quest
 
 To create a container from one of our images, you must use either `docker create` or `docker run`. Each image follows the same pattern in the command when creating a container:
 
-```bash
+```shell
 docker create \
     --name=<container_name> \
     -v <path_to_data>:/config \
@@ -28,4 +28,3 @@ docker create \
     -p <host_port>:<app_port> \
     linuxserver/<image_name>
 ```
-

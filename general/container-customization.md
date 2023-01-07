@@ -34,7 +34,7 @@ if using compose. Where possible, to improve security, we recommend mounting the
 
 One example use case is our Piwigo container has a plugin that supports video, but requires ffmpeg to be installed. No problem. Add this bad boy into a script file (can be named anything) and you're good to go.
 
-```bash
+```shell
 #!/bin/bash
 
 echo "**** installing ffmpeg ****"
@@ -59,7 +59,7 @@ if using compose. Where possible, to improve security, we recommend mounting the
 
 Running cron in our containers is now as simple as a single file. Drop this script in `/custom-services.d/cron` and it will run automatically in the container:
 
-```bash
+```shell
 #!/usr/bin/with-contenv bash
 
 /usr/sbin/crond -f -S -l 0 -c /etc/crontabs
@@ -83,7 +83,7 @@ This allows community members to publish a relatively static pile of logic that 
 
 An example of how this logic can be used to greatly expand the functionality of our base containers would be to add VPN support to a Transmission container:
 
-```
+```shell
 docker create \
   --name=transmission \
   --cap-add=NET_ADMIN \

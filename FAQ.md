@@ -6,69 +6,69 @@ Here will some Frequently Asked Questions reside
 
 Some x86_64 hosts running older versions of the Docker engine are not compatible with some images based on Ubuntu Jammy.
 
-### Symptoms
+- Symptoms
 
-If your host is affected you may see errors in your containers such as:
+    If your host is affected you may see errors in your containers such as:
 
-```shell
-ERROR - Unable to determine java version; make sure Java is installed and callable
-```
+    ```shell
+    ERROR - Unable to determine java version; make sure Java is installed and callable
+    ```
 
-Or
+    Or
 
-```shell
-Failed to create CoreCLR, HRESULT: 0x80070008
-```
+    ```shell
+    Failed to create CoreCLR, HRESULT: 0x80070008
+    ```
 
-Or
+    Or
 
-```shell
-WARNING :: MAIN : webStart.py:initialize:249 : can't start new thread
-```
+    ```shell
+    WARNING :: MAIN : webStart.py:initialize:249 : can't start new thread
+    ```
 
-### Resolution
+- Resolution
 
-#### Option 1 (Long-Term Fix)
+  - Option 1 (Long-Term Fix)
 
-Upgrade your Docker engine install to at least version `20.10.10`. [Refer to the official Docker docs for installation/update details.](https://docs.docker.com/engine/install)
+    Upgrade your Docker engine install to at least version `20.10.10`. [Refer to the official Docker docs for installation/update details.](https://docs.docker.com/engine/install)
 
-#### Option 2 (Short-Term Fix)
+  - Option 2 (Short-Term Fix)
 
-For Docker CLI, run your container with:
+    For Docker CLI, run your container with:
 
-`--security-opt seccomp=unconfined`
+    `--security-opt seccomp=unconfined`
 
-For Docker Compose, run your container with:
+    For Docker Compose, run your container with:
 
-```yaml
-    security_opt:
-      - seccomp=unconfined
-```
+    ```yaml
+        security_opt:
+        - seccomp=unconfined
+    ```
 
 ## My host is incompatible with images based on rdesktop {#rdesktop}
 
-Some x86_64 hosts have issues running rdesktop based images even with the latest docker version due to syscalls that are unknown to docker. 
+Some x86_64 hosts have issues running rdesktop based images even with the latest docker version due to syscalls that are unknown to docker.
 
-### Symptoms
+- Symptoms
 
-If your host is affected you may see errors in your containers such as:
+    If your host is affected you may see errors in your containers such as:
 
-```shell
-Failed to close file descriptor for child process (Operation not permitted)
-```
+    ```shell
+    Failed to close file descriptor for child process (Operation not permitted)
+    ```
 
-### Resolution
+- Resolution
 
-For Docker CLI, run your container with:
+    For Docker CLI, run your container with:
 
-`--security-opt seccomp=unconfined`
+    `--security-opt seccomp=unconfined`
 
-For Docker Compose, run your container with:
+    For Docker Compose, run your container with:
 
-```yaml
-    security_opt:
-      - seccomp=unconfined
-```
+    ```yaml
+        security_opt:
+        - seccomp=unconfined
+    ```
 
 ## My host is incompatible with images based on Ubuntu Focal and Alpine 3.13 and later {#libseccomp}
 
@@ -80,54 +80,54 @@ This is due to a bug in the libseccomp2 library (dependency of Docker itself), w
 
 You have a few options as noted below. Options 1 is short-term, while option 2 is considered the best option if you don't plan to reinstall the device (option 3).
 
-### Resolution
+- Resolution
 
-If you decide to do option 1 or 2, you should just need to restart the container after confirming you have libseccomp2.4.4 installed.
+    If you decide to do option 1 or 2, you should just need to restart the container after confirming you have libseccomp2.4.4 installed.
 
-If 1 or 2 did not work, ensure your Docker install is at least version 20.10.0, [refer to the official Docker docs for installation.](https://docs.docker.com/engine/install/debian/)
+    If 1 or 2 did not work, ensure your Docker install is at least version 20.10.0, [refer to the official Docker docs for installation.](https://docs.docker.com/engine/install/debian/)
 
-#### Option 1
+  - Option 1
 
-Manually install an updated version of the library with dpkg.
+    Manually install an updated version of the library with dpkg.
 
-```bash
-wget http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.4.4-1~bpo10+1_armhf.deb
-sudo dpkg -i libseccomp2_2.4.4-1~bpo10+1_armhf.deb
-```
+    ```shell
+    wget http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.4.4-1~bpo10+1_armhf.deb
+    sudo dpkg -i libseccomp2_2.4.4-1~bpo10+1_armhf.deb
+    ```
 
-{% hint style="info" %}
-This url may have been updated. Find the latest by browsing [here](http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/).
-{% endhint %}
+    {% hint style="info" %}
+    This url may have been updated. Find the latest by browsing [here](http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/).
+    {% endhint %}
 
-#### Option 2
+  - Option 2
 
-Add the backports repo for DebianBuster. As seen [here](https://github.com/linuxserver/docker-jellyfin/issues/71#issuecomment-733621693).
+    Add the backports repo for DebianBuster. As seen [here](https://github.com/linuxserver/docker-jellyfin/issues/71#issuecomment-733621693).
 
-```bash
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC 648ACFD622F3D138
-echo "deb http://deb.debian.org/debian buster-backports main" | sudo tee -a /etc/apt/sources.list.d/buster-backports.list
-sudo apt update
-sudo apt install -t buster-backports libseccomp2
-```
+    ```shell
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC 648ACFD622F3D138
+    echo "deb http://deb.debian.org/debian buster-backports main" | sudo tee -a /etc/apt/sources.list.d/buster-backports.list
+    sudo apt update
+    sudo apt install -t buster-backports libseccomp2
+    ```
 
-#### Option 3
+  - Option 3
 
-Reinstall/update your OS to a version that still gets updates.
+    Reinstall/update your OS to a version that still gets updates.
 
-* Any distro based on DebianStretch does not seem to have this package available
-* DebianBuster based distros can get the package trough backports, as outlined in point 2.
+    - Any distro based on DebianStretch does not seem to have this package available
+    - DebianBuster based distros can get the package trough backports, as outlined in point 2.
 
-{% hint style="info" %}
-RaspberryPI OS (formerly Raspbian) Can be upgraded to run with a 64bit kernel
-{% endhint %}
+    {% hint style="info" %}
+    RaspberryPI OS (formerly Raspbian) Can be upgraded to run with a 64bit kernel
+    {% endhint %}
 
-### Symptoms
+- Symptoms
 
-* 502 errors in __Jellyfin__ as seen in [linuxserver/docker-jellyfin#71](https://github.com/linuxserver/docker-jellyfin/issues/71)
-* `Error starting framework core` messages in the docker log for __Plex__. [linuxserver/docker-plex#247](https://github.com/linuxserver/docker-plex/issues/247)
-* No WebUI for __Radarr__, even though the container is running. [linuxserver/docker-radarr#118](https://github.com/linuxserver/docker-radarr/issues/118)
-* Images based on our Nginx base-image(Nextcloud, SWAG, Nginx, etc.) fails to generate a certificate, with a message similar to `error getting time:crypto/asn1/a_time.c:330`
-* `docker exec <container-name> date` returns 1970
+  - 502 errors in __Jellyfin__ as seen in [linuxserver/docker-jellyfin#71](https://github.com/linuxserver/docker-jellyfin/issues/71)
+  - `Error starting framework core` messages in the docker log for __Plex__. [linuxserver/docker-plex#247](https://github.com/linuxserver/docker-plex/issues/247)
+  - No WebUI for __Radarr__, even though the container is running. [linuxserver/docker-radarr#118](https://github.com/linuxserver/docker-radarr/issues/118)
+  - Images based on our Nginx base-image(Nextcloud, SWAG, Nginx, etc.) fails to generate a certificate, with a message similar to `error getting time:crypto/asn1/a_time.c:330`
+  - `docker exec <container-name> date` returns 1970
 
 ## I want to reverse proxy a application which defaults to https with a selfsigned certificate {#strict-proxy}
 

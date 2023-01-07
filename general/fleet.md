@@ -102,6 +102,7 @@ All synchronized repositories and images returned.
     }
 }
 ```
+
 {% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}
@@ -135,7 +136,7 @@ The username and password that you define must then be provided as part of Fleet
 
 All primary configuration for Fleet at runtime is loaded in via a `fleet.properties` file. This can be located anywhere on the file system, and is loaded in via a Runtime argument:
 
-```bash
+```shell
 # Runtime
 fleet.app.port=8080
 
@@ -190,4 +191,3 @@ When starting Fleet for the first time it will create a default user in order fo
 {% hint style="warning" %}
 You should change the default password for this user as soon as possible! This can be done via the `Admin` -&gt; `Users` menu options.
 {% endhint %}
-

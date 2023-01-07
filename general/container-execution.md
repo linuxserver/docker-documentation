@@ -6,7 +6,7 @@ You may find at some point you need to view the internal data of a container.
 
 Particularly useful when debugging the application - to shell in to one of our containers, run the following:
 
-```bash
+```shell
 docker exec -it <container_name> /bin/bash
 ```
 
@@ -14,7 +14,7 @@ docker exec -it <container_name> /bin/bash
 
 The vast majority of our images are configured to output the application logs to the console, which in Docker's terms means you can access them using the `docker logs` command:
 
-```bash
+```shell
 docker logs -f --tail=<number_of_lines_to_start_with> <container_name>
 ```
 
@@ -22,7 +22,7 @@ The `--tail` argument is optional, but useful if the application has been runnin
 
 To make life simpler for yourself here's a handy bash alias to do some of the leg work for you:
 
-```bash
+```shell
 # ~/.bash_aliases
 alias dtail='docker logs -tf --tail="50" "$@"'
 ```
@@ -35,13 +35,12 @@ If you are experiencing issues with one of our containers, it helps us to know w
 
 To obtain the build version for the container:
 
-```bash
+```shell
 docker inspect -f '{{ index .Config.Labels "build_version" }}' <container_name>
 ```
 
 Or the image:
 
-```bash
+```shell
 docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/<image_name>
 ```
-
