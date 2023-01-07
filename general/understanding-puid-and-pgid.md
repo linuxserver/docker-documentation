@@ -16,7 +16,7 @@ Using the `PUID` and `PGID` allows our containers to map the container's interna
 
 When creating a container from one of our images, ensure you use the `-e PUID` and `-e PGID` options in your docker command:
 
-```bash
+```shell
 docker create --name=beets -e PUID=1000 -e PGID=1000 linuxserver/beets
 ```
 
@@ -30,7 +30,6 @@ environment:
 
 It is most likely that you will use the `id` of yourself, which can be obtained by running the command below. The two values you will be interested in are the `uid` and `gid`.
 
-```bash
+```shell
 id $user
 ```
-

@@ -10,7 +10,7 @@ Docker containers are, for the most part, immutable. This means that important c
 
 Firstly, stop the container.
 
-```bash
+```shell
 docker stop <container_name>
 ```
 
@@ -20,7 +20,7 @@ Once the container has been stopped, remove it.
 
 > **Important**: Did you remember to persist the `/config` volume when you originally created the container? Bear in mind, you'll lose any configuration inside the container if this volume was not persisted. [Read up on why this is important](volumes.md).
 
-```bash
+```shell
 docker rm <container_name>
 ```
 
@@ -28,7 +28,7 @@ docker rm <container_name>
 
 Now you can pull the latest version of the application image from Docker Hub.
 
-```bash
+```shell
 docker pull linuxserver/<image_name>
 ```
 
@@ -36,7 +36,7 @@ docker pull linuxserver/<image_name>
 
 Finally, you can recreate the container. This is often cited as the most arduous task as it requires you to remember all of the mappings you set beforehand. You can help mitigate this step by using Docker Compose instead - this topic has been [outlined in our documentation](docker-compose.md).
 
-```bash
+```shell
 docker create \
     --name=<container_name> \
     -v <path_to_data>:/config \
@@ -50,14 +50,14 @@ docker create \
 
 It is also possible to update a single container using Docker Compose:
 
-```bash
+```shell
 docker-compose pull linuxserver/<image_name>
 docker-compose up -d <container_name>
 ```
 
 Or, to update all containers at once:
 
-```bash
+```shell
 docker-compose pull
 docker-compose up -d
 ```
@@ -66,7 +66,6 @@ docker-compose up -d
 
 Whenever a Docker image is updated, a fresh version of that image gets downloaded and stored on your host machine. Doing this, however, does not remove the _old_ version of the image. Eventually you will end up with a lot of disk space used up by stale images. You can `prune` old images from your system, which will free up space:
 
-```bash
+```shell
 docker image prune
 ```
-

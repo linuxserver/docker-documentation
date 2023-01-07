@@ -2,46 +2,55 @@
 
 ## Intro
 
-Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration. 
+Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.
 
-Note that when inputting data for variables, you must follow standard YAML rules. In the case of passwords with special characters this can mean escaping them properly ($ is the escape character) or properly quoting the variable. The best course of action if you do not know how to do this or are unwilling to research, is to stick to alphanumeric characters only. 
+Note that when inputting data for variables, you must follow standard YAML rules. In the case of passwords with special characters this can mean escaping them properly ($ is the escape character) or properly quoting the variable. The best course of action if you do not know how to do this or are unwilling to research, is to stick to alphanumeric characters only.
 
 ## Installation
 
-### Install Option 1 (recommended):
-Starting with version 2, Docker started publishing `docker compose` as a go based plugin for docker (rather than a python based standalone binary). And they also publish this plugin for various arches, including x86_64, armhf and aarch64 (as opposed to the x86_64 only binaries for v1.X). Therefore we updated our recommended install option to utilize the plugin.
+- Install Option 1 (recommended)
 
-You can install `docker compose` via the following commands:
-```
-ARCH=$(uname -m) && [[ "${ARCH}" == "armv7l" ]] && ARCH="armv7"
-sudo mkdir -p /usr/local/lib/docker/cli-plugins
-sudo curl -SL "https://github.com/docker/compose/releases/latest/download/docker-compose-linux-${ARCH}" -o /usr/local/lib/docker/cli-plugins/docker-compose
-sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
-```
+  Starting with version 2, Docker started publishing `docker compose` as a go based plugin for docker (rather than a python based standalone binary). And they also publish this plugin for various arches, including x86_64, armhf and aarch64 (as opposed to the x86_64 only binaries for v1.X). Therefore we updated our recommended install option to utilize the plugin.
 
-Assuming you already have docker (or at the very least docker-cli) installed, preferably from the official docker repos, running `docker compose version` should display the compose version.
+  You can install `docker compose` via the following commands:
 
-If you don't have docker installed yet, we recommend installing it via the following commands:
-```
-curl -fsSL https://get.docker.com -o get-docker.sh
-sh get-docker.sh
-```
+  ```shell
+  ARCH=$(uname -m) && [[ "${ARCH}" == "armv7l" ]] && ARCH="armv7"
+  sudo mkdir -p /usr/local/lib/docker/cli-plugins
+  sudo curl -SL "https://github.com/docker/compose/releases/latest/download/docker-compose-linux-${ARCH}" -o /usr/local/lib/docker/cli-plugins/docker-compose
+  sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+  ```
 
-#### v1.X compatibility:
-As v2 runs as a plugin instead of a standalone binary, it is invoked by `docker compose args` instead of `docker-compose args`. There are also some slight differences in how the yaml is operated as well. To make migration easier, Docker released a replacement binary for `docker-compose` on x86_64 and aarch64 platforms. More info on that can be found at the [upstream repo](https://github.com/docker/compose-switch).
+  Assuming you already have docker (or at the very least docker-cli) installed, preferably from the official docker repos, running `docker compose version` should display the compose version.
 
-### Install Option 2:
-You can install docker-compose using our [docker-compose image](https://github.com/linuxserver/docker-docker-compose) via a run script. You can simply run the following commands on your system and you should have a functional install that you can call from anywhere as `docker-compose`:
-```
-sudo curl -L --fail https://raw.githubusercontent.com/linuxserver/docker-docker-compose/v2/run.sh -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-```
-In order to update the local image, you can run the following commands:
-```
-docker pull linuxserver/docker-compose:"${DOCKER_COMPOSE_IMAGE_TAG:-v2}"
-docker image prune -f
-```
-The above commands will use the v2 images (although invoked by`docker-compose` instead of `docker compose`). If you'd like to use v1 images, you can set an env var `DOCKER_COMPOSE_IMAGE_TAG=alpine`, `DOCKER_COMPOSE_IMAGE_TAG=ubuntu` in your respective `.profile`. Alternatively you can set that var to a versioned image tag like `v2-2.4.1-r1` or `version-alpine-1.27.4` to pin it to a specific docker-compose version.
+  If you don't have docker installed yet, we recommend installing it via the following commands:
+
+  ```shell
+  curl -fsSL https://get.docker.com -o get-docker.sh
+  sh get-docker.sh
+  ```
+
+  - v1.X compatibility
+
+    As v2 runs as a plugin instead of a standalone binary, it is invoked by `docker compose args` instead of `docker-compose args`. There are also some slight differences in how the yaml is operated as well. To make migration easier, Docker released a replacement binary for `docker-compose` on x86_64 and aarch64 platforms. More info on that can be found at the [upstream repo](https://github.com/docker/compose-switch).
+
+- Install Option 2
+
+  You can install docker-compose using our [docker-compose image](https://github.com/linuxserver/docker-docker-compose) via a run script. You can simply run the following commands on your system and you should have a functional install that you can call from anywhere as `docker-compose`:
+
+  ```shell
+  sudo curl -L --fail https://raw.githubusercontent.com/linuxserver/docker-docker-compose/v2/run.sh -o /usr/local/bin/docker-compose
+  sudo chmod +x /usr/local/bin/docker-compose
+  ```
+
+  In order to update the local image, you can run the following commands:
+
+  ```shell
+  docker pull linuxserver/docker-compose:"${DOCKER_COMPOSE_IMAGE_TAG:-v2}"
+  docker image prune -f
+  ```
+
+  The above commands will use the v2 images (although invoked by`docker-compose` instead of `docker compose`). If you'd like to use v1 images, you can set an env var `DOCKER_COMPOSE_IMAGE_TAG=alpine`, `DOCKER_COMPOSE_IMAGE_TAG=ubuntu` in your respective `.profile`. Alternatively you can set that var to a versioned image tag like `v2-2.4.1-r1` or `version-alpine-1.27.4` to pin it to a specific docker-compose version.
 
 ## Single service Usage
 
@@ -143,33 +152,34 @@ If your compose yaml makes use of `.env`, please post an output of `docker compo
 
 Create or open the file `~/.bash_aliases` and populate with the following content:
 
-```bash
+```shell
 alias dcup='docker compose -f /opt/docker-compose.yml up -d' #brings up all containers if one is not defined after dcup
 alias dcdown='docker compose -f /opt/docker-compose.yml stop' #brings down all containers if one is not defined after dcdown
 alias dcpull='docker compose -f /opt/docker-compose.yml pull' #pulls all new images is specified after dcpull
 alias dclogs='docker compose -f /opt/docker-compose.yml logs -tf --tail="50" '  
 alias dtail='docker logs -tf --tail="50" "$@"'
 ```
+
 If the `docker-compose.yml` file is in a home directory, the following can be put in the `~/.bash_aliases` file.
-```
+
+```shell
 alias dcup='docker-compose -f ~/docker-compose.yml up -d' #brings up all containers if one is not defined after dcup
 alias dcdown='docker-compose -f ~/docker-compose.yml stop' #brings down all containers if one is not defined after dcdown
 alias dcpull='docker-compose -f ~/docker-compose.yml pull' #pulls all new images unless one is specified
 alias dclogs='docker-compose -f ~/docker-compose.yml logs -tf --tail="50" '
 alias dtail='docker logs -tf --tail="50" "$@"'
 ```
-There are multiple ways to see the logs of your containers. In some instances, using `docker logs` is preferable to `docker compose logs`. By default `docker logs` will not run unless you define which service the logs are coming from. The `docker compose logs` will pull all of the logs for the services defined in the `docker-compose.yml` file. 
+
+There are multiple ways to see the logs of your containers. In some instances, using `docker logs` is preferable to `docker compose logs`. By default `docker logs` will not run unless you define which service the logs are coming from. The `docker compose logs` will pull all of the logs for the services defined in the `docker-compose.yml` file.
 
 When asking for help, you should post your logs or be ready to provide logs if someone requests it. If you are running multiple containers in your `docker-compose.yml` file, it is not helpful to submit **all** of the logs. If you are experiencing issues with a single service, say Heimdall, then you would want to get your logs using `docker logs heimdall` or `docker compose logs heimdall`. The bash_alias for `dclogs` can be used if you define your service after you've typed the alias. Likewise, the bash_alias `detail` will not run without defining the service after it.
 
-
 Some distributions, like Ubuntu, already have the code snippet below in the `~/.bashrc` file. If it is not included, you'll need to add the following to your `~/.bashrc` file in order for the aliases file to be picked up:
 
-```bash
+```shell
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 ```
 
 Once configured, you can run `source ~/.bashrc` or log out and the log in again. Now you can type `dcpull` or `dcup` to manage your entire fleet of containers at once. It's like magic.
-

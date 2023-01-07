@@ -12,4 +12,3 @@ The team resides primarily in our Discord server. We also have a forum if chat i
 | Forum | [https://discourse.linuxserver.io](https://discourse.linuxserver.io) |
 
 For those interested in our CI environment via Jenkins: [https://ci.linuxserver.io/](https://ci.linuxserver.io/)
-

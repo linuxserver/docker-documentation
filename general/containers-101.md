@@ -6,7 +6,7 @@ A container bundles all the libraries required by an application to run, you no 
 
 To get started, not much. You will need to know about some of the terminology or concepts when performing more advanced tasks or troubleshooting but getting started couldn't be much simpler.
 
-```bash
+```shell
 docker run hello-world
 ```
 
@@ -28,11 +28,10 @@ Containers are completely sandboxed environments by the Linux kernel. It may hel
 
 By default a running container has absolutely no context of the world around it. Out the box you cannot connect from the outside world to the running webservers on ports 80 and 443 below. To allow entry to the sandbox from the outside world we must explicitly allow entry using the `-p` flag.
 
-```bash
+```shell
 docker run -d --name=letsencrypt -p 80:80 -p 443:443 linuxserver/letsencrypt
 ```
 
 Take this concept and multiply it across all aspects of a running application. Ports, volumes \(i.e. the files you want to be available inside the container from outside the container\), environment variables and so on. For us as developers this allows us to isolate your system from troubleshooting as the box the container is running in \(the container\) is identical to the next.
 
 Containers are an amazing way to run applications in a secure, sandboxed way.
-
