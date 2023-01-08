@@ -269,6 +269,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **08.12.22:** - Revamp certbot init.
 * **03.12.22:** - Remove defunct cloudxns plugin.
 * **22.11.22:** - Pin acme to the same version as certbot.
 * **22.11.22:** - Pin certbot to 1.32.0 until plugin compatibility improves.
