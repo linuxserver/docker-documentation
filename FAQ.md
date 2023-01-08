@@ -10,19 +10,19 @@ Some x86_64 hosts running older versions of the Docker engine are not compatible
 
     If your host is affected you may see errors in your containers such as:
 
-    ```shell
+    ```text
     ERROR - Unable to determine java version; make sure Java is installed and callable
     ```
 
     Or
 
-    ```shell
+    ```text
     Failed to create CoreCLR, HRESULT: 0x80070008
     ```
 
     Or
 
-    ```shell
+    ```text
     WARNING :: MAIN : webStart.py:initialize:249 : can't start new thread
     ```
 
@@ -41,7 +41,7 @@ Some x86_64 hosts running older versions of the Docker engine are not compatible
     For Docker Compose, run your container with:
 
     ```yaml
-        security_opt:
+      security_opt:
         - seccomp=unconfined
     ```
 
@@ -53,7 +53,7 @@ Some x86_64 hosts have issues running rdesktop based images even with the latest
 
     If your host is affected you may see errors in your containers such as:
 
-    ```shell
+    ```text
     Failed to close file descriptor for child process (Operation not permitted)
     ```
 
@@ -66,7 +66,7 @@ Some x86_64 hosts have issues running rdesktop based images even with the latest
     For Docker Compose, run your container with:
 
     ```yaml
-        security_opt:
+      security_opt:
         - seccomp=unconfined
     ```
 
@@ -139,9 +139,9 @@ Create a [ServerTransport](https://doc.traefik.io/traefik/routing/services/#serv
 
 ```yml
     http:
-    serversTransports:
+      serversTransports:
         ignorecert:
-            insecureSkipVerify: true
+          insecureSkipVerify: true
 ```
 
 Then on our `foo` service we tell it to use this rule, as well as telling Traefik the backend is running on https.
