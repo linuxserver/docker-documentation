@@ -33,7 +33,7 @@ theme:
   logo: https://gblobscdn.gitbook.com/spaces%2F-LWuIse8qFJj2MqDi90T%2Favatar-1590244439115.png?alt=media
 
 markdown_extensions:
-  - attr_list
+  - pymdownx.extra
   - pymdownx.snippets
 
 plugins:
