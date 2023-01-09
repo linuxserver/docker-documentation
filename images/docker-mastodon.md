@@ -283,5 +283,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **09.01.23:** - Updated nginx conf to fix bring inline with Mastodon configuration (fixes Elk integration).
 * **19.12.22:** - Support separate sidekiq queue instances.
 * **05.11.22:** - Initial Release.
