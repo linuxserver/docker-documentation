@@ -269,6 +269,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **16.01.23:** - Remove nchan module because it keeps causing crashes.
 * **08.12.22:** - Revamp certbot init.
 * **03.12.22:** - Remove defunct cloudxns plugin.
 * **22.11.22:** - Pin acme to the same version as certbot.
