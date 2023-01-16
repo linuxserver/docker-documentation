@@ -160,6 +160,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **16.01.23:** - Fix broken custom template persistence.
 * **08.11.22:** - Rebase to Alpine 3.16, migrate to s6v3. Move application install to /app/www/public, add migration for existing users. Container updates should now update the application correctly.
 * **20.08.22:** - Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
 * **29.06.21:** - Rebase to 3.14, Add php7-zip package
