@@ -6,9 +6,9 @@ Something we provide and pride ourselves on is keeping our containers up to date
 
 Behind the scenes we have been working to provide the community with the ability to customize our images not only for themselves but also for other users. This comes in the form of 3 different tools:
 
-- **Private Custom Scripts**
-- **Private Custom Services**
-- **Public Facing [Docker Mods](https://github.com/linuxserver/docker-mods)**
+- [**Private Custom Scripts**](#custom-scripts): Run once when the container is started before services (including the main service/app) are started
+- [**Private Custom Services**](#custom-services): Run besides other services. Service get restarted on exit
+- **Public Facing [Docker Mods](https://github.com/linuxserver/docker-mods)**: Provide extensions to the containers filesystem. Scripts/services can be implemented as s6 services
 
 All of the functionality described in this post is live on every one of the containers we currently maintain:
 
