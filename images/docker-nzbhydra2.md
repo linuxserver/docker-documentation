@@ -167,6 +167,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **20.01.23:** - Update dependencies for v5.
 * **10.12.22:** - Bump master JRE to v17. Default mapIpToHost to false.
 * **11.09.22:** - Migrate to s6v3.
 * **03.05.22:** - Rebase to Jammy.
