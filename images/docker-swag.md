@@ -269,6 +269,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **21.01.23:** - Unpin certbot version (allow certbot 2.x). !!BREAKING CHANGE!! We are temporarily removing the certbot porkbun plugin until a new version is released that is compatible with certbot 2.x.
 * **20.01.23:** - Rebase to alpine 3.17 with php8.1.
 * **16.01.23:** - Remove nchan module because it keeps causing crashes.
 * **08.12.22:** - Revamp certbot init.
