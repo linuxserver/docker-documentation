@@ -208,6 +208,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **19.01.23:** - Rebase to alpine 3.17 with php8.1.
 * **16.01.23:** - Wrap `.env` values in quotes.
 * **05.01.23:** - Fix db password setting (sed escape `&`).
 * **21.12.22:** - Update db info in .env file when env vars are updated.
