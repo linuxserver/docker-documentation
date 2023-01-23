@@ -35,9 +35,9 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-- Once running the URL will be `http://<host-ip>/smokeping/smokeping.cgi`. For example a full URL might look like `https://smokeping.yourdomain.com/smokeping/smokeping.cgi`.
-- Basics are, edit the `Targets` file to ping the hosts you're interested in to match the format found there.
-- Wait 10 minutes.
+* Once running the URL will be `http://<host-ip>/smokeping/smokeping.cgi`. For example a full URL might look like `https://smokeping.yourdomain.com/smokeping/smokeping.cgi`.
+* Basics are, edit the `Targets` file to ping the hosts you're interested in to match the format found there.
+* Wait 10 minutes.
 
 ## Usage
 
@@ -158,6 +158,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **22.01.23:** - Revert to using Apache due to latency issues with nginx and fcgiwrap.
 * **12.12.22:** - Rebase to Alpine 3.17, migrate to s6v3, switch to nginx and fcgiwrap.
 * **29.03.21:** - Dockerfile: Install curl before we call it
 * **23.01.21:** - Rebasing to alpine 3.13.
