@@ -80,7 +80,6 @@ services:
   digikam:
     image: lscr.io/linuxserver/digikam:latest
     container_name: digikam
-    network_mode: host
     environment:
       - PUID=1000
       - PGID=1000
@@ -99,7 +98,6 @@ services:
 ```bash
 docker run -d \
   --name=digikam \
-  --net=host \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=America/New_York \
@@ -120,12 +118,6 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Parameter | Function |
 | :----: | --- |
 | `3000` | digiKam desktop gui |
-
-#### Networking (`--net`)
-
-| Parameter | Function |
-| :-----:   | --- |
-| `--net=host` | Use Host Networking |
 
 ### Environment Variables (`-e`)
 
