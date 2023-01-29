@@ -266,6 +266,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **28.01.23:** - Patch wg-quick to suppress false positive sysctl warning.
 * **10.01.23:** - Add new var to add `PersistentKeepalive` to server config for select peers to survive server IP changes when domain name is used.
 * **26.10.22:** - Better handle unsupported peer names. Improve logging.
 * **12.10.22:** - Add Alpine branch. Optimize wg and coredns services.
