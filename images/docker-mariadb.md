@@ -216,6 +216,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **04.02.23:** - Minor updates to defaults in custom.cnf.
 * **31.01.23:** - Rebase to 3.17.
 * **09.12.22:** - Add upgrade check warning.
 * **11.10.22:** - Rebase master to Alpine 3.16, migrate to s6v3, remove password escape logic which caused problems for a small subset of users.
