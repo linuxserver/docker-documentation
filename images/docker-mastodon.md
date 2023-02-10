@@ -30,7 +30,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ❌ | |
+| armhf | ❌ | |
 
 ## Version Tags
 
@@ -40,7 +40,6 @@ This image provides various versions that are available via tags. Please read th
 | :----: | :----: |--- |
 | latest | ✅ | Stable releases. |
 | develop | ✅ | Pre-releases *only*. |
-
 ## Application Setup
 
 We provide aliases for the common commands that execute in the correct context so that environment variables from secrets are available to them:
@@ -87,7 +86,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=America/New_York
+      - TZ=Etc/UTC
       - LOCAL_DOMAIN=example.com
       - REDIS_HOST=redis
       - REDIS_PORT=6379
@@ -136,7 +135,7 @@ docker run -d \
   --name=mastodon \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e TZ=America/New_York \
+  -e TZ=Etc/UTC \
   -e LOCAL_DOMAIN=example.com \
   -e REDIS_HOST=redis \
   -e REDIS_PORT=6379 \
@@ -175,6 +174,7 @@ docker run -d \
   -v /path/to/appdata/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/mastodon:latest
+
 ```
 
 ## Parameters
@@ -194,7 +194,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `TZ=America/New_York` | Specify a timezone to use EG America/New_York |
+| `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `LOCAL_DOMAIN=example.com` | This is the unique identifier of your server in the network. It cannot be safely changed later. |
 | `REDIS_HOST=redis` | Redis server hostname |
 | `REDIS_PORT=6379` | Redis port |
