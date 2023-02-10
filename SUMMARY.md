@@ -155,6 +155,7 @@
 * [linuxserver/wireguard](images/docker-wireguard.md)
 * [linuxserver/wireshark](images/docker-wireshark.md)
 * [linuxserver/xbackbone](images/docker-xbackbone.md)
+* [linuxserver/your_spotify](images/docker-your_spotify.md)
 * [linuxserver/znc](images/docker-znc.md)
 
 ## Misc
