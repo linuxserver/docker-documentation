@@ -33,7 +33,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ✅ | arm32v7-\<version tag\> |
+| armhf | ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -61,12 +61,12 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - DB_HOST=<hostname or ip>
+      - TZ=Etc/UTC
+      - "DB_HOST=<hostname or ip>"
       - DB_PORT=3306
       - DB_USER=hedgedoc
-      - DB_PASS=<secret password>
+      - "DB_PASS=<secret password>"
       - DB_NAME=hedgedoc
-      - TZ=Europe/London
       - CMD_DOMAIN=localhost
       - CMD_URL_ADDPORT=false #optional
       - CMD_PROTOCOL_USESSL=false #optional
@@ -86,12 +86,12 @@ docker run -d \
   --name=hedgedoc \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e DB_HOST=<hostname or ip> \
+  -e TZ=Etc/UTC \
+  -e DB_HOST="<hostname or ip>" \
   -e DB_PORT=3306 \
   -e DB_USER=hedgedoc \
-  -e DB_PASS=<secret password> \
+  -e DB_PASS="<secret password>" \
   -e DB_NAME=hedgedoc \
-  -e TZ=Europe/London \
   -e CMD_DOMAIN=localhost \
   -e CMD_URL_ADDPORT=false `#optional` \
   -e CMD_PROTOCOL_USESSL=false `#optional` \
@@ -101,6 +101,7 @@ docker run -d \
   -v /path/to/appdata:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/hedgedoc:latest
+
 ```
 
 ## Parameters
@@ -119,12 +120,12 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
+| `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `DB_HOST=<hostname or ip>` | Host address of mysql database |
 | `DB_PORT=3306` | Port to access mysql database default is 3306 |
 | `DB_USER=hedgedoc` | Database user |
 | `DB_PASS=<secret password>` | Database password |
 | `DB_NAME=hedgedoc` | Database name |
-| `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 | `CMD_DOMAIN=localhost` | The address the gui will be accessed at (ie. `192.168.1.1` or `hedgedoc.domain.com`). |
 | `CMD_URL_ADDPORT=false` | Set to `true` if using a port other than `80` or `443`. |
 | `CMD_PROTOCOL_USESSL=false` | Set to `true` if accessing over https via reverse proxy. |
