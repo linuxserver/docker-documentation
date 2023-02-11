@@ -31,7 +31,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ✅ | arm32v7-\<version tag\> |
+| armhf | ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -108,7 +108,7 @@ docker run -d \
   --name=diskover \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e TZ=America/New_York \
+  -e TZ=Etc/UTC \
   -e ES_HOST=elasticsearch \
   -e ES_PORT=9200 \
   -e ES_USER=elastic \
@@ -118,6 +118,7 @@ docker run -d \
   -v /path/to/diskover/data:/data \
   --restart unless-stopped \
   lscr.io/linuxserver/diskover:latest
+
 ```
 
 ## Parameters
@@ -136,7 +137,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `TZ=America/New_York` | Specify a timezone to use EG America/New_York |
+| `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `ES_HOST=elasticsearch` | ElasticSearch host (optional) |
 | `ES_PORT=9200` | ElasticSearch port (optional) |
 | `ES_USER=elastic` | ElasticSearch username (optional) |
@@ -203,6 +204,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **20.08.22:** - Rebasing to alpine 3.17 with php8.1. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
 * **25.02.22:** - Add php7-sqlite3 to support rc4 release.
 * **03.11.21:** - Added more support for potential config files.
 * **31.10.21:** - Added xpack.security variable to ElasticSearch; added instructions to edit Constants.php in diskover; corrected command needed to manually generate an index in diskover
