@@ -31,8 +31,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ❌ | |
-| armhf| ❌ | |
-
+| armhf | ❌ | |
 
 ## Usage
 
@@ -63,6 +62,7 @@ docker run -d \
   -p 3000:3000 \
   --restart unless-stopped \
   lscr.io/linuxserver/tester:latest
+
 ```
 
 ## Parameters
