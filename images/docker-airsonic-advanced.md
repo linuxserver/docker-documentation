@@ -31,7 +31,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ❌ | |
+| armhf | ❌ | |
 
 ## Version Tags
 
@@ -40,7 +40,6 @@ This image provides various versions that are available via tags. Please read th
 | Tag | Available | Description |
 | :----: | :----: |--- |
 | latest | ✅ | Latest releases of Airsonic-Advanced |
-
 ## Application Setup
 
 We don't formally support upgrading from Airsonic to Airsonic Advanced, it may or may not work for you and we'd recommend making backups before attempting this. Following the upgrade you may experience a forced rescan of your library so take this into account if you have a lot of files.
@@ -71,7 +70,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
+      - TZ=Etc/UTC
       - CONTEXT_PATH=<URL_BASE> #optional
       - JAVA_OPTS=<options> #optional
     volumes:
@@ -94,7 +93,7 @@ docker run -d \
   --name=airsonic-advanced \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e TZ=Europe/London \
+  -e TZ=Etc/UTC \
   -e CONTEXT_PATH=<URL_BASE> `#optional` \
   -e JAVA_OPTS=<options> `#optional` \
   -p 4040:4040 \
@@ -106,6 +105,7 @@ docker run -d \
   --device /dev/snd:/dev/snd `#optional` \
   --restart unless-stopped \
   lscr.io/linuxserver/airsonic-advanced:latest
+
 ```
 
 ## Parameters
@@ -124,7 +124,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
+| `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `CONTEXT_PATH=<URL_BASE>` | For setting url-base in reverse proxy setups. |
 | `JAVA_OPTS=<options>` | For passing additional java options. |
 
@@ -198,6 +198,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **11.02.23:** - Rebase to Alpine 3.17.
 * **23.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **25.07.22:** - Add vorbis-tools.
 * **02.01.22:** - Initial Release.
