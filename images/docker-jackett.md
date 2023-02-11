@@ -46,8 +46,6 @@ This image provides various versions that are available via tags. Please read th
 The web interface is at `<your-ip>:9117` , configure various trackers and connections to other apps there.
 More info at [Jackett](https://github.com/Jackett/Jackett).
 
-Disable autoupdates in the webui to prevent jackett crashing, the image is refreshed when new versions are released.
-
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
@@ -66,10 +64,10 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
       - AUTO_UPDATE=true #optional
-      - "RUN_OPTS=<run options here>" #optional
+      - RUN_OPTS= #optional
     volumes:
-      - <path to data>:/config
-      - <path to blackhole>:/downloads
+      - /path/to/data:/config
+      - /path/to/blackhole:/downloads
     ports:
       - 9117:9117
     restart: unless-stopped
@@ -84,10 +82,10 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -e AUTO_UPDATE=true `#optional` \
-  -e RUN_OPTS="<run options here>" `#optional` \
+  -e RUN_OPTS= `#optional` \
   -p 9117:9117 \
-  -v <path to data>:/config \
-  -v <path to blackhole>:/downloads \
+  -v /path/to/data:/config \
+  -v /path/to/blackhole:/downloads \
   --restart unless-stopped \
   lscr.io/linuxserver/jackett:latest
 
@@ -111,7 +109,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `AUTO_UPDATE=true` | Allow Jackett to update inside of the container (currently recommended by Jackett and enabled by default) |
-| `RUN_OPTS=<run options here>` | Optionally specify additional arguments to be passed. |
+| `RUN_OPTS=` | Optionally specify additional arguments to be passed. |
 
 ### Volume Mappings (`-v`)
 
@@ -174,6 +172,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **11.02.23:** - Rebase to Alpine 3.17, migrate to s6v3.
 * **10.05.22:** - Rebase to Ubuntu Focal.
 * **24.05.20:** - Allow user to optionally enable auto updates.
 * **31.12.19:** - Remove agressive startup chowning.
