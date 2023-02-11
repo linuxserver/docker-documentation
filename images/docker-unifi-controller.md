@@ -31,7 +31,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ❌ | |
+| armhf | ❌ | |
 
 ## Application Setup
 
@@ -71,7 +71,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
+      - TZ=Etc/UTC
       - MEM_LIMIT=1024 #optional
       - MEM_STARTUP=1024 #optional
     volumes:
@@ -96,7 +96,7 @@ docker run -d \
   --name=unifi-controller \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e TZ=Europe/London \
+  -e TZ=Etc/UTC \
   -e MEM_LIMIT=1024 `#optional` \
   -e MEM_STARTUP=1024 `#optional` \
   -p 8443:8443 \
@@ -111,6 +111,7 @@ docker run -d \
   -v <path to data>:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/unifi-controller:latest
+
 ```
 
 ## Parameters
@@ -137,7 +138,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `TZ=Europe/London` | Specify a timezone to use (e.g. Europe/London) - [see list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) |
+| `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `MEM_LIMIT=1024` | Optionally change the Java memory limit (in Megabytes). Set to `default` to reset to default |
 | `MEM_STARTUP=1024` | Optionally change the Java initial/minimum memory (in Megabytes). Set to `default` to reset to default |
 
