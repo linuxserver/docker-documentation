@@ -33,7 +33,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ❌ | |
+| armhf | ❌ | |
 
 ## Version Tags
 
@@ -43,7 +43,6 @@ This image provides various versions that are available via tags. Please read th
 | :----: | :----: |--- |
 | latest | ✅ | Stable Kasm releases |
 | develop | ✅ | Tip of develop |
-
 ## Application Setup
 
 This container uses [Docker in Docker](https://www.docker.com/blog/docker-can-now-run-within-docker/) and requires being run in `privileged` mode. This container also requires an initial setup that runs on port 3000.
@@ -92,7 +91,6 @@ services:
     privileged: true
     environment:
       - KASM_PORT=443
-      - TZ=Europe/London
       - DOCKER_HUB_USERNAME=USER #optional
       - DOCKER_HUB_PASSWORD=PASS #optional
     volumes:
@@ -113,7 +111,6 @@ docker run -d \
   --name=kasm \
   --privileged \
   -e KASM_PORT=443 \
-  -e TZ=Europe/London \
   -e DOCKER_HUB_USERNAME=USER `#optional` \
   -e DOCKER_HUB_PASSWORD=PASS `#optional` \
   -p 3000:3000 \
@@ -124,6 +121,7 @@ docker run -d \
   -v /run/udev/data:/run/udev/data `#optional` \
   --restart unless-stopped \
   lscr.io/linuxserver/kasm:latest
+
 ```
 
 ## Parameters
@@ -142,7 +140,6 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Env | Function |
 | :----: | --- |
 | `KASM_PORT=443` | Specify the port you bind to the outside for Kasm Workspaces. |
-| `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 | `DOCKER_HUB_USERNAME=USER` | Optionally specify a DockerHub Username to pull private images. |
 | `DOCKER_HUB_PASSWORD=PASS` | Optionally specify a DockerHub password to pull private images. |
 
