@@ -31,7 +31,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ✅ | arm32v7-\<version tag\> |
+| armhf | ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -55,6 +55,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
+      - TZ=Etc/UTC
       - fleet_admin_authentication_type=DATABASE
       - fleet_database_url=jdbc:mariadb://<url>:3306/fleet
       - fleet_database_username=fleet_user
@@ -74,6 +75,7 @@ docker run -d \
   --name=fleet \
   -e PUID=1000 \
   -e PGID=1000 \
+  -e TZ=Etc/UTC \
   -e fleet_admin_authentication_type=DATABASE \
   -e fleet_database_url=jdbc:mariadb://<url>:3306/fleet \
   -e fleet_database_username=fleet_user \
@@ -83,6 +85,7 @@ docker run -d \
   -v </path/to/appdata/config>:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/fleet:latest
+
 ```
 
 ## Parameters
@@ -101,6 +104,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
+| `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `fleet_admin_authentication_type=DATABASE` | A switch to define how Fleet manages user logins. If set to DATABASE, see the related optional params. Can be set to either DATABASE or PROPERTIES. |
 | `fleet_database_url=jdbc:mariadb://<url>:3306/fleet` | The full JDBC connection string to the Fleet database |
 | `fleet_database_username=fleet_user` | The username with the relevant GRANT permissions for the database |
