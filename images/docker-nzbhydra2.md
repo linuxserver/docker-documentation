@@ -33,7 +33,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ✅ | arm32v7-\<version tag\> |
+| armhf | ✅ | arm32v7-\<version tag\> |
 
 ## Version Tags
 
@@ -43,7 +43,6 @@ This image provides various versions that are available via tags. Please read th
 | :----: | :----: |--- |
 | latest | ✅ | Stable releases |
 | dev | ✅ | Prereleases from their GitHub |
-
 ## Application Setup
 
 The web interface is at `<your ip>:5076` , to set up indexers and connections to your nzb download applications.
@@ -64,7 +63,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
+      - TZ=Etc/UTC
     volumes:
       - /path/to/data:/config
       - /nzb/download:/downloads
@@ -80,12 +79,13 @@ docker run -d \
   --name=nzbhydra2 \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e TZ=Europe/London \
+  -e TZ=Etc/UTC \
   -p 5076:5076 \
   -v /path/to/data:/config \
   -v /nzb/download:/downloads \
   --restart unless-stopped \
   lscr.io/linuxserver/nzbhydra2:latest
+
 ```
 
 ## Parameters
@@ -104,7 +104,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
+| `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 
 ### Volume Mappings (`-v`)
 
