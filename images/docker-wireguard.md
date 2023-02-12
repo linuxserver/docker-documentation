@@ -30,7 +30,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ✅ | arm32v7-\<version tag\> |
+| armhf | ✅ | arm32v7-\<version tag\> |
 
 ## Version Tags
 
@@ -40,7 +40,6 @@ This image provides various versions that are available via tags. Please read th
 | :----: | :----: |--- |
 | latest | ✅ | Stable releases with support for compiling Wireguard modules |
 | alpine | ✅ | Stable releases based on Alpine *without* support for compiling Wireguard modules |
-
 ## Application Setup
 
 During container start, it will first check if the wireguard module is already installed and loaded. Kernels newer than 5.6 generally have the wireguard module built-in (along with some older custom kernels). However, the module may not be enabled. Make sure it is enabled prior to starting the container.
@@ -127,7 +126,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
+      - TZ=Etc/UTC
       - SERVERURL=wireguard.domain.com #optional
       - SERVERPORT=51820 #optional
       - PEERS=1 #optional
@@ -155,7 +154,7 @@ docker run -d \
   --cap-add=SYS_MODULE \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e TZ=Europe/London \
+  -e TZ=Etc/UTC \
   -e SERVERURL=wireguard.domain.com `#optional` \
   -e SERVERPORT=51820 `#optional` \
   -e PEERS=1 `#optional` \
@@ -170,6 +169,7 @@ docker run -d \
   --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
   --restart unless-stopped \
   lscr.io/linuxserver/wireguard:latest
+
 ```
 
 ## Parameters
@@ -188,7 +188,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
+| `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `SERVERURL=wireguard.domain.com` | External IP or domain name for docker host. Used in server mode. If set to `auto`, the container will try to determine and set the external IP automatically |
 | `SERVERPORT=51820` | External port for docker host. Used in server mode. |
 | `PEERS=1` | Number of peers to create confs for. Required for server mode. Can also be a list of names: `myPC,myPhone,myTablet` (alphanumeric only) |
