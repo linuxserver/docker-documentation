@@ -57,9 +57,9 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - <path to data>:/config
-      - <path to downloads>:/downloads
-      - <path to tv shows>:/tv
+      - /path/to/data:/config
+      - /path/to/downloads:/downloads
+      - /path/to/tv/shows:/tv
     ports:
       - 8081:8081
     restart: unless-stopped
@@ -74,9 +74,9 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -p 8081:8081 \
-  -v <path to data>:/config \
-  -v <path to downloads>:/downloads \
-  -v <path to tv shows>:/tv \
+  -v /path/to/data:/config \
+  -v /path/to/downloads:/downloads \
+  -v /path/to/tv/shows:/tv \
   --restart unless-stopped \
   lscr.io/linuxserver/medusa:latest
 
@@ -162,6 +162,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **13.02.23:** - Rebase to Alpine 3.17, migrate to s6v3.
 * **12.09.22:** - Install ffmpeg for postprocessing.
 * **12.08.22:** - Bump unrar to 6.1.7.
 * **28.02.22:** - Install python3 requirements for app.
