@@ -45,7 +45,7 @@ Download the `pdf-export.json` [from this repo](https://raw.githubusercontent.co
 
 ```yaml
     security_opt:
-    - seccomp=/path/to/pdf-export.json
+      - seccomp=/path/to/pdf-export.json
 ```
 
 The original source for this seccomp profile is [here](https://github.com/jessfraz/dotfiles/blob/master/etc/docker/seccomp/chrome.json).
