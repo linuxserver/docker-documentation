@@ -31,7 +31,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ✅ | arm32v7-\<version tag\> |
+| armhf | ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -53,12 +53,12 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
+      - TZ=Etc/UTC
       - GITURL=https://github.com/linuxserver/docker-pylon.git #optional
       - PYUSER=myuser #optional
       - PYPASS=mypass #optional
     volumes:
-      - <path to your code>:/code #optional
+      - /path/to/your/code:/code #optional
     ports:
       - 3131:3131
     restart: unless-stopped
@@ -71,14 +71,15 @@ docker run -d \
   --name=pylon \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e TZ=Europe/London \
+  -e TZ=Etc/UTC \
   -e GITURL=https://github.com/linuxserver/docker-pylon.git `#optional` \
   -e PYUSER=myuser `#optional` \
   -e PYPASS=mypass `#optional` \
   -p 3131:3131 \
-  -v <path to your code>:/code `#optional` \
+  -v /path/to/your/code:/code `#optional` \
   --restart unless-stopped \
   lscr.io/linuxserver/pylon:latest
+
 ```
 
 ## Parameters
@@ -97,7 +98,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
+| `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `GITURL=https://github.com/linuxserver/docker-pylon.git` | Specify a git repo to checkout on first startup |
 | `PYUSER=myuser` | Specify a basic auth user. |
 | `PYPASS=mypass` | Specify a basic auth password. |
@@ -162,6 +163,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **13.02.23:** - Rebase to Alpine 3.17, migrate to s6v3.
 * **19.01.22:** - Rebasing to alpine 3.15.
 * **02.06.20:** - Rebasing to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.
