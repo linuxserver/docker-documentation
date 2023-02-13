@@ -59,7 +59,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - <path to data>:/config
+      - /path/to/data:/config
     ports:
       - 6501:6501
     restart: unless-stopped
@@ -74,7 +74,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -p 6501:6501 \
-  -v <path to data>:/config \
+  -v /path/to/data:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/znc:latest
 
@@ -158,6 +158,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **13.02.23:** - Rebase to Alpine 3.17, migrate to s6v3.
 * **19.01.22:** - Rebasing to alpine 3.15.
 * **01.06.20:** - Rebasing to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.
