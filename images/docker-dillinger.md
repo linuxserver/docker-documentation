@@ -37,6 +37,19 @@ The architectures supported by this image are:
 
 Access the webui at http://your-ip:8080 , keep in mind that storage for this application is in your browser session not server side. Only plugin configurations will ever be stored server side.
 
+## PDF Export
+
+If you need PDF export functionality you need to run the container with a custom seccomp profile because otherwise the headless Chrome instance it uses won't have sufficient permissions.
+
+Download the `pdf-export.json` [from this repo](https://raw.githubusercontent.com/linuxserver/docker-dillinger/master/pdf-export.json) onto your docker host and start the container with `--security-opt seccomp=/path/to/pdf-export.json`. If you're using compose the format is:
+
+```yaml
+    security_opt:
+    - seccomp=/path/to/pdf-export.json
+```
+
+The original source for this seccomp profile is [here](https://github.com/jessfraz/dotfiles/blob/master/etc/docker/seccomp/chrome.json).
+
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
@@ -55,7 +68,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - <path to configs>:/config
+      - /path/to/configs:/config
     ports:
       - 8080:8080
     restart: unless-stopped
@@ -70,7 +83,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -p 8080:8080 \
-  -v <path to configs>:/config \
+  -v /path/to/configs:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/dillinger:latest
 
@@ -154,5 +167,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **13.02.23:** - Rebase to Alpine 3.17, migrate to s6v3.
 * **19.04.22:** - Rebase to Alpine.
 * **31.05.19:** - Initial Release.
