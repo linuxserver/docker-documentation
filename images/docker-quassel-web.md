@@ -31,7 +31,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ✅ | arm32v7-\<version tag\> |
+| armhf | ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -62,6 +62,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
+      - TZ=Etc/UTC
       - QUASSEL_CORE=192.168.1.10
       - QUASSEL_PORT=4242
       - URL_BASE=/quassel #optional
@@ -79,6 +80,7 @@ docker run -d \
   --name=quassel-web \
   -e PUID=1000 \
   -e PGID=1000 \
+  -e TZ=Etc/UTC \
   -e QUASSEL_CORE=192.168.1.10 \
   -e QUASSEL_PORT=4242 \
   -e URL_BASE=/quassel `#optional` \
@@ -86,6 +88,7 @@ docker run -d \
   -v /path/to/data:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/quassel-web:latest
+
 ```
 
 ## Parameters
@@ -104,6 +107,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
+| `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `QUASSEL_CORE=192.168.1.10` | specify the URL or IP address of your Quassel Core instance |
 | `QUASSEL_PORT=4242` | specify the port of your Quassel Core instance |
 | `URL_BASE=/quassel` | Specify a url-base in reverse proxy setups ie. `/quassel` |
@@ -168,6 +172,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **13.02.23:** - Rebasing to Alpine 3.17, migrate to s6v3.
 * **12.02.22:** - Rebasing to alpine 3.15.
 * **01.06.20:** - Rebasing to alpine 3.12.
 * **19.12.19:** - Rebasing to alpine 3.11.
