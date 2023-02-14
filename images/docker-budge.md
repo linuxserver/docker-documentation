@@ -31,7 +31,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ✅ | arm32v7-\<version tag\> |
+| armhf | ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -53,7 +53,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=America/New_York
+      - TZ=Etc/UTC
     volumes:
       - /path/to/budge/config:/config
     ports:
@@ -69,12 +69,13 @@ docker run -d \
   --name=budge \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e TZ=America/New_York \
+  -e TZ=Etc/UTC \
   -p 80:80 \
   -p 443:443 \
   -v /path/to/budge/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/budge:latest
+
 ```
 
 ## Parameters
@@ -94,7 +95,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `TZ=America/New_York` | Specify a timezone to use EG America/New_York |
+| `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 
 ### Volume Mappings (`-v`)
 
