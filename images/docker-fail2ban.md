@@ -31,7 +31,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ✅ | arm32v7-\<version tag\> |
+| armhf | ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -74,7 +74,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=America/New_York
+      - TZ=Etc/UTC
     volumes:
       - /path/to/appdata/config:/config
       - /var/log:/var/log:ro
@@ -108,7 +108,7 @@ docker run -d \
   --cap-add=NET_RAW \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e TZ=America/New_York \
+  -e TZ=Etc/UTC \
   -v /path/to/appdata/config:/config \
   -v /var/log:/var/log:ro \
   -v /path/to/airsonic/log:/remotelogs/airsonic:ro `#optional` \
@@ -130,6 +130,7 @@ docker run -d \
   -v /path/to/vaultwarden/log:/remotelogs/vaultwarden:ro `#optional` \
   --restart unless-stopped \
   lscr.io/linuxserver/fail2ban:latest
+
 ```
 
 ## Parameters
@@ -153,7 +154,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `TZ=America/New_York` | Specify a timezone to use EG America/New_York |
+| `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 
 ### Volume Mappings (`-v`)
 
