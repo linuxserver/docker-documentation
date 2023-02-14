@@ -113,7 +113,7 @@ services:
       - TZ=Etc/UTC
       - RUN_OPTS=--config-from-environment #optional
     volumes:
-      - <path to data>:/config
+      - /path/to/data:/config
     ports:
       - 4242:4242
       - 113:10113 #optional
@@ -131,7 +131,7 @@ docker run -d \
   -e RUN_OPTS=--config-from-environment `#optional` \
   -p 4242:4242 \
   -p 113:10113 `#optional` \
-  -v <path to data>:/config \
+  -v /path/to/data:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/quassel-core:latest
 
@@ -217,6 +217,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **13.02.23:** - Rebase to Alpine 3.17, migrate to s6v3.
 * **03.01.22:** - Rebase to alpine 3.15. Add new build deps and apply other fixes for 0.14.
 * **07.08.21:** - Fixing incorrect database password variable operator.
 * **19.12.19:** - Rebasing to alpine 3.11.
