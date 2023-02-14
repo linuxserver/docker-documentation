@@ -35,7 +35,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ✅ | arm32v7-\<version tag\> |
+| armhf | ✅ | arm32v7-\<version tag\> |
 
 ## Version Tags
 
@@ -45,7 +45,6 @@ This image provides various versions that are available via tags. Please read th
 | :----: | :----: |--- |
 | latest | ✅ | Stable Ombi releases |
 | development | ✅ | Releases from the `develop` branch of Ombi |
-
 ## Application Setup
 
 Access the webui at `<your-ip>:3579`. Follow the setup wizard on initial install.  Then configure the required services.
@@ -66,7 +65,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
+      - TZ=Etc/UTC
       - BASE_URL=/ombi #optional
     volumes:
       - /path/to/appdata/config:/config
@@ -82,12 +81,13 @@ docker run -d \
   --name=ombi \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e TZ=Europe/London \
+  -e TZ=Etc/UTC \
   -e BASE_URL=/ombi `#optional` \
   -p 3579:3579 \
   -v /path/to/appdata/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/ombi:latest
+
 ```
 
 ## Parameters
@@ -106,7 +106,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
+| `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `BASE_URL=/ombi` | Subfolder can optionally be defined as an env variable for reverse proxies. Keep in mind that once this value is defined, the gui setting for base url no longer works. To use the gui setting, remove this env variable. |
 
 ### Volume Mappings (`-v`)
