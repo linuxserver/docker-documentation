@@ -64,9 +64,9 @@ services:
       - TZ=Etc/UTC
       - CLI_ARGS= #optional
     volumes:
-      - </path/to/appdata/config>:/config
-      - </path/to/backups>:/backups
-      - </path/to/source>:/source
+      - /path/to/appdata/config:/config
+      - /path/to/backups:/backups
+      - /path/to/source:/source
     ports:
       - 8200:8200
     restart: unless-stopped
@@ -82,9 +82,9 @@ docker run -d \
   -e TZ=Etc/UTC \
   -e CLI_ARGS= `#optional` \
   -p 8200:8200 \
-  -v </path/to/appdata/config>:/config \
-  -v </path/to/backups>:/backups \
-  -v </path/to/source>:/source \
+  -v /path/to/appdata/config:/config \
+  -v /path/to/backups:/backups \
+  -v /path/to/source:/source \
   --restart unless-stopped \
   lscr.io/linuxserver/duplicati:latest
 
@@ -171,6 +171,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **15.02.23:** - Deprecate armhf.
 * **03.08.22:** - Deprecate armhf.
 * **25.04.22:** - Rebase to mono:focal.
 * **01.08.19:** - Rebase to Linuxserver LTS mono version.
