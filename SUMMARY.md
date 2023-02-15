@@ -108,7 +108,6 @@
 * [linuxserver/openvscode-server](images/docker-openvscode-server.md)
 * [linuxserver/oscam](images/docker-oscam.md)
 * [linuxserver/overseerr](images/docker-overseerr.md)
-* [linuxserver/papermerge](images/docker-papermerge.md)
 * [linuxserver/phpmyadmin](images/docker-phpmyadmin.md)
 * [linuxserver/pidgin](images/docker-pidgin.md)
 * [linuxserver/piwigo](images/docker-piwigo.md)
