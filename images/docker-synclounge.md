@@ -31,7 +31,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ✅ | arm32v7-\<version tag\> |
+| armhf | ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -53,7 +53,6 @@ services:
     image: lscr.io/linuxserver/synclounge:latest
     container_name: synclounge
     environment:
-      - TZ=Europe/London
       - AUTH_LIST=plexuser1,plexuser2,email1,machineid1 #optional
       - AUTOJOIN_ENABLED=false #optional
       - AUTOJOIN_ROOM=roomname #optional
@@ -67,13 +66,13 @@ services:
 ```bash
 docker run -d \
   --name=synclounge \
-  -e TZ=Europe/London \
   -e AUTH_LIST=plexuser1,plexuser2,email1,machineid1 `#optional` \
   -e AUTOJOIN_ENABLED=false `#optional` \
   -e AUTOJOIN_ROOM=roomname `#optional` \
   -p 8088:8088 \
   --restart unless-stopped \
   lscr.io/linuxserver/synclounge:latest
+
 ```
 
 ## Parameters
@@ -90,7 +89,6 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Env | Function |
 | :----: | --- |
-| `TZ=Europe/London` | Specify a timezone to use EG Europe/London |
 | `AUTH_LIST=plexuser1,plexuser2,email1,machineid1` | If set, only the users defined here and the users of the plex servers defined here will be able to access the server. Use e-mails, plex usernames and/or plex server machine ids, comma separated, no spaces. |
 | `AUTOJOIN_ENABLED=false` | DEPRECATED - (Still works but will be removed in the future in favor of the built-in var `autojoin__room`) - Set to `true` to let users autojoin the server and a room (specified by the `AUTOJOIN_ROOM` var). |
 | `AUTOJOIN_ROOM=roomname` | DEPRECATED - (Still works but will be removed in the future in favor of the built-in var `autojoin__room`) - Set the room name for auto joining (requires `AUTOJOIN_ENABLED` set to `true`). |
