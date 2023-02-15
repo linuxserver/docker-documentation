@@ -68,7 +68,6 @@
 * [linuxserver/freshrss](images/docker-freshrss.md)
 * [linuxserver/grav](images/docker-grav.md)
 * [linuxserver/grocy](images/docker-grocy.md)
-* [linuxserver/guacd](images/docker-guacd.md)
 * [linuxserver/habridge](images/docker-habridge.md)
 * [linuxserver/headphones](images/docker-headphones.md)
 * [linuxserver/healthchecks](images/docker-healthchecks.md)
