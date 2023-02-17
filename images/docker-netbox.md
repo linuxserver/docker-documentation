@@ -31,7 +31,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ✅ | arm32v7-\<version tag\> |
+| armhf | ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -55,7 +55,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=<TZ>
+      - TZ=Etc/UTC
       - SUPERUSER_EMAIL=<SUPERUSER_EMAIL>
       - SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD>
       - ALLOWED_HOST=<ALLOWED_HOST>
@@ -90,7 +90,7 @@ docker run -d \
   --name=netbox \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e TZ=<TZ> \
+  -e TZ=Etc/UTC \
   -e SUPERUSER_EMAIL=<SUPERUSER_EMAIL> \
   -e SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD> \
   -e ALLOWED_HOST=<ALLOWED_HOST> \
@@ -115,6 +115,7 @@ docker run -d \
   -v <path to data on host>:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/netbox:latest
+
 ```
 
 ## Parameters
@@ -133,7 +134,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
-| `TZ=<TZ>` | Timezone (i.e., America/New_York) |
+| `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `SUPERUSER_EMAIL=<SUPERUSER_EMAIL>` | Email address for `admin` account |
 | `SUPERUSER_PASSWORD=<SUPERUSER_PASSWORD>` | Password for `admin` account |
 | `ALLOWED_HOST=<ALLOWED_HOST>` | The hostname you will use to access the app (i.e., netbox.example.com) |
