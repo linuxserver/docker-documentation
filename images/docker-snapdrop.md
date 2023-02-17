@@ -37,8 +37,6 @@ The architectures supported by this image are:
 
 Webui is accessible at http://SERVERIP:PORT
 
-If you intend to expose Snapdrop to the internet, edit /config/nginx/site-confs/default.conf and uncomment the real_ip settings
-
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
