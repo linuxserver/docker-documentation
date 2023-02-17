@@ -31,7 +31,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ✅ | arm32v7-\<version tag\> |
+| armhf | ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -53,6 +53,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
+      - TZ=Etc/UTC
       - SITE_ROOT=
       - SITE_NAME=
       - DEFAULT_FROM_EMAIL=
@@ -86,6 +87,7 @@ docker run -d \
   --name=healthchecks \
   -e PUID=1000 \
   -e PGID=1000 \
+  -e TZ=Etc/UTC \
   -e SITE_ROOT= \
   -e SITE_NAME= \
   -e DEFAULT_FROM_EMAIL= \
@@ -109,6 +111,7 @@ docker run -d \
   -v /path/to/data:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/healthchecks:latest
+
 ```
 
 ## Parameters
@@ -128,6 +131,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | :----: | --- |
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
+| `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `SITE_ROOT=` | The site's top-level URL and the port it listens to if differrent than 80 or 443 (e.g., https://healthchecks.example.com:8000) |
 | `SITE_NAME=` | The site's name (e.g., "Example Corp HealthChecks") |
 | `DEFAULT_FROM_EMAIL=` | From email for alerts |
