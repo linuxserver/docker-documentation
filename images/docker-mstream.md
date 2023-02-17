@@ -164,6 +164,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **13.02.23:** - Rebase to Alpine 3.17, migrate to s6v3.
 * **05.04.22:** - Move `sync` folder to `/config`.
 * **02.04.22:** - Rebase to alpine 3.15. Fix ffmpeg download.
 * **17.05.21:** - Deprecating the env vars `USER`, `PASSWORD` and `USE_JSON` as mStream v5 requires the use of `config.json`.
