@@ -72,8 +72,8 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - <path to data>:/config
-      - <path to music>:/music
+      - /path/to/data:/config
+      - /path/to/music:/music
     restart: unless-stopped
 ```
 
@@ -86,8 +86,8 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
-  -v <path to data>:/config \
-  -v <path to music>:/music \
+  -v /path/to/data:/config \
+  -v /path/to/music:/music \
   --restart unless-stopped \
   lscr.io/linuxserver/daapd:latest
 
@@ -177,6 +177,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.02.23:** - Rebase to Alpine 3.17, migrate to s6v3.
 * **31.05.22:** - Make sure the user has access to the audio device.
 * **31.05.22:** - Add new deps, flex and bison.
 * **12.02.22:** - Rebase to Alpine 3.15.
