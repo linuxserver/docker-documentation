@@ -76,7 +76,6 @@
 | Container | Description |
 | --------- | ----------- |
 | [heimdall](https://github.com/linuxserver/docker-heimdall/) | [heimdall](https://heimdall.site) is a way to organise all those links to your most used web sites and web applications in a simple way. |
-| [muximux](https://github.com/linuxserver/docker-muximux/) | [muximux](https://github.com/mescon/Muximux) is a lightweight portal to view & manage your HTPC apps without having to run anything more than a PHP enabled webserver. With Muximux you don't need to keep multiple tabs open, or bookmark the URL to all of your apps. |
 
 ## Databases
 
