@@ -77,11 +77,11 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
       - TRANSMISSION_WEB_HOME= #optional
-      - USER=username #optional
-      - PASS=password #optional
-      - WHITELIST=iplist #optional
-      - PEERPORT=peerport #optional
-      - "HOST_WHITELIST=dnsname list" #optional
+      - USER= #optional
+      - PASS= #optional
+      - WHITELIST= #optional
+      - PEERPORT= #optional
+      - HOST_WHITELIST= #optional
     volumes:
       - /path/to/data:/config
       - /path/to/downloads:/downloads
@@ -102,11 +102,11 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -e TRANSMISSION_WEB_HOME= `#optional` \
-  -e USER=username `#optional` \
-  -e PASS=password `#optional` \
-  -e WHITELIST=iplist `#optional` \
-  -e PEERPORT=peerport `#optional` \
-  -e HOST_WHITELIST="dnsname list" `#optional` \
+  -e USER= `#optional` \
+  -e PASS= `#optional` \
+  -e WHITELIST= `#optional` \
+  -e PEERPORT= `#optional` \
+  -e HOST_WHITELIST= `#optional` \
   -p 9091:9091 \
   -p 51413:51413 \
   -p 51413:51413/udp \
@@ -138,11 +138,11 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `TRANSMISSION_WEB_HOME=` | Specify the path to an alternative UI folder. |
-| `USER=username` | Specify an optional username for the interface |
-| `PASS=password` | Specify an optional password for the interface |
-| `WHITELIST=iplist` | Specify an optional list of comma separated ip whitelist. Fills rpc-whitelist setting. |
-| `PEERPORT=peerport` | Specify an optional port for torrent TCP/UDP connections. Fills peer-port setting. |
-| `HOST_WHITELIST=dnsname list` | Specify an optional list of comma separated dns name whitelist. Fills rpc-host-whitelist setting. |
+| `USER=` | Specify an optional username for the interface |
+| `PASS=` | Specify an optional password for the interface |
+| `WHITELIST=` | Specify an optional list of comma separated ip whitelist. Fills rpc-whitelist setting. |
+| `PEERPORT=` | Specify an optional port for torrent TCP/UDP connections. Fills peer-port setting. |
+| `HOST_WHITELIST=` | Specify an optional list of comma separated dns name whitelist. Fills rpc-host-whitelist setting. |
 
 ### Volume Mappings (`-v`)
 
