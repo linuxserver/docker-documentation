@@ -204,6 +204,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **02.03.23:** - Set permissions on crontabs during init.
 * **20.08.22:** - Rebasing to alpine 3.17 with php8.1. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
 * **25.02.22:** - Add php7-sqlite3 to support rc4 release.
 * **03.11.21:** - Added more support for potential config files.
