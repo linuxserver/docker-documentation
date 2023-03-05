@@ -162,6 +162,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **05.03.23:** - Rebase to Alpine 3.17.
 * **23.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **09.10.22:** - Add make as build dep to fix pip jq build on armhf.
 * **07.08.22:** - Initial release.
