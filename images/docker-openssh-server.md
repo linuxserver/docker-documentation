@@ -216,6 +216,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **05.03.23:** - Rebase to Alpine 3.17.
 * **18.10.22:** - Fix wrong behavior of password/passwordless sudo
 * **11.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **15.09.22:** - add netcat-openbsd with support for proxies.
