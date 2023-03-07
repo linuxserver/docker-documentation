@@ -169,6 +169,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **05.03.23:** - Rebase to Alpine 3.17.
 * **12.10.22:** - Rebase to alpine 3.16 and upgrade to s6v3.
 * **01.02.22:** - Rebase to alpine 3.15.
 * **02.11.21:** - Rebase to alpine 3.14. Remove `pathlib.py`.
