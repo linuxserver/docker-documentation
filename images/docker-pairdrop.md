@@ -175,4 +175,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **06.03.23:** - Run npm install as non-root user.
 * **20.02.23:** - Initial Release.
