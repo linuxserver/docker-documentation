@@ -156,5 +156,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **02.03.23:** - Allow user customizable cron.
 * **22.12.22:** - Rebase to alpine 3.17.
 * **14.11.22:** - Initial Release.
