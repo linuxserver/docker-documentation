@@ -33,6 +33,12 @@ The architectures supported by this image are:
 | arm64 | ✅ | arm64v8-\<version tag\> |
 | armhf | ✅ | arm32v7-\<version tag\> |
 
+## Application Setup
+
+Please note that the database configuration environment variables will apply _on first run only_, after which you will need to directly edit /config/config.yml to change your settings.
+
+For more information please see the [official documentation](https://docs.requarks.io/).
+
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
@@ -50,9 +56,15 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
+      - DB_TYPE=sqlite #optional
+      - DB_HOST= #optional
+      - DB_PORT= #optional
+      - DB_NAME= #optional
+      - DB_USER= #optional
+      - DB_PASS= #optional
     volumes:
-      - <path to config>:/config
-      - <path to data>:/data
+      - /path/to/config:/config
+      - /path/to/data:/data
     ports:
       - 3000:3000
     restart: unless-stopped
@@ -66,9 +78,15 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
+  -e DB_TYPE=sqlite `#optional` \
+  -e DB_HOST= `#optional` \
+  -e DB_PORT= `#optional` \
+  -e DB_NAME= `#optional` \
+  -e DB_USER= `#optional` \
+  -e DB_PASS= `#optional` \
   -p 3000:3000 \
-  -v <path to config>:/config \
-  -v <path to data>:/data \
+  -v /path/to/config:/config \
+  -v /path/to/data:/data \
   --restart unless-stopped \
   lscr.io/linuxserver/wikijs:latest
 
@@ -91,6 +109,12 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
+| `DB_TYPE=sqlite` | Set to sqlite (default) or postgres depending on the database engine you wish to use |
+| `DB_HOST=` | DB hostname (postgres only) |
+| `DB_PORT=` | DB port (postgres only) |
+| `DB_NAME=` | DB name (postgres only) |
+| `DB_USER=` | DB username (postgres only) |
+| `DB_PASS=` | DB password (postgres only) |
 
 ### Volume Mappings (`-v`)
 
@@ -153,6 +177,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **05.03.23:** - Rebase to Alpine 3.17.
 * **10.10.22:** - Rebasing to alpine 3.16, migrate to s6v3.
 * **23.01.21:** - Rebasing to alpine 3.13.
 * **01.06.20:** - Rebasing to alpine 3.12.
