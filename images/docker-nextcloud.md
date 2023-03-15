@@ -186,6 +186,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **02.03.23:** - Set permissions on crontabs during init.
 * **20.01.23:** - Rebase to alpine 3.17 with php8.1.
 * **10.10.22:** - Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
 * **30.09.22:** - Disabled `output_buffering` as per [nextcloud docs](https://docs.nextcloud.com/server/latest/admin_manual/configuration_files/big_file_upload_configuration.html
