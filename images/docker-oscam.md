@@ -36,7 +36,7 @@ The architectures supported by this image are:
 ## Application Setup
 
 To set up oscam there are numerous guides on the internet. There are too many scenarios to make a quick guide.
-The web interface is at port 8888.
+The web interface is at port 8888. You can find the project wiki [here](https://trac.streamboard.tv/oscam/).
 
 ## Usage
 
@@ -185,6 +185,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **13.03.23:** - Rebase to Alpine 3.17.
 * **03.11.22:** - Rebasing to alpine 3.16 and s6v3. Update pcsd driver link.
 * **13.02.22:** - Rebasing to alpine 3.15.
 * **19.12.19:** - Rebasing to alpine 3.11.
