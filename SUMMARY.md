@@ -36,6 +36,7 @@
 * [linuxserver/calibre-web](images/docker-calibre-web.md)
 * [linuxserver/calibre](images/docker-calibre.md)
 * [linuxserver/changedetection.io](images/docker-changedetection.io.md)
+* [linuxserver/chromium](images/docker-chromium.md)
 * [linuxserver/ci](images/docker-ci.md)
 * [linuxserver/code-server](images/docker-code-server.md)
 * [linuxserver/cops](images/docker-cops.md)
