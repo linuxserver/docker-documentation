@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-python@v4.5.0
         with:
           python-version: 3.x
-      - uses: actions/cache@v3.3.0
+      - uses: actions/cache@v3.3.1
         with:
           key: ${{ github.ref }}
           path: .cache
@@ -34,7 +34,7 @@ jobs:
       - uses: actions/setup-python@v4.5.0
         with:
           python-version: 3.x
-      - uses: actions/cache@v3.3.0
+      - uses: actions/cache@v3.3.1
         with:
           key: ${{ github.ref }}
           path: .cache
