@@ -62,7 +62,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - "CLI_ARGS="--gameid minetest --port 30000"" #optional
+      - "CLI_ARGS=--gameid minetest --port 30000" #optional
     volumes:
       - /path/to/data:/config/.minetest
     ports:
@@ -78,7 +78,7 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
-  -e CLI_ARGS=""--gameid minetest --port 30000"" `#optional` \
+  -e CLI_ARGS="--gameid minetest --port 30000" `#optional` \
   -p 30000:30000/udp \
   -v /path/to/data:/config/.minetest \
   --restart unless-stopped \
@@ -103,7 +103,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
-| `CLI_ARGS="--gameid minetest --port 30000"` | Optionally specify any [CLI variables](https://wiki.minetest.net/Command_line) you want to launch the app with |
+| `CLI_ARGS=--gameid minetest --port 30000` | Optionally specify any [CLI variables](https://wiki.minetest.net/Command_line) you want to launch the app with |
 
 ### Volume Mappings (`-v`)
 
@@ -165,6 +165,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **17.03.23:** - Fix CLI_ARGS example in readme.
 * **23.02.23:** - Rebase to Alpine 3.17, migrate to s6v3.
 * **06.08.22:** - Update irrlicht deps.
 * **02.05.22:** - Allow specifying the advertised port.
