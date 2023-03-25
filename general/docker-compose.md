@@ -12,12 +12,21 @@ Note that when inputting data for variables, you must follow standard YAML rules
 
   Starting with version 2, Docker started publishing `docker compose` as a go based plugin for docker (rather than a python based standalone binary). And they also publish this plugin for various arches, including x86_64, armhf and aarch64 (as opposed to the x86_64 only binaries for v1.X). Therefore we updated our recommended install option to utilize the plugin.
 
-  You can install `docker compose` via the following commands:
+  Install docker from the official repos as described [here](https://docs.docker.com/engine/install/) or via the convenient [get-docker script](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script) as described below:
 
   ```shell
-  ARCH=$(uname -m) && [[ "${ARCH}" == "armv7l" ]] && ARCH="armv7"
-  sudo mkdir -p /usr/local/lib/docker/cli-plugins
-  sudo curl -SL "https://github.com/docker/compose/releases/latest/download/docker-compose-linux-${ARCH}" -o /usr/local/lib/docker/cli-plugins/docker-compose
+  curl -fsSL https://get.docker.com -o get-docker.sh && \
+  sh get-docker.sh
+  ```
+
+- Install Option 2 (manual)
+
+  You can install `docker compose` manually via the following commands:
+
+  ```shell
+  ARCH=$(uname -m) && [[ "${ARCH}" == "armv7l" ]] && ARCH="armv7" && \
+  sudo mkdir -p /usr/local/lib/docker/cli-plugins && \
+  sudo curl -SL "https://github.com/docker/compose/releases/latest/download/docker-compose-linux-${ARCH}" -o /usr/local/lib/docker/cli-plugins/docker-compose && \
   sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
   ```
 
@@ -34,7 +43,7 @@ Note that when inputting data for variables, you must follow standard YAML rules
 
     As v2 runs as a plugin instead of a standalone binary, it is invoked by `docker compose args` instead of `docker-compose args`. There are also some slight differences in how the yaml is operated as well. To make migration easier, Docker released a replacement binary for `docker-compose` on x86_64 and aarch64 platforms. More info on that can be found at the [upstream repo](https://github.com/docker/compose-switch).
 
-- Install Option 2
+- Install Option 3 (docker)
 
   You can install docker-compose using our [docker-compose image](https://github.com/linuxserver/docker-docker-compose) via a run script. You can simply run the following commands on your system and you should have a functional install that you can call from anywhere as `docker-compose`:
 
@@ -146,6 +155,32 @@ If you would like to request support, you can do so on [our forum](https://disco
 
 If your compose yaml makes use of `.env`, please post an output of `docker compose convert` or `docker compose convert -f /path/to/compose.yml` for the entire yaml, or `docker compose convert <service name>` for a single service, as it will automatically replace the environment variables with their actual values.
 
+## Common Gotchas
+
+### Quoting variables
+
+In compose yamls, the environment variables can be defined in a couple of different styles. For the style we use in our readme samples, wrapping the variables in quotes is not required unless the variables contain spaces. When it's necessary, you can wrap them in quotes as described below.
+
+- Style 1 (our readme recommended style):
+  ```yaml
+  environment:
+    - 'key=value'
+  ```
+  This method requires the entire line wrapped in quotes, including the key and the value.
+
+- Style 2:
+  ```yaml
+  environment:
+    key: 'value'
+  ```
+  With this method, you can wrap just the value in quotes.
+
+### Escaping $ signs
+
+Docker compose interprets values that follow a `$` as a variable and it will [interpolate at runtime](https://docs.docker.com/compose/compose-file/12-interpolation/). If your environment variables contain the `$` character as part of the value and it needs to be treated literally, you need to escape it with another `$` sign.
+
+For example, if you want the variable `key` to have the value `real$value` exactly, you need to set `- 'key=real$$value'` in the compose yaml.
+
 ## Tips & Tricks
 
 `docker compose` expects a `docker-compose.yml` file in the current directory and if one isn't present it will complain. In order to improve your quality of life we suggest the use of bash aliases. The file path for the aliases below assumes that the `docker-compose.yml` file is being kept in the folder `/opt`. If your compose file is kept somewhere else, like in a home directory, then the path will need to be changed.
@@ -163,10 +198,10 @@ alias dtail='docker logs -tf --tail="50" "$@"'
 If the `docker-compose.yml` file is in a home directory, the following can be put in the `~/.bash_aliases` file.
 
 ```shell
-alias dcup='docker-compose -f ~/docker-compose.yml up -d' #brings up all containers if one is not defined after dcup
-alias dcdown='docker-compose -f ~/docker-compose.yml stop' #brings down all containers if one is not defined after dcdown
-alias dcpull='docker-compose -f ~/docker-compose.yml pull' #pulls all new images unless one is specified
-alias dclogs='docker-compose -f ~/docker-compose.yml logs -tf --tail="50" '
+alias dcup='docker compose -f ~/docker-compose.yml up -d' #brings up all containers if one is not defined after dcup
+alias dcdown='docker compose -f ~/docker-compose.yml stop' #brings down all containers if one is not defined after dcdown
+alias dcpull='docker compose -f ~/docker-compose.yml pull' #pulls all new images unless one is specified
+alias dclogs='docker compose -f ~/docker-compose.yml logs -tf --tail="50" '
 alias dtail='docker logs -tf --tail="50" "$@"'
 ```
 
