@@ -187,6 +187,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **27.03.23:** - Add cmake as build dep for Levenshtein.
 * **27.12.22:** - Add ghostscript, libxtst6, libxkbfile-dev.
 * **20.12.22:** - Improve init script and prevent harmless error.
 * **19.10.22:** - Rebase to jammy. Upgrade to s6v3. Clean up build dependencies.
