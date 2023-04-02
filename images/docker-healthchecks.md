@@ -37,6 +37,10 @@ The architectures supported by this image are:
 
 Access the WebUI at <your-ip>:8000. For more information, check out [Healthchecks](https://github.com/healthchecks/healthchecks).
 
+## Note on `CSRF_TRUSTED_ORIGINS`
+
+On first run (or any startup where `REGENERATE_SETTINGS=true`) we will set `CSRF_TRUSTED_ORIGINS` to match the value of `SITE_ROOT`. If you need different/additional origins, you will need to edit `/config/local_settings.py` and add them yourself. Note that setting `REGENERATE_SETTINGS=true` will overwrite any changes on startup.
+
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
