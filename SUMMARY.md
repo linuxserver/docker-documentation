@@ -92,6 +92,7 @@
 * [linuxserver/minetest](images/docker-minetest.md)
 * [linuxserver/minisatip](images/docker-minisatip.md)
 * [linuxserver/mstream](images/docker-mstream.md)
+* [linuxserver/mullvad-browser](images/docker-mullvad-browser.md)
 * [linuxserver/mylar3](images/docker-mylar3.md)
 * [linuxserver/mysql-workbench](images/docker-mysql-workbench.md)
 * [linuxserver/nano-wallet](images/docker-nano-wallet.md)
