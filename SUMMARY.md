@@ -66,6 +66,8 @@
 * [linuxserver/fleet](images/docker-fleet.md)
 * [linuxserver/foldingathome](images/docker-foldingathome.md)
 * [linuxserver/freshrss](images/docker-freshrss.md)
+* [linuxserver/github-desktop](images/docker-github-desktop.md)
+* [linuxserver/gitqlient](images/docker-gitqlient.md)
 * [linuxserver/grav](images/docker-grav.md)
 * [linuxserver/grocy](images/docker-grocy.md)
 * [linuxserver/habridge](images/docker-habridge.md)
