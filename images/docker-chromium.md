@@ -85,6 +85,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
+      - CHROME_CLI=https://www.linuxserver.io/ #optional
     volumes:
       - /path/to/config:/config
     ports:
@@ -103,6 +104,7 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
+  -e CHROME_CLI=https://www.linuxserver.io/ `#optional` \
   -p 3000:3000 \
   -p 3001:3001 \
   -v /path/to/config:/config \
@@ -130,6 +132,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
+| `CHROME_CLI=https://www.linuxserver.io/` | Specify one or multiple Chromium CLI flags, this string will be passed to the application in full. |
 
 ### Volume Mappings (`-v`)
 
@@ -193,4 +196,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **01.04.23:** - Preserve arguments passed to Chromium and restructure to use wrapper.
 * **18.03.23:** - Initial release.
