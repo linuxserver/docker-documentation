@@ -31,15 +31,13 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf | ✅ | arm32v7-\<version tag\> |
+| armhf | ❌ | |
 
 ## Application Setup
 
-This image sets up the BOINC client and manager and makes its interface available via Guacamole server in the browser. The interface is available at `http://your-ip:8080`.
+This image sets up the BOINC client and manager and makes its interface available via Guacamole server in the browser. The interface is available at `http://your-ip:8080` or `https://your-ip:8181`.
 
 By default, there is no password set for the main gui. Optional environment variable `PASSWORD` will allow setting a password for the user `abc`.
-
-You can access advanced features of the Guacamole remote desktop using `ctrl`+`alt`+`shift` enabling you to use remote copy/paste and different languages.
 
 It is recommended to switch to `Advanced View` in the top menu, because the `Computing Preferences` don't seem to be displayed in `Simple View`.
 
@@ -58,6 +56,36 @@ We will automatically ensure the abc user inside of the container has the proper
 Hardware acceleration users for Nvidia will need to install the container runtime provided by Nvidia on their host, instructions can be found here:
 https://github.com/NVIDIA/nvidia-docker
 We automatically add the necessary environment variable that will utilise all the features available on a GPU on the host. Once nvidia-docker is installed on your host you will need to re/create the docker container with the nvidia container runtime `--runtime=nvidia` and add an environment variable `-e NVIDIA_VISIBLE_DEVICES=all` (can also be set to a specific gpu's UUID, this can be discovered by running `nvidia-smi --query-gpu=gpu_name,gpu_uuid --format=csv` ). NVIDIA automatically mounts the GPU and drivers from your host into the BOINC docker container.
+
+### Options in all KasmVNC based GUI containers
+
+This container is based on [Docker Baseimage KasmVNC](https://github.com/linuxserver/docker-baseimage-kasmvnc) which means there are additional environment variables and run configurations to enable or disable specific functionality.
+
+#### Optional environment variables
+
+| Variable | Description |
+| :----: | --- |
+| CUSTOM_PORT | Internal port the container listens on for http if it needs to be swapped from the default 8080. |
+| CUSTOM_HTTPS_PORT | Internal port the container listens on for https if it needs to be swapped from the default 8181. |
+| CUSTOM_USER | HTTP Basic auth username, abc is default. |
+| PASSWORD | HTTP Basic auth password, abc is default. If unset there will be no auth |
+| SUBFOLDER | Subfolder for the application if running a subfolder reverse proxy, need both slashes IE `/subfolder/` |
+| TITLE | The page title displayed on the web browser, default "KasmVNC Client". |
+| FM_HOME | This is the home directory (landing) for the file manager, default "/config". |
+| START_DOCKER | If set to false a container with privilege will not automatically start the DinD Docker setup. |
+| DRINODE | If mounting in /dev/dri for [DRI3 GPU Acceleration](https://www.kasmweb.com/kasmvnc/docs/master/gpu_acceleration.html) allows you to specify the device to use IE `/dev/dri/renderD128` |
+
+#### Optional run configurations
+
+| Variable | Description |
+| :----: | --- |
+| `--privileged` | Will start a Docker in Docker (DinD) setup inside the container to use docker in an isolated environment. For increased performance mount the Docker directory inside the container to the host IE `-v /home/user/docker-data:/var/lib/docker`. |
+| `-v /var/run/docker.sock:/var/run/docker.sock` | Mount in the host level Docker socket to either interact with it via CLI or use Docker enabled applications. |
+| `--device /dev/dri:/dev/dri` | Mount a GPU into the container, this can be used in conjunction with the `DRINODE` environment variable to leverage a host video card for GPU accelerated appplications. Only **Open Source** drivers are supported IE (Intel,AMDGPU,Radeon,ATI,Nouveau) |
+
+### Lossless mode
+
+This container is capable of delivering a true lossless image at a high framerate to your web browser by changing the Stream Quality preset to "Lossless", more information [here](https://www.kasmweb.com/docs/latest/how_to/lossless.html#technical-background). In order to use this mode from a non localhost endpoint the HTTPS port on 8181 needs to be used. If using a reverse proxy to port 8080 specific headers will need to be set as outlined [here](https://github.com/linuxserver/docker-baseimage-kasmvnc#lossless).
 
 ## Usage
 
@@ -83,6 +111,7 @@ services:
       - /path/to/data:/config
     ports:
       - 8080:8080
+      - 8181:8181
     devices:
       - /dev/dri:/dev/dri #optional
     restart: unless-stopped
@@ -99,6 +128,7 @@ docker run -d \
   -e TZ=Etc/UTC \
   -e PASSWORD= `#optional` \
   -p 8080:8080 \
+  -p 8181:8181 \
   -v /path/to/data:/config \
   --device /dev/dri:/dev/dri `#optional` \
   --restart unless-stopped \
@@ -115,6 +145,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Parameter | Function |
 | :----: | --- |
 | `8080` | Boinc desktop gui. |
+| `8181` | Boinc desktop gui HTTPS. |
 
 ### Environment Variables (`-e`)
 
@@ -192,6 +223,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **03.04.23:** - Rebase to KasmVNC base image. Deprecate armhf build as the new base does not support it. Add bzip2 and xz-utils.
 * **14.11.22:** - Fix opencl driver.
 * **18.09.22:** - Rebase to jammy.
 * **24.02.22:** - Rebase to focal.
