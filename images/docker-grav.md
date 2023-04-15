@@ -156,6 +156,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **13.04.23:** - Move ssl.conf include to default.conf.
 * **11.12.22:** - Rebase to Alpine 3.17, PHP 8.1.
 * **05.09.22:** - All php to read envs passed to container.
 * **20.08.22:** - Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
