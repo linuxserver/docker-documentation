@@ -494,6 +494,8 @@ server {
 
     server_name myfirstsubdomain.linuxserver-test.com; # PUT YOUR DOMAIN HERE
 
+    include /config/nginx/ssl.conf;
+
     root /config/sites/myfirstsubdomain.linuxserver-test.com/www; # CREATE THIS DIRECTORY STRUCTURE AND PUT WORDPRESS FILES HERE
     index index.html index.htm index.php;
 
@@ -523,6 +525,8 @@ server {
     listen [::]:443 ssl http2; # REMOVED default_server
 
     server_name mysecondsubdomain.linuxserver-test.com; # PUT YOUR DOMAIN HERE
+
+    include /config/nginx/ssl.conf;
 
     root /config/sites/mysecondsubdomain.linuxserver-test.com/www; # CREATE THIS DIRECTORY STRUCTURE AND PUT WORDPRESS FILES HERE
     index index.html index.htm index.php;
