@@ -195,6 +195,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **13.04.23:** - Move ssl.conf include to default.conf.
 * **11.01.23:** - Rebasing to alpine 3.17 with php8.1. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)). Switch to git clone as builds fail with the release artifact.
 * **13.05.21:** - Make readme clearer.
 * **18.04.21:** - Add php-intl for v4.3.
