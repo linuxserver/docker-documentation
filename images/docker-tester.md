@@ -127,6 +127,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **16.04.23:** - User Chromium image as base.
 * **16.11.22:** - Revert the rdesktop baseimage's sesman change that introduced a delay.
 * **24.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **18.04.20:** - Initial release.
