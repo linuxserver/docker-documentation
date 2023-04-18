@@ -109,6 +109,7 @@
 * [linuxserver/ombi](images/docker-ombi.md)
 * [linuxserver/openssh-server](images/docker-openssh-server.md)
 * [linuxserver/openvscode-server](images/docker-openvscode-server.md)
+* [linuxserver/opera](images/docker-opera.md)
 * [linuxserver/oscam](images/docker-oscam.md)
 * [linuxserver/overseerr](images/docker-overseerr.md)
 * [linuxserver/pairdrop](images/docker-pairdrop.md)
