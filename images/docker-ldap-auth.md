@@ -93,9 +93,9 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Env | Function |
 | :----: | --- |
-| `FERNETKEY=` | Optionally define a custom fernet key, has to be base64-encoded 32-byte (only needed if container is frequently recreated, or if using multi-node setups, invalidating previous authentications) |
-| `CERTFILE=` | Point this to a certificate file to enable HTTP over SSL (HTTPS) for the ldap auth daemon |
-| `KEYFILE=` | Point this to the private key file, matching the certificate file referred to in CERTFILE |
+| `FERNETKEY=` | Optionally define a custom valid fernet key (only needed if container is frequently recreated, or if using multi-node setups, invalidating previous authentications) |
+| `CERTFILE=` | Optionally point this to a certificate file to enable HTTP over SSL (HTTPS) for the ldap auth daemon |
+| `KEYFILE=` | Optionally point this to the private key file, matching the certificate file referred to in CERTFILE |
 
 ### Volume Mappings (`-v`)
 
@@ -143,7 +143,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
-* **19.09.22:** - Rebase to alpine 3.17.
+* **30.12.22:** - Rebase to alpine 3.17.
 * **19.09.22:** - Rebase to alpine 3.15.
 * **14.05.21:** - Add linuxserver wheel index.
 * **12.02.21:** - Clean up cargo/rust cache.
