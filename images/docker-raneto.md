@@ -163,6 +163,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **21.04.23:** - Fix for upstream changes. Content now needs to be placed in /config/content/pages.
 * **18.01.23:** - Rebase to Alpine 3.17, migrate to s6v3.
 * **10.08.22:** - Rebasing to alpine 3.15.
 * **23.01.21:** - Rebasing to alpine 3.13.
