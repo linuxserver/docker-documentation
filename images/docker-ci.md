@@ -36,6 +36,7 @@ The container can be run locally, but it is meant to be integrated into the Linu
 ```
 sudo docker run --rm -i \
 -v /var/run/docker.sock:/var/run/docker.sock \
+-v /host/path:/ci/output:rw `#Optional, will contain all the files the container creates.` \
 -e IMAGE="linuxserver/<dockerimage>" \
 -e TAGS="<single tag or array seperated by |>" \
 -e META_TAG=<manifest main dockerhub tag> \
@@ -52,7 +53,9 @@ sudo docker run --rm -i \
 -e DELAY_START=<optional, time in seconds to delay before taking screenshot. Defaults to '5'> \
 -e PORT=<optional, port web application listens on internal docker port. Defaults to '80'> \
 -e SSL=<optional , use ssl for the screenshot true/false. Defaults to 'false'> \
--e CI_S6_VERBOSITY=<optional, Updates the S6_VERBOSITY env. Defaults to '2'>
+-e CI_S6_VERBOSITY=<optional, Updates the S6_VERBOSITY env. Defaults to '2'> \
+-e DOCKER_LOGS_DELAY=<optional, How long to wait in seconds while tailing the container logs. Defaults to '300'> \
+-e DRY_RUN=<optional, Set to 'true' when you don't want to upload files to S3 when testing>
 -t lsiodev/ci:latest \
 python3 test_build.py
 ```
