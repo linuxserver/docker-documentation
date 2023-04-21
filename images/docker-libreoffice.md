@@ -93,7 +93,7 @@ services:
       - /path/to/config:/config
     ports:
       - 3000:3000
-      - 3000:3000
+      - 3001:3001
     restart: unless-stopped
 ```
 
@@ -107,7 +107,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -p 3000:3000 \
-  -p 3000:3000 \
+  -p 3001:3001 \
   -v /path/to/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/libreoffice:latest
@@ -123,7 +123,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | Parameter | Function |
 | :----: | --- |
 | `3000` | LibreOffice desktop gui. |
-| `3000` | LibreOffice desktop gui HTTPS. |
+| `3001` | LibreOffice desktop gui HTTPS. |
 
 ### Environment Variables (`-e`)
 
