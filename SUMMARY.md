@@ -87,6 +87,7 @@
 * [linuxserver/librespeed](images/docker-librespeed.md)
 * [linuxserver/lidarr](images/docker-lidarr.md)
 * [linuxserver/limnoria](images/docker-limnoria.md)
+* [linuxserver/lollypop](images/docker-lollypop.md)
 * [linuxserver/lychee](images/docker-lychee.md)
 * [linuxserver/mariadb](images/docker-mariadb.md)
 * [linuxserver/mastodon](images/docker-mastodon.md)
