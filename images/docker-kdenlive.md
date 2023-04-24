@@ -224,6 +224,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **24.04.23:** - Ensure application launches in fullscreen.
 * **18.03.23:** - Rebase to KasmVNC base image.
 * **16.09.22:** - Migrate to s6v3.
 * **09.03.22:** - Update seccomp explanation.
