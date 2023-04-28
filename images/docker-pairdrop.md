@@ -73,6 +73,7 @@ services:
       - RATE_LIMIT=false #optional
       - WS_FALLBACK=false #optional
       - RTC_CONFIG= #optional
+      - DEBUG_MODE=false #optional
     ports:
       - 3000:3000
     restart: unless-stopped
@@ -89,6 +90,7 @@ docker run -d \
   -e RATE_LIMIT=false `#optional` \
   -e WS_FALLBACK=false `#optional` \
   -e RTC_CONFIG= `#optional` \
+  -e DEBUG_MODE=false `#optional` \
   -p 3000:3000 \
   --restart unless-stopped \
   lscr.io/linuxserver/pairdrop:latest
@@ -115,6 +117,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `RATE_LIMIT=false` | Set to `true` to limit clients to 100 requests per 5 min |
 | `WS_FALLBACK=false` | Set to `true` to enable websocket fallback if the peer to peer WebRTC connection is not available to the client (see App Setup notes). |
 | `RTC_CONFIG=` | Path to a json file containing custom STUN/TURN config (see App Setup notes) |
+| `DEBUG_MODE=false` | Set to `true` to debug the http server configuration by logging clients IP addresses used by PairDrop to STDOUT. [See here for more info](https://github.com/schlagmichdoch/PairDrop/blob/master/docs/host-your-own.md#debug-mode). Do not use in production! |
 
 ### Volume Mappings (`-v`)
 
