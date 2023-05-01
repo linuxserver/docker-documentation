@@ -28,4 +28,6 @@ services:
     restart: unless-stopped
 ```
 
+For x86_64 machines, run `docker run --rm --privileged multiarch/qemu-user-static --reset -p yes` on the host to enable qemu before bringing any build agent containers up.
+
 - { date: "30.04.23:", desc: "Initial Release." }
