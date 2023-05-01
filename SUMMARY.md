@@ -33,6 +33,7 @@
 * [linuxserver/booksonic-air](images/docker-booksonic-air.md)
 * [linuxserver/bookstack](images/docker-bookstack.md)
 * [linuxserver/budge](images/docker-budge.md)
+* [linuxserver/build-agent](images/docker-build-agent.md)
 * [linuxserver/calibre-web](images/docker-calibre-web.md)
 * [linuxserver/calibre](images/docker-calibre.md)
 * [linuxserver/changedetection.io](images/docker-changedetection.io.md)
