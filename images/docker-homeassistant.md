@@ -184,6 +184,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **03.05.23:** - Deprecate arm32v7. Latest HA version with an arm32v7 build is `2023.4.6`.
 * **16.11.22:** - Fix the dep conflict for google calendar.
 * **23.09.22:** - Migrate to s6v3.
 * **29.07.22:** - Improve usb device permission fix.
