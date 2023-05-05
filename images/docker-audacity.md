@@ -190,6 +190,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **05.05.23:** - Start Audacity in full screen.
 * **18.03.23:** - Rebase to KasmVNC base image.
 * **13.12.22:** - Rebase to Jammy.
 * **14.09.21:** - Use the official appimage, switch to single arch (x86_64). Armhf and aarch64 users can remain on version 3.0.2 but there won't be further updates.
