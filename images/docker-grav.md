@@ -156,6 +156,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **06.05.23:** - Add php-ldap for LDAP support.
 * **13.04.23:** - Move ssl.conf include to default.conf.
 * **11.12.22:** - Rebase to Alpine 3.17, PHP 8.1.
 * **05.09.22:** - All php to read envs passed to container.
