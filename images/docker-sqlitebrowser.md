@@ -194,6 +194,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **13.05.23:** - Rebase to Alpine 3.18.
 * **18.03.23:** - Rebase to KasmVNC base image.
 * **23.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **16.02.22:** - Rebase to Alpine.
