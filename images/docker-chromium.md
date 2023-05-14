@@ -196,5 +196,6 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **13.05.23:** - Rebase to Alpine 3.18.
 * **01.04.23:** - Preserve arguments passed to Chromium and restructure to use wrapper.
 * **18.03.23:** - Initial release.
