@@ -40,7 +40,6 @@
 * [linuxserver/chromium](images/docker-chromium.md)
 * [linuxserver/ci](images/docker-ci.md)
 * [linuxserver/code-server](images/docker-code-server.md)
-* [linuxserver/cops](images/docker-cops.md)
 * [linuxserver/daapd](images/docker-daapd.md)
 * [linuxserver/darktable](images/docker-darktable.md)
 * [linuxserver/davos](images/docker-davos.md)
