@@ -31,7 +31,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf | ✅ | arm32v7-\<version tag\> |
+| armhf | ❌ | |
 
 ## Application Setup
 
@@ -159,6 +159,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **16.05.23:** - Rebase to Alpine 3.18. Deprecate armhf.
 * **11.05.23:** - Add perl-lwp-protocol-https for master/slave support over https.
 * **22.01.23:** - Revert to using Apache due to latency issues with nginx and fcgiwrap.
 * **12.12.22:** - Rebase to Alpine 3.17, migrate to s6v3, switch to nginx and fcgiwrap.
