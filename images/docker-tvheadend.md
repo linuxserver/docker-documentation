@@ -238,6 +238,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **18.05.23:** - Rebase to Alpine 3.18.
 * **17.03.23:** - Extract picons during build instead of init.
 * **23.02.23:** - Rebase to Alpine 3.17, migrate to s6v3, drop armhf support.
 * **31.08.22:** - Update sample env vars and how RUN_OPTS are handled.
