@@ -31,7 +31,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf | ✅ | arm32v7-\<version tag\> |
+| armhf | ❌ | |
 
 ## Version Tags
 
@@ -185,6 +185,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **16.05.23:** - Rebase stable to Alpine 3.18, deprecate armhf.
 * **15.03.23:** - Switch from p7zip to 7zip, bump unrar to 6.2.6.
 * **05.03.23:** - Rebase master branch to Alpine 3.17.
 * **03.10.22:** - Rebase master branch to Alpine 3.16, migrate to s6v3.
