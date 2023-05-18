@@ -197,6 +197,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **18.05.23:** - Add fonts-noto-cjk for ¯ (ツ)_/¯ support.
 * **12.05.23:** - Add fonts-noto-color-emoji for better emoji support.
 * **09.05.23:** - Bundle Chromium to provide browser for opening links, etc.
 * **21.04.23:** - Initial release.
