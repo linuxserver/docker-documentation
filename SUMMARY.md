@@ -75,6 +75,7 @@
 * [linuxserver/healthchecks](images/docker-healthchecks.md)
 * [linuxserver/hedgedoc](images/docker-hedgedoc.md)
 * [linuxserver/heimdall](images/docker-heimdall.md)
+* [linuxserver/hishtory-server](images/docker-hishtory-server.md)
 * [linuxserver/homeassistant](images/docker-homeassistant.md)
 * [linuxserver/htpcmanager](images/docker-htpcmanager.md)
 * [linuxserver/jackett](images/docker-jackett.md)
