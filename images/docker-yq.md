@@ -150,6 +150,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **19.09.22:** - Rebase to Alpine 3.18, deprecate armhf.
 * **19.09.22:** - Rebase to 3.17.
 * **19.09.22:** - Rebase to 3.15.
 * **18.05.21:** - Rebase to 3.13. add linuxserver wheel repo.
