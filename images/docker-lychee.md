@@ -44,6 +44,23 @@ The architectures supported by this image are:
 Setup mysql/mariadb and account via the webui, accessible at http://SERVERIP:PORT
 More info at [lychee](https://lycheeorg.github.io/).
 
+### Customization
+
+In certain scenarios, you might need to change the default settings of Lychee. For instance, if you encounter limitations when uploading large files, you can increase this limit.
+
+#### Increasing Upload Limit
+
+The upload limit is defined in the `user.ini` file located in the config directory (`/config`). You can increase this limit by modifying the following values:
+
+```ini
+post_max_size = 500M
+upload_max_filesize = 500M
+```
+
+After making these changes, you'll need to restart the Docker container for the changes to take effect. Here's how to do it:
+
+**Please note that these changes might have implications on your server's performance, depending on its available resources. Thus, it's recommended to modify these settings with caution.**
+
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
