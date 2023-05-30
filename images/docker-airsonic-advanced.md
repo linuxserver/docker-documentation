@@ -33,13 +33,6 @@ The architectures supported by this image are:
 | arm64 | ✅ | arm64v8-\<version tag\> |
 | armhf | ❌ | |
 
-## Version Tags
-
-This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
-
-| Tag | Available | Description |
-| :----: | :----: |--- |
-| latest | ✅ | Latest releases of Airsonic-Advanced |
 ## Application Setup
 
 We don't formally support upgrading from Airsonic to Airsonic Advanced, it may or may not work for you and we'd recommend making backups before attempting this. Following the upgrade you may experience a forced rescan of your library so take this into account if you have a lot of files.
@@ -198,6 +191,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **30.05.23:** - Rebase to Alpine 3.18.
 * **11.02.23:** - Rebase to Alpine 3.17.
 * **23.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **25.07.22:** - Add vorbis-tools.
