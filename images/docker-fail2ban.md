@@ -75,6 +75,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
+      - VERBOSITY=-vv #optional
     volumes:
       - /path/to/appdata/config:/config
       - /var/log:/var/log:ro
@@ -109,6 +110,7 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
+  -e VERBOSITY=-vv `#optional` \
   -v /path/to/appdata/config:/config \
   -v /var/log:/var/log:ro \
   -v /path/to/airsonic/log:/remotelogs/airsonic:ro `#optional` \
@@ -155,6 +157,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
+| `VERBOSITY=-vv` | Set the container log verbosity. Valid options are -v, -vv, -vvv, -vvvv, or leaving the value blank or not setting the variable. |
 
 ### Volume Mappings (`-v`)
 
@@ -240,6 +243,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **01.06.23:** - Add optional VERBOSITY environment variable, allowing users to set the container log verbosity.
 * **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
 * **15.12.22:** - Replace unmaintained ssmtp with msmtp.
 * **15.12.22:** - Rebase to Alpine 3.17, Add ssmtp and whois packages. Symlink config to allow live reloading.
