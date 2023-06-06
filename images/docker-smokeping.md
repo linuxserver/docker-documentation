@@ -159,6 +159,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **16.05.23:** - Add perl-authen-radius for Radius support.
 * **16.05.23:** - Rebase to Alpine 3.18. Deprecate armhf.
 * **11.05.23:** - Add perl-lwp-protocol-https for master/slave support over https.
 * **22.01.23:** - Revert to using Apache due to latency issues with nginx and fcgiwrap.
