@@ -35,7 +35,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf | ✅ | arm32v7-\<version tag\> |
+| armhf | ❌ | |
 
 ## Application Setup
 
@@ -94,11 +94,12 @@ services:
       - /path/to/config:/config
       - /path/to/pictures:/pictures
     environment:
+      - DB_CONNECTION=mysql
       - DB_HOST=mariadb
+      - DB_PORT=3306
       - DB_USERNAME=lychee
       - DB_PASSWORD=dbpassword
       - DB_DATABASE=lychee
-      - DB_PORT=3306
       - PGID=1000
       - PUID=1000
       - TZ=Europe/London
@@ -115,6 +116,7 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
+  -e DB_CONNECTION=mysql \
   -e DB_HOST=mariadb \
   -e DB_PORT=3306 \
   -e DB_USERNAME=lychee \
@@ -145,6 +147,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
+| `DB_CONNECTION=mysql` | for specifying the database type |
 | `DB_HOST=mariadb` | for specifying the database host |
 | `DB_PORT=3306` | for specifying the database port |
 | `DB_USERNAME=lychee` | for specifying the database user |
@@ -212,6 +215,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
 * **13.04.23:** - Move ssl.conf include to default.conf.
 * **11.01.23:** - Rebasing to alpine 3.17 with php8.1. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)). Switch to git clone as builds fail with the release artifact.
 * **13.05.21:** - Make readme clearer.
