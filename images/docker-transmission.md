@@ -206,7 +206,8 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
-* **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
+* **10.06.23:** - Bump unrar to 6.2.8, install transmission-extra.
+* **25.05.23:** - Deprecate armhf.
 * **14.05.23:** - Explicitly install transmission-remote.
 * **02.03.23:** - Add cron init to allow user customizable crontabs.
 * **08.02.23:** - Rebase to Alpine Edge to get access to most up to date builds of Transmission. Remove bundled 3rd party UI packages.
