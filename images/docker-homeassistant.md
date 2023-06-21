@@ -184,6 +184,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **21.06.23:** - Pin pycups version.
 * **14.06.23:** - Create secondary venv in `/config` for pip installs.
 * **07.06.23:** - Rebase to alpine 3.18, switch to cp311 wheels.
 * **03.05.23:** - Deprecate arm32v7. Latest HA version with an arm32v7 build is `2023.4.6`.
