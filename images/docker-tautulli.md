@@ -163,6 +163,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **22.06.23:** - Revert master branch to Alpine 3.17 due to issues with Python 3.11.
 * **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
 * **15.12.22:** - Rebase master branch to Alpine 3.17.
 * **04.10.22:** - Rebase master branch to Alpine 3.16, migrate to s6v3.
