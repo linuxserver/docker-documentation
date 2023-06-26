@@ -129,6 +129,48 @@ You have a few options as noted below. Options 1 is short-term, while option 2 i
   - Images based on our Nginx base-image(Nextcloud, SWAG, Nginx, etc.) fails to generate a certificate, with a message similar to `error getting time:crypto/asn1/a_time.c:330`
   - `docker exec <container-name> date` returns 1970
 
+## What is lscr.io {#lscr}
+
+LSCR is a vanity url for our images, this is provided to us in collaboration with [scarf.sh](https://about.scarf.sh/). It is not a dedicated docker registry, rather a redrection service. As of writing it redirects to GitHub Container Registry(ghcr.io). 
+
+Aside from giving us the ability to redirect to another backend, if nesseceary, it also exposes telemetry about pulls, historically only available to the backend provider. We base some decisions on this data, as it gives us a somewhat realistic useage overview (realative to just looking at pulls on DockerHub).
+
+We have some blogpost related to how we utilize Scarf:
+
+- [End of an Arch](https://www.linuxserver.io/blog/end-of-an-arch)
+- [Unravelling Some Stats](https://www.linuxserver.io/blog/unravelling-some-stats)
+- [Wrap Up Warm For Winter](https://www.linuxserver.io/blog/wrap-up-warm-for-the-winter)
+
+### I cannot connect to lscr.io {#lscr-no-connect}
+
+Due to the nature of Scarf, it sometimes happen to get into larger blocklists focusing on privacy.
+
+If you still want to help us getting a better overview of over containers, you should add `gateway.scarf.sh` to the allowlist in your blocklist solution.
+
+If Scarf is on the blocklist, you will get a error message like this when trying to pull a image:
+
+```
+Error response from daemon: Get "https://lscr.io/v2/": dial tcp: lookup lscr.io: no such host
+```
+
+This is however a generic message, to rule out a service-interuption, you should also see if you can resolve the backend provider.
+
+Using dig:
+
+```shell
+dig ghcr.io +short
+dig lscr.io +short
+```
+
+Using nslookup:
+
+```shell
+nslookup ghcr.io
+nslookup lscr.io
+```
+
+If you only got a response from ghcr, chances are that Scarf is on the blocklist
+
 ## I want to reverse proxy a application which defaults to https with a selfsigned certificate {#strict-proxy}
 
 ### Traefik {#strict-proxy-traefik}
