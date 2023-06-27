@@ -143,9 +143,11 @@ We have some blogpost related to how we utilize Scarf:
 
 ### I cannot connect to lscr.io {#lscr-no-connect}
 
-Due to the nature of Scarf, it sometimes happen to get into larger blocklists focusing on privacy.
+Due to the nature of Scarf as a Docker gateway which gathers usage metrics, some overzealous privacy-focused blocklists will include its domains.
 
-If you still want to help us getting a better overview of over containers, you should add `gateway.scarf.sh` to the allowlist in your blocklist solution.
+If you want to help us in getting a better overview of how people use our containers, you should add `gateway.scarf.sh` to the allowlist in your blocklist solution.
+
+Alternatively, you can use Docker Hub or GHCR directly to pull your images, although be aware that all public registries gather user metrics, so this doesn't provide you with any real benefit in that area.
 
 If Scarf is on the blocklist, you will get a error message like this when trying to pull a image:
 
