@@ -106,7 +106,6 @@
 * [linuxserver/nextcloud](images/docker-nextcloud.md)
 * [linuxserver/nginx](images/docker-nginx.md)
 * [linuxserver/ngircd](images/docker-ngircd.md)
-* [linuxserver/nntp2nntp](images/docker-nntp2nntp.md)
 * [linuxserver/nzbhydra2](images/docker-nzbhydra2.md)
 * [linuxserver/ombi](images/docker-ombi.md)
 * [linuxserver/openssh-server](images/docker-openssh-server.md)
