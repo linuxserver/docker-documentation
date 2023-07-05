@@ -159,6 +159,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **05.07.23:** - Add standard HTTP/HTTPS listen ports 80 and 443, keeping 8000 for backwards compatibility.
 * **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
 * **16.01.23:** - Rebase to Alpine 3.17.
 * **23.11.22:** - Rebase to Alpine 3.16, migrate to s6v3. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
