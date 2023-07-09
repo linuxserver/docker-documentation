@@ -64,6 +64,7 @@
 * [linuxserver/filezilla](images/docker-filezilla.md)
 * [linuxserver/firefox](images/docker-firefox.md)
 * [linuxserver/fleet](images/docker-fleet.md)
+* [linuxserver/flexget](images/docker-flexget.md)
 * [linuxserver/foldingathome](images/docker-foldingathome.md)
 * [linuxserver/freshrss](images/docker-freshrss.md)
 * [linuxserver/github-desktop](images/docker-github-desktop.md)
