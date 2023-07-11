@@ -67,11 +67,6 @@ If you wish to use the extra functionality of BookStack such as email, Memcache,
   
 When you create the container, do not set any arguments for any SQL settings. The container will copy an exemplary .env file to /config/www/.env on your host system for you to edit.
 
-#### PDF Rendering
-[wkhtmltopdf](https://wkhtmltopdf.org/) is available to use as an alternative PDF rendering generator as described at https://www.bookstackapp.com/docs/admin/pdf-rendering/.
-
-The path to wkhtmltopdf in this image to include in your .env file is `/usr/bin/wkhtmltopdf`.
-
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
