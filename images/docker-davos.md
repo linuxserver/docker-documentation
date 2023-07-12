@@ -55,7 +55,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /path/to/data>:/config
+      - /path/to/data:/config
       - /path/to/downloads/folder:/download
     ports:
       - 8080:8080
@@ -71,7 +71,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -p 8080:8080 \
-  -v /path/to/data>:/config \
+  -v /path/to/data:/config \
   -v /path/to/downloads/folder:/download \
   --restart unless-stopped \
   lscr.io/linuxserver/davos:latest
@@ -157,6 +157,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.07.23:** - Rebase to Alpine 3.18.
 * **07.07.23:** - Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)
 * **13.02.23:** - Rebase to Alpine 3.17, migrate to s6v3.
 * **15.01.22:** - Rebasing to alpine 3.15.
