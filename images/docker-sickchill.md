@@ -160,6 +160,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.07.23:** - Rebase to alpine 3.18.
 * **06.07.23:** - Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)
 * **17.02.22:** - Rebase to alpine 3.17.
 * **17.02.22:** - Rebase to alpine 3.15.
