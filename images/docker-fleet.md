@@ -170,6 +170,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.07.23:** - Rebase to Alpine 3.18.
 * **13.02.23:** - Rebase to Alpine 3.17, migrate to s6v3.
 * **02.05.22:** - Rebase to Alpine 3.15.
 * **13.12.21:** - Add mitigations for CVE-2021-44228
