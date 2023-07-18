@@ -116,7 +116,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Local path for sabnzbd config files. |
+| `/config` | Local path for FlexGet config files. |
 | `/data` | Default path for downloads. |
 
 #### Miscellaneous Options
