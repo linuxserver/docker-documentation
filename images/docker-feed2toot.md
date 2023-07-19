@@ -34,7 +34,7 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-Run `docker run --rm -it -w /config -v /path/to/data:/config -e PUID=1000 -e PGID=1000 lscr.io/linuxserver/feed2toot /usr/bin/register_feed2toot_app` to generate credential files (be sure to set the correct volume path and PUID/PGID values).
+Run `docker run --rm -it -w /config -v /path/to/data:/config -e PUID=1000 -e PGID=1000 lscr.io/linuxserver/feed2toot /lsiopy/bin/register_feed2toot_app` to generate credential files (be sure to set the correct volume path and PUID/PGID values).
 
 Edit the feed2toot.ini in /config to configure your instance name and RSS feeds.
 
