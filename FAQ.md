@@ -30,7 +30,7 @@ Some x86_64 hosts running older versions of the Docker engine are not compatible
 
   - Option 1 (Long-Term Fix)
 
-    Upgrade your Docker engine install to at least version `20.10.10`. [Refer to the official Docker docs for installation/update details.](https://docs.docker.com/engine/install)
+    Upgrade your Docker engine to at least version `20.10.10`. [Refer to the official Docker docs for installation/update details.](https://docs.docker.com/engine/install)
 
   - Option 2 (Short-Term Fix)
 
