@@ -35,9 +35,7 @@ In order to increase the security of your containers, you can run them in a root
 
 Do keep in mind, however, that `docker-compose` is not fully compatible with podman. There is a `podman-compose` in the works but it is not yet up to par with `docker-compose`.
 
-Rootless containers are simply that, containers that are run NOT as the root user. Traditionally, containers that are ran using Docker is given broad access to the host system, as the Docker daemon must be run as root. On the contrary, containers that are ran using Podman can be made to run as an unprivileged user and can be given as much access as is necessary.
-
-Using rootless containers are pretty straight forward, once you get it set up properly. The main things we will need is:
+Using rootless containers is pretty straight forward once set up properly. The main things we will need are:
 * a modern 64-bit linux distribution
 * root access to host (for configuration only)
 * `podman`
@@ -46,7 +44,7 @@ Using rootless containers are pretty straight forward, once you get it set up pr
 
 ### Setup
 
-First, we need to get our machine prepared to run our containers in a rootless manner. After installing the dependencies, we need to configure `/etc/subuid` and `/etc/subgid`.
+First, we need to configure `/etc/subuid` and `/etc/subgid`.
 
 We can configure both files using `usermod`, however, for educational purposes we will do it manually (it's really not that hard ;)).
 
@@ -58,15 +56,6 @@ user:100000:65536
 Then repeat the same for `/etc/subgid`.
 
 Note: Be sure to stick to this format: `USERNAME:UID:RANGE`.
-
-If giving multiple users permission to use rootless containers, ensure to change the `UID` value to something greater than `UID` + `RANGE` of the previous entry. For example:
-
-```text
-user:100000:65536
-john:200000:65536
-```
-
-Notice that we set the `UID` of user `john` to 200000, as user `user` is using uids 100000 to 165535.
 
 If that process is too much for you, here is a single command that can accomplish the same task:
 
