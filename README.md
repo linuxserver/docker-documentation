@@ -1,6 +1,6 @@
 # Introduction
 
-Welcome to the home of the LinuxServer.io documentation! It is our goal to ensure that all of our images are properly documented with all of the relevant information in order to help our users get started. As well as individual set up guides for each of our images, there is also general information pertaining to the running of Docker containers, and best practices.
+Welcome to the home of the LinuxServer.io documentation! It is our goal to ensure that all of our images are properly documented with all of the relevant information, in order to help our users get started. In addition to individual set up guides for each image, there is also general information, and best practices, pertaining to running Docker containers.
 
 ## Want to get hold of the team?
 
