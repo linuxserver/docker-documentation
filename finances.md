@@ -20,16 +20,16 @@ We will at all times attempt to keep a surplus of $6,000 in the bank account, or
 
 ## Votes
 
-In order for money to be approved for a project, the requesting member must go through every effort to bring to vote a fully formed idea that is ready to be actioned. This means that all the legwork is done before bringing an idea to vote, or at least as much as is reasonably possible. A vote will last for 3 days in order to give all team members the opportunity to participate without unnecessarily causing delays. A generasl consensus will need to be reached in order for it to proceed.
+In order for money to be approved for a project, the requesting member must go through every effort to bring to vote a fully formed idea that is ready to be actioned. This means that all the legwork is done before bringing an idea to vote, or at least as much as is reasonably possible. A vote will last for 3 days in order to give all team members the opportunity to participate without unnecessarily causing delays. A general consensus will need to be reached in order for it to proceed.
 
 ## Acceptable uses of money
 
 * Hardware/Software needed to help the group reach a specific goal
-* Stationary + Related items for possible Conventions
-* Convention Fees (Both Attendence and Travel)
+* Stationary + related items for possible conventions
+* Convention fees (Both Attendence and Travel)
 * Hosting services (Included domain purchases)
-* Good will gestures (Example: For users outside the group that have provided help when asked)
-* Food/Drink for LinuxServer.io focused sprints.
+* Good will gestures (Example: For users outside the group that have provided help when asked.)
+* Food/Drink for LinuxServer.io focused sprints
 * Donations to upstream projects
 
 ## Links

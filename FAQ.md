@@ -1,6 +1,6 @@
 # FAQ
 
-Here will some Frequently Asked Questions reside
+Here resides some Frequently Asked Questions.
 
 ## My host is incompatible with images based on Ubuntu Jammy {#jammy}
 
@@ -30,7 +30,7 @@ Some x86_64 hosts running older versions of the Docker engine are not compatible
 
   - Option 1 (Long-Term Fix)
 
-    Upgrade your Docker engine install to at least version `20.10.10`. [Refer to the official Docker docs for installation/update details.](https://docs.docker.com/engine/install)
+    Upgrade your Docker engine to at least version `20.10.10`. [Refer to the official Docker docs for installation/update details.](https://docs.docker.com/engine/install)
 
   - Option 2 (Short-Term Fix)
 
@@ -47,7 +47,7 @@ Some x86_64 hosts running older versions of the Docker engine are not compatible
 
 ## My host is incompatible with images based on rdesktop {#rdesktop}
 
-Some x86_64 hosts have issues running rdesktop based images even with the latest docker version due to syscalls that are unknown to docker.
+Some x86_64 hosts have issues running rdesktop based images even with the latest Docker version due to syscalls that are unknown to Docker.
 
 - Symptoms
 
@@ -74,7 +74,7 @@ Some x86_64 hosts have issues running rdesktop based images even with the latest
 
 This only affects 32 bit installs of distros based on Debian Buster.
 
-This is due to a bug in the libseccomp2 library (dependency of Docker itself), which is fixed. However it's not pushed to all the repositories.
+This is due to a bug in the libseccomp2 library (dependency of Docker itself), which is fixed. However, it's not pushed to all the repositories.
 
 [A GitHub issue tracking this](https://github.com/moby/moby/issues/40734)
 
@@ -131,11 +131,11 @@ You have a few options as noted below. Options 1 is short-term, while option 2 i
 
 ## What is lscr.io {#lscr}
 
-LSCR is a vanity url for our images, this is provided to us in collaboration with [scarf.sh](https://about.scarf.sh/). It is not a dedicated docker registry, rather a redrection service. As of writing it redirects to GitHub Container Registry(ghcr.io). 
+LSCR is a vanity url for our images, this is provided to us in collaboration with [scarf.sh](https://about.scarf.sh/). It is not a dedicated docker registry, rather a redirection service. As of writing it redirects to GitHub Container Registry (ghcr.io). 
 
-Aside from giving us the ability to redirect to another backend, if nesseceary, it also exposes telemetry about pulls, historically only available to the backend provider. We base some decisions on this data, as it gives us a somewhat realistic useage overview (realative to just looking at pulls on DockerHub).
+Aside from giving us the ability to redirect to another backend, if necessary, it also exposes telemetry about pulls, historically only available to the backend provider. We base some decisions on this data, as it gives us a somewhat realistic usage overview (relative to just looking at pulls on DockerHub).
 
-We have some blogpost related to how we utilize Scarf:
+We have some blog posts related to how we utilize Scarf:
 
 - [End of an Arch](https://www.linuxserver.io/blog/end-of-an-arch)
 - [Unravelling Some Stats](https://www.linuxserver.io/blog/unravelling-some-stats)
@@ -149,13 +149,13 @@ If you want to help us in getting a better overview of how people use our contai
 
 Alternatively, you can use Docker Hub or GHCR directly to pull your images, although be aware that all public registries gather user metrics, so this doesn't provide you with any real benefit in that area.
 
-If Scarf is on the blocklist, you will get a error message like this when trying to pull a image:
+If Scarf is on the blocklist, you will get an error message like this when trying to pull an image:
 
 ```
 Error response from daemon: Get "https://lscr.io/v2/": dial tcp: lookup lscr.io: no such host
 ```
 
-This is however a generic message, to rule out a service-interuption, you should also see if you can resolve the backend provider.
+This is, however, a generic message. To rule out a service-interruption, you should also see if you can resolve the backend provider.
 
 Using dig:
 
@@ -171,15 +171,15 @@ nslookup ghcr.io
 nslookup lscr.io
 ```
 
-If you only got a response from ghcr, chances are that Scarf is on the blocklist
+If you only got a response from ghcr, chances are that Scarf is on the blocklist.
 
-## I want to reverse proxy a application which defaults to https with a selfsigned certificate {#strict-proxy}
+## I want to reverse proxy an application which defaults to https with a self-signed certificate {#strict-proxy}
 
 ### Traefik {#strict-proxy-traefik}
 
-In this example we will configure a serverTransport rule we can apply to a service, as well as telling Traefik to use https on the backend for the service.
+In this example, we will configure a serverTransport rule we can apply to a service, as well as telling Traefik to use https on the backend for the service.
 
-Create a [ServerTransport](https://doc.traefik.io/traefik/routing/services/#serverstransport_1) in your dynamic Traefik configuration, we are calling ours `ignorecert`.
+Create a [ServerTransport](https://doc.traefik.io/traefik/routing/services/#serverstransport_1) in your dynamic Traefik configuration; we are calling ours `ignorecert`.
 
 ```yml
     http:
