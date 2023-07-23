@@ -1,6 +1,6 @@
 # FAQ
 
-Here will some Frequently Asked Questions reside
+Here resides some Frequently Asked Questions.
 
 ## My host is incompatible with images based on Ubuntu Jammy {#jammy}
 
