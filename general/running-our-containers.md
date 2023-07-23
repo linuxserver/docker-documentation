@@ -31,11 +31,11 @@ docker create \
 
 ## Running Rootless Containers
 
-In order to increase the security of your containers, you can run them in a rootless state using podman. Podman aims to be a direct drop-in for Docker, supporting most of Docker's features — while bringing a few of its own, namely rootless containers.
+In order to increase the security of your containers, you can run them as an unprivileged user using podman. Podman aims to be a direct drop-in for Docker, supporting most of Docker's features — while bringing a few of its own, one such feature being rootless containers.
 
-Do keep in mind, however, that `docker-compose` is not fully compatible with podman. There is a `podman-compose` in the works but it is not yet up to par with `docker-compose`.
+Do keep in mind, however, that Podman is not fully compatible with `docker-compose`. There is a `podman-compose` in the works but it is not yet up to par with `docker-compose`.
 
-Using rootless containers is pretty straight forward once set up properly. The main things we will need are:
+Using rootless containers is pretty straight forward once set up properly. The main things you will need are:
 * a modern 64-bit linux distribution
 * root access to host (for configuration only)
 * `podman`
@@ -44,16 +44,17 @@ Using rootless containers is pretty straight forward once set up properly. The m
 
 ### Setup
 
-First, we need to configure `/etc/subuid` and `/etc/subgid`.
+First, you need to configure `/etc/subuid` and `/etc/subgid`.
 
-We can configure both files using `usermod`, however, for educational purposes we will do it manually (it's really not that hard ;)).
+You can configure both files using `usermod`, however, for educational purposes we will show how to do it manually (it's really not that hard ;)).
 
 Logged in as root and using your favorite text editor, create and open `/etc/subuid` and enter the following:
 
 ```text
 user:100000:65536
 ```
-Then repeat the same for `/etc/subgid`.
+
+Then repeat the same process for `/etc/subgid`.
 
 Note: Be sure to stick to this format: `USERNAME:UID:RANGE`.
 
@@ -63,12 +64,12 @@ If that process is too much for you, here is a single command that can accomplis
 usermod --add-subuids 100000-165535 --add-subgids 100000-165535 user
 ```
 
-With that finished, we are ready to start using rootless containers.
+With that finished, you are ready to start using rootless containers.
 
 ### Usage
 
-Using rootless containers is the easiest part of the migration. Simply use `podman` in scripts where `docker` is used, or create an alias as the podman devs recommend. For example: `podman run hello-world` instead of `docker run hello-world`.
+Using rootless containers is the easiest part of the migration. Simply use `podman` in commands where `docker` is used, or create an alias as the podman devs recommend. For example: `podman run hello-world` instead of `docker run hello-world`.
 
-Since `docker-compose` is not fully compatible with podman, you may need to translate any `docker-compose.yml` files to shell scripts. The difficulty of doing this depends on your shell scripting skills and knowledge of the Docker CLI commands.
+Since podman is not fully compatible with `docker-compose`, you may need to translate any `docker-compose.yml` files to shell scripts. The difficulty of doing this depends on your shell scripting skills and knowledge of the Docker CLI commands.
 
 For more information about a rootless podman setup, be sure to visit the [official podman rootless tutorial](https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md).
