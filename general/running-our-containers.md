@@ -38,11 +38,11 @@ Do keep in mind, however, that `docker-compose` is not fully compatible with pod
 Rootless containers are simply that, containers that are run NOT as the root user. Traditionally, containers that are ran using Docker is given broad access to the host system, as the Docker daemon must be run as root. On the contrary, containers that are ran using Podman can be made to run as an unprivileged user and can be given as much access as is necessary.
 
 Using rootless containers are pretty straight forward, once you get it set up properly. The main things we will need is:
-    - a modern 64-bit linux distribution
-    - root access to host (for configuration only)
-    - `podman`
-    - `slirp4netns`
-    - `fuse-overlayfs`
+* a modern 64-bit linux distribution
+* root access to host (for configuration only)
+* `podman`
+* `slirp4netns`
+* `fuse-overlayfs`
 
 ### Setup
 
