@@ -159,6 +159,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **23.07.23:** - Add Authen::TacacsPlus for Tacacs+ support.
 * **16.05.23:** - Add perl-authen-radius for Radius support.
 * **16.05.23:** - Rebase to Alpine 3.18. Deprecate armhf.
 * **11.05.23:** - Add perl-lwp-protocol-https for master/slave support over https.
