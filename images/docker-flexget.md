@@ -65,6 +65,8 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
       - FG_LOG_LEVEL=info
+      - FG_LOG_FILE=/config/flexget.log
+      - FG_CONFIG_FILE=/config/.flexget/config.yml
       - FG_WEBUI_PASSWORD=info #optional
     volumes:
       - /path/to/data:/config
@@ -83,6 +85,8 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -e FG_LOG_LEVEL=info \
+  -e FG_LOG_FILE=/config/flexget.log \
+  -e FG_CONFIG_FILE=/config/.flexget/config.yml \
   -e FG_WEBUI_PASSWORD=info `#optional` \
   -p 5050:5050 \
   -v /path/to/data:/config \
@@ -110,6 +114,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `FG_LOG_LEVEL=info` | Set the FlexGet logging level. |
+| `FG_LOG_FILE=/config/flexget.log` | Set the FlexGet log file location. |
+| `FG_CONFIG_FILE=/config/.flexget/config.yml` | Set the FlexGet config file location. |
 | `FG_WEBUI_PASSWORD=info` | Set the FlexGet webui password. Pay attention to Bash/YAML reserved characters. |
 
 ### Volume Mappings (`-v`)
