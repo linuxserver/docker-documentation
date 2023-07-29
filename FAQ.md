@@ -28,22 +28,22 @@ Some x86_64 hosts running older versions of the Docker engine are not compatible
 
 - Resolution
 
-  - Option 1 (Long-Term Fix)
+    - Option 1 (Long-Term Fix)
 
-    Upgrade your Docker engine to at least version `20.10.10`. [Refer to the official Docker docs for installation/update details.](https://docs.docker.com/engine/install)
+        Upgrade your Docker engine to at least version `20.10.10`. [Refer to the official Docker docs for installation/update details.](https://docs.docker.com/engine/install)
 
-  - Option 2 (Short-Term Fix)
+    - Option 2 (Short-Term Fix)
 
-    For Docker CLI, run your container with:
+        For Docker CLI, run your container with:
 
-    `--security-opt seccomp=unconfined`
+        `--security-opt seccomp=unconfined`
 
-    For Docker Compose, run your container with:
+        For Docker Compose, run your container with:
 
-    ```yaml
-      security_opt:
-        - seccomp=unconfined
-    ```
+        ```yaml
+            security_opt:
+            - seccomp=unconfined
+        ```
 
 ## My host is incompatible with images based on rdesktop {#rdesktop}
 
@@ -86,52 +86,52 @@ You have a few options as noted below. Options 1 is short-term, while option 2 i
 
     If 1 or 2 did not work, ensure your Docker install is at least version 20.10.0, [refer to the official Docker docs for installation.](https://docs.docker.com/engine/install/debian/)
 
-  - Option 1
+    - Option 1
 
-    Manually install an updated version of the library with dpkg.
+        Manually install an updated version of the library with dpkg.
 
-    ```shell
-    wget http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.4.4-1~bpo10+1_armhf.deb
-    sudo dpkg -i libseccomp2_2.4.4-1~bpo10+1_armhf.deb
-    ```
+        ```shell
+        wget http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.4.4-1~bpo10+1_armhf.deb
+        sudo dpkg -i libseccomp2_2.4.4-1~bpo10+1_armhf.deb
+        ```
 
-    {% hint style="info" %}
-    This url may have been updated. Find the latest by browsing [here](http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/).
-    {% endhint %}
+        {% hint style="info" %}
+        This url may have been updated. Find the latest by browsing [here](http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/).
+        {% endhint %}
 
-  - Option 2
+    - Option 2
 
-    Add the backports repo for DebianBuster. As seen [here](https://github.com/linuxserver/docker-jellyfin/issues/71#issuecomment-733621693).
+        Add the backports repo for DebianBuster. As seen [here](https://github.com/linuxserver/docker-jellyfin/issues/71#issuecomment-733621693).
 
-    ```shell
-    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC 648ACFD622F3D138
-    echo "deb http://deb.debian.org/debian buster-backports main" | sudo tee -a /etc/apt/sources.list.d/buster-backports.list
-    sudo apt update
-    sudo apt install -t buster-backports libseccomp2
-    ```
+        ```shell
+        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC 648ACFD622F3D138
+        echo "deb http://deb.debian.org/debian buster-backports main" | sudo tee -a /etc/apt/sources.list.d/buster-backports.list
+        sudo apt update
+        sudo apt install -t buster-backports libseccomp2
+        ```
 
-  - Option 3
+    - Option 3
 
-    Reinstall/update your OS to a version that still gets updates.
+        Reinstall/update your OS to a version that still gets updates.
 
-    - Any distro based on DebianStretch does not seem to have this package available
-    - DebianBuster based distros can get the package trough backports, as outlined in point 2.
+            - Any distro based on DebianStretch does not seem to have this package available
+            - DebianBuster based distros can get the package trough backports, as outlined in point 2.
 
-    {% hint style="info" %}
-    RaspberryPI OS (formerly Raspbian) Can be upgraded to run with a 64bit kernel
-    {% endhint %}
+        {% hint style="info" %}
+        RaspberryPI OS (formerly Raspbian) Can be upgraded to run with a 64bit kernel
+        {% endhint %}
 
 - Symptoms
 
-  - 502 errors in __Jellyfin__ as seen in [linuxserver/docker-jellyfin#71](https://github.com/linuxserver/docker-jellyfin/issues/71)
-  - `Error starting framework core` messages in the docker log for __Plex__. [linuxserver/docker-plex#247](https://github.com/linuxserver/docker-plex/issues/247)
-  - No WebUI for __Radarr__, even though the container is running. [linuxserver/docker-radarr#118](https://github.com/linuxserver/docker-radarr/issues/118)
-  - Images based on our Nginx base-image(Nextcloud, SWAG, Nginx, etc.) fails to generate a certificate, with a message similar to `error getting time:crypto/asn1/a_time.c:330`
-  - `docker exec <container-name> date` returns 1970
+    - 502 errors in __Jellyfin__ as seen in [linuxserver/docker-jellyfin#71](https://github.com/linuxserver/docker-jellyfin/issues/71)
+    - `Error starting framework core` messages in the docker log for __Plex__. [linuxserver/docker-plex#247](https://github.com/linuxserver/docker-plex/issues/247)
+    - No WebUI for __Radarr__, even though the container is running. [linuxserver/docker-radarr#118](https://github.com/linuxserver/docker-radarr/issues/118)
+    - Images based on our Nginx base-image(Nextcloud, SWAG, Nginx, etc.) fails to generate a certificate, with a message similar to `error getting time:crypto/asn1/a_time.c:330`
+    - `docker exec <container-name> date` returns 1970
 
 ## What is lscr.io {#lscr}
 
-LSCR is a vanity url for our images, this is provided to us in collaboration with [scarf.sh](https://about.scarf.sh/). It is not a dedicated docker registry, rather a redirection service. As of writing it redirects to GitHub Container Registry (ghcr.io). 
+LSCR is a vanity url for our images, this is provided to us in collaboration with [scarf.sh](https://about.scarf.sh/). It is not a dedicated docker registry, rather a redirection service. As of writing it redirects to GitHub Container Registry (ghcr.io).
 
 Aside from giving us the ability to redirect to another backend, if necessary, it also exposes telemetry about pulls, historically only available to the backend provider. We base some decisions on this data, as it gives us a somewhat realistic usage overview (relative to just looking at pulls on DockerHub).
 
