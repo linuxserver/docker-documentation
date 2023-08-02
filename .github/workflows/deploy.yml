@@ -23,7 +23,7 @@ jobs:
       - run: mkdocs build
 
   deploy:
-    if: github.event_name == 'push' && contains(fromJson('["refs/heads/master", "refs/heads/main", "refs/heads/mkdocs"]'), github.ref)
+    if: github.event_name == 'push' && contains(fromJson('["refs/heads/master", "refs/heads/main"]'), github.ref)
     needs: build
     name: Deploy docs
     runs-on: ubuntu-latest
