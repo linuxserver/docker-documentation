@@ -82,6 +82,7 @@
 * [linuxserver/jackett](images/docker-jackett.md)
 * [linuxserver/jellyfin](images/docker-jellyfin.md)
 * [linuxserver/kasm](images/docker-kasm.md)
+* [linuxserver/kavita](images/docker-kavita.md)
 * [linuxserver/kdenlive](images/docker-kdenlive.md)
 * [linuxserver/lazylibrarian](images/docker-lazylibrarian.md)
 * [linuxserver/ldap-auth](images/docker-ldap-auth.md)
