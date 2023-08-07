@@ -145,6 +145,7 @@
 * [linuxserver/snipe-it](images/docker-snipe-it.md)
 * [linuxserver/sonarr](images/docker-sonarr.md)
 * [linuxserver/sqlitebrowser](images/docker-sqlitebrowser.md)
+* [linuxserver/steamos](images/docker-steamos.md)
 * [linuxserver/swag](images/docker-swag.md)
 * [linuxserver/synclounge](images/docker-synclounge.md)
 * [linuxserver/syncthing](images/docker-syncthing.md)
