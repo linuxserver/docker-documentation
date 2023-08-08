@@ -35,7 +35,7 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-Access the web gui at `http://<your-ip>:8080/pwndrop` (replace `/pwndrop` with your SECRET_PATH if you set one).
+Access the web gui at `http://<your-ip>:8080/pwndrop` (replace `/pwndrop` with your `SECRET_PATH` if you set one).
 
 ## Usage
 
@@ -157,6 +157,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **07.08.23:** - Rebase to Alpine 3.18.
 * **03.07.23:** - Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)
 * **13.02.23:** - Rebase to Alpine 3.17, migrate to s6v3.
 * **19.09.22:** - Rebasing to alpine 3.15.
