@@ -15,7 +15,6 @@ title: kimai
 [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/kimai.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/kimai)
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/kimai.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/kimai)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-kimai%2Fjob%2Fmain%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-kimai/job/main/)
-[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.linuxserver.io%2Flinuxserver%2Fkimai%2Flatest%2Fci-status.yml)](https://ci-tests.linuxserver.io/linuxserver/kimai/latest/index.html)
 
 [Kimai](https://kimai.org/) is a professional grade time-tracking application, free and open-source.
 It handles use-cases of freelancers as well as companies with dozens or hundreds of users.
