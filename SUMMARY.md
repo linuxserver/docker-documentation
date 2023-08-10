@@ -84,6 +84,7 @@
 * [linuxserver/kasm](images/docker-kasm.md)
 * [linuxserver/kavita](images/docker-kavita.md)
 * [linuxserver/kdenlive](images/docker-kdenlive.md)
+* [linuxserver/kimai](images/docker-kimai.md)
 * [linuxserver/lazylibrarian](images/docker-lazylibrarian.md)
 * [linuxserver/ldap-auth](images/docker-ldap-auth.md)
 * [linuxserver/libreoffice](images/docker-libreoffice.md)
