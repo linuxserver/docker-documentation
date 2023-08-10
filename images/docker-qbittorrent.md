@@ -196,6 +196,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **10.08.23:** - Bump unrar to 6.2.10.
 * **17.06.23:** - Deprecate armhf as per [https://www.linuxserver.io/armhf](https://www.linuxserver.io/armhf).
 * **10.06.23:** - Bump unrar to 6.2.8.
 * **23.02.23:** - Add qt6-qtbase-sqlite to support SQLite database for resume files.
