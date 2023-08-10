@@ -179,4 +179,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **10.08.23:** - Bump unrar to 6.2.10.
 * **03.07.23:** - Initial Release.
