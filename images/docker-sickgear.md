@@ -190,6 +190,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **10.08.23:** - Bump unrar to 6.2.10.
 * **27.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
 * **05.03.23:** - Rebase to Alpine 3.17.
 * **18.11.22:** - Update service file from legacy SickBeard.py to sickgear.py.
