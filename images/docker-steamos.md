@@ -35,9 +35,18 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-*This container is currently in a Beta state, things may crash or not function perfectly especially when mixing Steam remote play frame capture with the web based [KasmVNC](https://kasmweb.com/kasmvnc) frame capture*
+*This container is currently in a Beta state and is developing quickly, things will change constantly and it may crash or not function perfectly especially when mixing Steam remote play frame capture with the web based [KasmVNC](https://kasmweb.com/kasmvnc) frame capture*
 
 **SteamOS is designed for specific AMD based hardware, this container will only work properly on a host with a modern AMD GPU or Intel ARC/iGPU**
+
+The following limitations currently exist:
+* You must run the desktop mode initially to login to Steam, then you can switch to `STARTUP=BIGPICTURE`
+* Sunshine is available in both desktop mode (KDE) and BIGPICTURE, but gamepads using Sunshine does not currently work. 
+* In Desktop mode most proton games will kill off kwin_x11 and in turn disable keyboard and gamepad input. For remote play in Desktop mode it is mostly Valve or Linux native titles that function properly.
+* If games are not launching and are Windows based ensure you have forced a compatibility layer in it's settings to use Proton Experimental or Proton 8.
+* BIGPICTURE STARTUP mode connecting via Sunshine will have much better game compatibility and generally be less buggy. Titles are running how the Steam Deck expects them to inside a gamescope renderer, outside of the lack of gamepads this works identically to a Deck.
+* Sunshine auto discovery is not functional, you will need to manually enter the IP in your client. 
+* Remote play does not function well in BIGPICTURE mode, this mode is optimized for a single resolution passed on boot using Sunshine.
 
 To improve compatibility we ingest drivers from vanilla Arch repos, *but NVIDIA will never work*. This is a limitation of the [KasmVNC](https://kasmweb.com/kasmvnc) virtual framebuffer that we use as it only has logic for the [DRI3](https://en.wikipedia.org/wiki/Direct_Rendering_Infrastructure) framework which is not available for NVIDIA. We recommend using a modern RDNA AMD card or Intel ARC card, but lower end GPUs might work for some games we do bundle all the drivers that are possible to install.
 Compatibility should be on par with the Steam Deck, if it is certified for the Deck it will run in our testing and the game should be fully playable.
@@ -108,6 +117,8 @@ services:
       - TZ=Etc/UTC
       - DRINODE=/dev/dri/renderD128
       - HOST_IP=192.168.100.10 #optional
+      - STARTUP=KDE #optional
+      - RESOLUTION=1920x1080 #optional
     volumes:
       - /path/to/config:/config
       - /dev/input:/dev/input #optional
@@ -117,6 +128,9 @@ services:
       - 3001:3001
       - 27031-27036:27031-27036/udp #optional
       - 27031-27036:27031-27036 #optional
+      - 47984-47990:47984-47990:47984-47990:47984-47990/tcp #optional
+      - 48010:48010:48010:48010 #optional
+      - 47998-48000:47998-48000:47998-48000:47998-48000/udp #optional
     devices:
       - /dev/dri:/dev/dri
     shm_size: "1gb"
@@ -137,10 +151,15 @@ docker run -d \
   -e TZ=Etc/UTC \
   -e DRINODE=/dev/dri/renderD128 \
   -e HOST_IP=192.168.100.10 `#optional` \
+  -e STARTUP=KDE `#optional` \
+  -e RESOLUTION=1920x1080 `#optional` \
   -p 3000:3000 \
   -p 3001:3001 \
   -p 27031-27036:27031-27036/udp `#optional` \
   -p 27031-27036:27031-27036 `#optional` \
+  -p 47984-47990:47984-47990:47984-47990:47984-47990/tcp `#optional` \
+  -p 48010:48010:48010:48010 `#optional` \
+  -p 47998-48000:47998-48000:47998-48000:47998-48000/udp `#optional` \
   -v /path/to/config:/config \
   -v /dev/input:/dev/input `#optional` \
   -v /run/udev/data:/run/udev/data `#optional` \
@@ -163,6 +182,9 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `3001` | HTTPS SteamOS desktop gui. |
 | `27031-27036/udp` | Steam Remote Play Ports (UDP). |
 | `27031-27036` | Steam Remote Play Ports (TCP). |
+| `47984-47990:47984-47990/tcp` | Sunshine Ports (TCP). |
+| `48010:48010` | Sunshine Ports (TCP). |
+| `47998-48000:47998-48000/udp` | Sunshine Ports (UDP). |
 
 ### Environment Variables (`-e`)
 
@@ -173,14 +195,16 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `DRINODE=/dev/dri/renderD128` | Specify the render device (GPU) for the contianer to use. |
 | `HOST_IP=192.168.100.10` | Specify the IP of the host, needed for LAN Remote Play. |
+| `STARTUP=KDE` | KDE to boot into desktop mode, BIGPICTURE to boot into gamescope. |
+| `RESOLUTION=1920x1080` | When booting into BIGPICTURE mode the screen resolution will be bound to this value. |
 
 ### Volume Mappings (`-v`)
 
 | Volume | Function |
 | :----: | --- |
 | `/config` | Users home directory in the container, stores all files and games. |
-| `/dev/input` | Optional for gamepad support. |
-| `/run/udev/data` | Optional for gamepad support. |
+| `/dev/input` | Optional for gamepad support. *Only working for Steam Remote Play |
+| `/run/udev/data` | Optional for gamepad support. *Only working for Steam Remote Play |
 
 ### Device Mappings (`--device`)
 
