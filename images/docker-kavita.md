@@ -159,4 +159,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.08.23:** - Fix app file perms to prevent high uid.
 * **07.08.23:** - Initial Release.
