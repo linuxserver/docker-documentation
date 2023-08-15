@@ -158,6 +158,7 @@
 * [linuxserver/tvheadend](images/docker-tvheadend.md)
 * [linuxserver/ubooquity](images/docker-ubooquity.md)
 * [linuxserver/unifi-controller](images/docker-unifi-controller.md)
+* [linuxserver/unrar](images/docker-unrar.md)
 * [linuxserver/vscodium](images/docker-vscodium.md)
 * [linuxserver/webcord](images/docker-webcord.md)
 * [linuxserver/webgrabplus](images/docker-webgrabplus.md)
