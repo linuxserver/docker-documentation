@@ -187,6 +187,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **16.08.23:** - Update dotnet framework to 7.x
 * **06.07.23:** - Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)
 * **13.03.23:** - Rebase to Alpine 3.17.
 * **23.03.22:** - Rebase to Alpine 3.16 and s6v3. Update to dotnet 6.
