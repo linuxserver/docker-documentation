@@ -129,7 +129,7 @@ services:
       - 27031-27036:27031-27036/udp #optional
       - 27031-27036:27031-27036 #optional
       - 47984-47990:47984-47990 #optional
-      - 48010:48010:48010:48010 #optional
+      - 48010-48010:48010-48010 #optional
       - 47998-48000:47998-48000/udp #optional
     devices:
       - /dev/dri:/dev/dri
@@ -158,7 +158,7 @@ docker run -d \
   -p 27031-27036:27031-27036/udp `#optional` \
   -p 27031-27036:27031-27036 `#optional` \
   -p 47984-47990:47984-47990 `#optional` \
-  -p 48010:48010:48010:48010 `#optional` \
+  -p 48010-48010:48010-48010 `#optional` \
   -p 47998-48000:47998-48000/udp `#optional` \
   -v /path/to/config:/config \
   -v /dev/input:/dev/input `#optional` \
@@ -183,7 +183,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `27031-27036/udp` | Steam Remote Play Ports (UDP). |
 | `27031-27036` | Steam Remote Play Ports (TCP). |
 | `47984-47990` | Sunshine Ports (TCP). |
-| `48010:48010` | Sunshine Ports (TCP). |
+| `48010-48010` | Sunshine Ports (TCP). |
 | `47998-48000/udp` | Sunshine Ports (UDP). |
 
 ### Environment Variables (`-e`)
