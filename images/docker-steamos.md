@@ -276,4 +276,5 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **25.08.23:** - Add deps needed for some audio and software compatibility.
 * **04.07.23:** - Initial release.
