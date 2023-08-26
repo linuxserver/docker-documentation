@@ -31,47 +31,37 @@ docker create \
 
 ## Using Rootless Podman (Optional)
 
-**NOTE:** Using a rootless configuration is not supported. Our containers are designed to run in an unmodified Docker environment. Use at your own risk!
+**NOTE:** Using a rootless configuration is not officially supported. Our containers are designed to run in an unmodified Docker environment and may need manual troubleshooting to run properly in a rootless environment. Use at your own risk!
 
-Podman aims to be a direct drop-in for Docker, supporting most of it's features — while bringing a few of it's own. One such feature being rootless containers, which increases the security of your container environment by running the main Podman process as an unprivileged user. 
+Podman aims to be a drop-in replacement for Docker, supporting most of it's features — while bringing a few of it's own. One such feature being rootless containers, which increases the security of your container environment by running the main Podman process as an unprivileged user. 
 
-Do keep in mind, however, that Podman is not fully compatible with `docker-compose`. There is a `podman-compose` in the works but it is not yet up to par with `docker-compose`.
+Do note that Podman is not fully compatible with `docker-compose`. You will need to translate your `docker-compose.yml` files to shell scripts. There is a `podman-compose` in the works but it is not yet up to par with `docker-compose`.
 
 Using rootless containers is pretty straight forward once set up properly. The main things you will need are:
-* a modern 64-bit linux distribution
-* root access to host (for configuration only)
+* a modern 64-bit Linux system
+* root access to host (for setup only)
+* cgroup V2 (found in most distributions)
 * `podman`
 * `slirp4netns`
 * `fuse-overlayfs`
 
 ### Setup
+All commands below must be run as root.
 
-First, you need to configure `/etc/subuid` and `/etc/subgid`.
+First, install required packages.
 
-You can configure both files using `usermod`, however, for educational purposes we will do it manually (it's really not that hard ;)).
-
-Logged in as root and using your favorite text editor, create and open `/etc/subuid` and enter the following:
-
-```text
-user:100000:65536
-```
-
-Then repeat the same process for `/etc/subgid`.
-
-Note: Be sure to stick to this format: `USERNAME:UID:RANGE`.
-
-If you're in a rush, here is a one-liner that accomplishes the same thing:
-
+Next, create an unprivileged user to run Podman:
 ```shell
-usermod --add-subuids 100000-165535 --add-subgids 100000-165535 $USER
+useradd -m -s /bin/bash podman && passwd podman
 ```
 
-With that finished, you are ready to start using rootless containers.
+Finally, configure `/etc/subuid` and `/etc/subgid`:
+```shell
+usermod --add-subuids 100000-165535 --add-subgids 100000-165535 podman
+```
 
 ### Usage
 
-Using rootless containers is the easiest part of the migration. Simply use `podman` in commands where `docker` is used, or create an alias as the podman devs recommend. For example: `podman run hello-world` instead of `docker run hello-world`.
-
-Since podman is not fully compatible with `docker-compose`, you may need to translate any `docker-compose.yml` files to shell scripts. The difficulty of doing this depends on your shell scripting skills and knowledge of the Docker CLI commands.
+Simply use `podman` in commands where `docker` is used, or create an alias.
 
 For more information about a rootless podman setup, be sure to visit the [official podman rootless tutorial](https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md).
