@@ -62,6 +62,6 @@ usermod --add-subuids 100000-165535 --add-subgids 100000-165535 podman
 
 ### Usage
 
-Simply use `podman` in commands where `docker` is used, or create an alias.
+Login as user `podman` and replace `docker` with `podman` in commands.
 
-For more information about a rootless podman setup, be sure to visit the [official podman rootless tutorial](https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md).
+For more information about a rootless Podman setup, visit the [official podman rootless tutorial](https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md).
