@@ -162,6 +162,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **10.08.23:** - Add poppler-utils for pdf conversion tools.
 * **11.06.23:** - Rebase to Alpine 3.18, deprecate armhf.
 * **05.03.23:** - Rebase to Alpine 3.17.
 * **23.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.

@@ -183,6 +183,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **10.08.23:** - Bump unrar to 6.2.10.
 * **01.07.23:** - Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)
 * **07.12.22:** - Rebase to Ubuntu Jammy, migrate to s6v3. Use pyproject.toml for deps. Build unrar from source.
 * **27.09.22:** - Switch to `Levenshtein`, add cmake as build dep on armhf.

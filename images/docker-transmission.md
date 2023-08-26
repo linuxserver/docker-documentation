@@ -206,6 +206,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **10.08.23:** - Bump unrar to 6.2.10.
 * **10.06.23:** - Bump unrar to 6.2.8, install transmission-extra.
 * **25.05.23:** - Deprecate armhf.
 * **14.05.23:** - Explicitly install transmission-remote.

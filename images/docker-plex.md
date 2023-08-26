@@ -181,7 +181,6 @@ If you have not already claimed your server (first time setup) you need to set `
 ```
   -p 32400:32400 \
   -p 1900:1900/udp \
-  -p 3005:3005 \
   -p 5353:5353/udp \
   -p 8324:8324 \
   -p 32410:32410/udp \
@@ -231,6 +230,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **16.08.23:** - Install unrar from [linuxserver repo](https://github.com/linuxserver/docker-unrar).
 * **03.07.23:** - Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)
 * **16.10.22:** - Rebase to jammy. Update to s6v3. Remove opencl packages (bundled with plex).
 * **18.07.22:** - Pin all opencl related driver packages.

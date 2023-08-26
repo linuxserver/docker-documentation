@@ -35,6 +35,14 @@ The architectures supported by this image are:
 | arm64 | ✅ | arm64v8-\<version tag\> |
 | armhf | ❌ | |
 
+## Version Tags
+
+This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
+
+| Tag | Available | Description |
+| :----: | :----: |--- |
+| latest | ✅ | Stable Nextcloud releases |
+| develop | ✅ | Beta Nextcloud pre-releases *only* |
 ## Application Setup
 
 Access the webui at `https://<your-ip>:443`, for more information check out [Nextcloud](https://nextcloud.com/).
@@ -52,6 +60,17 @@ Since all data is stored in the `/config` and `/data` volumes, nothing gets lost
 Nextcloud's built-in collaborative editing packages (Collabora/CODE and OnlyOffice) only work on x86_64 systems with glibc, and therefore they are not compatible with our images. You should create separate containers for them and set them up in Nextcloud with their respective connector addons.
 
 If (auto) installed, those built-in packages may cause instability and should be removed.
+
+### Custom App Directories
+
+If you are [using custom app directories](https://docs.nextcloud.com/server/latest/admin_manual/apps_management.html#using-custom-app-directories) you will need to make the custom folder(s) you are using available to the web server. The recommended way to do this with our container is to add a volume. Ex:
+
+```yaml
+    volumes:
+      - /path/to/your_custom_apps_folder:/app/www/public/your_custom_apps_folder
+```
+
+Afterwards, you can set `"path" => OC::$SERVERROOT . "/your_custom_apps_folder",` in your `config.php` file, per the [official documentation](https://docs.nextcloud.com/server/latest/admin_manual/apps_management.html#using-custom-app-directories).
 
 ### Strict reverse proxies
 
@@ -178,6 +197,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **14.08.23:** - Add develop branch.
 * **25.06.23:** - Move Nextcloud installation inside container. Remove CLI updater. [See changes announcement](https://info.linuxserver.io/issues/2023-06-25-nextcloud/).
 * **21.06.23:** - Existing users should update `/config/nginx/site-confs/default.conf` - Security fix for real ip settings.
 * **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.

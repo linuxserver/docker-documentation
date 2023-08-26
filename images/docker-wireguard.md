@@ -264,6 +264,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **28.06.23:** - Rebase master to Alpine 3.18 again.
 * **26.06.23:** - Revert master to Alpine 3.17, due to issue with openresolv.
 * **24.06.23:** - Rebase master to Alpine 3.18, deprecate armhf as per [https://www.linuxserver.io/armhf](https://www.linuxserver.io/armhf).
 * **26.04.23:** - Rework branches. Swap alpine and ubuntu builds.

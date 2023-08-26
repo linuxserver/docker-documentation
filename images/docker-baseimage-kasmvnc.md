@@ -59,7 +59,7 @@ All base images are built for x86_64 and aarch64 platforms.
 Included in these base images is a simple [Openbox DE](http://openbox.org/) and the accompanying logic needed to launch a single application. Lets look at the bare minimum needed to create an application container starting with a Dockerfile: 
 
 ```
-FROM ghcr.io/linuxserver/baseimage-kasmvnc:alpine317
+FROM ghcr.io/linuxserver/baseimage-kasmvnc:alpine318
 RUN apk add --no-cache firefox
 COPY /root /
 ```
@@ -68,7 +68,7 @@ And we can define the application to start using:
 
 ```
 mkdir -p root/defaults
-echo "firefox" > /root/defaults/autostart
+echo "firefox" > root/defaults/autostart
 ```
 
 Resulting in a folder that looks like this: 
@@ -160,6 +160,10 @@ This feature only supports **Open Source** GPU drivers:
 
 The `DRINODE` environment variable can be used to point to a specific GPU.
 Up to date information can be found [here](https://www.kasmweb.com/kasmvnc/docs/master/gpu_acceleration.html)
+
+### Display Compositing (desktop effects)
+
+When using this image in tandem with a supported video card, compositing will function albeit with a performance hit when syncing the frames with pixmaps for the applications using it. This can greatly increase app compatibility if the application in question requires compositing, but requires a real GPU to be mounted into the container. By default we disable compositing at a DE level for performance reasons on our downstream images, but it can be enabled by the user and programs using compositing will still function even if the DE has it disabled in its settings. When building desktop images be sure you understand that with it enabled by default only users that have a compatible GPU mounted in will be able to use your image.
 
 ## Lossless 
 

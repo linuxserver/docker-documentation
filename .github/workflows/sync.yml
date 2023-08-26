@@ -25,6 +25,8 @@ jobs:
               ignore_containers=(
                   base-alpine-example
                   base-ubuntu-example
+                  build-agent
+                  ci
                   doc-builder
                   gazee
                   gmail-order-bot
@@ -38,6 +40,7 @@ jobs:
                   rutorrent
                   sickrage
                   tester
+                  unrar
                   yq
               )
               if [[ "$image" =~ "baseimage" ]]; then

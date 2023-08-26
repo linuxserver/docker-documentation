@@ -155,7 +155,7 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `DB_HOST=<yourdbhost>` | for specifying the database host |
 | `DB_PORT=<yourdbport>` | for specifying the database port if not default 3306 |
 | `DB_USER=<yourdbuser>` | for specifying the database user |
-| `DB_PASS=<yourdbpass>` | for specifying the database password (non-alphanumeric passwords must be properly escaped.) |
+| `DB_PASS=<yourdbpass>` | for specifying the database password (minimum 4 characters & non-alphanumeric passwords must be properly escaped.) |
 | `DB_DATABASE=bookstackapp` | for specifying the database to be used |
 
 ### Volume Mappings (`-v`)
