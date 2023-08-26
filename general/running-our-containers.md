@@ -29,9 +29,11 @@ docker create \
     linuxserver/<image_name>
 ```
 
-## Running Rootless Containers
+## Using Rootless Podman (Optional)
 
-In order to increase the security of your containers, you can run them as an unprivileged user using podman. Podman aims to be a direct drop-in for Docker, supporting most of Docker's features — while bringing a few of its own, one such feature being rootless containers.
+**NOTE:** Using a rootless configuration is not supported. Our containers are designed to run in an unmodified Docker environment. Use at your own risk!
+
+Podman aims to be a direct drop-in for Docker, supporting most of it's features — while bringing a few of it's own. One such feature being rootless containers, which increases the security of your container environment by running the main Podman process as an unprivileged user. 
 
 Do keep in mind, however, that Podman is not fully compatible with `docker-compose`. There is a `podman-compose` in the works but it is not yet up to par with `docker-compose`.
 
@@ -46,7 +48,7 @@ Using rootless containers is pretty straight forward once set up properly. The m
 
 First, you need to configure `/etc/subuid` and `/etc/subgid`.
 
-You can configure both files using `usermod`, however, for educational purposes we will show how to do it manually (it's really not that hard ;)).
+You can configure both files using `usermod`, however, for educational purposes we will do it manually (it's really not that hard ;)).
 
 Logged in as root and using your favorite text editor, create and open `/etc/subuid` and enter the following:
 
@@ -58,10 +60,10 @@ Then repeat the same process for `/etc/subgid`.
 
 Note: Be sure to stick to this format: `USERNAME:UID:RANGE`.
 
-If that process is too much for you, here is a single command that can accomplish the same task:
+If you're in a rush, here is a one-liner that accomplishes the same thing:
 
 ```shell
-usermod --add-subuids 100000-165535 --add-subgids 100000-165535 user
+usermod --add-subuids 100000-165535 --add-subgids 100000-165535 $USER
 ```
 
 With that finished, you are ready to start using rootless containers.
