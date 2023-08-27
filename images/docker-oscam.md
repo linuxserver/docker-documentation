@@ -185,6 +185,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **27.08.23:** - Rebase to Alpine 3.18. Pull PCSC driver from Linuxserver S3 due to Cloudflare blocking curl download of original file.
 * **07.07.23:** - Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)
 * **13.03.23:** - Rebase to Alpine 3.17.
 * **03.11.22:** - Rebasing to alpine 3.16 and s6v3. Update pcsd driver link.
