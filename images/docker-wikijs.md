@@ -177,6 +177,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **25.08.22:** - Rebase to Alpine 3.18.
 * **07.07.23:** - Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)
 * **21.03.23:** - Restore git and openssh packages for git storage support.
 * **21.03.23:** - Create dummy /etc/os-release to fix System Info page.
