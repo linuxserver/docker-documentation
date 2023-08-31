@@ -81,8 +81,8 @@ markdown_extensions:
 
 plugins:
   - awesome-pages
-  # - git-revision-date-localized:
-  #     enable_creation_date: true
+  - git-revision-date-localized:
+      enable_creation_date: true
   - minify:
       minify_html: true
   - search
