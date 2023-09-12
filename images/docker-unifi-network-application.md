@@ -190,8 +190,8 @@ Docker images are configured using parameters passed at runtime (such as those a
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
-| `MONGO_USER=unifi` | Mongodb Username. Only evaluated on first run. |
-| `MONGO_PASS=` | Mongodb Password. Only evaluated on first run. |
+| `MONGO_USER=unifi` | Mongodb Username. Only evaluated on first run. **Special characters must be [url encoded](https://en.wikipedia.org/wiki/Percent-encoding)**. |
+| `MONGO_PASS=` | Mongodb Password. Only evaluated on first run. **Special characters must be [url encoded](https://en.wikipedia.org/wiki/Percent-encoding)**. |
 | `MONGO_HOST=unifi-db` | Mongodb Hostname. Only evaluated on first run. |
 | `MONGO_PORT=27017` | Mongodb Port. Only evaluated on first run. |
 | `MONGO_DBNAME=unifi` | Mongodb Database Name (stats DB is automatically suffixed with `_stat`). Only evaluated on first run. |
