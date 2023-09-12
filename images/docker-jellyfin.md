@@ -239,6 +239,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **12.09.23:** - Take ownership of plugin directories.
 * **04.07.23:** - Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)
 * **07.12.22:** - Rebase master to Jammy, migrate to s6v3.
 * **11.06.22:** - Switch to upstream repo's ffmpeg5 build.
