@@ -215,6 +215,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **09.08.23:** - Rebase to Alpine 3.18, migrate to s6v3.
 * **06.07.23:** - Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)
 * **24.11.22:** - Update IPFS links for chdman.
 * **04.04.22:** - Ingest pre-built chdman bins during build time.
