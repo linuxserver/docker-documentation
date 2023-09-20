@@ -138,6 +138,7 @@
 * [linuxserver/resilio-sync](images/docker-resilio-sync.md)
 * [linuxserver/rsnapshot](images/docker-rsnapshot.md)
 * [linuxserver/sabnzbd](images/docker-sabnzbd.md)
+* [linuxserver/series-troxide](images/docker-series-troxide.md)
 * [linuxserver/sickchill](images/docker-sickchill.md)
 * [linuxserver/sickgear](images/docker-sickgear.md)
 * [linuxserver/smokeping](images/docker-smokeping.md)
