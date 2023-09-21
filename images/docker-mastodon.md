@@ -290,6 +290,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **21.09.23:** - Rebase to Alpine 3.18, migrate to s6v3.
 * **25.05.23:** - Adjust apk flags.
 * **09.02.23:** - Add Glitch branch.
 * **09.01.23:** - Updated nginx conf to fix bring inline with Mastodon configuration (fixes Elk integration).
