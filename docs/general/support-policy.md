@@ -10,7 +10,7 @@ This means that images, tags, and architectures that have been deprecated or arc
 
 ## Formally Supported Environments
 
-We build and test all of our images using the latest stable branch of Docker CE using containerd and runc, on Linux, building for x86_64 (amd64) and aarch64 (arm64) architectures. Any matching client environment is in scope for support. In addition, any currently supported version of Docker is in scope.
+We build and test all of our images using the latest stable branch of Docker CE using containerd and runc, on Linux, building for x86_64 (amd64) and aarch64 (arm64) architectures. Any matching client environment is in scope for support. In addition, any currently supported version of Docker CE is in scope.
 
 We support the use of both docker compose and the docker CLI to manage containers, though the former is preferred.
 
@@ -54,3 +54,7 @@ The following configurations are entirely unsupported and you are unlikely to be
 * Use of the `user` directive to run containers as a custom UID/GID
 * Use of a custom `init` for Docker
 * Overriding container entrypoints
+
+## Change History
+
+* 2023-10-03 - Initial release
