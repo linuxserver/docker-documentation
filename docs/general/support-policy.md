@@ -10,7 +10,7 @@ This means that images, tags, and architectures that have been deprecated or arc
 
 ## Formally Supported Environments
 
-We build and test all of our images using the latest stable branch of Docker CE using containerd.io and runc, on Linux, building for x86_64 (amd64) and aarch64 (arm64) architectures. Any matching client environment is in scope for support. In addition, any currently supported version of Docker is in scope.
+We build and test all of our images using the latest stable branch of Docker CE using containerd and runc, on Linux, building for x86_64 (amd64) and aarch64 (arm64) architectures. Any matching client environment is in scope for support. In addition, any currently supported version of Docker is in scope.
 
 We support the use of both docker compose and the docker CLI to manage containers, though the former is preferred.
 
@@ -22,7 +22,7 @@ Support for the underlying mod logic is within scope for support, however, suppo
 
 ## Reasonable Endeavours Support
 
-There are many alternative configurations that should broadly work for most of our images, but we make no guarantees to that effect, and expect that you have a solid understanding of the underlying technologies you're using. Although we do not formally support them, we will provide help where we can with any of the following:
+There are many alternative configurations that should broadly work for most of our images, but we make no guarantees to that effect, and expect that you have a solid understanding of the underlying technologies you're using. Although we do not formally support them, we will endeavour to provide help where we can with any of the following:
 
 * Use of our base images for 3rd party projects
 * Use of our images with alternative container runtimes
