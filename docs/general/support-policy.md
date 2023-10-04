@@ -1,10 +1,10 @@
-# Linuxserver Support Policy
+# LinuxServer Support Policy
 
 Any exceptions to this support policy will be clearly called out in the readme for the relevant image.
 
 ## Formally Supported Images
 
-Any actively maintained image from the Linuxserver organisation, excluding base images, is in scope for support. Note that if you are running an old version of an image we will likely ask you to upgrade to the latest version before providing support, unless your issue is version-specific.
+Any actively maintained image from the LinuxServer organisation, excluding base images, is in scope for support. Note that if you are running an old version of an image we will likely ask you to upgrade to the latest version before providing support, unless your issue is version-specific.
 
 This means that images, tags, and architectures that have been deprecated or archived are not in scope.
 
@@ -41,6 +41,7 @@ The following configurations are entirely unsupported and we will not provide he
 
 * Any of our images which have been deprecated or archived
 * Any forks of our images maintained by 3rd parties
+* Use of 3rd party guides or tutorials for configuring our images
 * Use of 3rd party management tools, such as Portainer, to create or update containers
 * Use of automated container update tools, such as Watchtower
 * Use of remote file storage, such as SMB or NFS, for container `/config` mounts
