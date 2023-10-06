@@ -2,43 +2,6 @@
 
 The goal of this guide is to give you ideas on what can be accomplished with the [LinuxServer SWAG docker image](https://hub.docker.com/r/linuxserver/swag) and to get you started. We will explain some of the basic concepts and limitations, and then we'll provide you with common examples. If you have further questions, you can ask on [our forum](https://discourse.linuxserver.io/) or join our Discord for conversations: <https://discord.gg/YWrKVTn>
 
-## Table of Contents
-
-- [SWAG](#swag)
-  - [Table of Contents](#table-of-contents)
-  - [Introduction](#introduction)
-    - [What are SSL certs?](#what-are-ssl-certs)
-    - [What is Let's Encrypt (and/or ZeroSSL)?](#what-is-lets-encrypt-andor-zerossl)
-  - [Creating a SWAG container](#creating-a-swag-container)
-    - [docker cli](#docker-cli)
-    - [docker-compose](#docker-compose)
-    - [Authorization method](#authorization-method)
-    - [Cert Provider (Let's Encrypt vs ZeroSSL)](#cert-provider-lets-encrypt-vs-zerossl)
-    - [Port forwards](#port-forwards)
-    - [Docker networking](#docker-networking)
-  - [Container setup examples](#container-setup-examples)
-    - [Create container via http validation](#create-container-via-http-validation)
-    - [Create container via dns validation with a wildcard cert](#create-container-via-dns-validation-with-a-wildcard-cert)
-    - [Create container via duckdns validation with a wildcard cert](#create-container-via-duckdns-validation-with-a-wildcard-cert)
-  - [Web hosting examples](#web-hosting-examples)
-    - [Simple html web page hosting](#simple-html-web-page-hosting)
-    - [Hosting a Wordpress site](#hosting-a-wordpress-site)
-  - [Reverse Proxy](#reverse-proxy)
-    - [Preset proxy confs](#preset-proxy-confs)
-    - [Understanding the proxy conf structure](#understanding-the-proxy-conf-structure)
-      - [Subdomain proxy conf](#subdomain-proxy-conf)
-      - [Subfolder proxy conf](#subfolder-proxy-conf)
-    - [Ombi subdomain reverse proxy example](#ombi-subdomain-reverse-proxy-example)
-    - [Nextcloud subdomain reverse proxy example](#nextcloud-subdomain-reverse-proxy-example)
-    - [Plex subfolder reverse proxy example](#plex-subfolder-reverse-proxy-example)
-    - [Using Heimdall as the home page at domain root](#using-heimdall-as-the-home-page-at-domain-root)
-  - [Troubleshooting](#troubleshooting)
-    - [Common errors](#common-errors)
-      - [404](#404)
-      - [502](#502)
-  - [Final Thoughts](#final-thoughts)
-    - [How to Request Support](#how-to-request-support)
-
 ## Introduction
 
 ### What are SSL certs?
