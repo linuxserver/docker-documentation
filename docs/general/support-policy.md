@@ -31,6 +31,8 @@ There are many alternative configurations that should broadly work for most of o
 * Rootless Docker
 * Docker in Docker
 * Docker Swarm
+* Docker installed from distro repos (use the [official repos](https://docs.docker.com/engine/install/) instead)
+* Docker installed via Snap (use the [official repos](https://docs.docker.com/engine/install/) instead)
 * EOL versions of Docker (where there is no option to upgrade)
 * Podman (Rootless or Rootful)
 * Routing container traffic through a VPN
