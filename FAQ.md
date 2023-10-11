@@ -129,6 +129,29 @@ You have a few options as noted below. Options 1 is short-term, while option 2 i
   - Images based on our Nginx base-image(Nextcloud, SWAG, Nginx, etc.) fails to generate a certificate, with a message similar to `error getting time:crypto/asn1/a_time.c:330`
   - `docker exec <container-name> date` returns 1970
 
+## My host filesystem is incompatible with my docker storage driver {#storage}
+
+Some host file systems types are not compatible with the default storage driver of docker (overlay2)
+
+- Symptoms
+
+    If your host is affected you may see errors in your containers such as:
+
+    ```text
+    ERROR Found no accessible config files
+    ```
+    or
+    ```text
+    Directory not empty. This directory contains an empty ignorecommands sub-directory
+    ```
+
+- Resolution
+
+    As shown in [Docker docs](https://docs.docker.com/storage/storagedriver/select-storage-driver/#supported-backing-filesystems)
+
+    A host filesystem of zfs requires a docker storage driver of zfs and a host file system of btrfs requires a docker storage driver of btrfs.
+    Correcting this oversight will resolve the issue. This is not something that a container change will resolve. 
+
 ## What is lscr.io {#lscr}
 
 LSCR is a vanity url for our images, this is provided to us in collaboration with [scarf.sh](https://about.scarf.sh/). It is not a dedicated docker registry, rather a redirection service. As of writing it redirects to GitHub Container Registry (ghcr.io). 
