@@ -18,7 +18,8 @@ docker stop <container_name>
 
 Once the container has been stopped, remove it.
 
-> **Important**: Did you remember to persist the `/config` volume when you originally created the container? Bear in mind, you'll lose any configuration inside the container if this volume was not persisted. [Read up on why this is important](volumes.md).
+!!! warning
+    Did you remember to persist the `/config` volume when you originally created the container? Bear in mind, you'll lose any configuration inside the container if this volume was not persisted. [Read up on why this is important](volumes.md).
 
 ```shell
 docker rm <container_name>
