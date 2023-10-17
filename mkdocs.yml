@@ -15,7 +15,7 @@ theme:
     - content.code.copy
     - navigation.footer
     - navigation.instant
-    - navigation.prune
+    # - navigation.prune
     - navigation.top
     - navigation.tracking
     - search.highlight
