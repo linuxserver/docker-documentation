@@ -16,6 +16,7 @@ theme:
     - navigation.footer
     - navigation.instant
     # - navigation.prune
+    - navigation.tabs
     - navigation.top
     - navigation.tracking
     - search.highlight

@@ -1,7 +1,8 @@
 nav:
     - Introduction: index.md
-    - FAQ.md
-    - general
-    - images
+    - How to: general
+    - Container Images:
+        - Images: images
+        - Deprecated Images: deprecated_images
     - misc
-    - Deprecated Images: deprecated_images
+    - FAQ.md
