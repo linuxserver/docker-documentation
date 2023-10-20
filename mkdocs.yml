@@ -90,3 +90,4 @@ plugins:
   - redirects:
       redirect_maps:
         'faq.md': 'FAQ.md'
+        general/awesome-lsio.md: misc/awesome-lsio.md

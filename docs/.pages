@@ -4,5 +4,5 @@ nav:
     - Container Images:
         - Images: images
         - Deprecated Images: deprecated_images
+    - Frequently Asked Questions: FAQ.md
     - misc
-    - FAQ.md
