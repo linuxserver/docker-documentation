@@ -8,7 +8,7 @@ Note that when inputting data for variables, you must follow standard YAML rules
 
 ## Installation
 
-### Option 1 (recommended)
+### Official Install Script
 
 Starting with version 2, Docker started publishing `docker compose` as a go based plugin for docker (rather than a python based standalone binary). And they also publish this plugin for various arches, including x86_64, armhf and aarch64 (as opposed to the x86_64 only binaries for v1.X). Therefore we updated our recommended install option to utilize the plugin.
 
@@ -19,7 +19,7 @@ curl -fsSL https://get.docker.com -o get-docker.sh && \
 sh get-docker.sh
 ```
 
-### Option 2 (manual)
+### Manual Package Installation
 
 You can install `docker compose` manually via the following commands:
 
@@ -43,7 +43,7 @@ sh get-docker.sh
 
 As v2 runs as a plugin instead of a standalone binary, it is invoked by `docker compose args` instead of `docker-compose args`. There are also some slight differences in how the yaml is operated as well. To make migration easier, Docker released a replacement binary for `docker-compose` on x86_64 and aarch64 platforms. More info on that can be found at the [upstream repo](https://github.com/docker/compose-switch).
 
-### Option 3 (docker)
+### Container alias
 
 You can install docker-compose using our [docker-compose image](https://github.com/linuxserver/docker-docker-compose) via a run script. You can simply run the following commands on your system and you should have a functional install that you can call from anywhere as `docker-compose`:
 
