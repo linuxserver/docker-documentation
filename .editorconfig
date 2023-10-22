@@ -6,7 +6,10 @@ end_of_line = lf
 insert_final_newline = true
 # trim_trailing_whitespace may cause unintended issues and should not be globally set true
 trim_trailing_whitespace = false
+indent_style = space
 
 [**.yml]
-indent_style = space
+indent_size = 2
+
+[**.md]
 indent_size = 4
