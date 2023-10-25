@@ -8,58 +8,58 @@ Note that when inputting data for variables, you must follow standard YAML rules
 
 ## Installation
 
-- Install Option 1 (recommended)
+### Official Install Script
 
-  Starting with version 2, Docker started publishing `docker compose` as a go based plugin for docker (rather than a python based standalone binary). And they also publish this plugin for various arches, including x86_64, armhf and aarch64 (as opposed to the x86_64 only binaries for v1.X). Therefore we updated our recommended install option to utilize the plugin.
+Starting with version 2, Docker started publishing `docker compose` as a go based plugin for docker (rather than a python based standalone binary). And they also publish this plugin for various arches, including x86_64, armhf and aarch64 (as opposed to the x86_64 only binaries for v1.X). Therefore we updated our recommended install option to utilize the plugin.
 
-  Install docker from the official repos as described [here](https://docs.docker.com/engine/install/) or via the convenient [get-docker script](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script) as described below:
+Install docker from the official repos as described [here](https://docs.docker.com/engine/install/) or via the convenient [get-docker script](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script) as described below:
 
-  ```shell
-  curl -fsSL https://get.docker.com -o get-docker.sh && \
-  sh get-docker.sh
-  ```
+```shell
+curl -fsSL https://get.docker.com -o get-docker.sh && \
+sh get-docker.sh
+```
 
-- Install Option 2 (manual)
+### Manual Package Installation
 
-  You can install `docker compose` manually via the following commands:
+You can install `docker compose` manually via the following commands:
 
-  ```shell
-  ARCH=$(uname -m) && [[ "${ARCH}" == "armv7l" ]] && ARCH="armv7" && \
-  sudo mkdir -p /usr/local/lib/docker/cli-plugins && \
-  sudo curl -SL "https://github.com/docker/compose/releases/latest/download/docker-compose-linux-${ARCH}" -o /usr/local/lib/docker/cli-plugins/docker-compose && \
-  sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
-  ```
+```shell
+ARCH=$(uname -m) && [[ "${ARCH}" == "armv7l" ]] && ARCH="armv7" && \
+sudo mkdir -p /usr/local/lib/docker/cli-plugins && \
+sudo curl -SL "https://github.com/docker/compose/releases/latest/download/docker-compose-linux-${ARCH}" -o /usr/local/lib/docker/cli-plugins/docker-compose && \
+sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+```
 
-  Assuming you already have docker (or at the very least docker-cli) installed, preferably from the official docker repos, running `docker compose version` should display the compose version.
+Assuming you already have docker (or at the very least docker-cli) installed, preferably from the official docker repos, running `docker compose version` should display the compose version.
 
-  If you don't have docker installed yet, we recommend installing it via the following commands:
+If you don't have docker installed yet, we recommend installing it via the following commands:
 
-  ```shell
-  curl -fsSL https://get.docker.com -o get-docker.sh
-  sh get-docker.sh
-  ```
+```shell
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
+```
 
-  - v1.X compatibility
+#### v1.X compatibility
 
-    As v2 runs as a plugin instead of a standalone binary, it is invoked by `docker compose args` instead of `docker-compose args`. There are also some slight differences in how the yaml is operated as well. To make migration easier, Docker released a replacement binary for `docker-compose` on x86_64 and aarch64 platforms. More info on that can be found at the [upstream repo](https://github.com/docker/compose-switch).
+As v2 runs as a plugin instead of a standalone binary, it is invoked by `docker compose args` instead of `docker-compose args`. There are also some slight differences in how the yaml is operated as well. To make migration easier, Docker released a replacement binary for `docker-compose` on x86_64 and aarch64 platforms. More info on that can be found at the [upstream repo](https://github.com/docker/compose-switch).
 
-- Install Option 3 (docker)
+### Container alias
 
-  You can install docker-compose using our [docker-compose image](https://github.com/linuxserver/docker-docker-compose) via a run script. You can simply run the following commands on your system and you should have a functional install that you can call from anywhere as `docker-compose`:
+You can install docker-compose using our [docker-compose image](https://github.com/linuxserver/docker-docker-compose) via a run script. You can simply run the following commands on your system and you should have a functional install that you can call from anywhere as `docker-compose`:
 
-  ```shell
-  sudo curl -L --fail https://raw.githubusercontent.com/linuxserver/docker-docker-compose/v2/run.sh -o /usr/local/bin/docker-compose
-  sudo chmod +x /usr/local/bin/docker-compose
-  ```
+```shell
+sudo curl -L --fail https://raw.githubusercontent.com/linuxserver/docker-docker-compose/v2/run.sh -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+```
 
-  In order to update the local image, you can run the following commands:
+In order to update the local image, you can run the following commands:
 
-  ```shell
-  docker pull linuxserver/docker-compose:"${DOCKER_COMPOSE_IMAGE_TAG:-v2}"
-  docker image prune -f
-  ```
+```shell
+docker pull linuxserver/docker-compose:"${DOCKER_COMPOSE_IMAGE_TAG:-v2}"
+docker image prune -f
+```
 
-  The above commands will use the v2 images (although invoked by`docker-compose` instead of `docker compose`). If you'd like to use v1 images, you can set an env var `DOCKER_COMPOSE_IMAGE_TAG=alpine`, `DOCKER_COMPOSE_IMAGE_TAG=ubuntu` in your respective `.profile`. Alternatively you can set that var to a versioned image tag like `v2-2.4.1-r1` or `version-alpine-1.27.4` to pin it to a specific docker-compose version.
+The above commands will use the v2 images (although invoked by`docker-compose` instead of `docker compose`). If you'd like to use v1 images, you can set an env var `DOCKER_COMPOSE_IMAGE_TAG=alpine`, `DOCKER_COMPOSE_IMAGE_TAG=ubuntu` in your respective `.profile`. Alternatively you can set that var to a versioned image tag like `v2-2.4.1-r1` or `version-alpine-1.27.4` to pin it to a specific docker-compose version.
 
 ## Single service Usage
 
@@ -191,7 +191,7 @@ Create or open the file `~/.bash_aliases` and populate with the following conten
 alias dcup='docker compose -f /opt/docker-compose.yml up -d' #brings up all containers if one is not defined after dcup
 alias dcdown='docker compose -f /opt/docker-compose.yml stop' #brings down all containers if one is not defined after dcdown
 alias dcpull='docker compose -f /opt/docker-compose.yml pull' #pulls all new images is specified after dcpull
-alias dclogs='docker compose -f /opt/docker-compose.yml logs -tf --tail="50" '  
+alias dclogs='docker compose -f /opt/docker-compose.yml logs -tf --tail="50" '
 alias dtail='docker logs -tf --tail="50" "$@"'
 ```
 

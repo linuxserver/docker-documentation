@@ -1,8 +1,7 @@
 # Understanding PUID and PGID
 
-{% hint style="info" %}
-We are aware that recent versions of the Docker engine have introduced the `--user` flag. Our images are not yet compatible with this, so we recommend continuing usage of PUID and PGID.
-{% endhint %}
+!!! info
+    We are aware that recent versions of the Docker engine have introduced the `--user` flag. Our images are not yet compatible with this, so we recommend continuing usage of PUID and PGID.
 
 ## Why use these?
 

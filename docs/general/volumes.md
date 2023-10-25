@@ -20,6 +20,7 @@ docker create --name my_container \
 
 The above example shows how the usage of `-v` has mapped the host machine's `/opt/appdata/my_config` directory over the container's internal `/config` directory.
 
-> **Remember**: When dealing with mapping overlays, it always reads `host:container`
+!!! info
+    When dealing with mapping overlays, it always reads `host:container`
 
 You can do this for as many directories as required by either you or the container itself. Our rule-of-thumb is to _always_ map the `/config` directory as this contains pertinent runtime configuration for the underlying application. For applications that require further data, such as media, our documentation will clearly indicate which internal directories need mapping.

@@ -108,15 +108,13 @@ All synchronized repositories and images returned.
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% hint style="info" %}
-Any repositories not synchronized with Docker Hub \(e.g. staging or metadata repositories\) will not be returned as part of the API. This also applies to images which the repository owner does not wish to be part of the primary image list.
-{% endhint %}
+!!! info
+    Any repositories not synchronized with Docker Hub \(e.g. staging or metadata repositories\) will not be returned as part of the API. This also applies to images which the repository owner does not wish to be part of the primary image list.
 
 ## Running Fleet
 
-{% hint style="warning" %}
-Fleet is a Java application and requires at least JRE 11.
-{% endhint %}
+!!! warning
+    Fleet is a Java application and requires at least JRE 11.
 
 Grab the latest Fleet release from [GitHub](https://github.com/linuxserver/fleet/releases).
 
@@ -152,9 +150,8 @@ fleet.admin.secret=<a_random_string>
 
 All configuration can be loaded either via the config file, via JVM arguments, or via the system environment. Fleet will first look in the configuration file, then JVM runtime, and finally in the system environment. It will load the first value it finds, which can be useful when needing to override specific properties.
 
-{% hint style="info" %}
-If you place a property in the system environment, ensure that the property uses underscores rather than periods. This is due to a limitation in BASH environments where exported variables must not contain this character. E.g. `fleet.app.port=8080` becomes `export fleet_app_port=8080`
-{% endhint %}
+!!! info
+    If you place a property in the system environment, ensure that the property uses underscores rather than periods. This is due to a limitation in BASH environments where exported variables must not contain this character. E.g. `fleet.app.port=8080` becomes `export fleet_app_port=8080`
 
 | Property Name | Purpose |
 | :--- | :--- |
@@ -169,9 +166,8 @@ If you place a property in the system environment, ensure that the property uses
 
 As well as the base configuration file, Fleet also supports some runtime arguments by means of the `-D` flag. These can be used to direct Fleet to behave in a specific way at runtime.
 
-{% hint style="info" %}
-Unlike the properties defined above, these properties are only accessed via the JVM arguments \(`-D`\).
-{% endhint %}
+!!! info
+    Unlike the properties defined above, these properties are only accessed via the JVM arguments \(`-D`\).
 
 | Runtime Argument | Purpose |
 | :--- | :--- |
@@ -188,6 +184,5 @@ When starting Fleet for the first time it will create a default user in order fo
 
 **Password**: admin
 
-{% hint style="warning" %}
-You should change the default password for this user as soon as possible! This can be done via the `Admin` -&gt; `Users` menu options.
-{% endhint %}
+!!! warning
+    You should change the default password for this user as soon as possible! This can be done via the `Admin` -&gt; `Users` menu options.

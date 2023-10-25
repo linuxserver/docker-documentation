@@ -14,7 +14,8 @@ All of the functionality described in this post is live on every one of the cont
 
 <https://fleet.linuxserver.io>
 
-**NOTE:** While the following support has been added to our containers, we will not give support to any custom scripts, services, or mods. If you are having an issue with one of our containers, be sure to disable all custom scripts/services/mods before seeking support.
+!!! note
+    While the following support has been added to our containers, we will not give support to any custom scripts, services, or mods. If you are having an issue with one of our containers, be sure to disable all custom scripts/services/mods before seeking support.
 
 ## Custom Scripts
 
@@ -41,7 +42,8 @@ echo "**** installing ffmpeg ****"
 apk add --no-cache ffmpeg
 ```
 
-**NOTE:** The folder `/custom-cont-init.d` needs to be owned by root! If this is not the case, this folder will be renamed and a new (empty) folder will be created. This is to prevent remote code execution by putting scripts in the aforementioned folder.
+!!! note
+    The folder `/custom-cont-init.d` needs to be owned by root! If this is not the case, this folder will be renamed and a new (empty) folder will be created. This is to prevent remote code execution by putting scripts in the aforementioned folder.
 
 ## Custom Services
 
@@ -65,9 +67,11 @@ Running cron in our containers is now as simple as a single file. Drop this scri
 /usr/sbin/crond -f -S -l 0 -c /etc/crontabs
 ```
 
-**NOTE:** With this example, you will most likely need to have cron installed via a custom script using the technique in the previous section, and will need to populate the crontab.
+!!! note
+    With this example, you will most likely need to have cron installed via a custom script using the technique in the previous section, and will need to populate the crontab.
 
-**NOTE:** The folder `/custom-services.d` needs to be owned by root! If this is not the case, this folder will be renamed and a new (empty) folder will be created. This is to prevent remote code execution by putting scripts in the aforementioned folder.
+!!! note
+    The folder `/custom-services.d` needs to be owned by root! If this is not the case, this folder will be renamed and a new (empty) folder will be created. This is to prevent remote code execution by putting scripts in the aforementioned folder.
 
 ## Docker Mods
 
@@ -106,7 +110,8 @@ docker create \
 
 The source code for this mod can be found [here](https://github.com/Taisun-Docker/config-mods/tree/master/pia).
 
-**NOTE:** When pulling in logic from external sources practice caution and trust the sources/community you get them from, as there are extreme security implications to consuming files from sources outside of our control.
+!!! note
+    When pulling in logic from external sources practice caution and trust the sources/community you get them from, as there are extreme security implications to consuming files from sources outside of our control.
 
 ## We are here to help
 

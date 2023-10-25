@@ -15,7 +15,8 @@ theme:
     - content.code.copy
     - navigation.footer
     - navigation.instant
-    - navigation.prune
+    # - navigation.prune
+    - navigation.tabs
     - navigation.top
     - navigation.tracking
     - search.highlight
@@ -86,3 +87,7 @@ plugins:
   - minify:
       minify_html: true
   - search
+  - redirects:
+      redirect_maps:
+        'faq.md': 'FAQ.md'
+        general/awesome-lsio.md: misc/awesome-lsio.md

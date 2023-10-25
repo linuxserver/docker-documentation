@@ -84,17 +84,17 @@ services:
 Our image currently supports three different methods to validate domain ownership:
 
 - **http:**
-  - Let's Encrypt (acme) server connects to domain on port 80
-  - Can be owned domain or a dynamic dns address
+    - Let's Encrypt (acme) server connects to domain on port 80
+    - Can be owned domain or a dynamic dns address
 - **dns:**
-  - Let's Encrypt (acme) server connects to dns provider
-  - Api credentials and settings entered into `ini` files under `/config/dns-conf/`
-  - Supports wildcard certs
-  - Need to have own domain name (non-free)
+    - Let's Encrypt (acme) server connects to dns provider
+    - Api credentials and settings entered into `ini` files under `/config/dns-conf/`
+    - Supports wildcard certs
+    - Need to have own domain name (non-free)
 - **duckdns:**
-  - Let's Encrypt (acme) server connects to DuckDNS
-  - Supports wildcard certs (only for the sub-subdomains)
-  - No need for own domain (free)
+    - Let's Encrypt (acme) server connects to DuckDNS
+    - Supports wildcard certs (only for the sub-subdomains)
+    - No need for own domain (free)
 
 The validation is performed when the container is started for the first time. Nginx won't be up until ssl certs are successfully generated.
 
@@ -127,7 +127,8 @@ If you are using docker-compose, and your services are on the same yaml, you do 
 
 For the below examples, we will use a network named `lsio`. We can create it via `docker network create lsio`. After that, any container that is created with `--net=lsio` can ping each other by container name as dns hostname.
 
-> Keep in mind that dns hostnames are meant to be case-insensitive, however container names are case-sensitive. For container names to be used as dns hostnames in nginx, they should be all lowercase as nginx will convert them to all lowercase before trying to resolve.
+!!! info
+    Keep in mind that dns hostnames are meant to be case-insensitive, however container names are case-sensitive. For container names to be used as dns hostnames in nginx, they should be all lowercase as nginx will convert them to all lowercase before trying to resolve.
 
 ## Container setup examples
 
@@ -317,7 +318,8 @@ After the container is started, we'll watch the logs with `docker logs swag -f`.
 
 Now we can access the webserver by browsing to `https://www.linuxserver-test.duckdns.org`.
 
-**NOTICE:** Due to a DuckDNS limitation, our cert only covers the wildcard subdomains, but it doesn't cover the main url. So if we try to access `https://linuxserver-test.duckdns.org`, we'll see a browser warning about an invalid ssl cert. But accessing it through the `www` (or `ombi` or any other) subdomain should work fine.
+!!! warning
+    Due to a DuckDNS limitation, our cert only covers the wildcard subdomains, but it doesn't cover the main url. So if we try to access `https://linuxserver-test.duckdns.org`, we'll see a browser warning about an invalid ssl cert. But accessing it through the `www` (or `ombi` or any other) subdomain should work fine.
 
 ## Web hosting examples
 
@@ -765,7 +767,8 @@ Any requests sent to nginx where the destination starts with `https://linuxserve
 
 Same as the previous example, we set a variable `$upstream_app` with the value `mytinytodo` and tell nginx to use the variable as the address. Keep in mind that the port listed here is the container port because nginx is connecting to this container directly via the docker network. So if our mytinytodo container has a port mapping of `-p 8080:80`, we still set `$upstream_port` variable to `80`.
 
-> Nginx has an interesting behavior displayed here. Even though we define `http://$upstream_mytinytodo:80/` as the address nginx should proxy, nginx actually connects to `http://$upstream_mytinytodo:80/todo`. Whenever we use a variable as part of the proxy_pass url, nginx automatically appends the defined `location` (in this case `/todo`) to the end of the proxy_pass url before it connects. If we include the subfolder, nginx will try to connect to `http://$upstream_mytinytodo:80/todo/todo` and will fail.
+!!! info
+    Nginx has an interesting behavior displayed here. Even though we define `http://$upstream_mytinytodo:80/` as the address nginx should proxy, nginx actually connects to `http://$upstream_mytinytodo:80/todo`. Whenever we use a variable as part of the proxy_pass url, nginx automatically appends the defined `location` (in this case `/todo`) to the end of the proxy_pass url before it connects. If we include the subfolder, nginx will try to connect to `http://$upstream_mytinytodo:80/todo/todo` and will fail.
 
 ### Ombi subdomain reverse proxy example
 
@@ -1223,8 +1226,8 @@ This error means that nginx can't talk to the application. There is a few common
 
     In most cases the contents of `/config/nginx/resolver.conf;` should be `...resolver 127.0.0.11 valid=30s;`, if this is not the case, you can:
 
-  - Delete it, and restart the container to have it regenerate
-  - Manually set the content(we wont override it)
+    - Delete it, and restart the container to have it regenerate
+    - Manually set the content(we wont override it)
 
 ## Final Thoughts
 
