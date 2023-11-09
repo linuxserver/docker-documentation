@@ -19,12 +19,12 @@ Install docker from the official repos as described [here](https://docs.docker.c
 You can install `docker compose` manually via the following commands:
 
 ```shell
-mkdir -p "~/.docker/cli-plugins" && \
-curl -sL "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o "~/.docker/cli-plugins/docker-compose" && \
-chmod +x ~/.docker/cli-plugins/docker-compose
+mkdir -p "$HOME/.docker/cli-plugins" && \
+curl -sL "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o "$HOME/.docker/cli-plugins/docker-compose" && \
+chmod +x $HOME/.docker/cli-plugins/docker-compose
 ```
 
-If you prefer to install it system-wide you can use `/usr/local/lib/docker/cli-plugins` instead of `~/.docker/cli-plugins`
+If you prefer to install it system-wide you can use `/usr/local/lib/docker/cli-plugins` instead of `$HOME/.docker/cli-plugins`
 
 Assuming you already have docker (or at the very least docker-cli) installed, preferably from the official docker repos, running `docker compose version` should display the compose version.
 
