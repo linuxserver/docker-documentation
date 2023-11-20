@@ -2,6 +2,10 @@ name: Build mkdocs and deploy to GitHub Pages
 
 on: [push, pull_request]
 
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
 
   build:
