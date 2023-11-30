@@ -871,6 +871,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/images/docker-piper/</loc>
+         <lastmod>2023-11-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/images/docker-piwigo/</loc>
          <lastmod>2023-11-30</lastmod>
          <changefreq>daily</changefreq>
