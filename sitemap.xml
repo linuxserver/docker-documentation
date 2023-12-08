@@ -316,6 +316,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/images/docker-altus/</loc>
+         <lastmod>2023-12-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/images/docker-apprise-api/</loc>
          <lastmod>2023-12-08</lastmod>
          <changefreq>daily</changefreq>
@@ -422,6 +427,11 @@
     </url>
     <url>
          <loc>https://docs.linuxserver.io/images/docker-calibre/</loc>
+         <lastmod>2023-12-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://docs.linuxserver.io/images/docker-calligra/</loc>
          <lastmod>2023-12-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -661,6 +671,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/images/docker-inkscape/</loc>
+         <lastmod>2023-12-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/images/docker-jackett/</loc>
          <lastmod>2023-12-08</lastmod>
          <changefreq>daily</changefreq>
@@ -692,6 +707,11 @@
     </url>
     <url>
          <loc>https://docs.linuxserver.io/images/docker-kimai/</loc>
+         <lastmod>2023-12-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://docs.linuxserver.io/images/docker-krita/</loc>
          <lastmod>2023-12-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -742,6 +762,11 @@
     </url>
     <url>
          <loc>https://docs.linuxserver.io/images/docker-mastodon/</loc>
+         <lastmod>2023-12-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://docs.linuxserver.io/images/docker-mediaelch/</loc>
          <lastmod>2023-12-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
