@@ -576,6 +576,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/images/docker-ferdium/</loc>
+         <lastmod>2023-12-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/images/docker-ffmpeg/</loc>
          <lastmod>2023-12-08</lastmod>
          <changefreq>daily</changefreq>
@@ -607,6 +612,11 @@
     </url>
     <url>
          <loc>https://docs.linuxserver.io/images/docker-freshrss/</loc>
+         <lastmod>2023-12-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://docs.linuxserver.io/images/docker-gimp/</loc>
          <lastmod>2023-12-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
