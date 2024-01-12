@@ -381,6 +381,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/images/docker-baseimage-rdesktop/</loc>
+         <lastmod>2024-01-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/images/docker-baseimage-ubuntu/</loc>
          <lastmod>2024-01-12</lastmod>
          <changefreq>daily</changefreq>
