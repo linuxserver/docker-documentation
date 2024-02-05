@@ -36,6 +36,7 @@ There are many alternative configurations that should broadly work for most of o
 * EOL versions of Docker (where there is no option to upgrade)
 * Podman (Rootless or Rootful)
 * Routing container traffic through a VPN
+* Use of macvlan/ipvlan networks
 
 ## Unsupported
 
@@ -60,4 +61,5 @@ The following configurations are entirely unsupported and you are unlikely to be
 
 ## Change History
 
+* 2024-02-05 - Add ipvlan/macvlan networks
 * 2023-10-03 - Initial release
