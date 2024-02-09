@@ -1086,6 +1086,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/images/docker-speedtest-tracker/</loc>
+         <lastmod>2024-02-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/images/docker-sqlitebrowser/</loc>
          <lastmod>2024-02-09</lastmod>
          <changefreq>daily</changefreq>
