@@ -2,12 +2,9 @@ site_name: LinuxServer.io
 site_url: https://docs.linuxserver.io
 site_author: LinuxServer.io
 site_description: Welcome to the home of the LinuxServer.io documentation!
-
 repo_name: linuxserver/docker-documentation
 repo_url: https://github.com/linuxserver/docker-documentation
-
 copyright: Copyright &copy; 2023 LinuxServer.io
-
 theme:
   name: material
   features:
@@ -40,7 +37,6 @@ theme:
         name: Switch to light mode
   favicon: assets/favicon.ico
   logo: assets/icon.svg
-
 extra:
   social:
     - icon: fontawesome/solid/otter
@@ -59,11 +55,9 @@ extra:
       link: https://mastodon.linuxserver.io/@linuxserver
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/linuxserverio
-
 extra_javascript:
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
   - javascripts/tablesort.js
-
 markdown_extensions:
   - admonition
   - pymdownx.details
@@ -79,15 +73,21 @@ markdown_extensions:
   - tables
   - toc:
       permalink: true
-
 plugins:
   - awesome-pages
   - git-revision-date-localized:
       enable_creation_date: true
+    redirects:
+      redirect_maps:
+        readme-sync.md: deprecated/readme-sync.md
   - minify:
       minify_html: true
+    redirects:
+      redirect_maps:
+        readme-sync.md: deprecated/readme-sync.md
   - search
   - redirects:
       redirect_maps:
         'faq.md': 'FAQ.md'
         general/awesome-lsio.md: misc/awesome-lsio.md
+        readme-sync.md: deprecated/readme-sync.md
