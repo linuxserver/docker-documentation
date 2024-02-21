@@ -4,7 +4,7 @@ site_author: LinuxServer.io
 site_description: Welcome to the home of the LinuxServer.io documentation!
 repo_name: linuxserver/docker-documentation
 repo_url: https://github.com/linuxserver/docker-documentation
-copyright: Copyright &copy; 2023 LinuxServer.io
+copyright: Copyright &copy; 2024 LinuxServer.io
 theme:
   name: material
   features:
@@ -77,14 +77,8 @@ plugins:
   - awesome-pages
   - git-revision-date-localized:
       enable_creation_date: true
-    redirects:
-      redirect_maps:
-        readme-sync.md: deprecated/readme-sync.md
   - minify:
       minify_html: true
-    redirects:
-      redirect_maps:
-        readme-sync.md: deprecated/readme-sync.md
   - search
   - redirects:
       redirect_maps:
