@@ -77,14 +77,8 @@ plugins:
   - awesome-pages
   - git-revision-date-localized:
       enable_creation_date: true
-    redirects:
-      redirect_maps:
-        readme-sync.md: deprecated/readme-sync.md
   - minify:
       minify_html: true
-    redirects:
-      redirect_maps:
-        readme-sync.md: deprecated/readme-sync.md
   - search
   - redirects:
       redirect_maps:
