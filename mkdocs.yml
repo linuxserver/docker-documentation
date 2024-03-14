@@ -85,3 +85,4 @@ plugins:
         'faq.md': 'FAQ.md'
         general/awesome-lsio.md: misc/awesome-lsio.md
         readme-sync.md: deprecated/readme-sync.md
+        unifi-controller.md: deprecated/unifi-controller.md
