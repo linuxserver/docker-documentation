@@ -84,5 +84,5 @@ plugins:
       redirect_maps:
         'faq.md': 'FAQ.md'
         general/awesome-lsio.md: misc/awesome-lsio.md
-        readme-sync.md: deprecated/readme-sync.md
-        unifi-controller.md: deprecated/unifi-controller.md
+        images/docker-readme-sync.md: deprecated_images/docker-readme-sync.md
+        images/docker-unifi-controller.md: deprecated_images/docker-unifi-controller.md
