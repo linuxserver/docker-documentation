@@ -91,6 +91,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/deprecated_images/docker-dillinger/</loc>
+         <lastmod>2024-03-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/deprecated_images/docker-docker-compose/</loc>
          <lastmod>2024-03-20</lastmod>
          <changefreq>daily</changefreq>
@@ -512,11 +517,6 @@
     </url>
     <url>
          <loc>https://docs.linuxserver.io/images/docker-digikam/</loc>
-         <lastmod>2024-03-20</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.linuxserver.io/images/docker-dillinger/</loc>
          <lastmod>2024-03-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
