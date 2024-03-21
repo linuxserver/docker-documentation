@@ -87,3 +87,4 @@ plugins:
         images/docker-readme-sync.md: deprecated_images/docker-readme-sync.md
         images/docker-unifi-controller.md: deprecated_images/docker-unifi-controller.md
         dillinger.md: deprecated/dillinger.md
+        endlessh.md: deprecated/endlessh.md
