@@ -86,5 +86,5 @@ plugins:
         general/awesome-lsio.md: misc/awesome-lsio.md
         images/docker-readme-sync.md: deprecated_images/docker-readme-sync.md
         images/docker-unifi-controller.md: deprecated_images/docker-unifi-controller.md
-        dillinger.md: deprecated/dillinger.md
-        endlessh.md: deprecated/endlessh.md
+        images/dillinger.md: deprecated_images/dillinger.md
+        images/endlessh.md: deprecated_images/endlessh.md
