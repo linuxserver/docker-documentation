@@ -901,6 +901,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/images/docker-obsidian/</loc>
+         <lastmod>2024-04-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/images/docker-ombi/</loc>
          <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
