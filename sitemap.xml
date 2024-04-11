@@ -346,6 +346,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/images/docker-ardour/</loc>
+         <lastmod>2024-04-11</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/images/docker-audacity/</loc>
          <lastmod>2024-04-11</lastmod>
          <changefreq>daily</changefreq>
@@ -646,6 +651,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/images/docker-freetube/</loc>
+         <lastmod>2024-04-11</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/images/docker-freshrss/</loc>
          <lastmod>2024-04-11</lastmod>
          <changefreq>daily</changefreq>
@@ -751,6 +761,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/images/docker-keepassxc/</loc>
+         <lastmod>2024-04-11</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/images/docker-kicad/</loc>
          <lastmod>2024-04-11</lastmod>
          <changefreq>daily</changefreq>
@@ -782,6 +797,11 @@
     </url>
     <url>
          <loc>https://docs.linuxserver.io/images/docker-librespeed/</loc>
+         <lastmod>2024-04-11</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://docs.linuxserver.io/images/docker-librewolf/</loc>
          <lastmod>2024-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
