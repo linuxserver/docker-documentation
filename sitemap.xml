@@ -296,6 +296,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/general/how-to-get-support/</loc>
+         <lastmod>2024-04-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/general/running-our-containers/</loc>
          <lastmod>2024-04-15</lastmod>
          <changefreq>daily</changefreq>
