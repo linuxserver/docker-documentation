@@ -2,7 +2,7 @@
 
 # Split DNS
 
-Spilt DNS allows you to give different answers to DNS requests for internal and external users, so local requests for your server don't have to go via your router, if has several benefits:
+Spilt DNS allows you to give different answers to DNS requests for internal and external users, so local requests for your server don't have to go via your router, it has several benefits:
 
 - Faster due to not having to go through the router.
 - The reverse proxy can easily differentiate between internal and external requests with allow/deny since there's no NAT.
