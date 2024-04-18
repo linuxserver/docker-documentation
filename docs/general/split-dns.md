@@ -2,17 +2,17 @@
 
 # Split DNS
 
-Split DNS allows you to rewrite DNS requests from `*.domain.com` directly to your server instead of having to go through the router, it has several benefits:
+Spilt DNS allows you to give different answers to DNS requests for internal and external users, so local requests for your server don't have to go via your router, if has several benefits:
 
 - Faster due to not having to go through the router.
 - The reverse proxy can easily differentiate between internal and external requests with allow/deny since there's no NAT.
-- Things still works when the internet is down.
-- Things still works when the upstream DNS isn't available.
+- Things still work when the internet is down.
+- Things still work when upstream DNS (Your ISP/Google/OpenDNS/etc) isn't available.
 
 ## Requirements
 
-- An internal reverse proxy that **listens on port 443**.
-- An internal DNS that supports rewrites.
+- An internal reverse proxy that **listens on port 80/443**.
+- An internal DNS resolver that supports rewrites or hosting full DNS zones.
 
 ## Popular DNS Configurations
 
@@ -58,8 +58,12 @@ For example, you can exclude `wg.domain.com` on AdguardHome by creating another 
 
 ## NAT Reflection / NAT Loopback / Hairpin NAT
 
-NAT reflection is a setting on specific routers that can be enabled via a checkbox, it allows LAN devices to use the external IP and get port-forwarded without being NAT'd.
+NAT reflection is an alternative option to split DNS, which can provide some but not all of the same same benefits, it allows LAN devices to use the external IP and get port-forwarded without being NAT'd. 
+
+It's usually a setting on specific routers that can be enabled via a checkbox.
+
+Note that using cloudflare proxy (the orange cloud) breaks it.
 
 ## Neither
 
-Without split DNS or NAT reflection traffic goes out of the external IP and gets NAT'd, often getting blocked by the router since external traffic with a LAN IP source is seen as malicious.
+Without split DNS or NAT reflection traffic goes out of your router to reach your external IP and then gets NAT'd back in, often getting blocked by the router since external traffic with a LAN IP source is seen as malicious.
