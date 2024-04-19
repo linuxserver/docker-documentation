@@ -62,7 +62,7 @@ NAT reflection is an alternative option to split DNS, which can provide some but
 
 It's usually a setting on specific routers that can be enabled via a checkbox.
 
-Note that using cloudflare proxy (the orange cloud) breaks it.
+Note that using Cloudflare proxy (the orange cloud) or Cloudflare tunnels will bypass it and still send traffic externally.
 
 ## Neither
 
