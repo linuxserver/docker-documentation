@@ -88,3 +88,4 @@ plugins:
         images/docker-unifi-controller.md: deprecated_images/docker-unifi-controller.md
         images/dillinger.md: deprecated_images/dillinger.md
         images/endlessh.md: deprecated_images/endlessh.md
+        plex-meta-manager.md: deprecated/plex-meta-manager.md
