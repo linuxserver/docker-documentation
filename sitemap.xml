@@ -216,6 +216,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/deprecated_images/docker-plex-meta-manager/</loc>
+         <lastmod>2024-04-23</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/deprecated_images/docker-pydio/</loc>
          <lastmod>2024-04-23</lastmod>
          <changefreq>daily</changefreq>
@@ -997,11 +1002,6 @@
     </url>
     <url>
          <loc>https://docs.linuxserver.io/images/docker-piwigo/</loc>
-         <lastmod>2024-04-23</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.linuxserver.io/images/docker-plex-meta-manager/</loc>
          <lastmod>2024-04-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
