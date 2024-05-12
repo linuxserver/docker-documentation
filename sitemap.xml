@@ -176,11 +176,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://docs.linuxserver.io/deprecated_images/docker-nzbget/</loc>
-         <lastmod>2024-05-12</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://docs.linuxserver.io/deprecated_images/docker-openvpn-as/</loc>
          <lastmod>2024-05-12</lastmod>
          <changefreq>daily</changefreq>
