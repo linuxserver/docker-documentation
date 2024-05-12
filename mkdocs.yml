@@ -89,3 +89,4 @@ plugins:
         images/docker-dillinger.md: deprecated_images/docker-dillinger.md
         images/docker-endlessh.md: deprecated_images/docker-endlessh.md
         images/docker-plex-meta-manager.md: deprecated_images/docker-plex-meta-manager.md
+        deprecated_images/docker-nzbget.md: images/docker-nzbget.md
