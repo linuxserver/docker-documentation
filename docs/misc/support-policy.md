@@ -64,9 +64,11 @@ The following configurations are entirely unsupported and you are unlikely to be
 The following configurations don't fit nicely into any single category because "it depends". They're not formally supported but we may provide reasonable endeavours support in some cases.
 
 * Running our containers with a root (`0`) PUID or PGID
+* Running our containers with a read-only container filesystem
 
 ## Change History
 
+* 2024-06-13 - Add read-only running
 * 2024-02-13 - Add Weird Exceptions section
 * 2024-02-05 - Add ipvlan/macvlan networks
 * 2023-10-03 - Initial release
