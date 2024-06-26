@@ -30,7 +30,7 @@ Will mount its filesystem as read-only, and that cannot then be changed without 
 
 Our images use s6 as a supervisor and that needs to be able to write its service files to `/run`; many applications expect to be able to write to their working directory, changing UIDs and GIDs requires writing to `/etc/passwd` & `/etc/group`, installing new packages requires writing to numerous locations, and as discussed above, mods need to be extracted to the container filesystem. In short, there are some heavy limitations around read-only operation of our images:
 
-* The PUID & PGID variables will not have any effect, the container will run applications as 911:911, and will apply those permissions to `/config`.
+* The PUID & PGID variables will not have any effect, the container will run applications with a UID of 911, and will apply those permissions to `/config`.
 * The UMASK variable will not have any effect
 * Docker Mods will not be run
 * Custom Services will not be run
