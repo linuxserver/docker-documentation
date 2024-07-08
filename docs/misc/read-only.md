@@ -13,7 +13,7 @@ Docker provides the capability to run containers with a read-only internal files
 
 ## Why?
 
-From a security perspective, preventing any changes to the container filesystem is a good idea. It means if someone somehow compromises the container they can't install new packages, change permissions, create new user accounts, copy executables, or do anything else persistent outside of your host-mounted paths. Now in the case of the vast majority of our images, if a malicious actor were to compromise the running application they wouldn't have root access anyway, which already limits their ability to act, but if chained with a Local Privilege Escalation (LPE) vulnerability for example, they could acquire it. Running read-only isn't a security silver bullet (they don't exist) but it is an additional mitigation step you can take.
+From a security perspective, preventing any changes to the container filesystem is a good idea. It means if someone somehow compromises the container they can't install new packages, change permissions, create new user accounts, inject executables, or do anything else persistent outside of your host-mounted paths. Now in the case of the vast majority of our images, if a malicious actor were to compromise the running application they wouldn't have root access anyway, which already limits their ability to act, but if chained with a Local Privilege Escalation (LPE) vulnerability for example, they could acquire it. Running read-only isn't a security silver bullet (they don't exist) but it is an additional mitigation step you can take.
 
 ## How?
 
