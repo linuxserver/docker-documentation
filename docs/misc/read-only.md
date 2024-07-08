@@ -37,6 +37,8 @@ Our images use s6 as a supervisor and that needs to be able to write its service
 * Custom Scripts will be limited in their functionality
 * Any application that requires writing to its working directory will be unable to run read-only
 
+For all of these reasons, we *do not* advise switching existing container instances to be Read-Only without careful testing.
+
 In addition, in order to successfully run read-only, you must also mount `/run` to tmpfs with the `exec` flag set. This can be achieved with either `--tmpfs /run:exec` or:
 
 ```yaml
