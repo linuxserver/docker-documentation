@@ -8,16 +8,15 @@
 </span><span id=__span-0-8><a id=__codelineno-0-8 name=__codelineno-0-8 href=#__codelineno-0-8></a><span class=s2>&quot;</span><span class=si>${</span><span class=nv>mongo_init_bin</span><span class=si>}</span><span class=s2>&quot;</span><span class=w> </span><span class=s>&lt;&lt;EOF</span>
 </span><span id=__span-0-9><a id=__codelineno-0-9 name=__codelineno-0-9 href=#__codelineno-0-9></a><span class=s>use ${MONGO_AUTHSOURCE}</span>
 </span><span id=__span-0-10><a id=__codelineno-0-10 name=__codelineno-0-10 href=#__codelineno-0-10></a><span class=s>db.auth(&quot;${MONGO_INITDB_ROOT_USERNAME}&quot;, &quot;${MONGO_INITDB_ROOT_PASSWORD}&quot;)</span>
-</span><span id=__span-0-11><a id=__codelineno-0-11 name=__codelineno-0-11 href=#__codelineno-0-11></a><span class=s>use ${MONGO_DBNAME}</span>
-</span><span id=__span-0-12><a id=__codelineno-0-12 name=__codelineno-0-12 href=#__codelineno-0-12></a><span class=s>db.createUser({</span>
-</span><span id=__span-0-13><a id=__codelineno-0-13 name=__codelineno-0-13 href=#__codelineno-0-13></a><span class=s>  user: &quot;${MONGO_USER}&quot;,</span>
-</span><span id=__span-0-14><a id=__codelineno-0-14 name=__codelineno-0-14 href=#__codelineno-0-14></a><span class=s>  pwd: &quot;${MONGO_PASS}&quot;,</span>
-</span><span id=__span-0-15><a id=__codelineno-0-15 name=__codelineno-0-15 href=#__codelineno-0-15></a><span class=s>  roles: [</span>
-</span><span id=__span-0-16><a id=__codelineno-0-16 name=__codelineno-0-16 href=#__codelineno-0-16></a><span class=s>    { db: &quot;${MONGO_DBNAME}&quot;, role: &quot;dbOwner&quot; },</span>
-</span><span id=__span-0-17><a id=__codelineno-0-17 name=__codelineno-0-17 href=#__codelineno-0-17></a><span class=s>    { db: &quot;${MONGO_DBNAME}_stat&quot;, role: &quot;dbOwner&quot; }</span>
-</span><span id=__span-0-18><a id=__codelineno-0-18 name=__codelineno-0-18 href=#__codelineno-0-18></a><span class=s>  ]</span>
-</span><span id=__span-0-19><a id=__codelineno-0-19 name=__codelineno-0-19 href=#__codelineno-0-19></a><span class=s>})</span>
-</span><span id=__span-0-20><a id=__codelineno-0-20 name=__codelineno-0-20 href=#__codelineno-0-20></a><span class=s>EOF</span>
+</span><span id=__span-0-11><a id=__codelineno-0-11 name=__codelineno-0-11 href=#__codelineno-0-11></a><span class=s>db.createUser({</span>
+</span><span id=__span-0-12><a id=__codelineno-0-12 name=__codelineno-0-12 href=#__codelineno-0-12></a><span class=s>  user: &quot;${MONGO_USER}&quot;,</span>
+</span><span id=__span-0-13><a id=__codelineno-0-13 name=__codelineno-0-13 href=#__codelineno-0-13></a><span class=s>  pwd: &quot;${MONGO_PASS}&quot;,</span>
+</span><span id=__span-0-14><a id=__codelineno-0-14 name=__codelineno-0-14 href=#__codelineno-0-14></a><span class=s>  roles: [</span>
+</span><span id=__span-0-15><a id=__codelineno-0-15 name=__codelineno-0-15 href=#__codelineno-0-15></a><span class=s>    { db: &quot;${MONGO_DBNAME}&quot;, role: &quot;dbOwner&quot; },</span>
+</span><span id=__span-0-16><a id=__codelineno-0-16 name=__codelineno-0-16 href=#__codelineno-0-16></a><span class=s>    { db: &quot;${MONGO_DBNAME}_stat&quot;, role: &quot;dbOwner&quot; }</span>
+</span><span id=__span-0-17><a id=__codelineno-0-17 name=__codelineno-0-17 href=#__codelineno-0-17></a><span class=s>  ]</span>
+</span><span id=__span-0-18><a id=__codelineno-0-18 name=__codelineno-0-18 href=#__codelineno-0-18></a><span class=s>})</span>
+</span><span id=__span-0-19><a id=__codelineno-0-19 name=__codelineno-0-19 href=#__codelineno-0-19></a><span class=s>EOF</span>
 </span></code></pre></div> <p>Mount the sh file into your <em>mongodb</em> container, and make sure to set the env vars below with the same values you supplied to the Unifi container.</p> <p>For example: <div class="language-yaml highlight"><pre><span></span><code><span id=__span-1-1><a id=__codelineno-1-1 name=__codelineno-1-1 href=#__codelineno-1-1></a><span class=w>  </span><span class=nt>unifi-db</span><span class=p>:</span>
 </span><span id=__span-1-2><a id=__codelineno-1-2 name=__codelineno-1-2 href=#__codelineno-1-2></a><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">docker.io/mongo:&lt;version tag&gt;</span>
 </span><span id=__span-1-3><a id=__codelineno-1-3 name=__codelineno-1-3 href=#__codelineno-1-3></a><span class=w>    </span><span class=nt>container_name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">unifi-db</span>
