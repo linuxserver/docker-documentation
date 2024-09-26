@@ -1251,7 +1251,6 @@ Here are a few troubleshooting steps:
                   If only 127.0.0.1 or another unrelated IP is listened there, this could be the issue
             - Check what protocol and port the application actually listens at.
               Are your sure you've used the right values?
-  `
 
 ## Final Thoughts
 
