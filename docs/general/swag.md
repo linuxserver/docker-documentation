@@ -1228,6 +1228,29 @@ This error means that nginx can't talk to the application. There is a few common
 
     - Delete it, and restart the container to have it regenerate
     - Manually set the content(we wont override it)
+ 
+Here are a few troubleshooting steps:
+
+- Try to ping the container from the swag container:
+    `docker exec swag ping <container name>` (If your swag container isn't named `swag`, replace `swag` with the swag container's name).
+    - If this doesn't work:
+        - Check if the container is actually running
+        - check if both swag and the container in question are on the same container network.
+        - try to find the ip of the container on the network shared with swag (e.g. `docker inspect <container name>`) and try to ping that from swag (`docker exec swag ping <container ip>`)
+          - If this succeeds, you have an issue with name resolution inside docker networks
+          - If this fails, you either have an issue with docker networking in general or the containers don't share a common network.
+    - If this works:
+        - Try to fetch the web interface from the swag container:
+          `docker exec swag curl http(s)://<container name>:<application port>` (make sure that this matches whatever is in your proxy conf)
+          - If this works: Check your proxy conf again. Probably something (protocol, container name, port) is wrong there
+          - If this doesn't work:
+            - Check the startup log of the application (`docker logs <container name>`).
+                - Did it start sucessfully/Did it fail for some reason?
+                - Many applications print what endpoint they are running on there. Check if this matches the values in your proxy conf and the ones used for curl
+                - Check if the interface the application listens on is correct. Usually this should be 0.0.0.0, but the ip the container has on the network shared with swag should also be fine.
+                  If only 127.0.0.1 or another unrelated IP is listened there, this could be the issue
+            - Check what protocol and port the application actually listens at.
+              Are your sure you've used the right values?
 
 ## Final Thoughts
 
