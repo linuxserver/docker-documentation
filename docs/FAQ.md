@@ -217,3 +217,13 @@ Then on our `foo` service we tell it to use this rule, as well as telling Traefi
     - traefik.http.services.foo.loadbalancer.serverstransport=ignorecert
     - traefik.http.services.foo.loadbalancer.server.scheme=https
 ```
+
+## Why does the LinuxServer.io-recommends to use docker-compose over portainer? {#portainer}
+
+Portainer has many issues which make it hard for us to support, such as:
+- Advanced settings are hidden and some aren't available at all
+- Incorrect order of source and target of mounts
+- Inconsistent case-sensitivity
+- No automatically created custom networks for inter-container communication
+- Inconsistent compose implementations on different architectures
+- Incorrectly applying environment variables on container upgrades
