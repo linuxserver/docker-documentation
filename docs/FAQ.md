@@ -218,7 +218,7 @@ Then on our `foo` service we tell it to use this rule, as well as telling Traefi
     - traefik.http.services.foo.loadbalancer.server.scheme=https
 ```
 
-## Why does the LinuxServer.io-recommends to use docker-compose over portainer? {#portainer}
+## Why does LinuxServer.io recommend to use docker-compose over Portainer? {#portainer}
 
 Portainer has many issues which make it hard for us to support, such as:
 - Advanced settings are hidden and some aren't available at all
