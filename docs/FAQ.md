@@ -221,6 +221,7 @@ Then on our `foo` service we tell it to use this rule, as well as telling Traefi
 ## Why does LinuxServer.io recommend to use docker-compose over Portainer? {#portainer}
 
 Portainer has many issues which make it hard for us to support, such as:
+
 - Advanced settings are hidden and some aren't available at all
 - Incorrect order of source and target of mounts
 - Inconsistent case-sensitivity
