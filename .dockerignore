@@ -1,0 +1,6 @@
+.cache
+.github
+.vscode
+.editorconfig
+.markdownlint.yaml
+Dockerfile

@@ -33,6 +33,15 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
+      - name: Install d2
+        run: |
+          mkdir -p /tmp/d2
+          D2_VERSION=$(curl -s https://api.github.com/repos/terrastruct/d2/releases/latest | awk '/tag_name/{print $4;exit}' FS='[""]')
+          curl -o \
+            /tmp/d2.tar.gz -L \
+            "https://github.com/terrastruct/d2/releases/download/${D2_VERSION}/d2-${D2_VERSION}-linux-amd64.tar.gz"
+          tar xzf /tmp/d2.tar.gz -C /tmp/d2 --strip-components=1
+          cp /tmp/d2/bin/d2 /usr/local/bin
       - name: Install dependencies
         run: pip install -r docs/requirements.txt
       - name: Build documentation
@@ -65,6 +74,15 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
+      - name: Install d2
+        run: |
+          mkdir -p /tmp/d2
+          D2_VERSION=$(curl -s https://api.github.com/repos/terrastruct/d2/releases/latest | awk '/tag_name/{print $4;exit}' FS='[""]')
+          curl -o \
+            /tmp/d2.tar.gz -L \
+            "https://github.com/terrastruct/d2/releases/download/${D2_VERSION}/d2-${D2_VERSION}-linux-amd64.tar.gz"
+          tar xzf /tmp/d2.tar.gz -C /tmp/d2 --strip-components=1
+          cp /tmp/d2/bin/d2 /usr/local/bin
       - name: Install dependencies
         run: pip install -r docs/requirements.txt
       - name: Deploy to GitHub Pages
