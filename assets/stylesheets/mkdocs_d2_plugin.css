@@ -1,0 +1,11 @@
+.d2 a:hover {
+    text-decoration: underline
+}
+
+[data-md-color-scheme="default"] div.d2-dark {
+    display: none;
+}
+
+[data-md-color-scheme="slate"] div.d2-light {
+    display: none;
+}
