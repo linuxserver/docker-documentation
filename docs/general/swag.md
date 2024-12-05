@@ -32,7 +32,6 @@ docker create \
   -e VALIDATION=http \
   -e CERTPROVIDER= `#optional` \
   -e DNSPLUGIN=cloudflare `#optional` \
-  -e DUCKDNSTOKEN=<token> `#optional` \
   -e EMAIL=<e-mail> `#optional` \
   -e ONLY_SUBDOMAINS=false `#optional` \
   -e EXTRA_DOMAINS=<extradomains> `#optional` \
@@ -66,7 +65,6 @@ services:
       - VALIDATION=http
       - CERTPROVIDER= #optional
       - DNSPLUGIN=cloudflare #optional
-      - DUCKDNSTOKEN=<token> #optional
       - EMAIL=<e-mail> #optional
       - ONLY_SUBDOMAINS=false #optional
       - EXTRA_DOMAINS=<extradomains> #optional
@@ -81,20 +79,14 @@ services:
 
 ### Authorization method
 
-Our image currently supports three different methods to validate domain ownership:
+Our image currently supports two different methods to validate domain ownership:
 
 - **http:**
     - Let's Encrypt (acme) server connects to domain on port 80
-    - Can be owned domain or a dynamic dns address
 - **dns:**
     - Let's Encrypt (acme) server connects to dns provider
     - Api credentials and settings entered into `ini` files under `/config/dns-conf/`
     - Supports wildcard certs
-    - Need to have own domain name (non-free)
-- **duckdns:**
-    - Let's Encrypt (acme) server connects to DuckDNS
-    - Supports wildcard certs (only for the sub-subdomains)
-    - No need for own domain (free)
 
 The validation is performed when the container is started for the first time. Nginx won't be up until ssl certs are successfully generated.
 
@@ -123,9 +115,9 @@ Port 80 forwarding is required for `http` validation only. Same rule as above ap
 
 SWAG container happily runs with bridge networking. However, the default bridge network in docker does not allow containers to connect each other via container names used as dns hostnames. Therefore, it is recommended to first create a [user defined bridge network](https://docs.docker.com/network/bridge/) and attach the containers to that network.
 
-If you are using docker-compose, and your services are on the same yaml, you do not need to do this, because docker-compose automatically creates a user defined bridge network and attaches each container to it as long as no other networking option is defined in their config.
+If you are using docker compose, and your services are on the same yaml, you do not need to do this, because docker compose automatically creates a user defined bridge network and attaches each container to it as long as no other networking option is defined in their config.
 
-For the below examples, we will use a network named `lsio`. We can create it via `docker network create lsio`. After that, any container that is created with `--net=lsio` can ping each other by container name as dns hostname.
+For the below examples, we will use a network named `lsio` (only for the cli created containers). We can create it via `docker network create lsio`. After that, any container that is created with `--net=lsio` can ping each other by container name as dns hostname.
 
 !!! info
     Keep in mind that dns hostnames are meant to be case-insensitive, however container names are case-sensitive. For container names to be used as dns hostnames in nginx, they should be all lowercase as nginx will convert them to all lowercase before trying to resolve.
@@ -274,8 +266,8 @@ docker create \
   -e TZ=Europe/London \
   -e URL=linuxserver-test.duckdns.org \
   -e SUBDOMAINS=wildcard \
-  -e VALIDATION=duckdns \
-  -e DUCKDNSTOKEN=97654867496t0877648659765854 \
+  -e VALIDATION=dns \
+  -e DNSPLUGIN=duckdns \
   -p 443:443 \
   -p 80:80 \
   -v /home/aptalca/appdata/swag:/config \
@@ -302,8 +294,8 @@ services:
       - TZ=Europe/London
       - URL=linuxserver-test.duckdns.org
       - SUBDOMAINS=wildcard
-      - VALIDATION=duckdns
-      - DUCKDNSTOKEN=97654867496t0877648659765854
+      - VALIDATION=dns
+      - DNSPLUGIN=duckdns
     volumes:
       - /home/aptalca/appdata/swag:/config
     ports:
@@ -314,9 +306,9 @@ services:
 
 Then we'll fire up the container via `docker-compose up -d`
 
-After the container is started, we'll watch the logs with `docker logs swag -f`. We'll see some initialization and then we will see the validation steps. After all the steps, it should print `Server ready` in the logs.
+After the container is started, we'll watch the logs with `docker logs swag -f`. After some init steps, we'll notice that the container will give an error during validation due to wrong credentials. That's because we didn't enter the correct credentials for the Cloudflare API yet. We can browse to the location `/config/dns-conf` which is mapped from the host location (according to above settings) `/home/aptalca/appdata/swag/dns-conf/` and edit the correct ini file for our dns provider. For DuckDNS, we'll enter our API token. The API token can be retrieved from the DuckDNS admin interface.
 
-Now we can access the webserver by browsing to `https://www.linuxserver-test.duckdns.org`.
+Once we enter the credentials into the ini file, we'll restart the docker container via `docker restart swag` and again watch the logs. After successful validation, we should see the notice `Server ready` and our webserver should be up and accessible at `https://www.linuxserver-test.duckdns.org`.
 
 !!! warning
     Due to a DuckDNS limitation, our cert only covers the wildcard subdomains, but it doesn't cover the main url. So if we try to access `https://linuxserver-test.duckdns.org`, we'll see a browser warning about an invalid ssl cert. But accessing it through the `www` (or `ombi` or any other) subdomain should work fine.
