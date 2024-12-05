@@ -49,12 +49,10 @@ extra:
       link: https://github.com/linuxserver
     - icon: fontawesome/brands/gitlab
       link: https://gitlab.com/linuxserver.io
-    - icon: fontawesome/brands/facebook
-      link: https://www.facebook.com/linuxserver.io
     - icon: fontawesome/brands/mastodon
       link: https://mastodon.linuxserver.io/@linuxserver
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/linuxserverio
+    - icon: fontawesome/brands/bluesky
+      link: https://bsky.app/profile/linuxserver.io
 extra_javascript:
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
   - javascripts/tablesort.js
