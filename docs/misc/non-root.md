@@ -7,6 +7,8 @@
 
 If you run one of our typical images in a standard Docker setup, the container itself will run as `root`. After init we then drop to an unprivileged user, `abc` to run the actual application service(s). We do this because at the time we designed our architecture the alternative - setting a fixed unprivileged user at build time - would have prevented us from offering the range of options that wanted to. While it is now possible to use the `--user` parameter to run any container as an arbitrary user, it hasn't been something we've been able to support before now.
 
+The other approach is to run [Docker itself rootless](https://docs.docker.com/engine/security/rootless/). This creates a separate user and network namespace for your containers that separates them from the host and means that even containers nominally running as `root` don't have root permissions on your host.
+
 ## Why?
 
 Some people take the position that a container running as root *at any point* is an unacceptable security risk. Those people typically misunderstand the attack surface of containers and where the risks actually lie. Having said that, there *are* some risks with having containers running as root; generally, a better solution to running every container as an unprivileged user is to run Docker itself rootless, but that's not always desirable. In these situations, being able to run a single container as a unprivileged user has its benefits.
