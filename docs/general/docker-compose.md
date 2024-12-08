@@ -37,7 +37,6 @@ As v2 runs as a plugin instead of a standalone binary, it is invoked by `docker 
 Here's a basic example for deploying a Linuxserver container with docker compose:
 
 ```yaml
-version: "2.1"
 services:
   heimdall:
     image: linuxserver/heimdall
@@ -67,7 +66,6 @@ You can have multiple services managed by a single compose yaml. Copy the conten
 Let's say you have the following in a yaml file named `compose.yml`:
 
 ```yaml
-version: "2.1"
 services:
   heimdall:
     image: linuxserver/heimdall
