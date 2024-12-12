@@ -57,7 +57,6 @@ The following configurations are entirely unsupported and we will not provide he
 
 The following configurations are entirely unsupported and you are unlikely to be able to get them to work at all, or experience serious issues if you do:
 
-* Use of the `user` directive to run containers as a custom UID/GID
 * Use of a custom `init` for Docker
 * Overriding container entrypoints
 
@@ -67,9 +66,11 @@ The following configurations don't fit nicely into any single category because "
 
 * Running our containers with a root (`0`) PUID or PGID
 * Running our containers with a read-only container filesystem. Please [read the docs](https://docs.linuxserver.io/misc/read-only/).
+* Use of the `user` directive to run containers as a custom UID/GID. Please [read the docs](https://docs.linuxserver.io/misc/non-root/).
 
 ## Change History
 
+* 2024-12-05 - Move non-root users to Weird Exceptions
 * 2024-06-13 - Add read-only running
 * 2024-02-13 - Add Weird Exceptions section
 * 2024-02-05 - Add ipvlan/macvlan networks
