@@ -7,7 +7,7 @@
 
 If you run one of our typical images in a standard Docker setup, the container itself will run as `root`. After init we then drop to an unprivileged user, `abc` to run the actual application service(s). We do this because at the time we designed our architecture the alternative - setting a fixed unprivileged user at build time - would have prevented us from offering the range of options that wanted to. While it is now possible to use the `--user` parameter to run any container as an arbitrary user, it hasn't been something we've been able to support before now.
 
-The other approach is to run [Docker itself rootless](https://docs.docker.com/engine/security/rootless/). This creates a separate user and network namespace for your containers that separates them from the host and means that even containers nominally running as `root` don't have root permissions on your host. Running a container as a non-root user and running it rootless are **not** the same, but are commonly conflated.
+The other approach is to run [Docker itself rootless](https://docs.docker.com/engine/security/rootless/). This creates a separate user and network namespace for your containers and means that even containers nominally running as `root` don't have root permissions on your host. Running a container as a non-root user and running it rootless are **not** the same, but are commonly conflated.
 
 ## Why?
 
@@ -30,7 +30,7 @@ Will run the container as that user, and that cannot then be changed without rec
 
 Our images use s6 as a supervisor and that needs to be able to write its service files to `/run`; many applications expect to be able to write to their working directory, changing UIDs and GIDs requires writing to `/etc/passwd` & `/etc/group`, installing new packages requires writing to numerous locations, and mods need to be extracted to the container filesystem. In short, there are some heavy limitations around operation of our images with a non-root user:
 
-* The PUID & PGID variables will not have any effect, the container will instead run applications with the UID & GID of the user you have specified
+* The PUID & PGID variables will not have any effect, the container will instead run applications with the UID & GID of the user you have specified via the `--user` parameter
 * You will need to manually manage the permissions of any mounted volumes or paths
 * Docker Mods will not be run
 * Custom Services will not be run
@@ -43,16 +43,16 @@ For example:
 ```yaml
 services:
   sonarr:
-    image: lscr.io/linuxserver/sonarr:latest
-    container_name: sonarr
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
     environment:
       - TZ=Europe/London
     volumes:
-      - /path/to/sonarr/data:/config
-      - /path/to/tvseries:/tv
+      - /path/to/radarr/data:/config
+      - /path/to/movies:/movies
       - /path/to/downloadclient-downloads:/downloads
     ports:
-      - 8989:8989
+      - 7878:7878
     restart: unless-stopped
     user: 1000:1000
 ```
