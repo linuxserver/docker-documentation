@@ -35,6 +35,7 @@ Our images use s6 as a supervisor and that needs to be able to write its service
 * Docker Mods will not be run
 * Custom Services will not be run
 * Custom Scripts will be limited in their functionality
+* You cannot set `no-new-privileges=true` as it will prevent s6 from being able to start the init process
 
 For all of these reasons, we recommend you *do not* switch existing container instances to run with a non-root user without careful testing.
 
