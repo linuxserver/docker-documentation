@@ -93,3 +93,4 @@ plugins:
         images/docker-endlessh.md: deprecated_images/docker-endlessh.md
         images/docker-plex-meta-manager.md: deprecated_images/docker-plex-meta-manager.md
         deprecated_images/docker-nzbget.md: images/docker-nzbget.md
+        images/docker-booksonic-air.md: deprecated_images/docker-booksonic-air.md
