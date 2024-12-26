@@ -94,3 +94,4 @@ plugins:
         images/docker-plex-meta-manager.md: deprecated_images/docker-plex-meta-manager.md
         deprecated_images/docker-nzbget.md: images/docker-nzbget.md
         images/docker-booksonic-air.md: deprecated_images/docker-booksonic-air.md
+        images/docker-quassel-core.md: deprecated_images/docker-quassel-core.md
