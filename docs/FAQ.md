@@ -228,3 +228,64 @@ Portainer has many issues which make it hard for us to support, such as:
 - No automatically created custom networks for inter-container communication
 - Inconsistent compose implementations on different architectures
 - Incorrectly applying environment variables on container upgrades
+
+## Inexplicable issues when running ubuntu {#snap}
+
+Many users have been facing issues that are simply inexplicable. The logs show no problems, the compose is fine, eventually it turns out they've installed the SNAP version of docker which is the source of the issues.
+
+### Symptoms
+
+It's difficult to identify the symptoms, but if you are running ubuntu and believe you have done everything correctly, check for SNAP docker.
+
+### Resolution
+
+First the user must be on an appropriate version of ubuntu to face this issue (as far as I am aware)
+
+`lsb_release -a` would result in something similar to the below output
+```bash
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 22.04.3 LTS
+Release:        22.04
+Codename:       jammy
+```
+
+`snap list | grep docker` would result in something similar to the below output
+```bash
+docker  20.10.24       2904   latest/stable  canonical**  -
+```
+
+This means the snap version of docker is installed. Unfortunately, even if the user installed docker from the proper repo, this snap version will coexist AND be preferred. They will need to remove it, as shown below.
+
+```bash
+oliver@home-server:~/plexDockerImage$ sudo snap remove docker
+[sudo] password for oliver:
+2023-11-15T01:06:26Z INFO Waiting for "snap.docker.dockerd.service" to stop.
+docker removed
+oliver@home-server:~/plexDockerImage$
+```
+
+!!! info
+    Unless automatic snapshots are disabled, a snapshot of all data for the snap is saved upon removal, which is then available for future restoration with snap restore. The --purge option disables automatically creating snapshots.
+
+Following this, confirm nothing related to snap still shows.
+```bash
+~$ sudo whereis docker
+docker: /usr/libexec/docker
+```
+above is what we might want to see, below is how it would look if both official AND snap are installed. Seeing the snap stuff removed but the official there is OK.
+```bash
+~$ sudo whereis docker
+
+docker: /usr/bin/docker /etc/docker /usr/libexec/docker /snap/bin/docker.machine /snap/bin/docker.help /snap/bin/docker.compose /snap/bin/docker /usr/share/man/man1/docker.1.gz
+```
+As you can see in the second one, multiple versions can coexist which is a big tshoot problem. 
+
+Once this is complete, if the expected version isn't present, simply follow [docker install on ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+
+When they finish, running `docker` commands may result in `-bash: /snap/bin/docker: No such file or directory` if this is the case, this is simply a shell patch issue, they can launch a new shell or simply input `hash -r` which should resolve the problem. Version info at the time of this writing should be 
+```bash
+ ~ # docker --version && docker compose version
+Docker version 24.0.7, build afdd53b
+Docker Compose version v2.21.0
+```
