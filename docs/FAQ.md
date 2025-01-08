@@ -265,6 +265,9 @@ docker removed
 oliver@home-server:~/plexDockerImage$
 ```
 
+!!! info
+    Unless automatic snapshots are disabled, a snapshot of all data for the snap is saved upon removal, which is then available for future restoration with snap restore. The --purge option disables automatically creating snapshots.
+
 Following this, confirm nothing related to snap still shows.
 ```bash
 ~$ sudo whereis docker
