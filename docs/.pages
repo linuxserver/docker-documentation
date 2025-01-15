@@ -2,6 +2,7 @@ nav:
     - Introduction: index.md
     - How to: general
     - Container Images:
+        - Images by Category: images-by-category.md
         - Images: images
         - Deprecated Images: deprecated_images
     - Frequently Asked Questions: FAQ.md

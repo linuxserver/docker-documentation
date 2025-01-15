@@ -86,13 +86,3 @@ plugins:
   - redirects:
       redirect_maps:
         'faq.md': 'FAQ.md'
-        general/awesome-lsio.md: misc/awesome-lsio.md
-        images/docker-readme-sync.md: deprecated_images/docker-readme-sync.md
-        images/docker-unifi-controller.md: deprecated_images/docker-unifi-controller.md
-        images/docker-dillinger.md: deprecated_images/docker-dillinger.md
-        images/docker-endlessh.md: deprecated_images/docker-endlessh.md
-        images/docker-plex-meta-manager.md: deprecated_images/docker-plex-meta-manager.md
-        deprecated_images/docker-nzbget.md: images/docker-nzbget.md
-        images/docker-booksonic-air.md: deprecated_images/docker-booksonic-air.md
-        images/docker-quassel-core.md: deprecated_images/docker-quassel-core.md
-        images/docker-quassel-web.md: deprecated_images/docker-quassel-web.md
