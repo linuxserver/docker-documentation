@@ -86,7 +86,8 @@ plugins:
   - redirects:
       redirect_maps:
         'faq.md': 'FAQ.md'
-        general/awesome-lsio.md: misc/awesome-lsio.md
+        general/awesome-lsio.md: images-by-category.md
+        misc/awesome-lsio.md: images-by-category.md
         images/docker-readme-sync.md: deprecated_images/docker-readme-sync.md
         images/docker-unifi-controller.md: deprecated_images/docker-unifi-controller.md
         images/docker-dillinger.md: deprecated_images/docker-dillinger.md
