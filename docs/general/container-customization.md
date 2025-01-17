@@ -12,14 +12,16 @@ Behind the scenes we have been working to provide the community with the ability
 
 All of the functionality described in this post is live on every one of the containers we currently maintain:
 
-<https://fleet.linuxserver.io>
+[https://fleet.linuxserver.io](https://fleet.linuxserver.io)
 
 !!! note
-    While the following support has been added to our containers, we will not give support to any custom scripts, services, or mods. If you are having an issue with one of our containers, be sure to disable all custom scripts/services/mods before seeking support.
+    While the following support has been added to our containers, we will not provide formal support to any custom scripts, services, or mods. If you are having an issue with one of our containers, be sure to disable all custom scripts/services/mods before seeking support. See our [Support Policy](https://linuxserver.io/supportpolicy) for more details.
 
 ## Custom Scripts
 
-The first part of this update is the support for a user's custom scripts to run at startup. In every container, simply create a new folder located at `/custom-cont-init.d` and add any scripts you want. These scripts can contain logic for installing packages, copying over custom files to other locations, or installing plugins.
+The first part of this update is the support for a user's custom scripts to run at startup. In every container, simply create a new folder located at `/custom-cont-init.d` and add any scripts you want. These scripts can contain logic for installing packages, copying over custom files to other locations, or installing plugins. All custom scripts must be marked as executable, or they will be ignored, and should be owned by `root` and not the user running the container.
+
+Custom Scripts run *after* built-in and any applied mod init steps but *before* any services start.
 
 Because this location is outside of `/config` you will need to mount it like any other volume if you wish to make use of it. e.g. `-v /home/foo/appdata/my-custom-files:/custom-cont-init.d` if using the Docker CLI or
 
@@ -33,7 +35,7 @@ services:
 
 if using compose. Where possible, to improve security, we recommend mounting them read-only (`:ro`) so that container processes cannot write to the location.
 
-One example use case is our Piwigo container has a plugin that supports video, but requires ffmpeg to be installed. No problem. Add this bad boy into a script file (can be named anything) and you're good to go.
+One example use case is our Piwigo container, which has a plugin that supports video, but requires ffmpeg to be installed. No problem. Add the following into a script file (can be named anything) and you're good to go.
 
 ```shell
 #!/bin/bash
@@ -42,12 +44,14 @@ echo "**** installing ffmpeg ****"
 apk add --no-cache ffmpeg
 ```
 
-!!! note
-    The folder `/custom-cont-init.d` needs to be owned by root! If this is not the case, this folder will be renamed and a new (empty) folder will be created. This is to prevent remote code execution by putting scripts in the aforementioned folder.
-
 ## Custom Services
 
-There might also be a need to run an additional service in a container alongside what we already package. Similarly to the custom scripts, just create a new directory at `/custom-services.d`. The files in this directory should be named after the service they will be running. Similar to with custom scripts you will need to mount this folder like any other volume if you wish to make use of it. e.g. `-v /home/foo/appdata/my-custom-services:/custom-services.d` if using the Docker CLI or
+
+There might also be a need to run an additional service in a container alongside what we already package. Similarly to the custom scripts, just create a new directory at `/custom-services.d`. The files in this directory should be named after the service they will be running.
+
+Custom Services run *after* built-in and any applied mod services and are effectively the last thing to run during container startup.
+
+Similar to with custom scripts you will need to mount this folder like any other volume if you wish to make use of it. e.g. `-v /home/foo/appdata/my-custom-services:/custom-services.d` if using the Docker CLI or
 
 ```yaml
 services:
@@ -59,25 +63,22 @@ services:
 
 if using compose. Where possible, to improve security, we recommend mounting them read-only (`:ro`) so that container processes cannot write to the location.
 
-Running cron in our containers is now as simple as a single file. Drop this script in `/custom-services.d/cron` and it will run automatically in the container:
+Running something like memcached in our containers is now as simple as a single file. Drop this script in `/custom-services.d/memcached` and it will run automatically in the container:
 
-```shell
+```bash
 #!/usr/bin/with-contenv bash
 
-/usr/sbin/crond -f -S -l 0 -c /etc/crontabs
+exec memcached -u abc
 ```
 
 !!! note
-    With this example, you will most likely need to have cron installed via a custom script using the technique in the previous section, and will need to populate the crontab.
-
-!!! note
-    The folder `/custom-services.d` needs to be owned by root! If this is not the case, this folder will be renamed and a new (empty) folder will be created. This is to prevent remote code execution by putting scripts in the aforementioned folder.
+    In most cases you will need to have the application in question installed via a custom script using the technique in the previous section to be able to then run it as a service.
 
 ## Docker Mods
 
 In most cases if you needed to write some kind of custom logic to get a plugin to work or to use some kind of popular external service you will not be the only one that finds this logic useful.
 
-If you would like to publish and support your hard work we provide a system for a user to pass a single environment variable to the container to ingest your custom modifications.
+If you would like to publish and support your hard work, we provide a system for a user to pass a single environment variable to the container to ingest your custom modifications.
 
 We consume Mods from Dockerhub and in order to publish one following our guide, you only need a Github Account and a Dockerhub account. [(Our guide and example code can be found here)](https://github.com/linuxserver/docker-mods)
 
@@ -85,40 +86,43 @@ Essentially it is a system that stashes a tarball of scripts and any other files
 
 This allows community members to publish a relatively static pile of logic that will always be applied to an end user's up to date Linuxserver.io container.
 
-An example of how this logic can be used to greatly expand the functionality of our base containers would be to add VPN support to a Transmission container:
+An example of how this logic can be used to greatly expand the functionality of our base containers would be to add [cloudflared](https://github.com/cloudflare/cloudflared) support to a container:
 
-```shell
-docker create \
-  --name=transmission \
-  --cap-add=NET_ADMIN \
-  -e PUID=1000 \
-  -e PGID=1000 \
-  -e DOCKER_MODS=taisun/config-mods:pia \
-  -e PIAUSER=pmyuser \
-  -e PIAPASS=mypassword \
-  -e PIAENDPOINT="US New York City" \
-  -e TZ=US/Eastern \
-  -p 9091:9091 \
-  -p 51413:51413 \
-  -p 51413:51413/udp \
-  -v path to data:/config \
-  -v path to downloads:/downloads \
-  -v path to watch folder:/watch \
-  --restart unless-stopped \
-  linuxserver/transmission
+```yaml
+  nginx:
+    image: lscr.io/linuxserver/nginx
+    container_name: nginx
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: Europe/London
+      DOCKER_MODS: lscr.io/linuxserver/mods:universal-cloudflared
+      CF_ZONE_ID: zone_id
+      CF_ACCOUNT_ID: acct_id
+      CF_API_TOKEN: token
+      CF_TUNNEL_NAME: example
+      CF_TUNNEL_PASSWORD: pleasedontusethisexamplepassword
+      CF_TUNNEL_CONFIG: |
+        ingress:
+          - hostname: test.example.com
+            service: http://localhost:80
+          - service: http_status:404
+    volumes:
+      - /path/to/appdata/config:/config
+    restart: unless-stopped
 ```
 
-The source code for this mod can be found [here](https://github.com/Taisun-Docker/config-mods/tree/master/pia).
+The source code for this mod can be found [here](https://github.com/linuxserver/docker-mods/tree/universal-cloudflared).
 
 !!! note
-    When pulling in logic from external sources practice caution and trust the sources/community you get them from, as there are extreme security implications to consuming files from sources outside of our control.
+    When pulling in logic from 3rd party sources, practice caution and trust the sources/community you get them from, as there are extreme security implications to consuming files from sources outside our control.
 
 ## We are here to help
 
 If you are interested in writing custom logic and possibly sharing it with the community in the form of a [Docker Mod](https://github.com/linuxserver/docker-mods) we are always available to help you out.
 
-Our [Discord server](https://discord.gg/YWrKVTn) is best for quick direct contact and our [Forum](https://discourse.linuxserver.io/) for a longer running project.
+Our [Discord server](https://linuxserver.io/discord) is best for quick direct contact, and our [Forum](https://discourse.linuxserver.io) for a longer running project.
 
-There is zero barrier to entry for these levels of container customization and you are in complete control.
+There is zero barrier to entry for these levels of container customization, and you are in complete control.
 
 We are looking forward to your next creation.

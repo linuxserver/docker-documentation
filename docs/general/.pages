@@ -1,13 +1,14 @@
 nav:
-    - container-execution.md
     - containers-101.md
-    - running-our-containers.md
+    - container-branding.md
     - container-customization.md
+    - container-execution.md
     - docker-compose.md
+    - fleet.md
+    - how-to-get-support.md
+    - running-our-containers.md
+    - split-dns.md
+    - swag.md
     - understanding-puid-and-pgid.md
     - updating-our-containers.md
     - volumes.md
-    - fleet.md
-    - swag.md
-    - how-to-get-support.md
-    - split-dns.md
