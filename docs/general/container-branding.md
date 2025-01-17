@@ -12,7 +12,7 @@ If you want to add your own branding, when using our base images or a forked dow
 
 On start-up, the base image will automatically load the branding into its init, allowing you to inflict whatever ASCII art you like on your users:
 
-![Custom Container Branding](../assets/images/lsio-branding2.png)
+![Custom Container Branding](../assets/images/lsio-branding3.png)
 
 Hopefully this makes it simpler for everyone to manage the branding of your images when using our bases.
 
