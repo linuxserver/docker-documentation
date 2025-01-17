@@ -122,7 +122,7 @@ Defining the containers running on your server as code is a core tenet of a "Dev
 
 ## Support Requests
 
-If you would like to request support, you can do so on [our discord server](https://discord.gg/linuxserver) or [our forum](https://discourse.linuxserver.io/). When you do so, please provide all the necessary information like the server and platform info, docker container log and the compose yaml.
+If you would like to request support, you can do so on [our discord server](https://linuxserver.io/discord) or [our forum](https://discourse.linuxserver.io/). When you do so, please provide all the necessary information like the server and platform info, docker container log and the compose yaml.
 
 If your compose yaml makes use of .env files, please post an output of `docker compose config` or `docker compose config -f /path/to/compose.yml` for the entire yaml, or `docker compose config <service name>` for a single service, as it will automatically replace the environment variables with their actual values.
 

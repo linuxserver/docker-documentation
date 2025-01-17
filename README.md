@@ -8,7 +8,7 @@ The team resides primarily in our Discord server. We also have a forum if chat i
 
 | Where | Link |
 | :--- | :--- |
-| Discord | [https://discord.gg/YWrKVTn](https://discord.gg/YWrKVTn) |
+| Discord | [https://linuxserver.io/discord](https://linuxserver.io/discord) |
 | Forum | [https://discourse.linuxserver.io](https://discourse.linuxserver.io) |
 
 For those interested in our CI environment via Jenkins: [https://ci.linuxserver.io/](https://ci.linuxserver.io/)

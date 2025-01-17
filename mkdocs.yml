@@ -42,7 +42,7 @@ extra:
     - icon: fontawesome/solid/otter
       link: https://linuxserver.io
     - icon: fontawesome/brands/discord
-      link: https://discord.gg/YWrKVTn
+      link: https://linuxserver.io/discord
     - icon: fontawesome/brands/discourse
       link: https://discourse.linuxserver.io
     - icon: fontawesome/brands/github
