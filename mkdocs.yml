@@ -97,3 +97,4 @@ plugins:
         images/docker-booksonic-air.md: deprecated_images/docker-booksonic-air.md
         images/docker-quassel-core.md: deprecated_images/docker-quassel-core.md
         images/docker-quassel-web.md: deprecated_images/docker-quassel-web.md
+        images/docker-daapd.md: deprecated_images/docker-daapd.md
