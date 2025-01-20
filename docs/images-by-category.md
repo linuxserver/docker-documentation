@@ -125,9 +125,9 @@
 | Container | Description |
 | --------- | ----------- |
 | [fleet](https://github.com/linuxserver/docker-fleet/) | [fleet](https://github.com/linuxserver/fleet) provides an online web interface which displays a set of maintained images from one or more owned repositories. |
-| [modmanager](https://github.com/linuxserver/docker-modmanager/) | No description |
-| [qemu-static](https://github.com/linuxserver/docker-qemu-static/) | No description |
-| [socket-proxy](https://github.com/linuxserver/docker-socket-proxy/) | No description |
+| [modmanager](https://github.com/linuxserver/docker-modmanager/) | Modmanager is a centralised tool for downloading and updating docker mods for all your other Linuxserver containers. |
+| [qemu-static](https://github.com/linuxserver/docker-qemu-static/) | Run multiple architectures of Docker containers on an x86_64 or aarch64 host using QEMU static. |
+| [socket-proxy](https://github.com/linuxserver/docker-socket-proxy/) | The Socket Proxy is a security-enhanced proxy which allows you to apply access rules to the Docker socket, limiting the attack surface for containers such as watchtower or Traefik that need to use it. |
 
 ## Documents
 
@@ -258,7 +258,6 @@
 | Container | Description |
 | --------- | ----------- |
 | [airsonic-advanced](https://github.com/linuxserver/docker-airsonic-advanced/) | [airsonic-advanced](https://github.com/kagemomiji/airsonic-advanced) is a free, web-based media streamer, providing ubiquitious access to your music. Use it to share your music with friends, or to listen to your own music while at work. You can stream to multiple players simultaneously, for instance to one player in your kitchen and another in your living room. |
-| [daapd](https://github.com/linuxserver/docker-daapd/) | [daapd](https://owntone.github.io/owntone-server/) (iTunes) media server with support for AirPlay devices, Apple Remote (and compatibles), Chromecast, MPD and internet radio. |
 | [emby](https://github.com/linuxserver/docker-emby/) | [emby](https://emby.media/) organizes video, music, live TV, and photos from personal media libraries and streams them to smart TVs, streaming boxes and mobile devices. This container is packaged as a standalone emby Media Server. |
 | [jellyfin](https://github.com/linuxserver/docker-jellyfin/) | [jellyfin](https://github.com/jellyfin/jellyfin) is a Free Software Media System that puts you in control of managing and streaming your media. It is an alternative to the proprietary Emby and Plex, to provide media from a dedicated server to end-user devices via multiple apps. Jellyfin is descended from Emby's 3.5.2 release and ported to the .NET Core framework to enable full cross-platform support. There are no strings attached, no premium licenses or features, and no hidden agendas: just a team who want to build something better and work together to achieve it. |
 | [mstream](https://github.com/linuxserver/docker-mstream/) | [mstream](https://mstream.io/) is a personal music streaming server. You can use mStream to stream your music from your home computer to any device, anywhere.  There are mobile apps available for both Android and iPhone. |
@@ -268,7 +267,7 @@
 
 | Container | Description |
 | --------- | ----------- |
-| [ffmpeg](https://github.com/linuxserver/docker-ffmpeg/) | No description |
+| [ffmpeg](https://github.com/linuxserver/docker-ffmpeg/) | A complete, cross-platform solution to record, convert and stream audio and video. |
 | [htpcmanager](https://github.com/linuxserver/docker-htpcmanager/) | [htpcmanager](https://github.com/HTPC-Manager/HTPC-Manager) is a front end for many htpc related applications. |
 | [minisatip](https://github.com/linuxserver/docker-minisatip/) | [minisatip](https://github.com/catalinii/minisatip) is a multi-threaded satip server version 1.2 that runs under Linux and it was tested with DVB-S, DVB-S2, DVB-T, DVB-T2, DVB-C, DVB-C2, ATSC and ISDB-T cards. |
 | [oscam](https://github.com/linuxserver/docker-oscam/) | [oscam](https://git.streamboard.tv/common/oscam) is an Open Source Conditional Access Module software used for descrambling DVB transmissions using smart cards. It's both a server and a client. |
@@ -294,7 +293,6 @@
 | --------- | ----------- |
 | [airsonic-advanced](https://github.com/linuxserver/docker-airsonic-advanced/) | [airsonic-advanced](https://github.com/kagemomiji/airsonic-advanced) is a free, web-based media streamer, providing ubiquitious access to your music. Use it to share your music with friends, or to listen to your own music while at work. You can stream to multiple players simultaneously, for instance to one player in your kitchen and another in your living room. |
 | [beets](https://github.com/linuxserver/docker-beets/) | [beets](http://beets.io/) is a music library manager and not, for the most part, a music player. It does include a simple player plugin and an experimental Web-based player, but it generally leaves actual sound-reproduction to specialized tools. |
-| [daapd](https://github.com/linuxserver/docker-daapd/) | [daapd](https://owntone.github.io/owntone-server/) (iTunes) media server with support for AirPlay devices, Apple Remote (and compatibles), Chromecast, MPD and internet radio. |
 | [emby](https://github.com/linuxserver/docker-emby/) | [emby](https://emby.media/) organizes video, music, live TV, and photos from personal media libraries and streams them to smart TVs, streaming boxes and mobile devices. This container is packaged as a standalone emby Media Server. |
 | [jellyfin](https://github.com/linuxserver/docker-jellyfin/) | [jellyfin](https://github.com/jellyfin/jellyfin) is a Free Software Media System that puts you in control of managing and streaming your media. It is an alternative to the proprietary Emby and Plex, to provide media from a dedicated server to end-user devices via multiple apps. Jellyfin is descended from Emby's 3.5.2 release and ported to the .NET Core framework to enable full cross-platform support. There are no strings attached, no premium licenses or features, and no hidden agendas: just a team who want to build something better and work together to achieve it. |
 | [lidarr](https://github.com/linuxserver/docker-lidarr/) | [lidarr](https://github.com/lidarr/Lidarr) is a music collection manager for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new tracks from your favorite artists and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available. |
