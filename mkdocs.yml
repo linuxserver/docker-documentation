@@ -60,6 +60,7 @@ extra_javascript:
   - javascripts/tablesort.js
 markdown_extensions:
   - pymdownx.tabbed:
+      combine_header_slug: true
       alternate_style: true
       slugify: !!python/object/apply:pymdownx.slugs.slugify
         kwds:
