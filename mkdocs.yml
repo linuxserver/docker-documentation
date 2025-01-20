@@ -53,10 +53,18 @@ extra:
       link: https://mastodon.linuxserver.io/@linuxserver
     - icon: fontawesome/brands/bluesky
       link: https://bsky.app/profile/linuxserver.io
+extra_css:
+  - stylesheets/extra.css
 extra_javascript:
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
   - javascripts/tablesort.js
 markdown_extensions:
+  - pymdownx.tabbed:
+      combine_header_slug: true
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
   - admonition
   - pymdownx.details
   - pymdownx.escapeall
