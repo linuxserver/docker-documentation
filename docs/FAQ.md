@@ -174,94 +174,86 @@ hide:
 
 	##### What is lscr.io { #lscr }
 
-    === "Description"
+    LSCR is a vanity url for our images, this is provided to us in collaboration with [scarf.sh](https://about.scarf.sh/). It is not a dedicated docker registry, rather a redirection service. As of writing it redirects to GitHub Container Registry (ghcr.io).
 
-        LSCR is a vanity url for our images, this is provided to us in collaboration with [scarf.sh](https://about.scarf.sh/). It is not a dedicated docker registry, rather a redirection service. As of writing it redirects to GitHub Container Registry (ghcr.io).
+    Aside from giving us the ability to redirect to another backend, if necessary, it also exposes telemetry about pulls, historically only available to the backend provider. We base some decisions on this data, as it gives us a somewhat realistic usage overview (relative to just looking at pulls on DockerHub).
 
-        Aside from giving us the ability to redirect to another backend, if necessary, it also exposes telemetry about pulls, historically only available to the backend provider. We base some decisions on this data, as it gives us a somewhat realistic usage overview (relative to just looking at pulls on DockerHub).
+    We have some blog posts related to how we utilize Scarf:
 
-        We have some blog posts related to how we utilize Scarf:
-
-        - [End of an Arch](https://www.linuxserver.io/blog/end-of-an-arch)
-        - [Unravelling Some Stats](https://www.linuxserver.io/blog/unravelling-some-stats)
-        - [Wrap Up Warm For Winter](https://www.linuxserver.io/blog/wrap-up-warm-for-the-winter)
+    - [End of an Arch](https://www.linuxserver.io/blog/end-of-an-arch)
+    - [Unravelling Some Stats](https://www.linuxserver.io/blog/unravelling-some-stats)
+    - [Wrap Up Warm For Winter](https://www.linuxserver.io/blog/wrap-up-warm-for-the-winter)
 
 ??? faq "I cannot connect to lscr.io"
 
 	##### I cannot connect to lscr.io { #lscr-no-connect }
 
-    === "Description"
+    Due to the nature of Scarf as a Docker gateway which gathers usage metrics, some overzealous privacy-focused blocklists will include its domains.
 
-        Due to the nature of Scarf as a Docker gateway which gathers usage metrics, some overzealous privacy-focused blocklists will include its domains.
+    If you want to help us in getting a better overview of how people use our containers, you should add `gateway.scarf.sh` to the allowlist in your blocklist solution.
 
-        If you want to help us in getting a better overview of how people use our containers, you should add `gateway.scarf.sh` to the allowlist in your blocklist solution.
+    Alternatively, you can use Docker Hub or GHCR directly to pull your images, although be aware that all public registries gather user metrics, so this doesn't provide you with any real benefit in that area.
 
-        Alternatively, you can use Docker Hub or GHCR directly to pull your images, although be aware that all public registries gather user metrics, so this doesn't provide you with any real benefit in that area.
+    If Scarf is on the blocklist, you will get an error message like this when trying to pull an image:
 
-        If Scarf is on the blocklist, you will get an error message like this when trying to pull an image:
+    ```text
+    Error response from daemon: Get "https://lscr.io/v2/": dial tcp: lookup lscr.io: no such host
+    ```
 
-        ```text
-        Error response from daemon: Get "https://lscr.io/v2/": dial tcp: lookup lscr.io: no such host
-        ```
+    This is, however, a generic message. To rule out a service-interruption, you should also see if you can resolve the backend provider.
 
-        This is, however, a generic message. To rule out a service-interruption, you should also see if you can resolve the backend provider.
+    Using dig:
 
-        Using dig:
+    ```shell
+    dig ghcr.io +short
+    dig lscr.io +short
+    ```
 
-        ```shell
-        dig ghcr.io +short
-        dig lscr.io +short
-        ```
+    Using nslookup:
 
-        Using nslookup:
+    ```shell
+    nslookup ghcr.io
+    nslookup lscr.io
+    ```
 
-        ```shell
-        nslookup ghcr.io
-        nslookup lscr.io
-        ```
-
-        If you only got a response from ghcr, chances are that Scarf is on the blocklist.
+    If you only got a response from ghcr, chances are that Scarf is on the blocklist.
 
 ??? faq "I want to reverse proxy an application which defaults to https with a self-signed certificate"
 
 	##### I want to reverse proxy an application which defaults to https with a self-signed certificate { #strict-proxy }
 
-    === "Description"
+    <h4>Traefik</h4>
 
-        <h4>Traefik</h4>
+    In this example, we will configure a serverTransport rule we can apply to a service, as well as telling Traefik to use https on the backend for the service.
 
-        In this example, we will configure a serverTransport rule we can apply to a service, as well as telling Traefik to use https on the backend for the service.
+    Create a [ServerTransport](https://doc.traefik.io/traefik/routing/services/#serverstransport_1) in your dynamic Traefik configuration; we are calling ours `ignorecert`.
 
-        Create a [ServerTransport](https://doc.traefik.io/traefik/routing/services/#serverstransport_1) in your dynamic Traefik configuration; we are calling ours `ignorecert`.
+    ```yml
+        http:
+        serversTransports:
+            ignorecert:
+            insecureSkipVerify: true
+    ```
 
-        ```yml
-            http:
-            serversTransports:
-                ignorecert:
-                insecureSkipVerify: true
-        ```
+    Then on our `foo` service we tell it to use this rule, as well as telling Traefik the backend is running on https.
 
-        Then on our `foo` service we tell it to use this rule, as well as telling Traefik the backend is running on https.
-
-        ```yml
-            - traefik.http.services.foo.loadbalancer.serverstransport=ignorecert
-            - traefik.http.services.foo.loadbalancer.server.scheme=https
-        ```
+    ```yml
+        - traefik.http.services.foo.loadbalancer.serverstransport=ignorecert
+        - traefik.http.services.foo.loadbalancer.server.scheme=https
+    ```
 
 ??? faq "Why does LinuxServer.io recommend to use docker-compose over Portainer?"
 
 	##### Why does LinuxServer.io recommend to use docker-compose over Portainer? { #portainer }
 
-    === "Description"
+    Portainer has many issues which make it hard for us to support, such as:
 
-        Portainer has many issues which make it hard for us to support, such as:
-
-        - Advanced settings are hidden and some aren't available at all
-        - Incorrect order of source and target of mounts
-        - Inconsistent case-sensitivity
-        - No automatically created custom networks for inter-container communication
-        - Inconsistent compose implementations on different architectures
-        - Incorrectly applying environment variables on container upgrades
+    - Advanced settings are hidden and some aren't available at all
+    - Incorrect order of source and target of mounts
+    - Inconsistent case-sensitivity
+    - No automatically created custom networks for inter-container communication
+    - Inconsistent compose implementations on different architectures
+    - Incorrectly applying environment variables on container upgrades
 
 ??? faq "Inexplicable issues when running ubuntu"
 
