@@ -222,25 +222,25 @@ hide:
 
 	##### I want to reverse proxy an application which defaults to https with a self-signed certificate { #strict-proxy }
 
-    <h4>Traefik</h4>
+    === "Traefik"
 
-    In this example, we will configure a serverTransport rule we can apply to a service, as well as telling Traefik to use https on the backend for the service.
+        In this example, we will configure a serverTransport rule we can apply to a service, as well as telling Traefik to use https on the backend for the service.
 
-    Create a [ServerTransport](https://doc.traefik.io/traefik/routing/services/#serverstransport_1) in your dynamic Traefik configuration; we are calling ours `ignorecert`.
+        Create a [ServerTransport](https://doc.traefik.io/traefik/routing/services/#serverstransport_1) in your dynamic Traefik configuration; we are calling ours `ignorecert`.
 
-    ```yml
-        http:
-        serversTransports:
-            ignorecert:
-            insecureSkipVerify: true
-    ```
+        ```yml
+            http:
+            serversTransports:
+                ignorecert:
+                insecureSkipVerify: true
+        ```
 
-    Then on our `foo` service we tell it to use this rule, as well as telling Traefik the backend is running on https.
+        Then on our `foo` service we tell it to use this rule, as well as telling Traefik the backend is running on https.
 
-    ```yml
-        - traefik.http.services.foo.loadbalancer.serverstransport=ignorecert
-        - traefik.http.services.foo.loadbalancer.server.scheme=https
-    ```
+        ```yml
+            - traefik.http.services.foo.loadbalancer.serverstransport=ignorecert
+            - traefik.http.services.foo.loadbalancer.server.scheme=https
+        ```
 
 ??? faq "Why does LinuxServer.io recommend to use docker-compose over Portainer?"
 
