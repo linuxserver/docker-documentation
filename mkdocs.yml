@@ -91,6 +91,8 @@ plugins:
   - minify:
       minify_html: true
   - search
+  - tags:
+      tags: false
   - redirects:
       redirect_maps:
         'faq.md': 'FAQ.md'
