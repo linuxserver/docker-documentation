@@ -7,7 +7,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-
   build:
     name: Build docs
     runs-on: ubuntu-latest
@@ -33,6 +32,11 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
+      - name: Cache d2 database
+        uses: actions/cache/restore@v4.2.0 # We only want to restore the cache, to avoid overwriting the cache on PRs
+        with:
+          path: .cache/plugin/d2
+          key: ${{ runner.os }}-d2
       - name: Install d2
         run: |
           mkdir -p /tmp/d2
@@ -74,6 +78,11 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
+      - name: Cache d2 database
+        uses: actions/cache@v4.2.0
+        with:
+          path: .cache/plugin/d2
+          key: ${{ runner.os }}-d2
       - name: Install d2
         run: |
           mkdir -p /tmp/d2
