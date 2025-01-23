@@ -86,10 +86,13 @@ plugins:
       pad: 0
       theme: 3
       dark_theme: 200
-  - git-revision-date-localized:
-      enable_creation_date: true
-  - minify:
-      minify_html: true
+  - group:
+      enabled: !ENV CI
+      plugins:
+        - git-revision-date-localized:
+            enable_creation_date: true
+        - minify:
+            minify_html: true
   - search
   - tags:
       tags: false
