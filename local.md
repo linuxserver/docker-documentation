@@ -1,6 +1,6 @@
 # Local development
 
-To speed up the build, you should consider commenting out the `git-revision-date-localized` and `minify` plugin in mkdocs.yml
+Thanks to the group plugin, we do not run slow plugins on local runs, to replicate a real build, add the CI variable, `-e CI=true`.
 
 ## Build image
 
