@@ -21,16 +21,17 @@ def process_input(image_to_description, category_to_images, file):
         header = False
         found = False
         for line in input:
-            if not header and line.strip().startswith("---"):
+            line = line.strip(' \t\n\r')
+            if not header and line.startswith("---"):
                 header = True
-            elif header and line.strip().startswith("---"):
+            elif header and line.startswith("---"):
                 break
-            elif line.strip().startswith("description:"):
+            elif line.startswith("description:"):
                 description = line.replace("description: ", "").replace("\\n", " ").replace("\"", "").strip(' \t\n\r')
                 image_to_description[image] = description if description else "No description"
-            elif line.rstrip() == "tags:":
+            elif line == "tags:":
                 found = True
-            elif not line.strip().startswith("-"):
+            elif not line.startswith("-"):
                 found = False
             elif found:
                 tag = line.replace("-", "").strip(' \t\n\r')
