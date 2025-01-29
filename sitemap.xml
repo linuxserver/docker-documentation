@@ -93,6 +93,14 @@
          <lastmod>2025-01-29</lastmod>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/deprecated_images/docker-domoticz/</loc>
+         <lastmod>2025-01-29</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.linuxserver.io/deprecated_images/docker-embystat/</loc>
+         <lastmod>2025-01-29</lastmod>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/deprecated_images/docker-endlessh/</loc>
          <lastmod>2025-01-29</lastmod>
     </url>
@@ -106,6 +114,10 @@
     </url>
     <url>
          <loc>https://docs.linuxserver.io/deprecated_images/docker-guacd/</loc>
+         <lastmod>2025-01-29</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.linuxserver.io/deprecated_images/docker-headphones/</loc>
          <lastmod>2025-01-29</lastmod>
     </url>
     <url>
@@ -445,10 +457,6 @@
          <lastmod>2025-01-29</lastmod>
     </url>
     <url>
-         <loc>https://docs.linuxserver.io/images/docker-dillinger/</loc>
-         <lastmod>2025-01-29</lastmod>
-    </url>
-    <url>
          <loc>https://docs.linuxserver.io/images/docker-diskover/</loc>
          <lastmod>2025-01-29</lastmod>
     </url>
@@ -458,10 +466,6 @@
     </url>
     <url>
          <loc>https://docs.linuxserver.io/images/docker-dokuwiki/</loc>
-         <lastmod>2025-01-29</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.linuxserver.io/images/docker-domoticz/</loc>
          <lastmod>2025-01-29</lastmod>
     </url>
     <url>
@@ -485,15 +489,7 @@
          <lastmod>2025-01-29</lastmod>
     </url>
     <url>
-         <loc>https://docs.linuxserver.io/images/docker-embystat/</loc>
-         <lastmod>2025-01-29</lastmod>
-    </url>
-    <url>
          <loc>https://docs.linuxserver.io/images/docker-emulatorjs/</loc>
-         <lastmod>2025-01-29</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.linuxserver.io/images/docker-endlessh/</loc>
          <lastmod>2025-01-29</lastmod>
     </url>
     <url>
@@ -570,10 +566,6 @@
     </url>
     <url>
          <loc>https://docs.linuxserver.io/images/docker-habridge/</loc>
-         <lastmod>2025-01-29</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.linuxserver.io/images/docker-headphones/</loc>
          <lastmod>2025-01-29</lastmod>
     </url>
     <url>
