@@ -111,3 +111,6 @@ plugins:
         images/docker-quassel-core.md: deprecated_images/docker-quassel-core.md
         images/docker-quassel-web.md: deprecated_images/docker-quassel-web.md
         images/docker-daapd.md: deprecated_images/docker-daapd.md
+        images/docker-domoticz.md: deprecated_images/docker-domoticz.md
+        images/docker-embystat.md: deprecated_images/docker-embystat.md
+        images/docker-headphones.md: deprecated_images/docker-headphones.md
