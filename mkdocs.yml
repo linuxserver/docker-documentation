@@ -114,3 +114,6 @@ plugins:
         images/docker-domoticz.md: deprecated_images/docker-domoticz.md
         images/docker-embystat.md: deprecated_images/docker-embystat.md
         images/docker-headphones.md: deprecated_images/docker-headphones.md
+        images/docker-doc-builder.md: deprecated_images/docker-doc-builder.md
+        images/docker-nano-wallet.md: deprecated_images/docker-nano-wallet.md
+        images/docker-nano.md: deprecated_images/docker-nano.md
