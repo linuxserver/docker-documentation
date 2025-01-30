@@ -89,6 +89,10 @@
          <lastmod>2025-01-30</lastmod>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/deprecated_images/docker-doc-builder/</loc>
+         <lastmod>2025-01-30</lastmod>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/deprecated_images/docker-docker-compose/</loc>
          <lastmod>2025-01-30</lastmod>
     </url>
@@ -158,6 +162,14 @@
     </url>
     <url>
          <loc>https://docs.linuxserver.io/deprecated_images/docker-nano-discord-bot/</loc>
+         <lastmod>2025-01-30</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.linuxserver.io/deprecated_images/docker-nano-wallet/</loc>
+         <lastmod>2025-01-30</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.linuxserver.io/deprecated_images/docker-nano/</loc>
          <lastmod>2025-01-30</lastmod>
     </url>
     <url>
@@ -461,10 +473,6 @@
          <lastmod>2025-01-30</lastmod>
     </url>
     <url>
-         <loc>https://docs.linuxserver.io/images/docker-doc-builder/</loc>
-         <lastmod>2025-01-30</lastmod>
-    </url>
-    <url>
          <loc>https://docs.linuxserver.io/images/docker-dokuwiki/</loc>
          <lastmod>2025-01-30</lastmod>
     </url>
@@ -734,14 +742,6 @@
     </url>
     <url>
          <loc>https://docs.linuxserver.io/images/docker-mysql-workbench/</loc>
-         <lastmod>2025-01-30</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.linuxserver.io/images/docker-nano-wallet/</loc>
-         <lastmod>2025-01-30</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.linuxserver.io/images/docker-nano/</loc>
          <lastmod>2025-01-30</lastmod>
     </url>
     <url>
