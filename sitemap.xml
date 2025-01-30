@@ -149,6 +149,10 @@
          <lastmod>2025-01-30</lastmod>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/deprecated_images/docker-minetest/</loc>
+         <lastmod>2025-01-30</lastmod>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/deprecated_images/docker-musicbrainz/</loc>
          <lastmod>2025-01-30</lastmod>
     </url>
@@ -710,10 +714,6 @@
     </url>
     <url>
          <loc>https://docs.linuxserver.io/images/docker-medusa/</loc>
-         <lastmod>2025-01-30</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.linuxserver.io/images/docker-minetest/</loc>
          <lastmod>2025-01-30</lastmod>
     </url>
     <url>
