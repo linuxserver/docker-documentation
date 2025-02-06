@@ -53,7 +53,7 @@ def generate_output(image_to_description, category_to_images):
             output.write(f"| Container | Description |\n")
             output.write(f"| --------- | ----------- |\n")
             for image in sorted(category_to_images[category]):
-                output.write(f"| [{image.capitalize()}](../images/docker-{image}/) | {image_to_description[image]} |\n")
+                output.write(f"| [{image.capitalize()}](images/docker-{image}.md) | {image_to_description[image]} |\n")
             output.write("\n")
         output.write("\n")
 
