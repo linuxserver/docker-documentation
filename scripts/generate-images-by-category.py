@@ -41,6 +41,8 @@ def process_input(image_to_description, category_to_images, file):
 
 def generate_output(image_to_description, category_to_images):
     with open(OUTPUT_PATH, "w") as output:
+        output.write("### DO NOT CHANGE THIS FILE MANUALLY, IT IS AUTOMATICALLY GENERATED")
+        output.write("### GENERATED FROM https://github.com/linuxserver/docker-documentation/scripts/generate-images-by-category.py")
         output.write("# Images by Category\n\n")
 
         for category in sorted(category_to_images.keys()):
