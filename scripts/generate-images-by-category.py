@@ -29,6 +29,7 @@ def process_input(image_to_description, category_to_images, file):
             elif line.startswith("description:"):
                 description = line.replace("description: ", "").replace("\\n", " ").replace("\"", "").strip(" \t\n\r")
                 image_to_description[image] = description if description else "No description"
+                found = False
             elif line == "tags:":
                 found = True
             elif not line.startswith("-"):
@@ -52,7 +53,7 @@ def generate_output(image_to_description, category_to_images):
             output.write(f"| Container | Description |\n")
             output.write(f"| --------- | ----------- |\n")
             for image in sorted(category_to_images[category]):
-                output.write(f"| [{image}](images/docker-{image}/) | {image_to_description[image]} |\n")
+                output.write(f"| [{image}](../images/docker-{image}/) | {image_to_description[image]} |\n")
             output.write("\n")
         output.write("\n")
 
