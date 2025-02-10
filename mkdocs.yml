@@ -93,6 +93,7 @@ plugins:
             enable_creation_date: true
         - minify:
             minify_html: true
+  - render_swagger
   - search
   - tags:
       tags: false

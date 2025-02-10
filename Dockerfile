@@ -18,6 +18,8 @@ RUN \
     python3 && \
   mkdir -p /app/mkdocs/docs && \
   git config --global --add safe.directory /app/mkdocs && \
+  # Can remove and swap to swagger-http once they add https://github.com/mkdocs/mkdocs/pull/3851
+  curl -o /app/mkdocs/docs/openapi.json -L "https://api.linuxserver.io/openapi.json" && \
   python3 -m venv /lsiopy && \
   pip install -U --no-cache-dir \
     pip \
