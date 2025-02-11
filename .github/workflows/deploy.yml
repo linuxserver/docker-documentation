@@ -47,6 +47,9 @@ jobs:
             "https://github.com/terrastruct/d2/releases/download/${D2_VERSION}/d2-${D2_VERSION}-linux-amd64.tar.gz"
           tar xzf /tmp/d2.tar.gz -C /tmp/d2 --strip-components=1
           cp /tmp/d2/bin/d2 /usr/local/bin
+      # Can remove and swap to swagger-http once they add https://github.com/mkdocs/mkdocs/pull/3851
+      - name: Download API Schema
+        run: curl -o docs/openapi.json -L "https://api.linuxserver.io/openapi.json"
       - name: Install dependencies
         run: pip install -r docs/requirements.txt
       - name: Generate images-by-category.md
@@ -96,6 +99,9 @@ jobs:
             "https://github.com/terrastruct/d2/releases/download/${D2_VERSION}/d2-${D2_VERSION}-linux-amd64.tar.gz"
           tar xzf /tmp/d2.tar.gz -C /tmp/d2 --strip-components=1
           cp /tmp/d2/bin/d2 /usr/local/bin
+      # Can remove and swap to swagger-http once they add https://github.com/mkdocs/mkdocs/pull/3851
+      - name: Download API Schema
+        run: curl -o docs/openapi.json -L "https://api.linuxserver.io/openapi.json"
       - name: Install dependencies
         run: pip install -r docs/requirements.txt
       - name: Generate images-by-category.md
