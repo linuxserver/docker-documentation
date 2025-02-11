@@ -17,3 +17,9 @@
 .md-typeset .faq > summary::before {
     visibility: hidden;
 }
+.swagger-ui .scheme-container, .swagger-ui select, .swagger-ui .opblock .opblock-section-header, .swagger-ui .opblock-body pre.microlight {
+    background: var(--md-default-bg-color) !important;
+}
+.swagger-ui * {
+    color: var(--md-typeset-color) !important;
+}
