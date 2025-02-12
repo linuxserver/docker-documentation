@@ -11,7 +11,7 @@ theme:
     # - content.action.edit
     - content.code.copy
     - navigation.footer
-    - navigation.instant
+    # - navigation.instant
     # - navigation.prune
     - navigation.tabs
     - navigation.top
