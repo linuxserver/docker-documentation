@@ -4,4 +4,4 @@ hide:
 ---
 
 #
-!!swagger openapi.json!!
+!!swagger-http https://api.linuxserver.io/openapi.json!!
