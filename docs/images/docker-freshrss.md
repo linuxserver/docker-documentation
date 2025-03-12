@@ -103,6 +103,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
+| `CRON_MIN` | a valid cron minute definition such as `13,43` or `*/20`; not passing the `CRON_MIN` environment variable – or setting it to empty string – will disable the cron daemon |
 
 ### Volume Mappings (`-v`)
 
