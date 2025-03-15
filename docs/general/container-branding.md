@@ -16,4 +16,8 @@ On start-up, the base image will automatically load the branding into its init, 
 
 Hopefully this makes it simpler for everyone to manage the branding of your images when using our bases.
 
+!!! note
+
+    If you're branding a non-base image, you must set the ENV variable `LSIO_FIRST_PARTY=false` to avoid LSIO from overwriting it.
+
 A final note: if you've previously overridden the `init-adduser` run file to do custom branding, we recommend switching to the above approach so that you don't miss out on any future changes to that init step.
