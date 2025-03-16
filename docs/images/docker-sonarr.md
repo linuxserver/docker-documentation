@@ -56,7 +56,7 @@ We have set `/tv` and `/downloads` as ***optional paths***, this is because it i
 
 Use the optional paths if you don't understand, or don't want hardlinks/atomic moves.
 
-The folks over at servarr.com wrote a good [write-up](https://wiki.servarr.com/Docker_Guide#Consistent_and_well_planned_paths) on how to get started with this.
+The folks over at servarr.com wrote a good [write-up](https://wiki.servarr.com/docker-guide#consistent-and-well-planned-paths) on how to get started with this.
 
 ## Read-Only Operation
 
