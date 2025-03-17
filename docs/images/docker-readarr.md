@@ -8,7 +8,7 @@ description: "[Readarr](https://github.com/Readarr/Readarr) - Book Manager and A
 <!-- Please read https://github.com/linuxserver/docker-readarr/blob/develop/.github/CONTRIBUTING.md -->
 # [linuxserver/readarr](https://github.com/linuxserver/docker-readarr)
 
-[![Scarf.io pulls](https://scarf.sh/installs-badge/linuxserver-ci/linuxserver%2Freadarr?color=94398d&label-color=555555&logo-color=ffffff&style=for-the-badge&package-type=docker)](https://scarf.sh/gateway/linuxserver-ci/docker/linuxserver%2Freadarr)
+[![Scarf.io pulls](https://scarf.sh/installs-badge/linuxserver-ci/linuxserver%2Freadarr?color=94398d&label-color=555555&logo-color=ffffff&style=for-the-badge&package-type=docker)](https://scarf.sh)
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-readarr.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-readarr)
 [![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-readarr.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github&include_prereleases)](https://github.com/linuxserver/docker-readarr/releases)
 [![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub%20Package&logo=github)](https://github.com/linuxserver/docker-readarr/packages)
@@ -17,7 +17,7 @@ description: "[Readarr](https://github.com/Readarr/Readarr) - Book Manager and A
 [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/readarr.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/readarr)
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/readarr.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/readarr)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-readarr%2Fjob%2Fdevelop%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-readarr/job/develop/)
-[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.linuxserver.io%2Flinuxserver%2Freadarr%2Flatest%2Fci-status.yml)](https://ci-tests.linuxserver.io/linuxserver/readarr/latest/index.html)
+[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.linuxserver.io%2Flinuxserver%2Freadarr%2Fdevelop%2Fci-status.yml)](https://ci-tests.linuxserver.io/linuxserver/readarr/develop/index.html)
 
 [Readarr](https://github.com/Readarr/Readarr) - Book Manager and Automation (Sonarr for Ebooks)
 
@@ -53,15 +53,29 @@ Access the webui at `<your-ip>:8787`, for more information check out [Readarr](h
 
 ### Media folders
 
-We have set `/books` and `/downloads` as ***optional paths***, this is because it is the easiest way to get started. While easy to use, it has some drawbacks. Mainly losing the ability to hardlink (TL;DR a way for a file to exist in multiple places on the same file system while only consuming one file worth of space), or atomic move (TL;DR instant file moves, rather than copy+delete) files while processing content.
+We have set '/books' and '/downloads' as optional paths, this is because it is the easiest way to get started. While easy to use, it has some drawbacks. Mainly losing the ability to hardlink (TL;DR a way for a file to exist in multiple places on the same file system while only consuming one file worth of space), or atomic move (TL;DR instant file moves, rather than copy+delete) files while processing content.
 
-Use the optional paths if you dont understand, or dont want hardlinks/atomic moves.
+Use the optional paths if you don't understand, or don't want hardlinks/atomic moves.
 
-The folks over at servarr.com wrote a good [write-up](https://wiki.servarr.com/docker-guide#consistent-and-well-planned-paths) on how to get started with this.
+??? tip "Well planned paths"
+
+    The folks over at servarr.com wrote a good [write-up](https://wiki.servarr.com/docker-guide#consistent-and-well-planned-paths) on how to get started with this.
+
+## Read-Only Operation
+
+This image can be run with a read-only container filesystem. For details please [read the docs](https://docs.linuxserver.io/misc/read-only/).
+
+## Non-Root Operation
+
+This image can be run with a non-root user. For details please [read the docs](https://docs.linuxserver.io/misc/non-root/).
 
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
+
+!!! info
+
+    Unless a parameter is flaged as 'optional', it is *mandatory* and a value must be provided.
 
 ### docker-compose (recommended, [click here for more info](https://docs.linuxserver.io/general/docker-compose))
 
@@ -76,9 +90,9 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /path/to/data:/config
+      - /path/to/readarr/data:/config
       - /path/to/books:/books #optional
-      - /path/to/downloadclient-downloads:/downloads #optional
+      - /path/to/download-client-downloads:/downloads #optional
     ports:
       - 8787:8787
     restart: unless-stopped
@@ -93,9 +107,9 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -p 8787:8787 \
-  -v /path/to/data:/config \
+  -v /path/to/readarr/data:/config \
   -v /path/to/books:/books `#optional` \
-  -v /path/to/downloadclient-downloads:/downloads `#optional` \
+  -v /path/to/download-client-downloads:/downloads `#optional` \
   --restart unless-stopped \
   lscr.io/linuxserver/readarr:develop
 ```
@@ -108,7 +122,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Parameter | Function |
 | :----: | --- |
-| `8787` | The port for the Readarr webinterface |
+| `8787:8787` | The port for the Readarr web UI |
 
 ### Environment Variables (`-e`)
 
@@ -130,6 +144,8 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Parameter | Function |
 | :-----:   | --- |
+| `--read-only=true` | Run container with a read-only filesystem. Please [read the docs](https://docs.linuxserver.io/misc/read-only/). |
+| `--user=1000:1000` | Run container with a non-root user. Please [read the docs](https://docs.linuxserver.io/misc/non-root/). |
 
 ## Environment variables from files (Docker secrets)
 
@@ -284,10 +300,10 @@ docker build \
   -t lscr.io/linuxserver/readarr:develop .
 ```
 
-The ARM variants can be built on x86_64 hardware using `multiarch/qemu-user-static`
+The ARM variants can be built on x86_64 hardware and vice versa using `lscr.io/linuxserver/qemu-static`
 
 ```bash
-docker run --rm --privileged multiarch/qemu-user-static:register --reset
+docker run --rm --privileged lscr.io/linuxserver/qemu-static --reset
 ```
 
 Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64`.
