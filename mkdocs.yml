@@ -120,3 +120,4 @@ plugins:
         images/docker-nano.md: deprecated_images/docker-nano.md
         images/docker-minetest.md: deprecated_images/docker-minetest.md
         images/docker-snapdrop.md: deprecated_images/docker-snapdrop.md
+        images/docker-snipe-it.md: deprecated_images/docker-snipe-it.md
