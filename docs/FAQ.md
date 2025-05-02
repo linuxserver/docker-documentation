@@ -238,7 +238,7 @@ hide:
         Then on our `foo` service we tell it to use this rule, as well as telling Traefik the backend is running on https.
 
         ```yml
-            - traefik.http.services.foo.loadbalancer.serverstransport=ignorecert
+            - traefik.http.services.foo.loadbalancer.serverstransport=ignorecert@file
             - traefik.http.services.foo.loadbalancer.server.scheme=https
         ```
 
