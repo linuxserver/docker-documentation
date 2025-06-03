@@ -37,7 +37,7 @@ Navigate to Services > DNS Resolver > General Setting > Host Overrides > Add:
 
 ### Pihole & dnsmasq
 
-Enable `dnsmasq.d` on pihole using the following command:
+Enable `dnsmasq.d` on pihole (only required on v6 or higher) using the following command:
 
 ```
 sudo pihole-FTL --config misc.etc_dnsmasq_d true
