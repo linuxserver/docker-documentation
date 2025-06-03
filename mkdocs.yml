@@ -122,3 +122,4 @@ plugins:
         images/docker-snapdrop.md: deprecated_images/docker-snapdrop.md
         images/docker-snipe-it.md: deprecated_images/docker-snipe-it.md
         images/docker-freetube.md: deprecated_images/docker-freetube.md
+        images/docker-fleet.md: deprecated_images/docker-fleet.md
