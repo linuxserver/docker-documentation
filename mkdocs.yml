@@ -123,3 +123,4 @@ plugins:
         images/docker-snipe-it.md: deprecated_images/docker-snipe-it.md
         images/docker-freetube.md: deprecated_images/docker-freetube.md
         images/docker-fleet.md: deprecated_images/docker-fleet.md
+        general/fleet.md: API.md
