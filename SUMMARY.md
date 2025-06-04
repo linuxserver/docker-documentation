@@ -15,7 +15,6 @@
 * [Understanding PUID and PGID](general/understanding-puid-and-pgid.md)
 * [Updating our containers](general/updating-our-containers.md)
 * [Volumes](general/volumes.md)
-* [Fleet](general/fleet.md)
 * [SWAG setup](general/swag.md)
 * [Awesome LSIO](general/awesome-lsio.md)
 

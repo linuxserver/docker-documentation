@@ -12,7 +12,7 @@ Behind the scenes we have been working to provide the community with the ability
 
 All of the functionality described in this post is live on every one of the containers we currently maintain:
 
-[https://fleet.linuxserver.io](https://fleet.linuxserver.io)
+[https://www.linuxserver.io/our-images](https://www.linuxserver.io/our-images)
 
 !!! note
     While the following support has been added to our containers, we will not provide formal support to any custom scripts, services, or mods. If you are having an issue with one of our containers, be sure to disable all custom scripts/services/mods before seeking support. See our [Support Policy](https://linuxserver.io/supportpolicy) for more details.
