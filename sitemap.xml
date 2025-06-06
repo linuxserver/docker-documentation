@@ -425,6 +425,10 @@
          <lastmod>2025-06-06</lastmod>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/images/docker-brave/</loc>
+         <lastmod>2025-06-06</lastmod>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/images/docker-budge/</loc>
          <lastmod>2025-06-06</lastmod>
     </url>
@@ -922,6 +926,10 @@
     </url>
     <url>
          <loc>https://docs.linuxserver.io/images/docker-resilio-sync/</loc>
+         <lastmod>2025-06-06</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.linuxserver.io/images/docker-retroarch/</loc>
          <lastmod>2025-06-06</lastmod>
     </url>
     <url>
