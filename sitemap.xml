@@ -109,6 +109,10 @@
          <lastmod>2025-06-09</lastmod>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/deprecated_images/docker-emulatorjs/</loc>
+         <lastmod>2025-06-09</lastmod>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/deprecated_images/docker-endlessh/</loc>
          <lastmod>2025-06-09</lastmod>
     </url>
@@ -522,10 +526,6 @@
     </url>
     <url>
          <loc>https://docs.linuxserver.io/images/docker-emby/</loc>
-         <lastmod>2025-06-09</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.linuxserver.io/images/docker-emulatorjs/</loc>
          <lastmod>2025-06-09</lastmod>
     </url>
     <url>
