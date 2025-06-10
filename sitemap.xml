@@ -389,6 +389,10 @@
          <lastmod>2025-06-10</lastmod>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/images/docker-baseimage-el/</loc>
+         <lastmod>2025-06-10</lastmod>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/images/docker-baseimage-fedora/</loc>
          <lastmod>2025-06-10</lastmod>
     </url>
