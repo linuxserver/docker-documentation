@@ -125,3 +125,4 @@ plugins:
         images/docker-fleet.md: deprecated_images/docker-fleet.md
         general/fleet.md: API.md
         images/docker-emulatorjs.md: deprecated_images/docker-emulatorjs.md
+        images/docker-netbootxyz.md: deprecated_images/docker-netbootxyz.md
