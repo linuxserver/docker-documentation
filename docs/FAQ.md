@@ -6,7 +6,7 @@ hide:
 
 ??? faq "My host is incompatible with images based on Ubuntu Jammy"
 
-	##### My host is incompatible with images based on Ubuntu Jammy { #jammy }
+    ##### My host is incompatible with images based on Ubuntu Jammy { #jammy }
 
     === "Description"
 
@@ -53,7 +53,7 @@ hide:
 
 ??? faq "My host is incompatible with images based on rdesktop"
 
-	##### My host is incompatible with images based on rdesktop { #rdesktop }
+    ##### My host is incompatible with images based on rdesktop { #rdesktop }
 
     === "Description"
 
@@ -82,7 +82,7 @@ hide:
 
 ??? faq "My host is incompatible with images based on Ubuntu Focal and Alpine 3.13 and later"
 
-	##### My host is incompatible with images based on Ubuntu Focal and Alpine 3.13 and later { #libseccomp }
+    ##### My host is incompatible with images based on Ubuntu Focal and Alpine 3.13 and later { #libseccomp }
 
     === "Description"
 
@@ -143,7 +143,7 @@ hide:
 
 ??? faq "My host filesystem is incompatible with my docker storage driver"
 
-	##### My host filesystem is incompatible with my docker storage driver { #storage }
+    ##### My host filesystem is incompatible with my docker storage driver { #storage }
 
     === "Description"
 
@@ -172,7 +172,7 @@ hide:
 
 ??? faq "What is lscr.io"
 
-	##### What is lscr.io { #lscr }
+    ##### What is lscr.io { #lscr }
 
     LSCR is a vanity url for our images, this is provided to us in collaboration with [scarf.sh](https://about.scarf.sh/). It is not a dedicated docker registry, rather a redirection service. As of writing it redirects to GitHub Container Registry (ghcr.io).
 
@@ -186,7 +186,7 @@ hide:
 
 ??? faq "I cannot connect to lscr.io"
 
-	##### I cannot connect to lscr.io { #lscr-no-connect }
+    ##### I cannot connect to lscr.io { #lscr-no-connect }
 
     Due to the nature of Scarf as a Docker gateway which gathers usage metrics, some overzealous privacy-focused blocklists will include its domains.
 
@@ -220,7 +220,7 @@ hide:
 
 ??? faq "I want to reverse proxy an application which defaults to https with a self-signed certificate"
 
-	##### I want to reverse proxy an application which defaults to https with a self-signed certificate { #strict-proxy }
+    ##### I want to reverse proxy an application which defaults to https with a self-signed certificate { #strict-proxy }
 
     === "Traefik"
 
@@ -230,21 +230,21 @@ hide:
 
         ```yml
             http:
-            serversTransports:
-                ignorecert:
-                insecureSkipVerify: true
+                serversTransports:
+                    ignorecert:
+                    insecureSkipVerify: true
         ```
 
         Then on our `foo` service we tell it to use this rule, as well as telling Traefik the backend is running on https.
 
         ```yml
-            - traefik.http.services.foo.loadbalancer.serverstransport=ignorecert
+            - traefik.http.services.foo.loadbalancer.serverstransport=ignorecert@file
             - traefik.http.services.foo.loadbalancer.server.scheme=https
         ```
 
 ??? faq "Why does LinuxServer.io recommend to use docker-compose over Portainer?"
 
-	##### Why does LinuxServer.io recommend to use docker-compose over Portainer? { #portainer }
+    ##### Why does LinuxServer.io recommend to use docker-compose over Portainer? { #portainer }
 
     Portainer has many issues which make it hard for us to support, such as:
 
@@ -257,7 +257,7 @@ hide:
 
 ??? faq "Inexplicable issues when running ubuntu"
 
-	##### Inexplicable issues when running ubuntu { #snap }
+    ##### Inexplicable issues when running ubuntu { #snap }
 
     === "Description"
 
@@ -309,11 +309,11 @@ hide:
 
         docker: /usr/bin/docker /etc/docker /usr/libexec/docker /snap/bin/docker.machine /snap/bin/docker.help /snap/bin/docker.compose /snap/bin/docker /usr/share/man/man1/docker.1.gz
         ```
-        As you can see in the second one, multiple versions can coexist which is a big tshoot problem. 
+        As you can see in the second one, multiple versions can coexist which is a big tshoot problem.
 
         Once this is complete, if the expected version isn't present, simply follow [docker install on ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 
-        When they finish, running `docker` commands may result in `-bash: /snap/bin/docker: No such file or directory` if this is the case, this is simply a shell patch issue, they can launch a new shell or simply input `hash -r` which should resolve the problem. Version info at the time of this writing should be 
+        When they finish, running `docker` commands may result in `-bash: /snap/bin/docker: No such file or directory` if this is the case, this is simply a shell patch issue, they can launch a new shell or simply input `hash -r` which should resolve the problem. Version info at the time of this writing should be
         ```bash
         ~ # docker --version && docker compose version
         Docker version 24.0.7, build afdd53b
