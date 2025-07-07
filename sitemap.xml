@@ -625,6 +625,10 @@
          <lastmod>2025-07-07</lastmod>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/images/docker-gzdoom/</loc>
+         <lastmod>2025-07-07</lastmod>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/images/docker-habridge/</loc>
          <lastmod>2025-07-07</lastmod>
     </url>
@@ -746,6 +750,10 @@
     </url>
     <url>
          <loc>https://docs.linuxserver.io/images/docker-lychee/</loc>
+         <lastmod>2025-07-07</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.linuxserver.io/images/docker-mame/</loc>
          <lastmod>2025-07-07</lastmod>
     </url>
     <url>
