@@ -273,6 +273,10 @@
          <lastmod>2025-07-10</lastmod>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/deprecated_images/docker-sickchill/</loc>
+         <lastmod>2025-07-10</lastmod>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/deprecated_images/docker-sickrage/</loc>
          <lastmod>2025-07-10</lastmod>
     </url>
@@ -994,10 +998,6 @@
     </url>
     <url>
          <loc>https://docs.linuxserver.io/images/docker-shotcut/</loc>
-         <lastmod>2025-07-10</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.linuxserver.io/images/docker-sickchill/</loc>
          <lastmod>2025-07-10</lastmod>
     </url>
     <url>
