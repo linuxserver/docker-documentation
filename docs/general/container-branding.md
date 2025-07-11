@@ -2,7 +2,7 @@
 
 If you use our base images for your own projects, or fork our downstream images to modify them, you're probably aware that we ask you to change the branding that appears in the container init logs to make it clear that your image is not associated with us. This is for your benefit as much as ours: we aren't well-equipped to provide your users with support, and you don't want them crediting us for your work.
 
-Iif you build from one of our base images and don't change anything, your init logs will look something like this:
+If you build from one of our base images and don't change anything, your init logs will look something like this:
 
 ![Default Container Branding](../assets/images/lsio-branding1.png)
 
