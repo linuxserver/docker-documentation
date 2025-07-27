@@ -241,6 +241,10 @@
          <lastmod>2025-07-27</lastmod>
     </url>
     <url>
+         <loc>https://docs.linuxserver.io/deprecated_images/docker-pylon/</loc>
+         <lastmod>2025-07-27</lastmod>
+    </url>
+    <url>
          <loc>https://docs.linuxserver.io/deprecated_images/docker-quassel-core/</loc>
          <lastmod>2025-07-27</lastmod>
     </url>
@@ -930,10 +934,6 @@
     </url>
     <url>
          <loc>https://docs.linuxserver.io/images/docker-pyload-ng/</loc>
-         <lastmod>2025-07-27</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.linuxserver.io/images/docker-pylon/</loc>
          <lastmod>2025-07-27</lastmod>
     </url>
     <url>
