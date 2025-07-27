@@ -128,3 +128,4 @@ plugins:
         images/docker-netbootxyz.md: deprecated_images/docker-netbootxyz.md
         images/docker-readarr.md: deprecated_images/docker-readarr.md
         images/docker-sickchill.md: deprecated_images/docker-sickchill.md
+        images/docker-pylon.md: deprecated_images/docker-pylon.md
