@@ -35,7 +35,8 @@ Our images use s6 as a supervisor and that needs to be able to write its service
 * Docker Mods will not be run
 * Custom Services will not be run
 * Custom Scripts will be limited in their functionality
-* You cannot set `no-new-privileges=true` as it will prevent s6 from being able to start the init process
+* You cannot set `no-new-privileges=true` unless you additionally set permissions on /run to match your `user` UID and GID
+    * This is because s6 needs `/run` to be owned by the user running the container
 
 For all of these reasons, we recommend you *do not* switch existing container instances to run with a non-root user without careful testing.
 
@@ -58,6 +59,34 @@ services:
     user: 1000:1000
 ```
 
+or
+
+```yaml
+services:
+  sonarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - TZ=Europe/London
+    volumes:
+      - /path/to/radarr/data:/config
+      - /path/to/movies:/movies
+      - /path/to/downloadclient-downloads:/downloads
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+    user: 1000:1000
+    tmpfs:
+      - /run:uid=1000,gid=1000,exec
+    security_opt:
+      - no-new-privileges=true
+```
+
 ## Support Policy
 
 Operation of our images with a non-root user is supported on a Reasonable Endeavours basis and *only* for images which we have specifically tested. These images will have their ability to be run with a non-root user noted in the readme, along with any additional caveats. Please see our [Support Policy](https://linuxserver.io/supportpolicy) for more details.
+
+## Change History
+
+* 2025-08-13 - Add notes about `no-new-privileges=true`
+* 2024-12-17 - Initial release
