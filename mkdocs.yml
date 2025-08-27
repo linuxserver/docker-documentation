@@ -91,6 +91,9 @@ plugins:
       plugins:
         - git-revision-date-localized:
             enable_creation_date: true
+            exclude:
+              - deprecated_images/*
+              - images/*
         - minify:
             minify_html: true
   - render_swagger
