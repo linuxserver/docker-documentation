@@ -1,0 +1,25 @@
+.md-typeset .admonition.faq,
+.md-typeset details.faq {
+    border-color: rgb(77, 77, 77);
+}
+.md-typeset details.faq > h5 {
+    visibility: hidden;
+    height: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.md-typeset .faq > .admonition-title,
+.md-typeset .faq > summary {
+    background-color: transparent;
+    padding-left: 12px;
+}
+.md-typeset .faq > .admonition-title::before,
+.md-typeset .faq > summary::before {
+    visibility: hidden;
+}
+.swagger-ui .scheme-container, .swagger-ui select, .swagger-ui .opblock .opblock-section-header, .swagger-ui .opblock-body pre.microlight {
+    background: var(--md-default-bg-color) !important;
+}
+.swagger-ui * {
+    color: var(--md-typeset-color) !important;
+}
