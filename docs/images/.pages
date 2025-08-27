@@ -1,0 +1,2 @@
+nav:
+    - ... | regex=^docker-(?!(baseimage-.*|build-agent|ci|doc-builder|jenkins-builder|readme-sync|tester|unrar|xvfb|yq)\.).*\.md$
