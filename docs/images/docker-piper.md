@@ -67,6 +67,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
       - PIPER_VOICE=en_US-lessac-medium
+      - LOCAL_ONLY= #optional
       - PIPER_LENGTH=1.0 #optional
       - PIPER_NOISE=0.667 #optional
       - PIPER_NOISEW=0.333 #optional
@@ -89,6 +90,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -e PIPER_VOICE=en_US-lessac-medium \
+  -e LOCAL_ONLY= `#optional` \
   -e PIPER_LENGTH=1.0 `#optional` \
   -e PIPER_NOISE=0.667 `#optional` \
   -e PIPER_NOISEW=0.333 `#optional` \
@@ -119,6 +121,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `PIPER_VOICE=en_US-lessac-medium` | The [Piper voice](https://huggingface.co/rhasspy/piper-voices/tree/main) to use, in the format `<language>-<name>-<quality>` |
+| `LOCAL_ONLY=` | If set to `true`, or any other value, the container will not attempt to download models from HuggingFace and will only use locally-provided models. |
 | `PIPER_LENGTH=1.0` | Voice speaking rate, 1.0 is default with < 1.0 being faster and > 1.0 being slower. |
 | `PIPER_NOISE=0.667` | Controls the variability of the voice by adding noise. Values above 1 will start to degrade audio. |
 | `PIPER_NOISEW=0.333` | Controls the variability of speaking cadence. Values above 1 produce extreme stutters and pauses. |
@@ -347,6 +350,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **29.08.25:** - Add support for local only mode.
 * **10.08.25:** - Add streaming support.
 * **18.07.24:** - Rebase to Ubuntu Noble.
 * **25.11.23:** - Initial Release.
