@@ -217,6 +217,7 @@ services:
     ports:
       - 3000:3000
       - 3001:3001
+    shm_size: "1gb" #optional
     restart: unless-stopped
 ```
 
@@ -233,6 +234,7 @@ docker run -d \
   -p 3000:3000 \
   -p 3001:3001 \
   -v /path/to/bambustudio/config:/config \
+  --shm-size="1gb" `#optional` \
   --restart unless-stopped \
   lscr.io/linuxserver/bambustudio:latest
 ```
@@ -267,6 +269,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Parameter | Function |
 | :-----:   | --- |
+| `--shm-size=` | We set this to 1 gig to prevent modern applications from crashing. |
 | `--security-opt seccomp=unconfined` | For Docker Engine only, many modern gui apps need this to function on older hosts as syscalls are unknown to Docker. |
 
 ## Environment variables from files (Docker secrets)
@@ -505,6 +508,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **31.08.25:** - Update AppImage ingestion.
 * **14.08.25:** - Rebase to Ubuntu Noble to ingest approved appimage.
 * **12.07.25:** - Rebase to Selkies, HTTPS IS NOW REQUIRED.
 * **29.07.24:** - Add required fonts and environment variable for dark mode.
