@@ -338,6 +338,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **01.09.25:** - Add new dep, libatomic.
 * **09.06.25:** - Rebase to Alpine 3.22.
 * **20.07.24:** - Revert to Alpine 3.19 due to inconsistent upstream addon support for Python 3.12.
 * **27.06.24:** - Rebase to Alpine 3.20.
