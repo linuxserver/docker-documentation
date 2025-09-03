@@ -508,5 +508,6 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **02.09.25:** - Revert graceful shutdown script to rely on the baseimage fix.
 * **29.08.25:** - Attempt graceful shutdown of Chrome.
 * **12.06.25:** - Initial release.
