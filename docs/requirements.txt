@@ -1,7 +1,7 @@
 mkdocs-awesome-pages-plugin==2.10.1
 mkdocs-d2-plugin==1.6.0
 mkdocs-git-revision-date-localized-plugin==1.4.7
-mkdocs-material==9.6.18
+mkdocs-material==9.6.19
 mkdocs-minify-plugin==0.8.0
 mkdocs-redirects==1.2.2
 mkdocs-render-swagger-plugin==0.1.2
