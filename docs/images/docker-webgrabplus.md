@@ -326,13 +326,14 @@ To help with development, we generate this dependency graph.
       svc-cron -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.21"
+      "baseimage-alpine:3.22"
     }
     "webgrabplus:latest" <- Base Images
     ```
 
 ## Versions
 
+* **14.09.25:** - Rebase to Alpine 3.22, upgrade dotnet to 9.0.
 * **25.06.24:** - Rebase to Alpine 3.21.
 * **25.06.24:** - Rebase to Alpine 3.20.
 * **23.04.24:** - Bump dotnet framework to 8.x.
