@@ -45,7 +45,7 @@ The default username and password is *admin/password*
 This application can only be configured through file storage the web interface is only for editing Markdown files.
 You need to understand the following paths and the role they play for the application:
 
-* /config/config.default.js - Main configuration file to setup your user, site name, etc.
+* /config/config/config.js - Main configuration file to setup your user, site name, etc.
 * /config/content - All of your Markdown files go here [more info](http://docs.raneto.com/usage/creating-pages).
 * /config/images - This folder will serve content on http://<your-ip>:3000/images/<image name>.png you can put anything in here but it is specifically for image files so you can embed them in your Markdown files without using external hosting.
 
@@ -328,6 +328,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **16.09.25:** - Many changes for upstream release, if upgrading a new configuration file might be needed.
 * **27.07.25:** - Rebase to Alpine 3.22.
 * **01.02.25:** - Rebase to Alpine 3.21.
 * **06.06.24:** - Rebase to Alpine 3.20.
