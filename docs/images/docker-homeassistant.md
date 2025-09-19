@@ -59,7 +59,7 @@ In order to provide HA with access to the host's Bluetooth device, one needs to 
 
 #### Docker Cli:
 ```bash
---cap-add=NET_ADMIN --cap-add=NET_RAW -v /var/run/dbus:/var/run/dbus:ro
+--cap-add=NET_ADMIN --cap-add=NET_RAW -v /run/dbus:/run/dbus:ro
 ```
 
 #### Docker Compose:
@@ -68,8 +68,10 @@ In order to provide HA with access to the host's Bluetooth device, one needs to 
       - NET_ADMIN
       - NET_RAW
     volumes:
-      - /var/run/dbus:/var/run/dbus:ro
+      - /run/dbus:/run/dbus:ro
 ```
+
+If the dbus path on host differs, such as `/var/run/dbus`, then you can map it as `/var/run/dbus:/run/dbus:ro`.
 
 ### Using the Ping integration
 
@@ -375,6 +377,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **19.09.25:** - Add the necessary capabilities in the container to allow the unprivileged user access to bluetooth stack.
 * **03.01.25:** - Rebase to alpine 3.21.
 * **04.12.24:** - Make setcap target dynamic.
 * **07.11.24:** - Add go2rtc binary.
