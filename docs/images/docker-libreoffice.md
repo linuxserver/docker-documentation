@@ -40,7 +40,6 @@ The architectures supported by this image are:
 
 The application can be accessed at:
 
-* http://yourhost:3000/
 * https://yourhost:3001/
 
 ### Strict reverse proxies
@@ -61,6 +60,8 @@ If you are using a reverse proxy which validates certificates, you need to [disa
 By default, this container has no authentication. The optional `CUSTOM_USER` and `PASSWORD` environment variables enable basic HTTP auth, which is suitable only for securing the container on a trusted local network. For internet exposure, we strongly recommend placing the container behind a reverse proxy, such as [SWAG](https://github.com/linuxserver/docker-swag), with a robust authentication mechanism.
 
 The web interface includes a terminal with passwordless `sudo` access. Any user with access to the GUI can gain root control within the container, install arbitrary software, and probe your local network.
+
+While not generally recommended, certain legacy environments specifically those with older hardware or outdated Linux distributions may require the deactivation of the standard seccomp profile to get containerized desktop software to run. This can be achieved by utilizing the `--security-opt seccomp=unconfined` parameter. It is critical to use this option only when absolutely necessary as it disables a key security layer of Docker, elevating the potential for container escape vulnerabilities.
 
 ### Options in all Selkies-based GUI containers
 
@@ -171,8 +172,6 @@ services:
   libreoffice:
     image: lscr.io/linuxserver/libreoffice:latest
     container_name: libreoffice
-    security_opt:
-      - seccomp:unconfined #optional
     environment:
       - PUID=1000
       - PGID=1000
@@ -182,6 +181,7 @@ services:
     ports:
       - 3000:3000
       - 3001:3001
+    shm_size: "1gb"
     restart: unless-stopped
 ```
 
@@ -190,13 +190,13 @@ services:
 ```bash
 docker run -d \
   --name=libreoffice \
-  --security-opt seccomp=unconfined `#optional` \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -p 3000:3000 \
   -p 3001:3001 \
   -v /path/to/config:/config \
+  --shm-size="1gb" \
   --restart unless-stopped \
   lscr.io/linuxserver/libreoffice:latest
 ```
@@ -230,7 +230,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Parameter | Function |
 | :-----:   | --- |
-| `--security-opt seccomp=unconfined` | For Docker Engine only, many modern gui apps need this to function on older hosts as syscalls are unknown to Docker. |
+| `--shm-size=` | Recommended for all desktop images. |
 
 ## Environment variables from files (Docker secrets)
 
