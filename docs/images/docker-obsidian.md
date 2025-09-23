@@ -61,6 +61,8 @@ By default, this container has no authentication. The optional `CUSTOM_USER` and
 
 The web interface includes a terminal with passwordless `sudo` access. Any user with access to the GUI can gain root control within the container, install arbitrary software, and probe your local network.
 
+While not generally recommended, certain legacy environments specifically those with older hardware or outdated Linux distributions may require the deactivation of the standard seccomp profile to get containerized desktop software to run. This can be achieved by utilizing the `--security-opt seccomp=unconfined` parameter. It is critical to use this option only when absolutely necessary as it disables a key security layer of Docker, elevating the potential for container escape vulnerabilities.
+
 ### Options in all Selkies-based GUI containers
 
 This container is based on [Docker Baseimage Selkies](https://github.com/linuxserver/docker-baseimage-selkies), which provides the following environment variables and run configurations to customize its functionality.
@@ -205,8 +207,6 @@ services:
   obsidian:
     image: lscr.io/linuxserver/obsidian:latest
     container_name: obsidian
-    security_opt:
-      - seccomp:unconfined #optional
     environment:
       - PUID=1000
       - PGID=1000
@@ -216,8 +216,6 @@ services:
     ports:
       - 3000:3000
       - 3001:3001
-    devices:
-      - /dev/dri:/dev/dri #optional
     shm_size: "1gb"
     restart: unless-stopped
 ```
@@ -227,14 +225,12 @@ services:
 ```bash
 docker run -d \
   --name=obsidian \
-  --security-opt seccomp=unconfined `#optional` \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -p 3000:3000 \
   -p 3001:3001 \
   -v /path/to/config:/config \
-  --device /dev/dri:/dev/dri `#optional` \
   --shm-size="1gb" \
   --restart unless-stopped \
   lscr.io/linuxserver/obsidian:latest
@@ -265,18 +261,11 @@ Containers are configured using parameters passed at runtime (such as those abov
 | :----: | --- |
 | `/config` | Users home directory in the container, stores program settings and files. |
 
-### Device Mappings (`--device`)
-
-| Parameter | Function |
-| :-----:   | --- |
-| `/dev/dri` | Add this for GL support (Linux hosts only) |
-
 #### Miscellaneous Options
 
 | Parameter | Function |
 | :-----:   | --- |
 | `--shm-size=` | This is needed for electron applications to function properly. |
-| `--security-opt seccomp=unconfined` | For Docker Engine only, many modern gui apps need this to function on older hosts as syscalls are unknown to Docker. |
 
 ## Environment variables from files (Docker secrets)
 
@@ -509,13 +498,14 @@ To help with development, we generate this dependency graph.
       svc-xsettingsd -> legacy-services
     }
     Base Images: {
-      "baseimage-selkies:debianbookworm" <- "baseimage-debian:bookworm"
+      "baseimage-selkies:debiantrixie" <- "baseimage-debian:trixie"
     }
     "obsidian:latest" <- Base Images
     ```
 
 ## Versions
 
+* **21.09.25:** - Rebase to Debian Trixie.
 * **12.07.25:** - Rebase to Selkies add no sandbox to launcher, HTTPS IS NOW REQUIRED.
 * **03.04.25:** - Update chromium launch options to improve performance.
 * **18.06.24:** - Fix application init for Kasm.
