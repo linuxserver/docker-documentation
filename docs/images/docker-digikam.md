@@ -65,6 +65,8 @@ By default, this container has no authentication. The optional `CUSTOM_USER` and
 
 The web interface includes a terminal with passwordless `sudo` access. Any user with access to the GUI can gain root control within the container, install arbitrary software, and probe your local network.
 
+While not generally recommended, certain legacy environments specifically those with older hardware or outdated Linux distributions may require the deactivation of the standard seccomp profile to get containerized desktop software to run. This can be achieved by utilizing the `--security-opt seccomp=unconfined` parameter. It is critical to use this option only when absolutely necessary as it disables a key security layer of Docker, elevating the potential for container escape vulnerabilities.
+
 ### Options in all Selkies-based GUI containers
 
 This container is based on [Docker Baseimage Selkies](https://github.com/linuxserver/docker-baseimage-selkies), which provides the following environment variables and run configurations to customize its functionality.
@@ -213,12 +215,12 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - SUBFOLDER=/ #optional
     volumes:
       - /path/to/config:/config
     ports:
-      - 3000:3000 #optional
-      - 3001:3001 #optional
+      - 3000:3000
+      - 3001:3001
+    shm_size: "1gb"
     restart: unless-stopped
 ```
 
@@ -230,10 +232,10 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
-  -e SUBFOLDER=/ `#optional` \
-  -p 3000:3000 `#optional` \
-  -p 3001:3001 `#optional` \
+  -p 3000:3000 \
+  -p 3001:3001 \
   -v /path/to/config:/config \
+  --shm-size="1gb" \
   --restart unless-stopped \
   lscr.io/linuxserver/digikam:latest
 ```
@@ -246,8 +248,8 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Parameter | Function |
 | :----: | --- |
-| `3000:3000` | digiKam desktop gui HTTP, must be proxied |
-| `3001:3001` | digiKam desktop gui HTTPS |
+| `3000:3000` | Digikam desktop gui HTTP, must be proxied. |
+| `3001:3001` | Digikam desktop gui HTTPS. |
 
 ### Environment Variables (`-e`)
 
@@ -256,7 +258,6 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
-| `SUBFOLDER=/` | Specify a subfolder to use with reverse proxies, IE `/subfolder/` |
 
 ### Volume Mappings (`-v`)
 
@@ -268,6 +269,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Parameter | Function |
 | :-----:   | --- |
+| `--shm-size=` | Recommended for all desktop images. |
 
 ## Environment variables from files (Docker secrets)
 
@@ -498,13 +500,14 @@ To help with development, we generate this dependency graph.
       svc-xsettingsd -> legacy-services
     }
     Base Images: {
-      "baseimage-selkies:debianbookworm" <- "baseimage-debian:bookworm"
+      "baseimage-selkies:debiantrixie" <- "baseimage-debian:trixie"
     }
     "digikam:latest" <- Base Images
     ```
 
 ## Versions
 
+* **22.09.25:** - Rebase to Debian Trixie.
 * **28.07.25:** - Fix CPU usage bug by disabling fake udev.
 * **12.07.25:** - Rebase to Selkies, HTTPS IS NOW REQUIRED.
 * **03.04.25:** - Update chromium launch options to improve performance.
