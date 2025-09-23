@@ -62,6 +62,8 @@ By default, this container has no authentication. The optional `CUSTOM_USER` and
 
 The web interface includes a terminal with passwordless `sudo` access. Any user with access to the GUI can gain root control within the container, install arbitrary software, and probe your local network.
 
+While not generally recommended, certain legacy environments specifically those with older hardware or outdated Linux distributions may require the deactivation of the standard seccomp profile to get containerized desktop software to run. This can be achieved by utilizing the `--security-opt seccomp=unconfined` parameter. It is critical to use this option only when absolutely necessary as it disables a key security layer of Docker, elevating the potential for container escape vulnerabilities.
+
 ### Options in all Selkies-based GUI containers
 
 This container is based on [Docker Baseimage Selkies](https://github.com/linuxserver/docker-baseimage-selkies), which provides the following environment variables and run configurations to customize its functionality.
@@ -171,8 +173,6 @@ services:
   krita:
     image: lscr.io/linuxserver/krita:latest
     container_name: krita
-    security_opt:
-      - seccomp:unconfined #optional
     environment:
       - PUID=1000
       - PGID=1000
@@ -182,6 +182,7 @@ services:
     ports:
       - 3000:3000
       - 3001:3001
+    shm_size: "1gb"
     restart: unless-stopped
 ```
 
@@ -190,13 +191,13 @@ services:
 ```bash
 docker run -d \
   --name=krita \
-  --security-opt seccomp=unconfined `#optional` \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -p 3000:3000 \
   -p 3001:3001 \
   -v /path/to/config:/config \
+  --shm-size="1gb" \
   --restart unless-stopped \
   lscr.io/linuxserver/krita:latest
 ```
@@ -230,7 +231,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Parameter | Function |
 | :-----:   | --- |
-| `--security-opt seccomp=unconfined` | For Docker Engine only, many modern gui apps need this to function on older hosts as syscalls are unknown to Docker. |
+| `--shm-size=` | Recommended for all desktop images. |
 
 ## Environment variables from files (Docker secrets)
 
@@ -461,13 +462,14 @@ To help with development, we generate this dependency graph.
       svc-xsettingsd -> legacy-services
     }
     Base Images: {
-      "baseimage-selkies:debianbookworm" <- "baseimage-debian:bookworm"
+      "baseimage-selkies:debiantrixie" <- "baseimage-debian:trixie"
     }
     "krita:latest" <- Base Images
     ```
 
 ## Versions
 
+* **22.09.25:** - Rebase to Debian Trixie.
 * **12.07.25:** - Rebase to Selkies and Debian, use AppImage, HTTPS IS NOW REQUIRED. Remove arm64 support.
 * **06.12.24:** - Rebase to Alpine 3.21.
 * **23.05.24:** - Rebase to Alpine 3.20.
