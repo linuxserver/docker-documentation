@@ -61,6 +61,8 @@ By default, this container has no authentication. The optional `CUSTOM_USER` and
 
 The web interface includes a terminal with passwordless `sudo` access. Any user with access to the GUI can gain root control within the container, install arbitrary software, and probe your local network.
 
+While not generally recommended, certain legacy environments specifically those with older hardware or outdated Linux distributions may require the deactivation of the standard seccomp profile to get containerized desktop software to run. This can be achieved by utilizing the `--security-opt seccomp=unconfined` parameter. It is critical to use this option only when absolutely necessary as it disables a key security layer of Docker, elevating the potential for container escape vulnerabilities.
+
 ### Options in all Selkies-based GUI containers
 
 This container is based on [Docker Baseimage Selkies](https://github.com/linuxserver/docker-baseimage-selkies), which provides the following environment variables and run configurations to customize its functionality.
@@ -205,8 +207,6 @@ services:
   chrome:
     image: lscr.io/linuxserver/chrome:latest
     container_name: chrome
-    security_opt:
-      - seccomp:unconfined #optional
     environment:
       - PUID=1000
       - PGID=1000
@@ -226,7 +226,6 @@ services:
 ```bash
 docker run -d \
   --name=chrome \
-  --security-opt seccomp=unconfined `#optional` \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
@@ -270,7 +269,6 @@ Containers are configured using parameters passed at runtime (such as those abov
 | Parameter | Function |
 | :-----:   | --- |
 | `--shm-size=` | This is needed for any modern website to function like youtube. |
-| `--security-opt seccomp=unconfined` | For Docker Engine only, many modern gui apps need this to function on older hosts as syscalls are unknown to Docker. Chrome runs in no-sandbox test mode without it. |
 
 ## Environment variables from files (Docker secrets)
 
@@ -501,13 +499,14 @@ To help with development, we generate this dependency graph.
       svc-xsettingsd -> legacy-services
     }
     Base Images: {
-      "baseimage-selkies:debianbookworm" <- "baseimage-debian:bookworm"
+      "baseimage-selkies:debiantrixie" <- "baseimage-debian:trixie"
     }
     "chrome:latest" <- Base Images
     ```
 
 ## Versions
 
+* **22.09.25:** - Rebase to Debian Trixie.
 * **02.09.25:** - Revert graceful shutdown script to rely on the baseimage fix.
 * **29.08.25:** - Attempt graceful shutdown of Chrome.
 * **12.06.25:** - Initial release.
