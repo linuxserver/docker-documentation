@@ -43,37 +43,118 @@ The application can be accessed at:
 
 * https://yourhost:3001/
 
+### Strict reverse proxies
+
+This image uses a self-signed certificate by default. This naturally means the scheme is `https`.
+If you are using a reverse proxy which validates certificates, you need to [disable this check for the container](https://docs.linuxserver.io/faq#strict-proxy).
+
+**Modern GUI desktop apps may have compatibility issues with the latest Docker syscall restrictions. You can use Docker with the `--security-opt seccomp=unconfined` setting to allow these syscalls on hosts with older Kernels or libseccomp versions.**
 
 ### Security
 
->[!WARNING]
->Do not put this on the Internet if you do not know what you are doing.
+!!! warning
 
-By default this container has no authentication and the optional environment variables `CUSTOM_USER` and `PASSWORD` to enable basic http auth via the embedded NGINX server should only be used to locally secure the container from unwanted access on a local network. If exposing this to the Internet we recommend putting it behind a reverse proxy, such as [SWAG](https://github.com/linuxserver/docker-swag), and ensuring a secure authentication solution is in place. From the web interface a terminal can be launched and it is configured for passwordless sudo, so anyone with access to it can install and run whatever they want along with probing your local network.
+    This container provides privileged access to the host system. Do not expose it to the Internet unless you have secured it properly.
 
-### Nvidia GPU Support
+**HTTPS is required for full functionality.** Modern browser features such as WebCodecs, used for video and audio, will not function over an insecure HTTP connection.
 
-**Nvidia support is not compatible with Alpine based images as Alpine lacks Nvidia drivers**
+By default, this container has no authentication. The optional `CUSTOM_USER` and `PASSWORD` environment variables enable basic HTTP auth, which is suitable only for securing the container on a trusted local network. For internet exposure, we strongly recommend placing the container behind a reverse proxy, such as [SWAG](https://github.com/linuxserver/docker-swag), with a robust authentication mechanism.
 
-Nvidia support is available by leveraging Zink for OpenGL support. This can be enabled with the following run flags:
+The web interface includes a terminal with passwordless `sudo` access. Any user with access to the GUI can gain root control within the container, install arbitrary software, and probe your local network.
+
+While not generally recommended, certain legacy environments specifically those with older hardware or outdated Linux distributions may require the deactivation of the standard seccomp profile to get containerized desktop software to run. This can be achieved by utilizing the `--security-opt seccomp=unconfined` parameter. It is critical to use this option only when absolutely necessary as it disables a key security layer of Docker, elevating the potential for container escape vulnerabilities.
+
+### Options in all Selkies-based GUI containers
+
+This container is based on [Docker Baseimage Selkies](https://github.com/linuxserver/docker-baseimage-selkies), which provides the following environment variables and run configurations to customize its functionality.
+
+#### Optional Environment Variables
 
 | Variable | Description |
 | :----: | --- |
-| --gpus all | This can be filtered down but for most setups this will pass the one Nvidia GPU on the system |
-| --runtime nvidia | Specify the Nvidia runtime which mounts drivers and tools in from the host |
+| `CUSTOM_PORT` | Internal HTTP port. Defaults to `3000`. |
+| `CUSTOM_HTTPS_PORT` | Internal HTTPS port. Defaults to `3001`. |
+| `CUSTOM_WS_PORT` | Internal port the container listens on for websockets if it needs to be swapped from the default 8082. |
+| `CUSTOM_USER` | Username for HTTP Basic Auth. Defaults to `abc`. |
+| `PASSWORD` | Password for HTTP Basic Auth. If unset, authentication is disabled. |
+| `SUBFOLDER` | Application subfolder for reverse proxy configurations. Must include leading and trailing slashes, e.g., `/subfolder/`. |
+| `TITLE` | Page title displayed in the web browser. Defaults to "Selkies". |
+| `START_DOCKER` | If set to `false`, the privileged Docker-in-Docker setup will not start automatically. |
+| `DISABLE_IPV6` | Set to `true` to disable IPv6 support in the container. | 
+| `LC_ALL` | Sets the container's locale, e.g., `fr_FR.UTF-8`. |
+| `DRINODE` | If mounting in /dev/dri for DRI3 GPU Acceleration allows you to specify the device to use IE `/dev/dri/renderD128` |
+| `NO_DECOR` | If set, applications will run without window borders, suitable for PWA usage. |
+| `NO_FULL` | If set, applications will not be automatically fullscreened. |
+| `DISABLE_ZINK` | If set, Zink-related environment variables will not be configured when a video card is detected. |
+| `WATERMARK_PNG` | Full path to a watermark PNG file inside the container, e.g., `/usr/share/selkies/www/icon.png`. |
+| `WATERMARK_LOCATION` | Integer specifying the watermark location: `1` (Top Left), `2` (Top Right), `3` (Bottom Left), `4` (Bottom Right), `5` (Centered), `6` (Animated). |
 
-The compose syntax is slightly different for this as you will need to set nvidia as the default runtime:
+#### Optional Run Configurations
+
+| Argument | Description |
+| :----: | --- |
+| `--privileged` | Starts a Docker-in-Docker (DinD) environment. For better performance, mount the Docker data directory from the host, e.g., `-v /path/to/docker-data:/var/lib/docker`. |
+| `-v /var/run/docker.sock:/var/run/docker.sock` | Mounts the host's Docker socket to manage host containers from within this container. |
+| `--device /dev/dri:/dev/dri` | Mount a GPU into the container, this can be used in conjunction with the `DRINODE` environment variable to leverage a host video card for GPU accelerated applications. Only **Open Source** drivers are supported IE (Intel,AMDGPU,Radeon,ATI,Nouveau) |
+
+### Language Support - Internationalization
+
+To launch the desktop session in a different language, set the `LC_ALL` environment variable. For example:
+
+*   `-e LC_ALL=zh_CN.UTF-8` - Chinese
+*   `-e LC_ALL=ja_JP.UTF-8` - Japanese
+*   `-e LC_ALL=ko_KR.UTF-8` - Korean
+*   `-e LC_ALL=ar_AE.UTF-8` - Arabic
+*   `-e LC_ALL=ru_RU.UTF-8` - Russian
+*   `-e LC_ALL=es_MX.UTF-8` - Spanish (Latin America)
+*   `-e LC_ALL=de_DE.UTF-8` - German
+*   `-e LC_ALL=fr_FR.UTF-8` - French
+*   `-e LC_ALL=nl_NL.UTF-8` - Netherlands
+*   `-e LC_ALL=it_IT.UTF-8` - Italian
+
+### DRI3 GPU Acceleration
+
+For accelerated apps or games, render devices can be mounted into the container and leveraged by applications using:
+
+`--device /dev/dri:/dev/dri`
+
+This feature only supports **Open Source** GPU drivers:
+
+| Driver | Description |
+| :----: | --- |
+| Intel | i965 and i915 drivers for Intel iGPU chipsets |
+| AMD | AMDGPU, Radeon, and ATI drivers for AMD dedicated or APU chipsets |
+| NVIDIA | nouveau2 drivers only, closed source NVIDIA drivers lack DRI3 support |
+
+The `DRINODE` environment variable can be used to point to a specific GPU.
+
+DRI3 will work on aarch64 given the correct drivers are installed inside the container for your chipset.
+
+### Nvidia GPU Support
+
+**Note: Nvidia support is not available for Alpine-based images.**
+
+Nvidia GPU support is available by leveraging Zink for OpenGL. When a compatible Nvidia GPU is passed through, it will also be **automatically utilized for hardware-accelerated video stream encoding** (using the `x264enc` full-frame profile), significantly reducing CPU load.
+
+Enable Nvidia support with the following runtime flags:
+
+| Flag | Description |
+| :----: | --- |
+| `--gpus all` | Passes all available host GPUs to the container. This can be filtered to specific GPUs. |
+| `--runtime nvidia` | Specifies the Nvidia runtime, which provides the necessary drivers and tools from the host. |
+
+For Docker Compose, you must first configure the Nvidia runtime as the default on the host:
 
 ```
 sudo nvidia-ctk runtime configure --runtime=docker --set-as-default
-sudo service docker restart
+sudo systemctl restart docker
 ```
 
-And to assign the GPU in compose:
+Then, assign the GPU to the service in your `compose.yaml`:
 
 ```
 services:
-  kalilinux:
+  kali-linux:
     image: lscr.io/linuxserver/kali-linux:latest
     deploy:
       resources:
@@ -84,10 +165,32 @@ services:
               capabilities: [compute,video,graphics,utility]
 ```
 
-### Strict reverse proxies
+### Application Management
 
-This image uses a self-signed certificate by default. This naturally means the scheme is `https`.
-If you are using a reverse proxy which validates certificates, you need to [disable this check for the container](https://docs.linuxserver.io/faq#strict-proxy).
+There are two methods for installing applications inside the container: PRoot Apps (recommended for persistence) and Native Apps.
+
+#### PRoot Apps (Persistent)
+
+Natively installed packages (e.g., via `apt-get install`) will not persist if the container is recreated. To retain applications and their settings across container updates, we recommend using [proot-apps](https://github.com/linuxserver/proot-apps). These are portable applications installed to the user's persistent `$HOME` directory.
+
+To install an application, use the command line inside the container:
+
+```
+proot-apps install filezilla
+```
+
+A list of supported applications is available [here](https://github.com/linuxserver/proot-apps?tab=readme-ov-file#supported-apps).
+
+#### Native Apps (Non-Persistent)
+
+You can install packages from the system's native repository using the [universal-package-install](https://github.com/linuxserver/docker-mods/tree/universal-package-install) mod. This method will increase the container's start time and is not persistent. Add the following to your `compose.yaml`:
+
+```yaml
+  environment:
+    - DOCKER_MODS=linuxserver/mods:universal-package-install
+    - INSTALL_PACKAGES=libfuse2|git|gdb
+```
+ 
 
 ## Usage
 
@@ -105,21 +208,16 @@ services:
   kali-linux:
     image: lscr.io/linuxserver/kali-linux:latest
     container_name: kali-linux
-    security_opt:
-      - seccomp:unconfined #optional
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - SUBFOLDER=/ #optional
-      - "TITLE=Kali Linux" #optional
     volumes:
       - /path/to/data:/config
-      - /var/run/docker.sock:/var/run/docker.sock #optional
     ports:
       - 3000:3000
       - 3001:3001
-    shm_size: "1gb" #optional
+    shm_size: "1gb"
     restart: unless-stopped
 ```
 
@@ -128,17 +226,13 @@ services:
 ```bash
 docker run -d \
   --name=kali-linux \
-  --security-opt seccomp=unconfined `#optional` \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
-  -e SUBFOLDER=/ `#optional` \
-  -e TITLE="Kali Linux" `#optional` \
   -p 3000:3000 \
   -p 3001:3001 \
   -v /path/to/data:/config \
-  -v /var/run/docker.sock:/var/run/docker.sock `#optional` \
-  --shm-size="1gb" `#optional` \
+  --shm-size="1gb" \
   --restart unless-stopped \
   lscr.io/linuxserver/kali-linux:latest
 ```
@@ -161,22 +255,18 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
-| `SUBFOLDER=/` | Specify a subfolder to use with reverse proxies, IE `/subfolder/` |
-| `TITLE=Kali Linux` | String which will be used as page/tab title in the web browser. |
 
 ### Volume Mappings (`-v`)
 
 | Volume | Function |
 | :----: | --- |
 | `/config` | abc users home directory |
-| `/var/run/docker.sock` | Docker Socket on the system, if you want to use Docker in the container |
 
 #### Miscellaneous Options
 
 | Parameter | Function |
 | :-----:   | --- |
-| `--shm-size=` | We set this to 1 gig to prevent modern web browsers from crashing |
-| `--security-opt seccomp=unconfined` | For Docker Engine only, many modern gui apps need this to function on older hosts as syscalls are unknown to Docker. |
+| `--shm-size=` | Recommended for all desktop images. |
 
 ## Environment variables from files (Docker secrets)
 
