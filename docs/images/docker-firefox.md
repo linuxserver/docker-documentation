@@ -216,8 +216,6 @@ services:
   firefox:
     image: lscr.io/linuxserver/firefox:latest
     container_name: firefox
-    security_opt:
-      - seccomp:unconfined #optional
     environment:
       - PUID=1000
       - PGID=1000
@@ -237,7 +235,6 @@ services:
 ```bash
 docker run -d \
   --name=firefox \
-  --security-opt seccomp=unconfined `#optional` \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
@@ -281,7 +278,6 @@ Containers are configured using parameters passed at runtime (such as those abov
 | Parameter | Function |
 | :-----:   | --- |
 | `--shm-size=` | This is needed for any modern website to function like youtube. |
-| `--security-opt seccomp=unconfined` | For Docker Engine only, many modern gui apps need this to function on older hosts as syscalls are unknown to Docker. |
 
 ## Environment variables from files (Docker secrets)
 
