@@ -207,8 +207,6 @@ services:
   ungoogled-chromium:
     image: lscr.io/linuxserver/ungoogled-chromium:latest
     container_name: ungoogled-chromium
-    security_opt:
-      - seccomp:unconfined #optional
     environment:
       - PUID=1000
       - PGID=1000
@@ -228,7 +226,6 @@ services:
 ```bash
 docker run -d \
   --name=ungoogled-chromium \
-  --security-opt seccomp=unconfined `#optional` \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
@@ -272,7 +269,6 @@ Containers are configured using parameters passed at runtime (such as those abov
 | Parameter | Function |
 | :-----:   | --- |
 | `--shm-size=` | This is needed for any modern website to function like youtube. |
-| `--security-opt seccomp=unconfined` | For Docker Engine only, many modern gui apps need this to function on older hosts as syscalls are unknown to Docker. Ungoogled Chromium runs in no-sandbox test mode without it. |
 
 ## Environment variables from files (Docker secrets)
 
@@ -503,13 +499,14 @@ To help with development, we generate this dependency graph.
       svc-xsettingsd -> legacy-services
     }
     Base Images: {
-      "baseimage-selkies:debianbookworm" <- "baseimage-debian:bookworm"
+      "baseimage-selkies:debiantrixie" <- "baseimage-debian:trixie"
     }
     "ungoogled-chromium:latest" <- Base Images
     ```
 
 ## Versions
 
+* **22.09.25:** - Rebase to Debian Trixie.
 * **12.07.25:** - Rebase to Selkies, HTTPS IS NOW REQUIRED.
 * **03.04.25:** - Update chromium launch options to improve performance.
 * **25.07.24:** - Initial release.
