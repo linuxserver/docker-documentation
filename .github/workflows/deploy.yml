@@ -27,14 +27,14 @@ jobs:
         run: |
           echo "dir=$(pip cache dir)" >> $GITHUB_OUTPUT
       - name: Cache dependencies
-        uses: actions/cache@v4.2.4
+        uses: actions/cache@v4.3.0
         with:
           path: ${{ steps.pip-cache.outputs.dir }}
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
       - name: Cache d2 database
-        uses: actions/cache/restore@v4.2.4 # We only want to restore the cache, to avoid overwriting the cache on PRs
+        uses: actions/cache/restore@v4.3.0 # We only want to restore the cache, to avoid overwriting the cache on PRs
         with:
           path: .cache/plugin/d2
           key: ${{ runner.os }}-d2
@@ -76,14 +76,14 @@ jobs:
         run: |
           echo "dir=$(pip cache dir)" >> $GITHUB_OUTPUT
       - name: Cache dependencies
-        uses: actions/cache@v4.2.4
+        uses: actions/cache@v4.3.0
         with:
           path: ${{ steps.pip-cache.outputs.dir }}
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
       - name: Cache d2 database
-        uses: actions/cache@v4.2.4
+        uses: actions/cache@v4.3.0
         with:
           path: .cache/plugin/d2
           key: ${{ runner.os }}-d2
