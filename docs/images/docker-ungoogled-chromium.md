@@ -491,6 +491,8 @@ To help with development, we generate this dependency graph.
       svc-pulseaudio -> svc-selkies
       svc-xorg -> svc-selkies
       svc-selkies -> legacy-services
+      init-services -> svc-watchdog
+      svc-watchdog -> legacy-services
       init-services -> svc-xorg
       svc-xorg -> legacy-services
       init-services -> svc-xsettingsd
