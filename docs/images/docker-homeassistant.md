@@ -347,8 +347,8 @@ To help with development, we generate this dependency graph.
       init-migrations -> init-adduser
       init-os-end -> init-config
       init-config -> init-config-end
+      init-config-homeassistant -> init-config-end
       init-crontab-config -> init-config-end
-      init-usb-homeassistant -> init-config-end
       init-config -> init-config-homeassistant
       init-config -> init-crontab-config
       init-mods-end -> init-custom-files
@@ -362,21 +362,20 @@ To help with development, we generate this dependency graph.
       init-device-perms -> init-os-end
       init-envfile -> init-os-end
       init-custom-files -> init-services
-      init-config-homeassistant -> init-usb-homeassistant
       init-services -> svc-cron
       svc-cron -> legacy-services
       init-services -> svc-homeassistant
-      init-usb-homeassistant -> svc-homeassistant
       svc-homeassistant -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.21"
+      "baseimage-alpine:3.22"
     }
     "homeassistant:latest" <- Base Images
     ```
 
 ## Versions
 
+* **02.10.25:** - Rebase to alpine 3.22, rely on baseimage service for usb device permission fixing.
 * **19.09.25:** - Add the necessary capabilities in the container to allow the unprivileged user access to bluetooth stack.
 * **03.01.25:** - Rebase to alpine 3.21.
 * **04.12.24:** - Make setcap target dynamic.
