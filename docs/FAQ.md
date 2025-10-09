@@ -248,20 +248,23 @@ hide:
 
         To skip this verification we can modify site entry of the [caddyfile](https://caddyserver.com/docs/quick-starts/caddyfile) as shown below:
 
-        *Note: replace `calibre.xxx.com` with your domain and `172.xxx.xxx.xxx:8181` with your backend service IP and port.*
+    !!! note
+        Replace `calibre.xxx.com` with your domain and `172.xxx.xxx.xxx:8181` with your backend service IP and port.
 
-        ```caddyfile
-        calibre.xxx.com {
-            reverse_proxy https://172.xxx.xxx.xxx:8181 {
-                transport http {
-                    tls
-                    tls_insecure_skip_verify
-                }
+
+    ```caddyfile
+    calibre.xxx.com {
+        reverse_proxy https://172.xxx.xxx.xxx:8181 {
+            transport http {
+                tls
+                tls_insecure_skip_verify
             }
         }
-        ```
+    }
+    ```
 
-        **Bonus Tip 1**: If you find yourself needing to do this for multiple services, you can also define a [caddy snippet](https://caddyserver.com/docs/caddyfile/concepts#snippets) and reuse it in your caddyfile like so:
+    ???+ tip "Bonus Tip 1: Caddy Snippets"
+        If you find yourself needing to do this for multiple services, you can also define a [caddy snippet](https://caddyserver.com/docs/caddyfile/concepts#snippets) and reuse it in your caddyfile like so:
 
         ```caddyfile
         (allow_insecure_ssl) {
@@ -277,7 +280,8 @@ hide:
         }
         ```
 
-        **Bonus Tip 2**: If you use [caddy-docker-proxy](https://github.com/lucaslorentz/caddy-docker-proxy), you can simply apply the following labels to your docker-compose yaml file:
+    ???+ tip "Bonus Tip 2: caddy-docker-proxy"
+        If you use [caddy-docker-proxy](https://github.com/lucaslorentz/caddy-docker-proxy), you can simply apply the following labels to your docker-compose yaml file:
 
         ```yaml
         labels:
