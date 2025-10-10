@@ -337,6 +337,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **11.10.25:** - Add php83-pdo and php83-pdo_sqlite
 * **19.06.24:** - Rebase to Alpine 3.20. Symlink robots.txt to /config. Existing users should update their nginx confs to avoid http2 deprecation warnings.
 * **06.03.24:** - Add brotli to nginx.
 * **06.03.24:** - Existing users should update: site-confs/default.conf - Cleanup default site conf.
