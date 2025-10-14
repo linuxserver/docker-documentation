@@ -334,13 +334,14 @@ To help with development, we generate this dependency graph.
       svc-php-fpm -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine-nginx:3.21" <- "baseimage-alpine:3.21"
+      "baseimage-alpine-nginx:3.22" <- "baseimage-alpine:3.22"
     }
     "projectsend:latest" <- Base Images
     ```
 
 ## Versions
 
+* **14.10.25:** - Rebase to 3.22.
 * **06.06.25:** - Add crontab handler for scheduled tasks.
 * **21.12.24:** - Rebase to Alpine 3.21, move php .ini file to /config/php.
 * **06.06.24:** - Rebase to Alpine 3.20.
