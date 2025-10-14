@@ -334,38 +334,35 @@ To help with development, we generate this dependency graph.
       init-migrations -> init-adduser
       init-os-end -> init-config
       init-config -> init-config-end
+      init-crontab-config -> init-config-end
       init-hedgedoc-config -> init-config-end
-      init-os-end -> init-crontab-config
+      init-config -> init-crontab-config
       init-mods-end -> init-custom-files
       init-adduser -> init-device-perms
       base -> init-envfile
       init-config -> init-hedgedoc-config
       base -> init-migrations
-      base -> init-mods
       init-config-end -> init-mods
-      init-mods -> init-mods-end
       init-mods-package-install -> init-mods-end
       init-mods -> init-mods-package-install
-      base -> init-os-end
       init-adduser -> init-os-end
       init-device-perms -> init-os-end
       init-envfile -> init-os-end
-      init-migrations -> init-os-end
       init-custom-files -> init-services
-      init-mods-end -> init-services
       init-services -> svc-cron
       svc-cron -> legacy-services
       init-services -> svc-hedgedoc
       svc-hedgedoc -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.20"
+      "baseimage-alpine:3.22"
     }
     "hedgedoc:latest" <- Base Images
     ```
 
 ## Versions
 
+* **14.10.25:** - Rebase to Alpine 3.22.
 * **24.02.25:** - Add missing icu-data-full to fix bug with TextDecoder and image uploads.
 * **21.06.24:** - Allow using `CMD_DB_DIALECT` to set up the `CMD_DB_URL`.
 * **06.06.24:** - Rebase to Alpine 3.20.
