@@ -345,13 +345,14 @@ To help with development, we generate this dependency graph.
       svc-wikijs -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.21"
+      "baseimage-alpine:3.22"
     }
     "wikijs:latest" <- Base Images
     ```
 
 ## Versions
 
+* **14.10.25:** - Rebase to Alpine 3.22.
 * **18.01.25:** - Rebase to Alpine 3.21.
 * **01.06.24:** - Rebase to Alpine 3.20.
 * **23.12.23:** - Rebase to Alpine 3.19.
