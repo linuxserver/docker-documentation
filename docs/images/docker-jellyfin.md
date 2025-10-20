@@ -423,6 +423,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **20.10.25:** - Add libjemalloc as runtime dep.
 * **06.10.24:** - Fix fontconfig cache path.
 * **13.08.24:** - Rebase to Ubuntu Noble.
 * **01.05.24:** - Increase verbosity of device permissions fixing.
