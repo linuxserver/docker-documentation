@@ -493,6 +493,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **20.10.25:** - Add vips-heif.
 * **08.07.25:** - Rebase to Alpine 3.22.
 * **06.06.25:** - Rebase to Alpine 3.21, replace deprecated imagemagick with vips.
 * **08.10.24:** - Rebase to Alpine 3.20, enable [Active Record Encryption](https://github.com/mastodon/mastodon/pull/29831/files). Existing users should update their nginx confs to avoid http2 deprecation warnings.
