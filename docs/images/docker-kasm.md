@@ -367,6 +367,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **22.10.25:** - Update for 1.18.0 release.
 * **08.06.25:** - Deprecate develop branch.
 * **03.06.25:** - Rebase to Ubuntu Noble. Update for 1.17.0 release.
 * **09.11.24:** - Update base image for 1.16.1 release.
