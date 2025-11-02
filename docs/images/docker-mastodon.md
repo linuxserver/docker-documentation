@@ -140,11 +140,13 @@ services:
       - SIDEKIQ_THREADS=5 #optional
       - DB_POOL=5 #optional
       - NO_CHOWN= #optional
+      - MASTODON_PROMETHEUS_EXPORTER_ENABLED= #optional
     volumes:
       - /path/to/mastodon/config:/config
     ports:
       - 80:80
       - 443:443
+      - 9394:9394 #optional
     restart: unless-stopped
 ```
 
@@ -193,8 +195,10 @@ docker run -d \
   -e SIDEKIQ_THREADS=5 `#optional` \
   -e DB_POOL=5 `#optional` \
   -e NO_CHOWN= `#optional` \
+  -e MASTODON_PROMETHEUS_EXPORTER_ENABLED= `#optional` \
   -p 80:80 \
   -p 443:443 \
+  -p 9394:9394 `#optional` \
   -v /path/to/mastodon/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/mastodon:latest
@@ -210,6 +214,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | :----: | --- |
 | `80:80` | Port for web frontend |
 | `443:443` | Port for web frontend |
+| `9394:9394` | Port for Prometheus metrics |
 
 ### Environment Variables (`-e`)
 
@@ -255,6 +260,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `SIDEKIQ_THREADS=5` | The number of threads for sidekiq to use. See [notes](https://docs.joinmastodon.org/admin/scaling/#sidekiq-threads). |
 | `DB_POOL=5` | The size of the DB connection pool, must be *at least* the same as `SIDEKIQ_THREADS`. See [notes](https://docs.joinmastodon.org/admin/scaling/#sidekiq-threads). |
 | `NO_CHOWN=` | Set to `true` to skip chown of /config on init. *READ THE APPLICATION NOTES BEFORE SETTING THIS*. |
+| `MASTODON_PROMETHEUS_EXPORTER_ENABLED=` | If set to `true`, Mastodon’s Ruby processes (web & Sidekiq) will enable the Prometheus instrumentation. |
 
 ### Volume Mappings (`-v`)
 
@@ -480,6 +486,8 @@ To help with development, we generate this dependency graph.
       svc-nginx -> legacy-services
       init-services -> svc-php-fpm
       svc-php-fpm -> legacy-services
+      init-services -> svc-prom
+      svc-prom -> legacy-services
       init-services -> svc-sidekiq
       svc-sidekiq -> legacy-services
       init-services -> svc-streaming
@@ -493,6 +501,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **21.10.25:** - Add prometheus exporter support.
 * **20.10.25:** - Add vips-heif.
 * **08.07.25:** - Rebase to Alpine 3.22.
 * **06.06.25:** - Rebase to Alpine 3.21, replace deprecated imagemagick with vips.
