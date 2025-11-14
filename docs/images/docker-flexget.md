@@ -319,38 +319,35 @@ To help with development, we generate this dependency graph.
       init-migrations -> init-adduser
       init-os-end -> init-config
       init-config -> init-config-end
+      init-crontab-config -> init-config-end
       init-flexget-config -> init-config-end
-      init-os-end -> init-crontab-config
+      init-config -> init-crontab-config
       init-mods-end -> init-custom-files
       init-adduser -> init-device-perms
       base -> init-envfile
       init-config -> init-flexget-config
       base -> init-migrations
-      base -> init-mods
       init-config-end -> init-mods
-      init-mods -> init-mods-end
       init-mods-package-install -> init-mods-end
       init-mods -> init-mods-package-install
-      base -> init-os-end
       init-adduser -> init-os-end
       init-device-perms -> init-os-end
       init-envfile -> init-os-end
-      init-migrations -> init-os-end
       init-custom-files -> init-services
-      init-mods-end -> init-services
       init-services -> svc-cron
       svc-cron -> legacy-services
       init-services -> svc-flexget
       svc-flexget -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.19"
+      "baseimage-alpine:3.22"
     }
     "flexget:latest" <- Base Images
     ```
 
 ## Versions
 
+* **10.11.25:** - Rebase to Alpine 3.22.
 * **17.10.25:** - Add pip to enable [universal-package-install mod](https://github.com/linuxserver/docker-mods/tree/universal-package-install).
 * **18.09.24:** - Suppress creation of empty log file when WebUI password is set.
 * **17.08.24:** - Revert to Alpine 3.20 due to 1st party plugin incompatibility with Python 3.12.
