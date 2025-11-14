@@ -367,6 +367,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **13.11.25:** - Pin docker to v28 to avoid API deprecation issues.
 * **22.10.25:** - Update for 1.18.0 release.
 * **08.06.25:** - Deprecate develop branch.
 * **03.06.25:** - Rebase to Ubuntu Noble. Update for 1.17.0 release.
