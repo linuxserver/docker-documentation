@@ -132,3 +132,4 @@ plugins:
         images/docker-readarr.md: deprecated_images/docker-readarr.md
         images/docker-sickchill.md: deprecated_images/docker-sickchill.md
         images/docker-pylon.md: deprecated_images/docker-pylon.md
+        images/docker-feed2toot.md: deprecated_images/docker-feed2toot.md
