@@ -341,6 +341,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **16.11.25:** - Add missing language files to default install.
 * **14.10.25:** - Rebase to 3.22.
 * **06.06.25:** - Add crontab handler for scheduled tasks.
 * **21.12.24:** - Rebase to Alpine 3.21, move php .ini file to /config/php.
