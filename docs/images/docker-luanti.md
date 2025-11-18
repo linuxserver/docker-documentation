@@ -333,5 +333,6 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **03.11.25:** - Use latest LuaJIT from git to fix math bugs
 * **09.07.25:** - Rebase to Alpine 3.22.
 * **30.01.25:** - Initial Release.
