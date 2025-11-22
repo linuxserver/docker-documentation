@@ -333,13 +333,14 @@ To help with development, we generate this dependency graph.
       svc-mylar3 -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.19"
+      "baseimage-ubuntu:jammy"
     }
     "mylar3:latest" <- Base Images
     ```
 
 ## Versions
 
+* **21.11.25:** - Rebase to Ubuntu Jammy.
 * **23.12.23:** - Rebase to Alpine 3.19.
 * **16.08.23:** - Install unrar from [linuxserver repo](https://github.com/linuxserver/docker-unrar).
 * **10.08.23:** - Bump unrar to 6.2.10.
