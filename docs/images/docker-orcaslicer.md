@@ -644,6 +644,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **25.11.25:** - Update project repo name.
 * **15.09.25:** - Rebase to Ubuntu Noble and Selkies, HTTPS is now required.
 * **10.02.24:** - Update Readme with new env vars and ingest proper PWA icon.
 * **15.11.23:** - Initial release.
