@@ -338,6 +338,7 @@ services:
       - 8080:8080
       - 8181:8181
       - 8081:8081
+    shm_size: "1gb"
     restart: unless-stopped
 ```
 
@@ -356,6 +357,7 @@ docker run -d \
   -p 8181:8181 \
   -p 8081:8081 \
   -v /path/to/calibre/config:/config \
+  --shm-size="1gb" \
   --restart unless-stopped \
   lscr.io/linuxserver/calibre:latest
 ```
@@ -392,6 +394,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Parameter | Function |
 | :-----:   | --- |
+| `--shm-size=` | Recommended for all desktop images. |
 | `--security-opt seccomp=unconfined` | For Docker Engine only, many modern gui apps need this to function as syscalls are unkown to Docker. |
 
 ## Environment variables from files (Docker secrets)
