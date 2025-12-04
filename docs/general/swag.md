@@ -174,6 +174,11 @@ services:
       - 443:443
       - 80:80
     restart: unless-stopped
+    networks:
+      - lsio
+networks:
+  lsio:
+    external: true
 ```
 
 We can fire up the container with `docker-compose up -d`
