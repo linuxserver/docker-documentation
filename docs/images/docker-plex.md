@@ -415,8 +415,7 @@ To help with development, we generate this dependency graph.
       init-envfile -> init-os-end
       init-config -> init-plex-chown
       init-plex-chown -> init-plex-claim
-      init-plex-claim -> init-plex-gid-video
-      init-plex-gid-video -> init-plex-update
+      init-plex-claim -> init-plex-update
       init-custom-files -> init-services
       init-services -> svc-cron
       svc-cron -> legacy-services
