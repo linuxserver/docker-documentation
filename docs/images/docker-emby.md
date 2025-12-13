@@ -387,6 +387,7 @@ To help with development, we generate this dependency graph.
       init-os-end -> init-config
       init-config -> init-config-end
       init-crontab-config -> init-config-end
+      init-emby-config -> init-config-end
       init-config -> init-crontab-config
       init-mods-end -> init-custom-files
       init-adduser -> init-device-perms
