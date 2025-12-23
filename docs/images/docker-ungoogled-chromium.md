@@ -647,6 +647,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **20.12.25:** - Add Wayland init logic.
 * **27.09.25:** - Multi arch arm64 support added.
 * **22.09.25:** - Rebase to Debian Trixie.
 * **12.07.25:** - Rebase to Selkies, HTTPS IS NOW REQUIRED.
