@@ -647,6 +647,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **20.12.25:** - Add Wayland init logic.
 * **22.09.25:** - Rebase to Debian Trixie.
 * **02.09.25:** - Revert graceful shutdown script to rely on the baseimage fix.
 * **29.08.25:** - Attempt graceful shutdown of Chrome.
