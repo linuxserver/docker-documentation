@@ -644,5 +644,6 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **20.12.25:** - Add Wayland init logic.
 * **07.07.25:** - Install GTK libs for file chooser.
 * **19.06.25:** - Initial release.
