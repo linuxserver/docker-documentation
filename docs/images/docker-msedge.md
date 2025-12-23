@@ -648,6 +648,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **20.12.25:** - Add Wayland init logic.
 * **22.09.25:** - Rebase to Debian Trixie.
 * **12.07.25:** - Rebase to Selkies, HTTPS IS NOW REQUIRED.
 * **04.02.25:** - Clean up Singletons if container is shut down while windows are open.
