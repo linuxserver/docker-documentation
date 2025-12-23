@@ -644,5 +644,6 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **20.12.25:** - Add Wayland init logic.
 * **15.08.25:** - Rebase to Debian Trixie for updated Dolphin, update controller mapping.
 * **18.06.25:** - Initial Version.
