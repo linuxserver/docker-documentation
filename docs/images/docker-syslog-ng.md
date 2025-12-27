@@ -339,13 +339,14 @@ To help with development, we generate this dependency graph.
       svc-syslog-ng -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.22"
+      "baseimage-alpine:3.23"
     }
     "syslog-ng:latest" <- Base Images
     ```
 
 ## Versions
 
+* **26.12.25:** - Rebase to Alpine 3.23.
 * **05.07.25:** - Rebase to Alpine 3.22.
 * **20.12.24:** - Rebase to Alpine 3.21.
 * **24.09.24:** - Add opt to log to stdout.
