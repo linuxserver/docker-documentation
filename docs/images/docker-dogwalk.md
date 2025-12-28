@@ -644,7 +644,6 @@ To help with development, we generate this dependency graph.
       svc-dbus -> legacy-services
       init-services -> svc-de
       svc-nginx -> svc-de
-      svc-selkies -> svc-de
       svc-xorg -> svc-de
       svc-de -> legacy-services
       init-services -> svc-docker
@@ -654,6 +653,7 @@ To help with development, we generate this dependency graph.
       init-services -> svc-pulseaudio
       svc-pulseaudio -> legacy-services
       init-services -> svc-selkies
+      svc-dbus -> svc-selkies
       svc-nginx -> svc-selkies
       svc-pulseaudio -> svc-selkies
       svc-xorg -> svc-selkies
@@ -668,12 +668,13 @@ To help with development, we generate this dependency graph.
       svc-xsettingsd -> legacy-services
     }
     Base Images: {
-      "baseimage-selkies:ubuntunoble" <- "baseimage-ubuntu:noble"
+      "baseimage-selkies:debiantrixie" <- "baseimage-debian:trixie"
     }
     "dogwalk:latest" <- Base Images
     ```
 
 ## Versions
 
+* **28.12.25:** - Add Wayland init logic, rebase to Trixie, bump Dogwalk.
 * **23.07.25:** - Bump DOGWALK to 1.0.2.
 * **14.07.25:** - Initial release.
