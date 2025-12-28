@@ -640,6 +640,7 @@ To help with development, we generate this dependency graph.
       svc-dbus -> legacy-services
       init-services -> svc-de
       svc-nginx -> svc-de
+      svc-selkies -> svc-de
       svc-xorg -> svc-de
       svc-de -> legacy-services
       init-services -> svc-docker
@@ -649,7 +650,6 @@ To help with development, we generate this dependency graph.
       init-services -> svc-pulseaudio
       svc-pulseaudio -> legacy-services
       init-services -> svc-selkies
-      svc-dbus -> svc-selkies
       svc-nginx -> svc-selkies
       svc-pulseaudio -> svc-selkies
       svc-xorg -> svc-selkies
@@ -664,14 +664,14 @@ To help with development, we generate this dependency graph.
       svc-xsettingsd -> legacy-services
     }
     Base Images: {
-      "baseimage-selkies:debiantrixie" <- "baseimage-debian:trixie"
+      "baseimage-selkies:ubuntunoble" <- "baseimage-ubuntu:noble"
     }
     "cura:latest" <- Base Images
     ```
 
 ## Versions
 
-* **28.12.25:** - Add Wayland init logic, rebase to Trixie.
+* **28.12.25:** - Add Wayland init logic, rebase to Noble.
 * **12.07.25:** - Rebase to Selkies, HTTPS IS NOW REQUIRED.
 * **03.06.24:** - Update ingestion from GitHub to handle RC releases.
 * **10.02.24:** - Update Readme with new env vars and ingest proper PWA icon.
