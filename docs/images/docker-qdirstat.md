@@ -672,6 +672,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **28.12.25:** - Add Wayland init logic.
 * **12.07.25:** - Rebase to Selkies, HTTPS IS NOW REQUIRED.
 * **28.08.24:** - Rebase to noble.
 * **10.02.24:** - Update Readme with new env vars and ingest proper PWA icon.
