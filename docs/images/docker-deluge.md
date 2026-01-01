@@ -67,9 +67,17 @@ Change the inbound port to 6881 (or whichever port you've mapped for the contain
 
 This image can be run with a read-only container filesystem. For details please [read the docs](https://docs.linuxserver.io/misc/read-only/).
 
+### Caveats
+
+* Automatic GeoIP updates will not work
+
 ## Non-Root Operation
 
 This image can be run with a non-root user. For details please [read the docs](https://docs.linuxserver.io/misc/non-root/).
+
+### Caveats
+
+* Automatic GeoIP updates will not work
 
 ## Usage
 
@@ -344,6 +352,7 @@ To help with development, we generate this dependency graph.
       init-config -> init-crontab-config
       init-mods-end -> init-custom-files
       init-config -> init-deluge-config
+      init-crontab-config -> init-deluge-config
       init-adduser -> init-device-perms
       base -> init-envfile
       base -> init-migrations
@@ -370,6 +379,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **29.12.25:** - Fix some issues with GeoIP updates.
 * **23.08.25:** - Update GeoIP provider, add weekly cronjob to update.
 * **12.01.25:** - Rebase libtorrentv1 branch to Alpine 3.21.
 * **19.09.24:** - Prevent race condition related delay during container stop.
