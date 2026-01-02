@@ -672,4 +672,5 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **02.01.26:** - Add Wayland init logic.
 * **09.09.25:** - Initial release.
