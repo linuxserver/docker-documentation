@@ -431,13 +431,14 @@ To help with development, we generate this dependency graph.
       svc-wireguard -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.22"
+      "baseimage-alpine:3.23"
     }
     "wireguard:latest" <- Base Images
     ```
 
 ## Versions
 
+* **04.01.26:** - Rebase to Alpine 3.23.
 * **15.07.25:** - Rebase to Alpine 3.22. Remove iptables-legacy shim.
 * **01.01.25:** - Deprecate legacy branch.
 * **20.12.24:** - Rebase to Alpine 3.21.
