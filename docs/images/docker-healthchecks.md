@@ -62,6 +62,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
+      - SECRET_KEY=
       - SITE_ROOT=
       - SITE_NAME=
       - SUPERUSER_EMAIL=
@@ -79,7 +80,6 @@ services:
       - INTEGRATIONS_ALLOW_PRIVATE_IPS= #optional
       - PING_EMAIL_DOMAIN= #optional
       - RP_ID= #optional
-      - SECRET_KEY= #optional
       - SITE_LOGO_URL= #optional
     volumes:
       - /path/to/healthchecks/config:/config
@@ -97,6 +97,7 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
+  -e SECRET_KEY= \
   -e SITE_ROOT= \
   -e SITE_NAME= \
   -e SUPERUSER_EMAIL= \
@@ -114,7 +115,6 @@ docker run -d \
   -e INTEGRATIONS_ALLOW_PRIVATE_IPS= `#optional` \
   -e PING_EMAIL_DOMAIN= `#optional` \
   -e RP_ID= `#optional` \
-  -e SECRET_KEY= `#optional` \
   -e SITE_LOGO_URL= `#optional` \
   -p 8000:8000 \
   -p 2525:2525 `#optional` \
@@ -141,6 +141,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
+| `SECRET_KEY=` | A secret key used for cryptographic signing. Will generate a random value if one is not supplied and save it to `/config/local_settings.py`. |
 | `SITE_ROOT=` | The site's top-level URL and the port it listens to if different than 80 or 443 (e.g., https://healthchecks.example.com:8000). |
 | `SITE_NAME=` | The site's name (e.g., "Example Corp HealthChecks"). |
 | `SUPERUSER_EMAIL=` | Superuser email. |
@@ -158,7 +159,6 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `INTEGRATIONS_ALLOW_PRIVATE_IPS=` | Defaults to False. Set to True to allow integrations to connect to private IP addresses. |
 | `PING_EMAIL_DOMAIN=` | The domain to use for generating ping email addresses. Defaults to `localhost`. |
 | `RP_ID=` | If using webauthn for 2FA set this to match your Healthchecks domain. Webauthn will only work over https. |
-| `SECRET_KEY=` | A secret key used for cryptographic signing. Will generate a random value if one is not supplied and save it to `/config/local_settings.py`. |
 | `SITE_LOGO_URL=` | Full URL to custom site logo. |
 
 ### Volume Mappings (`-v`)
@@ -374,13 +374,14 @@ To help with development, we generate this dependency graph.
       svc-healthchecks -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.22"
+      "baseimage-alpine:3.23"
     }
     "healthchecks:latest" <- Base Images
     ```
 
 ## Versions
 
+* **28.12.25:** - Rebase to Alpine 3.23.
 * **05.07.25:** - Rebase to Alpine 3.22.
 * **20.12.24:** - Rebase to Alpine 3.21.
 * **31.08.24:** - Enable IPv6 on uwsgi.
