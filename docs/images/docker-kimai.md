@@ -403,13 +403,14 @@ To help with development, we generate this dependency graph.
       svc-php-fpm -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine-nginx:3.22" <- "baseimage-alpine:3.22"
+      "baseimage-alpine-nginx:3.23" <- "baseimage-alpine:3.23"
     }
     "kimai:latest" <- Base Images
     ```
 
 ## Versions
 
+* **28.12.25:** - Rebase to Alpine 3.23.
 * **04.07.25:** - Rebase to Alpine 3.22.
 * **06.04.25:** - Rebase to Alpine 3.21.
 * **30.06.24:** - Rebase to Alpine 3.20. Existing users should update their nginx confs to avoid http2 deprecation warnings.
