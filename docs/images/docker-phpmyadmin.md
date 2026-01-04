@@ -352,13 +352,14 @@ To help with development, we generate this dependency graph.
       svc-php-fpm -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine-nginx:3.22" <- "baseimage-alpine:3.22"
+      "baseimage-alpine-nginx:3.23" <- "baseimage-alpine:3.23"
     }
     "phpmyadmin:latest" <- Base Images
     ```
 
 ## Versions
 
+* **28.12.25:** - Rebase to Alpine 3.23.
 * **23.08.25:** - Add support for mTLS. Existing users will need to delete their config.inc.php and restart the container.
 * **05.07.25:** - Rebase to Alpine 3.22.
 * **19.12.24:** - Rebase to Alpine 3.21.
