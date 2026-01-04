@@ -402,13 +402,14 @@ To help with development, we generate this dependency graph.
       svc-queue-worker -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine-nginx:3.22" <- "baseimage-alpine:3.22"
+      "baseimage-alpine-nginx:3.23" <- "baseimage-alpine:3.23"
     }
     "bookstack:latest" <- Base Images
     ```
 
 ## Versions
 
+* **28.12.25:** - Rebase to Alpine 3.23.
 * **05.07.25:** - Rebase to Alpine 3.22.
 * **04.01.25:** - Add php-opcache.
 * **17.12.24:** - Rebase to Alpine 3.21.
