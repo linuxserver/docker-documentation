@@ -18,7 +18,6 @@ description: "[Netbox](https://github.com/netbox-community/netbox) is an IP addr
 [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/netbox.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/netbox)
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/netbox.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/netbox)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-netbox%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-netbox/job/master/)
-[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.linuxserver.io%2Flinuxserver%2Fnetbox%2Flatest%2Fci-status.yml)](https://ci-tests.linuxserver.io/linuxserver/netbox/latest/index.html)
 
 [Netbox](https://github.com/netbox-community/netbox) is an IP address management (IPAM) and data center infrastructure management (DCIM) tool. Initially conceived by the network engineering team at DigitalOcean, NetBox was developed specifically to address the needs of network and infrastructure engineers. It is intended to function as a domain-specific source of truth for network operations.
 
@@ -73,10 +72,12 @@ services:
       - DB_PORT=
       - REDIS_HOST=
       - REDIS_PORT=
+      - REDIS_USERNAME=
       - REDIS_PASSWORD=
       - REDIS_DB_TASK=
       - REDIS_DB_CACHE=
       - BASE_PATH= #optional
+      - CSRF_TRUSTED_ORIGINS= #optional
       - REMOTE_AUTH_ENABLED= #optional
       - REMOTE_AUTH_BACKEND= #optional
       - REMOTE_AUTH_HEADER= #optional
@@ -108,10 +109,12 @@ docker run -d \
   -e DB_PORT= \
   -e REDIS_HOST= \
   -e REDIS_PORT= \
+  -e REDIS_USERNAME= \
   -e REDIS_PASSWORD= \
   -e REDIS_DB_TASK= \
   -e REDIS_DB_CACHE= \
   -e BASE_PATH= `#optional` \
+  -e CSRF_TRUSTED_ORIGINS= `#optional` \
   -e REMOTE_AUTH_ENABLED= `#optional` \
   -e REMOTE_AUTH_BACKEND= `#optional` \
   -e REMOTE_AUTH_HEADER= `#optional` \
@@ -143,7 +146,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `SUPERUSER_EMAIL=` | Email address for `admin` account |
 | `SUPERUSER_PASSWORD=` | Password for `admin` account |
-| `ALLOWED_HOST=` | The hostname you will use to access the app (i.e., netbox.example.com) |
+| `ALLOWED_HOST=` | The hostname you will use to access the app (e.g., netbox.example.com) |
 | `DB_NAME=` | Database name (default: netbox) |
 | `DB_USER=` | Database user |
 | `DB_PASSWORD=` | Database password |
@@ -151,16 +154,18 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `DB_PORT=` | Database port (default: 5432) |
 | `REDIS_HOST=` | Redis host (default: redis) |
 | `REDIS_PORT=` | Redis port number (default: 6379) |
+| `REDIS_USERNAME=` | Redis username (default: none) |
 | `REDIS_PASSWORD=` | Redis password (default: none) |
 | `REDIS_DB_TASK=` | Redis database ID for tasks (default: 0) |
 | `REDIS_DB_CACHE=` | Redis database ID for caching (default: 1) |
-| `BASE_PATH=` | The path you will use to access the app (i.e., /netbox, optional, default: none) |
-| `REMOTE_AUTH_ENABLED=` | Enable remote authentication (optional, default: False) |
-| `REMOTE_AUTH_BACKEND=` | Python path to the custom Django authentication backend to use for external user authentication (optional, default: netbox.authentication.RemoteUserBackend) |
-| `REMOTE_AUTH_HEADER=` | Name of the HTTP header which informs NetBox of the currently authenticated user. (optional, default: HTTP_REMOTE_USER) |
-| `REMOTE_AUTH_AUTO_CREATE_USER=` | If true, NetBox will automatically create local accounts for users authenticated via a remote service (optional, default: False) |
-| `REMOTE_AUTH_DEFAULT_GROUPS=` | The list of groups to assign a new user account when created using remote authentication (optional, default: []) |
-| `REMOTE_AUTH_DEFAULT_PERMISSIONS=` | A mapping of permissions to assign a new user account when created using remote authentication (optional, default: {}) |
+| `BASE_PATH=` | The path you will use to access the app (i.e., /netbox, default: none) |
+| `CSRF_TRUSTED_ORIGINS=` | List of comma-separated, single quoted, trusted origins. Must include protocol, and port if applicable (default: []) |
+| `REMOTE_AUTH_ENABLED=` | Enable remote authentication (default: False) |
+| `REMOTE_AUTH_BACKEND=` | Python path to the custom Django authentication backend to use for external user authentication (default: netbox.authentication.RemoteUserBackend) |
+| `REMOTE_AUTH_HEADER=` | Name of the HTTP header which informs NetBox of the currently authenticated user. (default: HTTP_REMOTE_USER) |
+| `REMOTE_AUTH_AUTO_CREATE_USER=` | If true, NetBox will automatically create local accounts for users authenticated via a remote service (default: False) |
+| `REMOTE_AUTH_DEFAULT_GROUPS=` | The list of groups to assign a new user account when created using remote authentication (default: []) |
+| `REMOTE_AUTH_DEFAULT_PERMISSIONS=` | A mapping of permissions to assign a new user account when created using remote authentication (default: {}) |
 
 ### Volume Mappings (`-v`)
 
@@ -354,40 +359,36 @@ To help with development, we generate this dependency graph.
       init-migrations -> init-adduser
       init-os-end -> init-config
       init-config -> init-config-end
+      init-crontab-config -> init-config-end
       init-netbox-config -> init-config-end
-      init-os-end -> init-crontab-config
+      init-config -> init-crontab-config
       init-mods-end -> init-custom-files
       init-adduser -> init-device-perms
       base -> init-envfile
       base -> init-migrations
-      base -> init-mods
       init-config-end -> init-mods
-      init-mods -> init-mods-end
       init-mods-package-install -> init-mods-end
       init-mods -> init-mods-package-install
       init-config -> init-netbox-config
-      base -> init-os-end
+      init-mods-end -> init-netbox-prepare
       init-adduser -> init-os-end
       init-device-perms -> init-os-end
       init-envfile -> init-os-end
-      init-migrations -> init-os-end
       init-custom-files -> init-services
-      init-mods-end -> init-services
       init-services -> svc-cron
       svc-cron -> legacy-services
-      svc-netbox-prepare -> svc-netbox
+      init-netbox-prepare -> svc-netbox
       svc-netbox -> legacy-services
-      init-services -> svc-netbox-prepare
-      svc-netbox-prepare -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.20"
+      "baseimage-alpine:3.23"
     }
     "netbox:latest" <- Base Images
     ```
 
 ## Versions
 
+* **05.01.26:** - Rebase to Alpine 3.23. Add CSRF_TRUSTED_ORIGINS env settings. Drop support for environments with explicitly disabled IPv6.
 * **26.08.24:** - Restructure init to allow for plugins as mods.
 * **16.07.24:** - Add required packages for LDAP support.
 * **01.06.24:** - Rebase to Alpine 3.20.
