@@ -382,4 +382,5 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **08.01.26:** - Improve permission fixing.
 * **31.10.25:** - Initial Release.
