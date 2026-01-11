@@ -46,7 +46,7 @@ The application can be accessed at:
 >This image is for a web accessible version of Steam to be played through a web browser it is in development and has oddities, if you want a fully flushed out Moonlight couch solution please consider [Wolf](https://games-on-whales.github.io/wolf/stable/user/quickstart.html) or another non Docker solution. Moonlight clients have major advantages over using a web browser.
 
 >[!NOTE]
->NVIDIA is not workingi yet, for now this image is only for Intel/AMD graphics cards.
+>NVIDIA is not working yet, for now this image is only for Intel/AMD graphics cards.
 
 ## Gamepad support
 
