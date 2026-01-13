@@ -37,7 +37,7 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-After you have installed hishtory on your machine, add `export HISHTORY_SERVER=http://1.2.3.4:8080` (with your server details) to your shellrc. Then run `hishtory init` (or `hishtory init ${SECRET_KEY}`) to initialise hishtory against your local server.
+After you have installed hishtory on your machine, add `export HISHTORY_SERVER=http://127.0.0.1:8080` (with your server details) to your shellrc. Then run `hishtory init` (or `hishtory init ${SECRET_KEY}`) to initialise hishtory against your local server.
 
 See the [project readme](https://github.com/ddworken/hishtory/blob/master/README.md) for more details.
 
@@ -325,13 +325,14 @@ To help with development, we generate this dependency graph.
       svc-hishtory -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.22"
+      "baseimage-alpine:3.23"
     }
     "hishtory-server:latest" <- Base Images
     ```
 
 ## Versions
 
+* **25.12.25:** - Rebase to Alpine 3.23.
 * **05.07.25:** - Rebase to Alpine 3.22.
 * **19.12.24:** - Rebase to Alpine 3.21.
 * **26.08.24:** - Bump to go 1.23
