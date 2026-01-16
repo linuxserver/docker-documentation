@@ -323,25 +323,21 @@ To help with development, we generate this dependency graph.
       init-migrations -> init-adduser
       init-os-end -> init-config
       init-config -> init-config-end
+      init-crontab-config -> init-config-end
       init-oscam-config -> init-config-end
-      init-os-end -> init-crontab-config
+      init-config -> init-crontab-config
       init-mods-end -> init-custom-files
       init-adduser -> init-device-perms
       base -> init-envfile
       base -> init-migrations
-      base -> init-mods
       init-config-end -> init-mods
-      init-mods -> init-mods-end
       init-mods-package-install -> init-mods-end
       init-mods -> init-mods-package-install
-      base -> init-os-end
       init-adduser -> init-os-end
       init-device-perms -> init-os-end
       init-envfile -> init-os-end
-      init-migrations -> init-os-end
       init-config -> init-oscam-config
       init-custom-files -> init-services
-      init-mods-end -> init-services
       init-services -> svc-cron
       svc-cron -> legacy-services
       svc-pcsd -> svc-oscam
@@ -350,13 +346,14 @@ To help with development, we generate this dependency graph.
       svc-pcsd -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.20"
+      "baseimage-alpine:3.23"
     }
     "oscam:latest" <- Base Images
     ```
 
 ## Versions
 
+* **15.01.26:** - Rebase to Alpine 3.23, add support for wiki submodule.
 * **27.06.24:** - Rebase to Alpine 3.20.
 * **19.04.24:** - Retrieve Oscam from the new git repo.
 * **04.03.24:** - Rebase to Alpine 3.19. Add libdvbcsa.
