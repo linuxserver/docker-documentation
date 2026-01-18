@@ -45,8 +45,19 @@ The application can be accessed at:
 >[!NOTE]
 >This image is for a web accessible version of Steam to be played through a web browser it is in development and has oddities, if you want a fully flushed out Moonlight couch solution please consider [Wolf](https://games-on-whales.github.io/wolf/stable/user/quickstart.html) or another non Docker solution. Moonlight clients have major advantages over using a web browser.
 
->[!NOTE]
->NVIDIA is not working yet, for now this image is only for Intel/AMD graphics cards.
+## GPU Support
+
+Using an Intel/AMD GPU is usually as easy as just passing `--device /dev/dri:/dev/dri`.
+If you have multiple GPUs you need to pass both the setting for the render node and the encoder IE for the second GPU:
+
+```
+-e DRINODE=/dev/dri/renderD129 \
+-e DRI_NODE=/dev/dri/renderD129
+```
+
+Nvidia support only works on 580 and up full proprietary drivers (no MIT/GPL) with `nvidia-drm.modeset=1` kernel parameter set. You must ensure the card is initialized before running a container so on headless systems run `nvidia-modprobe --modeset` from the host even with this kernel parameter set, this only needs to be run once per boot.
+
+These modifications for NVIDIA are for Wayland to function properly and have nothing to do with the Docker runtime. If you are using compose it is important to run `sudo nvidia-ctk runtime configure --runtime=docker` this is a persistent setting and only needs to run once.
 
 ## Gamepad support
 
@@ -181,6 +192,41 @@ This feature only supports **Open Source** GPU drivers:
 The `DRINODE` environment variable can be used to point to a specific GPU.
 
 DRI3 will work on aarch64 given the correct drivers are installed inside the container for your chipset.
+
+### Nvidia GPU Support
+
+**Note: Nvidia support is not available for Alpine-based images.**
+
+Nvidia GPU support is available by leveraging Zink for OpenGL. When a compatible Nvidia GPU is passed through, it will also be **automatically utilized for hardware-accelerated video stream encoding** (using the `x264enc` full-frame profile), significantly reducing CPU load.
+
+Enable Nvidia support with the following runtime flags:
+
+| Flag | Description |
+| :----: | --- |
+| `--gpus all` | Passes all available host GPUs to the container. This can be filtered to specific GPUs. |
+| `--runtime nvidia` | Specifies the Nvidia runtime, which provides the necessary drivers and tools from the host. |
+
+For Docker Compose, you must first configure the Nvidia runtime as the default on the host:
+
+```
+sudo nvidia-ctk runtime configure --runtime=docker --set-as-default
+sudo systemctl restart docker
+```
+
+Then, assign the GPU to the service in your `compose.yaml`:
+
+```
+services:
+  steam:
+    image: lscr.io/linuxserver/steam:latest
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [compute,video,graphics,utility]
+```
 
 ### Application Management
 
@@ -655,4 +701,5 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **17.01.26:** - Document Nvidia support.
 * **09.01.26:** - Initial Version.
