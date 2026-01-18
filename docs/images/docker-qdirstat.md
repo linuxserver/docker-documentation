@@ -672,6 +672,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **18.01.26:** - Update build logic for Qt6 and version 2.0.
 * **28.12.25:** - Add Wayland init logic.
 * **12.07.25:** - Rebase to Selkies, HTTPS IS NOW REQUIRED.
 * **28.08.24:** - Rebase to noble.
