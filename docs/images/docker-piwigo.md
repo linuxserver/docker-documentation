@@ -330,13 +330,14 @@ To help with development, we generate this dependency graph.
       svc-php-fpm -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine-nginx:3.21" <- "baseimage-alpine:3.21"
+      "baseimage-alpine-nginx:3.22" <- "baseimage-alpine:3.22"
     }
     "piwigo:latest" <- Base Images
     ```
 
 ## Versions
 
+* **04.01.26:** - Rebase to Alpine 3.22, always update default theme on startup.
 * **05.08.25:** - Revert to Alpine 3.21 due to incorrectly stated upstream support for PHP 8.4.
 * **27.07.25:** - Rebase to Alpine 3.22.
 * **31.05.24:** - Rebase to Alpine 3.20. Existing users should update their nginx confs to avoid http2 deprecation warnings.
