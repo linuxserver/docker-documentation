@@ -330,13 +330,14 @@ To help with development, we generate this dependency graph.
       svc-manyfold -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.22"
+      "baseimage-alpine:3.23"
     }
     "manyfold:latest" <- Base Images
     ```
 
 ## Versions
 
+* **13.01.26:** - Rebase to Alpine 3.23.
 * **08.10.25:** - Change key init to auto generate and persist.
 * **27.07.25:** - Rebase to Alpine 3.22.
 * **12.01.25:** - Rebase to Alpine 3.21.
