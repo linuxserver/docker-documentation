@@ -114,7 +114,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - HOST_URL=IP|subdomain.doman.com #optional
+      - "HOST_URL=IP or subdomain.doman.com" #optional
     volumes:
       - /path/to/sealskin/config:/config
       - /path/to/sealskin/storage:/storage
@@ -133,7 +133,7 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
-  -e HOST_URL=IP|subdomain.doman.com `#optional` \
+  -e HOST_URL="IP or subdomain.doman.com" `#optional` \
   -p 8443:8443 \
   -p 8000:8000 `#optional` \
   -v /path/to/sealskin/config:/config \
@@ -161,7 +161,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
-| `HOST_URL=IP|subdomain.doman.com` | On initial setup this will be used to fill in the default admin configuration file in the `/config` directory, if unset the string HOST_URL will need to be replaced. |
+| `HOST_URL=IP or subdomain.doman.com` | On initial setup this will be used to fill in the default admin configuration file in the `/config` directory, if unset the string HOST_URL will need to be replaced. |
 
 ### Volume Mappings (`-v`)
 
@@ -374,7 +374,7 @@ To help with development, we generate this dependency graph.
       init-custom-files -> init-services
       init-services -> svc-cron
       svc-cron -> legacy-services
-      base -> svc-sealskin
+      init-services -> svc-sealskin
       svc-sealskin -> legacy-services
     }
     Base Images: {
@@ -385,6 +385,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **19.01.26:** - Fix init race condition.
 * **17.01.26:** - Update docs to remove network and port requirement, add link to Firefox add on.
 * **08.01.26:** - Improve permission fixing.
 * **31.10.25:** - Initial Release.
