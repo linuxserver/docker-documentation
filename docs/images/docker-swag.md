@@ -462,7 +462,7 @@ To help with development, we generate this dependency graph.
       init-mods-end -> init-custom-files
       init-adduser -> init-device-perms
       base -> init-envfile
-      init-swag-samples -> init-fail2ban-config
+      init-require-url -> init-fail2ban-config
       init-os-end -> init-folders
       init-php -> init-keygen
       base -> init-migrations
@@ -483,9 +483,10 @@ To help with development, we generate this dependency graph.
       init-folders -> init-samples
       init-custom-files -> init-services
       init-fail2ban-config -> init-swag-config
-      init-require-url -> init-swag-folders
+      init-permissions -> init-swag-folders
       init-swag-folders -> init-swag-samples
       init-permissions -> init-version-checks
+      init-swag-samples -> init-version-checks
       init-services -> svc-cron
       svc-cron -> legacy-services
       init-services -> svc-fail2ban
@@ -505,6 +506,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **23.01.26:** - Reorder init to fix proxy conf version checks.
 * **21.12.25:** - Add support for hetzner-cloud dns validation.
 * **04.11.25:** - Switch default Gandi credentials from API Key to Token, allow DNS propagation time for Azure DNS plugin.
 * **18.07.25:** - Rebase to Alpine 3.22 with PHP 8.4. Add QUIC support. Drop PHP bindings for mcrypt as it is no longer maintained.
