@@ -381,7 +381,8 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
-* **09.07.25:** - Rebase to Alpine 3.20.
+* **09.07.25:** - Add php84-ldap as dependency.
+* **09.07.25:** - Rebase to Alpine 3.22.
 * **03.12.24:** - Verify build artifacts with cosign.
 * **27.05.24:** - Rebase to Alpine 3.20. Existing users should update their nginx confs to avoid http2 deprecation warnings.
 * **18.01.24:** - Add php-sodium.
