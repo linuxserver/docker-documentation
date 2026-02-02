@@ -344,13 +344,14 @@ To help with development, we generate this dependency graph.
       svc-cron -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.21"
+      "baseimage-alpine:3.23"
     }
     "beets:latest" <- Base Images
     ```
 
 ## Versions
 
+* **01.02.26:** - Rebase to Alpine 3.23.
 * **27.01.25:** - Rebase to Alpine 3.21.
 * **01.10.24:** - Add packages required for Discogs plugin.
 * **28.08.24:** - Rebase to Alpine 3.20, switch from Pillow to Imagemagick.
