@@ -67,6 +67,24 @@ This container leverages a userspace gamepad interposer to provide gamepad suppo
 
 An absolute must for mouse and keyboard input is sending relative mouse input from the browser, you will need to use the "Gaming Mode" which is a small crosshair in the top right of the sidebar. This runs in fullscreen and traps you in the window, to exit this mode hold down escape for 3 seconds.
 
+## Game Launching
+
+Included in this image are tools for managing [Proton versions](https://davidotek.github.io/protonup-qt/) and a [command line launcher](https://github.com/Open-Wine-Components/umu-launcher). This means once a game or application is installed via Steam it can be directly launched on init by creating a config file and modifying `/config/.config/labwc/autostart` to run `umu-run` instead of Steam.: 
+
+```
+umu-run --config /config/game.toml
+```
+
+```toml
+[umu]
+prefix = "/config/game"
+exe = "/config/Desktop/game/game.exe"
+proton = "/config/.local/share/Steam/compatibilitytools.d/GE-Proton-version"
+game_id = "0"
+```
+
+This facilitates custom home directories with pre-configured runtimes and gamefiles for baking images outside of using the Steam launcher.
+
 ### Strict reverse proxies
 
 This image uses a self-signed certificate by default. This naturally means the scheme is `https`.
@@ -701,5 +719,6 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **04.02.26:** - Add ProtonUp Qt for runtime management and umu-run for custom auto game launching.
 * **17.01.26:** - Document Nvidia support.
 * **09.01.26:** - Initial Version.
