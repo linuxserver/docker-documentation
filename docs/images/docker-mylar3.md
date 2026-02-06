@@ -45,6 +45,7 @@ This image provides various versions that are available via tags. Please read th
 | :----: | :----: |--- |
 | latest | ✅ | Stable Mylar3 releases |
 | nightly | ✅ | Commits to Mylar3 `python3-dev` branch |
+| unstable | ✅ | Commits to Mylar3 `1000papercuts` branch |
 
 ## Application Setup
 
@@ -340,6 +341,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **05.02.26:** - Release `unstable` tag based on commits to upstream `1000papercuts` branch.
 * **21.11.25:** - Rebase to Ubuntu Jammy.
 * **23.12.23:** - Rebase to Alpine 3.19.
 * **16.08.23:** - Install unrar from [linuxserver repo](https://github.com/linuxserver/docker-unrar).
