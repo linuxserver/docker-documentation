@@ -44,13 +44,14 @@ Once you've run your first time setup you can safely remove the DEFAULT_ environ
 
 ### Migration from Official Image
 
-Copy your `user-avatars`, `project-background-images`, and `attachments` folders to your new `/config` mount so that it looks like:
+Copy your `user-avatars`, `background-images`, and `attachments` folders to your new `/config` mount so that it looks like:
 
 ```text
 /config
 ├── attachments
-├── project-background-images
-└── user-avatars
+└── images
+    ├── background-images
+    └── user-avatars
 ```
 
 ## Read-Only Operation
