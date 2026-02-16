@@ -134,3 +134,4 @@ plugins:
         images/docker-pylon.md: deprecated_images/docker-pylon.md
         images/docker-feed2toot.md: deprecated_images/docker-feed2toot.md
         images/docker-steamos.md: deprecated_images/docker-steamos.md
+        images/docker-overseerr.md: deprecated_images/docker-overseerr.md
