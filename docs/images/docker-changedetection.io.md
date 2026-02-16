@@ -333,13 +333,14 @@ To help with development, we generate this dependency graph.
       svc-cron -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.22"
+      "baseimage-alpine:3.23"
     }
     "changedetection.io:latest" <- Base Images
     ```
 
 ## Versions
 
+* **18.02.26:** - Rebase to Alpine 3.23.
 * **05.07.25:** - Rebase to Alpine 3.22.
 * **19.12.24:** - Rebase to Alpine 3.21.
 * **31.05.24:** - Rebase to Alpine 3.20.
