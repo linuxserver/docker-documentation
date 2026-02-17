@@ -51,6 +51,7 @@ The currently included binaries are as follows:
 
 ## Versions
 
+* **17.02.26:** - Bump unrar to 7.2.4.
 * **12.08.25:** - Bump unrar to 7.1.10.
 * **02.07.25:** - Bump unrar to 7.1.8.
 * **03.06.25:** - Rebase Alpine builder to 3.22.
