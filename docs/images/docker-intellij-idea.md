@@ -676,5 +676,6 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **18.02.26:** - Change aarch64 version to best effort.
 * **28.12.25:** - Add Wayland init logic.
 * **02.12.25:** - Initial Version.
