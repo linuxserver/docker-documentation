@@ -682,4 +682,5 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **02.03.26:** - Fix init to not use session wrapper.
 * **25.02.26:** - Initial Version.
