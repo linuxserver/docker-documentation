@@ -422,6 +422,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **02.03.26:** - Add support for IPv6 OOTB.
 * **20.10.25:** - Add libjemalloc as runtime dep.
 * **06.10.24:** - Fix fontconfig cache path.
 * **13.08.24:** - Rebase to Ubuntu Noble.
