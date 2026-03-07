@@ -336,13 +336,14 @@ To help with development, we generate this dependency graph.
       svc-php-fpm -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine-nginx:3.21" <- "baseimage-alpine:3.21"
+      "baseimage-alpine-nginx:3.23" <- "baseimage-alpine:3.23"
     }
     "grocy:latest" <- Base Images
     ```
 
 ## Versions
 
+* **07.03.26:** - Rebase to Alpine 3.23 with php 8.5.
 * **02.05.24:** - Rebase to Alpine 3.21. Add php-opcache package.
 * **30.06.24:** - Rebase to Alpine 3.20. Existing users should update their nginx confs to avoid http2 deprecation warnings.
 * **29.03.24:** - Add `clear_env = no` to `php-fpm` to pass on environment variables to workers threads
