@@ -642,6 +642,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **11.03.26:** - Push aarch64 image. Update external trigger.
 * **28.12.25:** - Add Wayland init logic.
 * **29.07.25:** - Rebase to selkies. Breaking Change: HTTPS is now required. Either use a reverse proxy with SSL cert or direct connect to port 8181 with HTTPS.
 * **12.09.24:** - Initial release.
