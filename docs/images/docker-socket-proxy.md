@@ -92,7 +92,7 @@ services:
       - ALLOW_STOP=0 #optional
       - ALLOW_RESTARTS=0 #optional
       - ALLOW_PAUSE=0 #optional
-      - ALLOW_RESUME=0 #optional
+      - ALLOW_UNPAUSE=0 #optional
       - AUTH=0 #optional
       - BUILD=0 #optional
       - COMMIT=0 #optional
@@ -135,6 +135,8 @@ docker run -d \
   -e ALLOW_START=0 `#optional` \
   -e ALLOW_STOP=0 `#optional` \
   -e ALLOW_RESTARTS=0 `#optional` \
+  -e ALLOW_PAUSE=0 `#optional` \
+  -e ALLOW_UNPAUSE=0 `#optional` \
   -e AUTH=0 `#optional` \
   -e BUILD=0 `#optional` \
   -e COMMIT=0 `#optional` \
