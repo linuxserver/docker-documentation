@@ -680,4 +680,5 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **17.03.26:** - Ingest releases from self hosted git.
 * **18.02.26:** - Initial Version.
