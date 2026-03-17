@@ -680,6 +680,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **05.03.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **20.12.25:** - Add Wayland init logic.
 * **15.07.25:** - Switch to stable release for pcsx2.
 * **26.06.25:** - Initial release.
