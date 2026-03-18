@@ -676,5 +676,6 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **18.03.26:** - Add intel media libs.
 * **28.12.25:** - Add Wayland init logic.
 * **29.11.25:** - Initial Version.
