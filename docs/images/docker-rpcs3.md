@@ -680,6 +680,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **20.03.26:** - Pin back to latest v0.0.37 build to function, make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **20.12.25:** - Add Wayland init logic.
 * **22.09.25:** - Rebase to Debian Trixie.
 * **19.06.25:** - Initial release.
