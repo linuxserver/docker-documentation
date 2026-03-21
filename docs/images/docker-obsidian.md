@@ -682,6 +682,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **20.03.26:** - Use Wayland ozone platform fixes scaling and acceleration.
 * **28.12.25:** - Add Wayland init logic.
 * **21.09.25:** - Rebase to Debian Trixie.
 * **12.07.25:** - Rebase to Selkies add no sandbox to launcher, HTTPS IS NOW REQUIRED.
