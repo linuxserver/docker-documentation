@@ -680,6 +680,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **21.03.26:** - Use Wayland ozone platform fixes scaling and acceleration.
 * **28.12.25:** - Add Wayland init logic.
 * **10.08.25:** - Rebase to Debian Trixie.
 * **12.07.25:** - Switch to Selkies base image, HTTPS IS NOW REQUIRED.
