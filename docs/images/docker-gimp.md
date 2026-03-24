@@ -644,6 +644,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **24.03.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **28.12.25:** - Add Wayland init logic.
 * **12.07.25:** - Rebase to Selkies and Debian Trixie, install resynthesizer, HTTPS IS NOW REQUIRED.
 * **06.12.24:** - Rebase to Alpine 3.21.
