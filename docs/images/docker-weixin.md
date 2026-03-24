@@ -680,5 +680,6 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **21.03.26:** - Use Wayland ozone platform fixes scaling and acceleration.
 * **28.12.25:** - Add Wayland init logic.
 * **08.08.25:** - Initial release.
