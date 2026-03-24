@@ -690,6 +690,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **21.03.26:** - Use Wayland ozone platform fixes scaling and acceleration.
 * **28.12.25:** - Add Wayland init logic.
 * **22.09.25:** - Rebase to Debian Trixie.
 * **24.07.25:** - Swap from thunar to caja for filebrowser.
