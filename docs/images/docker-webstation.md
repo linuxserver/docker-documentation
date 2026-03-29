@@ -682,6 +682,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **28.03.26:** - Swap UI to baked in selkies-desktop.
 * **17.03.26:** - Fix eden ingestion to use self hosted git.
 * **02.03.26:** - Fix init to not use session wrapper.
 * **25.02.26:** - Initial Version.
