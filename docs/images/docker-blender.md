@@ -681,6 +681,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **29.03.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **27.12.25:** - Add wayland init logic.
 * **12.07.25:** - Rebase to Selkies, HTTPS IS NOW REQUIRED.
 * **19.08.24:** - Rebase to noble.
