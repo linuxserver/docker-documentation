@@ -686,6 +686,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **31.03.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **28.12.25:** - Add Wayland init logic, rebase to Trixie, bump Dogwalk.
 * **23.07.25:** - Bump DOGWALK to 1.0.2.
 * **14.07.25:** - Initial release.
