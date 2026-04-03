@@ -684,6 +684,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **29.03.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **28.12.25:** - Add Wayland init logic.
 * **19.06.25:** - Rebase to Selkies baseimage.
 * **24.01.25:** - Fix SVG icons not rendering.
