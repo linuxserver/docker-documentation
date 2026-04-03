@@ -680,6 +680,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **30.03.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **28.12.25:** - Add Wayland init logic.
 * **22.09.25:** - Rebase to Debian Trixie.
 * **12.07.25:** - Rebase to Selkies, HTTPS IS NOW REQUIRED.
