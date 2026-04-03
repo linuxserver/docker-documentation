@@ -680,6 +680,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **29.03.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **01.01.26:** - Add wayland init.
 * **25.11.25:** - Update project repo name.
 * **15.09.25:** - Rebase to Ubuntu Noble and Selkies, HTTPS is now required.
