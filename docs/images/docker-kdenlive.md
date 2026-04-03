@@ -676,6 +676,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **29.03.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **28.12.25:** - Add Wayland init logic.
 * **22.09.25:** - Rebase to Arch latest Appimage no longer working on Deb distros. Build for arm64 again.
 * **06.08.25:** - Fix cpu bug, disable gamepad by default.
