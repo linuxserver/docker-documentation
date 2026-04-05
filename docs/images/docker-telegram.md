@@ -702,6 +702,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **04.04.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **21.03.26:** - Use Wayland ozone platform for chromium fixes scaling and acceleration.
 * **28.12.25:** - Add Wayland init logic.
 * **02.12.25:** - Initial Version.
