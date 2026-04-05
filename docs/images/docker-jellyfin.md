@@ -193,11 +193,6 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `/data/tvshows` | Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc. |
 | `/data/movies` | Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc. |
 
-#### Miscellaneous Options
-
-| Parameter | Function |
-| :-----:   | --- |
-
 ## Environment variables from files (Docker secrets)
 
 You can set any environment variable from a file by using a special prepend `FILE__`.
