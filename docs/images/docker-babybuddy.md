@@ -110,11 +110,6 @@ Containers are configured using parameters passed at runtime (such as those abov
 | :----: | --- |
 | `/config` | Persistent config files |
 
-#### Miscellaneous Options
-
-| Parameter | Function |
-| :-----:   | --- |
-
 ## Environment variables from files (Docker secrets)
 
 You can set any environment variable from a file by using a special prepend `FILE__`.
