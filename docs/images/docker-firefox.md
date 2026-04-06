@@ -718,6 +718,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **31.03.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **20.12.25:** - Add Wayland init logic.
 * **26.08.25:** - Suppress sandbox security warning as it's misleading inside a container.
 * **16.08.25:** - Add proper cleanup logic for builds.
