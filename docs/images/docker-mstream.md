@@ -325,6 +325,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **07.04.26:** - Add ffmpeg and yt-dlp.
 * **06.04.26:** - Rebase to Alpine 3.23.
 * **27.06.24:** - Rebase to Alpine 3.20.
 * **12.12.23:** - Rebase to Alpine 3.19, move binaries to /app.
