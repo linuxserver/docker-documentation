@@ -137,11 +137,6 @@ Containers are configured using parameters passed at runtime (such as those abov
 | :-----:   | --- |
 | `/dev/ttyUSB0` | For passing through smart card readers. |
 
-#### Miscellaneous Options
-
-| Parameter | Function |
-| :-----:   | --- |
-
 ## Environment variables from files (Docker secrets)
 
 You can set any environment variable from a file by using a special prepend `FILE__`.
