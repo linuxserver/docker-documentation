@@ -200,11 +200,6 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `/dev/video11` | Only needed if you want to use your Raspberry Pi V4L2 video encoding. |
 | `/dev/video12` | Only needed if you want to use your Raspberry Pi V4L2 video encoding. |
 
-#### Miscellaneous Options
-
-| Parameter | Function |
-| :-----:   | --- |
-
 ## Environment variables from files (Docker secrets)
 
 You can set any environment variable from a file by using a special prepend `FILE__`.
