@@ -126,11 +126,6 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `/tv` | where you store your tv shows |
 | `/downloads` | your downloads folder for post processing (must not be download in progress) |
 
-#### Miscellaneous Options
-
-| Parameter | Function |
-| :-----:   | --- |
-
 ## Environment variables from files (Docker secrets)
 
 You can set any environment variable from a file by using a special prepend `FILE__`.
