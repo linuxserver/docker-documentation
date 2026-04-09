@@ -49,7 +49,7 @@ This image provides various versions that are available via tags. Please read th
 | arch-i3 | ✅ | i3 Arch *Wayland Support |
 | arch-kde | ✅ | KDE Arch *Wayland Support |
 | arch-mate | ✅ | MATE Arch |
-| arch-xfce | ✅ | XFCE Arch |
+| arch-xfce | ✅ | XFCE Arch *Wayland Support |
 | debian-i3 | ✅ | i3 Debian *Wayland Support |
 | debian-kde | ✅ | KDE Debian |
 | debian-mate | ✅ | MATE Debian |
@@ -62,9 +62,9 @@ This image provides various versions that are available via tags. Please read th
 | fedora-mate | ✅ | MATE Fedora |
 | fedora-xfce | ✅ | XFCE Fedora |
 | ubuntu-i3 | ✅ | i3 Ubuntu *Wayland Support |
-| ubuntu-kde | ✅ | KDE Ubuntu |
+| ubuntu-kde | ✅ | KDE Ubuntu *Wayland Only |
 | ubuntu-mate | ✅ | MATE Ubuntu |
-| ubuntu-xfce | ✅ | XFCE Ubuntu |
+| ubuntu-xfce | ✅ | XFCE Ubuntu *Wayland Support |
 
 ## Application Setup
 
@@ -732,6 +732,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **07.04.26:** - Rebase Ubuntu images to Resolute.
 * **26.03.26:** - Rebase Fedora images to 44.
 * **24.03.26:** - Update tags that support Wayland to pass ozone platform for chromium.
 * **27.12.25:** - Rebase Alpine images to 3.23.
