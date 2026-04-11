@@ -192,11 +192,6 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `/dev/dri` | Only needed if you want to use your AMD/Intel GPU for hardware accelerated video encoding (vaapi). |
 | `/dev/dvb` | Only needed if you want to pass through a DVB card to the container. If you use IPTV or HDHomeRun you can leave it out. |
 
-#### Miscellaneous Options
-
-| Parameter | Function |
-| :-----:   | --- |
-
 ## Environment variables from files (Docker secrets)
 
 You can set any environment variable from a file by using a special prepend `FILE__`.
