@@ -20,7 +20,6 @@ The rendering of the graphical-based containers is powered by the open-source pr
 [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/kasm.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/kasm)
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/kasm.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/kasm)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-kasm%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-kasm/job/master/)
-[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.linuxserver.io%2Flinuxserver%2Fkasm%2Flatest%2Fci-status.yml)](https://ci-tests.linuxserver.io/linuxserver/kasm/latest/index.html)
 
 [Kasm](https://www.kasmweb.com/?utm_campaign=LinuxServer&utm_source=listing) Workspaces is a docker container streaming platform for delivering browser-based access to desktops, applications, and web services. Kasm uses devops-enabled Containerized Desktop Infrastructure (CDI) to create on-demand, disposable, docker containers that are accessible via web browser. Example use-cases include Remote Browser Isolation (RBI), Data Loss Prevention (DLP), Desktop as a Service (DaaS), Secure Remote Access Services (RAS), and Open Source Intelligence (OSINT) collections.
 
@@ -56,25 +55,27 @@ Access the installation wizard at https://`your ip`:3000 and follow the instruct
 
 Currently Synology systems are not supported due to them blocking CPU scheduling in their Kernel.
 
-### Updating KASM
+### Upgrading KASM
 
-In order to update kasm, first make sure you are using the latest docker image, and then perform the in app update in the admin panel. Docker image update and recreation of container alone won't update kasm.
+In order to upgrade Kasm, first make sure you are using the latest docker image, and then perform the in app update from the installation wizard. Docker image update and recreation of container alone won't upgrade Kasm.
+
+Following the upgrade, you will need to update any workspace image tags to match the new version.
 
 ### GPU Support
 
-During installation an option will be presented to force all Workspace containers to mount in and use a specific GPU. If using an NVIDIA GPU you will need to pass `-e NVIDIA_VISIBLE_DEVICES=all` or `--gpus all` and have the [NVIDIA Container Runtime](https://github.com/NVIDIA/nvidia-container-runtime) installed on the host. Also if using NVIDIA, Kasm Workspaces has [native NVIDIA support](https://www.kasmweb.com/docs/latest/how_to/gpu.html) so you can optionally opt to simply use that instead of he manual override during installation.
+During installation an option will be presented to force all Workspace containers to mount in and use a specific GPU. If using an NVIDIA GPU you will need to pass `-e NVIDIA_VISIBLE_DEVICES=all` or `--gpus all` and have the [NVIDIA Container Toolkit](https://github.com/NVIDIA/nvidia-container-toolkit) installed on the host. Also if using NVIDIA, Kasm Workspaces has [native NVIDIA support](https://docs.kasm.com/docs/latest/how-to/gpu/index.html) so you can optionally opt to simply use that instead of he manual override during installation.
 
 ### Gamepad support
 
-In order to properly create virtual Gamepads you will need to mount from your host `/dev/input` and `/run/udev/data`. Please see [HERE](https://www.kasmweb.com/docs/develop/guide/gamepad_passthrough.html) for instructions on enabling gamepad support.
+In order to properly create virtual Gamepads you will need to mount from your host `/dev/input` and `/run/udev/data`. Please see [HERE](https://docs.kasm.com/docs/latest/guide/gamepad_passthrough/index.html) for instructions on enabling gamepad support.
 
 ### Persistant profiles
 
-In order to use persistant profiles in Workspaces you will need to mount in a folder to use from your host to `/profiles`. From there when configuring a workspace you can set the `Persistant Profile Path` to IE `/profiles/ubuntu-focal/{username}/`, more infomation can be found [HERE](https://www.kasmweb.com/docs/latest/how_to/persistent_profiles.html).
+In order to use persistant profiles in Workspaces you will need to mount in a folder to use from your host to `/profiles`. From there when configuring a workspace you can set the `Persistant Profile Path` to IE `/profiles/ubuntu-focal/{username}/`, more infomation can be found [HERE](https://docs.kasm.com/docs/latest/guide/persistent_data/persistent_profiles).
 
 ### Reverse proxy
 
-A sample for [SWAG](https://github.com/linuxserver/docker-swag) can be found [here](https://raw.githubusercontent.com/linuxserver/reverse-proxy-confs/master/kasm.subdomain.conf.sample). Post installation you will need to modify the "Proxy Port" setting under the default zone to 0 as outlined [here](https://www.kasmweb.com/docs/latest/how_to/reverse_proxy.html#update-zones) to launch Workspaces sessions.
+A sample for [SWAG](https://github.com/linuxserver/docker-swag) can be found [here](https://raw.githubusercontent.com/linuxserver/reverse-proxy-confs/master/kasm.subdomain.conf.sample). Post installation you will need to modify the "Proxy Port" setting under the default zone to 0 as outlined [here](https://docs.kasm.com/docs/latest/how-to/reverse_proxy/index.html#update-zones) to launch Workspaces sessions.
 
 ### Strict reverse proxies
 
@@ -113,6 +114,7 @@ services:
     ports:
       - 3000:3000
       - 443:443
+    stop_grace_period: "90s" #optional
     restart: unless-stopped
 ```
 
@@ -133,6 +135,7 @@ docker run -d \
   -v /path/to/kasm/profiles:/profiles `#optional` \
   -v /dev/input:/dev/input `#optional` \
   -v /run/udev/data:/run/udev/data `#optional` \
+  --stop-timeout="90s" `#optional` \
   --restart unless-stopped \
   lscr.io/linuxserver/kasm:latest
 ```
@@ -170,6 +173,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Parameter | Function |
 | :-----:   | --- |
+| `--stop-timeout=` | Increase container shutdown delay to give Kasm services time to stop cleanly. |
 | `--security-opt apparmor=rootlesskit` | Some hosts require this on top of privileged for namespacing to work properly inside the DinD layer. |
 
 ## Environment variables from files (Docker secrets)
@@ -352,11 +356,11 @@ To help with development, we generate this dependency graph.
       init-custom-files -> init-services
       init-services -> svc-cron
       svc-cron -> legacy-services
-      init-config-kasm -> svc-docker
       init-services -> svc-docker
       svc-docker -> legacy-services
-      init-config-kasm -> svc-kasm-wizard
-      init-services -> svc-kasm-wizard
+      svc-docker -> svc-kasm
+      svc-kasm -> legacy-services
+      svc-docker -> svc-kasm-wizard
       svc-kasm-wizard -> legacy-services
     }
     Base Images: {
@@ -367,6 +371,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **16.04.26:** - Update for 1.18.1 release. Use rolling service images. Bump docker to v29.
 * **13.11.25:** - Pin docker to v28 to avoid API deprecation issues.
 * **22.10.25:** - Update for 1.18.0 release.
 * **08.06.25:** - Deprecate develop branch.
