@@ -136,3 +136,4 @@ plugins:
         images/docker-steamos.md: deprecated_images/docker-steamos.md
         images/docker-overseerr.md: deprecated_images/docker-overseerr.md
         images/docker-citron.md: deprecated_images/docker-citron.md
+        images/docker-rdesktop.md: deprecated_images/docker-rdesktop.md
