@@ -701,13 +701,14 @@ To help with development, we generate this dependency graph.
       svc-xsettingsd -> legacy-services
     }
     Base Images: {
-      "baseimage-selkies:ubuntunoble" <- "baseimage-ubuntu:noble"
+      "baseimage-selkies:ubunturesolute" <- "baseimage-ubuntu:resolute"
     }
     "retroarch:latest" <- Base Images
     ```
 
 ## Versions
 
+* **19.04.26:** - Rebase to Resolute.
 * **05.03.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **20.12.25:** - Add Wayland init logic.
 * **25.05.25:** - Initial Version.
