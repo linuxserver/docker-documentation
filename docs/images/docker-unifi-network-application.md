@@ -68,7 +68,8 @@ db.createUser({
   roles: [
     { db: "${MONGO_DBNAME}", role: "dbOwner" },
     { db: "${MONGO_DBNAME}_stat", role: "dbOwner" },
-    { db: "${MONGO_DBNAME}_audit", role: "dbOwner" }
+    { db: "${MONGO_DBNAME}_audit", role: "dbOwner" },
+    { db: "${MONGO_DBNAME}_restore", role: "dbOwner" }
   ]
 })
 EOF
@@ -458,6 +459,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **20.04.26:** - Bump JRE to v25 to support v10.3+ of the application.
 * **20.10.25:** - Switch to using FW API endpoint for version checks.
 * **08.05.25:** - Update sample `init-mongo.sh` for compatibility with 9.1.120 (only affects new installs).
 * **13.02.25:** - Revert JRE to 17.
