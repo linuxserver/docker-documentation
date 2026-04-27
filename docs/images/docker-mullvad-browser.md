@@ -717,13 +717,14 @@ To help with development, we generate this dependency graph.
       svc-xsettingsd -> legacy-services
     }
     Base Images: {
-      "baseimage-selkies:ubuntunoble" <- "baseimage-ubuntu:noble"
+      "baseimage-selkies:ubunturesolute" <- "baseimage-ubuntu:resolute"
     }
     "mullvad-browser:latest" <- Base Images
     ```
 
 ## Versions
 
+* **19.04.26:** - Rebase to resolute.
 * **03.04.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **20.12.25:** - Add Wayland init logic.
 * **26.08.25:** - Suppress sandbox security warning as it's misleading inside a container.
