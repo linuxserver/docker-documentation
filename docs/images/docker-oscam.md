@@ -348,6 +348,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **28.04.26:** - Disable binary signing to prevent compile errors.
 * **15.01.26:** - Rebase to Alpine 3.23, add support for wiki submodule.
 * **27.06.24:** - Rebase to Alpine 3.20.
 * **19.04.24:** - Retrieve Oscam from the new git repo.
