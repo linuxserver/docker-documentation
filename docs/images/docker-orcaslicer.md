@@ -699,13 +699,14 @@ To help with development, we generate this dependency graph.
       svc-xsettingsd -> legacy-services
     }
     Base Images: {
-      "baseimage-selkies:ubuntunoble" <- "baseimage-ubuntu:noble"
+      "baseimage-selkies:ubunturesolute" <- "baseimage-ubuntu:resolute"
     }
     "orcaslicer:latest" <- Base Images
     ```
 
 ## Versions
 
+* **19.04.26:** - Rebase to resolute.
 * **29.03.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **01.01.26:** - Add wayland init.
 * **25.11.25:** - Update project repo name.
