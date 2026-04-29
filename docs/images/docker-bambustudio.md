@@ -702,13 +702,14 @@ To help with development, we generate this dependency graph.
       svc-xsettingsd -> legacy-services
     }
     Base Images: {
-      "baseimage-selkies:ubuntunoble" <- "baseimage-ubuntu:noble"
+      "baseimage-selkies:ubunturesolute" <- "baseimage-ubuntu:resolute"
     }
     "bambustudio:latest" <- Base Images
     ```
 
 ## Versions
 
+* **29.04.26:** - Rebase to resolute.
 * **11.04.26:** - Ingest from pre-release, make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **28.12.25:** - Add Wayland init logic.
 * **31.08.25:** - Update AppImage ingestion.
