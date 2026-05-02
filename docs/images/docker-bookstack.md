@@ -2,7 +2,7 @@
 title: bookstack
 tags:
     - Content Management
-description: "[Bookstack](https://github.com/BookStackApp/BookStack) is a free and open source Wiki designed for creating beautiful documentation. Featuring a simple, but powerful WYSIWYG editor it allows for teams to create detailed and useful documentation with ease.
+description: "[Bookstack](https://codeberg.org/bookstack/bookstack) is a free and open source Wiki designed for creating beautiful documentation. Featuring a simple, but powerful WYSIWYG editor it allows for teams to create detailed and useful documentation with ease.
 
 Powered by SQL and including a Markdown editor for those who prefer it, BookStack is geared towards making documentation more of a pleasure than a chore.
 
@@ -22,13 +22,13 @@ For more information on BookStack visit their website and check it out: https://
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/bookstack.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/bookstack)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-bookstack%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-bookstack/job/master/)
 
-[Bookstack](https://github.com/BookStackApp/BookStack) is a free and open source Wiki designed for creating beautiful documentation. Featuring a simple, but powerful WYSIWYG editor it allows for teams to create detailed and useful documentation with ease.
+[Bookstack](https://codeberg.org/bookstack/bookstack) is a free and open source Wiki designed for creating beautiful documentation. Featuring a simple, but powerful WYSIWYG editor it allows for teams to create detailed and useful documentation with ease.
 
 Powered by SQL and including a Markdown editor for those who prefer it, BookStack is geared towards making documentation more of a pleasure than a chore.
 
 For more information on BookStack visit their website and check it out: https://www.bookstackapp.com
 
-[![bookstack](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/bookstack-logo.png)](https://github.com/BookStackApp/BookStack)
+[![bookstack](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/bookstack-logo.png)](https://codeberg.org/bookstack/bookstack)
 
 ## Supported Architectures
 
@@ -409,6 +409,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **29.04.26:** - Switch to pulling releases from [Codeberg](https://codeberg.org/bookstack/bookstack).
 * **28.12.25:** - Rebase to Alpine 3.23.
 * **05.07.25:** - Rebase to Alpine 3.22.
 * **04.01.25:** - Add php-opcache.
