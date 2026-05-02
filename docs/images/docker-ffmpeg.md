@@ -189,6 +189,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **02.05.26:** - Bump ffmpeg to 8.1. Also bump aom, freetype, harfbuzz, Intel drivers and libs, libdovi, libdrm, libplacebo, libpng, mesa, rist, shaderc, srt, svtav1 and x265.
 * **06.03.26:** - Add support for SoX Resampler. Bump freetype, harfbuzz, Intel drivers and libs, libplacebo, libpng, mesa, shaderc, svtav1, vpx, vulkan-sdk and vvenc.
 * **06.01.26:** - Remove mpp from aarch64 build due to upstream DMCA removal. Bump harfbuzz, libdav1d, libdrm, libpng, libva, libvpl, mesa, opus, shaderc and vulkan-sdk.
 * **01.12.25:** - Bump ffmpeg to 8.0.1.
