@@ -42,6 +42,8 @@ The application can be accessed at:
 
 * https://yourhost:3001/
 
+**Make sure to set the proper graphics settings for your system, "Automatic" will not work and OpenGL is the most compatible**
+
 ### Strict reverse proxies
 
 This image uses a self-signed certificate by default. This naturally means the scheme is `https`.
@@ -699,13 +701,14 @@ To help with development, we generate this dependency graph.
       svc-xsettingsd -> legacy-services
     }
     Base Images: {
-      "baseimage-selkies:ubuntunoble" <- "baseimage-ubuntu:noble"
+      "baseimage-selkies:ubunturesolute" <- "baseimage-ubuntu:resolute"
     }
     "pcsx2:latest" <- Base Images
     ```
 
 ## Versions
 
+* **29.04.26:** - Rebase to resolute.
 * **05.03.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **20.12.25:** - Add Wayland init logic.
 * **15.07.25:** - Switch to stable release for pcsx2.
