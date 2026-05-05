@@ -34,13 +34,15 @@ The architectures supported by this image are:
 | Architecture | Available | Tag |
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
-| arm64 | ✅ | arm64v8-\<version tag\> |
+| arm64 | ❌ | |
 
 ## Application Setup
 
 The application can be accessed at:
 
 * https://yourhost:3001/
+
+**This image only runs in Wayland mode and should be run with a GPU**
 
 ### Strict reverse proxies
 
@@ -706,5 +708,6 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **05.05.26:** - Rebase to Debian Trixie, build Eden from source, remove arm64 tag.
 * **17.03.26:** - Ingest releases from self hosted git.
 * **18.02.26:** - Initial Version.
