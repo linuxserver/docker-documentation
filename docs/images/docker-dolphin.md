@@ -34,13 +34,15 @@ The architectures supported by this image are:
 | Architecture | Available | Tag |
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
-| arm64 | ✅ | arm64v8-\<version tag\> |
+| arm64 | ❌ | |
 
 ## Application Setup
 
 The application can be accessed at:
 
 * https://yourhost:3001/
+
+**On container creation you may need to enter/exit controller configuration in order for gamepads to work**
 
 ### Strict reverse proxies
 
@@ -706,6 +708,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **06.05.26:** - Build dolphin from source, ingest latest versions, remove aarch64 support.
 * **05.03.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **20.12.25:** - Add Wayland init logic.
 * **15.08.25:** - Rebase to Debian Trixie for updated Dolphin, update controller mapping.
