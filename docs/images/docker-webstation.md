@@ -701,13 +701,14 @@ To help with development, we generate this dependency graph.
       svc-xsettingsd -> legacy-services
     }
     Base Images: {
-      "baseimage-selkies:ubuntunoble" <- "baseimage-ubuntu:noble"
+      "baseimage-selkies:ubunturesolute" <- "baseimage-ubuntu:resolute"
     }
     "webstation:latest" <- Base Images
     ```
 
 ## Versions
 
+* **05.05.26:** - Rebase to resolute.
 * **28.03.26:** - Swap UI to baked in selkies-desktop.
 * **17.03.26:** - Fix eden ingestion to use self hosted git.
 * **02.03.26:** - Fix init to not use session wrapper.
