@@ -54,9 +54,6 @@ This image provides various versions that are available via tags. Please read th
 | debian-kde | ✅ | KDE Debian |
 | debian-mate | ✅ | MATE Debian |
 | debian-xfce | ✅ | XFCE Debian |
-| el-i3 | ✅ | i3 Enterprise Linux |
-| el-mate | ✅ | MATE Enterprise Linux |
-| el-xfce | ✅ | XFCE Enterprise Linux |
 | fedora-i3 | ✅ | i3 Fedora *Wayland Support |
 | fedora-kde | ✅ | KDE Fedora *Wayland Support |
 | fedora-mate | ✅ | MATE Fedora |
@@ -736,6 +733,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **07.05.26:** - Deprecate Enterprise Linux tags.
 * **07.04.26:** - Rebase Ubuntu images to Resolute.
 * **26.03.26:** - Rebase Fedora images to 44.
 * **24.03.26:** - Update tags that support Wayland to pass ozone platform for chromium.
