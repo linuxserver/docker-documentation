@@ -138,3 +138,4 @@ plugins:
         images/docker-citron.md: deprecated_images/docker-citron.md
         images/docker-rdesktop.md: deprecated_images/docker-rdesktop.md
         images/docker-baseimage-rdesktop.md: deprecated_images/docker-baseimage-rdesktop.md
+        images/docker-baseimage-el.md: deprecated_images/docker-baseimage-el.md
