@@ -112,6 +112,63 @@ For Intel and AMD GPUs.
       - DRINODE=/dev/dri/renderD128
       - DRI_NODE=/dev/dri/renderD128
 ```
+
+##### Nvidia (Proprietary Drivers)
+
+**Note: Nvidia support is not available for Alpine-based images.**
+
+**Prerequisites:**
+
+1. **Driver:** Proprietary drivers **580 or higher** are required. **Crucially, you should install the driver using the `.run` file downloaded directly from the Nvidia website.**
+    * **Unraid:** Use the production branch from the Nvidia Driver Plugin.
+
+2. **Kernel Parameter:** You must set `nvidia-drm.modeset=1 nvidia_drm.fbdev=1` in your host bootloader.
+    * **Standard Linux (GRUB):** Edit `/etc/default/grub` and add the parameter to your existing `GRUB_CMDLINE_LINUX_DEFAULT` line:
+
+        ```text
+        GRUB_CMDLINE_LINUX_DEFAULT="<other existing options> nvidia-drm.modeset=1 nvidia_drm.fbdev=1"
+        ```
+
+        Then apply the changes by running:
+
+        ```bash
+        sudo update-grub
+        ```
+
+    * **Unraid (Syslinux):** Edit the file `/boot/syslinux/syslinux.cfg` and add `nvidia-drm.modeset=1 nvidia_drm.fbdev=1` to the end of the `append` line for the Unraid OS boot entry.
+
+3. **Hardware Initialization:** **On headless systems, the Nvidia video card requires a physical dummy plug inserted into the GPU so that DRM initializes properly.**
+
+4. **Docker Runtime:** Configure the host docker daemon to use the Nvidia runtime:
+
+    ```bash
+    sudo nvidia-ctk runtime configure --runtime=docker
+    sudo systemctl restart docker
+    ```
+
+**Compose Configuration:**
+
+```yaml
+---
+services:
+  filezilla:
+    image: lscr.io/linuxserver/filezilla:latest
+    environment:
+      - PIXELFLUX_WAYLAND=true
+      # Ensure these point to the rendered node injected by the runtime (usually renderD128)
+      - DRINODE=/dev/dri/renderD128
+      - DRI_NODE=/dev/dri/renderD128
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [compute,video,graphics,utility]
+```
+
+* **Unraid:** Ensure you're properly setting the DRINODE/DRI_NODE and adding `--gpus all --runtime nvidia` to your extra parameters.
+
 ### SealSkin Compatibility
 
 This container is compatible with [SealSkin](https://sealskin.app).
@@ -617,8 +674,12 @@ To help with development, we generate this dependency graph.
       init-selkies-config -> init-video
       init-services -> svc-cron
       svc-cron -> legacy-services
+      init-services -> svc-dbus
+      svc-xorg -> svc-dbus
+      svc-dbus -> legacy-services
       init-services -> svc-de
       svc-nginx -> svc-de
+      svc-selkies -> svc-de
       svc-xorg -> svc-de
       svc-de -> legacy-services
       init-services -> svc-docker
@@ -642,13 +703,14 @@ To help with development, we generate this dependency graph.
       svc-xsettingsd -> legacy-services
     }
     Base Images: {
-      "baseimage-selkies:alpine323" <- "baseimage-alpine:3.23"
+      "baseimage-selkies:ubunturesolute" <- "baseimage-ubuntu:resolute"
     }
     "filezilla:latest" <- Base Images
     ```
 
 ## Versions
 
+* **20.05.26:** - Rebase to Ubuntu Resolute.
 * **03.04.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **28.12.25:** - Add Wayland init logic, rebase to Alpine 3.23.
 * **26.07.25:** - Rebase to Selkies and Alpine 3.22, HTTPS IS NOW REQUIRED.
