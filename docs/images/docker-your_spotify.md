@@ -66,6 +66,7 @@ services:
       - APP_URL=http://localhost
       - SPOTIFY_PUBLIC=
       - SPOTIFY_SECRET=
+      - SPOTIFY_API_DELAY_MS=2000
       - CORS=http://localhost:80,https://localhost:443
       - MONGO_ENDPOINT=mongodb://mongo:27017/your_spotify
     ports:
@@ -85,6 +86,7 @@ docker run -d \
   -e APP_URL=http://localhost \
   -e SPOTIFY_PUBLIC= \
   -e SPOTIFY_SECRET= \
+  -e SPOTIFY_API_DELAY_MS=2000 \
   -e CORS=http://localhost:80,https://localhost:443 \
   -e MONGO_ENDPOINT=mongodb://mongo:27017/your_spotify \
   -p 80:80 \
@@ -114,6 +116,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `APP_URL=http://localhost` | The protocol and hostname where the app will be accessed. |
 | `SPOTIFY_PUBLIC=` | Your Spotify application client ID. |
 | `SPOTIFY_SECRET=` | Your Spotify application secret. |
+| `SPOTIFY_API_DELAY_MS=2000` | Minimum delay in milliseconds between each spotify request. Can help with hitting 429 when importing data. |
 | `CORS=http://localhost:80,https://localhost:443` | Allowed CORS sources, set to `all` to allow any source. |
 | `MONGO_ENDPOINT=mongodb://mongo:27017/your_spotify` | Set mongodb endpoint address/port. |
 
