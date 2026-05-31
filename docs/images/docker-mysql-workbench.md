@@ -684,12 +684,8 @@ To help with development, we generate this dependency graph.
       init-selkies-config -> init-video
       init-services -> svc-cron
       svc-cron -> legacy-services
-      init-services -> svc-dbus
-      svc-xorg -> svc-dbus
-      svc-dbus -> legacy-services
       init-services -> svc-de
       svc-nginx -> svc-de
-      svc-selkies -> svc-de
       svc-xorg -> svc-de
       svc-de -> legacy-services
       init-services -> svc-docker
@@ -713,13 +709,14 @@ To help with development, we generate this dependency graph.
       svc-xsettingsd -> legacy-services
     }
     Base Images: {
-      "baseimage-selkies:ubuntunoble" <- "baseimage-ubuntu:noble"
+      "baseimage-selkies:arch" <- "baseimage-arch:latest"
     }
     "mysql-workbench:latest" <- Base Images
     ```
 
 ## Versions
 
+* **18.05.26:** - Rebase to Arch Linux.
 * **03.04.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **28.12.25:** - Add Wayland init logic.
 * **12.07.25:** - Rebase to Selkies, HTTPS IS NOW REQUIRED.
