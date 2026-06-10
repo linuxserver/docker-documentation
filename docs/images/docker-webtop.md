@@ -42,7 +42,7 @@ This image provides various versions that are available via tags. Please read th
 
 | Tag | Available | Description |
 | :----: | :----: |--- |
-| latest | ✅ | XFCE Alpine |
+| latest | ✅ | XFCE Alpine *Wayland Support |
 | alpine-i3 | ✅ | i3 Alpine *Wayland Support |
 | alpine-kde | ✅ | KDE Alpine *Wayland Only |
 | alpine-mate | ✅ | MATE Alpine |
@@ -726,13 +726,14 @@ To help with development, we generate this dependency graph.
       svc-xsettingsd -> legacy-services
     }
     Base Images: {
-      "baseimage-selkies:alpine323" <- "baseimage-alpine:3.23"
+      "baseimage-selkies:alpine324" <- "baseimage-alpine:3.24"
     }
     "webtop:latest" <- Base Images
     ```
 
 ## Versions
 
+* **10.06.26:** - Rebase Alpine images to 3.24.
 * **07.05.26:** - Deprecate Enterprise Linux tags.
 * **07.04.26:** - Rebase Ubuntu images to Resolute.
 * **26.03.26:** - Rebase Fedora images to 44.
