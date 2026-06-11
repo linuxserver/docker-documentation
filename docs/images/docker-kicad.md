@@ -644,13 +644,14 @@ To help with development, we generate this dependency graph.
       svc-xsettingsd -> legacy-services
     }
     Base Images: {
-      "baseimage-selkies:alpine323" <- "baseimage-alpine:3.23"
+      "baseimage-selkies:alpine324" <- "baseimage-alpine:3.24"
     }
     "kicad:latest" <- Base Images
     ```
 
 ## Versions
 
+* **10.06.26:** - Rebase to Alpine 3.24.
 * **29.03.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **28.12.25:** - Add Wayland init logic, rebase to Alpine 3.23.
 * **12.07.25:** - Rebase to Selkies and Alpine 3.22, HTTPS IS NOW REQUIRED.
