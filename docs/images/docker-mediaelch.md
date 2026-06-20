@@ -679,7 +679,6 @@ To help with development, we generate this dependency graph.
       svc-dbus -> legacy-services
       init-services -> svc-de
       svc-nginx -> svc-de
-      svc-selkies -> svc-de
       svc-xorg -> svc-de
       svc-de -> legacy-services
       init-services -> svc-docker
@@ -689,6 +688,7 @@ To help with development, we generate this dependency graph.
       init-services -> svc-pulseaudio
       svc-pulseaudio -> legacy-services
       init-services -> svc-selkies
+      svc-dbus -> svc-selkies
       svc-nginx -> svc-selkies
       svc-pulseaudio -> svc-selkies
       svc-xorg -> svc-selkies
@@ -703,13 +703,14 @@ To help with development, we generate this dependency graph.
       svc-xsettingsd -> legacy-services
     }
     Base Images: {
-      "baseimage-selkies:ubuntunoble" <- "baseimage-ubuntu:noble"
+      "baseimage-selkies:debiantrixie" <- "baseimage-debian:trixie"
     }
     "mediaelch:latest" <- Base Images
     ```
 
 ## Versions
 
+* **19.04.26:** - Rebase to Debian Trixie, ingest appimage from github.
 * **03.04.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **28.12.25:** - Add Wayland init logic.
 * **14.08.25:** - Rebase to noble, ingest latest stable version, install qt deps.
