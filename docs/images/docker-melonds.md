@@ -657,6 +657,7 @@ To help with development, we generate this dependency graph.
       init-crontab-config -> init-config-end
       init-config -> init-crontab-config
       init-mods-end -> init-custom-files
+      init-config-end -> init-deprecate
       init-adduser -> init-device-perms
       base -> init-envfile
       base -> init-migrations
@@ -671,6 +672,7 @@ To help with development, we generate this dependency graph.
       init-nginx -> init-selkies-config
       init-video -> init-selkies-end
       init-custom-files -> init-services
+      init-deprecate -> init-services
       init-selkies-config -> init-video
       init-services -> svc-cron
       svc-cron -> legacy-services
