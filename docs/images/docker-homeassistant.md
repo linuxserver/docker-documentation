@@ -363,13 +363,14 @@ To help with development, we generate this dependency graph.
       svc-homeassistant -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.22"
+      "baseimage-alpine:3.24"
     }
     "homeassistant:latest" <- Base Images
     ```
 
 ## Versions
 
+* **02.07.26:** - Rebase to alpine 3.24.
 * **05.03.26:** - Remove pycups as there are no python 3.14 wheels for it.
 * **02.10.25:** - Rebase to alpine 3.22, rely on baseimage service for usb device permission fixing.
 * **19.09.25:** - Add the necessary capabilities in the container to allow the unprivileged user access to bluetooth stack.
