@@ -337,6 +337,7 @@ To help with development, we generate this dependency graph.
       init-diskover-config -> init-config-end
       init-os-end -> init-crontab-config
       init-mods-end -> init-custom-files
+      init-config-end -> init-deprecate
       init-adduser -> init-device-perms
       init-eol-check -> init-diskover-config
       base -> init-envfile
@@ -361,6 +362,7 @@ To help with development, we generate this dependency graph.
       init-nginx -> init-php
       init-folders -> init-samples
       init-custom-files -> init-services
+      init-deprecate -> init-services
       init-mods-end -> init-services
       init-config-end -> init-version-checks
       init-services -> svc-cron
