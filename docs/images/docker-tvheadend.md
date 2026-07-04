@@ -376,6 +376,7 @@ To help with development, we generate this dependency graph.
       init-video-config -> init-config-end
       init-os-end -> init-crontab-config
       init-mods-end -> init-custom-files
+      init-config-end -> init-deprecate
       init-adduser -> init-device-perms
       base -> init-envfile
       base -> init-migrations
@@ -390,6 +391,7 @@ To help with development, we generate this dependency graph.
       init-envfile -> init-os-end
       init-migrations -> init-os-end
       init-custom-files -> init-services
+      init-deprecate -> init-services
       init-mods-end -> init-services
       init-config -> init-tvheadend-config
       init-tvheadend-config -> init-video-config
