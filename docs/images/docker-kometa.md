@@ -336,13 +336,14 @@ To help with development, we generate this dependency graph.
       svc-kometa -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.23"
+      "baseimage-alpine:3.24"
     }
     "kometa:latest" <- Base Images
     ```
 
 ## Versions
 
+* **05.07.26:** - Rebase to Alpine 3.24.
 * **28.12.25:** - Rebase to Alpine 3.23.
 * **09.07.25:** - Rebase to Alpine 3.22.
 * **06.01.25:** - Rebase to Alpine 3.21.
