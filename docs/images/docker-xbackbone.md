@@ -332,13 +332,15 @@ To help with development, we generate this dependency graph.
       svc-php-fpm -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine-nginx:3.22" <- "baseimage-alpine:3.22"
+      "baseimage-alpine-nginx:3.24" <- "baseimage-alpine:3.24"
     }
     "xbackbone:latest" <- Base Images
     ```
 
 ## Versions
 
+* **05.07.26:** - Rebase to Alpine 3.24.
+* **09.07.25:** - Rebase to Alpine 3.22.
 * **27.05.24:** - Rebase to Alpine 3.20. Existing users should update their nginx confs to avoid http2 deprecation warnings.
 * **28.12.23:** - Rebase to Alpine 3.19 with php 8.3.
 * **25.12.23:** - Existing users should update: site-confs/default.conf - Cleanup default site conf.
