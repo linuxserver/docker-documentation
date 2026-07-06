@@ -293,6 +293,7 @@ To help with development, we generate this dependency graph.
       init-pwndrop-config -> init-config-end
       init-os-end -> init-crontab-config
       init-mods-end -> init-custom-files
+      init-config-end -> init-deprecate
       init-adduser -> init-device-perms
       base -> init-envfile
       base -> init-migrations
@@ -308,6 +309,7 @@ To help with development, we generate this dependency graph.
       init-migrations -> init-os-end
       init-config -> init-pwndrop-config
       init-custom-files -> init-services
+      init-deprecate -> init-services
       init-mods-end -> init-services
       init-services -> svc-cron
       svc-cron -> legacy-services
