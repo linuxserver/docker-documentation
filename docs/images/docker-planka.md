@@ -363,13 +363,14 @@ To help with development, we generate this dependency graph.
       svc-planka -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.23"
+      "baseimage-alpine:3.24"
     }
     "planka:latest" <- Base Images
     ```
 
 ## Versions
 
+* **05.07.26:** - Rebase to Alpine 3.24.
 * **13.02.26:** - Rebase to Alpine 3.23. Updates for v2. Users should update `TRUST_PROXY` to use `true`/`false` instead of `1`/`0`.
 * **12.01.25:** - Rebase to Alpine 3.21.
 * **18.09.24:** - Update default user docs.
