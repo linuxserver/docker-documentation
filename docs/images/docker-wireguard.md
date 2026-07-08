@@ -431,13 +431,14 @@ To help with development, we generate this dependency graph.
       svc-wireguard -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.23"
+      "baseimage-alpine:3.24"
     }
     "wireguard:latest" <- Base Images
     ```
 
 ## Versions
 
+* **05.07.26:** - Rebase to Alpine 3.24.
 * **24.01.26:** - Rebase to Alpine 3.23 again as openresolv alpine 3.23 package has now been updated.
 * **22.01.26:** - Revert to Alpine 3.22 due to resolvconf bug.
 * **04.01.26:** - Rebase to Alpine 3.23.
