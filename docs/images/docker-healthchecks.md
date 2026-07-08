@@ -369,13 +369,14 @@ To help with development, we generate this dependency graph.
       svc-healthchecks -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.23"
+      "baseimage-alpine:3.24"
     }
     "healthchecks:latest" <- Base Images
     ```
 
 ## Versions
 
+* **05.07.26:** - Rebase to Alpine 3.24.
 * **28.12.25:** - Rebase to Alpine 3.23.
 * **05.07.25:** - Rebase to Alpine 3.22.
 * **20.12.24:** - Rebase to Alpine 3.21.
