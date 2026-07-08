@@ -95,7 +95,9 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
+      - APP_SECRET=
       - DATABASE_URL=mysql://your_db_user:your_db_pass@your_db_host:3306/your_db_name?charset=your_db_charset&serverVersion=your_db_version
+      - TRUSTED_HOSTS=kimai.example.com
       - TRUSTED_PROXIES=127.0.0.1/32 #optional
     volumes:
       - /path/to/kimai/config:/config
@@ -133,7 +135,9 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
+  -e APP_SECRET= \
   -e DATABASE_URL=mysql://your_db_user:your_db_pass@your_db_host:3306/your_db_name?charset=your_db_charset&serverVersion=your_db_version \
+  -e TRUSTED_HOSTS=kimai.example.com \
   -e TRUSTED_PROXIES=127.0.0.1/32 `#optional` \
   -p 80:80 \
   -p 443:443 \
@@ -176,7 +180,9 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
+| `APP_SECRET=` | Random string used for session encryption. Generate using e.g. `openssl rand -hex 32`. |
 | `DATABASE_URL=mysql://your_db_user:your_db_pass@your_db_host:3306/your_db_name?charset=your_db_charset&serverVersion=your_db_version` | Configure your database connection, see Application Setup instructions. |
+| `TRUSTED_HOSTS=kimai.example.com` | Domain or IP you will be using to access Kimai. Can be a regex like `localhost|127.0.0.1|kimai.example.com` |
 | `TRUSTED_PROXIES=127.0.0.1/32` | If behind a reverse proxy set this to its IP or network CIDR so that Kimai trusts its headers. |
 
 ### Volume Mappings (`-v`)
@@ -398,13 +404,14 @@ To help with development, we generate this dependency graph.
       svc-php-fpm -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine-nginx:3.23" <- "baseimage-alpine:3.23"
+      "baseimage-alpine-nginx:3.24" <- "baseimage-alpine:3.24"
     }
     "kimai:latest" <- Base Images
     ```
 
 ## Versions
 
+* **04.07.27:** - Rebase to Alpine 3.24.
 * **28.12.25:** - Rebase to Alpine 3.23.
 * **04.07.25:** - Rebase to Alpine 3.22.
 * **06.04.25:** - Rebase to Alpine 3.21.
