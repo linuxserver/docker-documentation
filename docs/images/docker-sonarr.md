@@ -354,6 +354,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **09.07.26:** - Workaround malformed ncurses database.
 * **04.07.26:** - Rebase to Alpine 3.24.
 * **15.01.26:** - Rebase to Alpine 3.23.
 * **05.07.25:** - Rebase to Alpine 3.22.
