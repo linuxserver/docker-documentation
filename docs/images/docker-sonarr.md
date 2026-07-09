@@ -347,13 +347,14 @@ To help with development, we generate this dependency graph.
       svc-sonarr -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.23"
+      "baseimage-alpine:3.24"
     }
     "sonarr:latest" <- Base Images
     ```
 
 ## Versions
 
+* **04.07.26:** - Rebase to Alpine 3.24.
 * **15.01.26:** - Rebase to Alpine 3.23.
 * **05.07.25:** - Rebase to Alpine 3.22.
 * **09.01.25:** - Fix rootless entrypoint.
