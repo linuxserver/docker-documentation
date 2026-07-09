@@ -350,13 +350,14 @@ To help with development, we generate this dependency graph.
       svc-sabnzbd -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.23"
+      "baseimage-alpine:3.24"
     }
     "sabnzbd:latest" <- Base Images
     ```
 
 ## Versions
 
+* **04.07.26:** - Rebase to Alpine 3.24
 * **28.12.25:** - Rebase to Alpine 3.23. Add RISCV build.
 * **05.07.25:** - Rebase to Alpine 3.22.
 * **23.12.24:** - Rebase to Alpine 3.21.
