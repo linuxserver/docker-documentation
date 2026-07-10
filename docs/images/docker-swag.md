@@ -50,7 +50,7 @@ The architectures supported by this image are:
     2. Certs that cover sub-subdomains of your main subdomain (ie. `*.yoursubdomain.duckdns.org`, set the `SUBDOMAINS` variable to `wildcard`)
 * `--cap-add=NET_ADMIN` is required for fail2ban to modify iptables
 * After setup, navigate to `https://example.com` to access the default homepage (http access through port 80 is disabled by default, you can enable it by editing the default site config at `/config/nginx/site-confs/default.conf`).
-* Certs are checked nightly and if expiration is within 30 days, renewal is attempted. If your cert is about to expire in less than 30 days, check the logs under `/config/log/letsencrypt` to see why the renewals have been failing. It is recommended to input your e-mail in docker parameters so you receive expiration notices from Let's Encrypt in those circumstances.
+* Certs are checked twice daily using ACME Renewal Information (ARI) to determine the optimal renewal window. If your cert is about to expire, check the logs under `/config/log/letsencrypt` to see why the renewals have been failing.
 
 ### Certbot Plugins
 
@@ -173,6 +173,7 @@ services:
       - VALIDATION=http
       - SUBDOMAINS=www, #optional
       - CERTPROVIDER= #optional
+      - CERT_PROFILE= #optional
       - DNSPLUGIN=cloudflare #optional
       - PROPAGATION= #optional
       - EMAIL= #optional
@@ -204,6 +205,7 @@ docker run -d \
   -e VALIDATION=http \
   -e SUBDOMAINS=www, `#optional` \
   -e CERTPROVIDER= `#optional` \
+  -e CERT_PROFILE= `#optional` \
   -e DNSPLUGIN=cloudflare `#optional` \
   -e PROPAGATION= `#optional` \
   -e EMAIL= `#optional` \
@@ -244,6 +246,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `VALIDATION=http` | Certbot validation method to use, options are `http` or `dns` (`dns` method also requires `DNSPLUGIN` variable set). |
 | `SUBDOMAINS=www,` | Subdomains you'd like the cert to cover (comma separated, no spaces) ie. `www,ftp,cloud`. For a wildcard cert, set this *exactly* to `wildcard` (wildcard cert is available via `dns` validation only) |
 | `CERTPROVIDER=` | Optionally define the cert provider. Set to `zerossl` for ZeroSSL certs (requires existing [ZeroSSL account](https://app.zerossl.com/signup) and the e-mail address entered in `EMAIL` env var). Otherwise defaults to Let's Encrypt. |
+| `CERT_PROFILE=` | Optionally define a cert profile to use for cert generation. This is useful if you want to use a custom cert profile instead of the default one. Currently only supported for Let's Encrypt. See https://letsencrypt.org/docs/profiles/  |
 | `DNSPLUGIN=cloudflare` | Required if `VALIDATION` is set to `dns`. Options are `acmedns`, `aliyun`, `azure`, `bunny`, `cloudflare`, `cpanel`, `desec`, `digitalocean`, `directadmin`, `dnsimple`, `dnsmadeeasy`, `dnspod`, `do`, `domeneshop`, `dreamhost`, `duckdns`, `dynu`, `freedns`, `gandi`, `gehirn`, `glesys`, `godaddy`, `google`, `he`, `hetzner`, `hetzner-cloud`, `infomaniak`, `inwx`, `ionos`, `linode`, `loopia`, `luadns`, `mijn-host`, `namecheap`, `netcup`, `njalla`, `nsone`, `ovh`, `porkbun`, `rfc2136`, `route53`, `sakuracloud`, `standalone`, `transip`, and `vultr`. Also need to enter the credentials into the corresponding ini (or json for some plugins) file under `/config/dns-conf`. |
 | `PROPAGATION=` | Optionally override (in seconds) the default propagation time for the dns plugins. |
 | `EMAIL=` | Optional e-mail address used for cert expiration notifications (Required for ZeroSSL). |
@@ -506,6 +509,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **10.07.26:** - Add support for Let's Encrypt cert profiles. Run certbot twice daily with a random delay.
 * **19.06.26:** - Add support for mijn.host dns validation.
 * **01.06.26:** - Remove obsolete old cert check logic.
 * **23.01.26:** - Reorder init to fix proxy conf version checks.
