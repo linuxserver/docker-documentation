@@ -318,13 +318,14 @@ To help with development, we generate this dependency graph.
       svc-mstream -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.23"
+      "baseimage-alpine:3.24"
     }
     "mstream:latest" <- Base Images
     ```
 
 ## Versions
 
+* **08.07.26:** - Rebase to Alpine 3.24. Use the distro onnxruntime so the discovery/recommendation features work on musl.
 * **24.04.26:** - Make waveform data persistent.
 * **20.04.26:** - Fix perms on rust binaries.
 * **07.04.26:** - Add ffmpeg and yt-dlp.
