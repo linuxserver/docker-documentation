@@ -347,13 +347,14 @@ To help with development, we generate this dependency graph.
       svc-queue -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine-nginx:3.22" <- "baseimage-alpine:3.22"
+      "baseimage-alpine-nginx:3.24" <- "baseimage-alpine:3.24"
     }
     "heimdall:latest" <- Base Images
     ```
 
 ## Versions
 
+* **14.07.26:** - Rebase to Alpine 3.24
 * **20.07.25:** - Rebase to Alpine 3.22, enable PHP environment passthrough.
 * **27.06.24:** - Rebase to Alpine 3.20. Existing users should update their nginx confs to avoid http2 deprecation warnings.
 * **07.03.24:** - Enable the opcache and disable file revalidation.
