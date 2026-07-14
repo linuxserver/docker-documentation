@@ -406,13 +406,14 @@ To help with development, we generate this dependency graph.
       svc-mariadb -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.23"
+      "baseimage-alpine:3.24"
     }
     "mariadb:latest" <- Base Images
     ```
 
 ## Versions
 
+* **05.07.26:** - Rebase to Alpine 3.24.
 * **14.02.25:** - Rebase to Alpine 3.23. Add ability to pass CLI options to mariadbd.
 * **09.07.25:** - Rebase to Alpine 3.22.
 * **11.01.25:** - Add log rotation, follow the instructions in the container log.
