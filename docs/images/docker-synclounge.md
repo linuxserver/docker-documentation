@@ -294,13 +294,14 @@ To help with development, we generate this dependency graph.
       svc-synclounge -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.21"
+      "baseimage-alpine:3.24"
     }
     "synclounge:latest" <- Base Images
     ```
 
 ## Versions
 
+* **15.07.26:** - Rebase to Alpine 3.24.
 * **19.12.24:** - Add support for read-only and non-root operation.
 * **05.12.24:** - Rebase to Alpine 3.21.
 * **04.06.24:** - Rebase to Alpine 3.20.
