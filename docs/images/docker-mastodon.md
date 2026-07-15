@@ -489,13 +489,14 @@ To help with development, we generate this dependency graph.
       svc-streaming -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine-nginx:3.22" <- "baseimage-alpine:3.22"
+      "baseimage-alpine-nginx:3.24" <- "baseimage-alpine:3.24"
     }
     "mastodon:latest" <- Base Images
     ```
 
 ## Versions
 
+* **05.07.26:** - Rebase to Alpine 3.24.
 * **21.10.25:** - Add prometheus exporter support.
 * **20.10.25:** - Add vips-heif.
 * **08.07.25:** - Rebase to Alpine 3.22.
