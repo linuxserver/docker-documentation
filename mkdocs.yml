@@ -141,3 +141,4 @@ plugins:
         images/docker-baseimage-el.md: deprecated_images/docker-baseimage-el.md
         images/docker-monica.md: deprecated_images/docker-monica.md
         images/docker-doplarr.md: deprecated_images/docker-doplarr.md
+        images/docker-openvscode-server.md: deprecated_images/docker-openvscode-server.md
