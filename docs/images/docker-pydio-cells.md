@@ -328,13 +328,14 @@ To help with development, we generate this dependency graph.
       svc-pydio-cells -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.22"
+      "baseimage-alpine:3.24"
     }
     "pydio-cells:latest" <- Base Images
     ```
 
 ## Versions
 
+* **17.07.26:** - Rebasing to Alpine 3.24.
 * **27.07.25:** - Rebasing to Alpine 3.22.
 * **27.06.24:** - Rebasing to Alpine 3.20.
 * **14.03.24:** - Rebasing to alpine 3.19. Grpc port defaults to 8080.
