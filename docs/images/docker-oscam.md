@@ -341,13 +341,14 @@ To help with development, we generate this dependency graph.
       svc-pcsd -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.23"
+      "baseimage-alpine:3.24"
     }
     "oscam:latest" <- Base Images
     ```
 
 ## Versions
 
+* **17.07.26:** - Rebase to Alpine 3.24.
 * **28.04.26:** - Disable binary signing to prevent compile errors.
 * **15.01.26:** - Rebase to Alpine 3.23, add support for wiki submodule.
 * **27.06.24:** - Rebase to Alpine 3.20.
