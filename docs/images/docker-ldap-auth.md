@@ -336,13 +336,14 @@ To help with development, we generate this dependency graph.
       svc-ldap-daemon -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.21"
+      "baseimage-alpine:3.24"
     }
     "ldap-auth:latest" <- Base Images
     ```
 
 ## Versions
 
+* **17.07.26:** - Rebase to Alpine 3.24.
 * **25.12.24:** - Add `legacy-cgi`. Fix fernet key storage.
 * **22.12.24:** - Rebase to Alpine 3.21. Add support for read-only and non-root.
 * **30.06.24:** - Rebase to Alpine 3.20.
