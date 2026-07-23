@@ -321,13 +321,14 @@ To help with development, we generate this dependency graph.
       svc-php-fpm -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine-nginx:3.22" <- "baseimage-alpine:3.22"
+      "baseimage-alpine-nginx:3.24" <- "baseimage-alpine:3.24"
     }
     "dokuwiki:latest" <- Base Images
     ```
 
 ## Versions
 
+* **14.07.26:** - Rebase to Alpine 3.24, add php-tokenizer.
 * **05.07.25:** - Rebase to Alpine 3.22.
 * **10.05.25:** - Rebase to Alpine 3.21.
 * **31.05.24:** - Rebase to Alpine 3.20. Existing users should update their nginx confs to avoid http2 deprecation warnings.
