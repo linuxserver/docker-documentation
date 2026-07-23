@@ -340,13 +340,14 @@ To help with development, we generate this dependency graph.
       svc-jackett -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.22"
+      "baseimage-alpine:3.24"
     }
     "jackett:latest" <- Base Images
     ```
 
 ## Versions
 
+* **14.07.26:** - Rebase to Alpine 3.24.
 * **09.07.25:** - Rebase to Alpine 3.22.
 * **12.01.25:** - Rebase to Alpine 3.21.
 * **31.05.24:** - Rebase to Alpine 3.20.
