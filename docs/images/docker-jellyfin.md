@@ -65,26 +65,6 @@ https://mods.linuxserver.io/?mod=jellyfin
 
 And follow this guide even if you are using iGPU: https://jellyfin.org/docs/general/administration/hardware-acceleration/intel/#configure-and-verify-lp-mode-on-linux
 
-#### OpenMAX (Raspberry Pi)
-
-Hardware acceleration users for Raspberry Pi MMAL/OpenMAX will need to mount their `/dev/vcsm` and `/dev/vchiq` video devices inside of the container and their system OpenMax libs by passing the following options when running or creating the container:
-
-```
---device=/dev/vcsm:/dev/vcsm
---device=/dev/vchiq:/dev/vchiq
--v /opt/vc/lib:/opt/vc/lib
-```
-
-#### V4L2 (Raspberry Pi)
-
-Hardware acceleration users for Raspberry Pi V4L2 will need to mount their `/dev/video1X` devices inside of the container by passing the following options when running or creating the container:
-
-```
---device=/dev/video10:/dev/video10
---device=/dev/video11:/dev/video11
---device=/dev/video12:/dev/video12
-```
-
 ### Hardware Acceleration
 
 Many desktop applications need access to a GPU to function properly and even some Desktop Environments have compositor effects that will not function without a GPU. However this is not a hard requirement and all base images will function without a video device mounted into the container.
@@ -410,15 +390,16 @@ To help with development, we generate this dependency graph.
       svc-jellyfin -> legacy-services
     }
     Base Images: {
-      "baseimage-ubuntu:noble"
+      "baseimage-ubuntu:resolute"
     }
     "jellyfin:latest" <- Base Images
     ```
 
 ## Versions
 
+* **14.07.26:** - Rebase to Ubuntu Resolute.
 * **02.03.26:** - Add support for IPv6 OOTB.
-* **20.10.25:** - Add libjemalloc as runtime dep.
+* **20.10.25:** - Add libjemalloc2 as runtime dep.
 * **06.10.24:** - Fix fontconfig cache path.
 * **13.08.24:** - Rebase to Ubuntu Noble.
 * **01.05.24:** - Increase verbosity of device permissions fixing.
