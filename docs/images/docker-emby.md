@@ -53,30 +53,6 @@ Webui can be found at `http://<your-ip>:8096`
 
 Emby has very complete and verbose documentation located [here](https://github.com/MediaBrowser/Wiki/wiki) .
 
-### Hardware Acceleration Enhancements
-
-This section lists the enhancements we have made for hardware acceleration in this image specifically.
-
-#### OpenMAX (Raspberry Pi)
-
-Hardware acceleration users for Raspberry Pi MMAL/OpenMAX will need to mount their `/dev/vcsm` and `/dev/vchiq` video devices inside of the container and their system OpenMax libs by passing the following options when running or creating the container:
-
-```
---device=/dev/vcsm:/dev/vcsm
---device=/dev/vchiq:/dev/vchiq
--v /opt/vc/lib:/opt/vc/lib
-```
-
-#### V4L2 (Raspberry Pi)
-
-Hardware acceleration users for Raspberry Pi V4L2 will need to mount their `/dev/video1X` devices inside of the container by passing the following options when running or creating the container:
-
-```
---device=/dev/video10:/dev/video10
---device=/dev/video11:/dev/video11
---device=/dev/video12:/dev/video12
-```
-
 ### Hardware Acceleration
 
 Many desktop applications need access to a GPU to function properly and even some Desktop Environments have compositor effects that will not function without a GPU. However this is not a hard requirement and all base images will function without a video device mounted into the container.
@@ -132,7 +108,6 @@ services:
       - 8920:8920 #optional
     devices:
       - /dev/dri:/dev/dri #optional
-      - /dev/vchiq:/dev/vchiq #optional
       - /dev/video10:/dev/video10 #optional
       - /dev/video11:/dev/video11 #optional
       - /dev/video12:/dev/video12 #optional
@@ -154,7 +129,6 @@ docker run -d \
   -v /path/to/movies:/data/movies \
   -v /opt/vc/lib:/opt/vc/lib `#optional` \
   --device /dev/dri:/dev/dri `#optional` \
-  --device /dev/vchiq:/dev/vchiq `#optional` \
   --device /dev/video10:/dev/video10 `#optional` \
   --device /dev/video11:/dev/video11 `#optional` \
   --device /dev/video12:/dev/video12 `#optional` \
@@ -195,7 +169,6 @@ Containers are configured using parameters passed at runtime (such as those abov
 | Parameter | Function |
 | :-----:   | --- |
 | `/dev/dri` | Only needed if you want to use your Intel or AMD GPU for hardware accelerated video encoding (vaapi). |
-| `/dev/vchiq` | Only needed if you want to use your Raspberry Pi OpenMax video encoding (Bellagio). |
 | `/dev/video10` | Only needed if you want to use your Raspberry Pi V4L2 video encoding. |
 | `/dev/video11` | Only needed if you want to use your Raspberry Pi V4L2 video encoding. |
 | `/dev/video12` | Only needed if you want to use your Raspberry Pi V4L2 video encoding. |
@@ -402,13 +375,14 @@ To help with development, we generate this dependency graph.
       svc-emby -> legacy-services
     }
     Base Images: {
-      "baseimage-ubuntu:noble"
+      "baseimage-ubuntu:resolute"
     }
     "emby:latest" <- Base Images
     ```
 
 ## Versions
 
+* **14.07.26:** - Rebase to Ubuntu Resolute.
 * **12.01.26:** - Set home to /config.
 * **13.08.24:** - Rebase to Ubuntu Noble.
 * **12.02.24:** - Use universal hardware acceleration blurb
