@@ -34,7 +34,7 @@ The architectures supported by this image are:
 | Architecture | Available | Tag |
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
-| arm64 | ❌ | |
+| arm64 | ✅ | arm64v8-\<version tag\> |
 
 ## Application Setup
 
@@ -653,6 +653,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **26.07.26:** - Add aarch64 support.
 * **04.04.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **28.12.25:** - Add Wayland init logic.
 * **22.09.25:** - Rebase to Debian Trixie.
