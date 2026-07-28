@@ -388,13 +388,14 @@ To help with development, we generate this dependency graph.
       svc-php-fpm -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine-nginx:3.22" <- "baseimage-alpine:3.22"
+      "baseimage-alpine-nginx:3.24" <- "baseimage-alpine:3.24"
     }
     "cops:latest" <- Base Images
     ```
 
 ## Versions
 
+* **21.07.26:** - Rebase to Alpine 3.24.
 * **10.06.26:** - Existing users should verify: site-confs/default.conf and config/local.php - Update redirect location and use front controller.
 * **08.02.26:** - Existing users should update: site-confs/default.conf - Deny access to all dotfiles.
 * **08.02.26:** - Adding missing php-tokenizer package.
