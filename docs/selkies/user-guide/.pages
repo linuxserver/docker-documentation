@@ -1,0 +1,12 @@
+nav:
+    - index.md
+    - Quickstart: quickstart.md
+    - Installation: installation.md
+    - GPU Acceleration: gpu.md
+    - Using the Web Client: web-client.md
+    - Configuration Reference: configuration.md
+    - Available Apps and Desktops: apps.md
+    - Installing Applications: installing-apps.md
+    - Security and Hardening: security.md
+    - Reverse Proxy: reverse-proxy.md
+    - Troubleshooting: troubleshooting.md
