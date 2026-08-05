@@ -53,21 +53,16 @@ Notes:
 
 More than one hundred applications are packaged as dedicated images, each running the app under the lightweight labwc compositor so it feels like a native web app. All follow the pattern `lscr.io/linuxserver/<name>`:
 
-**Browsers and web:** Brave, Chrome, Chromium, Firefox, Helium, Librewolf, Msedge, Mullvad Browser, Opera, Ungoogled Chromium, Vivaldi, Zen, Webstation
+The catalog includes applications across a wide range of categories, including:
 
-**Communication:** Altus, Ferdium, Pidgin, Signal, Telegram, Thunderbird, Webcord, Weixin
-
-**Development:** Github Desktop, Gitqlient, Intellij Idea, Mysql Workbench, Pycharm, Sqlitebrowser, Vscode, Vscodium, Yaak
-
-**Creative and media:** Ardour, Audacity, Blender, Darktable, Digikam, Gimp, Handbrake, Inkscape, Kdenlive, Krita, Lollypop, Rawtherapee, Shotcut, Spotube, Vlc
-
-**Office and productivity:** Calibre, Calligra, Joplin, Libreoffice, Obsidian, Onlyoffice, Wps Office, Zotero
-
-**3D printing and engineering:** Bambustudio, Cura, Freecad, Kicad, Orcaslicer
-
-**Gaming and emulation:** Azahar, Blade of Agony, Dolphin, Dosbox Staging, Duckstation, Eden, Flycast, Gzdoom, Mame, Melonds, Modrinth, Pcsx2, Ppsspp, Retroarch, Rpcs3, shadPS4, Steam, Xemu, Dogwalk
-
-**Utilities and other:** Boinc, Doublecommander, Filezilla, Keepassxc, Kali Linux, Mediaelch, Qdirstat, Remmina, Rustdesk, Wireshark, WineGUI
+- Web browsers and internet tools
+- Communication and messaging clients
+- Development tools and IDEs
+- Creative, graphics, audio, and video applications
+- Office, productivity, and note-taking software
+- CAD, engineering, and 3D printing tools
+- Gaming, emulation, and game launchers
+- File management, remote access, system utilities, and other desktop applications
 
 Each app has its own GitHub repository at `github.com/linuxserver/docker-<name>` with a README covering any app specific options (for example `CHROME_CLI` on the Chromium image to pass command line flags to the browser).
 
