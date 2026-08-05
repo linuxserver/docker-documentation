@@ -6,5 +6,6 @@ nav:
         - Images: images
         - Deprecated Images: deprecated_images
     - API: API.md
+    - Selkies: selkies
     - Frequently Asked Questions: FAQ.md
     - misc
