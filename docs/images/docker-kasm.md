@@ -371,6 +371,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **04.08.26:** - Give kasm_manager a healthcheck start period so a cold start does not leave kasm_proxy created but never started.
 * **16.04.26:** - Update for 1.18.1 release. Use rolling service images. Bump docker to v29.
 * **13.11.25:** - Pin docker to v28 to avoid API deprecation issues.
 * **22.10.25:** - Update for 1.18.0 release.
