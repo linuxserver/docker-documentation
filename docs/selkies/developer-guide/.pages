@@ -1,0 +1,8 @@
+nav:
+    - index.md
+    - Platform Architecture: architecture.md
+    - Building Custom Images: building-images.md
+    - Baseimage Internals: baseimage-internals.md
+    - Customizing Containers: customization.md
+    - The Streaming Protocol: protocol.md
+    - Development Environment: development.md
