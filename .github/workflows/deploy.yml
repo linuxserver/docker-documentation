@@ -41,7 +41,7 @@ jobs:
       - name: Install d2
         run: |
           mkdir -p /tmp/d2
-          D2_VERSION=$(curl -s https://api.github.com/repos/terrastruct/d2/releases/latest | awk '/tag_name/{print $4;exit}' FS='[""]')
+          D2_VERSION=$(curl -sL https://api.github.com/repos/terrastruct/d2/releases/latest | awk '/tag_name/{print $4;exit}' FS='[""]')
           curl -o \
             /tmp/d2.tar.gz -L \
             "https://github.com/terrastruct/d2/releases/download/${D2_VERSION}/d2-${D2_VERSION}-linux-amd64.tar.gz"
@@ -91,7 +91,7 @@ jobs:
       - name: Install d2
         run: |
           mkdir -p /tmp/d2
-          D2_VERSION=$(curl -s https://api.github.com/repos/terrastruct/d2/releases/latest | awk '/tag_name/{print $4;exit}' FS='[""]')
+          D2_VERSION=$(curl -sL https://api.github.com/repos/terrastruct/d2/releases/latest | awk '/tag_name/{print $4;exit}' FS='[""]')
           curl -o \
             /tmp/d2.tar.gz -L \
             "https://github.com/terrastruct/d2/releases/download/${D2_VERSION}/d2-${D2_VERSION}-linux-amd64.tar.gz"
