@@ -679,6 +679,7 @@ To help with development, we generate this dependency graph.
       svc-dbus -> legacy-services
       init-services -> svc-de
       svc-nginx -> svc-de
+      svc-selkies -> svc-de
       svc-xorg -> svc-de
       svc-de -> legacy-services
       init-services -> svc-docker
@@ -688,7 +689,6 @@ To help with development, we generate this dependency graph.
       init-services -> svc-pulseaudio
       svc-pulseaudio -> legacy-services
       init-services -> svc-selkies
-      svc-dbus -> svc-selkies
       svc-nginx -> svc-selkies
       svc-pulseaudio -> svc-selkies
       svc-xorg -> svc-selkies
@@ -703,13 +703,14 @@ To help with development, we generate this dependency graph.
       svc-xsettingsd -> legacy-services
     }
     Base Images: {
-      "baseimage-selkies:debiantrixie" <- "baseimage-debian:trixie"
+      "baseimage-selkies:ubunturesolute" <- "baseimage-ubuntu:resolute"
     }
     "openshot:latest" <- Base Images
     ```
 
 ## Versions
 
+* **07.08.26:** - Rebase to Ubuntu Resolute, install from ppa.
 * **03.04.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **22.09.25:** - Rebase to Debian Trixie.
 * **29.07.25:** - Rebase to selkies. Breaking Change: HTTPS is now required. Either use a reverse proxy (like SWAG) with SSL cert or direct connect to port 3001 with HTTPS.
