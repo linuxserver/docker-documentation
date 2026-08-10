@@ -336,6 +336,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **10.08.26:** - Switch to legacy repo until migration steps are figured out.
 * **14.12.25:** - Add php ldap module.
 * **16.11.25:** - Add missing language files to default install.
 * **14.10.25:** - Rebase to 3.22.
