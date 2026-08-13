@@ -712,6 +712,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **13.08.26:** - Add Azahar emulator.
 * **10.08.26:** - Add Cemu emulator.
 * **05.05.26:** - Rebase to resolute.
 * **28.03.26:** - Swap UI to baked in selkies-desktop.
