@@ -340,13 +340,14 @@ To help with development, we generate this dependency graph.
       svc-flexget -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.22"
+      "baseimage-alpine:3.23"
     }
     "flexget:latest" <- Base Images
     ```
 
 ## Versions
 
+* **15.08.26:** - Rebase to Alpine 3.23.
 * **10.11.25:** - Rebase to Alpine 3.22.
 * **17.10.25:** - Add pip to enable [universal-package-install mod](https://github.com/linuxserver/docker-mods/tree/universal-package-install).
 * **18.09.24:** - Suppress creation of empty log file when WebUI password is set.
