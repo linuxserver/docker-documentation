@@ -340,13 +340,14 @@ To help with development, we generate this dependency graph.
       svc-piper -> legacy-services
     }
     Base Images: {
-      "baseimage-ubuntu:noble"
+      "baseimage-ubuntu:resolute"
     }
     "piper:latest" <- Base Images
     ```
 
 ## Versions
 
+* **14.07.26:** - Rebase to Ubuntu Resolute.
 * **29.08.25:** - Add support for local only mode.
 * **10.08.25:** - Add streaming support.
 * **18.07.24:** - Rebase to Ubuntu Noble.
