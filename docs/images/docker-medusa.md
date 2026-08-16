@@ -315,13 +315,14 @@ To help with development, we generate this dependency graph.
       svc-medusa -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.22"
+      "baseimage-alpine:3.23"
     }
     "medusa:latest" <- Base Images
     ```
 
 ## Versions
 
+* **16.08.26:** - Rebase to Alpine 3.23. Add python gdbm backend.
 * **10.11.25:** - Rebase to Alpine 3.22.
 * **07.04.25:** - Revert to Alpine 3.19 due to upstream issues with Python 3.12 support.
 * **02.03.25:** - Rebase to Alpine 3.21.
