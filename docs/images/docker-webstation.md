@@ -680,6 +680,7 @@ To help with development, we generate this dependency graph.
       svc-xorg -> svc-dbus
       svc-dbus -> legacy-services
       init-services -> svc-de
+      legacy-cont-init -> svc-de
       svc-nginx -> svc-de
       svc-selkies -> svc-de
       svc-xorg -> svc-de
@@ -712,6 +713,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **21.08.26:** - Add Xenia Edge emulator.
 * **13.08.26:** - Add Azahar emulator.
 * **10.08.26:** - Add Cemu emulator.
 * **05.05.26:** - Rebase to resolute.
