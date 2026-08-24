@@ -370,6 +370,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **24.08.26:** - Add python dep, apprise.
 * **05.07.26:** - Rebase to Alpine 3.24.
 * **13.02.26:** - Rebase to Alpine 3.23. Updates for v2. Users should update `TRUST_PROXY` to use `true`/`false` instead of `1`/`0`.
 * **12.01.25:** - Rebase to Alpine 3.21.
