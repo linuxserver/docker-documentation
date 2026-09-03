@@ -340,6 +340,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **03.09.26:** - Make sure /config is only accessible by the PUID user.
 * **31.01.25:** - Make `latest` stable releases, move beta releases to `development`.
 * **28.01.25:** - Add xz-utils.
 * **03.12.24:** - Add mscorefonts for captcha support.
