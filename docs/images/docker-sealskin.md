@@ -394,13 +394,14 @@ To help with development, we generate this dependency graph.
       svc-sealskin -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.23"
+      "baseimage-alpine:3.24"
     }
     "sealskin:latest" <- Base Images
     ```
 
 ## Versions
 
+* **05.09.26:** - Install Sealskin from the upstream Python wheel, rebase to Alpine 3.24.
 * **11.02.26:** - Rebase to Alpine 3.23.
 * **19.01.26:** - Fix init race condition.
 * **17.01.26:** - Update docs to remove network and port requirement, add link to Firefox add on.
