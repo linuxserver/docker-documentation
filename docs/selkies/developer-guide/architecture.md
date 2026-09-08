@@ -64,7 +64,7 @@ Gamepads bypass the display server entirely: Selkies serves the Linux joystick a
 
 ## The web layer
 
-Nginx inside the container is the single front door: it serves the static client (a React dashboard over the `selkies-web-core` engine), proxies `/websocket` to the Selkies server, serves `/files` downloads with fancyindex, optionally enforces basic auth, applies the `SUBFOLDER` prefix, and proxies `/pelorus/` when the agent layer is on. The dashboard and the engine communicate over a documented `postMessage` API, which is the extension point for custom frontends.
+Nginx inside the container is the single front door: it serves the static client (a React dashboard over the `selkies-web-core` engine), proxies `/api` (the data WebSocket, WebRTC signaling, and the `/api/files/` browser) to the Selkies server, optionally enforces basic auth, applies the `SUBFOLDER` prefix, and proxies `/pelorus/` when the agent layer is on. The dashboard and the engine communicate over a documented `postMessage` API, which is the extension point for custom frontends.
 
 ## Sharing and multi user
 

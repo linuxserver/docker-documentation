@@ -4,15 +4,17 @@ The web client is a complete workstation interface, not just a video player. Thi
 
 ## The sidebar
 
-Toggle the sidebar with its handle on screen. At the top you get the core toggles: display, audio, microphone, and gamepad on or off, plus buttons for fullscreen, virtual trackpad, gaming mode, and the on screen keyboard.
+Toggle the sidebar with its handle on screen. At the top you get the core toggles: display, audio, microphone, webcam, and gamepad on or off, plus buttons for fullscreen, virtual trackpad, gaming mode, and the on screen keyboard.
 
 ## Video settings
 
-- **Encoder**: H.264 (`x264enc`), striped H.264, or JPEG. H.264 is the default and right for everything modern, with FullColor 4:4:4 plus paint over it is visually equal to lossless stills. JPEG exists for unsupported browsers that cannot decode video frames at all.
+- **Encoder**: H.264 (`h264enc`, hardware NVENC or VA-API when a GPU is present, otherwise software), striped H.264, or JPEG. H.264 is the default and right for everything modern, with FullColor 4:4:4 plus paint over it is visually equal to lossless stills. JPEG exists for unsupported browsers that cannot decode video frames at all.
 - **Frames per second** and **CRF** (H.264 quality, lower is better) sliders, plus separate paint over quality controls. "Paint over" is the platform's signature feature: after the screen goes still, it is repainted at high quality so text stays crisp.
 - **FullColor 4:4:4**: true 8 bit color with no chroma subsampling. Fixes blurry colored text. Note the [GPU caveats](gpu.md#fullcolor-444-and-hardware-encoders).
 - **Turbo mode** (streaming mode): disables all the damage tracking logic and encodes every frame like a traditional video stream. Can be useful for gaming and full motion video.
 - **CPU encoding** toggle to force cpu encoding.
+- **Rate control**: CRF (constant quality, the default on WebSockets) or CBR with a bitrate slider (the default on WebRTC).
+- **Transport**: when the administrator has enabled WebRTC, a switch lets you move between WebSockets and WebRTC at runtime, see [WebRTC Transport](webrtc.md).
 
 !!! tip "On a slow machine or a slow link, turn the stream down"
     The defaults favor fluidity. If your client device is low end or your bandwidth is poor, reduce **Frames per second** first and raise **CRF** if needed (higher CRF means smaller frames). Paint over still keeps static content sharp, so a lower FPS and quality setting costs far less than you would expect for desktop work.
@@ -22,20 +24,24 @@ Toggle the sidebar with its handle on screen. At the top you get the core toggle
 - **Resolution**: by default the remote resolution follows your browser window exactly. You can instead pick a preset (720p through 4K) or type a manual width and height.
 - **UI scaling (DPI)** for HiDPI displays, with a choice between pixel perfect HiDPI rendering and CSS scaling (lighter on bandwidth, softer image).
 - **Scale locally** stretches a fixed remote resolution to fit your window.
-- **Add Screen +**: opens a second browser window that becomes a second monitor for the session, positioned left, right, above, or below the primary. Arrange each window on the matching physical monitor and you have a real dual screen remote desktop. (Second screen is currently a feature of the X11 stack; in Wayland mode it is disabled.)
+- **Add Screen +**: opens a second browser window that becomes a second monitor for the session, positioned left, right, above, or below the primary. Arrange each window on the matching physical monitor and you have a real dual screen remote desktop. Always available on X11. On Wayland, Selkies detects at startup whether the running compositor supports it, which today means labwc (the single app containers and the default Webtop shell) and KWin (the KDE Webtops), and only offers the button when it does.
 
 ## Audio and microphone
 
 Opus audio streams from the session to your browser, and output device selection if your browser exposes multiple sinks. The microphone button forwards your local mic into the session, where apps see it as a normal input device, video calls from inside a remote browser container work.
 
+## Webcam
+
+The webcam button forwards your local camera into the session as a virtual V4L2 device, so video conferencing inside a remote browser or any camera aware application works. The administrator can size the virtual device and disable the feature entirely with `NO_WEBCAM`.
+
 ## Clipboard
 
-Bidirectional clipboard sync between your machine and the session, automatic in both directions for text. The sidebar shows an editable view of the server clipboard. Enabling **Image support** (binary clipboard, `SELKIES_ENABLE_BINARY_CLIPBOARD`) adds images and other binary formats. Clipboard direction and availability can be locked down by the admin.
+Bidirectional clipboard sync between your machine and the session, automatic in both directions for text. The sidebar shows an editable view of the server clipboard. **Image support** (binary clipboard, `SELKIES_ENABLE_BINARY_CLIPBOARD`) adds images and other binary formats. Clipboard direction and availability can be locked down by the admin with the `SELKIES_ENABLE_CLIPBOARD` policy.
 
 ## Files
 
 - **Upload**: drag and drop files anywhere on the session window, or use the Upload button. Files land in the session's `~/Desktop` by default (configurable with `FILE_MANAGER_PATH`).
-- **Download**: the Files section opens a dark themed file index of the same directory served by the container's Nginx, click to download.
+- **Download**: the Files section opens a file browser of the same directory, click to download.
 
 Transfers can be restricted per direction or disabled entirely with `SELKIES_FILE_TRANSFERS`.
 
