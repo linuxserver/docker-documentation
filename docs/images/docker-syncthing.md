@@ -328,13 +328,14 @@ To help with development, we generate this dependency graph.
       svc-syncthing -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.23"
+      "baseimage-alpine:3.24"
     }
     "syncthing:latest" <- Base Images
     ```
 
 ## Versions
 
+* **10.09.26:** - Rebase to Alpine 3.24. Compile on Alpine edge.
 * **03.03.26:** - Rebase to Alpine 3.23.
 * **16.08.25:** - Rebase to Alpine 3.22.
 * **13.08.25:** - Use double-dash long options for syncthing v2.0.0.
