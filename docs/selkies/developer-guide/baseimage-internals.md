@@ -41,6 +41,7 @@ init-os-end
 - GPU env: with exactly one render node and nothing set, points `DRINODE` and `DRI_NODE` at it; wires `PIXELFLUX_CU=5000` and `ROOT_PATH=/pelorus` when `PELORUS=true`.
 - Creates the gamepad device nodes (`/dev/input/js0-3` and event nodes) and sets the global `LD_PRELOAD` for the interposer and fake udev, unless `NO_GAMEPAD` is set.
 - Syncs proot-apps into the user home and handles `LC_ALL` locale derivation.
+- Steam shim: links `/usr/local/bin/steam` (marked `#SELKIESSHIM`) to `/usr/bin/steam` when nothing is there, so `steam` runs the installer in `/steam.sh` until a real launcher exists. `NO_STEAM=true` removes both.
 
 **`init-video`** fixes `/dev/dri` and `/dev/dvb` group permissions for `abc` (creating a matching group for the device GID when needed), auto enables `AUTO_GPU` on x86_64 when a render node exists and nothing was configured, probes whether older Intel hardware needs the `i965` VA-API driver, and repairs Nvidia ICD, Vulkan, EGL, and GBM plumbing inside the container.
 

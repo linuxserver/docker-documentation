@@ -82,6 +82,10 @@ On phones and tablets the client offers:
 - **Direct touch mode**: taps map straight to absolute clicks, best for touch friendly apps.
 - The **on screen keyboard** button raises your device keyboard, with IME input (for example Chinese Pinyin) supported end to end.
 
+## macOS keyboards
+
+Command chords are sent as Control by default, so Cmd+C and Cmd+V work as they do locally. If the session's window manager binds Super (a Cmd+Return terminal shortcut, for example), turn it off in the sidebar or with `SELKIES_MAC_CMD_AS_CTRL=false` and Command arrives as Super.
+
 ## Gaming mode
 
 Gaming mode grabs the pointer (pointer lock) and sends relative mouse movement for accurate FPS style aiming, pairs well with Turbo encoding mode and gamepads.

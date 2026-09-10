@@ -43,6 +43,7 @@ These work in every LinuxServer.io container:
 | `NO_DECOR` | Run the application without window borders, for PWA style use. Toggle at runtime with `ctrl+shift+d` |
 | `NO_FULL` | Do not automatically fullscreen applications when using the single app window manager |
 | `NO_GAMEPAD` | Disable the userspace gamepad interposer injection. Also turns off `SELKIES_GAMEPAD_ENABLED`, the player 2 to 4 sharing links, and hides the gamepad section of the sidebar |
+| `NO_STEAM` | Remove the built in Steam installer, see [Installing Applications](installing-apps.md#steam-built-in-reinstalls-itself) |
 | `NO_WEBCAM` | Disable the virtual webcam. Without it the container creates `/dev/video0`, preloads the V4L2 interposer, and turns on `SELKIES_WEBCAM_ENABLED` so the browser can forward a camera into the session |
 | `DISABLE_ZINK` | Do not set Zink variables when a GPU is detected, applications use CPU rendering |
 | `DISABLE_DRI3` | X11 mode only, disable DRI3 acceleration |
@@ -162,6 +163,7 @@ These names are no longer Selkies settings, but the containers still accept them
 | `SELKIES_ENABLE_CURSORS` | `true` | Send the remote application cursor to the client |
 | `SELKIES_USE_BROWSER_CURSORS` | `true` | Use browser CSS cursors instead of rendering the cursor onto the canvas |
 | `SELKIES_CURSOR_SIZE` (or `XCURSOR_SIZE`) | `-1` | Cursor size in points at 96 DPI, scaled with the session DPI. `-1` is the platform default, 32 on X11 and 24 on Wayland |
+| `SELKIES_MAC_CMD_AS_CTRL` | `true` | macOS clients send Command chords as Control, so Cmd+C copies remotely. Set `false` when the session's window manager binds Super itself, Command then arrives as Super. Users may override unless locked |
 | `SELKIES_RAW_POINTER_MOTION` | `true` | Ask the browser for unaccelerated pointer movement under pointer lock (gaming mode). Windows and macOS honor it, Linux and Android do not. Clients on macOS leave it off unless chosen. Users may override unless locked |
 | `SELKIES_DEBUG_CURSORS` | `false` | Cursor debug logging |
 
