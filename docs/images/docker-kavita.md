@@ -312,13 +312,14 @@ To help with development, we generate this dependency graph.
       svc-kavita -> legacy-services
     }
     Base Images: {
-      "baseimage-ubuntu:noble"
+      "baseimage-ubuntu:resolute"
     }
     "kavita:latest" <- Base Images
     ```
 
 ## Versions
 
+* **11.09.26:** - Rebase to Ubuntu Resolute. Enable jemalloc to reduce memory footprint.
 * **05.07.25:** - Update init for version 0.8.7 compatibility.
 * **10.07.24:** - Rebase to Ubuntu Noble.
 * **12.08.23:** - Fix app file perms to prevent high uid.
