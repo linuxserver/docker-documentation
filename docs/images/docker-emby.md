@@ -382,6 +382,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **11.09.26:** - Update lib paths to fix hw transcoding.
 * **14.07.26:** - Rebase to Ubuntu Resolute.
 * **12.01.26:** - Set home to /config.
 * **13.08.24:** - Rebase to Ubuntu Noble.
