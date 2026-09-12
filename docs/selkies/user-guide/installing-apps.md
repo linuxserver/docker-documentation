@@ -44,6 +44,24 @@ Trade offs:
 - Not persistent in the image, but reinstalled automatically, so effectively stable as long as the variable stays set.
 - Best for libraries and CLI tools an app needs, less ideal for large GUI applications.
 
+## Steam (built in, reinstalls itself)
+
+Every glibc based image carries a Steam installer. Nothing is installed until you ask for it, and this specialized installer can run steam in any docker environment without any additional container permissions (seccomp/apparmor):
+
+```bash
+steam
+```
+
+The first run opens a terminal that installs the Steam launcher and its 32 bit dependencies with the distro package manager, then wraps the launcher so gamepads work through the [joystick interposer](web-client.md#gamepads), including inside Proton. Steam then appears in the menus and in the sidebar Apps section, and later runs of `steam` start it normally. You can also install or remove it from the Apps section, or with `selkies-proot install steam` and `selkies-proot remove steam`.
+
+The install lives in the container layer, so a recreation or upgrade drops it. Your game data in `$HOME/.steam` and `$HOME/.local/share/Steam` persists. Running `steam` again, or double clicking a Steam desktop icon you kept in `~/Desktop`, triggers the minimal installer again. After the reinstall your library is where you left it.
+
+Limits:
+
+- x86_64 only, and it needs passwordless sudo, so `HARDEN_DESKTOP` and `DISABLE_SUDO` block it.
+- Alpine images ship a `steam` stub that reports it is unsupported.
+- `NO_STEAM=true` removes the installer at startup, so `steam` is not a command in the container.
+
 ## Building your own image (permanent)
 
 If you always need the same software, the clean solution is a small downstream Dockerfile:

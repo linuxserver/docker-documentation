@@ -1,6 +1,6 @@
 # The Streaming Protocol
 
-The wire protocol between the Selkies server and the web client, for anyone implementing a client, embedding the engine, or debugging with a network inspector. Everything rides **one WebSocket** (proxied at `<base>/websocket`), carrying a mix of binary frames and terse text messages. There is no negotiation dance: connect, receive settings, start receiving media.
+The wire protocol between the Selkies server and the web client, for anyone implementing a client, embedding the engine, or debugging with a network inspector. Everything rides **one WebSocket** (proxied at `<base>/api/websockets`), carrying a mix of binary frames and terse text messages. In the opt in [WebRTC mode](../user-guide/webrtc.md) the same text messages travel over a data channel and media over RTP, with signaling at `<base>/api/webrtc/signaling`. There is no negotiation dance: connect, receive settings, start receiving media.
 
 ## Connection and roles
 

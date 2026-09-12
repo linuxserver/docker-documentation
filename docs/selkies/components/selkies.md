@@ -8,7 +8,7 @@ Selkies is the heart of the platform: a ground up, web native remote desktop pro
 
 `selkies` is a Python asyncio application (console script `selkies`, installed in the baseimages at `/lsiopy/bin/selkies`) that owns the session:
 
-- **Video**: drives [pixelflux](pixelflux.md) capture and encoding, and broadcasts encoded frames to all connected clients over the WebSocket, with per client backpressure (frame acknowledgements, RTT smoothing, and stall detection) so one slow viewer does not degrade the rest.
+- **Video**: drives [pixelflux](pixelflux.md) capture and encoding, and broadcasts encoded frames to all connected clients over the WebSocket, with per client backpressure (frame acknowledgements, RTT smoothing, and stall detection) so one slow viewer does not degrade the rest. An opt in [WebRTC transport](../user-guide/webrtc.md) carries the same H.264 and Opus streams over UDP with a priority pacer and optional congestion control; clients can switch transports at runtime.
 - **Audio out**: drives pcmflux, which captures the PulseAudio `output.monitor` source and Opus encodes at up to 320kbps.
 - **Microphone in**: receives PCM from the browser and plays it into a virtual PulseAudio source (`SelkiesVirtualMic`) that session apps consume as a normal mic.
 - **Input**: injects keyboard, mouse, touch, and scroll. On Wayland, injection goes through pixelflux's compositor APIs with an xkbcommon keymap (plus [waylandtyper](https://github.com/linuxserver/waylandtyper), our maintained fork of `wtype`, for unicode text batches). On X11, through pynput, xdotool, and python-xlib. Gamepads are handled by per slot Unix socket servers feeding the joystick interposer (below).
@@ -40,7 +40,7 @@ Both are preloaded automatically in the baseimages, and `NO_GAMEPAD=true` turns 
 
 | Port | What |
 | --- | --- |
-| 8082 | The data WebSocket (`SELKIES_PORT`; upstream default is 8081, the baseimages set 8082), proxied by Nginx at `/websocket` |
+| 8082 | The Selkies server (`SELKIES_PORT`, upstream default is 8080, the baseimages set 8082 via `CUSTOM_WS_PORT`). Nginx proxies everything under `/api` to it: the data WebSocket at `/api/websockets`, WebRTC signaling at `/api/webrtc/signaling`, the transport switch, and the file browser at `/api/files/` |
 | 8083 | Token control plane for secure sharing mode, never expose it |
 | 3000 / 3001 | Nginx HTTP and HTTPS in front of everything ([baseimage](baseimages.md) territory) |
 

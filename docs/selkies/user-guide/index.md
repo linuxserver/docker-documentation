@@ -15,4 +15,5 @@ You do not need to know anything about the internals to use these containers. If
 7. **[Installing Applications](installing-apps.md)**: adding software inside a container with proot-apps or Docker mods.
 8. **[Security and Hardening](security.md)**: authentication, what the container can do, and lockdown variables for kiosk style deployments.
 9. **[Reverse Proxy](reverse-proxy.md)**: putting containers behind SWAG, Nginx, Traefik, or a subfolder.
-10. **[Troubleshooting](troubleshooting.md)**: the checklist to run before opening an issue.
+10. **[WebRTC Transport](webrtc.md)**: the opt in UDP transport, when it helps, and the STUN and TURN setup it needs.
+11. **[Troubleshooting](troubleshooting.md)**: the checklist to run before opening an issue.

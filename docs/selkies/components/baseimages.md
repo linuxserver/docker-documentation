@@ -47,7 +47,7 @@ graph TD
     SELKIES -->|starts in process| PF[pixelflux Wayland compositor, socket wayland-1]
     DE -->|waits for wayland-1| LABWC[labwc or a full DE, exposes wayland-0]
     LABWC --> APP[autostart application]
-    NGINX -->|3000 / 3001| WEB[web client, /websocket proxy, /files, /pelorus]
+    NGINX -->|3000 / 3001| WEB[web client, /api proxy, /pelorus]
 ```
 
 At startup a chain of one shot init scripts configures everything from environment variables: Nginx substitution (ports, auth, subfolder, title), Wayland or X11 mode selection, first run copy of the autostart and menu defaults into `/config`, hardening (the `HARDEN_*` and `DISABLE_*` family), GPU detection and permission fixes, and gamepad device setup. Then the long running services above come up in dependency order.

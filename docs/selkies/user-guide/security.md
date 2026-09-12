@@ -60,7 +60,7 @@ Note that the window manager level switches (`HARDEN_OPENBOX`, `DISABLE_CLOSE_BU
 Any boolean `SELKIES_*` setting can be pinned so the user cannot change it in the sidebar by appending `|locked`:
 
 ```bash
--e SELKIES_CLIPBOARD_ENABLED="false|locked"
+-e SELKIES_ENABLE_CLIPBOARD="false|locked"
 -e SELKIES_FILE_TRANSFERS="none"
 -e SELKIES_UI_SHOW_SIDEBAR="false|locked"
 ```
@@ -78,7 +78,7 @@ services:
     environment:
       - HARDEN_DESKTOP=true
       - HARDEN_OPENBOX=true
-      - "SELKIES_CLIPBOARD_ENABLED=false|locked"
+      - "SELKIES_ENABLE_CLIPBOARD=false|locked"
       - SELKIES_FILE_TRANSFERS=none
       - "SELKIES_UI_SHOW_SIDEBAR=false|locked"
       - NO_DECOR=true

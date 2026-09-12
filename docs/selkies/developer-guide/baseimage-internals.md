@@ -15,7 +15,7 @@ The baseimage Dockerfile is a multi stage build assembling, onto a LinuxServer.i
 - The **joystick interposer** (`/usr/lib/selkies_joystick_interposer.so`) and **fake udev** (`/opt/lib/libudev.so.1.0.0-fake`) compiled from the Selkies addons
 - Nginx with fancyindex, PulseAudio, mesa and VA-API userspace, Vulkan loaders, all system locales, proot-apps, Docker in Docker machinery, and passwordless sudo for `abc`
 
-Baked ENV defaults worth knowing: `HOME=/config`, `DISPLAY=:1`, `TITLE=Selkies`, `SELKIES_ENCODER="x264enc,jpeg"`, `START_DOCKER=true`, `DISABLE_ZINK=false`, `DISABLE_DRI3=false`, `NVIDIA_DRIVER_CAPABILITIES=all`, and the interposer path in `SELKIES_INTERPOSER`.
+Baked ENV defaults worth knowing: `HOME=/config`, `DISPLAY=:1`, `TITLE=Selkies`, `SELKIES_ENCODER="h264enc,jpeg"`, `SELKIES_ENABLE_BASIC_AUTH=false`, `SELKIES_VIDEO_STREAMING_MODE=false`, `SELKIES_ALLOWED_ORIGINS="*"`, `START_DOCKER=true`, `DISABLE_ZINK=false`, `DISABLE_DRI3=false`, `NVIDIA_DRIVER_CAPABILITIES=all`, and the interposer path in `SELKIES_INTERPOSER`.
 
 ## Boot: the init chain
 
@@ -34,13 +34,14 @@ init-os-end
 
 **`init-selkies-config`** is the big one:
 
-- Chooses the mode: `PIXELFLUX_WAYLAND=true` selects labwc paths (`$HOME/.config/labwc`, `/defaults/autostart_wayland`, `/defaults/menu_wayland.xml`) and forces `SELKIES_SECOND_SCREEN=false`; otherwise Openbox paths.
+- Chooses the mode: `PIXELFLUX_WAYLAND=true` selects labwc paths (`$HOME/.config/labwc`, `/defaults/autostart_wayland`, `/defaults/menu_wayland.xml`) otherwise Openbox paths. Multi monitor on Wayland is Selkies' call, not the init script's: at startup it probes the compositor, the labwc IPC socket or a KWin capability check, and enables the second screen only where it finds support. Both compositors carry LinuxServer patches for this, the labwc ones ship in the baseimage.
 - First run copies of `autostart` and `menu.xml` into the config dir (persistent, user editable); `rc.xml` for labwc is regenerated from the template every boot.
 - Recreates `$HOME/.XDG` as `XDG_RUNTIME_DIR` and clears stale PulseAudio state, so unclean shutdowns recover.
 - Applies every hardening variable (permission stripping, sudoers corruption, menu and keybind editing, locking rc.xml and autostart when watchdog mode is on), the details are in the [Security guide](../user-guide/security.md).
 - GPU env: with exactly one render node and nothing set, points `DRINODE` and `DRI_NODE` at it; wires `PIXELFLUX_CU=5000` and `ROOT_PATH=/pelorus` when `PELORUS=true`.
 - Creates the gamepad device nodes (`/dev/input/js0-3` and event nodes) and sets the global `LD_PRELOAD` for the interposer and fake udev, unless `NO_GAMEPAD` is set.
 - Syncs proot-apps into the user home and handles `LC_ALL` locale derivation.
+- Steam shim: links `/usr/local/bin/steam` (marked `#SELKIESSHIM`) to `/usr/bin/steam` when nothing is there, so `steam` runs the installer in `/steam.sh` until a real launcher exists. `NO_STEAM=true` removes both.
 
 **`init-video`** fixes `/dev/dri` and `/dev/dvb` group permissions for `abc` (creating a matching group for the device GID when needed), auto enables `AUTO_GPU` on x86_64 when a render node exists and nothing was configured, probes whether older Intel hardware needs the `i965` VA-API driver, and repairs Nvidia ICD, Vulkan, EGL, and GBM plumbing inside the container.
 
