@@ -40,7 +40,7 @@ Note that the window manager level switches (`HARDEN_OPENBOX`, `DISABLE_CLOSE_BU
 
 | Variable | Description |
 | --- | --- |
-| `HARDEN_DESKTOP` | Enables `DISABLE_OPEN_TOOLS`, `DISABLE_SUDO`, and `DISABLE_TERMINALS`. Also sets the related client settings (`SELKIES_FILE_TRANSFERS`, `SELKIES_COMMAND_ENABLED`, `SELKIES_UI_SIDEBAR_SHOW_FILES`, `SELKIES_UI_SIDEBAR_SHOW_APPS`) unless you set them explicitly yourself |
+| `HARDEN_DESKTOP` | Enables `DISABLE_OPEN_TOOLS`, `DISABLE_SUDO`, and `DISABLE_TERMINALS`. Also sets the related client settings (`SELKIES_FILE_TRANSFERS`, `SELKIES_COMMAND_ENABLED`, `SELKIES_PRINTING_ENABLED`, `SELKIES_UI_SIDEBAR_SHOW_FILES`, `SELKIES_UI_SIDEBAR_SHOW_APPS`) unless you set them explicitly yourself |
 | `HARDEN_OPENBOX` | Window manager lockdown for single app containers. Enables `DISABLE_CLOSE_BUTTON`, `DISABLE_MOUSE_BUTTONS`, and `HARDEN_KEYBINDS`, and flags `RESTART_APP` unless you set it, so the primary application restarts automatically if closed |
 
 ### Individual switches

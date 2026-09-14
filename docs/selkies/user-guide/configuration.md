@@ -59,7 +59,7 @@ The Selkies server reads its own `SELKIES_*` variables, and the baseimage's init
 
 | Selkies setting | Container default | Upstream default | Why |
 | --- | --- | --- | --- |
-| `SELKIES_ENCODER` | `h264enc,jpeg` | `h264enc,h264enc-striped,jpeg` | The striped H.264 encoder is left out of the sidebar menu |
+| `SELKIES_ENCODER` | `h264enc,h265enc,vp8enc,vp9enc,av1enc,jpeg` | `h264enc,h265enc,vp8enc,vp9enc,av1enc,h264enc-striped,jpeg` | The striped H.264 encoder is left out of the sidebar menu. Selkies then drops any encoder this host cannot serve, see [Video encoders](#video-encoders) |
 | `SELKIES_VIDEO_STREAMING_MODE` | `false` | `true` | Desktop use favors damage tracking and paint over. Turn it on for gaming and video |
 | `SELKIES_ENABLE_BASIC_AUTH` | `false` | `true` | Nginx handles the login using `CUSTOM_USER` and `PASSWORD`, so the Selkies server's own basic auth stays off |
 | `SELKIES_ALLOWED_ORIGINS` | `*` | same origin only | Nginx fronts the server, so the cross origin guard is relaxed inside the container |
@@ -69,7 +69,7 @@ The Selkies server reads its own `SELKIES_*` variables, and the baseimage's init
 | `SELKIES_WEBCAM_ENABLED` | `true` | `false` | Turned on when the virtual webcam device can be created, `NO_WEBCAM` prevents it |
 | `CUSTOM_WS_PORT` | `8082` | `8080` | Port the Selkies server listens on behind Nginx |
 
-`HARDEN_DESKTOP=true` also sets `SELKIES_FILE_TRANSFERS` to empty and hides the files and apps sidebar sections unless you set those variables yourself. Anything you pass explicitly always wins over these defaults.
+`HARDEN_DESKTOP=true` also sets `SELKIES_FILE_TRANSFERS` to empty, turns `SELKIES_PRINTING_ENABLED` off, and hides the files and apps sidebar sections unless you set those variables yourself. Anything you pass explicitly always wins over these defaults.
 
 ## Selkies application settings
 
@@ -99,6 +99,7 @@ These names are no longer Selkies settings, but the containers still accept them
 | `SELKIES_IS_MANUAL_RESOLUTION_MODE` | `SELKIES_MANUAL_RESOLUTION` | |
 | `SELKIES_CLIPBOARD_ENABLED` | `SELKIES_ENABLE_CLIPBOARD` | The current setting is a policy (`true`, `in`, `out`, `false`). A legacy `|locked` suffix is dropped |
 | `x264enc` and `x264enc-striped` as `SELKIES_ENCODER` values | `h264enc` and `h264enc-striped` | Rewritten in place, the rest of the list is kept |
+| `openh264enc` as a `SELKIES_ENCODER` value | `h264enc` | Selkies itself maps it. Software H.264 is whatever encoder the pixelflux build carries, x264 in the wheels the containers ship |
 
 ### Transport
 
@@ -110,32 +111,57 @@ These names are no longer Selkies settings, but the containers still accept them
 | `SELKIES_WEBRTC_PACER` | `true` | WebRTC mode only. Pace outgoing packets with strict priorities (audio and RTCP, then data channel, then video) so audio and input stay responsive when video bursts on a congested link. `SELKIES_WEBRTC_PACER_STALE_MS` sets the stale GOP purge deadline in milliseconds, `0` disables |
 | `SELKIES_CONGESTION_CONTROL` | `false` | WebRTC mode only. Adapt the video bitrate to the bandwidth estimate from receiver feedback. Effective in CBR rate control mode, may trade quality for responsiveness |
 
+### Video encoders
+
+`SELKIES_ENCODER` is a comma separated menu of the values below. The first item is the default and the whole list is what the sidebar offers. Every full frame codec is encoded on the GPU when the encoding device has an engine for it, and by the software encoder in the pixelflux build otherwise, so the same menu works on a CPU only host, an Intel or AMD card, and an Nvidia card. The container default is `h264enc,h265enc,vp8enc,vp9enc,av1enc,jpeg`.
+
+| Value | Codec | Hardware | Software | Shape | FullColor 4:4:4 | WebRTC | Browser decode |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `h264enc` | H.264 | NVENC, VA-API | x264 | Full frame | NVENC and x264. VA-API has no 4:4:4 H.264 profile on current drivers, so the request is honored on the CPU instead | Yes | Every browser |
+| `h265enc` | H.265 (HEVC) | NVENC, VA-API | x265 | Full frame | NVENC and x265, VA-API negotiates per device | Yes | Safari, and Chromium where the operating system supplies an HEVC decoder. Chrome and Firefox on Linux decode no HEVC |
+| `vp8enc` | VP8 | VA-API, on the few GPUs that still carry a VP8 engine | libvpx | Full frame | No | Yes | Every browser |
+| `vp9enc` | VP9 | VA-API | libvpx | Full frame | Profile 1 on VA-API and libvpx | Yes | Chromium, Firefox |
+| `av1enc` | AV1 | NVENC on Ada and newer, VA-API on GPUs with an AV1 engine | SVT-AV1 | Full frame | No | Yes | Chromium, Firefox. WebKit refuses it at decode time |
+| `h264enc-striped` | H.264 | None, always CPU | x264 | Striped, one stripe per core | x264 | No | Every browser |
+| `jpeg` | JPEG | None, always CPU | libjpeg-turbo | Striped, one stripe per core | Always full color | No | Every browser, including ones without WebCodecs |
+
+Nvidia has no VP8 or VP9 encode engine, so those two codecs are software on every Nvidia card. AMD has no VP8 or VP9 engine either, and AV1 starts with RDNA 3. Intel carries VP9 and, on Arc and newer integrated graphics, AV1. Run `vainfo` inside the container to see the encode entry points your card exposes.
+
+How the menu behaves at runtime:
+
+- **The host trims the menu.** At startup Selkies probes the encoding device once and drops every encoder that neither the GPU nor the pixelflux software build can serve, logging `Encoders not served on this host are left off the menu`. If the default itself is not served the session falls back to `h264enc`. The wheels in the containers carry a software encoder for all five codecs, so on a CPU only host the full menu still appears, all of it in software.
+- **The browser greys out what it cannot decode.** Encoders the browser has no decoder for stay in the menu disabled and labelled `(Unsupported Browser)`. A browser that cannot decode the server default steps through the allowed list in the order `h264enc`, `h264enc-striped`, `vp9enc`, `vp8enc`, `av1enc`, `h265enc`, `jpeg` until one plays. A shared viewer, or a browser facing a single valued locked encoder, gets an on page error instead.
+- **Only H.264 and JPEG are striped.** H.265, VP8, VP9, and AV1 always encode the whole frame, so they never get the per core parallelism or the dirty stripe savings of the H.264 and JPEG paths. In software they also cost several times the CPU of x264. On a machine whose GPU lacks the engine, keep `h264enc` first and treat the other codecs as options for GPU hosts.
+- **Software encoding toggle.** The sidebar's CPU encoding switch only appears for a codec the host serves both ways, since it moves the session between the GPU and the software encoder and would be a no-op otherwise. `SELKIES_USE_CPU` still applies to every full frame codec.
+- **Demotion.** If pixelflux still cannot serve the codec once capture starts it demotes the display to H.264 and Selkies rewrites the encoder setting to match, logging `streams H.264 as 'h264enc': no encoder served`. Trust the encoder shown in the sidebar over the one you configured.
+- **Colors.** VP8 cannot signal BT.709, so it is encoded and declared BT.601 and looks very slightly different from the other codecs. Firefox paints AV1 received over WebRTC as BT.601 for the same reason.
+
 ### Video encoding
 
 | Variable | Default | Description |
 | --- | --- | --- |
-| `SELKIES_ENCODER` | `h264enc,jpeg` (upstream `h264enc,h264enc-striped,jpeg`) | Available video encoders, first is default. `h264enc` is full frame H.264 on NVENC or VA-API, falling back to the software encoder pixelflux was built with (x264, or OpenH264 in a GPL free build). `h264enc-striped` is CPU striped H.264 on that software encoder. `jpeg` is CPU striped JPEG. Only `h264enc` streams over WebRTC |
+| `SELKIES_ENCODER` | `h264enc,h265enc,vp8enc,vp9enc,av1enc,jpeg` (upstream adds `h264enc-striped`) | Menu of video encoders, first is default, see [Video encoders](#video-encoders). Encoders the host cannot serve are dropped at startup, and the five full frame codecs are the ones that stream over WebRTC |
 | `SELKIES_FRAMERATE` | `8-240`, initial `60` | Framerate range, initial value, or both |
-| `SELKIES_RATE_CONTROL_MODE` | `crf` | H.264 rate control, `crf` (constant quality) or `cbr` (constant bitrate). WebRTC mode defaults to `cbr` unless you pin this |
+| `SELKIES_RATE_CONTROL_MODE` | `crf` | Rate control for every video codec, `crf` (constant quality) or `cbr` (constant bitrate). WebRTC mode defaults to `cbr` unless you pin this, and so does a session on OpenH264 in a GPL free pixelflux build |
 | `SELKIES_ENABLE_RATE_CONTROL` | `true` | Let the client pick the rate control mode. Set `false` to lock the encoder to CRF |
-| `SELKIES_VIDEO_CRF` | `5-50`, initial `25` | CRF range, initial value, or both. Lower is higher quality |
+| `SELKIES_VIDEO_CRF` | `5-50`, initial `25` | CRF range, initial value, or both. Lower is higher quality. The value is on the H.264 QP scale and pixelflux maps it onto each codec's own quantizer range, so one number means the same quality on every encoder |
 | `SELKIES_VIDEO_BITRATE` | `100-1000000`, initial `8000` | CBR bitrate in kbps: range, initial value, or both. `8000` is 8 Mbps |
-| `SELKIES_VIDEO_MIN_QP` | `0` | CBR mode minimum H.264 QP, `0` to `51`, `0` is the encoder default. Raising it caps bit spend on easy content |
-| `SELKIES_VIDEO_MAX_QP` | `0` | CBR mode maximum H.264 QP, `0` to `51`, `0` is the encoder default. Lowering it keeps text legible under motion at the cost of overshooting the bitrate target |
+| `SELKIES_VIDEO_MIN_QP` | `0` | CBR mode minimum quantizer on the H.264 QP scale, `0` to `51`, mapped onto each codec's own range. `0` is the encoder default. Raising it caps bit spend on easy content |
+| `SELKIES_VIDEO_MAX_QP` | `0` | CBR mode maximum quantizer on the same scale, `0` is the encoder default. Lowering it keeps text legible under motion at the cost of overshooting the bitrate target |
 | `SELKIES_KEYFRAME_INTERVAL` | `0` | Seconds between scheduled recovery keyframes, `0` to `300`. `0` keeps the GOP infinite and sends keyframes only on demand, which keeps bitrate and quality steady |
-| `SELKIES_VIDEO_FULLCOLOR` | `false` | Encode H.264 with 4:4:4 chroma instead of 4:2:0. A client whose decoder has no 4:4:4 profile turns it off for itself; where it is locked on such a client falls back to JPEG. See the [GPU caveats](gpu.md#fullcolor-444-and-hardware-encoders) |
+| `SELKIES_VIDEO_FULLCOLOR` | `false` | Encode 4:4:4 chroma instead of 4:2:0 where the codec and encoder carry it: H.264 and H.265 on NVENC, x264, and x265, VP9 profile 1 on VA-API and libvpx. VP8, AV1, and OpenH264 stay 4:2:0. A client whose decoder has no 4:4:4 profile turns it off for itself and keeps the codec; where it is locked, such a client steps to the next allowed encoder whose 4:4:4 it decodes, JPEG last. See the [GPU caveats](gpu.md#fullcolor-444-and-hardware-encoders) |
 | `SELKIES_VIDEO_STREAMING_MODE` | `false` (upstream `true`) | Turbo mode: encode every frame like a traditional video stream instead of damage tracking. Useful for gaming and full motion video |
-| `SELKIES_USE_CPU` | `false` | Force CPU encoding even when a GPU encoder is available |
+| `SELKIES_USE_CPU` | `false` | Force software encoding for the full frame codecs even when the encoding GPU serves them. The striped encoders are CPU regardless |
 | `SELKIES_JPEG_QUALITY` | `1-100`, initial `40` | JPEG encoder quality range, initial value, or both |
 | `SELKIES_USE_PAINT_OVER_QUALITY` | `true` | High quality paint over for static scenes |
 | `SELKIES_PAINT_OVER_JPEG_QUALITY` | `1-100`, initial `90` | JPEG paint over quality range, initial value, or both |
-| `SELKIES_VIDEO_PAINTOVER_CRF` | `5-50`, initial `18` | H.264 paint over CRF range, initial value, or both |
-| `SELKIES_VIDEO_PAINTOVER_BURST_FRAMES` | `1-30`, initial `5` | H.264 paint over burst frames range, initial value, or both |
+| `SELKIES_VIDEO_PAINTOVER_CRF` | `5-50`, initial `18` | Paint over CRF range, initial value, or both, for every video codec. Must be lower than the CRF to trigger, and paint over is off by default under CBR |
+| `SELKIES_VIDEO_PAINTOVER_BURST_FRAMES` | `1-30`, initial `5` | Paint over burst frames range, initial value, or both, for every video codec |
 | `SELKIES_GPU_ID` | `''` | Hardware encoder GPU index, selects `/dev/dri/renderD{128 + n}` and the GPU stats index. Empty encodes on the first GPU or the one `AUTO_GPU` chose, `-1` disables hardware encoding. Ignored when `DRI_NODE` gives a device path |
 | `SELKIES_ENCODE_DRI` (or `DRI_NODE`) | `''` | DRI render node the encoder uses for VA-API or NVENC |
 | `SELKIES_RENDER_DRI` (or `DRINODE`) | `''` | DRI render node the Wayland compositor renders on, defaults to the `AUTO_GPU` pick, else software rendering |
 | `SELKIES_AUTO_GPU` (or `AUTO_GPU`) | `true` | GPU auto selection for rendering: `true` picks the first GPU, `false` disables, or a vendor name, kernel driver name, devicetree prefix, or PCI vendor ID picks the first GPU it matches |
-| `SELKIES_RECORDING_SOCKET` (or `PIXELFLUX_RECORDING_SOCKET`) | `''` | Unix socket path for an out of band H.264 recording tap, pixelflux multiplexes the elementary stream to connected clients. Empty is off |
+| `SELKIES_RECORDING_SOCKET` (or `PIXELFLUX_RECORDING_SOCKET`) | `''` | Unix socket path for an out of band recording tap, pixelflux multiplexes the elementary stream of the full frame codec to connected clients: Annex B for H.264 and H.265, OBU for AV1, IVF for VP8 and VP9. Not available on striped H.264 or JPEG. Empty is off |
 
 ### Audio
 
@@ -164,6 +190,8 @@ These names are no longer Selkies settings, but the containers still accept them
 | `SELKIES_USE_BROWSER_CURSORS` | `true` | Use browser CSS cursors instead of rendering the cursor onto the canvas |
 | `SELKIES_CURSOR_SIZE` (or `XCURSOR_SIZE`) | `-1` | Cursor size in points at 96 DPI, scaled with the session DPI. `-1` is the platform default, 32 on X11 and 24 on Wayland |
 | `SELKIES_MAC_CMD_AS_CTRL` | `true` | macOS clients send Command chords as Control, so Cmd+C copies remotely. Set `false` when the session's window manager binds Super itself, Command then arrives as Super. Users may override unless locked |
+| `SELKIES_KEYBOARD_SHORTCUTS` | `true` | Keep the client's own chords (Ctrl+Shift with F, M, X, or G, and Ctrl+Shift+click) for the sidebar instead of passing them to the session. Set `false` to pass them through; the sidebar buttons still work and three presses of Escape still leave gaming mode. Users may override unless locked |
+| `SELKIES_PUBLISH_INPUT_DEVICES` | `false` | Mirror the session keyboard and pointer onto evdev input devices for applications that enumerate evdev directly, such as fullscreen games and remappers. Uses a kernel uinput device where `/dev/uinput` is writable, else the input interposer |
 | `SELKIES_RAW_POINTER_MOTION` | `true` | Ask the browser for unaccelerated pointer movement under pointer lock (gaming mode). Windows and macOS honor it, Linux and Android do not. Clients on macOS leave it off unless chosen. Users may override unless locked |
 | `SELKIES_DEBUG_CURSORS` | `false` | Cursor debug logging |
 
@@ -190,7 +218,8 @@ The `*_ENABLED` variables decide what the server offers at all. The `*_ON_START`
 | Variable | Default | Description |
 | --- | --- | --- |
 | `SELKIES_ENABLE_CLIPBOARD` | `true` | Clipboard policy: `true` both directions, `in` client to server only, `out` server to client only, `false` disabled. `out` is what stops the page reading the local clipboard at all, which is the read Firefox and Safari raise a paste prompt for |
-| `SELKIES_ENABLE_BINARY_CLIPBOARD` | `true` | Allow binary data such as images on the clipboard |
+| `SELKIES_ENABLE_BINARY_CLIPBOARD` | `true` | Allow binary data such as images on the clipboard. Rich text pasted from the browser into the session follows the same switch |
+| `SELKIES_CLIPBOARD_SEAMLESS` | `true` | Sync the clipboard automatically on every copy on either side. Set `false` and the clipboard only moves through the sidebar's clipboard box. The direction policy above still bounds it. Users may override unless locked |
 | `SELKIES_FILE_TRANSFERS` | `upload,download` | Allowed transfer directions, comma separated. Empty or `none` disables |
 | `SELKIES_FILE_TRANSFER_LIMIT_MBPS` | `0` | Static throttle in Mbit/s shared by all uploads and downloads, for links whose rate you know. `0` disables. Transfers are already paced to protect the video stream without it |
 | `SELKIES_FILE_MANAGER_PATH` (or `FILE_MANAGER_PATH`) | `~/Desktop` | Directory uploads land in and the file browser serves, created at startup if missing |
@@ -204,7 +233,7 @@ The containers create a virtual `/dev/video0` and preload a V4L2 interposer so o
 | `SELKIES_WEBCAM_WIDTH` | `1280` | Width of the virtual webcam device, client frames are scaled and letterboxed to fit |
 | `SELKIES_WEBCAM_HEIGHT` | `720` | Height of the virtual webcam device |
 | `SELKIES_WEBCAM_PIXEL_FORMAT` | `auto` | Pixel format of the virtual device. `auto` follows the uplink (MJPEG for a browser sending JPEG, otherwise I420). Or pin `I420`, `NV12`, `YUYV`, or `MJPEG` |
-| `SELKIES_WEBCAM_ENCODER` | `auto` | Codec WebSocket clients use for the camera uplink: `auto`, `h264`, `vp8`, or `mjpeg`. `auto` tries H.264, then VP8, and JPEG where neither keeps up. Users may override unless locked. WebRTC encodes in the browser and ignores this |
+| `SELKIES_WEBCAM_ENCODER` | `auto` | Codec the browser uses for the camera uplink: `auto`, `h264`, `h265`, `vp8`, `vp9`, `av1`, or `mjpeg`. Over WebSockets `auto` tries H.264, then VP8, then VP9, AV1, or H.265 where the browser encodes them, and JPEG where nothing keeps up; a codec name pins it, still dropping to JPEG when it cannot keep up. Over WebRTC the browser sends the named codec when the session negotiated it. Users may override unless locked |
 | `SELKIES_WEBCAM_DEVICE` | `auto` | Also mirror the webcam into a v4l2loopback kernel device: `auto` uses the first one found (usually only on a host or privileged container), a path such as `/dev/video10` uses that device, `false` never does |
 | `SELKIES_WEBCAM_SOCKET_PATH` | `/tmp` | Directory for the V4L2 interposer socket, `selkies_webcam0.sock` |
 
@@ -212,9 +241,21 @@ The containers create a virtual `/dev/video0` and preload a V4L2 interposer so o
 
 | Variable | Default | Description |
 | --- | --- | --- |
-| `SELKIES_JS_SOCKET_PATH` | `/tmp` | Directory for the joystick interposer sockets, `selkies_js{0-3}.sock` |
+| `SELKIES_JS_SOCKET_PATH` | `/tmp` | Directory for the input interposer sockets, `selkies_js{0-3}.sock` |
 | `SELKIES_UINPUT_GAMEPAD` | `auto` | Register gamepads as kernel devices through `/dev/uinput`, which Steam, Proton, and browsers inside the session find without the interposer. `auto` only does so where the interposer is not configured and `/dev/uinput` is writable, `true` always attempts it, `false` never does |
 | `SELKIES_UINPUT_MOUSE_SOCKET` | `''` | Path to a uinput mouse socket, if not provided uinput is used directly |
+
+### Printing and audit
+
+The session has a printer named `Selkies`. Selkies runs the CUPS queue itself as the session user, the containers ship `cups-daemon` and `cups-filters` and point `CUPS_SERVER` at it, and every printed document is turned into a PDF and handed to the browser, which opens its own print dialog. Documents also collect in the sidebar's printing section for reprinting or saving. Selkies can also post an audit event for each clipboard transfer, file transfer, print, connect, disconnect, and recording.
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `SELKIES_PRINTING_ENABLED` | `true` | Offer the `Selkies` printer to the session and hand each document to the browser. `false` runs no queue and hides the printing section. `HARDEN_DESKTOP` turns it off unless you set it yourself. Documents go to the page holding the session, shared viewers receive none |
+| `SELKIES_PRINT_SPOOL_PATH` | `~/.local/state/selkies/print` | Directory finished print jobs land in as PDFs until a page takes them |
+| `SELKIES_AUDIT_WEBHOOK_URL` | `''` | URL that receives one JSON POST per audit event. Metadata only, never content. Empty is off, and a queue of 1024 pending events drops on overflow with no retry |
+| `SELKIES_AUDIT_WEBHOOK_TOKEN` | `''` | Bearer token sent in the `Authorization` header of every audit POST |
+| `SELKIES_AUDIT_WEBHOOK_TIMEOUT` | `2.0` | Seconds one audit POST may take before it counts as failed and the next one is sent |
 
 ### Sharing
 
@@ -261,6 +302,7 @@ The container's built in Nginx owns the listening ports, TLS, basic auth, and th
 | Variable | Default | Description |
 | --- | --- | --- |
 | `SELKIES_ALLOWED_ORIGINS` | `*` (upstream same origin) | Comma separated browser Origins allowed to open the streaming WebSocket, a cross site WebSocket hijacking guard. Relaxed in the containers because Nginx fronts the server |
+| `SELKIES_PUBLIC` | `false` | Listen on every interface instead of loopback. Leave it alone in the containers, Nginx is the public face and the server refuses to start when both this and `SELKIES_ADDR` are set |
 | `SELKIES_ENABLE_METRICS_HTTP` | `false` | Prometheus metrics endpoint on the Selkies server |
 | `SELKIES_ENABLE_WEBRTC_STATISTICS` | `false` | Dump WebRTC statistics CSVs from the client |
 | `SELKIES_WEBRTC_STATISTICS_DIR` | `/tmp` | Directory for those CSVs, `selkies-stats-video-[timestamp].csv` and `selkies-stats-audio-[timestamp].csv` |

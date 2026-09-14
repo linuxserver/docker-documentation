@@ -22,6 +22,18 @@ You usually do not need to set either variable. When a GPU is mounted into the c
 
 To mount a GPU but *not* use it, set `AUTO_GPU=false`.
 
+## Which codecs a GPU encodes
+
+The encoder menu covers six codecs, described in the [Video encoders](configuration.md#video-encoders) table. Each full frame codec is encoded on the GPU when the encoding device has an engine for it, and by the software encoder in the pixelflux build otherwise. Zero copy applies to every hardware codec, not only H.264: the frame is passed as a DMA-BUF to whichever engine encodes it.
+
+| GPU | Hardware codecs | Notes |
+| --- | --- | --- |
+| Nvidia NVENC | H.264, H.265, AV1 | AV1 needs Ada (RTX 40 series) or newer. VP8 and VP9 are always software on Nvidia |
+| Intel VA-API | H.264, H.265, VP9, and AV1 on Arc and recent integrated graphics | Depends on generation and media driver, `vainfo` lists the encode entry points. VP8 engines only exist on older generations |
+| AMD VA-API | H.264, H.265, and AV1 from RDNA 3 | No VP8 or VP9 encode engines |
+
+At startup Selkies probes the encoding device once and drops every encoder that neither the GPU nor the software build can serve, and the container log says which were left off. A codec that falls back to software costs a readback plus a full frame software encode, which for H.265, VP9, and AV1 is several times heavier than x264 and never striped across cores. On a card without the engine, leave `h264enc` first in the menu and treat the other codecs as options for hosts that carry them.
+
 ## Intel and AMD (open source drivers)
 
 The simple case. Mount the DRI devices and you are done:
@@ -124,11 +136,13 @@ On Unraid, set `DRINODE` and `DRI_NODE` appropriately and add `--gpus all --runt
 
 If you notice blurry text, especially light text on dark backgrounds, enable **FullColor 4:4:4** encoding in the sidebar, or use the JPEG encoder. This sends true 8 bit color to the browser.
 
-One caveat: only Nvidia GPUs can encode 4:4:4 in zero copy mode. Enabling FullColor on Intel or AMD falls back to CPU encoding, which forces a pixel readback from the GPU and costs significant performance. On those cards, prefer the default 4:2:0 for motion and let paint over handle static clarity.
+FullColor is carried by H.264 and H.265 on NVENC, x264, and x265, and by VP9 profile 1 on VA-API and libvpx. VP8, AV1, and the OpenH264 software encoder stay 4:2:0 whatever you set, and the sidebar only shows the switch on a codec that carries it.
+
+The caveat is H.264 on Intel and AMD. Current VA-API drivers expose no 4:4:4 H.264 profile, so pixelflux honors the request on the CPU with x264 rather than silently downgrading, which forces a pixel readback from the GPU and costs significant performance. On those cards prefer the default 4:2:0 for motion and let paint over handle static clarity, or try H.265 or VP9, where the driver may negotiate a 4:4:4 surface and stay on the card. The log line `Colorspace:` reports what the session settled on.
 
 ## Wayland and X11
 
-The Wayland stack is the default and is where all GPU acceleration development happens. You can force the legacy X11 stack with `-e PIXELFLUX_WAYLAND=false`, but GPU acceleration under X11 is not currently seeing development attention. If you are on X11 and using acceleration, clamp the virtual display to avoid memory exhaustion, e.g. `-e MAX_RES=3840x2160`, and if you still have problems lock the resolution down:
+The Wayland stack is the default and is where all GPU acceleration development happens. You can force the legacy X11 stack with `-e PIXELFLUX_WAYLAND=false`, but GPU acceleration under X11 is not currently seeing development attention. The one exception is Nvidia: when an X11 session encodes on NVENC, pixelflux captures through NvFBC and the frame is registered with the encoder in place, so that path is also zero copy. Every other X11 session copies each frame once through shared memory. If you are on X11 and using acceleration, clamp the virtual display to avoid memory exhaustion, e.g. `-e MAX_RES=3840x2160`, and if you still have problems lock the resolution down:
 
 ```bash
 -e SELKIES_MANUAL_WIDTH=1920

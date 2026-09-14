@@ -1,6 +1,6 @@
 # WebRTC Transport
 
-Selkies streams over WebSockets by default, and for most people that is the right choice: one TCP connection, works through any reverse proxy, no firewall rules beyond the web port. An opt in WebRTC transport carries the same H.264 video, Opus audio, and input over UDP instead. This page explains when it is worth turning on, how the containers enable it, and the networking it needs.
+Selkies streams over WebSockets by default, and for most people that is the right choice: one TCP connection, works through any reverse proxy, no firewall rules beyond the web port. An opt in WebRTC transport carries the same video, Opus audio, and input over UDP instead. This page explains when it is worth turning on, how the containers enable it, and the networking it needs.
 
 !!! note "WebSockets stays the default"
     Nothing on this page applies until you deliberately switch a container to WebRTC. If your desktop streams fine today, you do not need any of it.
@@ -11,7 +11,8 @@ WebRTC helps when the path between the browser and the container is lossy or has
 
 The trade offs:
 
-- **Only `h264enc` streams over WebRTC.** The striped H.264 and JPEG encoders are WebSocket only, and the encoder menu is narrowed to what WebRTC can carry while it is the active transport. The previous choice is restored when switching back.
+- **Only the full frame codecs stream over WebRTC.** H.264, H.265, VP8, VP9, and AV1 all ride the RTP track. The striped H.264 and JPEG encoders are WebSocket only, and the encoder menu is narrowed to what WebRTC can carry while it is the active transport. The previous choice is restored when switching back.
+- **The browser's RTP receiver decides the codec.** H.264 and VP8 are taken by every major browser, VP9 and AV1 by Chromium and Firefox, H.265 by Safari and by Chromium where the operating system decodes it. A browser that declines the codec is answered with H.264 when `h264enc` is in the menu, otherwise that browser gets no video.
 - **Rate control defaults to CBR.** A congestion controlled transport needs the encoder holding a bandwidth target, so `SELKIES_VIDEO_BITRATE` becomes the setting you tune rather than CRF. Pin `SELKIES_RATE_CONTROL_MODE` if you want otherwise.
 - **UDP has to get through.** A reverse proxy alone is not enough. Media takes a direct path from the container to the browser, and something has to make that path reachable: forwarded ports, a public address, or a TURN relay.
 - **Turbo mode and paint over still apply.** Damage tracking and paint over work on both transports.

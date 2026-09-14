@@ -38,7 +38,7 @@ The application restarts on code changes to the mounted source directory and pro
 The same pattern gives you a pixelflux rapid development environment. Mount a pixelflux checkout instead and set `DEV_MODE=pixelflux`:
 
 ```bash
-git clone https://github.com/linuxserver/pixelflux.git
+git clone https://github.com/selkies-project/pixelflux.git
 cd pixelflux
 docker run --rm -it \
   --shm-size=1gb \
@@ -56,7 +56,8 @@ The container builds the mounted source (all Rust build dependencies are present
 | Repository | What you touch there |
 | --- | --- |
 | [selkies-project/selkies](https://github.com/selkies-project/selkies) | Server, protocol, web client, dashboards, gamepad addons |
-| [linuxserver/pixelflux](https://github.com/linuxserver/pixelflux) | Capture, compositor, encoders, Computer Use API |
+| [selkies-project/pixelflux](https://github.com/selkies-project/pixelflux) | Capture, compositor, encoders, Computer Use API |
+| [selkies-project/pcmflux](https://github.com/selkies-project/pcmflux) | Audio capture, Opus encoding, microphone return |
 | [linuxserver/docker-baseimage-selkies](https://github.com/linuxserver/docker-baseimage-selkies) | Packaging, init scripts, Nginx, hardening, patches. One branch per distro |
 | [linuxserver/docker-webtop](https://github.com/linuxserver/docker-webtop) and the app repositories | Downstream images, one branch per flavor for Webtop |
 | [selkies-project/sealskin](https://github.com/selkies-project/sealskin) | Orchestration server, extension, mobile |
@@ -64,6 +65,8 @@ The container builds the mounted source (all Rust build dependencies are present
 | [linuxserver/pelorus](https://github.com/linuxserver/pelorus) | Agent API and chat UI |
 | [selkies-project/selkies-desktop](https://github.com/selkies-project/selkies-desktop) | The minimal desktop shell |
 | [linuxserver/waylandtyper](https://github.com/linuxserver/waylandtyper) | Our maintained fork of wtype for unicode text injection |
+
+Both Rust libraries publish generated API documentation: [pixelflux rustdocs](https://pixelflux.selkies.io/pixelflux/index.html) and [pcmflux rustdocs](https://pcmflux.selkies.io/pcmflux/index.html). Reach for those when you need the exact settings fields, frame types, and callbacks rather than the overview on the [Pixelflux page](../components/pixelflux.md).
 
 The baseimage Dockerfile is the authoritative recipe for everything compiled into the images (labwc with the IPC patch, the patched wlroots, selkies-desktop, waylandtyper), so when you need to know exactly how a piece is built, read the corresponding Dockerfile stage.
 

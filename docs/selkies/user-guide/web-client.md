@@ -8,11 +8,11 @@ Toggle the sidebar with its handle on screen. At the top you get the core toggle
 
 ## Video settings
 
-- **Encoder**: H.264 (`h264enc`, hardware NVENC or VA-API when a GPU is present, otherwise software), striped H.264, or JPEG. H.264 is the default and right for everything modern, with FullColor 4:4:4 plus paint over it is visually equal to lossless stills. JPEG exists for unsupported browsers that cannot decode video frames at all.
-- **Frames per second** and **CRF** (H.264 quality, lower is better) sliders, plus separate paint over quality controls. "Paint over" is the platform's signature feature: after the screen goes still, it is repainted at high quality so text stays crisp.
-- **FullColor 4:4:4**: true 8 bit color with no chroma subsampling. Fixes blurry colored text. Note the [GPU caveats](gpu.md#fullcolor-444-and-hardware-encoders).
+- **Encoder**: H.264, H.265, VP8, VP9, AV1, or JPEG. Each video codec is encoded on the GPU when the card has an engine for it and in software otherwise, so the menu only lists what this host can serve. H.264 is the default and right for everything modern, with FullColor 4:4:4 plus paint over it is visually equal to lossless stills. Entries your browser cannot decode are greyed out as `(Unsupported Browser)`, H.265 outside Safari being the usual one. JPEG exists for browsers that cannot decode video frames at all. See the [Video encoders](configuration.md#video-encoders) table for what each codec needs.
+- **Frames per second** and **CRF** (quality, lower is better) sliders, plus separate paint over quality controls. "Paint over" is the platform's signature feature: after the screen goes still, it is repainted at high quality so text stays crisp. The CRF slider means the same quality on every codec.
+- **FullColor 4:4:4**: true 8 bit color with no chroma subsampling. Fixes blurry colored text. Offered on H.264, H.265, and VP9 only. Note the [GPU caveats](gpu.md#fullcolor-444-and-hardware-encoders).
 - **Turbo mode** (streaming mode): disables all the damage tracking logic and encodes every frame like a traditional video stream. Can be useful for gaming and full motion video.
-- **CPU encoding** toggle to force cpu encoding.
+- **CPU encoding** toggle to force software encoding. It only appears when the current codec is available both on the GPU and in software on this host.
 - **Rate control**: CRF (constant quality, the default on WebSockets) or CBR with a bitrate slider (the default on WebRTC).
 - **Transport**: when the administrator has enabled WebRTC, a switch lets you move between WebSockets and WebRTC at runtime, see [WebRTC Transport](webrtc.md).
 
@@ -85,6 +85,10 @@ On phones and tablets the client offers:
 ## macOS keyboards
 
 Command chords are sent as Control by default, so Cmd+C and Cmd+V work as they do locally. If the session's window manager binds Super (a Cmd+Return terminal shortcut, for example), turn it off in the sidebar or with `SELKIES_MAC_CMD_AS_CTRL=false` and Command arrives as Super.
+
+## Printing
+
+Every session has a printer named **Selkies**. Print to it from any application and the document arrives in your browser as a PDF, where the browser's own print dialog offers whatever printers your local machine can reach. The sidebar's printing section lists each document so it can be printed again or saved as a PDF, its **Print automatically** switch is what opens the dialog on arrival. Documents go to the page holding the session, shared viewers do not receive them. Administrators turn the feature off with `SELKIES_PRINTING_ENABLED=false`, and `HARDEN_DESKTOP` does so by default.
 
 ## Gaming mode
 

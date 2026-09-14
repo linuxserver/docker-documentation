@@ -52,7 +52,7 @@ Every glibc based image carries a Steam installer. Nothing is installed until yo
 steam
 ```
 
-The first run opens a terminal that installs the Steam launcher and its 32 bit dependencies with the distro package manager, then wraps the launcher so gamepads work through the [joystick interposer](web-client.md#gamepads), including inside Proton. Steam then appears in the menus and in the sidebar Apps section, and later runs of `steam` start it normally. You can also install or remove it from the Apps section, or with `selkies-proot install steam` and `selkies-proot remove steam`.
+The first run opens a terminal that installs the Steam launcher and its 32 bit dependencies with the distro package manager, then wraps the launcher so gamepads work through the [input interposer](web-client.md#gamepads), including inside Proton. Steam then appears in the menus and in the sidebar Apps section, and later runs of `steam` start it normally. You can also install or remove it from the Apps section, or with `selkies-proot install steam` and `selkies-proot remove steam`.
 
 The install lives in the container layer, so a recreation or upgrade drops it. Your game data in `$HOME/.steam` and `$HOME/.local/share/Steam` persists. Running `steam` again, or double clicking a Steam desktop icon you kept in `~/Desktop`, triggers the minimal installer again. After the reinstall your library is where you left it.
 

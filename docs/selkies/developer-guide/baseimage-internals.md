@@ -12,10 +12,10 @@ The baseimage Dockerfile is a multi stage build assembling, onto a LinuxServer.i
 - A rebuilt **wlroots** with a defensive patch that catches SIGSEGV and SIGBUS inside pixman draw calls and skips the frame instead of crashing the compositor
 - **selkies-desktop** and **[waylandtyper](https://github.com/linuxserver/waylandtyper)** (our maintained fork of wtype, fixing many bugs in the old codebase) built from source
 - The **selkies** Python package installed into the `/lsiopy` virtualenv (pulling in pixelflux and pcmflux wheels), plus **pelorus**
-- The **joystick interposer** (`/usr/lib/selkies_joystick_interposer.so`) and **fake udev** (`/opt/lib/libudev.so.1.0.0-fake`) compiled from the Selkies addons
+- The **input interposer** (`/usr/lib/selkies_input_interposer.so`) and **fake udev** (`/opt/lib/libudev.so.1.0.0-fake`) compiled from the Selkies addons
 - Nginx with fancyindex, PulseAudio, mesa and VA-API userspace, Vulkan loaders, all system locales, proot-apps, Docker in Docker machinery, and passwordless sudo for `abc`
 
-Baked ENV defaults worth knowing: `HOME=/config`, `DISPLAY=:1`, `TITLE=Selkies`, `SELKIES_ENCODER="h264enc,jpeg"`, `SELKIES_ENABLE_BASIC_AUTH=false`, `SELKIES_VIDEO_STREAMING_MODE=false`, `SELKIES_ALLOWED_ORIGINS="*"`, `START_DOCKER=true`, `DISABLE_ZINK=false`, `DISABLE_DRI3=false`, `NVIDIA_DRIVER_CAPABILITIES=all`, and the interposer path in `SELKIES_INTERPOSER`.
+Baked ENV defaults worth knowing: `HOME=/config`, `DISPLAY=:1`, `TITLE=Selkies`, `SELKIES_ENCODER="h264enc,h265enc,vp8enc,vp9enc,av1enc,jpeg"`, `SELKIES_ENABLE_BASIC_AUTH=false`, `SELKIES_VIDEO_STREAMING_MODE=false`, `SELKIES_ALLOWED_ORIGINS="*"`, `START_DOCKER=true`, `DISABLE_ZINK=false`, `DISABLE_DRI3=false`, `NVIDIA_DRIVER_CAPABILITIES=all`, and the interposer path in `SELKIES_INTERPOSER`.
 
 ## Boot: the init chain
 
