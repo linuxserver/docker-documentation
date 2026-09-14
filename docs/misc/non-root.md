@@ -11,9 +11,9 @@ The other approach is to run [Docker itself rootless](https://docs.docker.com/en
 
 ## Why?
 
-Some people take the position that a container running as root *at any point in any configuration* is an unacceptable security risk. Those people typically misunderstand the attack surface of containers and where the risks actually lie. Having said that, there *are* some risks with having containers running as root, depending on the environment; generally, a better solution to running every container as an unprivileged user is to run Docker itself rootless, but that's not always desirable. In these situations, being able to run a single container as a unprivileged user has its benefits.
+Running containers in rootless mode provides defense in depth: even if a container is fully compromised *and* an attacker manages to escape the container, the attacker will still only be acting as an unprivileged user on the host system.
 
-To give you some sense of the scope of potential risk, let's take our SABnzbd image, imagine you've exposed it to the internet, and for some reason allowed unauthenticated access. Now let's assume a user were to discover a Remote Code Execution vulnerability in SABnzbd, and were able to exploit it to get a shell in the container (not a simple task, but let's be generous). At this point they have a shell running as the unprivileged `abc` account, which heavily limits what they can do. There's no sudo/doas in the container so they'd likely need to chain a Privilege Escalation vulnerability (within the limited set of packages installed) to get root. Even at that point, with root access inside the container, they would then need a further Container Escape vulnerability in order to do anything meaningful to the host beyond simply deleting or modifying data in a mounted path (which they could do as a non-root user anyway). That said, some of our containers do require additional Capabilities to run, and these *could* be exploited by a user with root to affect the host in various ways.
+Like many security enhancements, running some or all of your containers in rootless mode comes with potential usability downsides, which are described below.
 
 ## How?
 
