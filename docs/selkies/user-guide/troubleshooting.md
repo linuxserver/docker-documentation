@@ -27,6 +27,9 @@ This loop resolves the majority of reports, particularly GPU and reverse proxy i
 | Container restarts or app crashes on old hardware or NAS | Old kernel or libseccomp blocking syscalls | Try `--security-opt seccomp=unconfined` (understand the [security cost](security.md#container-isolation-options)) |
 | Blurry colored text | 4:2:0 chroma subsampling | Enable FullColor 4:4:4 in the sidebar or use the JPEG encoder, note the [Intel and AMD caveat](gpu.md#fullcolor-444-and-hardware-encoders) |
 | Choppy video during motion | CPU limited or bandwidth limited | Check the Stats section, lower FPS or raise CRF, try Turbo mode off, consider a [GPU](gpu.md) |
+| CPU pegged after picking H.265, VP9, or AV1 | The GPU has no engine for that codec, so it encodes full frame in software | Go back to H.264, or check `vainfo` and `nvidia-smi` for what the card encodes, see [which codecs a GPU encodes](gpu.md#which-codecs-a-gpu-encodes) |
+| An encoder you configured is missing from the sidebar | Neither the encoding GPU nor the software build serves it, or the browser cannot decode it | The log line `Encoders not served on this host` lists the first case, a greyed out `(Unsupported Browser)` entry is the second |
+| Sidebar shows H.264 though the default is another codec | The browser cannot decode the default, or pixelflux demoted the codec at capture start | Expected. The log line `no encoder served` marks a demotion, otherwise the browser stepped to a codec it decodes |
 | Cursor feels laggy in games | Absolute pointer mode | Use Gaming mode (pointer lock) |
 | Gamepad not detected in app | App does not use the joystick API path | Some apps are incompatible with the userspace interposer; try another input mode in app, or file an issue |
 | Files will not upload | Proxy body size limit | Raise `client_max_body_size` at your proxy |

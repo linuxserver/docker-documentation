@@ -37,14 +37,14 @@ A desktop is not a movie. Most of the time nothing on screen is changing, and wh
 Selkies is a ground up, web native remote desktop protocol designed to replace legacy VNC stacks. The core ideas:
 
 1. **Hybrid protocol.** Damage tracking like VNC, video codecs like a streaming service. The screen is divided into horizontal stripes, only changed stripes are captured and encoded, and each stripe can be processed on a separate CPU core in parallel.
-2. **Paint over quality.** H.264 handles fluid motion, and once motion stops the server repaints the static screen at high quality so text stays crisp. With FullColor 4:4:4 H.264 the painted over result is visually indistinguishable from a lossless image. A JPEG encoder remains available for older browsers that cannot decode video frames at all.
-3. **WebSockets, not WebRTC.** Frames are delivered over a WebSocket connection and decoded in the browser with WebCodecs. This avoids WebRTC negotiation complexity, works cleanly through reverse proxies, and gives the server precise control over pacing and backpressure.
+2. **Paint over quality.** A video codec (H.264 by default, with H.265, VP8, VP9, and AV1 available) handles fluid motion, and once motion stops the server repaints the static screen at high quality so text stays crisp. With FullColor 4:4:4 H.264 the painted over result is visually indistinguishable from a lossless image. A JPEG encoder remains available for older browsers that cannot decode video frames at all.
+3. **WebSockets by default, WebRTC when you need it.** Frames are delivered over a WebSocket connection and decoded in the browser with WebCodecs. This avoids WebRTC negotiation complexity, works cleanly through reverse proxies, and gives the server precise control over pacing and backpressure. For lossy or high latency links an opt in [WebRTC transport](user-guide/webrtc.md) carries the same stream over UDP with congestion control, and users can switch between the two at runtime.
 4. **Zero copy on Wayland.** In the current generation the display server is a virtual Wayland compositor built on [Smithay](https://github.com/Smithay/smithay). The framebuffer can live directly on a GPU, and frames are passed as DMA-BUF handles straight to the hardware encoder (VAAPI or NVENC) without a round trip through system RAM.
 5. **Everything in one container.** Compositor, application, streaming server, audio, and web server all run inside a single OCI container built on `docker-baseimage-selkies`, managed by the s6 init system.
 
 ## What the platform gives you
 
-- **A desktop in the browser.** Full desktop environments (KDE Plasma, XFCE, MATE, i3, and more) or single applications streamed over WebSockets with H.264 encoding.
+- **A desktop in the browser.** Full desktop environments (KDE Plasma, XFCE, MATE, i3, and more) or single applications streamed over WebSockets with H.264, H.265, VP8, VP9, or AV1 encoding, each on the GPU where the card carries it.
 - **Zero copy GPU encoding.** On the Wayland stack, frames are rendered and encoded on the GPU without ever touching system RAM, for Intel, AMD, and Nvidia hardware.
 - **Runs anywhere.** The CPU encoding path is efficient enough to serve 1080p60 sessions from budget mini PCs and ARM boards. A GPU is optional, not required.
 - **A complete client, not just video.** Audio in both directions, clipboard sync, file upload and download, gamepad passthrough for up to four players, touch and virtual trackpad support for mobile, IME input, and multi user session sharing.
@@ -61,7 +61,7 @@ From the browser down to the application:
 | Client | Selkies web client (dashboard) | Renders video with WebCodecs, plays Opus audio, captures input, provides the sidebar UI, file transfer, clipboard, gamepads, and sharing |
 | Transport | WebSockets over HTTPS | Binary video, audio, and input messages, fronted by Nginx inside the container |
 | Server | Selkies (Python) | Session orchestration: wires capture to the socket, injects input, manages clipboard, files, and settings |
-| Video | Pixelflux (Rust with Python bindings) | Captures the framebuffer, detects damage, encodes H.264 or JPEG, CPU or GPU. In Wayland mode pixelflux itself hosts the compositor |
+| Video | Pixelflux (Rust with Python bindings) | Captures the framebuffer, detects damage, encodes H.264, H.265, VP8, VP9, AV1, or JPEG, CPU or GPU. In Wayland mode pixelflux itself hosts the compositor |
 | Audio | Pcmflux | Captures PulseAudio output and encodes Opus for the browser, plus microphone return |
 | Display server | Smithay based Wayland compositor (inside pixelflux) | Virtual framebuffer in userspace, on GPU or CPU, replaces Xvfb from the X11 era |
 | Window management | labwc (single apps) or KDE Plasma (desktops) | Window decoration, tiling, desktop shell |
@@ -117,3 +117,4 @@ The platform ships in two flavors that share the same machinery:
 - The **User Guide** is for people running the prebuilt containers.
 - The **Developer Guide** is for people building images on top of the baseimages or integrating the underlying libraries.
 - The **Components** section is a map of the subprojects that make up the whole platform, with a page for each.
+- The upstream project lives at [selkies.io](https://selkies.io/) and its own reference documentation at [docs.selkies.io](https://docs.selkies.io/). These pages describe the platform as LinuxServer.io packages and ships it.

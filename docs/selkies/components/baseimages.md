@@ -30,7 +30,7 @@ There is deliberately **no `latest` tag** for base images. Downstream images pin
 - **[Selkies Desktop](selkies-desktop.md)** at `/usr/bin/selkies-desktop`, activated by env var.
 - **Nginx** with the fancyindex module, serving the client, proxying the WebSocket, handling basic auth, subfolder support, and the `/files` download index.
 - **PulseAudio** with null sinks (`output` and `input`) wired for stream audio and microphone return.
-- **Gamepad plumbing**: the joystick interposer and fake udev libraries, preloaded globally, with device nodes created at init.
+- **Gamepad plumbing**: the input interposer and fake udev libraries, preloaded globally, with device nodes created at init.
 - **Quality of life**: passwordless sudo for the desktop user, all system locales prebuilt for `LC_ALL`, `proot-apps` synced into the user home for persistent app installs, Docker in Docker support for privileged containers, and notification support.
 
 ## The runtime in one diagram
@@ -47,7 +47,7 @@ graph TD
     SELKIES -->|starts in process| PF[pixelflux Wayland compositor, socket wayland-1]
     DE -->|waits for wayland-1| LABWC[labwc or a full DE, exposes wayland-0]
     LABWC --> APP[autostart application]
-    NGINX -->|3000 / 3001| WEB[web client, /websocket proxy, /files, /pelorus]
+    NGINX -->|3000 / 3001| WEB[web client, /api proxy, /pelorus]
 ```
 
 At startup a chain of one shot init scripts configures everything from environment variables: Nginx substitution (ports, auth, subfolder, title), Wayland or X11 mode selection, first run copy of the autostart and menu defaults into `/config`, hardening (the `HARDEN_*` and `DISABLE_*` family), GPU detection and permission fixes, and gamepad device setup. Then the long running services above come up in dependency order.

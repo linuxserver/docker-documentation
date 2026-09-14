@@ -5,7 +5,7 @@ Putting a Selkies container behind a reverse proxy gets you real TLS certificate
 ## The rules
 
 1. **Proxy to port 3000 (HTTP)**, and let your proxy terminate TLS. The container's port 3001 self signed HTTPS is for direct access; double TLS is pointless.
-2. **WebSocket upgrades must pass through.** All streaming rides a WebSocket at `<path>/websocket`. Any proxy that handles `Upgrade` and `Connection` headers works.
+2. **WebSocket upgrades must pass through.** All streaming rides a WebSocket. Any proxy that handles `Upgrade` and `Connection` headers works. You never need path specific rules, the container's built in Nginx routes everything internally, so proxy the whole container as one location.
 3. **Long timeouts.** Sessions are long lived connections. Set read and send timeouts to an hour (the internal Nginx uses 3600s), or idle sessions will drop.
 4. **Client must still reach you over HTTPS.** The browser APIs need a secure context, so your proxy must serve HTTPS to the user.
 
@@ -74,3 +74,4 @@ If you are heading toward many users and many apps, that is exactly what [SealSk
 - The container substitutes `SUBFOLDER` and auth settings into its Nginx config with simple string replacement at startup. Exotic characters in passwords or paths can break the substitution, keep them simple.
 - Server side events and the streaming WebSocket dislike buffering proxies, always disable response buffering (`proxy_buffering off` or your proxy's equivalent).
 - If the client loads but you get a black screen or no video, it is almost always a blocked WebSocket upgrade or an HTTP (not HTTPS) page context.
+- Enabling the [WebRTC transport](webrtc.md) changes nothing at the proxy. Its signaling goes through the same proxied web port, and its media goes around the proxy entirely over UDP.

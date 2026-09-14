@@ -57,7 +57,7 @@ graph TD
 To make the layering concrete, here is the life of one frame in a Wayland mode container:
 
 1. The application renders into a buffer belonging to **labwc** (or KWin on KDE), which is itself a client of the headless Smithay compositor that **pixelflux** hosts in process.
-2. Pixelflux composites the output. If a GPU holds the framebuffer and the encoder lives on the same GPU, the frame is passed as a DMA-BUF straight into NVENC or VA-API, zero copy. Otherwise it is read back and encoded on CPU, in parallel stripes if the software encoder is in use.
+2. Pixelflux composites the output. If a GPU holds the framebuffer and the encoder lives on the same GPU, the frame is passed as a DMA-BUF straight into NVENC or VA-API, zero copy, for any codec the card carries. Otherwise it is read back and encoded on CPU, in parallel stripes for H.264 and JPEG and full frame for the other codecs.
 3. Only regions that changed get encoded at all; a static screen costs almost nothing, and after motion stops a high quality paint over pass restores perfect detail.
 4. The encoded frame, with a small binary header, is handed to **Selkies**, which broadcasts it over the WebSocket to every connected viewer with backpressure control per client.
 5. The container's **Nginx** carries that WebSocket alongside the static web client, file downloads, basic auth, and the optional Pelorus API, all on one HTTPS port.

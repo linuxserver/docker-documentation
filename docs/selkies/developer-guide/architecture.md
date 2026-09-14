@@ -34,20 +34,21 @@ In X11 fallback mode the shape is more traditional: a patched Xvfb (with DRI3 de
 
 ### Encoding
 
-Four encoders behind one policy layer:
+Six codecs behind one policy layer, each resolved to a GPU engine or a software encoder at runtime:
 
-| Path | Encoders | Shape |
+| Path | Codecs | Shape |
 | --- | --- | --- |
-| CPU | x264, JPEG (and optional OpenH264) | Striped: one stripe per core, parallel encode, only dirty stripes sent |
-| GPU | NVENC (Nvidia), VA-API (Intel and AMD) | Full frame, zero copy from DMA-BUF when render and encode share a device |
+| CPU striped | JPEG, H.264 (x264, or OpenH264 in a GPL free build) | One stripe per core, parallel encode, only dirty stripes sent |
+| CPU full frame | H.265 (x265), VP8 and VP9 (libvpx), AV1 (SVT-AV1) | Whole frame per encode, no striping |
+| GPU | NVENC: H.264, H.265, AV1. VA-API: all five | Full frame, zero copy from DMA-BUF when render and encode share a device |
 
-Quality logic is shared: infinite GOP with on demand IDR frames, CRF rate control with live retuning, and the **paint over** system, after N static frames, resend at high quality (better JPEG quality, or an H.264 burst at lower CRF), cancelled instantly by motion.
+Quality logic is shared: infinite GOP with on demand IDR frames, CRF rate control with live retuning on one quality scale mapped onto each codec's quantizer, and the **paint over** system, after N static frames, resend at high quality (better JPEG quality, or a video burst at lower CRF), cancelled instantly by motion. Selkies probes the encoding device at startup and only offers the codecs the host can serve.
 
 The full encoder and settings detail lives on the [Pixelflux page](../components/pixelflux.md).
 
 ### Transport and presentation
 
-Encoded frames go to the Selkies server as callback invocations carrying a compact binary header (type, frame id, stripe geometry), and Selkies broadcasts them raw over the WebSocket, the server never re muxes or re packetizes. In the browser, WebCodecs decodes H.264, `createImageBitmap` handles JPEG stripes, and everything composites onto a canvas. Because the client acknowledges frame ids, the server maintains a per client backpressure window: slow clients get frames dropped *before* encode (keeping the H.264 reference chain valid), fast clients are never held back. Wire formats are specified in [The Streaming Protocol](protocol.md).
+Encoded frames go to the Selkies server as callback invocations carrying a compact binary header (type, frame id, stripe geometry), and Selkies broadcasts them raw over the WebSocket, the server never re muxes or re packetizes. In the browser, WebCodecs decodes the video codec named in each frame's header, `createImageBitmap` handles JPEG stripes, and everything composites onto a canvas. Because the client acknowledges frame ids, the server maintains a per client backpressure window: slow clients get frames dropped *before* encode (keeping the H.264 reference chain valid), fast clients are never held back. Wire formats are specified in [The Streaming Protocol](protocol.md).
 
 ## The audio pipeline
 
@@ -64,7 +65,7 @@ Gamepads bypass the display server entirely: Selkies serves the Linux joystick a
 
 ## The web layer
 
-Nginx inside the container is the single front door: it serves the static client (a React dashboard over the `selkies-web-core` engine), proxies `/websocket` to the Selkies server, serves `/files` downloads with fancyindex, optionally enforces basic auth, applies the `SUBFOLDER` prefix, and proxies `/pelorus/` when the agent layer is on. The dashboard and the engine communicate over a documented `postMessage` API, which is the extension point for custom frontends.
+Nginx inside the container is the single front door: it serves the static client (a React dashboard over the `selkies-web-core` engine), proxies `/api` (the data WebSocket, WebRTC signaling, and the `/api/files/` browser) to the Selkies server, optionally enforces basic auth, applies the `SUBFOLDER` prefix, and proxies `/pelorus/` when the agent layer is on. The dashboard and the engine communicate over a documented `postMessage` API, which is the extension point for custom frontends.
 
 ## Sharing and multi user
 

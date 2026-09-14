@@ -40,7 +40,7 @@ Note that the window manager level switches (`HARDEN_OPENBOX`, `DISABLE_CLOSE_BU
 
 | Variable | Description |
 | --- | --- |
-| `HARDEN_DESKTOP` | Enables `DISABLE_OPEN_TOOLS`, `DISABLE_SUDO`, and `DISABLE_TERMINALS`. Also sets the related client settings (`SELKIES_FILE_TRANSFERS`, `SELKIES_COMMAND_ENABLED`, `SELKIES_UI_SIDEBAR_SHOW_FILES`, `SELKIES_UI_SIDEBAR_SHOW_APPS`) unless you set them explicitly yourself |
+| `HARDEN_DESKTOP` | Enables `DISABLE_OPEN_TOOLS`, `DISABLE_SUDO`, and `DISABLE_TERMINALS`. Also sets the related client settings (`SELKIES_FILE_TRANSFERS`, `SELKIES_COMMAND_ENABLED`, `SELKIES_PRINTING_ENABLED`, `SELKIES_UI_SIDEBAR_SHOW_FILES`, `SELKIES_UI_SIDEBAR_SHOW_APPS`) unless you set them explicitly yourself |
 | `HARDEN_OPENBOX` | Window manager lockdown for single app containers. Enables `DISABLE_CLOSE_BUTTON`, `DISABLE_MOUSE_BUTTONS`, and `HARDEN_KEYBINDS`, and flags `RESTART_APP` unless you set it, so the primary application restarts automatically if closed |
 
 ### Individual switches
@@ -60,7 +60,7 @@ Note that the window manager level switches (`HARDEN_OPENBOX`, `DISABLE_CLOSE_BU
 Any boolean `SELKIES_*` setting can be pinned so the user cannot change it in the sidebar by appending `|locked`:
 
 ```bash
--e SELKIES_CLIPBOARD_ENABLED="false|locked"
+-e SELKIES_ENABLE_CLIPBOARD="false|locked"
 -e SELKIES_FILE_TRANSFERS="none"
 -e SELKIES_UI_SHOW_SIDEBAR="false|locked"
 ```
@@ -78,7 +78,7 @@ services:
     environment:
       - HARDEN_DESKTOP=true
       - HARDEN_OPENBOX=true
-      - "SELKIES_CLIPBOARD_ENABLED=false|locked"
+      - "SELKIES_ENABLE_CLIPBOARD=false|locked"
       - SELKIES_FILE_TRANSFERS=none
       - "SELKIES_UI_SHOW_SIDEBAR=false|locked"
       - NO_DECOR=true
