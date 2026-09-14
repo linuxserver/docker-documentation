@@ -509,6 +509,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **09.09.26:** - Use new X-Tinyauth-Location header in Tinyauth locations and remove duplicate auth module headers.
 * **19.07.26:** - Rebase to Alpine 3.24 with PHP 8.5.
 * **10.07.26:** - Add support for Let's Encrypt cert profiles. Run certbot twice daily with a random delay.
 * **19.06.26:** - Add support for mijn.host dns validation.
