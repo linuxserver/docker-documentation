@@ -27,7 +27,7 @@ with a repository layout of:
 root/
 └── defaults/
     ├── autostart_wayland    # what to run in Wayland mode
-    └── autostart            # what to run in X11 fallback mode
+    └── autostart            # what to run in X11 mode
 ```
 
 and `root/defaults/autostart_wayland` containing, in the simplest case, one line:
@@ -46,7 +46,7 @@ The baseimage looks for these files. All are optional, sane defaults exist for e
 | File | Role |
 | --- | --- |
 | `/defaults/autostart_wayland` | Command launched inside labwc (Wayland). Runs as the `abc` user. Copied to `/config/.config/labwc/autostart` on first run only, so users can edit it and their edits persist |
-| `/defaults/autostart` | Same for Openbox (X11 fallback) |
+| `/defaults/autostart` | Same for Openbox (X11) |
 | `/defaults/menu_wayland.xml`, `/defaults/menu.xml` | Right click root menu (Openbox menu XML schema, shared by labwc) |
 | `/defaults/startwm_wayland.sh`, `/defaults/startwm.sh` | Replace the *entire* session startup. This is the full desktop hook, override these and you own the session |
 | `/usr/share/selkies/www/icon.png` | App icon: favicon, PWA icon, and the Selkies Desktop wallpaper mark |
@@ -124,7 +124,7 @@ The other Webtop flavors are lighter: Alpine XFCE's entire session script is ess
 
 ## The window manager layer: labwc and Openbox
 
-Single application containers run [labwc](https://github.com/labwc/labwc) on Wayland, which is a **1:1 replacement for Openbox**: it consumes the same menu XML schema and an rc.xml with the same concepts, so everything below applies to both stacks, with the X11 fallback simply using Openbox itself. Full desktop Webtops (KDE, XFCE, and friends) bring their own window management and ignore this layer entirely.
+Single application containers run [labwc](https://github.com/labwc/labwc) on Wayland, which is a **1:1 replacement for Openbox**: it consumes the same menu XML schema and an rc.xml with the same concepts, so everything below applies to both stacks, with X11 sessions simply using Openbox itself. Full desktop Webtops (KDE, XFCE, and friends) bring their own window management and ignore this layer entirely.
 
 ### The right click menu: menu.xml
 
@@ -186,7 +186,7 @@ Checklist:
 - Kill the app inside the session: can you relaunch from the right click menu? Does `RESTART_APP=true` bring it back?
 - Recreate the container against the same `/config`: settings persist, no first run dialogs
 - Try `SELKIES_DESKTOP=true` and `PELORUS=true` if you intend to support them
-- Run the X11 fallback (`-e PIXELFLUX_WAYLAND=false`) unless you are deliberately Wayland only, in which case ship the explanatory stub `startwm.sh`
+- Run the X11 stack too (`-e PIXELFLUX_WAYLAND=false`) unless you are deliberately Wayland only, in which case ship the explanatory stub `startwm.sh`
 
 ## Multi arch and CI
 

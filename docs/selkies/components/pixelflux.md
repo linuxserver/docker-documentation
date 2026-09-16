@@ -10,8 +10,8 @@ Pcmflux is its audio sibling: it captures PulseAudio output and encodes Opus fra
 
 As of the 2.0.0 release, pixelflux is a **Rust** library exposed to Python through PyO3 (earlier versions were C++ with ctypes). One extension module contains:
 
-- An **X11 backend**: XShm screen capture with XFixes cursor tracking, for the legacy X11 stack.
-- A **Wayland backend**: a full headless Wayland compositor built on [Smithay](https://github.com/Smithay/smithay), running in process. This is the key architectural point of the modern stack: **pixelflux does not capture a Wayland compositor, it is the compositor.** It synthesizes the output, seat, and clipboard itself, which is why the framebuffer can live directly on a GPU and why input is injected through its API rather than tools like xdotool.
+- An **X11 backend**: DRI3 capture that blits the GPU resident screen into DMA-BUFs the encoder imports in place, and XShm capture with XFixes cursor tracking where that does not apply.
+- A **Wayland backend**: a full headless Wayland compositor built on [Smithay](https://github.com/Smithay/smithay), running in process. This is the key architectural point of the Wayland stack: **pixelflux does not capture a Wayland compositor, it is the compositor.** It synthesizes the output, seat, and clipboard itself, which is why the framebuffer can live directly on a GPU and why input is injected through its API rather than tools like xdotool.
 - Six codecs across software and hardware encoders, and the damage tracking, paint over, and rate control logic shared between them.
 
 ## Encoders
@@ -37,7 +37,7 @@ Hardware encoders always operate full frame, delivered as a single full height s
 
 ### Damage detection
 
-- **X11:** each stripe's pixels are hashed (xxh3) every frame, a changed hash marks the stripe dirty. Continuously changing regions enter a "damage block" state that skips re hashing for a configured number of frames to save CPU.
+- **X11:** on the DRI3 path the Damage extension reports whether anything was drawn since the last frame, so nothing is hashed. On the XShm path each stripe's pixels are hashed (xxh3) every frame, a changed hash marks the stripe dirty. Continuously changing regions enter a "damage block" state that skips re hashing for a configured number of frames to save CPU.
 - **Wayland:** no hashing needed, the compositor knows exactly which rectangles clients damaged and maps them to stripes.
 - A fully idle screen takes a fast path that skips the encode thread pool entirely.
 
@@ -50,11 +50,11 @@ The signature quality feature. After a region has been static for a configurable
 - **CRF/CQP mode** (default): constant quality, bits go wherever needed.
 - Infinite GOP by default: keyframes are only sent on demand (client join, recovery, or an optional periodic interval). Bitrate, framerate, and quality are all adjustable live without restarting the capture.
 
-## Zero copy on Wayland
+## Zero copy
 
-When the compositor renders on a GPU and the encoder is on the same GPU, frames flow as DMA-BUF handles from the render buffer straight into NVENC or VA-API. The pixels never touch system RAM and the CPU never sees them. If the render and encode devices differ, or a software encoder is selected, pixelflux falls back to a readback path automatically and logs which decision it made. Zero copy is a property of the capture path, not the codec: any codec the GPU carries takes it.
+**Wayland.** When the compositor renders on a GPU and the encoder is on the same GPU, frames flow as DMA-BUF handles from the render buffer straight into NVENC or VA-API. The pixels never touch system RAM and the CPU never sees them. If the render and encode devices differ, or a software encoder is selected, pixelflux falls back to a readback path automatically and logs which decision it made. Zero copy is a property of the capture path, not the codec: any codec the GPU carries takes it.
 
-On X11 there is one zero copy path as well. When the session encodes on NVENC, capture goes through NvFBC, the Nvidia X driver composites the screen into a buffer in video memory, and that buffer is registered with the encoder in place. Every other X11 session copies each frame once into shared memory. Nothing selects this, the driver decides and the log says which path was taken.
+**X11.** On an X server whose screen lives on the GPU, which is what the containers run (XLibre Xvfb started with `-glamor -dri`), pixelflux allocates a small pool of DMA-BUFs through GBM on the render node the server draws with, hands each to the server as a pixmap through DRI3, and captures every frame as one `CopyArea` of the root window into the next buffer, a GPU blit in glamor. The encoder imports that buffer in place through the same path the Wayland capture uses, so no frame crosses to the CPU. The Damage extension gates capture so a static screen costs nothing, and the server composites the cursor and any watermark through Render. Nvidia, Intel, and AMD all take this path. It is declined, with one log line saying why, for software encoding, a codec the GPU has no engine for, a server drawing on a different device than the encoder, or a server without DRI3 1.2, Damage, or Render, and the session then streams through XShm with one copy per frame.
 
 GPU selection is automatic: it walks `/sys/class/drm`, identifies cards by driver (`nvidia` goes to NVENC, `i915` and `amdgpu` to VA-API), and can be pinned by device path, index, or an `auto_gpu` token matching a driver or vendor ID.
 

@@ -21,7 +21,7 @@ These work in every LinuxServer.io container:
 
 | Variable | Description |
 | --- | --- |
-| `PIXELFLUX_WAYLAND` | If set to true the container will initialize in Wayland mode running [Smithay](https://github.com/Smithay/smithay) and labwc while enabling zero copy encoding with a GPU. This is the default on supported hardware; set `false` to force legacy X11 |
+| `PIXELFLUX_WAYLAND` | If set to true the container initializes in Wayland mode running [Smithay](https://github.com/Smithay/smithay) and labwc, `false` runs the X11 stack with Xvfb and Openbox. Zero copy GPU encoding works on both. Each image bakes in the stack its application or desktop runs on, see the [support matrix](apps.md#webtop-full-desktops) |
 | `SELKIES_DESKTOP` | If set to true and in Wayland mode, a simple desktop shell (panel, start menu, wallpaper, desktop icons) is initialized with labwc, see [Selkies Desktop](../components/selkies-desktop.md) |
 | `PELORUS` | If set to true, the [Pelorus](../components/pelorus.md) agentic interface and accessibility stack are started alongside the session |
 | `CUSTOM_PORT` | Internal HTTP port, default `3000` |
@@ -45,9 +45,7 @@ These work in every LinuxServer.io container:
 | `NO_GAMEPAD` | Disable the userspace gamepad interposer injection. Also turns off `SELKIES_GAMEPAD_ENABLED`, the player 2 to 4 sharing links, and hides the gamepad section of the sidebar |
 | `NO_STEAM` | Remove the built in Steam installer, see [Installing Applications](installing-apps.md#steam-built-in-reinstalls-itself) |
 | `NO_WEBCAM` | Disable the virtual webcam. Without it the container creates `/dev/video0`, preloads the V4L2 interposer, and turns on `SELKIES_WEBCAM_ENABLED` so the browser can forward a camera into the session |
-| `DISABLE_ZINK` | Do not set Zink variables when a GPU is detected, applications use CPU rendering |
-| `DISABLE_DRI3` | X11 mode only, disable DRI3 acceleration |
-| `MAX_RES` | Maximum virtual display resolution, default 16K (`15360x8640`) |
+| `DISABLE_DRI3` | X11 mode only, start Xvfb without the GPU. Applications render on the CPU and capture falls back to shared memory |
 | `WATERMARK_PNG` | Full path inside the container to a watermark PNG, e.g. `/usr/share/selkies/www/icon.png` |
 | `WATERMARK_LOCATION` | Where to paint the watermark, integer 1 to 6 |
 
@@ -159,7 +157,7 @@ How the menu behaves at runtime:
 | `SELKIES_VIDEO_PAINTOVER_BURST_FRAMES` | `1-30`, initial `5` | Paint over burst frames range, initial value, or both, for every video codec |
 | `SELKIES_GPU_ID` | `''` | Hardware encoder GPU index, selects `/dev/dri/renderD{128 + n}` and the GPU stats index. Empty encodes on the first GPU or the one `AUTO_GPU` chose, `-1` disables hardware encoding. Ignored when `DRI_NODE` gives a device path |
 | `SELKIES_ENCODE_DRI` (or `DRI_NODE`) | `''` | DRI render node the encoder uses for VA-API or NVENC |
-| `SELKIES_RENDER_DRI` (or `DRINODE`) | `''` | DRI render node the Wayland compositor renders on, defaults to the `AUTO_GPU` pick, else software rendering |
+| `SELKIES_RENDER_DRI` (or `DRINODE`) | `''` | DRI render node the display server renders on, the Wayland compositor or Xvfb through glamor. Defaults to the `AUTO_GPU` pick, else software rendering |
 | `SELKIES_AUTO_GPU` (or `AUTO_GPU`) | `true` | GPU auto selection for rendering: `true` picks the first GPU, `false` disables, or a vendor name, kernel driver name, devicetree prefix, or PCI vendor ID picks the first GPU it matches |
 | `SELKIES_RECORDING_SOCKET` (or `PIXELFLUX_RECORDING_SOCKET`) | `''` | Unix socket path for an out of band recording tap, pixelflux multiplexes the elementary stream of the full frame codec to connected clients: Annex B for H.264 and H.265, OBU for AV1, IVF for VP8 and VP9. Not available on striped H.264 or JPEG. Empty is off |
 
@@ -311,7 +309,7 @@ The container's built in Nginx owns the listening ports, TLS, basic auth, and th
 
 | Variable | Default | Description |
 | --- | --- | --- |
-| `SELKIES_WAYLAND` (or `PIXELFLUX_WAYLAND`) | `false` | Run the Wayland headless compositor backend instead of X11 capture and input. The containers set `PIXELFLUX_WAYLAND` for you on supported hardware |
+| `SELKIES_WAYLAND` (or `PIXELFLUX_WAYLAND`) | `false` | Run the Wayland headless compositor backend instead of X11 capture and input. Each container image bakes in `PIXELFLUX_WAYLAND` for the stack its application or desktop runs on |
 | `SELKIES_APP_WAYLAND_DISPLAY` | `''` | Wayland socket applications run on when it differs from the capture compositor, for a nested session. Empty auto detects |
 | `SELKIES_WAYLAND_HOST_DISPLAY` | `''` | Socket of an external compositor (labwc started headless, for example) that pixelflux captures and injects into as a client instead of compositing itself. Empty keeps the built in compositor |
 | `SELKIES_WAYLAND_SOCKET_INDEX` | `0` | Index for the Wayland command socket, `0` is `wayland-0` |

@@ -39,13 +39,13 @@ Selkies is a ground up, web native remote desktop protocol designed to replace l
 1. **Hybrid protocol.** Damage tracking like VNC, video codecs like a streaming service. The screen is divided into horizontal stripes, only changed stripes are captured and encoded, and each stripe can be processed on a separate CPU core in parallel.
 2. **Paint over quality.** A video codec (H.264 by default, with H.265, VP8, VP9, and AV1 available) handles fluid motion, and once motion stops the server repaints the static screen at high quality so text stays crisp. With FullColor 4:4:4 H.264 the painted over result is visually indistinguishable from a lossless image. A JPEG encoder remains available for older browsers that cannot decode video frames at all.
 3. **WebSockets by default, WebRTC when you need it.** Frames are delivered over a WebSocket connection and decoded in the browser with WebCodecs. This avoids WebRTC negotiation complexity, works cleanly through reverse proxies, and gives the server precise control over pacing and backpressure. For lossy or high latency links an opt in [WebRTC transport](user-guide/webrtc.md) carries the same stream over UDP with congestion control, and users can switch between the two at runtime.
-4. **Zero copy on Wayland.** In the current generation the display server is a virtual Wayland compositor built on [Smithay](https://github.com/Smithay/smithay). The framebuffer can live directly on a GPU, and frames are passed as DMA-BUF handles straight to the hardware encoder (VAAPI or NVENC) without a round trip through system RAM.
+4. **Zero copy on both display stacks.** The frame stays on the GPU from render to encode. On Wayland the display server is a virtual compositor built on [Smithay](https://github.com/Smithay/smithay) whose framebuffer lives directly on the GPU. On X11 a patched XLibre Xvfb keeps the screen pixmap on the GPU and pixelflux pulls each frame out with a DRI3 blit. Either way the frame is passed as a DMA-BUF handle straight to the hardware encoder (VAAPI or NVENC) without a round trip through system RAM.
 5. **Everything in one container.** Compositor, application, streaming server, audio, and web server all run inside a single OCI container built on `docker-baseimage-selkies`, managed by the s6 init system.
 
 ## What the platform gives you
 
 - **A desktop in the browser.** Full desktop environments (KDE Plasma, XFCE, MATE, i3, and more) or single applications streamed over WebSockets with H.264, H.265, VP8, VP9, or AV1 encoding, each on the GPU where the card carries it.
-- **Zero copy GPU encoding.** On the Wayland stack, frames are rendered and encoded on the GPU without ever touching system RAM, for Intel, AMD, and Nvidia hardware.
+- **Zero copy GPU encoding.** On Wayland and X11 alike, frames are rendered and encoded on the GPU without ever touching system RAM, for Intel, AMD, and Nvidia hardware.
 - **Runs anywhere.** The CPU encoding path is efficient enough to serve 1080p60 sessions from budget mini PCs and ARM boards. A GPU is optional, not required.
 - **A complete client, not just video.** Audio in both directions, clipboard sync, file upload and download, gamepad passthrough for up to four players, touch and virtual trackpad support for mobile, IME input, and multi user session sharing.
 - **Containers first.** Everything ships as OCI images built on the LinuxServer.io baseimage ecosystem, with the same PUID, PGID, and volume conventions used across all LinuxServer images.
@@ -61,10 +61,10 @@ From the browser down to the application:
 | Client | Selkies web client (dashboard) | Renders video with WebCodecs, plays Opus audio, captures input, provides the sidebar UI, file transfer, clipboard, gamepads, and sharing |
 | Transport | WebSockets over HTTPS | Binary video, audio, and input messages, fronted by Nginx inside the container |
 | Server | Selkies (Python) | Session orchestration: wires capture to the socket, injects input, manages clipboard, files, and settings |
-| Video | Pixelflux (Rust with Python bindings) | Captures the framebuffer, detects damage, encodes H.264, H.265, VP8, VP9, AV1, or JPEG, CPU or GPU. In Wayland mode pixelflux itself hosts the compositor |
+| Video | Pixelflux (Rust with Python bindings) | Captures the framebuffer, detects damage, encodes H.264, H.265, VP8, VP9, AV1, or JPEG, CPU or GPU. In Wayland mode pixelflux itself hosts the compositor, in X11 mode it captures the X server through DRI3 |
 | Audio | Pcmflux | Captures PulseAudio output and encodes Opus for the browser, plus microphone return |
-| Display server | Smithay based Wayland compositor (inside pixelflux) | Virtual framebuffer in userspace, on GPU or CPU, replaces Xvfb from the X11 era |
-| Window management | labwc (single apps) or KDE Plasma (desktops) | Window decoration, tiling, desktop shell |
+| Display server | Smithay based Wayland compositor (inside pixelflux), or XLibre Xvfb on X11 | Virtual framebuffer in userspace, on GPU or CPU. The X11 server is a patched Xvfb with glamor and DRI3 whose screen also lives on the GPU |
+| Window management | labwc or Openbox (single apps), KDE Plasma or another desktop environment (desktops) | Window decoration, tiling, desktop shell |
 | Packaging | docker-baseimage-selkies | s6 services, Nginx, auth, GPU detection, user management, all the LinuxServer.io container conventions |
 
 ## The stack at a glance
@@ -76,7 +76,7 @@ graph TD
     S --> PF[Pixelflux video capture and encode]
     S --> PC[Pcmflux audio capture and encode]
     S --> I[Input injection]
-    PF --> C[Wayland compositor, Smithay plus labwc or KDE]
+    PF --> C[Smithay Wayland compositor or XLibre Xvfb, plus labwc, Openbox, or KDE]
     C --> A[Your application or desktop]
     subgraph Container based on docker-baseimage-selkies
         N
@@ -108,7 +108,7 @@ The platform ships in two flavors that share the same machinery:
 
 - **Minimal commands first.** Every container should work with `docker run --rm -it --shm-size=1gb -p 3001:3001 lscr.io/linuxserver/<app> bash`. GPU flags, volumes, and tuning are additive layers, not prerequisites. This is also the debugging philosophy: strip back to the minimal command, confirm it works, then add options one at a time.
 - **CPU is a first class citizen.** The platform is tuned so that commodity hardware without any GPU can serve smooth sessions. Hardware encoding is an optimization, never a requirement.
-- **All in on Wayland.** The Wayland stack unlocks true zero copy from render to encode and the performance difference over X11 is night and day. X11 remains only as a legacy fallback and will die off eventually.
+- **Two display stacks, one pipeline.** Wayland and X11 sessions both render and encode on the GPU with zero copy, and without a GPU both use the same striped CPU encoders. Pick the stack by what the application or desktop runs best on, not by performance.
 - **HTTPS always.** Modern browser APIs used by the client (WebCodecs in particular) require a secure context. Every container serves HTTPS with a self signed certificate on port 3001 out of the box.
 - **Open source end to end.** Every layer, from the compositor to the mobile apps, is open source and developed in public.
 

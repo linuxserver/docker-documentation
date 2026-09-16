@@ -52,7 +52,7 @@ Work through the ladder in [GPU Acceleration](gpu.md#debugging-gpu-problems). Su
 docker logs -f <container>
 ```
 
-The startup sequence prints the s6 service initialization, GPU detection results, and the mode selection (Wayland vs X11). The pixelflux layer logs its encoding decision, look for lines telling you whether the zero copy path or a readback path was chosen, and which encoder is active.
+The startup sequence prints the s6 service initialization, GPU detection results, and the mode selection (Wayland vs X11). The pixelflux layer logs its encoding decision, look for lines telling you whether the zero copy path or a readback path was chosen, and which encoder is active. On X11 it also says whether it captures through DRI3 or shared memory, and why when it declined DRI3.
 
 For deeper debugging set `-e SELKIES_DEBUG=true`.
 

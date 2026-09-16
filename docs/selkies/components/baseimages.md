@@ -26,7 +26,7 @@ There is deliberately **no `latest` tag** for base images. Downstream images pin
 - **The LSIO foundation**: each tag builds on the corresponding LinuxServer.io distro baseimage, inheriting s6-overlay init, the `abc` user with PUID and PGID remapping, `TZ`, Docker mods, and the `/custom-cont-init.d` and `/custom-services.d` hooks.
 - **Selkies** (pinned commit) installed into the `/lsiopy` virtualenv, with pixelflux 2.x and pcmflux 2.x, plus [Pelorus](pelorus.md) preinstalled.
 - **The web client**: prebuilt dashboards under `/usr/share/selkies/`, selected at runtime by the `DASHBOARD` variable.
-- **Compositors for both stacks**: labwc (built from source with a small IPC patch that adds the window query socket Pelorus uses) for Wayland, and a patched Xvfb (with `-vfbdevice` DRI3 support) plus Openbox for the legacy X11 fallback. A patched wlroots build makes the compositor survive pixman rendering faults instead of crashing.
+- **Display servers for both stacks**: labwc (built from source with a small IPC patch that adds the window query socket Pelorus uses) for Wayland, and an XLibre Xvfb built with glamor and DRI3 plus Openbox for X11. The Xvfb carries a LinuxServer patch that keeps the screen pixmap on the GPU and lets the framebuffer follow RandR resizes, which is what makes zero copy capture possible on X11. Both are prebuilt per distro in [selkies-layers](https://github.com/linuxserver/selkies-layers) and copied into the image. A patched wlroots build makes the compositor survive pixman rendering faults instead of crashing.
 - **[Selkies Desktop](selkies-desktop.md)** at `/usr/bin/selkies-desktop`, activated by env var.
 - **Nginx** with the fancyindex module, serving the client, proxying the WebSocket, handling basic auth, subfolder support, and the `/files` download index.
 - **PulseAudio** with null sinks (`output` and `input`) wired for stream audio and microphone return.
@@ -54,8 +54,10 @@ At startup a chain of one shot init scripts configures everything from environme
 
 ## The two session modes
 
-- **Wayland (default on capable hardware)**: pixelflux hosts the virtual compositor; labwc (single apps) or a full desktop (Webtop flavors) nests on it; zero copy GPU encoding is available. `PIXELFLUX_WAYLAND=true` is baked into current downstream images.
-- **X11 (legacy fallback)**: patched Xvfb with DRI3, Openbox, XSHM capture. Selected with `PIXELFLUX_WAYLAND=false` or on flavors that have not moved to Wayland yet. Deprecated for GPU work.
+- **Wayland**: pixelflux hosts the virtual compositor; labwc (single apps) or a full desktop (Webtop flavors) nests on it. `PIXELFLUX_WAYLAND=true` is baked into images whose application or desktop runs on Wayland.
+- **X11**: XLibre Xvfb with glamor and DRI3 on `:1`, Openbox for single apps or the desktop's own window manager, and pixelflux capturing the GPU resident screen through DRI3. Selected with `PIXELFLUX_WAYLAND=false`, and the stack for applications and desktops that run best on X11.
+
+Both stacks encode with zero copy on a GPU and share the same CPU encoders without one.
 
 ## The downstream contract
 

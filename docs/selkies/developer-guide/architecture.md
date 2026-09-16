@@ -22,14 +22,14 @@ The subtle point people miss: **pixelflux is the display server.** When the Selk
 
 labwc then runs as a *client* of that compositor (using its Wayland backend, the nested pattern) and provides window management, decorations, and XWayland on display `:0` for legacy apps. Applications connect to labwc's `wayland-0` socket. Full desktops swap labwc for a heavier nested compositor: Webtop KDE runs `kwin_wayland` nested on `wayland-1` with plasmashell on top.
 
-In X11 fallback mode the shape is more traditional: a patched Xvfb (with DRI3 device support) provides `:1`, Openbox manages windows, and pixelflux captures via XSHM with per stripe hashing for damage detection.
+In X11 mode the shape is more traditional: an XLibre Xvfb built with glamor and DRI3 provides `:1` with its screen pixmap on the GPU, Openbox manages windows, and pixelflux captures the screen with a DRI3 blit into DMA-BUFs the encoder imports in place. Without a GPU, or when the DRI3 path is declined, it captures via XShm with per stripe hashing for damage detection.
 
 ## The video pipeline
 
 ### Capture and damage
 
 - Wayland: the compositor knows exactly which rectangles changed each frame, damage tracking is free and exact.
-- X11: pixelflux hashes each horizontal stripe of the framebuffer per frame (xxh3) and marks changed stripes dirty, with a "damage block" heuristic that stops re hashing regions that are continuously changing.
+- X11: on the DRI3 path the Damage extension reports whether anything changed since the last frame. On the XShm path pixelflux hashes each horizontal stripe of the framebuffer per frame (xxh3) and marks changed stripes dirty, with a "damage block" heuristic that stops re hashing regions that are continuously changing.
 - Idle screens take a fast path that costs close to zero CPU.
 
 ### Encoding

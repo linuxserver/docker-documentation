@@ -142,13 +142,9 @@ The caveat is H.264 on Intel and AMD. Current VA-API drivers expose no 4:4:4 H.2
 
 ## Wayland and X11
 
-The Wayland stack is the default and is where all GPU acceleration development happens. You can force the legacy X11 stack with `-e PIXELFLUX_WAYLAND=false`, but GPU acceleration under X11 is not currently seeing development attention. The one exception is Nvidia: when an X11 session encodes on NVENC, pixelflux captures through NvFBC and the frame is registered with the encoder in place, so that path is also zero copy. Every other X11 session copies each frame once through shared memory. If you are on X11 and using acceleration, clamp the virtual display to avoid memory exhaustion, e.g. `-e MAX_RES=3840x2160`, and if you still have problems lock the resolution down:
+Zero copy works on both display stacks. On Wayland the pixelflux compositor renders into GPU buffers and hands them to the encoder. On X11 the containers run a patched XLibre Xvfb with glamor, so the screen pixmap lives on the GPU, and pixelflux pulls each frame out with a DRI3 blit into a DMA-BUF the encoder imports in place. Intel, AMD, and Nvidia all take this path, and the container log says which capture path was chosen. Images that run both stacks select X11 with `-e PIXELFLUX_WAYLAND=false`.
 
-```bash
--e SELKIES_MANUAL_WIDTH=1920
--e SELKIES_MANUAL_HEIGHT=1080
--e MAX_RES=1920x1080
-```
+The same rule applies on either stack: rendering and encoding must happen on the same device for zero copy. A session the DRI3 path cannot serve, for example software encoding or a codec the GPU has no engine for, streams through shared memory capture instead, and the log line says why.
 
 ## Related environment variables
 
@@ -157,9 +153,8 @@ The Wayland stack is the default and is where all GPU acceleration development h
 | `AUTO_GPU` | Auto detection of a mounted GPU for rendering and encoding, enabled by default. Set `false` to disable. |
 | `DRINODE` | Rendering GPU (EGL / 3D). |
 | `DRI_NODE` | Encoding GPU (VAAPI / NVENC). |
-| `DISABLE_ZINK` | X11 mode only, do not set Zink variables when a card is detected, applications fall back to CPU rendering. |
-| `DISABLE_DRI3` | X11 mode only, disable DRI3 acceleration, applications fall back to CPU rendering. |
-| `PIXELFLUX_WAYLAND` | `true` is the modern Wayland stack with zero copy support, `false` forces legacy X11. |
+| `DISABLE_DRI3` | X11 mode only, start Xvfb without the GPU. Applications render on the CPU and capture falls back to shared memory. |
+| `PIXELFLUX_WAYLAND` | `true` runs the Wayland compositor stack, `false` runs X11. Zero copy encoding works on both. |
 
 ## Debugging GPU problems
 
