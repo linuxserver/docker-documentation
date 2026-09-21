@@ -379,7 +379,6 @@ To help with development, we generate this dependency graph.
       init-crontab-config -> init-config-end
       init-config -> init-crontab-config
       init-mods-end -> init-custom-files
-      init-config-end -> init-deprecate
       init-adduser -> init-device-perms
       base -> init-envfile
       base -> init-migrations
@@ -394,7 +393,6 @@ To help with development, we generate this dependency graph.
       init-nginx -> init-selkies-config
       init-video -> init-selkies-end
       init-custom-files -> init-services
-      init-deprecate -> init-services
       init-selkies-config -> init-video
       init-services -> svc-cron
       svc-cron -> legacy-services
@@ -402,6 +400,7 @@ To help with development, we generate this dependency graph.
       svc-xorg -> svc-dbus
       svc-dbus -> legacy-services
       init-services -> svc-de
+      legacy-cont-init -> svc-de
       svc-nginx -> svc-de
       svc-selkies -> svc-de
       svc-xorg -> svc-de
@@ -427,13 +426,14 @@ To help with development, we generate this dependency graph.
       svc-xsettingsd -> legacy-services
     }
     Base Images: {
-      "baseimage-selkies:ubuntunoble" <- "baseimage-ubuntu:noble"
+      "baseimage-selkies:ubunturesolute" <- "baseimage-ubuntu:resolute"
     }
     "bitcoin-knots:latest" <- Base Images
     ```
 
 ## Versions
 
+* **21.09.26:** - Rebase to Ubuntu Resolute.
 * **03.04.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **02.01.26:** - Add Wayland init logic.
 * **09.09.25:** - Initial release.
