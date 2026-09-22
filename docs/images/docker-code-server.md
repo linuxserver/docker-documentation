@@ -382,7 +382,8 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
-* **17.05.26:** - Let server listen on both ipv4 and ipv6 even when running container as root.
+* **20.09.26:** - Add fallback for legacy or misconfigured systems without IPv6 support.
+* **17.05.26:** - Fix container only listening on IPv6 when running non-root.
 * **10.08.25:** - Let server listen on both ipv4 and ipv6.
 * **03.06.25:** - Allow setting PWA name using env var `PWA_APPNAME`.
 * **13.10.24:** - Only chown config folder when change to ownership or new install is detected.
