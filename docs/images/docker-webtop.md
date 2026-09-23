@@ -59,7 +59,8 @@ This image provides various versions that are available via tags. Please read th
 | fedora-mate | ✅ | MATE Fedora |
 | fedora-xfce | ✅ | XFCE Fedora |
 | ubuntu-i3 | ✅ | i3 Ubuntu *Wayland Support |
-| ubuntu-kde | ✅ | KDE Ubuntu *Wayland Only |
+| ubuntu-kde | ✅ | KDE Ubuntu *Wayland Support |
+| ubuntu-lxqt | ✅ | KDE LXQt *Wayland Support |
 | ubuntu-mate | ✅ | MATE Ubuntu |
 | ubuntu-xfce | ✅ | XFCE Ubuntu *Wayland Support |
 | dev | ✅ | KDE Ubuntu *Current Selkies Development Head |
@@ -429,6 +430,7 @@ To help with development, we generate this dependency graph.
       init-services -> svc-de
       legacy-cont-init -> svc-de
       svc-nginx -> svc-de
+      svc-selkies -> svc-de
       svc-xorg -> svc-de
       svc-de -> legacy-services
       init-services -> svc-docker
@@ -459,6 +461,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **21.09.26:** - Updates for Selkies v2, add x11 init for ubuntu-kde, show ubuntu-lxqt branch.
 * **10.06.26:** - Rebase Alpine images to 3.24.
 * **07.05.26:** - Deprecate Enterprise Linux tags.
 * **07.04.26:** - Rebase Ubuntu images to Resolute.
