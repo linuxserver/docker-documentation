@@ -22,32 +22,33 @@ The subtle point people miss: **pixelflux is the display server.** When the Selk
 
 labwc then runs as a *client* of that compositor (using its Wayland backend, the nested pattern) and provides window management, decorations, and XWayland on display `:0` for legacy apps. Applications connect to labwc's `wayland-0` socket. Full desktops swap labwc for a heavier nested compositor: Webtop KDE runs `kwin_wayland` nested on `wayland-1` with plasmashell on top.
 
-In X11 fallback mode the shape is more traditional: a patched Xvfb (with DRI3 device support) provides `:1`, Openbox manages windows, and pixelflux captures via XSHM with per stripe hashing for damage detection.
+In X11 mode the shape is more traditional: an XLibre Xvfb built with glamor and DRI3 provides `:1` with its screen pixmap on the GPU, Openbox manages windows, and pixelflux captures the screen with a DRI3 blit into DMA-BUFs the encoder imports in place. Without a GPU, or when the DRI3 path is declined, it captures via XShm with per stripe hashing for damage detection.
 
 ## The video pipeline
 
 ### Capture and damage
 
 - Wayland: the compositor knows exactly which rectangles changed each frame, damage tracking is free and exact.
-- X11: pixelflux hashes each horizontal stripe of the framebuffer per frame (xxh3) and marks changed stripes dirty, with a "damage block" heuristic that stops re hashing regions that are continuously changing.
+- X11: on the DRI3 path the Damage extension reports whether anything changed since the last frame. On the XShm path pixelflux hashes each horizontal stripe of the framebuffer per frame (xxh3) and marks changed stripes dirty, with a "damage block" heuristic that stops re hashing regions that are continuously changing.
 - Idle screens take a fast path that costs close to zero CPU.
 
 ### Encoding
 
-Four encoders behind one policy layer:
+Six codecs behind one policy layer, each resolved to a GPU engine or a software encoder at runtime:
 
-| Path | Encoders | Shape |
+| Path | Codecs | Shape |
 | --- | --- | --- |
-| CPU | x264, JPEG (and optional OpenH264) | Striped: one stripe per core, parallel encode, only dirty stripes sent |
-| GPU | NVENC (Nvidia), VA-API (Intel and AMD) | Full frame, zero copy from DMA-BUF when render and encode share a device |
+| CPU striped | JPEG, H.264 (x264, or OpenH264 in a GPL free build) | One stripe per core, parallel encode, only dirty stripes sent |
+| CPU full frame | H.265 (x265), VP8 and VP9 (libvpx), AV1 (SVT-AV1) | Whole frame per encode, no striping |
+| GPU | NVENC: H.264, H.265, AV1. VA-API: all five | Full frame, zero copy from DMA-BUF when render and encode share a device |
 
-Quality logic is shared: infinite GOP with on demand IDR frames, CRF rate control with live retuning, and the **paint over** system, after N static frames, resend at high quality (better JPEG quality, or an H.264 burst at lower CRF), cancelled instantly by motion.
+Quality logic is shared: infinite GOP with on demand IDR frames, CRF rate control with live retuning on one quality scale mapped onto each codec's quantizer, and the **paint over** system, after N static frames, resend at high quality (better JPEG quality, or a video burst at lower CRF), cancelled instantly by motion. Selkies probes the encoding device at startup and only offers the codecs the host can serve.
 
 The full encoder and settings detail lives on the [Pixelflux page](../components/pixelflux.md).
 
 ### Transport and presentation
 
-Encoded frames go to the Selkies server as callback invocations carrying a compact binary header (type, frame id, stripe geometry), and Selkies broadcasts them raw over the WebSocket, the server never re muxes or re packetizes. In the browser, WebCodecs decodes H.264, `createImageBitmap` handles JPEG stripes, and everything composites onto a canvas. Because the client acknowledges frame ids, the server maintains a per client backpressure window: slow clients get frames dropped *before* encode (keeping the H.264 reference chain valid), fast clients are never held back. Wire formats are specified in [The Streaming Protocol](protocol.md).
+Encoded frames go to the Selkies server as callback invocations carrying a compact binary header (type, frame id, stripe geometry), and Selkies broadcasts them raw over the WebSocket, the server never re muxes or re packetizes. In the browser, WebCodecs decodes the video codec named in each frame's header, `createImageBitmap` handles JPEG stripes, and everything composites onto a canvas. Because the client acknowledges frame ids, the server maintains a per client backpressure window: slow clients get frames dropped *before* encode (keeping the H.264 reference chain valid), fast clients are never held back. Wire formats are specified in [The Streaming Protocol](protocol.md).
 
 ## The audio pipeline
 
@@ -64,7 +65,7 @@ Gamepads bypass the display server entirely: Selkies serves the Linux joystick a
 
 ## The web layer
 
-Nginx inside the container is the single front door: it serves the static client (a React dashboard over the `selkies-web-core` engine), proxies `/websocket` to the Selkies server, serves `/files` downloads with fancyindex, optionally enforces basic auth, applies the `SUBFOLDER` prefix, and proxies `/pelorus/` when the agent layer is on. The dashboard and the engine communicate over a documented `postMessage` API, which is the extension point for custom frontends.
+Nginx inside the container is the single front door: it serves the static client (a React dashboard over the `selkies-web-core` engine), proxies `/api` (the data WebSocket, WebRTC signaling, and the `/api/files/` browser) to the Selkies server, optionally enforces basic auth, applies the `SUBFOLDER` prefix, and proxies `/pelorus/` when the agent layer is on. The dashboard and the engine communicate over a documented `postMessage` API, which is the extension point for custom frontends.
 
 ## Sharing and multi user
 

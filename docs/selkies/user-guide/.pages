@@ -9,4 +9,5 @@ nav:
     - Installing Applications: installing-apps.md
     - Security and Hardening: security.md
     - Reverse Proxy: reverse-proxy.md
+    - WebRTC Transport: webrtc.md
     - Troubleshooting: troubleshooting.md

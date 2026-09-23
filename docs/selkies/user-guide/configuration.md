@@ -3,7 +3,7 @@
 Every Selkies based container is configured through environment variables. This page collects all of them in one place. They fall into three groups:
 
 1. **Container variables**: standard LinuxServer.io conventions plus Selkies baseimage options (ports, auth, GPU, language).
-2. **Selkies application settings** (`SELKIES_*`): stream, client UI, and feature toggles, with a locking syntax.
+2. **Selkies application settings** (`SELKIES_*`): transport, stream, client UI, and feature toggles, with a locking syntax.
 3. **Hardening variables**: lockdown options covered in detail on the [Security page](security.md).
 
 ## Standard LinuxServer variables
@@ -21,128 +21,346 @@ These work in every LinuxServer.io container:
 
 | Variable | Description |
 | --- | --- |
-| `PIXELFLUX_WAYLAND` | If set to true the container will initialize in Wayland mode running [Smithay](https://github.com/Smithay/smithay) and labwc while enabling zero copy encoding with a GPU. This is the default on supported hardware; set `false` to force legacy X11 |
+| `PIXELFLUX_WAYLAND` | If set to true the container initializes in Wayland mode running [Smithay](https://github.com/Smithay/smithay) and labwc, `false` runs the X11 stack with Xvfb and Openbox. Zero copy GPU encoding works on both. Each image bakes in the stack its application or desktop runs on, see the [support matrix](apps.md#webtop-full-desktops) |
 | `SELKIES_DESKTOP` | If set to true and in Wayland mode, a simple desktop shell (panel, start menu, wallpaper, desktop icons) is initialized with labwc, see [Selkies Desktop](../components/selkies-desktop.md) |
 | `PELORUS` | If set to true, the [Pelorus](../components/pelorus.md) agentic interface and accessibility stack are started alongside the session |
 | `CUSTOM_PORT` | Internal HTTP port, default `3000` |
 | `CUSTOM_HTTPS_PORT` | Internal HTTPS port, default `3001` |
-| `CUSTOM_WS_PORT` | Internal WebSocket port, default `8082` |
+| `CUSTOM_WS_PORT` | Internal port the Selkies server listens on behind Nginx, default `8082` |
 | `CUSTOM_USER` | HTTP basic auth username, default `abc` |
 | `PASSWORD` | HTTP basic auth password, default `abc`. If unset there is no auth |
 | `DRI_NODE` | Encoding GPU, enables VAAPI/NVENC stream encoding on the given device, e.g. `/dev/dri/renderD128` |
 | `DRINODE` | Rendering GPU for EGL and 3D acceleration, e.g. `/dev/dri/renderD128` |
-| `AUTO_GPU` | Automatic GPU configuration when one is detected, first available GPU used for encoding and rendering. Set `false` to disable |
+| `AUTO_GPU` | Automatic GPU configuration when one is detected, first available GPU used for encoding and rendering. Set `false` to disable, or a vendor or driver name such as `nvidia`, `amdgpu`, or `intel` to pick a specific GPU on multi GPU hosts |
 | `PIXELFLUX_CU` | Port to enable the Computer Use API server for AI agent control of the desktop, Wayland mode only |
 | `SUBFOLDER` | Subfolder when running behind a subfolder reverse proxy, needs both slashes, e.g. `/subfolder/` |
 | `TITLE` | Page title shown in the browser, default `Selkies` |
-| `DASHBOARD` | Select the web client dashboard: `selkies-dashboard`, `selkies-dashboard-zinc`, or `selkies-dashboard-wish` |
+| `DASHBOARD` | Select the web client dashboard: `selkies-dashboard` or `selkies-dashboard-wish` |
 | `FILE_MANAGER_PATH` | Change the default upload and download path, must be writable by the `abc` user |
 | `START_DOCKER` | If `false`, a privileged container will not automatically start the Docker in Docker setup |
 | `DISABLE_IPV6` | Set to `true` or any value to disable IPv6 |
 | `LC_ALL` | Session language, e.g. `fr_FR.UTF-8`, see [Internationalization](#internationalization) |
 | `NO_DECOR` | Run the application without window borders, for PWA style use. Toggle at runtime with `ctrl+shift+d` |
 | `NO_FULL` | Do not automatically fullscreen applications when using the single app window manager |
-| `NO_GAMEPAD` | Disable the userspace gamepad interposer injection |
-| `DISABLE_ZINK` | Do not set Zink variables when a GPU is detected, applications use CPU rendering |
-| `DISABLE_DRI3` | X11 mode only, disable DRI3 acceleration |
-| `MAX_RES` | Maximum virtual display resolution, default 16K (`15360x8640`) |
+| `NO_GAMEPAD` | Disable the userspace gamepad interposer injection. Also turns off `SELKIES_GAMEPAD_ENABLED`, the player 2 to 4 sharing links, and hides the gamepad section of the sidebar |
+| `NO_STEAM` | Remove the built in Steam installer, see [Installing Applications](installing-apps.md#steam-built-in-reinstalls-itself) |
+| `NO_WEBCAM` | Disable the virtual webcam. Without it the container creates `/dev/video0`, preloads the V4L2 interposer, and turns on `SELKIES_WEBCAM_ENABLED` so the browser can forward a camera into the session |
+| `DISABLE_DRI3` | X11 mode only, start Xvfb without the GPU. Applications render on the CPU and capture falls back to shared memory |
 | `WATERMARK_PNG` | Full path inside the container to a watermark PNG, e.g. `/usr/share/selkies/www/icon.png` |
 | `WATERMARK_LOCATION` | Where to paint the watermark, integer 1 to 6 |
 
 **`WATERMARK_LOCATION` values:** `1` top left, `2` top right, `3` bottom left, `4` bottom right, `5` centered, `6` animated.
 
+### How the baseimage feeds Selkies
+
+The Selkies server reads its own `SELKIES_*` variables, and the baseimage's init scripts translate the container level variables above into them. A few of those translations are worth knowing because they change the defaults you would otherwise read off the upstream project:
+
+| Selkies setting | Container default | Upstream default | Why |
+| --- | --- | --- | --- |
+| `SELKIES_ENCODER` | `h264enc,h265enc,vp8enc,vp9enc,av1enc,jpeg` | `h264enc,h265enc,vp8enc,vp9enc,av1enc,h264enc-striped,jpeg` | The striped H.264 encoder is left out of the sidebar menu. Selkies then drops any encoder this host cannot serve, see [Video encoders](#video-encoders) |
+| `SELKIES_VIDEO_STREAMING_MODE` | `false` | `true` | Desktop use favors damage tracking and paint over. Turn it on for gaming and video |
+| `SELKIES_ENABLE_BASIC_AUTH` | `false` | `true` | Nginx handles the login using `CUSTOM_USER` and `PASSWORD`, so the Selkies server's own basic auth stays off |
+| `SELKIES_ALLOWED_ORIGINS` | `*` | same origin only | Nginx fronts the server, so the cross origin guard is relaxed inside the container |
+| `SELKIES_COMMAND_ENABLED` | `true` | `false` | The sidebar apps and launcher section depends on command messages. `HARDEN_DESKTOP=true` flips it back to `false` |
+| `SELKIES_ENABLE_DUAL_MODE` | `false` | `true` | The WebSocket / WebRTC switch is hidden until you configure WebRTC, see [WebRTC Transport](webrtc.md) |
+| `SELKIES_MODE` | `websockets` | `websockets` | Becomes `webrtc` automatically when any WebRTC, STUN, or TURN variable is set |
+| `SELKIES_WEBCAM_ENABLED` | `true` | `false` | Turned on when the virtual webcam device can be created, `NO_WEBCAM` prevents it |
+| `CUSTOM_WS_PORT` | `8082` | `8080` | Port the Selkies server listens on behind Nginx |
+
+`HARDEN_DESKTOP=true` also sets `SELKIES_FILE_TRANSFERS` to empty, turns `SELKIES_PRINTING_ENABLED` off, and hides the files and apps sidebar sections unless you set those variables yourself. Anything you pass explicitly always wins over these defaults.
+
 ## Selkies application settings
 
-Every facet of the streaming application can be configured with `SELKIES_*` variables. These also drive what the user can change in the sidebar UI.
+Every facet of the streaming application can be configured with `SELKIES_*` variables. These also drive what the user can change in the sidebar UI: the server sends the resolved settings schema to the client, so a locked or single valued setting simply has no control to change.
+
+Each setting is also a CLI flag with the same name, `SELKIES_VIDEO_CRF` is `--video-crf`. Precedence is CLI flag, then the `SELKIES_*` variable, then the legacy container variable where one exists (`PASSWORD`, `DRI_NODE`, and so on), then the built in default.
 
 ### Value syntax
 
-- **Booleans and locking.** Booleans accept `true` or `false`. Append `|locked` to prevent the user changing the setting in the UI: `-e SELKIES_USE_CPU="true|locked"`
-- **Enums and lists.** Comma separated values, the first item is the default. A single item hides the UI dropdown entirely: `-e SELKIES_ENCODER="jpeg"`
-- **Ranges.** `min-max` renders a slider, a single number locks the value: `-e SELKIES_FRAMERATE="60"`
-- **Manual resolution.** Setting `SELKIES_MANUAL_WIDTH` or `SELKIES_MANUAL_HEIGHT` locks the resolution to those values.
+- **Booleans and locking.** `true` or `1` (case insensitive) is on, anything else is off. Append `|locked` to prevent the user changing the setting in the UI: `-e SELKIES_USE_CPU="true|locked"`
+- **Enums and lists.** Comma separated values, the first item is the default and the full list is what the user may pick from. A single item hides the UI dropdown entirely: `-e SELKIES_ENCODER="jpeg"`. Matching is case insensitive and invalid items are dropped; if nothing valid is left the built in menu is kept.
+- **Ranges.** Three forms. `min-max` restricts the allowed span and keeps the built in initial value: `SELKIES_FRAMERATE="8-120"`. A bare value sets the initial value and keeps the built in span: `SELKIES_FRAMERATE="60"`. Both at once: `SELKIES_FRAMERATE="60,8-120"`. A degenerate span such as `"60-60"` locks the setting.
+- **Empty means default.** Setting a variable to `""` means "use the built in default", except for list type settings where `""` or `none` means disabled (for example `SELKIES_FILE_TRANSFERS`).
+- **Manual resolution.** Setting `SELKIES_MANUAL_WIDTH` or `SELKIES_MANUAL_HEIGHT` to a positive value forces manual resolution mode.
 
-### Stream settings
+### Legacy variables
+
+These names are no longer Selkies settings, but the containers still accept them. At startup the init script copies a legacy value into its current equivalent when you have not set the current name yourself, so existing compose files keep working. Prefer the current names for anything new.
+
+| Legacy name | Current name | Notes |
+| --- | --- | --- |
+| `SELKIES_H264_CRF` | `SELKIES_VIDEO_CRF` | |
+| `SELKIES_H264_FULLCOLOR` | `SELKIES_VIDEO_FULLCOLOR` | |
+| `SELKIES_H264_STREAMING_MODE` | `SELKIES_VIDEO_STREAMING_MODE` | The legacy value overrides the container default of `false` |
+| `SELKIES_H264_PAINTOVER_CRF` | `SELKIES_VIDEO_PAINTOVER_CRF` | |
+| `SELKIES_H264_PAINTOVER_BURST_FRAMES` | `SELKIES_VIDEO_PAINTOVER_BURST_FRAMES` | |
+| `SELKIES_IS_MANUAL_RESOLUTION_MODE` | `SELKIES_MANUAL_RESOLUTION` | |
+| `SELKIES_CLIPBOARD_ENABLED` | `SELKIES_ENABLE_CLIPBOARD` | The current setting is a policy (`true`, `in`, `out`, `false`). A legacy `|locked` suffix is dropped |
+| `x264enc` and `x264enc-striped` as `SELKIES_ENCODER` values | `h264enc` and `h264enc-striped` | Rewritten in place, the rest of the list is kept |
+| `openh264enc` as a `SELKIES_ENCODER` value | `h264enc` | Selkies itself maps it. Software H.264 is whatever encoder the pixelflux build carries, x264 in the wheels the containers ship |
+
+### Transport
 
 | Variable | Default | Description |
 | --- | --- | --- |
-| `SELKIES_ENCODER` | `'x264enc,x264enc-striped,jpeg'` | Available video encoders, first is default |
-| `SELKIES_FRAMERATE` | `'8-120'` | Framerate range or fixed value |
-| `SELKIES_H264_CRF` | `'5-50'` | H.264 CRF range or fixed value, lower is higher quality |
-| `SELKIES_JPEG_QUALITY` | `'1-100'` | JPEG quality range or fixed value |
-| `SELKIES_H264_FULLCOLOR` | `False` | H.264 full color 4:4:4 range for pixelflux encoders |
-| `SELKIES_H264_STREAMING_MODE` | `False` | H.264 streaming mode for pixelflux encoders |
-| `SELKIES_FORCE_ALIGNED_RESOLUTION` | `False` | Forces the display resolution to be a multiple of 16 pixels. |
-| `SELKIES_USE_CPU` | `False` | Force CPU encoding |
-| `SELKIES_USE_PAINT_OVER_QUALITY` | `True` | High quality paint over for static scenes |
-| `SELKIES_PAINT_OVER_JPEG_QUALITY` | `'1-100'` | JPEG paint over quality range or fixed value |
-| `SELKIES_H264_PAINTOVER_CRF` | `'5-50'` | H.264 paint over CRF range or fixed value |
-| `SELKIES_H264_PAINTOVER_BURST_FRAMES` | `'1-30'` | H.264 paint over burst frames range or fixed value |
-| `SELKIES_SECOND_SCREEN` | `True` | Support for a second monitor |
-| `SELKIES_AUDIO_BITRATE` | `'320000'` | Default audio bitrate |
-| `SELKIES_IS_MANUAL_RESOLUTION_MODE` | `False` | Lock resolution to the manual width and height |
-| `SELKIES_MANUAL_WIDTH` | `0` | Fixed width, setting this forces manual resolution mode |
-| `SELKIES_MANUAL_HEIGHT` | `0` | Fixed height, setting this forces manual resolution mode |
-| `SELKIES_SCALING_DPI` | `'96'` | Default DPI for UI scaling |
-| `SELKIES_USE_BROWSER_CURSORS` | `False` | Use browser CSS cursors instead of canvas rendering |
-| `SELKIES_USE_CSS_SCALING` | `False` | HiDPI when false. When true a lower resolution is sent and the canvas is stretched |
+| `SELKIES_MODE` | `websockets` | Streaming transport, `websockets` or `webrtc`. The containers switch this to `webrtc` automatically when any WebRTC variable is set, see [WebRTC Transport](webrtc.md) |
+| `SELKIES_ENABLE_DUAL_MODE` | `false` (upstream `true`) | Show the transport switch in the UI so users can move between WebSockets and WebRTC at runtime |
+| `SELKIES_BACKPRESSURE_QUEUE_SIZE` | `120` | WebSockets mode only. Max frames or audio chunks buffered per stream before dropping under backpressure, `1` to `100000`. Higher tolerates larger client hiccups at the cost of latency |
+| `SELKIES_WEBRTC_PACER` | `true` | WebRTC mode only. Pace outgoing packets with strict priorities (audio and RTCP, then data channel, then video) so audio and input stay responsive when video bursts on a congested link. `SELKIES_WEBRTC_PACER_STALE_MS` sets the stale GOP purge deadline in milliseconds, `0` disables |
+| `SELKIES_CONGESTION_CONTROL` | `false` | WebRTC mode only. Adapt the video bitrate to the bandwidth estimate from receiver feedback. Effective in CBR rate control mode, may trade quality for responsiveness |
 
-### Feature toggles
+### Video encoders
 
-| Variable | Default | Description |
-| --- | --- | --- |
-| `SELKIES_AUDIO_ENABLED` | `True` | Server to client audio streaming |
-| `SELKIES_MICROPHONE_ENABLED` | `True` | Client to server microphone forwarding |
-| `SELKIES_GAMEPAD_ENABLED` | `True` | Gamepad support |
-| `SELKIES_CLIPBOARD_ENABLED` | `True` | Clipboard synchronization |
-| `SELKIES_ENABLE_BINARY_CLIPBOARD` | `False` | Allow binary data on the clipboard |
-| `SELKIES_COMMAND_ENABLED` | `True` | Parsing of command websocket messages |
-| `SELKIES_FILE_TRANSFERS` | `'upload,download'` | Allowed transfer directions, comma separated. Empty or `none` disables |
-| `SELKIES_DEBUG` | `False` | Debug logging |
+`SELKIES_ENCODER` is a comma separated menu of the values below. The first item is the default and the whole list is what the sidebar offers. Every full frame codec is encoded on the GPU when the encoding device has an engine for it, and by the software encoder in the pixelflux build otherwise, so the same menu works on a CPU only host, an Intel or AMD card, and an Nvidia card. The container default is `h264enc,h265enc,vp8enc,vp9enc,av1enc,jpeg`.
 
-### Sharing toggles
+| Value | Codec | Hardware | Software | Shape | FullColor 4:4:4 | WebRTC | Browser decode |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `h264enc` | H.264 | NVENC, VA-API | x264 | Full frame | NVENC and x264. VA-API has no 4:4:4 H.264 profile on current drivers, so the request is honored on the CPU instead | Yes | Every browser |
+| `h265enc` | H.265 (HEVC) | NVENC, VA-API | x265 | Full frame | NVENC and x265, VA-API negotiates per device | Yes | Safari, and Chromium where the operating system supplies an HEVC decoder. Chrome and Firefox on Linux decode no HEVC |
+| `vp8enc` | VP8 | VA-API, on the few GPUs that still carry a VP8 engine | libvpx | Full frame | No | Yes | Every browser |
+| `vp9enc` | VP9 | VA-API | libvpx | Full frame | Profile 1 on VA-API and libvpx | Yes | Chromium, Firefox |
+| `av1enc` | AV1 | NVENC on Ada and newer, VA-API on GPUs with an AV1 engine | SVT-AV1 | Full frame | No | Yes | Chromium, Firefox. WebKit refuses it at decode time |
+| `h264enc-striped` | H.264 | None, always CPU | x264 | Striped, one stripe per core | x264 | No | Every browser |
+| `jpeg` | JPEG | None, always CPU | libjpeg-turbo | Striped, one stripe per core | Always full color | No | Every browser, including ones without WebCodecs |
+
+Nvidia has no VP8 or VP9 encode engine, so those two codecs are software on every Nvidia card. AMD has no VP8 or VP9 engine either, and AV1 starts with RDNA 3. Intel carries VP9 and, on Arc and newer integrated graphics, AV1. Run `vainfo` inside the container to see the encode entry points your card exposes.
+
+How the menu behaves at runtime:
+
+- **The host trims the menu.** At startup Selkies probes the encoding device once and drops every encoder that neither the GPU nor the pixelflux software build can serve, logging `Encoders not served on this host are left off the menu`. If the default itself is not served the session falls back to `h264enc`. The wheels in the containers carry a software encoder for all five codecs, so on a CPU only host the full menu still appears, all of it in software.
+- **The browser greys out what it cannot decode.** Encoders the browser has no decoder for stay in the menu disabled and labelled `(Unsupported Browser)`. A browser that cannot decode the server default steps through the allowed list in the order `h264enc`, `h264enc-striped`, `vp9enc`, `vp8enc`, `av1enc`, `h265enc`, `jpeg` until one plays. A shared viewer, or a browser facing a single valued locked encoder, gets an on page error instead.
+- **Only H.264 and JPEG are striped.** H.265, VP8, VP9, and AV1 always encode the whole frame, so they never get the per core parallelism or the dirty stripe savings of the H.264 and JPEG paths. In software they also cost several times the CPU of x264. On a machine whose GPU lacks the engine, keep `h264enc` first and treat the other codecs as options for GPU hosts.
+- **Software encoding toggle.** The sidebar's CPU encoding switch only appears for a codec the host serves both ways, since it moves the session between the GPU and the software encoder and would be a no-op otherwise. `SELKIES_USE_CPU` still applies to every full frame codec.
+- **Demotion.** If pixelflux still cannot serve the codec once capture starts it demotes the display to H.264 and Selkies rewrites the encoder setting to match, logging `streams H.264 as 'h264enc': no encoder served`. Trust the encoder shown in the sidebar over the one you configured.
+- **Colors.** VP8 cannot signal BT.709, so it is encoded and declared BT.601 and looks very slightly different from the other codecs. Firefox paints AV1 received over WebRTC as BT.601 for the same reason.
+
+### Video encoding
 
 | Variable | Default | Description |
 | --- | --- | --- |
-| `SELKIES_ENABLE_SHARING` | `True` | Master toggle for all sharing features |
-| `SELKIES_ENABLE_COLLAB` | `True` | Collaborative read write sharing link |
-| `SELKIES_ENABLE_SHARED` | `True` | View only sharing links |
-| `SELKIES_ENABLE_PLAYER2` | `True` | Sharing link for gamepad player 2 |
-| `SELKIES_ENABLE_PLAYER3` | `True` | Sharing link for gamepad player 3 |
-| `SELKIES_ENABLE_PLAYER4` | `True` | Sharing link for gamepad player 4 |
+| `SELKIES_ENCODER` | `h264enc,h265enc,vp8enc,vp9enc,av1enc,jpeg` (upstream adds `h264enc-striped`) | Menu of video encoders, first is default, see [Video encoders](#video-encoders). Encoders the host cannot serve are dropped at startup, and the five full frame codecs are the ones that stream over WebRTC |
+| `SELKIES_FRAMERATE` | `8-240`, initial `60` | Framerate range, initial value, or both |
+| `SELKIES_RATE_CONTROL_MODE` | `crf` | Rate control for every video codec, `crf` (constant quality) or `cbr` (constant bitrate). WebRTC mode defaults to `cbr` unless you pin this, and so does a session on OpenH264 in a GPL free pixelflux build |
+| `SELKIES_ENABLE_RATE_CONTROL` | `true` | Let the client pick the rate control mode. Set `false` to lock the encoder to CRF |
+| `SELKIES_VIDEO_CRF` | `5-50`, initial `25` | CRF range, initial value, or both. Lower is higher quality. The value is on the H.264 QP scale and pixelflux maps it onto each codec's own quantizer range, so one number means the same quality on every encoder |
+| `SELKIES_VIDEO_BITRATE` | `100-1000000`, initial `8000` | CBR bitrate in kbps: range, initial value, or both. `8000` is 8 Mbps |
+| `SELKIES_VIDEO_MIN_QP` | `0` | CBR mode minimum quantizer on the H.264 QP scale, `0` to `51`, mapped onto each codec's own range. `0` is the encoder default. Raising it caps bit spend on easy content |
+| `SELKIES_VIDEO_MAX_QP` | `0` | CBR mode maximum quantizer on the same scale, `0` is the encoder default. Lowering it keeps text legible under motion at the cost of overshooting the bitrate target |
+| `SELKIES_KEYFRAME_INTERVAL` | `0` | Seconds between scheduled recovery keyframes, `0` to `300`. `0` keeps the GOP infinite and sends keyframes only on demand, which keeps bitrate and quality steady |
+| `SELKIES_VIDEO_FULLCOLOR` | `false` | Encode 4:4:4 chroma instead of 4:2:0 where the codec and encoder carry it: H.264 and H.265 on NVENC, x264, and x265, VP9 profile 1 on VA-API and libvpx. VP8, AV1, and OpenH264 stay 4:2:0. A client whose decoder has no 4:4:4 profile turns it off for itself and keeps the codec; where it is locked, such a client steps to the next allowed encoder whose 4:4:4 it decodes, JPEG last. See the [GPU caveats](gpu.md#fullcolor-444-and-hardware-encoders) |
+| `SELKIES_VIDEO_STREAMING_MODE` | `false` (upstream `true`) | Turbo mode: encode every frame like a traditional video stream instead of damage tracking. Useful for gaming and full motion video |
+| `SELKIES_USE_CPU` | `false` | Force software encoding for the full frame codecs even when the encoding GPU serves them. The striped encoders are CPU regardless |
+| `SELKIES_JPEG_QUALITY` | `1-100`, initial `40` | JPEG encoder quality range, initial value, or both |
+| `SELKIES_USE_PAINT_OVER_QUALITY` | `true` | High quality paint over for static scenes |
+| `SELKIES_PAINT_OVER_JPEG_QUALITY` | `1-100`, initial `90` | JPEG paint over quality range, initial value, or both |
+| `SELKIES_VIDEO_PAINTOVER_CRF` | `5-50`, initial `18` | Paint over CRF range, initial value, or both, for every video codec. Must be lower than the CRF to trigger, and paint over is off by default under CBR |
+| `SELKIES_VIDEO_PAINTOVER_BURST_FRAMES` | `1-30`, initial `5` | Paint over burst frames range, initial value, or both, for every video codec |
+| `SELKIES_GPU_ID` | `''` | Hardware encoder GPU index, selects `/dev/dri/renderD{128 + n}` and the GPU stats index. Empty encodes on the first GPU or the one `AUTO_GPU` chose, `-1` disables hardware encoding. Ignored when `DRI_NODE` gives a device path |
+| `SELKIES_ENCODE_DRI` (or `DRI_NODE`) | `''` | DRI render node the encoder uses for VA-API or NVENC |
+| `SELKIES_RENDER_DRI` (or `DRINODE`) | `''` | DRI render node the display server renders on, the Wayland compositor or Xvfb through glamor. Defaults to the `AUTO_GPU` pick, else software rendering |
+| `SELKIES_AUTO_GPU` (or `AUTO_GPU`) | `true` | GPU auto selection for rendering: `true` picks the first GPU, `false` disables, or a vendor name, kernel driver name, devicetree prefix, or PCI vendor ID picks the first GPU it matches |
+| `SELKIES_RECORDING_SOCKET` (or `PIXELFLUX_RECORDING_SOCKET`) | `''` | Unix socket path for an out of band recording tap, pixelflux multiplexes the elementary stream of the full frame codec to connected clients: Annex B for H.264 and H.265, OBU for AV1, IVF for VP8 and VP9. Not available on striped H.264 or JPEG. Empty is off |
+
+### Audio
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `SELKIES_AUDIO_BITRATE` | `128000` | Opus bitrate in bps. The UI offers `32000` through `510000` in steps, any value from `6000` to `510000` is accepted |
+| `SELKIES_AUDIO_FRAME_DURATION_MS` | `10` | Opus frame duration: `2.5`, `5`, `10`, `20`, `40`, or `60`. Lower cuts audio latency at a small bandwidth and packet rate cost |
+| `SELKIES_AUDIO_REDUNDANCY` | `true` | Opus RED (RFC 2198) redundancy to cut dropouts under packet loss. On WebSockets it only engages when every connected client supports it |
+| `SELKIES_AUDIO_REDUNDANCY_DISTANCE` | `2` | Number of prior Opus frames carried as redundancy, `0` to `4`. Higher survives longer loss bursts at proportionally more bandwidth |
+| `SELKIES_AUDIO_CHANNELS` | `2` | Number of audio channels |
+| `SELKIES_AUDIO_DEVICE_NAME` | `output.monitor` | PulseAudio source pcmflux captures |
+
+### Display and input
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `SELKIES_MANUAL_RESOLUTION` | `false` | Lock the resolution to the manual width and height |
+| `SELKIES_MANUAL_WIDTH` | `0` | Fixed width up to `16384`, a positive value forces manual resolution mode |
+| `SELKIES_MANUAL_HEIGHT` | `0` | Fixed height up to `16384`, a positive value forces manual resolution mode |
+| `SELKIES_ENABLE_RESIZE` | `true` | Dynamically resize the display to match the browser window |
+| `SELKIES_SCALING_DPI` | `96` | Default DPI for UI scaling, `96` to `288` in steps of `24` |
+| `SELKIES_FORCE_ALIGNED_RESOLUTION` | `false` | Forces the display resolution to be a multiple of 16 pixels |
+| `SELKIES_USE_CSS_SCALING` | `false` | HiDPI when false. When true a lower resolution is sent and the canvas is stretched |
+| `SELKIES_SECOND_SCREEN` | `true` | Offer the Add Screen button for a second monitor. Set `false` to hide it. On Wayland the button only appears when Selkies detects compositor support (labwc or KWin) regardless of this value |
+| `SELKIES_ENABLE_CURSORS` | `true` | Send the remote application cursor to the client |
+| `SELKIES_USE_BROWSER_CURSORS` | `true` | Use browser CSS cursors instead of rendering the cursor onto the canvas |
+| `SELKIES_CURSOR_SIZE` (or `XCURSOR_SIZE`) | `-1` | Cursor size in points at 96 DPI, scaled with the session DPI. `-1` is the platform default, 32 on X11 and 24 on Wayland |
+| `SELKIES_MAC_CMD_AS_CTRL` | `true` | macOS clients send Command chords as Control, so Cmd+C copies remotely. Set `false` when the session's window manager binds Super itself, Command then arrives as Super. Users may override unless locked |
+| `SELKIES_KEYBOARD_SHORTCUTS` | `true` | Keep the client's own chords (Ctrl+Shift with F, M, X, or G, and Ctrl+Shift+click) for the sidebar instead of passing them to the session. Set `false` to pass them through; the sidebar buttons still work and three presses of Escape still leave gaming mode. Users may override unless locked |
+| `SELKIES_PUBLISH_INPUT_DEVICES` | `false` | Mirror the session keyboard and pointer onto evdev input devices for applications that enumerate evdev directly, such as fullscreen games and remappers. Uses a kernel uinput device where `/dev/uinput` is writable, else the input interposer |
+| `SELKIES_RAW_POINTER_MOTION` | `true` | Ask the browser for unaccelerated pointer movement under pointer lock (gaming mode). Windows and macOS honor it, Linux and Android do not. Clients on macOS leave it off unless chosen. Users may override unless locked |
+| `SELKIES_DEBUG_CURSORS` | `false` | Cursor debug logging |
+
+### Feature toggles and session start state
+
+The `*_ENABLED` variables decide what the server offers at all. The `*_ON_START` variables decide whether a feature is already running when a client connects, or waits for the user to press its sidebar button.
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `SELKIES_AUDIO_ENABLED` | `true` | Server to client audio streaming. Disabling it also disables the microphone |
+| `SELKIES_MICROPHONE_ENABLED` | `false` | Client to server microphone forwarding |
+| `SELKIES_WEBCAM_ENABLED` | `true` (upstream `false`) | Client to server webcam forwarding into the virtual V4L2 device. Set by the baseimage unless `NO_WEBCAM` is present |
+| `SELKIES_GAMEPAD_ENABLED` | `true` | Gamepad support. Forced off by `NO_GAMEPAD` |
+| `SELKIES_VIDEO_ON_START` | `true` | Start with video on. Off, nothing is captured for the primary display until the user turns video on; shared viewers and second screens always start their stream |
+| `SELKIES_AUDIO_ON_START` | `true` | Start with audio on. Off, capture stays stopped until the user turns audio on. Unlike `SELKIES_AUDIO_ENABLED=false` nothing is torn down and the microphone keeps working |
+| `SELKIES_MICROPHONE_ON_START` | `false` | Start with the microphone on, so the browser asks for the device as soon as the session connects |
+| `SELKIES_WEBCAM_ON_START` | `false` | Start with the webcam on, so the browser asks for the camera as soon as the session connects |
+| `SELKIES_GAMEPAD_ON_START` | `true` | Start with gamepad input on. The user's choice is remembered by the browser and takes precedence on later visits |
+| `SELKIES_COMMAND_ENABLED` | `true` (upstream `false`) | Parsing of command messages from the client, which the sidebar apps section needs. `HARDEN_DESKTOP` turns it off |
+| `SELKIES_DEBUG` | `false` | Debug logging |
+
+### Clipboard and files
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `SELKIES_ENABLE_CLIPBOARD` | `true` | Clipboard policy: `true` both directions, `in` client to server only, `out` server to client only, `false` disabled. `out` is what stops the page reading the local clipboard at all, which is the read Firefox and Safari raise a paste prompt for |
+| `SELKIES_ENABLE_BINARY_CLIPBOARD` | `true` | Allow binary data such as images on the clipboard. Rich text pasted from the browser into the session follows the same switch |
+| `SELKIES_CLIPBOARD_SEAMLESS` | `true` | Sync the clipboard automatically on every copy on either side. Set `false` and the clipboard only moves through the sidebar's clipboard box. The direction policy above still bounds it. Users may override unless locked |
+| `SELKIES_FILE_TRANSFERS` | `upload,download` | Allowed transfer directions, comma separated. Empty or `none` disables |
+| `SELKIES_FILE_TRANSFER_LIMIT_MBPS` | `0` | Static throttle in Mbit/s shared by all uploads and downloads, for links whose rate you know. `0` disables. Transfers are already paced to protect the video stream without it |
+| `SELKIES_FILE_MANAGER_PATH` (or `FILE_MANAGER_PATH`) | `~/Desktop` | Directory uploads land in and the file browser serves, created at startup if missing |
+
+### Webcam
+
+The containers create a virtual `/dev/video0` and preload a V4L2 interposer so ordinary applications see the browser's camera as a normal webcam. Set `NO_WEBCAM` to skip all of it.
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `SELKIES_WEBCAM_WIDTH` | `1280` | Width of the virtual webcam device, client frames are scaled and letterboxed to fit |
+| `SELKIES_WEBCAM_HEIGHT` | `720` | Height of the virtual webcam device |
+| `SELKIES_WEBCAM_PIXEL_FORMAT` | `auto` | Pixel format of the virtual device. `auto` follows the uplink (MJPEG for a browser sending JPEG, otherwise I420). Or pin `I420`, `NV12`, `YUYV`, or `MJPEG` |
+| `SELKIES_WEBCAM_ENCODER` | `auto` | Codec the browser uses for the camera uplink: `auto`, `h264`, `h265`, `vp8`, `vp9`, `av1`, or `mjpeg`. Over WebSockets `auto` tries H.264, then VP8, then VP9, AV1, or H.265 where the browser encodes them, and JPEG where nothing keeps up; a codec name pins it, still dropping to JPEG when it cannot keep up. Over WebRTC the browser sends the named codec when the session negotiated it. Users may override unless locked |
+| `SELKIES_WEBCAM_DEVICE` | `auto` | Also mirror the webcam into a v4l2loopback kernel device: `auto` uses the first one found (usually only on a host or privileged container), a path such as `/dev/video10` uses that device, `false` never does |
+| `SELKIES_WEBCAM_SOCKET_PATH` | `/tmp` | Directory for the V4L2 interposer socket, `selkies_webcam0.sock` |
+
+### Gamepads
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `SELKIES_JS_SOCKET_PATH` | `/tmp` | Directory for the input interposer sockets, `selkies_js{0-3}.sock` |
+| `SELKIES_UINPUT_GAMEPAD` | `auto` | Register gamepads as kernel devices through `/dev/uinput`, which Steam, Proton, and browsers inside the session find without the interposer. `auto` only does so where the interposer is not configured and `/dev/uinput` is writable, `true` always attempts it, `false` never does |
+| `SELKIES_UINPUT_MOUSE_SOCKET` | `''` | Path to a uinput mouse socket, if not provided uinput is used directly |
+
+### Printing and audit
+
+The session has a printer named `Selkies`. Selkies runs the CUPS queue itself as the session user, the containers ship `cups-daemon` and `cups-filters` and point `CUPS_SERVER` at it, and every printed document is turned into a PDF and handed to the browser, which opens its own print dialog. Documents also collect in the sidebar's printing section for reprinting or saving. Selkies can also post an audit event for each clipboard transfer, file transfer, print, connect, disconnect, and recording.
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `SELKIES_PRINTING_ENABLED` | `true` | Offer the `Selkies` printer to the session and hand each document to the browser. `false` runs no queue and hides the printing section. `HARDEN_DESKTOP` turns it off unless you set it yourself. Documents go to the page holding the session, shared viewers receive none |
+| `SELKIES_PRINT_SPOOL_PATH` | `~/.local/state/selkies/print` | Directory finished print jobs land in as PDFs until a page takes them |
+| `SELKIES_AUDIT_WEBHOOK_URL` | `''` | URL that receives one JSON POST per audit event. Metadata only, never content. Empty is off, and a queue of 1024 pending events drops on overflow with no retry |
+| `SELKIES_AUDIT_WEBHOOK_TOKEN` | `''` | Bearer token sent in the `Authorization` header of every audit POST |
+| `SELKIES_AUDIT_WEBHOOK_TIMEOUT` | `2.0` | Seconds one audit POST may take before it counts as failed and the next one is sent |
+
+### Sharing
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `SELKIES_ENABLE_SHARING` | `true` | Master toggle for all sharing features |
+| `SELKIES_ENABLE_COLLAB` | `true` | Let a viewer holding the session's master key token act as a read write collaborator. Secure mode only, this is not a sharing link of its own |
+| `SELKIES_ENABLE_SHARED` | `true` | View only sharing links |
+| `SELKIES_ENABLE_PLAYER2` | `true` | Sharing link for gamepad player 2. Forced off by `NO_GAMEPAD` |
+| `SELKIES_ENABLE_PLAYER3` | `true` | Sharing link for gamepad player 3. Forced off by `NO_GAMEPAD` |
+| `SELKIES_ENABLE_PLAYER4` | `true` | Sharing link for gamepad player 4. Forced off by `NO_GAMEPAD` |
+| `SELKIES_MASTER_TOKEN` | `''` | Master token that enables secure mode and protects the token control plane API, used by [SealSkin](../components/sealskin.md) |
+| `SELKIES_BASIC_AUTH_VIEWONLY_PASSWORD` (or `VIEWONLY_PASSWORD`) | `''` | Optional second basic auth password that grants view only access when the Selkies server's own basic auth is on. Ignored in secure mode |
 
 ### Client UI visibility
 
 | Variable | Default | Description |
 | --- | --- | --- |
-| `SELKIES_UI_TITLE` | `'Selkies'` | Title in the top left corner of the sidebar |
-| `SELKIES_UI_SHOW_LOGO` | `True` | Show the Selkies logo in the sidebar |
-| `SELKIES_UI_SHOW_SIDEBAR` | `True` | Show the main sidebar UI |
-| `SELKIES_UI_SHOW_CORE_BUTTONS` | `True` | Show display, audio, microphone, and gamepad core buttons |
-| `SELKIES_UI_SIDEBAR_SHOW_VIDEO_SETTINGS` | `True` | Video settings section |
-| `SELKIES_UI_SIDEBAR_SHOW_SCREEN_SETTINGS` | `True` | Screen settings section |
-| `SELKIES_UI_SIDEBAR_SHOW_AUDIO_SETTINGS` | `True` | Audio settings section |
-| `SELKIES_UI_SIDEBAR_SHOW_STATS` | `True` | Stats section |
-| `SELKIES_UI_SIDEBAR_SHOW_CLIPBOARD` | `True` | Clipboard section |
-| `SELKIES_UI_SIDEBAR_SHOW_FILES` | `True` | File transfer section |
-| `SELKIES_UI_SIDEBAR_SHOW_APPS` | `True` | Applications section |
-| `SELKIES_UI_SIDEBAR_SHOW_SHARING` | `True` | Sharing section |
-| `SELKIES_UI_SIDEBAR_SHOW_GAMEPADS` | `True` | Gamepads section |
-| `SELKIES_UI_SIDEBAR_SHOW_FULLSCREEN` | `True` | Fullscreen button |
-| `SELKIES_UI_SIDEBAR_SHOW_GAMING_MODE` | `True` | Gaming mode button |
-| `SELKIES_UI_SIDEBAR_SHOW_TRACKPAD` | `True` | Virtual trackpad button |
-| `SELKIES_UI_SIDEBAR_SHOW_KEYBOARD_BUTTON` | `True` | On screen keyboard button in the display area |
-| `SELKIES_UI_SIDEBAR_SHOW_SOFT_BUTTONS` | `True` | Soft buttons section |
+| `SELKIES_UI_TITLE` | `Selkies` | Title in the top left corner of the sidebar |
+| `SELKIES_UI_SHOW_LOGO` | `true` | Show the Selkies logo in the sidebar |
+| `SELKIES_UI_SHOW_SIDEBAR` | `true` | Show the main sidebar UI |
+| `SELKIES_UI_SHOW_CORE_BUTTONS` | `true` | Show the display, audio, microphone, webcam, and gamepad core buttons |
+| `SELKIES_UI_SIDEBAR_SHOW_VIDEO_SETTINGS` | `true` | Video settings section |
+| `SELKIES_UI_SIDEBAR_SHOW_SCREEN_SETTINGS` | `true` | Screen settings section |
+| `SELKIES_UI_SIDEBAR_SHOW_AUDIO_SETTINGS` | `true` | Audio settings section |
+| `SELKIES_UI_SIDEBAR_SHOW_STATS` | `true` | Stats section |
+| `SELKIES_UI_SIDEBAR_SHOW_SHORTCUTS` | `true` | Keyboard shortcuts section |
+| `SELKIES_UI_SIDEBAR_SHOW_CLIPBOARD` | `true` | Clipboard section |
+| `SELKIES_UI_SIDEBAR_SHOW_FILES` | `true` | File transfer section. `HARDEN_DESKTOP` hides it |
+| `SELKIES_UI_SIDEBAR_SHOW_APPS` | `true` | Applications section. `HARDEN_DESKTOP` hides it |
+| `SELKIES_UI_SIDEBAR_SHOW_SHARING` | `true` | Sharing section |
+| `SELKIES_UI_SIDEBAR_SHOW_GAMEPADS` | `true` | Gamepads section. `NO_GAMEPAD` hides it |
+| `SELKIES_UI_SIDEBAR_SHOW_WEBCAM` | `true` | Webcam toggle among the core buttons. Hides the control only, `SELKIES_WEBCAM_ENABLED` governs whether the server accepts frames |
+| `SELKIES_UI_SIDEBAR_SHOW_FULLSCREEN` | `true` | Fullscreen button |
+| `SELKIES_UI_SIDEBAR_SHOW_GAMING_MODE` | `true` | Gaming mode button |
+| `SELKIES_UI_SIDEBAR_SHOW_TRACKPAD` | `true` | Virtual trackpad button |
+| `SELKIES_UI_SIDEBAR_SHOW_KEYBOARD_BUTTON` | `true` | On screen keyboard button in the display area |
+| `SELKIES_UI_SIDEBAR_SHOW_SOFT_BUTTONS` | `true` | Soft buttons section |
 
-### Plumbing
+### Server and diagnostics
+
+The container's built in Nginx owns the listening ports, TLS, basic auth, and the `SUBFOLDER` prefix, and the init scripts hand the matching values to Selkies. Use the container variables (`CUSTOM_PORT`, `CUSTOM_HTTPS_PORT`, `CUSTOM_WS_PORT`, `CUSTOM_USER`, `PASSWORD`, `SUBFOLDER`) rather than the Selkies server's own listener, HTTPS, and basic auth settings, which exist for running the `selkies` binary outside these containers.
 
 | Variable | Default | Description |
 | --- | --- | --- |
-| `SELKIES_PORT` (or `CUSTOM_WS_PORT`) | `8082` | Data WebSocket server port |
-| `SELKIES_DRI_NODE` (or `DRI_NODE`) | `''` | DRI render node for VA-API |
-| `SELKIES_AUDIO_DEVICE_NAME` | `'output.monitor'` | Audio device for pcmflux capture |
-| `SELKIES_WATERMARK_PATH` (or `WATERMARK_PNG`) | `''` | Absolute path to watermark PNG |
+| `SELKIES_ALLOWED_ORIGINS` | `*` (upstream same origin) | Comma separated browser Origins allowed to open the streaming WebSocket, a cross site WebSocket hijacking guard. Relaxed in the containers because Nginx fronts the server |
+| `SELKIES_PUBLIC` | `false` | Listen on every interface instead of loopback. Leave it alone in the containers, Nginx is the public face and the server refuses to start when both this and `SELKIES_ADDR` are set |
+| `SELKIES_ENABLE_METRICS_HTTP` | `false` | Prometheus metrics endpoint on the Selkies server |
+| `SELKIES_ENABLE_WEBRTC_STATISTICS` | `false` | Dump WebRTC statistics CSVs from the client |
+| `SELKIES_WEBRTC_STATISTICS_DIR` | `/tmp` | Directory for those CSVs, `selkies-stats-video-[timestamp].csv` and `selkies-stats-audio-[timestamp].csv` |
+
+### Display backend
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `SELKIES_WAYLAND` (or `PIXELFLUX_WAYLAND`) | `false` | Run the Wayland headless compositor backend instead of X11 capture and input. Each container image bakes in `PIXELFLUX_WAYLAND` for the stack its application or desktop runs on |
+| `SELKIES_APP_WAYLAND_DISPLAY` | `''` | Wayland socket applications run on when it differs from the capture compositor, for a nested session. Empty auto detects |
+| `SELKIES_WAYLAND_HOST_DISPLAY` | `''` | Socket of an external compositor (labwc started headless, for example) that pixelflux captures and injects into as a client instead of compositing itself. Empty keeps the built in compositor |
+| `SELKIES_WAYLAND_SOCKET_INDEX` | `0` | Index for the Wayland command socket, `0` is `wayland-0` |
+| `SELKIES_COMPUTER_USE_BIND` | `''` | Start pixelflux's Computer Use HTTP server on comma separated entries, a bare port listens on loopback only, `host:port` names the address. `PIXELFLUX_CU` remains the standalone fallback |
+
+### Lifecycle hooks
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `SELKIES_RUN_AFTER_CONNECT` | `''` | Shell command run after the first client connects, and again whenever a client connects while no others are connected |
+| `SELKIES_RUN_AFTER_DISCONNECT` | `''` | Shell command run after the last client disconnects, including on server shutdown while clients are connected |
+| `SELKIES_APP_WAIT_READY` | `false` | Wait for the ready file to exist before starting the stream |
+| `SELKIES_APP_READY_FILE` | `/tmp/selkies-appready` | File a sidecar creates to signal the application is ready |
+
+### Watermark
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `SELKIES_WATERMARK_PATH` (or `WATERMARK_PNG`) | `''` | Absolute path to a watermark PNG |
 | `SELKIES_WATERMARK_LOCATION` (or `WATERMARK_LOCATION`) | `-1` | Watermark location enum 0 to 6 |
+
+### WebRTC networking, STUN, and TURN
+
+Setting any of these switches the container into WebRTC mode with the transport switch enabled. They are only meaningful for WebRTC; the [WebRTC Transport](webrtc.md) page explains when you need which.
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `SELKIES_WEBRTC_PUBLIC_IP` | `''` | Public IPv4 and/or IPv6 address (comma or space separated) to advertise in host ICE candidates, for a host behind static 1:1 NAT such as a cloud instance with an elastic IP. STUN and TURN candidates are left untouched |
+| `SELKIES_WEBRTC_PORT_RANGE` | `''` | Inclusive UDP port range `min-max` (e.g. `50000-50100`) that sessions bind into, both bounds within `1024` to `65535`. Empty uses ephemeral OS ports |
+| `SELKIES_WEBRTC_UDP_MUX_PORT` | `0` | Single UDP port every session shares for its host candidates, so one forwarded port serves any number of sessions. `0` gives each session its own sockets |
+| `SELKIES_WEBRTC_TCP_MUX_PORT` | `0` | Single TCP port the server accepts ICE-TCP connections on, so clients on networks that block UDP still connect. May equal the UDP mux port. `0` offers no TCP candidates |
+| `SELKIES_WEBRTC_ICE_LITE` | `false` | Run the server's ICE agent as ICE-lite, offering host candidates only. Suits a server whose host candidates are reachable as advertised: a public address, a static NAT with the public IP set, or forwarded mux ports |
+| `SELKIES_STUN_HOST` | `stun.l.google.com` | STUN host for NAT hole punching, change to an internal server on networks without internet |
+| `SELKIES_STUN_PORT` | `19302` | STUN port |
+| `SELKIES_RTC_CONFIG_JSON` | `/tmp/rtc.json` | JSON file with a full WebRTC ICE configuration, checked periodically. When it exists it overrides every other STUN and TURN setting |
+| `SELKIES_TURN_REST_URI` | `''` | URI of a TURN REST API service that hands out time limited credentials, e.g. `http://localhost:8008`. Overrides the static TURN settings below |
+| `SELKIES_TURN_REST_API_KEY` | `''` | API key sent to the TURN REST API service |
+| `SELKIES_TURN_REST_USERNAME` | `''` | Username sent to the TURN REST API service, empty uses `selkies` |
+| `SELKIES_TURN_REST_USERNAME_AUTH_HEADER` | `x-auth-user` | Header carrying the username to the TURN REST API |
+| `SELKIES_TURN_REST_PROTOCOL_HEADER` | `x-turn-protocol` | Header carrying the desired TURN protocol to the TURN REST API |
+| `SELKIES_TURN_REST_TLS_HEADER` | `x-turn-tls` | Header carrying the TURN TLS preference to the TURN REST API |
+| `SELKIES_TURN_HOST` | `staticauth.openrelay.metered.ca` | TURN host for shared secret or long term credentials, IPv6 addresses in square brackets |
+| `SELKIES_TURN_PORT` | `443` | TURN port |
+| `SELKIES_TURN_PROTOCOL` | `udp` | TURN transport the client uses, `udp` or `tcp`. Use `tcp` only if UDP is blocked |
+| `SELKIES_TURN_TLS` | `false` | TURN over TLS (TCP) or DTLS (UDP), requires a valid certificate on the TURN server |
+| `SELKIES_TURN_SHARED_SECRET` | `openrelayprojectsecret` | Shared secret used to generate time limited HMAC credentials, with `SELKIES_TURN_HOST` and `SELKIES_TURN_PORT` |
+| `SELKIES_TURN_USERNAME` | `''` | Long term credential username, with `SELKIES_TURN_HOST` and `SELKIES_TURN_PORT` |
+| `SELKIES_TURN_PASSWORD` | `''` | Long term credential password |
+| `SELKIES_ENABLE_CLOUDFLARE_TURN` | `false` | Use the Cloudflare TURN service, requires the two Cloudflare variables below |
+| `SELKIES_CLOUDFLARE_TURN_TOKEN_ID` | `''` | Cloudflare TURN app token ID |
+| `SELKIES_CLOUDFLARE_TURN_API_TOKEN` | `''` | Cloudflare TURN API token |
 
 ## Optional run configurations
 

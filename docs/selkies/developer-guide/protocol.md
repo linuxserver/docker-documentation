@@ -1,6 +1,6 @@
 # The Streaming Protocol
 
-The wire protocol between the Selkies server and the web client, for anyone implementing a client, embedding the engine, or debugging with a network inspector. Everything rides **one WebSocket** (proxied at `<base>/websocket`), carrying a mix of binary frames and terse text messages. There is no negotiation dance: connect, receive settings, start receiving media.
+The wire protocol between the Selkies server and the web client, for anyone implementing a client, embedding the engine, or debugging with a network inspector. Everything rides **one WebSocket** (proxied at `<base>/api/websockets`), carrying a mix of binary frames and terse text messages. In the opt in [WebRTC mode](../user-guide/webrtc.md) the same text messages travel over a data channel and media over RTP, with signaling at `<base>/api/webrtc/signaling`. There is no negotiation dance: connect, receive settings, start receiving media.
 
 ## Connection and roles
 
@@ -17,12 +17,12 @@ The first byte of every binary frame is a type tag:
 
 | Tag | Payload | Header layout (big endian) |
 | --- | --- | --- |
-| `0x00` | Full frame H.264 | `[1]` keyframe flag, `[2:4]` uint16 frame id, payload follows |
+| `0x00` | Full frame video | `[1]` keyframe flag, `[2:4]` uint16 frame id, payload follows |
 | `0x01` | Opus audio packet | 2 byte header, then the Opus packet |
 | `0x03` | JPEG stripe | `[2:4]` frame id, `[4:6]` stripe Y offset, then the JPEG |
-| `0x04` | H.264 stripe | `[1]` frame type (1 IDR, 2 I, 0 other), `[2:4]` frame id, `[4:6]` stripe Y offset, `[6:8]` width, `[8:10]` height, then Annex B NALs |
+| `0x04` | Video stripe | `[1]` low nibble frame type (1 IDR, 2 I, 0 other), high nibble codec id (1 H.264, 2 VP8, 3 VP9, 4 AV1, 5 H.265), `[2:4]` frame id, `[4:6]` stripe Y offset, `[6:8]` width, `[8:10]` height, then the codec's own bitstream units |
 
-These headers are produced by pixelflux itself (see the [wire format details](../components/pixelflux.md#api-sketch)); the Python server broadcasts them untouched. A full frame is just a stripe at Y offset 0 with full height. The client feeds H.264 to a WebCodecs `VideoDecoder` per stream, decodes JPEG stripes with `createImageBitmap`, and composites stripes onto the canvas at their Y offsets. The frame type byte reflects what the encoder actually emitted, clients use it to recover decoder state after drops.
+These headers are produced by pixelflux itself (see the [wire format details](../components/pixelflux.md#api-sketch)); the Python server broadcasts them untouched. A full frame is just a stripe at Y offset 0 with full height. The client configures a WebCodecs `VideoDecoder` per stream from the codec id and the key frame's own parameter sets, decodes JPEG stripes with `createImageBitmap`, and composites stripes onto the canvas at their Y offsets. The frame type nibble reflects what the encoder actually emitted, clients use it to recover decoder state after drops.
 
 ## Binary messages, client to server
 
@@ -84,8 +84,8 @@ Client sends `SETTINGS,{"framerate":60,"h264_crf":20,...}`; the server validates
 ## Implementing a client: a minimal path
 
 1. Open the WebSocket with `binaryType = 'arraybuffer'`, send `START_VIDEO` and `START_AUDIO` after receiving `server_settings`.
-2. Demux on byte zero. Feed `0x00` and `0x04` frames (strip the header, respect the keyframe flag) into a WebCodecs H.264 decoder configured from the stripe dimensions; paint `0x03` JPEGs at their offsets; queue `0x01` Opus into an audio decoder.
+2. Demux on byte zero. Feed `0x00` and `0x04` frames (strip the header, respect the keyframe flag) into a WebCodecs decoder for the codec the header names, configured from the stripe dimensions; paint `0x03` JPEGs at their offsets; queue `0x01` Opus into an audio decoder.
 3. Send `CLIENT_FRAME_ACK` with the latest presented frame id a few times per second.
 4. Map your input events to the `kd`, `ku`, `m` or `m2` grammar.
 
-That is a functioning viewer; everything else (clipboard, files, gamepads, stats) is additive. Start from the example client in the [pixelflux repository](https://github.com/linuxserver/pixelflux): `example/screen_to_browser.py` plus `example/index.html` are a complete working server and client pair, with the frame parsing in about a page of code.
+That is a functioning viewer; everything else (clipboard, files, gamepads, stats) is additive. Start from the example client in the [pixelflux repository](https://github.com/selkies-project/pixelflux): `example/screen_to_browser.py` plus `example/index.html` are a complete working server and client pair, with the frame parsing in about a page of code.

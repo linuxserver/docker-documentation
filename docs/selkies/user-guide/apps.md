@@ -31,9 +31,9 @@ Every image in this catalog is built on the same [Selkies baseimage](../componen
 
 How to read the matrix:
 
-- **Wayland Support** means the flavor can run the modern Wayland stack. XFCE flavors marked this way carry experimental XFCE Wayland support, and the i3 flavors run **Sway** when in Wayland mode.
-- **Wayland Only** flavors cannot use X11 at all. All KDE images now run in Wayland mode by default.
-- Unmarked flavors run the X11 stack. X11 will die off eventually, the platform is all in on Wayland because of the true zero copy pipeline it unlocks, the performance difference is night and day. Prefer a Wayland capable flavor whenever you can.
+- **Wayland Support** means the flavor can run the Wayland stack. XFCE flavors marked this way carry experimental XFCE Wayland support, and the i3 flavors run **Sway** when in Wayland mode.
+- **Wayland Only** flavors cannot use X11 at all. All KDE images run in Wayland mode by default.
+- Unmarked flavors run the X11 stack. Both stacks encode with zero copy on a GPU and share the same CPU pipeline without one, so pick the flavor by the desktop you want rather than by the display server.
 
 ```bash
 docker run -d \
