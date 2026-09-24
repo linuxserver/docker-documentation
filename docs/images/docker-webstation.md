@@ -42,7 +42,7 @@ The application can be accessed at:
 
 * https://yourhost:3001/
 
-**This image only runs in Wayland mode and should be run with a GPU**
+**This image should be run with a GPU**
 
 ### Strict reverse proxies
 
@@ -437,6 +437,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **23.09.26:** - Updates for selkies v2, add X11 support.
 * **21.08.26:** - Add Xenia Edge emulator.
 * **13.08.26:** - Add Azahar emulator.
 * **10.08.26:** - Add Cemu emulator.
