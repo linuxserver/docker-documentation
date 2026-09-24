@@ -433,6 +433,7 @@ To help with development, we generate this dependency graph.
       init-services -> svc-de
       legacy-cont-init -> svc-de
       svc-nginx -> svc-de
+      svc-selkies -> svc-de
       svc-xorg -> svc-de
       svc-de -> legacy-services
       init-services -> svc-docker
