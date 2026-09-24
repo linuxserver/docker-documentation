@@ -42,7 +42,7 @@ The application can be accessed at:
 
 * https://yourhost:3001/
 
-**This image only runs in Wayland mode and should be run with a GPU**
+**This image should be run with a GPU**
 
 ### Strict reverse proxies
 
@@ -406,6 +406,7 @@ To help with development, we generate this dependency graph.
       init-services -> svc-de
       legacy-cont-init -> svc-de
       svc-nginx -> svc-de
+      svc-selkies -> svc-de
       svc-xorg -> svc-de
       svc-de -> legacy-services
       init-services -> svc-docker
@@ -415,7 +416,6 @@ To help with development, we generate this dependency graph.
       init-services -> svc-pulseaudio
       svc-pulseaudio -> legacy-services
       init-services -> svc-selkies
-      svc-dbus -> svc-selkies
       svc-nginx -> svc-selkies
       svc-pulseaudio -> svc-selkies
       svc-xorg -> svc-selkies
