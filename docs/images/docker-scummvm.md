@@ -438,6 +438,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **22.09.26:** - Update for Selkies v2, default to X11 for cursor.
 * **20.06.26:** - Rebase to Debian Trixie, make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **13.01.26:** - Rebase to Ubuntu Noble, add wayland init.
 * **25.08.25:** - Initial release.
