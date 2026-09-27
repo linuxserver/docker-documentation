@@ -379,6 +379,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **27.09.26:** - Pin libtorrent to 2.0.13 due to deprecated function. Fix cron for GeoIP updates.
 * **02.04.26:** - Install from pypi due to Alpine geoip package deprecation.
 * **29.12.25:** - Fix some issues with GeoIP updates.
 * **23.08.25:** - Update GeoIP provider, add weekly cronjob to update.
