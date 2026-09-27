@@ -5,7 +5,7 @@ title: xvfb
 <!-- Please read https://github.com/linuxserver/docker-xvfb/blob/master/.github/CONTRIBUTING.md -->
 # THIS PROJECT HAS BEEN REPLACED
 
-Please use [https://github.com/linuxserver/selkies-layers](for maintained xvfb layers with dri3 support)
+Please use [https://github.com/linuxserver/selkies-layers](https://github.com/linuxserver/selkies-layers) for maintained xvfb layers with dri3 support.
 
 # XVFB patched with DRI3/Glamor
 These images contain a patched up to date binary version of xvfb, to apply them to any image simply: 
