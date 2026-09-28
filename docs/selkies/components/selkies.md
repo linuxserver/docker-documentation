@@ -15,7 +15,7 @@ Selkies is the heart of the platform: a ground up, web native remote desktop pro
 - **Clipboard**: bidirectional sync via `wl-clipboard` on Wayland or `xclip` on X11, with optional binary (image) clipboard support and chunked transfer for large payloads.
 - **Files**: receives chunked uploads over the socket into the session; downloads are served by the container's Nginx file index.
 - **Settings and stats**: pushes the sanitized settings schema to the client (this is what builds the sidebar UI, including which controls are locked), and streams CPU, GPU, memory, and network stats.
-- **Sharing and roles**: manages primary, collaborator, view only, and player 2 to 4 roles, either via URL fragments (`#shared`, `#collab`, `#player2`) or, in secure deployments, via a token control plane on an internal port (`POST /tokens` authorized by `SELKIES_MASTER_TOKEN`), which is what [SealSkin](sealskin.md) uses for its collaboration rooms.
+- **Sharing and roles**: manages primary, collaborator, view only, and player 2 to 4 roles, either via URL fragments (`#shared`, `#collab`, `#player2`) or, in secure deployments, via session tokens registered through the token API (`POST /api/tokens` authorized by `SELKIES_MASTER_TOKEN`), which is what [SealSkin](sealskin.md) uses for its collaboration rooms.
 
 Configuration is uniform: every setting is simultaneously a CLI flag (`--framerate`) and an environment variable (`SELKIES_FRAMERATE`), with the value syntax (ranges, enums, `|locked`) described in the [Configuration Reference](../user-guide/configuration.md). The protocol itself is documented in [The Streaming Protocol](../developer-guide/protocol.md).
 
@@ -40,8 +40,7 @@ Both are preloaded automatically in the baseimages, and `NO_GAMEPAD=true` turns 
 
 | Port | What |
 | --- | --- |
-| 8082 | The Selkies server (`SELKIES_PORT`, upstream default is 8080, the baseimages set 8082 via `CUSTOM_WS_PORT`). Nginx proxies everything under `/api` to it: the data WebSocket at `/api/websockets`, WebRTC signaling at `/api/webrtc/signaling`, the transport switch, and the file browser at `/api/files/` |
-| 8083 | Token control plane for secure sharing mode, never expose it |
+| 8082 | The Selkies server (`SELKIES_PORT`, upstream default is 8080, the baseimages set 8082 via `CUSTOM_WS_PORT`). Nginx proxies everything under `/api` to it: the data WebSocket at `/api/websockets`, WebRTC signaling at `/api/webrtc/signaling`, the transport switch, the secure mode token API at `/api/tokens` (master token only), and the file browser at `/api/files/` |
 | 3000 / 3001 | Nginx HTTP and HTTPS in front of everything ([baseimage](baseimages.md) territory) |
 
 ## Relationship to the rest of the stack
