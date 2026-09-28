@@ -68,12 +68,11 @@ One config, two identical server blocks (HTTP 3000, HTTPS 3001):
 | Location | Purpose |
 | --- | --- |
 | `SUBFOLDER` (default `/`) | The web client static files from `/usr/share/selkies/web/` |
-| `SUBFOLDERwebsocket` | Proxy to the Selkies data WebSocket on 127.0.0.1:8082 |
-| `SUBFOLDERfiles` | fancyindex download listing of `FILE_MANAGER_PATH` (default `/config/Desktop`), removed entirely when downloads are disabled or `HARDEN_DESKTOP` is on |
+| `SUBFOLDERapi` | Proxy to the Selkies server on 127.0.0.1:8082: the data WebSocket, WebRTC signaling, the secure mode token API, and the file browser at `api/files/`, refused when `SELKIES_FILE_TRANSFERS` leaves out downloads (`HARDEN_DESKTOP` empties it unless it is set) |
 | `SUBFOLDERpelorus/` | Proxy to the Pelorus API on 127.0.0.1:5100 |
 | `/devmode` | Proxy to a Vite dev server, see [Development Environment](development.md) |
 
-All proxy locations use hour long timeouts, no buffering, and a 10MB body cap. Because substitution is plain `sed`, exotic characters in `PASSWORD` or `SUBFOLDER` can break the config, keep them simple.
+All proxy locations use hour long timeouts and no buffering; `api` passes request bodies of any size, unbuffered, and the others cap them at 10MB. Because substitution is plain `sed`, exotic characters in `PASSWORD` or `SUBFOLDER` can break the config, keep them simple.
 
 ## Internal port map
 
@@ -81,7 +80,6 @@ All proxy locations use hour long timeouts, no buffering, and a 10MB body cap. B
 | --- | --- | --- |
 | 3000, 3001 | Nginx | Published, everything user facing |
 | 8082 | Selkies WebSocket | localhost only, via Nginx |
-| 8083 | Selkies token control plane | localhost only, orchestrators call it, never expose |
 | 5100 | Pelorus API | localhost only, via Nginx at `/pelorus/` |
 | 5000 | pixelflux Computer Use API | localhost only |
 | 5173 | Vite dev server | localhost only, via `/devmode` |

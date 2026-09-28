@@ -4,10 +4,10 @@ The wire protocol between the Selkies server and the web client, for anyone impl
 
 ## Connection and roles
 
-The client connects to `wss://host/<subfolder>websocket`. Role assignment happens one of two ways:
+The client connects to `wss://host/<subfolder>api/websockets`. Role assignment happens one of two ways:
 
 - **Fragment mode** (default): the URL fragment the page was opened with decides the role, `#shared` (view only), `#collab` (full control), `#player2` through `#player4` (gamepad slot only), `#display2-right` and friends (second monitor surface). No fragment means primary.
-- **Token mode** (when the server was started with `SELKIES_MASTER_TOKEN`): the client must present `?token=<token>` in the WebSocket URL. Tokens and their roles are registered by the orchestrator via `POST /tokens` on the internal control port with the master token as a bearer credential. Close codes: `4001` invalid token, `4002` revoked, `4029` reconnecting too fast.
+- **Token mode** (when the server was started with `SELKIES_MASTER_TOKEN`): the page is opened with the session token in the fragment, `#token=<token>` (after a role or display fragment: `#display2-right&token=<token>`), or in the query, `?token=<token>`. A fragment token never reaches a request line: the client offers it on the WebSocket as the subprotocol `selkies.token.<token, base64url without padding>` beside `selkies`, which the server selects, while a query token rides the WebSocket URL as `?token=<token>`. Tokens and their roles are registered by the orchestrator via `POST /api/tokens` with the master token as a bearer credential (`Authorization`, or `Selkies-Authorization` beside a Basic login). Close codes: `4001` invalid token, `4002` revoked, `4029` reconnecting too fast.
 
 On success the server sends `MODE websockets`, an auth confirmation with the assigned role, and a `server_settings` JSON message containing every tunable setting with its value, allowed range or enum, and locked flag, this single message is what renders the sidebar UI, which is why locking a setting server side removes the control everywhere.
 
