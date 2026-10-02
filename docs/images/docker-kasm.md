@@ -63,7 +63,9 @@ Following the upgrade, you will need to update any workspace image tags to match
 
 ### GPU Support
 
-During installation an option will be presented to force all Workspace containers to mount in and use a specific GPU. If using an NVIDIA GPU you will need to pass `-e NVIDIA_VISIBLE_DEVICES=all` or `--gpus all` and have the [NVIDIA Container Toolkit](https://github.com/NVIDIA/nvidia-container-toolkit) installed on the host. Also if using NVIDIA, Kasm Workspaces has [native NVIDIA support](https://docs.kasm.com/docs/latest/how-to/gpu/index.html) so you can optionally opt to simply use that instead of he manual override during installation.
+During installation an option will be presented to force all Workspace containers to mount in and use a specific GPU. If using an NVIDIA GPU you will need to pass `-e NVIDIA_VISIBLE_DEVICES=all` or `--gpus all` and have the [NVIDIA Container Toolkit](https://github.com/NVIDIA/nvidia-container-toolkit) installed on the host. Also if using NVIDIA, Kasm Workspaces has [native NVIDIA support](https://docs.kasm.com/docs/latest/how-to/gpu/index.html) so you can optionally opt to simply use that instead of the manual override during installation.
+
+When NVIDIA devices are passed to this container, a [CDI](https://github.com/cncf-tags/container-device-interface) specification describing them is generated inside the DinD layer on startup and the NVIDIA runtime is made the default one there. This is what allows the driver, and with it Vulkan and OpenGL, to reach the Workspace containers.
 
 ### Gamepad support
 
@@ -371,6 +373,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **07.08.26:** - Fix NVIDIA passthrough to Workspace containers by generating a CDI specification inside the DinD layer.
 * **04.08.26:** - Give kasm_manager a healthcheck start period so a cold start does not leave kasm_proxy created but never started.
 * **16.04.26:** - Update for 1.18.1 release. Use rolling service images. Bump docker to v29.
 * **13.11.25:** - Pin docker to v28 to avoid API deprecation issues.
