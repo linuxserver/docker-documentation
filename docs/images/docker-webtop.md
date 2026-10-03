@@ -427,6 +427,9 @@ To help with development, we generate this dependency graph.
       init-selkies-config -> init-video
       init-services -> svc-cron
       svc-cron -> legacy-services
+      init-services -> svc-dbus
+      svc-xorg -> svc-dbus
+      svc-dbus -> legacy-services
       init-services -> svc-de
       legacy-cont-init -> svc-de
       svc-nginx -> svc-de
@@ -461,6 +464,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **02.10.26:** - Quality of life upgrades for KDE, MATE, and Xfce. Install base packages for flavors initialize KDE sessions properly.
 * **21.09.26:** - Updates for Selkies v2, add x11 init for ubuntu-kde, show ubuntu-lxqt branch.
 * **10.06.26:** - Rebase Alpine images to 3.24.
 * **07.05.26:** - Deprecate Enterprise Linux tags.
