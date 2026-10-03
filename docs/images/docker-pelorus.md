@@ -50,12 +50,6 @@ Pelorus ships with a **split plane** landing page served over HTTPS on port **30
 
 HTTP on port **3000** serves only the Selkies desktop session (no Pelorus UI).
 
-## LLM Provider
-
-By default the agent is configured to use **opencode big-pickle** for demo purposes. Users are encouraged to link up their own paid providers or a locally hosted endpoint.
-
-If you would like to support opencode, you can sign up for [opencode Go](https://opencode.ai/go).
-
 ### Provider Environment Variables
 
 Set these to setup a provider on first boot:
@@ -430,6 +424,9 @@ To help with development, we generate this dependency graph.
       init-selkies-config -> init-video
       init-services -> svc-cron
       svc-cron -> legacy-services
+      init-services -> svc-dbus
+      svc-xorg -> svc-dbus
+      svc-dbus -> legacy-services
       init-services -> svc-de
       legacy-cont-init -> svc-de
       svc-nginx -> svc-de
