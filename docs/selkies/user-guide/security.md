@@ -34,7 +34,7 @@ Modern browser features the client depends on, WebCodecs for video and audio in 
 
 For kiosk deployments, single app terminals, classrooms, or any situation where the person at the keyboard is not the administrator, the baseimage ships lockdown variables.
 
-Note that the window manager level switches (`HARDEN_OPENBOX`, `DISABLE_CLOSE_BUTTON`, `DISABLE_MOUSE_BUTTONS`, `HARDEN_KEYBINDS`) only apply to **single application containers**, which run under labwc or Openbox. Full desktop Webtops manage their own windows, so only the desktop wide switches (`HARDEN_DESKTOP` and the `SELKIES_*` locks) matter there. The mechanics are documented in depth in [the developer guide](../developer-guide/building-images.md#the-window-manager-layer-labwc-and-openbox).
+Note that the window manager level switches (`HARDEN_OPENBOX`, `DISABLE_CLOSE_BUTTON`, `DISABLE_WINDOW_BUTTONS`, `DISABLE_MOUSE_BUTTONS`, `HARDEN_KEYBINDS`) only apply to **single application containers**, which run under labwc or Openbox. Full desktop Webtops manage their own windows, so only the desktop wide switches (`HARDEN_DESKTOP` and the `SELKIES_*` locks) matter there. The mechanics are documented in depth in [the developer guide](../developer-guide/building-images.md#the-window-manager-layer-labwc-and-openbox).
 
 ### Umbrella switches
 
@@ -51,6 +51,7 @@ Note that the window manager level switches (`HARDEN_OPENBOX`, `DISABLE_CLOSE_BU
 | `DISABLE_SUDO` | Disables `sudo` by removing execute permissions and invalidating the passwordless sudo configuration |
 | `DISABLE_TERMINALS` | Disables common terminal emulators and hides them from the right click menu |
 | `DISABLE_CLOSE_BUTTON` | Removes the close button from window title bars |
+| `DISABLE_WINDOW_BUTTONS` | Removes the minimize, maximize and close buttons from window title bars |
 | `DISABLE_MOUSE_BUTTONS` | Disables right click and middle click context menus and actions in the window manager |
 | `HARDEN_KEYBINDS` | Disables window manager keybinds that could bypass the other options, such as `alt+f4` to close windows or `alt+escape` for the root menu |
 | `RESTART_APP` | Watchdog that restarts the main application if it is closed. The user's autostart script is made read only and root owned to prevent tampering |
