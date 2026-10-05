@@ -250,7 +250,8 @@ The session has a printer named `Selkies`. Selkies runs the CUPS queue itself as
 | Variable | Default | Description |
 | --- | --- | --- |
 | `SELKIES_PRINTING_ENABLED` | `true` | Offer the `Selkies` printer to the session and hand each document to the browser. `false` runs no queue and hides the printing section. `HARDEN_DESKTOP` turns it off unless you set it yourself. Documents go to the page holding the session, shared viewers receive none |
-| `SELKIES_PRINT_SPOOL_PATH` | `~/.local/state/selkies/print` | Directory finished print jobs land in as PDFs until a page takes them |
+| `SELKIES_PRINT_SPOOL_PATH` | `''` | Directory finished print jobs land in as PDFs until a page takes them. Empty uses `selkies/print` under `XDG_STATE_HOME`, or `~/.local/state/selkies/print` where that is unset, as in these images (`/config/.local/state/selkies/print`) |
+| `PAPERSIZE` | unset | Paper the `Selkies` printer defaults to, for a document that names no size of its own: one of its sizes, matched ignoring case (`a4`, `a3`, `a5`, `letter`, `legal`, `tabloid`, `executive`). Unset, or a size it does not offer, keeps A4 |
 | `SELKIES_AUDIT_WEBHOOK_URL` | `''` | URL that receives one JSON POST per audit event. Metadata only, never content. Empty is off, and a queue of 1024 pending events drops on overflow with no retry |
 | `SELKIES_AUDIT_WEBHOOK_TOKEN` | `''` | Bearer token sent in the `Authorization` header of every audit POST |
 | `SELKIES_AUDIT_WEBHOOK_TIMEOUT` | `2.0` | Seconds one audit POST may take before it counts as failed and the next one is sent |
