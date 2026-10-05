@@ -161,6 +161,7 @@ At container init, `init-selkies-config` rewrites the rc.xml based on environmen
 | `NO_DECOR` | Flips the decoration rules to `serverDecoration="no"` (Openbox: injects `<decor>no</decor>`) |
 | `NO_FULL` | Deletes the maximize on launch window rule |
 | `DISABLE_CLOSE_BUTTON` | Strips `close` from the titlebar button layout |
+| `DISABLE_WINDOW_BUTTONS` | Strips `iconify`, `max` and `close` from the titlebar button layout (Openbox: `I`, `M` and `C` from `titleLayout`) |
 | `DISABLE_MOUSE_BUTTONS` | Deletes the right and middle click mousebinds, removing the root menu and client list |
 | `HARDEN_KEYBINDS` | Comments out the escape hatch keybinds (`alt+f4`, `alt+escape`, `alt+space`, Super+E) |
 
