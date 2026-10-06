@@ -353,6 +353,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **05.10.26:** - Pin `av` to 18.x.
 * **16.08.26:** - Rebase to Ubuntu Resolute.
 * **26.01.26:** - Default to `auto` for model and language if not set.
 * **20.08.25:** - Add gpu-legacy branch for pre-Turing cards.
