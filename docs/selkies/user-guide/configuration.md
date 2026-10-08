@@ -233,13 +233,13 @@ The containers create a virtual `/dev/video0` and preload a V4L2 interposer so o
 | `SELKIES_WEBCAM_PIXEL_FORMAT` | `auto` | Pixel format of the virtual device. `auto` follows the uplink (MJPEG for a browser sending JPEG, otherwise I420). Or pin `I420`, `NV12`, `YUYV`, or `MJPEG` |
 | `SELKIES_WEBCAM_ENCODER` | `auto` | Codec the browser uses for the camera uplink: `auto`, `h264`, `h265`, `vp8`, `vp9`, `av1`, or `mjpeg`. Over WebSockets `auto` tries H.264, then VP8, then VP9, AV1, or H.265 where the browser encodes them, and JPEG where nothing keeps up; a codec name pins it, still dropping to JPEG when it cannot keep up. Over WebRTC the browser sends the named codec when the session negotiated it. Users may override unless locked |
 | `SELKIES_WEBCAM_DEVICE` | `auto` | Also mirror the webcam into a v4l2loopback kernel device: `auto` uses the first one found (usually only on a host or privileged container), a path such as `/dev/video10` uses that device, `false` never does |
-| `SELKIES_WEBCAM_SOCKET_PATH` | `/tmp` | Directory for the V4L2 interposer socket, `selkies_webcam0.sock` |
+| `SELKIES_WEBCAM_SOCKET_PATH` | `''` | Directory for the V4L2 interposer socket, `selkies_webcam0.sock`. Empty uses `XDG_RUNTIME_DIR`, the session's private directory (`/config/.XDG` in these images), and `/tmp` where that is unset; the interposer looks in the same place. |
 
 ### Gamepads
 
 | Variable | Default | Description |
 | --- | --- | --- |
-| `SELKIES_JS_SOCKET_PATH` | `/tmp` | Directory for the input interposer sockets, `selkies_js{0-3}.sock` |
+| `SELKIES_JS_SOCKET_PATH` | `''` | Directory for the input interposer sockets, `selkies_js{0-3}.sock`. Empty uses `XDG_RUNTIME_DIR`, the session's private directory (`/config/.XDG` in these images), and `/tmp` where that is unset; the interposer looks in the same place. |
 | `SELKIES_UINPUT_GAMEPAD` | `auto` | Register gamepads as kernel devices through `/dev/uinput`, which Steam, Proton, and browsers inside the session find without the interposer. `auto` only does so where the interposer is not configured and `/dev/uinput` is writable, `true` always attempts it, `false` never does |
 | `SELKIES_UINPUT_MOUSE_SOCKET` | `''` | Path to a uinput mouse socket, if not provided uinput is used directly |
 
@@ -250,7 +250,8 @@ The session has a printer named `Selkies`. Selkies runs the CUPS queue itself as
 | Variable | Default | Description |
 | --- | --- | --- |
 | `SELKIES_PRINTING_ENABLED` | `true` | Offer the `Selkies` printer to the session and hand each document to the browser. `false` runs no queue and hides the printing section. `HARDEN_DESKTOP` turns it off unless you set it yourself. Documents go to the page holding the session, shared viewers receive none |
-| `SELKIES_PRINT_SPOOL_PATH` | `~/.local/state/selkies/print` | Directory finished print jobs land in as PDFs until a page takes them |
+| `SELKIES_PRINT_SPOOL_PATH` | `''` | Directory finished print jobs land in as PDFs until a page takes them. Empty uses `selkies/print` under `XDG_STATE_HOME`, or `~/.local/state/selkies/print` where that is unset, as in these images (`/config/.local/state/selkies/print`) |
+| `PAPERSIZE` | unset | Paper the `Selkies` printer defaults to, for a document that names no size of its own: one of its sizes, matched ignoring case (`a4`, `a3`, `a5`, `letter`, `legal`, `tabloid`, `executive`). Unset, or a size it does not offer, keeps A4 |
 | `SELKIES_AUDIT_WEBHOOK_URL` | `''` | URL that receives one JSON POST per audit event. Metadata only, never content. Empty is off, and a queue of 1024 pending events drops on overflow with no retry |
 | `SELKIES_AUDIT_WEBHOOK_TOKEN` | `''` | Bearer token sent in the `Authorization` header of every audit POST |
 | `SELKIES_AUDIT_WEBHOOK_TIMEOUT` | `2.0` | Seconds one audit POST may take before it counts as failed and the next one is sent |
