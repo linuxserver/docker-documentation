@@ -69,7 +69,7 @@ Nginx inside the container is the single front door: it serves the static client
 
 ## Sharing and multi user
 
-One session, many sockets. Every connected client gets the same broadcast frames; roles (primary, collab, view only, player N) gate which input messages are honored. In secure mode (used by SealSkin), access requires per user tokens registered through a control plane endpoint on an internal port, and roles can be re assigned live, this is what powers collaboration rooms with granular permissions.
+One session, many sockets. Every connected client gets the same broadcast frames; roles (primary, collab, view only, player N) gate which input messages are honored. In secure mode (used by SealSkin), access requires per user tokens registered through the token API (`POST /api/tokens`, gated by the master token), and roles can be re assigned live, this is what powers collaboration rooms with granular permissions.
 
 ## Where the orchestration layer plugs in
 
