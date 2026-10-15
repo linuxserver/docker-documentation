@@ -396,13 +396,14 @@ To help with development, we generate this dependency graph.
       svc-php-fpm -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine-nginx:3.22" <- "baseimage-alpine:3.22"
+      "baseimage-alpine-nginx:3.24" <- "baseimage-alpine:3.24"
     }
     "nextcloud:latest" <- Base Images
     ```
 
 ## Versions
 
+* **14.10.26:** - Rebase to Alpine 3.24 with php 8.5. Tweak opcache settings according to upstream docs. Import upstream release notes in Github releases.
 * **10.07.25:** - Rebase to Alpine 3.22.
 * **12.02.25:** - Rebase to Alpine 3.21.
 * **09.01.25:** - Fix uploading large files. Existing users should update their nginx confs.
