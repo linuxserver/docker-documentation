@@ -435,6 +435,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **18.10.26:** - Force OrcaSlicer to use the X11 GDK backend to fix UI rendering issues under Wayland.
 * **20.06.26:** - Add aarch64 platform.
 * **11.05.26:** - Rebase to Debian Trixie.
 * **19.04.26:** - Rebase to resolute.
