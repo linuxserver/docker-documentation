@@ -341,6 +341,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **19.10.26:** - Add krb5-libs for better postgresql support.
 * **04.07.26:** - Rebase to Alpine 3.24.
 * **15.01.26:** - Rebase to Alpine 3.23.
 * **05.07.25:** - Rebase Alpine 3.22.
