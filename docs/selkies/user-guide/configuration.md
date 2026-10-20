@@ -34,7 +34,7 @@ These work in every LinuxServer.io container:
 | `AUTO_GPU` | Automatic GPU configuration when one is detected, first available GPU used for encoding and rendering. Set `false` to disable, or a vendor or driver name such as `nvidia`, `amdgpu`, or `intel` to pick a specific GPU on multi GPU hosts |
 | `PIXELFLUX_CU` | Port of pixelflux's own Computer Use API server, the standalone fallback for `SELKIES_COMPUTER_USE_BIND`. `PELORUS=true` sets it to `5000`. The server takes a bearer token from `PIXELFLUX_CU_TOKEN`, see [Display backend](#display-backend) |
 | `SUBFOLDER` | Subfolder when running behind a subfolder reverse proxy, needs both slashes, e.g. `/subfolder/`. Nginx and the Selkies server both read it, Selkies as the fallback for `SELKIES_SUBFOLDER` |
-| `TITLE` | Name of the page when it is installed as a web app (the PWA manifest), default `Selkies`. The sidebar header and the browser tab follow `SELKIES_UI_TITLE` |
+| `TITLE` | Browser tab title and the name of the page when it is installed as a web app, default `Selkies`. The dashboard reads it from the PWA manifest Nginx writes. An explicit `SELKIES_UI_TITLE` names the sidebar header and takes over the tab |
 | `DASHBOARD` | Select the web client dashboard: `selkies-dashboard` or `selkies-dashboard-wish` |
 | `FILE_MANAGER_PATH` | Change the default upload and download path, must be writable by the `abc` user. Fallback for `SELKIES_FILE_MANAGER_PATH` |
 | `START_DOCKER` | If `false`, a privileged container will not automatically start the Docker in Docker setup |
