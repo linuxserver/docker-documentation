@@ -138,13 +138,19 @@ If you notice blurry text, especially light text on dark backgrounds, enable **F
 
 FullColor is carried by H.264 and H.265 on NVENC, x264, and x265, and by VP9 profile 1 on VA-API and libvpx. VP8, AV1, and the OpenH264 software encoder stay 4:2:0 whatever you set, and the sidebar only shows the switch on a codec that carries it.
 
-The caveat is H.264 on Intel and AMD. Current VA-API drivers expose no 4:4:4 H.264 profile, so pixelflux honors the request on the CPU with x264 rather than silently downgrading, which forces a pixel readback from the GPU and costs significant performance. On those cards prefer the default 4:2:0 for motion and let paint over handle static clarity, or try H.265 or VP9, where the driver may negotiate a 4:4:4 surface and stay on the card. The log line `Colorspace:` reports what the session settled on.
+The caveat is H.264 on Intel and AMD. Current VA-API drivers expose no 4:4:4 H.264 profile, so pixelflux honors the request on the CPU with x264 rather than silently downgrading, which forces a pixel readback from the GPU and costs significant performance. On those cards prefer the default 4:2:0 for motion and let paint over handle static clarity, or try H.265 or VP9, where the driver may negotiate a 4:4:4 surface and stay on the card. The log line `Colorspace:` reports what the session settled on. The server knows before a frame is sent which of its encoders carry 4:4:4 on this host, and the browser reports which profiles it decodes, so a full color stream only goes where both ends carry it and the session says so when it streams 4:2:0 instead.
+
+### 10-bit
+
+`SELKIES_VIDEO_10BIT` asks for 10 bits per sample. NVENC carries it for H.265 and AV1, VA-API for H.265, VP9, and AV1, and the software encoders for everything but VP8 and JPEG, x264 included. A GPU without the format hands the session to the software encoder, as it does for a 4:4:4 it lacks, and a software encoder pays for the conversion and the high bit depth coding in CPU. The desktop is an 8 bit source, so the gain is precision in the color conversion rather than new shades: pair it with FullColor 4:4:4 on a card that encodes the format, or leave it off.
 
 ## Wayland and X11
 
 Zero copy works on both display stacks. On Wayland the pixelflux compositor renders into GPU buffers and hands them to the encoder. On X11 the containers run a patched XLibre Xvfb with glamor, so the screen pixmap lives on the GPU, and pixelflux pulls each frame out with a DRI3 blit into a DMA-BUF the encoder imports in place. Intel, AMD, and Nvidia all take this path, and the container log says which capture path was chosen. Images that run both stacks select X11 with `-e PIXELFLUX_WAYLAND=false`.
 
 The same rule applies on either stack: rendering and encoding must happen on the same device for zero copy. A session the DRI3 path cannot serve, for example software encoding or a codec the GPU has no engine for, streams through shared memory capture instead, and the log line says why.
+
+Two more things the containers' Xvfb does for GPU sessions: it fakes its vblank at the rate the session is captured at, so an application that waits for vsync presents one frame per streamed frame instead of being held to 60, and on Nvidia it signals a GPU semaphore after each capture blit that the NVENC encode waits on, so a GPU bound game is encoded without the CPU learning of the blit first.
 
 ## Related environment variables
 

@@ -30,6 +30,10 @@ Modern browser features the client depends on, WebCodecs for video and audio in 
 - Mounting `/var/run/docker.sock` hands the container control of the host Docker daemon, which is root on the host in practical terms. Only do this deliberately.
 - `--security-opt seccomp=unconfined` disables a key Docker security layer. Use it only when a legacy host kernel or old libseccomp genuinely requires it, and treat it as a temporary workaround.
 
+## Embedding and origins
+
+Two settings decide which web pages may reach a session at all. `SELKIES_ALLOWED_ORIGINS` is the cross site WebSocket hijacking guard on the streaming socket; the containers relax it to `*` because Nginx fronts the server, so tighten it to your own origin when the container is reachable from the open internet without a proxy. `SELKIES_FRAME_ANCESTORS` is the Content-Security-Policy `frame-ancestors` directive, `'self'` by default, so another site cannot lay the session under clicks meant for itself. A portal that embeds the desktop in a frame from another origin lists that origin there. Both are in the [Configuration Reference](configuration.md#server-and-diagnostics).
+
 ## Hardening variables
 
 For kiosk deployments, single app terminals, classrooms, or any situation where the person at the keyboard is not the administrator, the baseimage ships lockdown variables.
@@ -93,13 +97,17 @@ Locking the sidebar off entirely (`SELKIES_UI_SHOW_SIDEBAR=false|locked`) is the
 
 ## Sharing links
 
-The sharing feature generates links that grant access to the running session: full collaboration, view only, or gamepad only for players 2 through 4. The built in links are a **demo of the multi user protocol**, they carry no authentication of their own. Proper shared sessions need the token based access control an orchestrator like [SealSkin](../components/sealskin.md) wires up. Remember that anyone with a collaboration link has the same power as the primary user, including that passwordless sudo terminal. Disable what you do not need:
+The sharing feature generates links that grant access to the running session: view only, or gamepad only for players 2 through 4. A second page opened on the session's plain address joins as a full controller beside the first. The built in links are a **demo of the multi user protocol**, they carry no authentication of their own beyond whatever guards the page, so anyone with the address has the same power as the primary user, including that passwordless sudo terminal. Disable what you do not need:
 
 ```bash
--e SELKIES_ENABLE_SHARING=false        # master switch
--e SELKIES_ENABLE_COLLAB=false         # or individually
+-e SELKIES_ENABLE_SHARING=false        # one page holds the session, a second takes it over
+-e SELKIES_ENABLE_SHARED=false         # or drop individual links
 ```
+
+Proper shared sessions need **secure mode**: set `SELKIES_MASTER_TOKEN` and the server ignores the fragments and admits only pages presenting a provisioned token that carries its own role and gamepad slot. The token table is posted to `/api/tokens` with the master token, or read from a file named by `SELKIES_TOKENS_FILE`. [SealSkin](../components/sealskin.md) is the reference orchestrator for it; the upstream [Secure Mode](https://docs.selkies.io/secure-mode) page has the wire details.
 
 ## Pelorus and the computer use API
 
 Enabling `PELORUS=true` starts an agent control API inside the container and forces the accessibility bridge on for all applications, which means any process in the session can read the full UI text of every app. The Pelorus API itself has no authentication and relies on the container's Nginx and network isolation. Treat a Pelorus enabled container as fully readable and controllable by anything that can reach it on its internal port, and never publish its ports directly. Details on the [Pelorus](../components/pelorus.md) page.
+
+The pixelflux Computer Use server underneath drives the desktop with the session user's full authority. It requires a bearer token (`SELKIES_COMPUTER_USE_TOKEN`, or `PIXELFLUX_CU_TOKEN` for the standalone `PIXELFLUX_CU` port) and refuses to start without one, and a bare port binds loopback only, which every account inside the container can still reach.

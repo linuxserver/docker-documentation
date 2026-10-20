@@ -29,11 +29,14 @@ This loop resolves the majority of reports, particularly GPU and reverse proxy i
 | Choppy video during motion | CPU limited or bandwidth limited | Check the Stats section, lower FPS or raise CRF, try Turbo mode off, consider a [GPU](gpu.md) |
 | CPU pegged after picking H.265, VP9, or AV1 | The GPU has no engine for that codec, so it encodes full frame in software | Go back to H.264, or check `vainfo` and `nvidia-smi` for what the card encodes, see [which codecs a GPU encodes](gpu.md#which-codecs-a-gpu-encodes) |
 | An encoder you configured is missing from the sidebar | Neither the encoding GPU nor the software build serves it, or the browser cannot decode it | The log line `Encoders not served on this host` lists the first case, a greyed out `(Unsupported Browser)` entry is the second |
-| Sidebar shows H.264 though the default is another codec | The browser cannot decode the default, or pixelflux demoted the codec at capture start | Expected. The log line `no encoder served` marks a demotion, otherwise the browser stepped to a codec it decodes |
+| Sidebar shows a different codec than the default | The browser cannot decode the default, or pixelflux demoted the codec at capture start | Expected. Both step down the same ladder, hardware codecs first, then software, then JPEG. The log line `no encoder served` marks a demotion, otherwise the browser stepped to a codec it decodes |
+| A poor connection mark sits over the stream | Frames are lost or queued on the link to that browser | Lower the bitrate or frame rate, and run the session on CBR so congestion control has a target to steer. The mark judges a moving screen only |
+| CPU jumps after turning on 10-bit | A software encoder converts every frame to 10-bit samples and codes at high bit depth | Pair 10-bit with FullColor on a GPU that encodes the format, or leave it off |
 | Cursor feels laggy in games | Absolute pointer mode | Use Gaming mode (pointer lock) |
 | Gamepad not detected in app | App does not use the joystick API path | Some apps are incompatible with the userspace interposer; try another input mode in app, or file an issue |
 | Files will not upload | Proxy body size limit | Raise `client_max_body_size` at your proxy |
-| Auth prompt not appearing | `PASSWORD` unset | Both `CUSTOM_USER` and `PASSWORD` behavior: no password means no auth |
+| Auth prompt not appearing | `PASSWORD` unset | No password means no auth, `CUSTOM_USER` alone does nothing |
+| Apps section missing from the sidebar | `HARDEN_DESKTOP`, or the host denies `ptrace`, which proot needs | Expected. Selkies checks at startup and hides the panel rather than showing it failing |
 | Volume permission errors in `/config` | PUID and PGID mismatch | Set them to your host user's `id` values |
 
 ## GPU problems
@@ -52,7 +55,7 @@ Work through the ladder in [GPU Acceleration](gpu.md#debugging-gpu-problems). Su
 docker logs -f <container>
 ```
 
-The startup sequence prints the s6 service initialization, GPU detection results, and the mode selection (Wayland vs X11). The pixelflux layer logs its encoding decision, look for lines telling you whether the zero copy path or a readback path was chosen, and which encoder is active. On X11 it also says whether it captures through DRI3 or shared memory, and why when it declined DRI3.
+The startup sequence prints the s6 service initialization, GPU detection results, and the mode selection (Wayland vs X11). The pixelflux layer logs its encoding decision, look for lines telling you whether the zero copy path or a readback path was chosen, and which encoder is active. On X11 it also says whether it captures through DRI3 or shared memory, and why when it declined DRI3. The sidebar's stats section shows the same facts to the user, so a report can name the capture path and encoder without the logs.
 
 For deeper debugging set `-e SELKIES_DEBUG=true`.
 

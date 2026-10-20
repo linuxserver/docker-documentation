@@ -8,11 +8,11 @@ Pcmflux is its audio sibling: it captures PulseAudio output and encodes Opus fra
 
 ## What it actually is
 
-As of the 2.0.0 release, pixelflux is a **Rust** library exposed to Python through PyO3 (earlier versions were C++ with ctypes). One extension module contains:
+pixelflux is a **Rust** library exposed to Python through PyO3. One extension module contains:
 
 - An **X11 backend**: DRI3 capture that blits the GPU resident screen into DMA-BUFs the encoder imports in place, and XShm capture with XFixes cursor tracking where that does not apply.
 - A **Wayland backend**: a full headless Wayland compositor built on [Smithay](https://github.com/Smithay/smithay), running in process. This is the key architectural point of the Wayland stack: **pixelflux does not capture a Wayland compositor, it is the compositor.** It synthesizes the output, seat, and clipboard itself, which is why the framebuffer can live directly on a GPU and why input is injected through its API rather than tools like xdotool.
-- Six codecs across software and hardware encoders, and the damage tracking, paint over, and rate control logic shared between them.
+- Six codecs across software and hardware encoders, and the damage tracking, paint over, and rate control logic shared between them. Beyond NVENC and VA-API the hardware side also drives a Jetson's Tegra encoder through the vendor's V4L2 libraries and stateful V4L2 memory to memory encoders on other boards.
 
 ## Encoders
 
@@ -27,7 +27,7 @@ Every codec is selected by name (`codec = "h264"` and so on) and pixelflux resol
 | VP9 | libvpx | No | Yes | Full frame | Profile 1 on libvpx and VA-API |
 | AV1 | SVT-AV1 | Ada and newer | Where the GPU has an engine | Full frame | No |
 
-Hardware encoders are loaded at runtime: NVENC through the driver's `libnvidia-encode` and `libcuda` with no CUDA toolkit, VA-API and the software H.265, VP8, VP9, and AV1 encoders through the system FFmpeg's `libavcodec`. The official wheels are GPL builds with x264 and x265; a `PIXELFLUX_ENABLE_GPL=0` source build swaps in OpenH264 and kvazaar and keeps everything else.
+Hardware encoders are loaded at runtime: NVENC through the driver's `libnvidia-encode` and `libcuda` with no CUDA toolkit, VA-API through the host's `libva` with the session writing the codec headers itself. The software encoders are linked directly, libvpx, x265, and SVT-AV1 built into the wheel, so nothing links or loads FFmpeg. The official wheels are GPL builds with x264 and x265; a `PIXELFLUX_ENABLE_GPL=0` source build swaps in OpenH264 and kvazaar and keeps everything else. Every encoder also reports which formats it codes (`420-8`, `444-8`, `420-10`, `444-10`), which is how Selkies knows where FullColor and 10-bit reach the stream.
 
 ### Striped encoding
 
@@ -47,8 +47,9 @@ The signature quality feature. After a region has been static for a configurable
 
 ### Rate control
 
-- **CRF/CQP mode** (default): constant quality, bits go wherever needed.
-- Infinite GOP by default: keyframes are only sent on demand (client join, recovery, or an optional periodic interval). Bitrate, framerate, and quality are all adjustable live without restarting the capture.
+- **CRF/CQP mode**, the containers' default: constant quality on one quality index mapped onto each codec's quantizer, bits go wherever needed.
+- **CBR mode**, upstream's default: a bitrate target with a one and a half frame VBV, which Selkies' congestion control steers down to what the link carries. A still screen is still refined to the paint over quality, through the rate control rather than a burst.
+- Infinite GOP by default: keyframes are only sent on demand (client join, recovery, or an optional periodic interval), and a frame a client lost is predicted past rather than answered with a keyframe on every encoder that lets the session name its references. Bitrate, framerate, and quality are all adjustable live without restarting the capture.
 
 ## Zero copy
 
@@ -81,14 +82,16 @@ capture = ScreenCapture()
 capture.start_capture(on_frame, settings)
 ```
 
-Each encoded stripe arrives with a compact binary header (6 bytes for JPEG, 10 for the video codecs carrying frame type and codec id, frame number, stripe offset, and dimensions) that the web client parses to place stripes on the canvas. Headers can be omitted for embedding in your own protocol.
+Each encoded stripe arrives with a compact binary header (6 bytes for JPEG, 12 for the video codecs carrying frame kind and codec id, frame number, stripe offset, dimensions, and the id of the frame it predicts from) that the web client parses to place stripes on the canvas. Headers can be omitted for embedding in your own protocol.
 
 The Wayland backend additionally exposes input injection (keyboard by scancode with a hot swappable XKB keymap, absolute and relative pointer, buttons, scroll), clipboard get and set, cursor callbacks delivering PNG cursor images out of band, and live rate updates. `example/screen_to_browser.py` in the repository is a complete working WebSocket streaming server in one file, with a matching browser client in `example/index.html`.
 
 ## Extras worth knowing about
 
-- **Computer Use API**: setting the `PIXELFLUX_CU=<port>` environment variable starts a small HTTP server with a `POST /computer-use` endpoint accepting JSON actions (`screenshot`, `left_click`, `type`, `key`, `scroll`, `zoom`, and friends). This is the raw input and vision layer that [Pelorus](pelorus.md) builds on.
+- **Computer Use API**: setting the `PIXELFLUX_CU=<port>` environment variable starts a small HTTP server with a `POST /computer-use` endpoint accepting JSON actions (`screenshot`, `left_click`, `type`, `key`, `scroll`, `zoom`, and friends). A bare port binds loopback only, and every request has to carry the bearer token `PIXELFLUX_CU_TOKEN` names. This is the raw input and vision layer that [Pelorus](pelorus.md) builds on.
 - **Recording sink**: point `recording_socket` (or `PIXELFLUX_RECORDING_SOCKET`) at a Unix socket path and pixelflux serves the raw elementary stream to any connected client, forcing a keyframe when someone connects: Annex B for H.264 and H.265, an OBU stream for AV1, IVF for VP8 and VP9. Requires a full frame codec, striped H.264 and JPEG are not served.
+- **MP4 recorder**: a crash safe fragmented MP4 recorder of its own, H.264 with the session's audio muxed in from pcmflux's Ogg Opus socket, which the Selkies operator API starts and stops.
+- **Virtual camera**: decodes a browser's webcam uplink into the V4L2 device the [web client](../user-guide/web-client.md#webcam) feature rides on.
 - **Watermarking**: composite a PNG over the stream at any corner, centered, or animated (it bounces). On the GPU path the watermark is composited before encode with no readback penalty.
 - **Fractional scaling**, HiDPI support, and cursor theme control on the Wayland backend.
 
@@ -98,4 +101,4 @@ The library itself is configured purely through `CaptureSettings`. The familiar 
 
 ## Building from source
 
-`pip install .` drives a `setuptools-rust` build. On Debian or Ubuntu the build dependencies are roughly: `python3-dev cmake nasm libclang-dev libavcodec-dev libavutil-dev libx264-dev libturbojpeg0-dev libgbm-dev libdrm-dev libwayland-dev libinput-dev libxkbcommon-dev libva-dev` plus a Rust toolchain. Any system FFmpeg from 6.0 through 9.0 works, it supplies the VA-API encoders and the software H.265, VP8, VP9, and AV1 encoders, so a codec whose encoder that FFmpeg lacks has no software path. Most users should just take the prebuilt wheels.
+`pip install .` drives a `setuptools-rust` build. On Debian or Ubuntu the build dependencies are roughly: `python3-dev cmake nasm libclang-dev libx264-dev libx265-dev libvpx-dev libsvtav1enc-dev libdav1d-dev libde265-dev libgbm-dev libdrm-dev libwayland-dev libinput-dev libudev-dev libxkbcommon-dev libpixman-1-dev` plus a Rust toolchain of 1.89 or newer. No FFmpeg and no libva development package is needed: the codec libraries are linked directly and libva is opened at runtime. libjpeg-turbo is vendored. Most users should just take the prebuilt wheels.
