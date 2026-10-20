@@ -65,6 +65,7 @@ Provider configuration lives at `/config/agent/config.toml` (auto created, seede
 | `PELORUS_MODEL` | `gemma4:12b` | Model name |
 | `PELORUS_API_KEY` | empty | API key where the provider needs one |
 | `PIXELFLUX_CU` | `5000` when `PELORUS=true` | Computer Use API port, set automatically |
+| `PIXELFLUX_CU_TOKEN` | generated when `PELORUS=true` | Bearer token the Computer Use server requires on every request. Set your own to pin it |
 
 ## Security
 

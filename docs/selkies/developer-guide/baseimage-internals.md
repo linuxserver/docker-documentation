@@ -37,7 +37,7 @@ init-os-end
 - First run copies of `autostart` and `menu.xml` into the config dir (persistent, user editable); `rc.xml` for labwc is regenerated from the template every boot.
 - Recreates `$HOME/.XDG` as `XDG_RUNTIME_DIR`, which is where the interposer sockets and the print queue's socket live, points `CUPS_SERVER` at that queue unless you set it or turned printing off, and clears stale PulseAudio state, so unclean shutdowns recover.
 - Applies every hardening variable (permission stripping, sudoers corruption, menu and keybind editing, locking rc.xml and autostart when watchdog mode is on), the details are in the [Security guide](../user-guide/security.md).
-- GPU env: with exactly one render node and nothing set, points `DRINODE` and `DRI_NODE` at it; wires `PIXELFLUX_CU=5000` and `ROOT_PATH=/pelorus` when `PELORUS=true`.
+- GPU env: with exactly one render node and nothing set, points `DRINODE` and `DRI_NODE` at it; wires `PIXELFLUX_CU=5000`, a generated `PIXELFLUX_CU_TOKEN` unless you set one, and `ROOT_PATH=/pelorus` when `PELORUS=true`.
 - Creates the gamepad device nodes (`/dev/input/js0-3` and event nodes) and sets the global `LD_PRELOAD` for the interposer and fake udev, unless `NO_GAMEPAD` is set.
 - Syncs proot-apps into the user home and handles `LC_ALL` locale derivation.
 - Steam shim: links `/usr/local/bin/steam` (marked `#SELKIESSHIM`) to `/usr/bin/steam` when nothing is there, so `steam` runs the installer in `/steam.sh` until a real launcher exists. `NO_STEAM=true` removes both.
