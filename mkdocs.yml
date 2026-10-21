@@ -146,3 +146,4 @@ plugins:
         images/docker-monica.md: deprecated_images/docker-monica.md
         images/docker-doplarr.md: deprecated_images/docker-doplarr.md
         images/docker-openvscode-server.md: deprecated_images/docker-openvscode-server.md
+        images/docker-budge.md: deprecated_images/docker-budge.md
