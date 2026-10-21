@@ -7,13 +7,13 @@ Selkies streams over WebSockets by default, and for most people that is the righ
 
 ## When to use it
 
-WebRTC helps when the path between the browser and the container is lossy or has variable latency, typically a mobile network, a long haul link, or a wireless client on a congested network. UDP does not stall on a lost packet the way TCP does, the audio pacer keeps sound and input responsive while video is squeezed, and congestion control can adapt the bitrate to what the link actually delivers.
+WebRTC helps when the path between the browser and the container is lossy or has variable latency, typically a mobile network, a long haul link, or a wireless client on a congested network. UDP does not stall on a lost packet the way TCP does, the audio pacer keeps sound and input responsive while video is squeezed, and congestion control reads the receiver's own loss and delay feedback. A lost frame is repaired before it costs a keyframe: the server adds FlexFEC repair packets as a peer's loss rises, and the encoder predicts past a frame a peer lost.
 
 The trade offs:
 
 - **Only the full frame codecs stream over WebRTC.** H.264, H.265, VP8, VP9, and AV1 all ride the RTP track. The striped H.264 and JPEG encoders are WebSocket only, and the encoder menu is narrowed to what WebRTC can carry while it is the active transport. The previous choice is restored when switching back.
-- **The browser's RTP receiver decides the codec.** H.264 and VP8 are taken by every major browser, VP9 and AV1 by Chromium and Firefox, H.265 by Safari and by Chromium where the operating system decodes it. A browser that declines the codec is answered with H.264 when `h264enc` is in the menu, otherwise that browser gets no video.
-- **Rate control defaults to CBR.** A congestion controlled transport needs the encoder holding a bandwidth target, so `SELKIES_VIDEO_BITRATE` becomes the setting you tune rather than CRF. Pin `SELKIES_RATE_CONTROL_MODE` if you want otherwise.
+- **The browser's RTP receiver decides the codec.** H.264 and VP8 are taken by every major browser, VP9 and AV1 by Chromium and Firefox, H.265 by Safari and by Chromium where the operating system decodes it. A browser that declines the codec answers with the next encoder down the [ladder](configuration.md#video-encoders) it decodes, and the display moves to that encoder for every viewer. A single valued locked encoder the browser cannot play leaves it without video.
+- **Pick CBR for a lossy link.** Congestion control is on by default and steers a CBR stream on both transports, but the containers keep CRF as the default rate control. Switch to CBR in the sidebar, or set `SELKIES_RATE_CONTROL_MODE=cbr,crf`, and `SELKIES_VIDEO_BITRATE` becomes the setting you tune. Upstream defaults to CBR.
 - **UDP has to get through.** A reverse proxy alone is not enough. Media takes a direct path from the container to the browser, and something has to make that path reachable: forwarded ports, a public address, or a TURN relay.
 - **Turbo mode and paint over still apply.** Damage tracking and paint over work on both transports.
 
@@ -22,7 +22,7 @@ The trade offs:
 The baseimage keeps WebRTC hidden until you configure it. Set `SELKIES_MODE=webrtc`, or any WebRTC, STUN, TURN, or Cloudflare variable from the [configuration reference](configuration.md#webrtc-networking-stun-and-turn), and the container:
 
 1. Sets `SELKIES_MODE=webrtc` if you have not set a mode yourself, so new clients start on WebRTC.
-2. Sets `SELKIES_ENABLE_DUAL_MODE=true` so the transport switch appears in the sidebar and users can fall back to WebSockets at will.
+2. Sets `SELKIES_ENABLE_DUAL_MODE=true` so the transport switch appears in the sidebar and users can fall back to WebSockets at will. With the switch on, a page whose media path keeps failing is offered WebSockets by the dashboard itself.
 
 Without any of those variables the switch is hidden and the container is WebSocket only, exactly as before. Anything you set explicitly wins, so `SELKIES_MODE=websockets` plus a TURN host gives you a WebSocket default with WebRTC available in the menu, and `SELKIES_ENABLE_DUAL_MODE=false` plus `SELKIES_MODE=webrtc` gives you WebRTC with no way back.
 
@@ -178,6 +178,7 @@ Nothing changes at your reverse proxy. Signaling goes through the container's we
 
 - **Client loads, transport switch shows WebRTC, no picture.** ICE failed. Switch to WebSockets in the sidebar to confirm everything else works, then check the media path: is the UDP mux port forwarded, is `SELKIES_WEBRTC_PUBLIC_IP` set on a NAT host, can the browser reach the TURN server?
 - **Works on the LAN, fails from outside.** Host candidates are private addresses. Set `SELKIES_WEBRTC_PUBLIC_IP` or configure TURN.
+- **A poor connection mark sits over the stream.** The server is losing frames on the way to that browser, lost past repair or more than the link carries. Lower the bitrate or the frame rate, and keep the session on CBR so congestion control has a target to steer. `SELKIES_UI_SHOW_CONNECTION_INDICATOR=false` hides the mark, not the loss.
 - **Works but stutters, stats say `relay`.** You are on the default Open Relay TURN or a distant relay. Fix the direct path so the browser never needs the relay, or move the TURN server closer.
 - **Fails on one specific network only.** That network blocks UDP. Add a TCP mux port on `443` or set `SELKIES_TURN_PROTOCOL=tcp`.
 - **Container will not start after adding a mux port.** The port is taken on the host, pick another.

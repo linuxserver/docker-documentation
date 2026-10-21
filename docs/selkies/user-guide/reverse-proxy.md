@@ -50,7 +50,7 @@ To serve a container under a path like `https://example.org/desktop/`, set the `
       - SUBFOLDER=/desktop/
 ```
 
-Both slashes are required. Then proxy the location through:
+Both slashes are required. The container's Nginx and the Selkies server both read it, so every route lands under the prefix. Then proxy the location through:
 
 ```nginx
     location /desktop/ {
@@ -75,3 +75,4 @@ If you are heading toward many users and many apps, that is exactly what [SealSk
 - Server side events and the streaming WebSocket dislike buffering proxies, always disable response buffering (`proxy_buffering off` or your proxy's equivalent).
 - If the client loads but you get a black screen or no video, it is almost always a blocked WebSocket upgrade or an HTTP (not HTTPS) page context.
 - Enabling the [WebRTC transport](webrtc.md) changes nothing at the proxy. Its signaling goes through the same proxied web port, and its media goes around the proxy entirely over UDP.
+- A portal that embeds the desktop in a frame on another origin is refused by default: Selkies sends `frame-ancestors 'self'`. List the portal's origin in `SELKIES_FRAME_ANCESTORS`, see [Security](security.md#embedding-and-origins).

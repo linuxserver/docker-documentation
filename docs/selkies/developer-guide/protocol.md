@@ -6,8 +6,8 @@ The wire protocol between the Selkies server and the web client, for anyone impl
 
 The client connects to `wss://host/<subfolder>websocket`. Role assignment happens one of two ways:
 
-- **Fragment mode** (default): the URL fragment the page was opened with decides the role, `#shared` (view only), `#collab` (full control), `#player2` through `#player4` (gamepad slot only), `#display2-right` and friends (second monitor surface). No fragment means primary.
-- **Token mode** (when the server was started with `SELKIES_MASTER_TOKEN`): the client must present `?token=<token>` in the WebSocket URL. Tokens and their roles are registered by the orchestrator via `POST /tokens` on the internal control port with the master token as a bearer credential. Close codes: `4001` invalid token, `4002` revoked, `4029` reconnecting too fast.
+- **Fragment mode** (default): the URL fragment the page was opened with decides the role, `#shared` (view only), `#player2` through `#player4` (gamepad slot only), `#display2-right` and friends (second monitor surface). No fragment means a controller: the first page owns the display's size, and later pages on the plain address join beside it with full control.
+- **Token mode** (when the server was started with `SELKIES_MASTER_TOKEN`): the page is opened with `#token=<token>` in the fragment, where no request line or proxy log sees it, or `?token=<token>` in the query, and the client offers the token to the WebSocket as the `selkies.token.<base64url>` subprotocol or as `?token=`. Tokens and their roles are registered by the orchestrator via `POST /api/tokens` on the normal port with the master token as a bearer credential, or read from `SELKIES_TOKENS_FILE`. Close codes: `4000` server shutting down, `4001` invalid token, `4002` revoked, `4029` reconnecting too fast.
 
 On success the server sends `MODE websockets`, an auth confirmation with the assigned role, and a `server_settings` JSON message containing every tunable setting with its value, allowed range or enum, and locked flag, this single message is what renders the sidebar UI, which is why locking a setting server side removes the control everywhere.
 
@@ -20,7 +20,7 @@ The first byte of every binary frame is a type tag:
 | `0x00` | Full frame video | `[1]` keyframe flag, `[2:4]` uint16 frame id, payload follows |
 | `0x01` | Opus audio packet | 2 byte header, then the Opus packet |
 | `0x03` | JPEG stripe | `[2:4]` frame id, `[4:6]` stripe Y offset, then the JPEG |
-| `0x04` | Video stripe | `[1]` low nibble frame type (1 IDR, 2 I, 0 other), high nibble codec id (1 H.264, 2 VP8, 3 VP9, 4 AV1, 5 H.265), `[2:4]` frame id, `[4:6]` stripe Y offset, `[6:8]` width, `[8:10]` height, then the codec's own bitstream units |
+| `0x04` | Video stripe | `[1]` low nibble frame kind (1 key, 2 intra, 0 delta, with `0x08` ORed in on a delta the encoder keeps as a long term anchor), high nibble codec id (1 H.264, 2 VP8, 3 VP9, 4 AV1, 5 H.265), `[2:4]` frame id, `[4:6]` stripe Y offset, `[6:8]` width, `[8:10]` height, `[10:12]` id of the frame it predicts from (its own id where it names none), then the codec's own bitstream units |
 
 These headers are produced by pixelflux itself (see the [wire format details](../components/pixelflux.md#api-sketch)); the Python server broadcasts them untouched. A full frame is just a stripe at Y offset 0 with full height. The client configures a WebCodecs `VideoDecoder` per stream from the codec id and the key frame's own parameter sets, decodes JPEG stripes with `createImageBitmap`, and composites stripes onto the canvas at their Y offsets. The frame type nibble reflects what the encoder actually emitted, clients use it to recover decoder state after drops.
 

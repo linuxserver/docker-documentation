@@ -23,10 +23,13 @@ proot-apps remove filezilla
 
 The list of supported applications is maintained in the [proot-apps README](https://github.com/linuxserver/proot-apps?tab=readme-ov-file#supported-apps).
 
-Two things to know:
+Three things to know:
 
 - Applications are mostly ingested from the Alpine repositories for maintainability, so what you get is the Alpine build of an app regardless of the flavor of the container you run it in.
 - **Nvidia GPUs are not supported inside proot-apps.** If an app needs Nvidia acceleration, run it as its own dedicated image or bake it into a custom one.
+- proot traces every process it starts, so on a host that denies `ptrace` nothing can be installed or launched. Selkies checks at startup and hides the sidebar's apps section rather than showing it failing.
+
+For a fleet without internet access, or one that should only offer a curated set, point the session at a local repository: fill a folder with `proot-apps localrepo`, mount it read only, and set `PA_REPO_FOLDER` on the container. The sidebar's apps section then lists that folder's catalog instead of the remote one and installs from it, and `proot-apps` in a terminal reads the same folder. The [proot-apps administrator guide](https://github.com/linuxserver/proot-apps#for-administrators) covers building the folder.
 
 ## Native packages via Docker mods (non persistent)
 

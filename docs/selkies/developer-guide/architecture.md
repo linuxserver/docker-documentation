@@ -42,7 +42,7 @@ Six codecs behind one policy layer, each resolved to a GPU engine or a software 
 | CPU full frame | H.265 (x265), VP8 and VP9 (libvpx), AV1 (SVT-AV1) | Whole frame per encode, no striping |
 | GPU | NVENC: H.264, H.265, AV1. VA-API: all five | Full frame, zero copy from DMA-BUF when render and encode share a device |
 
-Quality logic is shared: infinite GOP with on demand IDR frames, CRF rate control with live retuning on one quality scale mapped onto each codec's quantizer, and the **paint over** system, after N static frames, resend at high quality (better JPEG quality, or a video burst at lower CRF), cancelled instantly by motion. Selkies probes the encoding device at startup and only offers the codecs the host can serve.
+Quality logic is shared: infinite GOP with on demand IDR frames and reference invalidation so a lost frame costs no keyframe, CRF or CBR rate control with live retuning on one quality scale mapped onto each codec's quantizer, congestion control that steers a CBR stream to what each page's link carries, 4:4:4 and 10-bit where the codec and encoder carry them, and the **paint over** system: once the screen holds still it is resent at high quality (better JPEG quality, a video burst at lower CRF, or under CBR a refinement through the rate control), cancelled instantly by motion. Selkies probes the encoding device at startup and only offers the codecs the host can serve.
 
 The full encoder and settings detail lives on the [Pixelflux page](../components/pixelflux.md).
 
@@ -58,22 +58,22 @@ PulseAudio runs with two null sinks: `output` (what apps play into) and `input` 
 
 Browser events become terse text messages over the same socket (`kd,<keysym>`, `m,<x>,<y>,<mask>,<mag>`, and friends). Injection differs by stack:
 
-- **Wayland**: injected through pixelflux's compositor seat, keyboard by scancode against a hot swappable xkb keymap, pointer absolute or relative, with unicode text batched through [waylandtyper](https://github.com/linuxserver/waylandtyper) (our maintained fork of `wtype` that fixes many bugs in the old codebase) for IME correctness. Because the compositor is headless and synthetic, external tools like xdotool do not work here, the API is the only door.
-- **X11**: pynput, xdotool, and XTEST, with a keysym map and Cyrillic to QWERTY remapping so shortcuts work across layouts.
+- **Wayland**: injected through pixelflux's compositor seat, keyboard by scancode against a hot swappable xkb keymap, pointer absolute or relative, with unicode and IME text batched through an in process virtual keyboard client. The path forks no tools: the compositor is headless and synthetic, so the API is the only door. Under a nested KWin, relative motion for games goes through KWin's fake input device.
+- **X11**: in process XTEST over a vendored python-xlib, with a dynamic spare keycode overlay for keysyms the layout lacks and an XKB group lock so shortcuts work across layouts; xdotool is only a last resort fallback.
 
 Gamepads bypass the display server entirely: Selkies serves the Linux joystick and evdev protocols over Unix sockets, and the `LD_PRELOAD` interposer plus fake udev library make applications believe `/dev/input/js0` is a real Xbox 360 pad. Four slots exist, mappable to remote players.
 
 ## The web layer
 
-Nginx inside the container is the single front door: it serves the static client (a React dashboard over the `selkies-web-core` engine), proxies `/api` (the data WebSocket, WebRTC signaling, and the `/api/files/` browser) to the Selkies server, optionally enforces basic auth, applies the `SUBFOLDER` prefix, and proxies `/pelorus/` when the agent layer is on. The dashboard and the engine communicate over a documented `postMessage` API, which is the extension point for custom frontends.
+Nginx inside the container is the single front door: it serves the static client (a React dashboard over the `selkies-web-core` engine), proxies `/api` (the data WebSocket, WebRTC signaling, the `/api/files/` browser, printed documents, the operator API, and the token control plane) to the Selkies server, optionally enforces basic auth, applies the `SUBFOLDER` prefix, which Selkies reads too, and proxies `/pelorus/` when the agent layer is on. The dashboard and the engine communicate over a documented `postMessage` API, which is the extension point for custom frontends.
 
 ## Sharing and multi user
 
-One session, many sockets. Every connected client gets the same broadcast frames; roles (primary, collab, view only, player N) gate which input messages are honored. In secure mode (used by SealSkin), access requires per user tokens registered through a control plane endpoint on an internal port, and roles can be re assigned live, this is what powers collaboration rooms with granular permissions.
+One session, many sockets. Every connected client gets the same broadcast frames; roles (controller, view only, player N) gate which input messages are honored, and a page on a narrower link is sent fewer frames with the encoder predicting past the ones it skipped. In secure mode (used by SealSkin), access requires per user tokens registered through `POST /api/tokens` with the master token or read from a tokens file, and roles and gamepad slots can be re assigned live, this is what powers collaboration rooms with granular permissions.
 
 ## Where the orchestration layer plugs in
 
-Nothing in the container knows about SealSkin. The orchestration contract is entirely environment variables and volumes at launch: `SUBFOLDER` for path routing, `CUSTOM_USER` and `PASSWORD` for per session auth injected by the proxy, `SELKIES_MASTER_TOKEN` to switch on token mode, `DRINODE` and `DRI_NODE` for GPU placement, and a bind mounted home with an autostart script written before boot. Any scheduler that can do those five things can orchestrate the platform, that is the entire integration surface, and [SealSkin](../components/sealskin.md) is the reference implementation of it.
+Nothing in the container knows about SealSkin. The orchestration contract is entirely environment variables and volumes at launch: `SUBFOLDER` for path routing, `CUSTOM_USER` and `PASSWORD` for per session auth injected by the proxy, `SELKIES_MASTER_TOKEN` (and optionally `SELKIES_TOKENS_FILE`) to switch on token mode, `DRINODE` and `DRI_NODE` for GPU placement, and a bind mounted home with an autostart script written before boot. Any scheduler that can do those five things can orchestrate the platform, that is the entire integration surface, and [SealSkin](../components/sealskin.md) is the reference implementation of it.
 
 ## Performance characteristics
 

@@ -24,13 +24,14 @@ There is deliberately **no `latest` tag** for base images. Downstream images pin
 ## What is inside
 
 - **The LSIO foundation**: each tag builds on the corresponding LinuxServer.io distro baseimage, inheriting s6-overlay init, the `abc` user with PUID and PGID remapping, `TZ`, Docker mods, and the `/custom-cont-init.d` and `/custom-services.d` hooks.
-- **Selkies** (pinned commit) installed into the `/lsiopy` virtualenv, with pixelflux 2.x and pcmflux 2.x, plus [Pelorus](pelorus.md) preinstalled.
+- **Selkies** (pinned release) installed into the `/lsiopy` virtualenv, with pixelflux 2.x and pcmflux 2.x, plus [Pelorus](pelorus.md) preinstalled.
 - **The web client**: prebuilt dashboards under `/usr/share/selkies/`, selected at runtime by the `DASHBOARD` variable.
-- **Display servers for both stacks**: labwc (built from source with a small IPC patch that adds the window query socket Pelorus uses) for Wayland, and an XLibre Xvfb built with glamor and DRI3 plus Openbox for X11. The Xvfb carries a LinuxServer patch that keeps the screen pixmap on the GPU and lets the framebuffer follow RandR resizes, which is what makes zero copy capture possible on X11. Both are prebuilt per distro in [selkies-layers](https://github.com/linuxserver/selkies-layers) and copied into the image. A patched wlroots build makes the compositor survive pixman rendering faults instead of crashing.
+- **Display servers for both stacks**: labwc (built from source with two small patches: the IPC socket Pelorus queries windows over, and a control socket Selkies asks for a second screen over) for Wayland, and an XLibre Xvfb built with glamor and DRI3 plus Openbox for X11. The Xvfb carries four LinuxServer patches: the screen pixmap lives on the GPU and the framebuffer follows RandR resizes, which is what makes zero copy capture possible on X11; it starts with spare outputs a second display is plugged into as a real monitor; DRI3 presents synchronize explicitly through timeline syncobjs where the driver supports them; and its fake vblank runs at the rate the session is captured at. Both are prebuilt per distro in [selkies-layers](https://github.com/linuxserver/selkies-layers) and copied into the image, along with wlroots 0.19.3 on distros that do not package it.
 - **[Selkies Desktop](selkies-desktop.md)** at `/usr/bin/selkies-desktop`, activated by env var.
-- **Nginx** with the fancyindex module, serving the client, proxying the WebSocket, handling basic auth, subfolder support, and the `/files` download index.
+- **Nginx** serving the client, proxying everything under `/api` (the WebSocket, WebRTC signaling, files, printing, and the operator API) to Selkies, handling basic auth, the subfolder prefix, and the `/pelorus/` proxy.
 - **PulseAudio** with null sinks (`output` and `input`) wired for stream audio and microphone return.
 - **Gamepad plumbing**: the input interposer and fake udev libraries, preloaded globally, with device nodes created at init.
+- **Printing**: `cups-daemon` and `cups-filters`, which Selkies runs as the session user so a printed document reaches the browser.
 - **Quality of life**: passwordless sudo for the desktop user, all system locales prebuilt for `LC_ALL`, `proot-apps` synced into the user home for persistent app installs, Docker in Docker support for privileged containers, and notification support.
 
 ## The runtime in one diagram

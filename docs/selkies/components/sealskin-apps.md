@@ -72,6 +72,8 @@ Scripts can also do first run setup, seeding emulator configs, installing deskto
 
 Stores are cached server side with ETag revalidation and refreshed hourly, so updates propagate automatically. Custom store apps can point at any image, including your own images built with the [Developer Guide](../developer-guide/building-images.md), which makes the registry the natural distribution channel for in house apps on a SealSkin deployment.
 
+A second kind of catalog sits beside the app stores: **PRoot Apps catalogs**, folders of portable applications built with `proot-apps localrepo`, which SealSkin fetches on every node, assigns to users and groups, and mounts into sessions as `PA_REPO_FOLDER`, so the sidebar's apps section installs from your catalog rather than the public one. See [Installing Applications](../user-guide/installing-apps.md).
+
 ## Related lists
 
 The website app showcase at [sealskin.app](https://sealskin.app) maintains a compact JavaScript list of the fleet (`apps.js`) for display purposes; the YAML manifest in this repository is the operational source of truth that servers actually consume.

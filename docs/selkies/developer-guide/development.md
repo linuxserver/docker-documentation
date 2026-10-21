@@ -13,7 +13,6 @@ Clone the [selkies repository](https://github.com/selkies-project/selkies), moun
 ```bash
 git clone https://github.com/selkies-project/selkies.git
 cd selkies
-git checkout -f lsio
 docker run --rm -it \
   --shm-size=1gb \
   -e DEV_MODE=selkies-dashboard \
@@ -64,11 +63,12 @@ The container builds the mounted source (all Rust build dependencies are present
 | [linuxserver/sealskin-apps](https://github.com/linuxserver/sealskin-apps) | App manifests and autostart scripts |
 | [linuxserver/pelorus](https://github.com/linuxserver/pelorus) | Agent API and chat UI |
 | [selkies-project/selkies-desktop](https://github.com/selkies-project/selkies-desktop) | The minimal desktop shell |
-| [linuxserver/waylandtyper](https://github.com/linuxserver/waylandtyper) | Our maintained fork of wtype for unicode text injection |
+| [linuxserver/selkies-layers](https://github.com/linuxserver/selkies-layers) | The prebuilt, patched Xvfb, labwc, KWin, selkies-desktop, and waylandtyper layers the baseimages copy in, one Dockerfile per distro and layer |
+| [linuxserver/waylandtyper](https://github.com/linuxserver/waylandtyper) | Our maintained fork of wtype, shipped in the images as a command line tool |
 
 Both Rust libraries publish generated API documentation: [pixelflux rustdocs](https://pixelflux.selkies.io/pixelflux/index.html) and [pcmflux rustdocs](https://pcmflux.selkies.io/pcmflux/index.html). Reach for those when you need the exact settings fields, frame types, and callbacks rather than the overview on the [Pixelflux page](../components/pixelflux.md).
 
-The baseimage Dockerfile is the authoritative recipe for everything compiled into the images (labwc with the IPC patch, the patched wlroots, selkies-desktop, waylandtyper), so when you need to know exactly how a piece is built, read the corresponding Dockerfile stage.
+The baseimage Dockerfile builds the web frontend and the interposers itself and copies the display server layers in from [selkies-layers](https://github.com/linuxserver/selkies-layers), whose per distro Dockerfiles and `patches/` directory are the authoritative recipe for the patched Xvfb, labwc, wlroots, and KWin. When you need to know exactly how a piece is built, read the corresponding Dockerfile stage in whichever repository owns it.
 
 ## Contributing
 

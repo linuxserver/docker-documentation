@@ -19,7 +19,7 @@ docker run --rm -it \
 `PELORUS=true` in Wayland mode does all of this automatically:
 
 - Starts the Pelorus FastAPI server (port 5100 internally, proxied by the container's Nginx at `/pelorus/`)
-- Enables the pixelflux **Computer Use API** on port 5000 internally (`PIXELFLUX_CU=5000`), the raw input injection and screenshot layer
+- Enables the pixelflux **Computer Use API** on port 5000 internally (`PIXELFLUX_CU=5000`), the raw input injection and screenshot layer. That server binds loopback and expects a bearer token (`PIXELFLUX_CU_TOKEN`) on every request
 - Starts the AT-SPI accessibility registry and forces the accessibility bridge on for GTK and Qt applications so their UI trees are readable
 - On labwc, starts the compositor with its IPC socket (`labwc -i`) so windows can be enumerated; on KDE, window data comes from KWin over D-Bus
 
@@ -65,6 +65,7 @@ Provider configuration lives at `/config/agent/config.toml` (auto created, seede
 | `PELORUS_MODEL` | `gemma4:12b` | Model name |
 | `PELORUS_API_KEY` | empty | API key where the provider needs one |
 | `PIXELFLUX_CU` | `5000` when `PELORUS=true` | Computer Use API port, set automatically |
+| `PIXELFLUX_CU_TOKEN` | generated when `PELORUS=true` | Bearer token the Computer Use server requires on every request. Set your own to pin it |
 
 ## Security
 

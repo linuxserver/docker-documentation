@@ -6,16 +6,15 @@ What actually happens inside a Selkies container, boot order, services, and the 
 
 The baseimage Dockerfile is a multi stage build assembling, onto a LinuxServer.io distro base (Debian, Ubuntu, Alpine, Fedora, Arch, or Kali):
 
-- An **XLibre Xvfb** built with glamor and DRI3 from [selkies-layers](https://github.com/linuxserver/selkies-layers), patched so the screen pixmap lives on the GPU (`-glamor -dri /dev/dri/renderD###`) and the framebuffer follows RandR resizes
-- The **web frontend**: the Selkies repository pinned to an exact commit, with `selkies-web-core` and the dashboards built and dropped in `/usr/share/selkies/`
-- **labwc 0.9.7** built from source with the IPC patch (adds `labwc -i`, a read only JSON window query socket at `$XDG_RUNTIME_DIR/labwc.sock`, consumed by Pelorus)
-- A rebuilt **wlroots** with a defensive patch that catches SIGSEGV and SIGBUS inside pixman draw calls and skips the frame instead of crashing the compositor
-- **selkies-desktop** and **[waylandtyper](https://github.com/linuxserver/waylandtyper)** (our maintained fork of wtype, fixing many bugs in the old codebase) built from source
+- An **XLibre Xvfb** (`xlibre-xserver-25.2.2`) built with glamor and DRI3 from [selkies-layers](https://github.com/linuxserver/selkies-layers) with four patches: the screen pixmap lives on the GPU (`-glamor -dri /dev/dri/renderD###`) and the framebuffer follows RandR resizes; the server starts with four CRTCs whose spare outputs stay disconnected until Selkies plugs a second display in; DRI3 presents synchronize through timeline syncobjs where the driver supports them; and the fake vblank follows the rate pixelflux publishes on the root window
+- The **web frontend**: the Selkies repository pinned to the release, with `selkies-web-core` and the dashboards built and dropped in `/usr/share/selkies/`
+- **labwc 0.9.7** built from source in selkies-layers with two patches: the IPC socket (`labwc -i`, a read only JSON window query socket at `$XDG_RUNTIME_DIR/labwc.sock`, consumed by Pelorus) and a control socket Selkies grows and removes a second screen over. On distros without a packaged wlroots 0.19 the layer carries wlroots 0.19.3 too
+- **selkies-desktop** and **[waylandtyper](https://github.com/linuxserver/waylandtyper)** (our maintained fork of wtype) from their selkies-layers builds; the KDE Webtops additionally take a patched KWin from the same place for their second display
 - The **selkies** Python package installed into the `/lsiopy` virtualenv (pulling in pixelflux and pcmflux wheels), plus **pelorus**
 - The **input interposer** (`/usr/lib/selkies_input_interposer.so`) and **fake udev** (`/opt/lib/libudev.so.1.0.0-fake`) compiled from the Selkies addons
-- Nginx with fancyindex, PulseAudio, mesa and VA-API userspace, Vulkan loaders, all system locales, proot-apps, Docker in Docker machinery, and passwordless sudo for `abc`
+- Nginx, PulseAudio, CUPS (`cups-daemon` and `cups-filters` for the session's print queue), mesa and VA-API userspace, Vulkan loaders, all system locales, proot-apps, Docker in Docker machinery, and passwordless sudo for `abc`
 
-Baked ENV defaults worth knowing: `HOME=/config`, `DISPLAY=:1`, `TITLE=Selkies`, `SELKIES_ENCODER="h264enc,h265enc,vp8enc,vp9enc,av1enc,jpeg"`, `SELKIES_ENABLE_BASIC_AUTH=false`, `SELKIES_VIDEO_STREAMING_MODE=false`, `SELKIES_ALLOWED_ORIGINS="*"`, `START_DOCKER=true`, `DISABLE_DRI3=false`, `NVIDIA_DRIVER_CAPABILITIES=all`, and the interposer path in `SELKIES_INTERPOSER`.
+Baked ENV defaults worth knowing: `HOME=/config`, `DISPLAY=:1`, `TITLE=Selkies`, `SELKIES_ENCODER="h264enc,h265enc,vp8enc,vp9enc,av1enc,jpeg"`, `SELKIES_RATE_CONTROL_MODE="crf,cbr"`, `SELKIES_ENABLE_BASIC_AUTH=false`, `SELKIES_VIDEO_STREAMING_MODE=false`, `SELKIES_ALLOWED_ORIGINS="*"`, `START_DOCKER=true`, `DISABLE_DRI3=false`, `NVIDIA_DRIVER_CAPABILITIES=all`, `__GL_SYNC_TO_VBLANK=0`, and the interposer paths in `SELKIES_INTERPOSER` and `SELKIES_WEBCAM_INTERPOSER`.
 
 ## Boot: the init chain
 
@@ -30,15 +29,15 @@ init-os-end
                  └─ init-selkies-end → init-config → ... → init-services
 ```
 
-**`init-nginx`** renders `/defaults/default.conf` into the live Nginx config with plain string substitution: ports (`CUSTOM_PORT`, `CUSTOM_HTTPS_PORT`, `CUSTOM_WS_PORT`), `SUBFOLDER` tokens, the download path, basic auth (generates `.htpasswd` and uncomments the auth lines when `PASSWORD` is set), IPv6 removal, dev mode rewiring, dashboard selection into `/usr/share/selkies/web`, and the PWA `manifest.json` with your `TITLE`. On first run it also generates the ten year self signed certificate into `/config/ssl/`.
+**`init-nginx`** renders `/defaults/default.conf` into the live Nginx config with plain string substitution: ports (`CUSTOM_PORT`, `CUSTOM_HTTPS_PORT`, `CUSTOM_WS_PORT`), `SUBFOLDER` tokens, basic auth (generates `.htpasswd` and uncomments the auth lines when `PASSWORD` is set), IPv6 removal, dev mode rewiring, dashboard selection into `/usr/share/selkies/web`, and the PWA `manifest.json` with your `TITLE`. It creates `FILE_MANAGER_PATH` and, on first run, generates the ten year self signed certificate into `/config/ssl/`.
 
 **`init-selkies-config`** is the big one:
 
 - Chooses the mode: `PIXELFLUX_WAYLAND=true` selects labwc paths (`$HOME/.config/labwc`, `/defaults/autostart_wayland`, `/defaults/menu_wayland.xml`) otherwise Openbox paths. Multi monitor on Wayland is Selkies' call, not the init script's: at startup it probes the compositor, the labwc IPC socket or a KWin capability check, and enables the second screen only where it finds support. Both compositors carry LinuxServer patches for this, the labwc ones ship in the baseimage.
 - First run copies of `autostart` and `menu.xml` into the config dir (persistent, user editable); `rc.xml` for labwc is regenerated from the template every boot.
-- Recreates `$HOME/.XDG` as `XDG_RUNTIME_DIR` and clears stale PulseAudio state, so unclean shutdowns recover.
+- Recreates `$HOME/.XDG` as `XDG_RUNTIME_DIR`, which is where the interposer sockets and the print queue's socket live, points `CUPS_SERVER` at that queue unless you set it or turned printing off, and clears stale PulseAudio state, so unclean shutdowns recover.
 - Applies every hardening variable (permission stripping, sudoers corruption, menu and keybind editing, locking rc.xml and autostart when watchdog mode is on), the details are in the [Security guide](../user-guide/security.md).
-- GPU env: with exactly one render node and nothing set, points `DRINODE` and `DRI_NODE` at it; wires `PIXELFLUX_CU=5000` and `ROOT_PATH=/pelorus` when `PELORUS=true`.
+- GPU env: with exactly one render node and nothing set, points `DRINODE` and `DRI_NODE` at it; wires `PIXELFLUX_CU=5000`, a generated `PIXELFLUX_CU_TOKEN` unless you set one, and `ROOT_PATH=/pelorus` when `PELORUS=true`.
 - Creates the gamepad device nodes (`/dev/input/js0-3` and event nodes) and sets the global `LD_PRELOAD` for the interposer and fake udev, unless `NO_GAMEPAD` is set.
 - Syncs proot-apps into the user home and handles `LC_ALL` locale derivation.
 - Steam shim: links `/usr/local/bin/steam` (marked `#SELKIESSHIM`) to `/usr/bin/steam` when nothing is there, so `steam` runs the installer in `/steam.sh` until a real launcher exists. `NO_STEAM=true` removes both.
@@ -52,7 +51,7 @@ init-os-end
 | `svc-nginx` | Reaps zombie workers then runs Nginx in the foreground |
 | `svc-pulseaudio` | PulseAudio as `abc`, never idle exits, runtime dir under `/defaults` |
 | `svc-xorg` | X11 mode: picks the render node (`DRINODE`, else the Nvidia node when one exists, else the first) and starts Xvfb on `:1` with `-glamor -dri <node>` so the screen lives on the GPU, unless `DISABLE_DRI3=true` or no node exists. Wayland mode: sleeps |
-| `svc-selkies` | Loads the `output` and `input` null sinks once PulseAudio is up, then runs `selkies --addr=localhost --mode=websockets` as `abc`. In Wayland mode this is what brings up the pixelflux compositor on `wayland-1` |
+| `svc-selkies` | Loads the `output` and `input` null sinks once PulseAudio is up, then runs `selkies --addr=localhost` as `abc`, every other setting coming from the environment. In Wayland mode this is what brings up the pixelflux compositor on `wayland-1` |
 | `svc-de` | Waits for the display (the `wayland-1` socket, or `xset q` on X11), then executes `/defaults/startwm_wayland.sh` or `/defaults/startwm.sh` as `abc`, recording the PID for clean teardown. On X11 it also sets the initial 1024x768 mode (or `SELKIES_MANUAL_WIDTH` and `HEIGHT`) via xrandr |
 | `svc-xsettingsd` | X11 only, DPI hinting for legacy toolkits |
 | `svc-watchdog` | Only active with `RESTART_APP=true`: polls for the autostart process and relaunches it if it dies |
@@ -68,20 +67,18 @@ One config, two identical server blocks (HTTP 3000, HTTPS 3001):
 | Location | Purpose |
 | --- | --- |
 | `SUBFOLDER` (default `/`) | The web client static files from `/usr/share/selkies/web/` |
-| `SUBFOLDERwebsocket` | Proxy to the Selkies data WebSocket on 127.0.0.1:8082 |
-| `SUBFOLDERfiles` | fancyindex download listing of `FILE_MANAGER_PATH` (default `/config/Desktop`), removed entirely when downloads are disabled or `HARDEN_DESKTOP` is on |
+| `SUBFOLDERapi` | Proxy to the Selkies server on 127.0.0.1:8082 with the prefix kept, which Selkies also reads from `SUBFOLDER`: the data WebSocket, WebRTC signaling, the file browser and uploads, printed documents, the operator API, and the token control plane. Unlimited body size and no request buffering, so uploads stream through |
 | `SUBFOLDERpelorus/` | Proxy to the Pelorus API on 127.0.0.1:5100 |
 | `/devmode` | Proxy to a Vite dev server, see [Development Environment](development.md) |
 
-All proxy locations use hour long timeouts, no buffering, and a 10MB body cap. Because substitution is plain `sed`, exotic characters in `PASSWORD` or `SUBFOLDER` can break the config, keep them simple.
+All proxy locations use hour long timeouts and no response buffering. Because substitution is plain `sed`, exotic characters in `PASSWORD` or `SUBFOLDER` can break the config, keep them simple.
 
 ## Internal port map
 
 | Port | Owner | Exposure |
 | --- | --- | --- |
 | 3000, 3001 | Nginx | Published, everything user facing |
-| 8082 | Selkies WebSocket | localhost only, via Nginx |
-| 8083 | Selkies token control plane | localhost only, orchestrators call it, never expose |
+| 8082 | Selkies server, everything under `/api` including the token control plane | localhost only, via Nginx |
 | 5100 | Pelorus API | localhost only, via Nginx at `/pelorus/` |
 | 5000 | pixelflux Computer Use API | localhost only |
 | 5173 | Vite dev server | localhost only, via `/devmode` |
