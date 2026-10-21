@@ -70,7 +70,7 @@ Pick the first row that matches your deployment.
 | Client and container on the same LAN | Forward one UDP port and tell Selkies about it, see [UDP mux](#one-forwarded-port-udp-mux) |
 | Container has a public IP, or sits behind static 1:1 NAT (a cloud instance with an elastic IP) | Forward one UDP port, set `SELKIES_WEBRTC_PUBLIC_IP` to the public address, optionally enable ICE-lite |
 | Clients on networks that block UDP | Add a TCP mux port, ideally `443` |
-| Container behind NAT you cannot forward through, or many clients on hostile networks | Run or rent a [TURN server](#turn-servers) |
+| Container behind NAT you cannot forward through, or many clients on hostile networks | Run or rent a [TURN server](#choosing-a-turn-server) |
 
 ### One forwarded port (UDP mux)
 
