@@ -48,7 +48,7 @@ GPU allocation is automatic: the server detects render nodes and drivers at star
 
 ## Features beyond launching
 
-- **Collaboration rooms:** launch a session in room mode and invite participants with links, full control, read only, or gamepad player slots, with A/V chat signalling and up to four physical gamepads passed through. Built on the Selkies token control plane (port 8083 inside the container).
+- **Collaboration rooms:** launch a session in room mode and invite participants with links, full control, read only, or gamepad player slots, with A/V chat signalling and up to four physical gamepads passed through. Built on the Selkies secure mode token API (`/api/tokens`, behind the container's Nginx).
 - **File manager:** browse, upload, and download files in your server side homes from the extension, with chunked transfers for large files.
 - **Public shares:** password protectable, expiring public download links for files in your storage.
 - **App Lab (meta apps):** launch a base app in customize mode, install software and tweak settings interactively, then commit the home directory as a golden template. New "meta apps" launch from copies of that template, no Docker knowledge required.
