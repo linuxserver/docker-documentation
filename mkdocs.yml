@@ -4,9 +4,13 @@ site_author: LinuxServer.io
 site_description: Welcome to the home of the LinuxServer.io documentation!
 repo_name: linuxserver/docker-documentation
 repo_url: https://github.com/linuxserver/docker-documentation
-copyright: Copyright &copy; 2025 LinuxServer.io
+copyright: LinuxServer.io
 theme:
   name: material
+  custom_dir: overrides
+  font: false
+  icon:
+    repo: fontawesome/brands/github
   features:
     # - content.action.edit
     - content.code.copy
@@ -23,21 +27,64 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: purple
-      accent: indigo
+      primary: custom
+      accent: custom
       toggle:
-        icon: material/brightness-7
+        icon: material/weather-sunny
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: purple
-      accent: indigo
+      primary: custom
+      accent: custom
       toggle:
-        icon: material/brightness-4
+        icon: material/weather-night
         name: Switch to light mode
   favicon: assets/favicon.ico
-  logo: assets/icon.svg
+  logo: assets/mark.svg
 extra:
+  # Shared shell with www.linuxserver.io (linuxserver/site): header links, Donate button, footer columns.
+  lsio:
+    site_url: https://www.linuxserver.io
+    donate: https://www.linuxserver.io/donate/
+    blurb: Volunteers building and maintaining the largest collection of community Docker images. Free and open source, always.
+    nav:
+      - label: Images
+        url: https://www.linuxserver.io/images/
+      - label: Blog
+        url: https://www.linuxserver.io/blog/
+      - label: Docs
+        url: /
+        current: true
+      - label: Support
+        url: https://www.linuxserver.io/support/
+      - label: About
+        url: https://www.linuxserver.io/about/
+    footer:
+      - title: Fleet
+        links:
+          - { label: All images, url: https://www.linuxserver.io/images/ }
+          - { label: Most pulled, url: "https://www.linuxserver.io/images/?sort=popular" }
+          - { label: Newest, url: "https://www.linuxserver.io/images/?sort=newest" }
+          - { label: Fleet info, url: https://info.linuxserver.io, external: true }
+          - { label: Status, url: https://status.linuxserver.io/, external: true }
+      - title: Learn
+        links:
+          - { label: Documentation, url: / }
+          - { label: Images by category, url: /images-by-category/ }
+          - { label: FAQ, url: /FAQ/ }
+          - { label: Blog, url: https://www.linuxserver.io/blog/ }
+      - title: Community
+        links:
+          - { label: Support, url: https://www.linuxserver.io/support/ }
+          - { label: Discord, url: https://linuxserver.io/discord, external: true }
+          - { label: Discussions, url: https://github.com/orgs/linuxserver/discussions, external: true }
+          - { label: GitHub, url: https://github.com/linuxserver, external: true }
+      - title: Project
+        links:
+          - { label: About, url: https://www.linuxserver.io/about/ }
+          - { label: Team, url: "https://www.linuxserver.io/about/#team" }
+          - { label: Donate, url: https://www.linuxserver.io/donate/ }
+          - { label: Open Collective, url: https://opencollective.com/linuxserver, external: true }
   social:
     - icon: fontawesome/solid/otter
       link: https://linuxserver.io
