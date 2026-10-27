@@ -4,10 +4,10 @@ The wire protocol between the Selkies server and the web client, for anyone impl
 
 ## Connection and roles
 
-The client connects to `wss://host/<subfolder>websocket`. Role assignment happens one of two ways:
+The client connects to `wss://host/<subfolder>api/websockets`. Role assignment happens one of two ways:
 
 - **Fragment mode** (default): the URL fragment the page was opened with decides the role, `#shared` (view only), `#player2` through `#player4` (gamepad slot only), `#display2-right` and friends (second monitor surface). No fragment means a controller: the first page owns the display's size, and later pages on the plain address join beside it with full control.
-- **Token mode** (when the server was started with `SELKIES_MASTER_TOKEN`): the page is opened with `#token=<token>` in the fragment, where no request line or proxy log sees it, or `?token=<token>` in the query, and the client offers the token to the WebSocket as the `selkies.token.<base64url>` subprotocol or as `?token=`. Tokens and their roles are registered by the orchestrator via `POST /api/tokens` on the normal port with the master token as a bearer credential, or read from `SELKIES_TOKENS_FILE`. Close codes: `4000` server shutting down, `4001` invalid token, `4002` revoked, `4029` reconnecting too fast.
+- **Token mode** (when the server was started with `SELKIES_MASTER_TOKEN`): the page is opened with `#token=<token>` in the fragment (after a role or display fragment: `#display2-right&token=<token>`), where no request line or proxy log sees it, or `?token=<token>` in the query, and the client offers the token to the WebSocket as the `selkies.token.<base64url>` subprotocol or as `?token=`. Tokens and their roles are registered by the orchestrator via `POST /api/tokens` on the normal port with the master token as a bearer credential (`Authorization`, or `Selkies-Authorization` beside a Basic login), or read from `SELKIES_TOKENS_FILE`. Close codes: `4000` server shutting down, `4001` invalid token, `4002` revoked, `4029` reconnecting too fast.
 
 On success the server sends `MODE websockets`, an auth confirmation with the assigned role, and a `server_settings` JSON message containing every tunable setting with its value, allowed range or enum, and locked flag, this single message is what renders the sidebar UI, which is why locking a setting server side removes the control everywhere.
 
