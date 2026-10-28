@@ -409,6 +409,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **28.10.26:** - Use vendor zip from upstream instead of composer for php deps, with fallback to composer if it fails.
 * **05.08.26:** - Run the async queue worker as the PUID/PGID-managed abc user.
 * **05.07.26:** - Rebase to Alpine 3.24.
 * **29.04.26:** - Switch to pulling releases from [Codeberg](https://codeberg.org/bookstack/bookstack).
