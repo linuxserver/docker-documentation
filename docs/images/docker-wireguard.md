@@ -438,6 +438,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **01.11.26:** - Run wg-quick from /usr/bin/local to avoid apparmor issues on Ubuntu 25+ with custom runtimes.
 * **05.07.26:** - Rebase to Alpine 3.24.
 * **24.01.26:** - Rebase to Alpine 3.23 again as openresolv alpine 3.23 package has now been updated.
 * **22.01.26:** - Revert to Alpine 3.22 due to resolvconf bug.
