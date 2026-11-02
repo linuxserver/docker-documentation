@@ -461,4 +461,5 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **02.11.26:** - Drop sudo requirement, improve CPU only rendering performance when no GPU is present.
 * **19.07.26:** - Initial release.
