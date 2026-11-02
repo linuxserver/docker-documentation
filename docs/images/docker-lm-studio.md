@@ -501,4 +501,5 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **02.11.26:** - Update OpenCode to v2, replace opencode-lmstudio plugin with opencode-models-discovery, migrate stock configs.
 * **22.06.26:** - Initial release.
