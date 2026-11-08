@@ -437,6 +437,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **08.11.26:** - Add Lichii emulator.
 * **23.09.26:** - Updates for selkies v2, add X11 support.
 * **21.08.26:** - Add Xenia Edge emulator.
 * **13.08.26:** - Add Azahar emulator.
