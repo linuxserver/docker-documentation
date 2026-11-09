@@ -66,7 +66,7 @@ The container builds the mounted source (all Rust build dependencies are present
 | [linuxserver/selkies-layers](https://github.com/linuxserver/selkies-layers) | The prebuilt, patched Xvfb, labwc, KWin, selkies-desktop, and waylandtyper layers the baseimages copy in, one Dockerfile per distro and layer |
 | [linuxserver/waylandtyper](https://github.com/linuxserver/waylandtyper) | Our maintained fork of wtype, shipped in the images as a command line tool |
 
-Both Rust libraries publish generated API documentation: [pixelflux rustdocs](https://pixelflux.selkies.io/pixelflux/index.html) and [pcmflux rustdocs](https://pcmflux.selkies.io/pcmflux/index.html). Reach for those when you need the exact settings fields, frame types, and callbacks rather than the overview on the [Pixelflux page](../components/pixelflux.md).
+Both Rust libraries publish generated API documentation: [pixelflux rustdocs](https://docs.selkies.io/main/rustdoc/pixelflux/index.html) and [pcmflux rustdocs](https://docs.selkies.io/main/rustdoc/pcmflux/index.html). Reach for those when you need the exact settings fields, frame types, and callbacks rather than the overview on the [Pixelflux page](../components/pixelflux.md).
 
 The baseimage Dockerfile builds the web frontend and the interposers itself and copies the display server layers in from [selkies-layers](https://github.com/linuxserver/selkies-layers), whose per distro Dockerfiles and `patches/` directory are the authoritative recipe for the patched Xvfb, labwc, wlroots, and KWin. When you need to know exactly how a piece is built, read the corresponding Dockerfile stage in whichever repository owns it.
 
