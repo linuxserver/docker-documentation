@@ -329,13 +329,14 @@ To help with development, we generate this dependency graph.
       svc-php-fpm -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine-nginx:3.22" <- "baseimage-alpine:3.22"
+      "baseimage-alpine-nginx:3.24" <- "baseimage-alpine:3.24"
     }
     "projectsend:latest" <- Base Images
     ```
 
 ## Versions
 
+* **22.10.26:** - Rebase to Alpine 3.24.
 * **10.08.26:** - Switch to legacy repo until migration steps are figured out.
 * **14.12.25:** - Add php ldap module.
 * **16.11.25:** - Add missing language files to default install.
