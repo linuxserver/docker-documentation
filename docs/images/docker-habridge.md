@@ -304,40 +304,35 @@ To help with development, we generate this dependency graph.
       init-migrations -> init-adduser
       init-os-end -> init-config
       init-config -> init-config-end
+      init-crontab-config -> init-config-end
       init-habridge-config -> init-config-end
-      init-os-end -> init-crontab-config
+      init-config -> init-crontab-config
       init-mods-end -> init-custom-files
-      init-config-end -> init-deprecate
       init-adduser -> init-device-perms
       base -> init-envfile
       init-config -> init-habridge-config
       base -> init-migrations
-      base -> init-mods
       init-config-end -> init-mods
-      init-mods -> init-mods-end
       init-mods-package-install -> init-mods-end
       init-mods -> init-mods-package-install
-      base -> init-os-end
       init-adduser -> init-os-end
       init-device-perms -> init-os-end
       init-envfile -> init-os-end
-      init-migrations -> init-os-end
       init-custom-files -> init-services
-      init-deprecate -> init-services
-      init-mods-end -> init-services
       init-services -> svc-cron
       svc-cron -> legacy-services
       init-services -> svc-habridge
       svc-habridge -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.20"
+      "baseimage-alpine:3.24"
     }
     "habridge:latest" <- Base Images
     ```
 
 ## Versions
 
+* **15.11.26:** - Rebase to Alpine 3.24.
 * **27.06.24:** - Rebase to Alpine 3.20.
 * **10.04.24:** - Revert JRE to 8 due to incomplete upstream support.
 * **20.03.24:** - Rebase to Alpine 3.19, bump JRE to 17.
