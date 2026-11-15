@@ -51,6 +51,7 @@ The currently included binaries are as follows:
 
 ## Versions
 
+* **15.11.26:** - Bump unrar to 7.3.2.
 * **05.07.26:** - Bump unrar to 7.2.7.
 * **17.02.26:** - Bump unrar to 7.2.4.
 * **12.08.25:** - Bump unrar to 7.1.10.
