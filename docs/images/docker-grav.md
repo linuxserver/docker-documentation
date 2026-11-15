@@ -327,6 +327,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **15.11.26:** - Add php-exif.
 * **27.06.26:** - Rebase to Alpine 3.24.
 * **11.10.25:** - Add php83-pdo and php83-pdo_sqlite
 * **19.06.24:** - Rebase to Alpine 3.20. Symlink robots.txt to /config. Existing users should update their nginx confs to avoid http2 deprecation warnings.
