@@ -42,10 +42,11 @@ This image provides various versions that are available via tags. Please read th
 
 | Tag | Available | Description |
 | :----: | :----: |--- |
-| latest | ✅ | XFCE Alpine *Wayland Support |
+| latest | ✅ | Transition to alpine-xfce please! |
 | alpine-i3 | ✅ | i3 Alpine *Wayland Support |
 | alpine-kde | ✅ | KDE Alpine *Wayland Only |
 | alpine-mate | ✅ | MATE Alpine |
+| alpine-xfce | ✅ | XFCE Alpine *Wayland Support |
 | arch-i3 | ✅ | i3 Arch *Wayland Support |
 | arch-kde | ✅ | KDE Arch *Wayland Only |
 | arch-mate | ✅ | MATE Arch |
@@ -66,6 +67,8 @@ This image provides various versions that are available via tags. Please read th
 | dev | ✅ | KDE Ubuntu *Current Selkies Development Head |
 
 ## Application Setup
+
+# The latest tag will be transitioning to Ubuntu and Selkies Desktop, please migrate to the alpine-xfce tag.
 
 The application can be accessed at:
 
@@ -464,6 +467,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **16.11.26:** - Announce transition of latest tag to alpine-xfce.
 * **02.10.26:** - Quality of life upgrades for KDE, MATE, and Xfce. Install base packages for flavors initialize KDE sessions properly.
 * **21.09.26:** - Updates for Selkies v2, add x11 init for ubuntu-kde, show ubuntu-lxqt branch.
 * **10.06.26:** - Rebase Alpine images to 3.24.
