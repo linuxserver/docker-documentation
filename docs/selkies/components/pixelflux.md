@@ -1,6 +1,6 @@
 # Pixelflux and Pcmflux
 
-**Repositories:** [selkies-project/pixelflux](https://github.com/selkies-project/pixelflux) and [selkies-project/pcmflux](https://github.com/selkies-project/pcmflux) · **PyPI:** `pip install pixelflux pcmflux` · **License:** MPL-2.0 · **Upstream docs:** [docs.selkies.io](https://docs.selkies.io/) · **Rustdocs:** [pixelflux](https://pixelflux.selkies.io/pixelflux/index.html), [pcmflux](https://pcmflux.selkies.io/pcmflux/index.html)
+**Repositories:** [selkies-project/pixelflux](https://github.com/selkies-project/pixelflux) and [selkies-project/pcmflux](https://github.com/selkies-project/pcmflux) · **PyPI:** `pip install pixelflux pcmflux` · **License:** MPL-2.0 · **Upstream docs:** [docs.selkies.io](https://docs.selkies.io/) · **Rustdocs:** [pixelflux](https://docs.selkies.io/main/rustdoc/pixelflux/index.html), [pcmflux](https://docs.selkies.io/main/rustdoc/pcmflux/index.html)
 
 Pixelflux is the rendering and capture pipeline at the core of the entire platform. It captures a Linux framebuffer, decides what changed, encodes it as JPEG, H.264, H.265, VP8, VP9, or AV1, and hands the encoded frames to your code through a Python callback. Selkies is its primary consumer, but it is a standalone library you can embed in anything.
 
