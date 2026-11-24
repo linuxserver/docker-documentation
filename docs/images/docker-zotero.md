@@ -34,7 +34,7 @@ The architectures supported by this image are:
 | Architecture | Available | Tag |
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
-| arm64 | ❌ | |
+| arm64 | ✅ | arm64v8-\<version tag\> |
 
 ## Application Setup
 
@@ -435,6 +435,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **06.11.26:** - Add aarch64 support.
 * **30.03.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **21.03.26:** - Use Wayland ozone platform for chromium fixes scaling and acceleration.
 * **28.12.25:** - Add Wayland init logic.
