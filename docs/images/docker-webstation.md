@@ -437,6 +437,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **24.11.26:** - Add xbased emulator.
 * **19.11.26:** - Install Cemu, Dolphin and Eden from upstream AppImages instead of building from source, refresh desktop icons.
 * **08.11.26:** - Add Lichii emulator.
 * **23.09.26:** - Updates for selkies v2, add X11 support.
