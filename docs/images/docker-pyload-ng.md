@@ -326,13 +326,14 @@ To help with development, we generate this dependency graph.
       svc-pyload -> legacy-services
     }
     Base Images: {
-      "baseimage-alpine:3.22"
+      "baseimage-alpine:3.24"
     }
     "pyload-ng:latest" <- Base Images
     ```
 
 ## Versions
 
+* **24.11.26:** - Rebase to Alpine 3.24.
 * **09.01.26:** - Add gcompat for mini-racer.
 * **01.09.25:** - Add new dep, libatomic.
 * **09.06.25:** - Rebase to Alpine 3.22.
