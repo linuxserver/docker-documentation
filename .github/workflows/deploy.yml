@@ -17,6 +17,7 @@ jobs:
           fetch-depth: 0
           sparse-checkout: |
             docs
+            overrides
             scripts
       - name: Setup python
         uses: actions/setup-python@v7.0.0
@@ -67,6 +68,7 @@ jobs:
           fetch-depth: 0
           sparse-checkout: |
             docs
+            overrides
             scripts
       - name: Setup python
         uses: actions/setup-python@v7.0.0

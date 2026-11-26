@@ -1,0 +1,91 @@
+{#-
+  Header: drawer toggle, logo (wordmark on wide screens, mark on narrow ones), page title, site links from
+  extra.lsio.nav, palette toggle, search, repository link and the Donate button from extra.lsio.donate.
+  The drawer, palette and search markup is Material's own; its JavaScript binds to it.
+-#}
+{% set class = "md-header" %}
+{% if "navigation.tabs.sticky" in features %}
+  {% set class = class ~ " md-header--shadow md-header--lifted" %}
+{% elif "navigation.tabs" not in features %}
+  {% set class = class ~ " md-header--shadow" %}
+{% endif %}
+{% set lsio = config.extra.lsio or {} %}
+<header class="{{ class }}" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="{{ lang.t('header') }}">
+    <label class="md-header__button md-icon" for="__drawer">
+      {% set icon = config.theme.icon.menu or "material/menu" %}
+      {% include ".icons/" ~ icon ~ ".svg" %}
+    </label>
+    <a href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}" title="{{ config.site_name | e }}" class="md-header__button md-logo lsio-logo" aria-label="{{ config.site_name }} documentation home" data-md-component="logo">
+      <span class="lsio-logo__full">{% include "partials/lsio-wordmark.svg" %}</span>
+      <span class="lsio-logo__mark">{% include "partials/lsio-mark.svg" %}</span>
+    </a>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            {{ config.site_name }}
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            {% if page.meta and page.meta.title %}
+              {{ page.meta.title }}
+            {% else %}
+              {{ page.title }}
+            {% endif %}
+          </span>
+        </div>
+      </div>
+    </div>
+    {% if lsio.nav %}
+      <ul class="lsio-nav" aria-label="LinuxServer.io">
+        {% for item in lsio.nav %}
+          <li class="{{ 'lsio-nav__item--current' if item.current }}">
+            <a href="{{ item.url }}"{% if item.current %} aria-current="page"{% endif %}{% if item.external %} target="_blank" rel="noopener"{% endif %}>
+              {{ item.label }}
+              {% if item.external %}
+                {% include ".icons/material/arrow-top-right.svg" %}
+                <span class="lsio-sr-only">(opens in a new tab)</span>
+              {% endif %}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% if config.theme.palette %}
+      {% if not config.theme.palette is mapping %}
+        {% include "partials/palette.html" %}
+      {% endif %}
+    {% endif %}
+    {% if not config.theme.palette is mapping %}
+      {% include "partials/javascripts/palette.html" %}
+    {% endif %}
+    {% if config.extra.alternate %}
+      {% include "partials/alternate.html" %}
+    {% endif %}
+    {% if "material/search" in config.plugins %}
+      {% set search = config.plugins["material/search"] | attr("config") %}
+      {% if search.enabled %}
+        <label class="md-header__button md-icon" for="__search">
+          {% set icon = config.theme.icon.search or "material/magnify" %}
+          {% include ".icons/" ~ icon ~ ".svg" %}
+        </label>
+        {% include "partials/search.html" %}
+      {% endif %}
+    {% endif %}
+    {% if config.repo_url %}
+      <div class="md-header__source">
+        {% include "partials/source.html" %}
+      </div>
+    {% endif %}
+    {% if lsio.donate %}
+      <a href="{{ lsio.donate }}" class="lsio-donate">Donate</a>
+    {% endif %}
+  </nav>
+  {% if "navigation.tabs.sticky" in features %}
+    {% if "navigation.tabs" in features %}
+      {% include "partials/tabs.html" %}
+    {% endif %}
+  {% endif %}
+</header>
