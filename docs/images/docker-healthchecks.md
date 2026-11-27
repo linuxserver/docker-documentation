@@ -367,6 +367,12 @@ To help with development, we generate this dependency graph.
       svc-cron -> legacy-services
       init-services -> svc-healthchecks
       svc-healthchecks -> legacy-services
+      init-services -> svc-healthchecks-alerts
+      svc-healthchecks-alerts -> legacy-services
+      init-services -> svc-healthchecks-reports
+      svc-healthchecks-reports -> legacy-services
+      init-services -> svc-healthchecks-smtpd
+      svc-healthchecks-smtpd -> legacy-services
     }
     Base Images: {
       "baseimage-alpine:3.24"
@@ -376,6 +382,7 @@ To help with development, we generate this dependency graph.
 
 ## Versions
 
+* **27.11.26:** - Switch to gunicorn to match upstream, LISTEN_IPV6 now supported & defaults to `true`.
 * **05.07.26:** - Rebase to Alpine 3.24.
 * **28.12.25:** - Rebase to Alpine 3.23.
 * **05.07.25:** - Rebase to Alpine 3.22.
